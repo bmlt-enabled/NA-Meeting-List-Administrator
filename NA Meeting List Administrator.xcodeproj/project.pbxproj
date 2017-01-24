@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		77A099BD1E379DC40066F6A2 /* BMLTiOSLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77A099B61E379DAB0066F6A2 /* BMLTiOSLib.framework */; };
 		77DC3EAA1E378B6300BF24B7 /* MainAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DC3EA91E378B6300BF24B7 /* MainAppDelegate.swift */; };
 		77DC3EAC1E378B6300BF24B7 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DC3EAB1E378B6300BF24B7 /* InitialViewController.swift */; };
 		77DC3EAF1E378B6300BF24B7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77DC3EAD1E378B6300BF24B7 /* Main.storyboard */; };
@@ -14,8 +15,40 @@
 		77DC3EB41E378B6300BF24B7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77DC3EB21E378B6300BF24B7 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		77A099B51E379DAB0066F6A2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 77A099AF1E379DAB0066F6A2 /* BMLTiOSLib.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 77368DDB1DF849350066C78E;
+			remoteInfo = BMLTiOSLib;
+		};
+		77A099B71E379DAB0066F6A2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 77A099AF1E379DAB0066F6A2 /* BMLTiOSLib.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 772929841D9AEE2A008D333E;
+			remoteInfo = "BMLTiOSLib Tester";
+		};
+		77A099B91E379DAB0066F6A2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 77A099AF1E379DAB0066F6A2 /* BMLTiOSLib.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 77368DD11DF846B20066C78E;
+			remoteInfo = "BMLTiOSLib  Framework Tester";
+		};
+		77A099BB1E379DBD0066F6A2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 77A099AF1E379DAB0066F6A2 /* BMLTiOSLib.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 77368DDA1DF849350066C78E;
+			remoteInfo = BMLTiOSLib;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		770E5E931E37937400CBE834 /* LICENSE.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
+		77A099AF1E379DAB0066F6A2 /* BMLTiOSLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BMLTiOSLib.xcodeproj; path = BMLTiOSLib/BMLTiOSLib.xcodeproj; sourceTree = SOURCE_ROOT; };
 		77DC3EA61E378B6300BF24B7 /* NA Meeting List Administrator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NA Meeting List Administrator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		77DC3EA91E378B6300BF24B7 /* MainAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainAppDelegate.swift; sourceTree = "<group>"; };
 		77DC3EAB1E378B6300BF24B7 /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
@@ -31,6 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77A099BD1E379DC40066F6A2 /* BMLTiOSLib.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +78,7 @@
 				77DC3EB01E378B6300BF24B7 /* Assets.xcassets */,
 				77DC3EB21E378B6300BF24B7 /* LaunchScreen.storyboard */,
 				77DC3EB51E378B6300BF24B7 /* Info.plist */,
+				77A099AF1E379DAB0066F6A2 /* BMLTiOSLib.xcodeproj */,
 			);
 			name = "Resources And Extras";
 			path = "NA Meeting List Administrator";
@@ -56,6 +91,16 @@
 			);
 			name = "View Controllers";
 			path = "NA Meeting List Administrator";
+			sourceTree = "<group>";
+		};
+		77A099B01E379DAB0066F6A2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				77A099B61E379DAB0066F6A2 /* BMLTiOSLib.framework */,
+				77A099B81E379DAB0066F6A2 /* BMLTiOSLib Tester.app */,
+				77A099BA1E379DAB0066F6A2 /* BMLTiOSLib  Framework Tester.app */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		77DC3E9D1E378B6100BF24B7 = {
@@ -101,6 +146,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				77A099BC1E379DBD0066F6A2 /* PBXTargetDependency */,
 			);
 			name = "NA Meeting List Administrator";
 			productName = "NA Meeting List Administrator";
@@ -135,12 +181,42 @@
 			mainGroup = 77DC3E9D1E378B6100BF24B7;
 			productRefGroup = 77DC3EA71E378B6300BF24B7 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 77A099B01E379DAB0066F6A2 /* Products */;
+					ProjectRef = 77A099AF1E379DAB0066F6A2 /* BMLTiOSLib.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				77DC3EA51E378B6100BF24B7 /* NA Meeting List Administrator */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		77A099B61E379DAB0066F6A2 /* BMLTiOSLib.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = BMLTiOSLib.framework;
+			remoteRef = 77A099B51E379DAB0066F6A2 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		77A099B81E379DAB0066F6A2 /* BMLTiOSLib Tester.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "BMLTiOSLib Tester.app";
+			remoteRef = 77A099B71E379DAB0066F6A2 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		77A099BA1E379DAB0066F6A2 /* BMLTiOSLib  Framework Tester.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "BMLTiOSLib  Framework Tester.app";
+			remoteRef = 77A099B91E379DAB0066F6A2 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		77DC3EA41E378B6100BF24B7 /* Resources */ = {
@@ -166,6 +242,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		77A099BC1E379DBD0066F6A2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BMLTiOSLib;
+			targetProxy = 77A099BB1E379DBD0066F6A2 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		77DC3EAD1E378B6300BF24B7 /* Main.storyboard */ = {
