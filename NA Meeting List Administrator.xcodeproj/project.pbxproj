@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		77140E901E37D3E1008BBB12 /* FXKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 77140E8F1E37D3E1008BBB12 /* FXKeychain.m */; };
 		77A099BD1E379DC40066F6A2 /* BMLTiOSLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77A099B61E379DAB0066F6A2 /* BMLTiOSLib.framework */; };
 		77DC3EAA1E378B6300BF24B7 /* MainAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DC3EA91E378B6300BF24B7 /* MainAppDelegate.swift */; };
 		77DC3EAC1E378B6300BF24B7 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DC3EAB1E378B6300BF24B7 /* InitialViewController.swift */; };
@@ -48,6 +49,9 @@
 
 /* Begin PBXFileReference section */
 		770E5E931E37937400CBE834 /* LICENSE.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
+		77140E8E1E37D3E1008BBB12 /* FXKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FXKeychain.h; path = FXKeychain/FXKeychain/FXKeychain.h; sourceTree = SOURCE_ROOT; };
+		77140E8F1E37D3E1008BBB12 /* FXKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FXKeychain.m; path = FXKeychain/FXKeychain/FXKeychain.m; sourceTree = SOURCE_ROOT; };
+		779BE3AD1E37D4D800350D11 /* NA Meeting List Administrator-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NA Meeting List Administrator-Bridging-Header.h"; sourceTree = "<group>"; };
 		77A099AF1E379DAB0066F6A2 /* BMLTiOSLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BMLTiOSLib.xcodeproj; path = BMLTiOSLib/BMLTiOSLib.xcodeproj; sourceTree = SOURCE_ROOT; };
 		77DC3EA61E378B6300BF24B7 /* NA Meeting List Administrator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NA Meeting List Administrator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		77DC3EA91E378B6300BF24B7 /* MainAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainAppDelegate.swift; sourceTree = "<group>"; };
@@ -78,6 +82,8 @@
 				77DC3EB01E378B6300BF24B7 /* Assets.xcassets */,
 				77DC3EB21E378B6300BF24B7 /* LaunchScreen.storyboard */,
 				77DC3EB51E378B6300BF24B7 /* Info.plist */,
+				779BE3AD1E37D4D800350D11 /* NA Meeting List Administrator-Bridging-Header.h */,
+				77140E911E37D3E6008BBB12 /* FXKeychain */,
 				77A099AF1E379DAB0066F6A2 /* BMLTiOSLib.xcodeproj */,
 			);
 			name = "Resources And Extras";
@@ -91,6 +97,15 @@
 			);
 			name = "View Controllers";
 			path = "NA Meeting List Administrator";
+			sourceTree = "<group>";
+		};
+		77140E911E37D3E6008BBB12 /* FXKeychain */ = {
+			isa = PBXGroup;
+			children = (
+				77140E8E1E37D3E1008BBB12 /* FXKeychain.h */,
+				77140E8F1E37D3E1008BBB12 /* FXKeychain.m */,
+			);
+			name = FXKeychain;
 			sourceTree = "<group>";
 		};
 		77A099B01E379DAB0066F6A2 /* Products */ = {
@@ -238,6 +253,7 @@
 			files = (
 				77DC3EAC1E378B6300BF24B7 /* InitialViewController.swift in Sources */,
 				77DC3EAA1E378B6300BF24B7 /* MainAppDelegate.swift in Sources */,
+				77140E901E37D3E1008BBB12 /* FXKeychain.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -385,6 +401,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "net.magshare.bmlt.NA-Meeting-List-Administrator";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "${PROJECT_DIR}/${TARGET_NAME}/${TARGET_NAME}-Bridging-Header.h";
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
 				SWIFT_VERSION = 3.0;
 			};
@@ -401,6 +419,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "net.magshare.bmlt.NA-Meeting-List-Administrator";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "${PROJECT_DIR}/${TARGET_NAME}/${TARGET_NAME}-Bridging-Header.h";
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
 				SWIFT_VERSION = 3.0;
 			};
