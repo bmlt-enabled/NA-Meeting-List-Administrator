@@ -1,0 +1,3 @@
+[submodule "BMLTiOSLib"]
+	path = BMLTiOSLib
+	url = git@bitbucket.org:bmlt/bmltioslib.git
