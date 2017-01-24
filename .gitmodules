@@ -1,3 +1,6 @@
 [submodule "BMLTiOSLib"]
 	path = BMLTiOSLib
 	url = git@bitbucket.org:bmlt/bmltioslib.git
+[submodule "FXKeychain"]
+	path = FXKeychain
+	url = https://github.com/nicklockwood/FXKeychain.git
