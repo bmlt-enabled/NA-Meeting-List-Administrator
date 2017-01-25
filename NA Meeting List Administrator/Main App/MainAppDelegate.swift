@@ -22,39 +22,90 @@ import UIKit
 import BMLTiOSLib
 
 @UIApplicationMain
-class MainAppDelegate: UIResponder, UIApplicationDelegate {
-    static var _libraryObject: BMLTiOSLib! = nil
+/* ###################################################################################################################################### */
+// MARK: - Main App Delegate Class -
+/* ###################################################################################################################################### */
+class MainAppDelegate: UIResponder, UIApplicationDelegate, BMLTiOSLibDelegate {
+    /* ################################################################## */
+    // MARK: Private Properties
+    /* ################################################################## */
+    /**
+     This will contain our connected (or connectING) BMLTiOSLib instance. It will be nil if there is no connection.
+     */
+    private static var _libraryObject: BMLTiOSLib! = nil
     
+    /* ################################################################## */
+    // MARK: Static Calculated Properties
+    /* ################################################################## */
+    /**
+     This is a quick way to get this object instance (it's a SINGLETON), cast as the correct class.
+     */
+    static var appDelegateObject: MainAppDelegate {
+        get { return UIApplication.shared.delegate as! MainAppDelegate }
+    }
+    
+    /* ################################################################## */
+    /**
+     This will return nil, unless we have a completed connecteion, in which case it will return the valid connected library.
+     */
+    static var connectionObject: BMLTiOSLib! {
+        get { return self.appDelegateObject.validConnection ? self._libraryObject : nil }
+    }
+    
+    /* ################################################################## */
+    // MARK: Normal Stored Properties
+    /* ################################################################## */
+    /**
+     This is the app main window object.
+     */
     var window: UIWindow?
-
-
+    
+    /** This is set to true if we have a valid connection (the connection process has completed). */
+    var validConnection: Bool = false
+    
+    /* ################################################################## */
+    /**
+     */
+    static func toggleConnectStatus() {
+        if nil != self._libraryObject {
+            self._libraryObject = nil
+        } else {
+            self._libraryObject = BMLTiOSLib(inRootServerURI: AppStaticPrefs.prefs.rootURI, inDelegate: self.appDelegateObject)
+        }
+    }
+    
+    /* ################################################################## */
+    // MARK: UIApplicationDelegate Methods
+    /* ################################################################## */
+    /**
+     */
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
         return true
     }
-
-    func applicationWillResignActive(_ application: UIApplication) {
-        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-        // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
+    
+    /* ################################################################## */
+    // MARK: BMLTiOSLibDelegate Methods
+    /* ################################################################## */
+    /**
+     */
+    func bmltLibInstance(_ inLibInstance: BMLTiOSLib, serverIsValid: Bool) {
+        self.validConnection = serverIsValid
+        
+        if !self.validConnection {
+            type(of: self)._libraryObject = nil
+        }
     }
-
-    func applicationDidEnterBackground(_ application: UIApplication) {
-        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    
+    /* ################################################################## */
+    /**
+     */
+    func bmltLibInstance(_ inLibInstance: BMLTiOSLib, errorOccurred error: Error) {
+        // If we had an error while trying to connect, then this is a bad server.
+        if !self.validConnection {  // We quietly take an asp to our bosom.
+            type(of: self)._libraryObject = nil
+        } else {
+            // Otherwise, we raise a ruckus.
+        }
     }
-
-    func applicationWillEnterForeground(_ application: UIApplication) {
-        // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
-    }
-
-    func applicationDidBecomeActive(_ application: UIApplication) {
-        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    }
-
-    func applicationWillTerminate(_ application: UIApplication) {
-        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-    }
-
-
 }
 

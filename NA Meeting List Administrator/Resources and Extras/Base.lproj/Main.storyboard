@@ -12,8 +12,6 @@
         <scene sceneID="WA1-6y-0Jy">
             <objects>
                 <navigationController id="Xmv-pv-Odk" sceneMemberID="viewController">
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="375" height="667"/>
                     <navigationBar key="navigationBar" hidden="YES" contentMode="scaleToFill" id="N2v-Qg-jGT">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -56,7 +54,7 @@
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
-                    <navigationItem key="navigationItem" id="WTj-c2-VB4"/>
+                    <navigationItem key="navigationItem" title="Connect" id="WTj-c2-VB4"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                 </viewController>

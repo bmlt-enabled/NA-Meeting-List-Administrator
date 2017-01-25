@@ -20,18 +20,23 @@
 
 import UIKit
 
+/* ###################################################################################################################################### */
+// MARK: - Initial View Controller Class -
+/* ###################################################################################################################################### */
 class InitialViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+    /* ################################################################## */
+    // MARK: Overridden Instance Methods
+    /* ################################################################## */
+    /**
+     We simply use this to make sure our NavBar is hidden.
+     
+     Simplify, simplify, simplify.
+     
+     - parameter animated: True, if the appearance is animated.
+     */
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.isNavigationBarHidden = true;
+        super.viewWillAppear(animated)
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-
 }
 
