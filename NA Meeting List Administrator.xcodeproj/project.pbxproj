@@ -14,8 +14,8 @@
 		779BE3BD1E37D5FA00350D11 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 779BE3B41E37D5FA00350D11 /* Default-568h@2x.png */; };
 		779BE3BE1E37D5FA00350D11 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 779BE3B61E37D5FA00350D11 /* LaunchScreen.storyboard */; };
 		779BE3BF1E37D5FA00350D11 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 779BE3B81E37D5FA00350D11 /* Main.storyboard */; };
-		779BE3C01E37D5FA00350D11 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 779BE3BA1E37D5FA00350D11 /* Info.plist */; };
 		77A099BD1E379DC40066F6A2 /* BMLTiOSLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77A099B61E379DAB0066F6A2 /* BMLTiOSLib.framework */; };
+		77B50A681E381E31004019B8 /* AppStaticPrefs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B50A671E381E31004019B8 /* AppStaticPrefs.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +62,7 @@
 		779BE3BA1E37D5FA00350D11 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = "Resources and Extras/Info.plist"; sourceTree = "<group>"; };
 		779BE3BB1E37D5FA00350D11 /* NA Meeting List Administrator-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NA Meeting List Administrator-Bridging-Header.h"; path = "Resources and Extras/NA Meeting List Administrator-Bridging-Header.h"; sourceTree = "<group>"; };
 		77A099AF1E379DAB0066F6A2 /* BMLTiOSLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BMLTiOSLib.xcodeproj; path = BMLTiOSLib/BMLTiOSLib.xcodeproj; sourceTree = SOURCE_ROOT; };
+		77B50A671E381E31004019B8 /* AppStaticPrefs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppStaticPrefs.swift; path = "Main App/AppStaticPrefs.swift"; sourceTree = "<group>"; };
 		77DC3EA61E378B6300BF24B7 /* NA Meeting List Administrator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NA Meeting List Administrator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		77DC3EBB1E378C4F00BF24B7 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -146,6 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				779BE3B01E37D5B500350D11 /* MainAppDelegate.swift */,
+				77B50A671E381E31004019B8 /* AppStaticPrefs.swift */,
 			);
 			name = "Main App";
 			path = "NA Meeting List Administrator";
@@ -245,7 +247,6 @@
 				779BE3BE1E37D5FA00350D11 /* LaunchScreen.storyboard in Resources */,
 				779BE3BC1E37D5FA00350D11 /* Assets.xcassets in Resources */,
 				779BE3BD1E37D5FA00350D11 /* Default-568h@2x.png in Resources */,
-				779BE3C01E37D5FA00350D11 /* Info.plist in Resources */,
 				779BE3BF1E37D5FA00350D11 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -257,6 +258,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77B50A681E381E31004019B8 /* AppStaticPrefs.swift in Sources */,
 				779BE3B11E37D5B500350D11 /* MainAppDelegate.swift in Sources */,
 				77140E901E37D3E1008BBB12 /* FXKeychain.m in Sources */,
 				779BE3AF1E37D5A600350D11 /* InitialViewController.swift in Sources */,
@@ -414,12 +416,12 @@
 				DEVELOPMENT_TEAM = P53V4JS928;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_WARN_SHADOW = YES;
-				INFOPLIST_FILE = "NA Meeting List Administrator/Info.plist";
+				INFOPLIST_FILE = "${PROJECT_DIR}/${TARGET_NAME}/Resources and Extras/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "net.magshare.bmlt.NA-Meeting-List-Administrator";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INSTALL_OBJC_HEADER = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "${PROJECT_DIR}/${TARGET_NAME}/${TARGET_NAME}-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "${PROJECT_DIR}/${TARGET_NAME}/Resources and Extras/${TARGET_NAME}-Bridging-Header.h";
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
 				SWIFT_VERSION = 3.0;
 			};
@@ -432,12 +434,12 @@
 				DEVELOPMENT_TEAM = P53V4JS928;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_WARN_SHADOW = YES;
-				INFOPLIST_FILE = "NA Meeting List Administrator/Info.plist";
+				INFOPLIST_FILE = "${PROJECT_DIR}/${TARGET_NAME}/Resources and Extras/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "net.magshare.bmlt.NA-Meeting-List-Administrator";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INSTALL_OBJC_HEADER = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "${PROJECT_DIR}/${TARGET_NAME}/${TARGET_NAME}-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "${PROJECT_DIR}/${TARGET_NAME}/Resources and Extras/${TARGET_NAME}-Bridging-Header.h";
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
 				SWIFT_VERSION = 3.0;
 			};

@@ -19,10 +19,12 @@
 //  along with this code.  If not, see <http://www.gnu.org/licenses/>.
 
 import UIKit
+import BMLTiOSLib
 
 @UIApplicationMain
 class MainAppDelegate: UIResponder, UIApplicationDelegate {
-
+    static var _libraryObject: BMLTiOSLib! = nil
+    
     var window: UIWindow?
 
 
