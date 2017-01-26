@@ -53,7 +53,58 @@ class MainAppDelegate: UIResponder, UIApplicationDelegate, BMLTiOSLibDelegate {
     }
     
     /* ################################################################## */
-    // MARK: Normal Stored Properties
+    /**
+     This will initiate a new connection if set to true. If set to false, it will terminate the session.
+     Setting this value will always terminate any current sessions.
+     
+     If this value is true, it does not necessarily mean that we have a valid session; only that we have an object.
+     
+     You should check the instance value validConnection for that.
+     */
+    static var connectionStatus: Bool {
+        get {
+            return nil != self._libraryObject
+        }
+        
+        set {
+            if !newValue && (nil != self._libraryObject) {
+                self._libraryObject = nil
+            } else {
+                if newValue {
+                    self._libraryObject = BMLTiOSLib(inRootServerURI: AppStaticPrefs.prefs.rootURI, inDelegate: self.appDelegateObject)
+                }
+            }
+        }
+    }
+    
+    /* ################################################################## */
+    /**
+     Displays the given error in an alert with an "OK" button.
+     
+     - parameter inTitle: a string to be displayed as the title of the alert. It is localized by this method.
+     - parameter inMessage: a string to be displayed as the message of the alert. It is localized by this method.
+     - parameter presentedBy: An optional UIViewController object that is acting as the presenter context for the alert. If nil, we use the top controller of the Navigation stack.
+     */
+    class func displayAlert(_ inTitle: String, inMessage: String, presentedBy inPresentingViewController: UIViewController! = nil ) {
+        var presentedBy = inPresentingViewController
+        
+        if nil == presentedBy {
+            presentedBy = (self.appDelegateObject.window?.rootViewController as! UINavigationController).topViewController
+        }
+        
+        if nil != presentedBy {
+            let alertController = UIAlertController(title: NSLocalizedString(inTitle, comment: ""), message: NSLocalizedString(inMessage, comment: ""), preferredStyle: .alert)
+            
+            let okAction = UIAlertAction(title: NSLocalizedString("NAMeetingListAdministrator-OKButtonText", comment: ""), style: UIAlertActionStyle.cancel, handler: nil)
+            
+            alertController.addAction(okAction)
+            
+            presentedBy?.present(alertController, animated: true, completion: nil)
+        }
+    }
+    
+    /* ################################################################## */
+    // MARK: Instance Stored Properties
     /* ################################################################## */
     /**
      This is the app main window object.
@@ -62,17 +113,6 @@ class MainAppDelegate: UIResponder, UIApplicationDelegate, BMLTiOSLibDelegate {
     
     /** This is set to true if we have a valid connection (the connection process has completed). */
     var validConnection: Bool = false
-    
-    /* ################################################################## */
-    /**
-     */
-    static func toggleConnectStatus() {
-        if nil != self._libraryObject {
-            self._libraryObject = nil
-        } else {
-            self._libraryObject = BMLTiOSLib(inRootServerURI: AppStaticPrefs.prefs.rootURI, inDelegate: self.appDelegateObject)
-        }
-    }
     
     /* ################################################################## */
     // MARK: UIApplicationDelegate Methods
@@ -87,6 +127,10 @@ class MainAppDelegate: UIResponder, UIApplicationDelegate, BMLTiOSLibDelegate {
     // MARK: BMLTiOSLibDelegate Methods
     /* ################################################################## */
     /**
+     This is a required delegate callback. It is called when the server connection is completed (or disconnected).
+     
+     - parameter inLibInstance: The library object (in our case, it should always be the same as type(of: self)._libraryObject).
+     - parameter serverIsValid: If this is true, then the connection is valid (and complete). If false, the library object is about to become invalid.
      */
     func bmltLibInstance(_ inLibInstance: BMLTiOSLib, serverIsValid: Bool) {
         self.validConnection = serverIsValid
@@ -98,6 +142,10 @@ class MainAppDelegate: UIResponder, UIApplicationDelegate, BMLTiOSLibDelegate {
     
     /* ################################################################## */
     /**
+     This is a required callback that is executed if the connection suffers an error.
+
+     - parameter inLibInstance: The library object (in our case, it should always be the same as type(of: self)._libraryObject).
+     - parameter errorOccurred: This is the error object that was sent.
      */
     func bmltLibInstance(_ inLibInstance: BMLTiOSLib, errorOccurred error: Error) {
         // If we had an error while trying to connect, then this is a bad server.
@@ -105,6 +153,7 @@ class MainAppDelegate: UIResponder, UIApplicationDelegate, BMLTiOSLibDelegate {
             type(of: self)._libraryObject = nil
         } else {
             // Otherwise, we raise a ruckus.
+            type(of: self).displayAlert("NAMeetingListAdministrator-ErrorAlertTitle", inMessage: error.localizedDescription)
         }
     }
 }

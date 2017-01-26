@@ -50,6 +50,7 @@ class AppStaticPrefs {
     private enum PrefsKeys: String {
         /** This is the Root Server URI */
         case RootServerURI = "BMLTRootServerURI"
+        case DefaultRootServerURIPlistKey = "BMLTDefaultRootServerURI"
     }
     
     /* ################################################################## */
@@ -150,21 +151,42 @@ class AppStaticPrefs {
     // MARK: Instance Calculated Properties
     /* ################################################################## */
     /**
-     This is a read-only property, as the value is read from the plist file.
-     
+     This is the current Root Server URI. If there is no previous URI, then the default URI is read from the plist file.
      - returns: the selected Root Server URI, as a String.
      */
     var rootURI: String {
         get {
-            if let plistPath = Bundle.main.path(forResource: "Info", ofType: "plist") {
-                if let plistDictionary = NSDictionary(contentsOfFile: plistPath) as? [String: Any] {
-                    if let uri = plistDictionary[type(of: self).PrefsKeys.RootServerURI.rawValue] as? NSString {
-                        return uri as String
+            var ret: String = ""
+            
+            if self._loadPrefs() {
+                if let temp = self._loadedPrefs.object(forKey: PrefsKeys.RootServerURI.rawValue) as? String {
+                    ret = temp
+                }
+            }
+            
+            if ret.isEmpty {
+                // Get the default URI, if all else fails.
+                if let plistPath = Bundle.main.path(forResource: "Info", ofType: "plist") {
+                    if let plistDictionary = NSDictionary(contentsOfFile: plistPath) as? [String: Any] {
+                        if let uri = plistDictionary[type(of: self).PrefsKeys.DefaultRootServerURIPlistKey.rawValue] as? NSString {
+                            ret = uri as String
+                        }
                     }
                 }
             }
             
-            return ""
+            return ret
+        }
+        
+        set {
+            if self._loadPrefs() {
+                if newValue.isEmpty {
+                    self._loadedPrefs.removeObject(forKey: PrefsKeys.RootServerURI.rawValue)
+                } else {
+                    self._loadedPrefs.setObject(newValue, forKey: PrefsKeys.RootServerURI.rawValue as NSString)
+                }
+                self._savePrefs()
+            }
         }
     }
 }
