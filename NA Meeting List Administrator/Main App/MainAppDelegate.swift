@@ -71,6 +71,7 @@ class MainAppDelegate: UIResponder, UIApplicationDelegate, BMLTiOSLibDelegate {
                 self._libraryObject = nil
             } else {
                 if newValue {
+                    self.appDelegateObject.initialViewController.startConnection()
                     self._libraryObject = BMLTiOSLib(inRootServerURI: AppStaticPrefs.prefs.rootURI, inDelegate: self.appDelegateObject)
                 }
             }
@@ -114,6 +115,8 @@ class MainAppDelegate: UIResponder, UIApplicationDelegate, BMLTiOSLibDelegate {
     /** This is set to true if we have a valid connection (the connection process has completed). */
     var validConnection: Bool = false
     
+    var initialViewController: InitialViewController! = nil
+    
     /* ################################################################## */
     // MARK: UIApplicationDelegate Methods
     /* ################################################################## */
@@ -137,6 +140,8 @@ class MainAppDelegate: UIResponder, UIApplicationDelegate, BMLTiOSLibDelegate {
         
         if !self.validConnection {
             type(of: self)._libraryObject = nil
+        } else {
+            self.initialViewController.endConnection()
         }
     }
     

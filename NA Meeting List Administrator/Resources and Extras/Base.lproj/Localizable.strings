@@ -21,4 +21,11 @@
 */
 "NAMeetingListAdministrator-OKButtonText"               =   "OK";
 "NAMeetingListAdministrator-ErrorAlertTitle"            =   "ERROR!";
-
+"LOGIN-LABEL"                                           =   "Log In:";
+"LOGIN-ID-LABEL"                                        =   "Login ID:";
+"LOGIN-ID-PLACEHOLDER"                                  =   "Enter A Login ID";
+"PASSWORD-LABEL"                                        =   "Password:";
+"PASSWORD-PLACEHOLDER"                                  =   "Enter Your Password";
+"LOGIN-BUTTON"                                          =   "LOG IN";
+"LOGOUT-BUTTON"                                         =   "LOG OUT";
+"ADMIN-UNAVAILABLE-TEXT"                                =   "This server does not allow administration by this app.";
