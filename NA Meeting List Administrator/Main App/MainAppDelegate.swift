@@ -141,7 +141,7 @@ class MainAppDelegate: UIResponder, UIApplicationDelegate, BMLTiOSLibDelegate {
         if !self.validConnection {
             type(of: self)._libraryObject = nil
         } else {
-            self.initialViewController.endConnection()
+            self.initialViewController.finishedConnecting()
         }
     }
     
@@ -160,6 +160,21 @@ class MainAppDelegate: UIResponder, UIApplicationDelegate, BMLTiOSLibDelegate {
             // Otherwise, we raise a ruckus.
             type(of: self).displayAlert("NAMeetingListAdministrator-ErrorAlertTitle", inMessage: error.localizedDescription)
         }
+    }
+    
+    /* ################################################################## */
+    /**
+     Indicates whether or not a Semantic Admin log in or out occurred.
+     
+     This actually is called when the login state changes (or doesn't change when change is expected).
+     This is called in response to a login or logout. It is always called, even if
+     the login state did not change.
+     
+     - parameter inLibInstance: the BMLTiOSLib instance.
+     - parameter loginChangedTo: A Bool, true, if the session is currently connected.
+     */
+    func bmltLibInstance(_ inLibInstance: BMLTiOSLib, loginChangedTo: Bool) {
+        self.initialViewController.finishedLoggingIn()
     }
 }
 

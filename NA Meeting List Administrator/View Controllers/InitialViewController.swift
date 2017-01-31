@@ -48,6 +48,9 @@ class InitialViewController: UIViewController {
     /** This is displayed if administration is not available. */
     @IBOutlet weak var adminUnavailableLabel: UILabel!
     
+    /** This is set to true while we are in the process of logging in. */
+    private var _loggingIn: Bool = false
+    
     /* ################################################################## */
     // MARK: Overridden Instance Methods
     /* ################################################################## */
@@ -66,6 +69,7 @@ class InitialViewController: UIViewController {
         self.loginButton.setTitle(NSLocalizedString(self.loginButton.title(for: UIControlState.normal)!, comment: ""), for: UIControlState.normal)
         self.logoutButton.setTitle(NSLocalizedString(self.logoutButton.title(for: UIControlState.normal)!, comment: ""), for: UIControlState.normal)
         self.adminUnavailableLabel.text = NSLocalizedString(self.adminUnavailableLabel.text!, comment: "")
+        self._loggingIn = false
     }
     
     /* ################################################################## */
@@ -78,6 +82,7 @@ class InitialViewController: UIViewController {
      */
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = true;
+        self._loggingIn = false
         super.viewWillAppear(animated)
     }
     
@@ -96,24 +101,40 @@ class InitialViewController: UIViewController {
     /**
      */
     @IBAction func loginTextChanged(_ sender: UITextField) {
+        self.showOrHideLoginButton()
     }
     
     /* ################################################################## */
     /**
      */
     @IBAction func passwordTextChanged(_ sender: UITextField) {
+        self.showOrHideLoginButton()
     }
     
     /* ################################################################## */
     /**
      */
     @IBAction func loginButtonHit(_ sender: UIButton) {
+        if (nil != MainAppDelegate.connectionObject) && MainAppDelegate.connectionStatus && MainAppDelegate.connectionObject.isAdminAvailable {
+            if MainAppDelegate.connectionObject.adminLogin(loginID: self.loginIDTextField.text!, password: self.passwordTextField.text!) {
+                self.animationMask.isHidden = false
+                self._loggingIn = true
+                self.view.setNeedsLayout()
+            }
+        }
     }
 
     /* ################################################################## */
     /**
      */
     @IBAction func logoutButtonHit(_ sender: UIButton) {
+        if (nil != MainAppDelegate.connectionObject) && MainAppDelegate.connectionStatus && MainAppDelegate.connectionObject.isAdminAvailable {
+            if MainAppDelegate.connectionObject.adminLogout() {
+                self.animationMask.isHidden = true
+                self._loggingIn = false
+                self.view.setNeedsLayout()
+            }
+        }
     }
     
     /* ################################################################## */
@@ -124,15 +145,40 @@ class InitialViewController: UIViewController {
      */
     func startConnection() {
         self.animationMask.isHidden = false
+        self._loggingIn = false
+        self.view.setNeedsLayout()
     }
     
     /* ################################################################## */
     /**
      Stops the connecting animation.
      */
-    func endConnection() {
+    func finishedConnecting() {
         self.animationMask.isHidden = true
+        self._loggingIn = false
         self.view.setNeedsLayout()
+    }
+    
+    /* ################################################################## */
+    /**
+     Stops the connecting animation.
+     */
+    func finishedLoggingIn() {
+        self.animationMask.isHidden = true
+        self._loggingIn = false
+        self.view.setNeedsLayout()
+    }
+    
+    /* ################################################################## */
+    /**
+     This function will either show (enable) or hide (disable) the login button.
+     */
+    func showOrHideLoginButton() {
+        let loginIDFieldIsEmpty = self.loginIDTextField.text?.isEmpty
+        let passwordFieldIsEmpty = self.passwordTextField.text?.isEmpty
+        let hideLoginButton = loginIDFieldIsEmpty! || passwordFieldIsEmpty!
+        
+        self.loginButton.isEnabled = !hideLoginButton
     }
     
     /* ################################################################## */
