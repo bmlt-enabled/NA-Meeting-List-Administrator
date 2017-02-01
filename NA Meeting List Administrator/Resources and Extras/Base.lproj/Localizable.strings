@@ -19,19 +19,19 @@
   You should have received a copy of the GNU General Public License
   along with this code.  If not, see <http://www.gnu.org/licenses/>.
 */
-"NAMeetingListAdministrator-OKButtonText"               =   "OK";
-"NAMeetingListAdministrator-ErrorAlertTitle"            =   "ERROR!";
-"ENTER-URI-LABEL"                                       =   "Connect to the Server";
-"ENTER-URI-PLACEHOLDER"                                 =   "Enter Server URL";
-"CONNECT-BUTTON"                                        =   "CONNECT";
-"DISCONNECT-BUTTON"                                     =   "DISCONNECT";
-"LOGIN-LABEL"                                           =   "Administration Log In";
-"LOGIN-ID-LABEL"                                        =   "Login ID:";
-"LOGIN-ID-PLACEHOLDER"                                  =   "Enter A Login ID";
-"PASSWORD-LABEL"                                        =   "Password:";
-"PASSWORD-PLACEHOLDER"                                  =   "Enter Your Password";
-"LOGIN-BUTTON"                                          =   "LOG IN";
-"LOGOUT-BUTTON"                                         =   "LOG OUT";
-"ADMIN-UNAVAILABLE-TEXT"                                =   "This server does not allow administration by this app.";
-"BAD-URI-ERROR-TEXT"                                    =   "The URL entered does not point to a valid Root Server.";
-"BAD-LOGIN-ERROR-TEXT"                                  =   "The login ID or password was not recognized by the server.";
+"NAMeetingListAdministrator-OKButtonText"                   =   "OK";
+"NAMeetingListAdministrator-ErrorAlertTitle"                =   "ERROR!";
+"ENTER-URI-LABEL"                                           =   "Connect to the Server";
+"ENTER-URI-PLACEHOLDER"                                     =   "Enter Server URL";
+"CONNECT-BUTTON"                                            =   "CONNECT";
+"DISCONNECT-BUTTON"                                         =   "DISCONNECT";
+"LOGIN-LABEL"                                               =   "Administration Log In";
+"LOGIN-ID-LABEL"                                            =   "Login ID:";
+"LOGIN-ID-PLACEHOLDER"                                      =   "Enter A Login ID";
+"PASSWORD-LABEL"                                            =   "Password:";
+"PASSWORD-PLACEHOLDER"                                      =   "Enter Your Password";
+"LOGIN-BUTTON"                                              =   "LOG IN";
+"LOGOUT-BUTTON"                                             =   "LOG OUT";
+"ADMIN-UNAVAILABLE-TEXT"                                    =   "This server does not allow administration by this app.";
+"BAD-URI-ERROR-TEXT"                                        =   "The URL entered does not point to a valid Root Server.";
+"BMLTiOSLibCommunicationHandlerBadTestReasons-AuthError"    =   "The login ID or password was not recognized by the server.";
