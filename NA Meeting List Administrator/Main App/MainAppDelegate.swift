@@ -140,9 +140,9 @@ class MainAppDelegate: UIResponder, UIApplicationDelegate, BMLTiOSLibDelegate {
         
         if !self.validConnection {
             type(of: self)._libraryObject = nil
-        } else {
-            self.initialViewController.finishedConnecting()
         }
+        
+        self.initialViewController.finishedConnecting()
     }
     
     /* ################################################################## */
@@ -156,6 +156,8 @@ class MainAppDelegate: UIResponder, UIApplicationDelegate, BMLTiOSLibDelegate {
         // If we had an error while trying to connect, then this is a bad server.
         if !self.validConnection {  // We quietly take an asp to our bosom.
             type(of: self)._libraryObject = nil
+            self.initialViewController.finishedConnecting() // Kill any connection in progress.
+            type(of: self).displayAlert("NAMeetingListAdministrator-ErrorAlertTitle", inMessage: "BAD-URI-ERROR-TEXT")
         } else {
             // Otherwise, we raise a ruckus.
             type(of: self).displayAlert("NAMeetingListAdministrator-ErrorAlertTitle", inMessage: error.localizedDescription)

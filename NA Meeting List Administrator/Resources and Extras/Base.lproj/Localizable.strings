@@ -21,6 +21,10 @@
 */
 "NAMeetingListAdministrator-OKButtonText"               =   "OK";
 "NAMeetingListAdministrator-ErrorAlertTitle"            =   "ERROR!";
+"ENTER-URI-LABEL"                                       =   "Enter the Server URL";
+"ENTER-URI-PLACEHOLDER"                                 =   "Enter URL";
+"CONNECT-BUTTON"                                        =   "CONNECT";
+"DISCONNECT-BUTTON"                                     =   "DISCONNECT";
 "LOGIN-LABEL"                                           =   "Log In:";
 "LOGIN-ID-LABEL"                                        =   "Login ID:";
 "LOGIN-ID-PLACEHOLDER"                                  =   "Enter A Login ID";
@@ -29,3 +33,4 @@
 "LOGIN-BUTTON"                                          =   "LOG IN";
 "LOGOUT-BUTTON"                                         =   "LOG OUT";
 "ADMIN-UNAVAILABLE-TEXT"                                =   "This server does not allow administration by this app.";
+"BAD-URI-ERROR-TEXT"                                    =   "The URL entered does not point to a valid Root Server.";

@@ -25,7 +25,7 @@ import UIKit
 /* ###################################################################################################################################### */
 class InitialViewController: UIViewController {
     /* ################################################################## */
-    // MARK: Instance Properties
+    // MARK: Instance IB Properties
     /* ################################################################## */
     /** The mask view with the spinning throbber. */
     @IBOutlet weak var animationMask: UIView!
@@ -47,7 +47,22 @@ class InitialViewController: UIViewController {
     @IBOutlet weak var logoutButton: UIButton!
     /** This is displayed if administration is not available. */
     @IBOutlet weak var adminUnavailableLabel: UILabel!
+    /** This is the container for the "Enter Root Server" stuff. */
+    @IBOutlet weak var urlEntryItemsContainerView: UIView!
+    /** This is the main label for the enter URL view */
+    @IBOutlet weak var enterURLItemsLabel: UILabel!
+    /** This is the "Connect" button. */
+    @IBOutlet weak var connectButton: UIButton!
+    /** This is the URL entry text item. */
+    @IBOutlet weak var enterURLTextItem: UITextField!
+    /** This is the little settings "gear" in the lower right corner. */
+    @IBOutlet weak var settingsButton: UIButton!
+    /** This is the "DISCONNECT" button that shows up when we are connected. */
+    @IBOutlet weak var disconnectButton: UIButton!
     
+    /* ################################################################## */
+    // MARK: Instance Properties
+    /* ################################################################## */
     /** This is set to true while we are in the process of logging in. */
     private var _loggingIn: Bool = false
     
@@ -60,7 +75,6 @@ class InitialViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         MainAppDelegate.appDelegateObject.initialViewController = self
-        MainAppDelegate.connectionStatus = true
         self.loginItemsLabel.text = NSLocalizedString(self.loginItemsLabel.text!, comment: "")
         self.loginIDLabel.text = NSLocalizedString(self.loginIDLabel.text!, comment: "")
         self.loginIDTextField.placeholder = NSLocalizedString(self.loginIDTextField.placeholder!, comment: "")
@@ -69,7 +83,13 @@ class InitialViewController: UIViewController {
         self.loginButton.setTitle(NSLocalizedString(self.loginButton.title(for: UIControlState.normal)!, comment: ""), for: UIControlState.normal)
         self.logoutButton.setTitle(NSLocalizedString(self.logoutButton.title(for: UIControlState.normal)!, comment: ""), for: UIControlState.normal)
         self.adminUnavailableLabel.text = NSLocalizedString(self.adminUnavailableLabel.text!, comment: "")
+        self.enterURLItemsLabel.text = NSLocalizedString(self.enterURLItemsLabel.text!, comment: "")
+        self.enterURLTextItem.placeholder = NSLocalizedString(self.enterURLTextItem.placeholder!, comment: "")
+        self.enterURLTextItem.text = AppStaticPrefs.prefs.rootURI
+        self.connectButton.setTitle(NSLocalizedString(self.connectButton.title(for: UIControlState.normal)!, comment: ""), for: UIControlState.normal)
+        self.disconnectButton.setTitle(NSLocalizedString(self.disconnectButton.title(for: UIControlState.normal)!, comment: ""), for: UIControlState.normal)
         self._loggingIn = false
+        self.setLoginStatusUI()
     }
     
     /* ################################################################## */
@@ -99,6 +119,9 @@ class InitialViewController: UIViewController {
     // MARK: IBAction Methods
     /* ################################################################## */
     /**
+     Called when text is added/removed from the login ID text field.
+     
+     - parameter sender: The IB item that called this.
      */
     @IBAction func loginTextChanged(_ sender: UITextField) {
         self.showOrHideLoginButton()
@@ -106,6 +129,9 @@ class InitialViewController: UIViewController {
     
     /* ################################################################## */
     /**
+     Called when text is added/removed from the password text field.
+     
+     - parameter sender: The IB item that called this.
      */
     @IBAction func passwordTextChanged(_ sender: UITextField) {
         self.showOrHideLoginButton()
@@ -113,6 +139,49 @@ class InitialViewController: UIViewController {
     
     /* ################################################################## */
     /**
+     Called when text is added/removed from the Root Server URI text field.
+     
+     - parameter sender: The IB item that called this.
+     */
+    @IBAction func urlTextChanged(_ sender: UITextField) {
+        AppStaticPrefs.prefs.rootURI = sender.text!
+        self.showOrHideConnectButton()
+    }
+    
+    /* ################################################################## */
+    /**
+     Called when the "CONNECT" button is hit.
+     
+     - parameter sender: The IB item that called this.
+     */
+    @IBAction func connectButtonHit(_ sender: UIButton) {
+        MainAppDelegate.connectionStatus = true
+    }
+    
+    /* ################################################################## */
+    /**
+     Called when the "DISCONNECT" button is hit.
+     
+     - parameter sender: The IB item that called this.
+     */
+    @IBAction func disconnectButtonHit(_ sender: UIButton) {
+        MainAppDelegate.connectionStatus = false
+    }
+    
+    /* ################################################################## */
+    /**
+     Called when the Settings button is hit.
+     
+     - parameter sender: The IB item that called this.
+     */
+    @IBAction func settingsButtonHit(_ sender: UIButton) {
+    }
+    
+    /* ################################################################## */
+    /**
+     Called when the "LOG IN" button is hit.
+     
+     - parameter sender: The IB item that called this.
      */
     @IBAction func loginButtonHit(_ sender: UIButton) {
         if (nil != MainAppDelegate.connectionObject) && MainAppDelegate.connectionStatus && MainAppDelegate.connectionObject.isAdminAvailable {
@@ -126,6 +195,9 @@ class InitialViewController: UIViewController {
 
     /* ################################################################## */
     /**
+     Called when the "LOGOUT" button is hit.
+     
+     - parameter sender: The IB item that called this.
      */
     @IBAction func logoutButtonHit(_ sender: UIButton) {
         if (nil != MainAppDelegate.connectionObject) && MainAppDelegate.connectionStatus && MainAppDelegate.connectionObject.isAdminAvailable {
@@ -183,10 +255,20 @@ class InitialViewController: UIViewController {
     
     /* ################################################################## */
     /**
+     This function will either show (enable) or hide (disable) the connect button.
+     */
+    func showOrHideConnectButton() {
+        self.connectButton.isEnabled = (nil != MainAppDelegate.connectionObject) && !MainAppDelegate.connectionStatus && !(self.enterURLTextItem.text?.isEmpty)!
+        self.disconnectButton.isEnabled = (nil != MainAppDelegate.connectionObject) && MainAppDelegate.connectionStatus
+    }
+    
+    /* ################################################################## */
+    /**
      This shows or hides items, depending on the login status.
      */
     func setLoginStatusUI() {
         if (nil != MainAppDelegate.connectionObject) && MainAppDelegate.connectionStatus {
+            self.urlEntryItemsContainerView.isHidden = true
             if MainAppDelegate.connectionObject.isAdminLoggedIn {
                 self.logoutButton.isHidden = false
                 self.adminUnavailableLabel.isHidden = true
@@ -203,8 +285,12 @@ class InitialViewController: UIViewController {
                 }
             }
         } else {
+            self.loginItemsContainer.isHidden = true
+            self.urlEntryItemsContainerView.isHidden = false
             self.adminUnavailableLabel.isHidden = true
         }
+        self.showOrHideConnectButton()
+        self.showOrHideLoginButton()
     }
 }
 
