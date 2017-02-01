@@ -20,7 +20,6 @@
 
 import UIKit
 import LocalAuthentication
-import Security
 
 /* ###################################################################################################################################### */
 // MARK: - Initial View Controller Class -
@@ -82,8 +81,6 @@ class InitialViewController: UIViewController {
     private var _loggingIn: Bool = false
     /** This is set to true while we are in the process of connecting. */
     private var _connecting: Bool = false
-    /** This is a keychain simplifier. */
-    private let _keychainWrapper:FXKeychain! = FXKeychain.default()
     
     /* ################################################################## */
     // MARK: Overridden Instance Methods
@@ -129,6 +126,7 @@ class InitialViewController: UIViewController {
      - parameter animated: True, if the appearance is animated.
      */
     override func viewWillAppear(_ animated: Bool) {
+        self.closeKeyboard()
         self.navigationController?.isNavigationBarHidden = true;
         self._loggingIn = false
         self.passwordTextField.text = "" // We start off with no password (security).
@@ -185,6 +183,7 @@ class InitialViewController: UIViewController {
      - parameter sender: The IB item that called this.
      */
     @IBAction func connectButtonHit(_ sender: UIButton) {
+        self.closeKeyboard()
         self._connecting = true
         self._loggingIn = false
         MainAppDelegate.connectionStatus = true
@@ -197,6 +196,7 @@ class InitialViewController: UIViewController {
      - parameter sender: The IB item that called this.
      */
     @IBAction func disconnectButtonHit(_ sender: UIButton) {
+        self.closeKeyboard()
         self._connecting = false
         self._loggingIn = false
         MainAppDelegate.connectionStatus = false
@@ -209,6 +209,7 @@ class InitialViewController: UIViewController {
      - parameter sender: The IB item that called this.
      */
     @IBAction func loginButtonHit(_ sender: UIButton) {
+        self.closeKeyboard()
         if (nil != MainAppDelegate.connectionObject) && MainAppDelegate.connectionStatus && MainAppDelegate.connectionObject.isAdminAvailable {
             if MainAppDelegate.connectionObject.adminLogin(loginID: self.loginIDTextField.text!, password: self.passwordTextField.text!) {
                 self.animationMask.isHidden = false
@@ -225,6 +226,7 @@ class InitialViewController: UIViewController {
      - parameter sender: The IB item that called this.
      */
     @IBAction func logoutButtonHit(_ sender: UIButton) {
+        self.closeKeyboard()
         if (nil != MainAppDelegate.connectionObject) && MainAppDelegate.connectionStatus && MainAppDelegate.connectionObject.isAdminAvailable {
             if MainAppDelegate.connectionObject.adminLogout() {
                 self.animationMask.isHidden = true
@@ -241,6 +243,7 @@ class InitialViewController: UIViewController {
      - parameter sender: The IB item that called this.
      */
     @IBAction func touchIDButtonHit(_ sender: UIButton) {
+        self.closeKeyboard()
         let authenticationContext = LAContext()
         authenticationContext.evaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, localizedReason: NSLocalizedString("LOCAL-TOUCHID-REASON", comment: ""), reply: self.touchIDCallback )
     }
@@ -252,22 +255,31 @@ class InitialViewController: UIViewController {
      - parameter sender: The IB item that called this.
      */
     @IBAction func settingsButtonHit(_ sender: UIButton) {
+        self.closeKeyboard()
     }
     
     /* ################################################################## */
     /**
      Called when the background is tapped. This closes any open text keyboards.
      
-     - parameter sender: The IB item that called this.
+     - parameter sender: The IB item that called this. This is ignored.
      */
     @IBAction func tappedInBackground(_ sender: UITapGestureRecognizer) {
+        self.closeKeyboard()
+    }
+    
+    /* ################################################################## */
+    // MARK: Instance Methods
+    /* ################################################################## */
+    /**
+     Closes any open keyboard.
+     */
+    func closeKeyboard() {
         self.loginIDTextField.resignFirstResponder()
         self.passwordTextField.resignFirstResponder()
         self.enterURLTextItem.resignFirstResponder()
     }
     
-    /* ################################################################## */
-    // MARK: Instance Methods
     /* ################################################################## */
     /**
      This is the callback from the TouchID login attempt.
@@ -275,26 +287,9 @@ class InitialViewController: UIViewController {
      - parameter inSuccess: If true, then the TouchID was successful.
      - parameter inError: Any error that may have occurred.
      */
-    func touchIDCallback ( _ inSuccess: Bool, inError: Error?) -> Void {
+    func touchIDCallback(_ inSuccess: Bool, inError: Error?) {
         DispatchQueue.main.async(execute: {
-            var success = inSuccess
-            
-            if success {
-                if nil != self._keychainWrapper {
-                    if let passwordFetched = self._keychainWrapper.object(forKey: self.enterURLTextItem.text! + "-" + self.loginIDTextField!.text!) {
-                        self.passwordTextField.text = (passwordFetched as! String)
-                        self.connectButtonHit(self.connectButton)
-                    }
-                    else {
-                        success = false
-                    }
-                }
-                else {
-                    success = false
-                }
-            }
-            
-            if(!success) {
+            if(!inSuccess) {
                 var description: String! = nil
                 
                 if let temp = inError?.localizedDescription {
@@ -306,6 +301,13 @@ class InitialViewController: UIViewController {
                 }
                 
                 MainAppDelegate.displayAlert("UNABLE-TO-LOGIN-ERROR-TITLE", inMessage: description!)
+            } else {
+                self.passwordTextField.text = AppStaticPrefs.prefs.getStoredPasswordForUser(self.enterURLTextItem.text!, inUser: self.loginIDTextField.text!)
+                if !(self.passwordTextField.text?.isEmpty)! {
+                    self.loginButtonHit(self.loginButton)
+                } else {
+                    MainAppDelegate.displayAlert("UNABLE-TO-LOGIN-ERROR-TITLE", inMessage: "UNABLE-TO-LOGIN-ERROR")
+                }
             }
         })
     }
@@ -315,6 +317,9 @@ class InitialViewController: UIViewController {
      Starts the connecting animation
      */
     func startConnection() {
+        self.closeKeyboard()
+        self.loginIDTextField.text = ""
+        self.passwordTextField.text = ""
         self.animationMask.isHidden = false
         self._loggingIn = false
         self._connecting = true
@@ -328,6 +333,7 @@ class InitialViewController: UIViewController {
     func finishedConnecting() {
         self.animationMask.isHidden = true
         
+        // Belt and suspenders. Let's be sure.
         self.loginIDTextField.text = ""
         self.passwordTextField.text = ""
 
@@ -354,6 +360,7 @@ class InitialViewController: UIViewController {
             AppStaticPrefs.prefs.updateUserForRootURI(self.enterURLTextItem.text!, inUser: self.loginIDTextField.text!, inPassword: self.passwordTextField.text)
             AppStaticPrefs.prefs.lastLogin = (url: self.enterURLTextItem.text!, loginID: self.loginIDTextField.text!)
         }
+        self.passwordTextField.text = ""
         self.animationMask.isHidden = true
         self._loggingIn = false
         self._connecting = false
@@ -378,11 +385,9 @@ class InitialViewController: UIViewController {
      This function will either show or hide the TouchID button.
      */
     func showOrHideTouchIDButton() {
-        let hideTouchIDButton = (self.loginIDTextField.text?.isEmpty)!
-                                || !AppStaticPrefs.supportsTouchID
-                                || !AppStaticPrefs.prefs.userHasStoredPasswordRootURI(self.enterURLTextItem.text!, inUser: self.loginIDTextField.text!)
+        let showTouchIDButton = AppStaticPrefs.prefs.userHasStoredPasswordRootURI(self.enterURLTextItem.text!, inUser: self.loginIDTextField.text!)
         
-        self.touchIDButton.isHidden = hideTouchIDButton
+        self.touchIDButton.isHidden = !showTouchIDButton
     }
     
     /* ################################################################## */
