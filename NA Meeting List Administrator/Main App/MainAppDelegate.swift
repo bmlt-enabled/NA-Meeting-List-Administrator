@@ -69,6 +69,8 @@ class MainAppDelegate: UIResponder, UIApplicationDelegate, BMLTiOSLibDelegate {
         set {
             if !newValue && (nil != self._libraryObject) {
                 self._libraryObject = nil
+                self.appDelegateObject.validConnection = false
+                self.appDelegateObject.initialViewController.finishedConnecting()
             } else {
                 if newValue {
                     self.appDelegateObject.initialViewController.startConnection()

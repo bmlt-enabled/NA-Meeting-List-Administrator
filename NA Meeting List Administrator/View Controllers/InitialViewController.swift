@@ -65,6 +65,8 @@ class InitialViewController: UIViewController {
     /* ################################################################## */
     /** This is set to true while we are in the process of logging in. */
     private var _loggingIn: Bool = false
+    /** This is set to true while we are in the process of connecting. */
+    private var _connecting: Bool = false
     
     /* ################################################################## */
     // MARK: Overridden Instance Methods
@@ -155,6 +157,8 @@ class InitialViewController: UIViewController {
      - parameter sender: The IB item that called this.
      */
     @IBAction func connectButtonHit(_ sender: UIButton) {
+        self._connecting = true
+        self._loggingIn = false
         MainAppDelegate.connectionStatus = true
     }
     
@@ -165,6 +169,8 @@ class InitialViewController: UIViewController {
      - parameter sender: The IB item that called this.
      */
     @IBAction func disconnectButtonHit(_ sender: UIButton) {
+        self._connecting = false
+        self._loggingIn = false
         MainAppDelegate.connectionStatus = false
     }
     
@@ -218,6 +224,7 @@ class InitialViewController: UIViewController {
     func startConnection() {
         self.animationMask.isHidden = false
         self._loggingIn = false
+        self._connecting = true
         self.view.setNeedsLayout()
     }
     
@@ -228,6 +235,7 @@ class InitialViewController: UIViewController {
     func finishedConnecting() {
         self.animationMask.isHidden = true
         self._loggingIn = false
+        self._connecting = false
         self.view.setNeedsLayout()
     }
     
@@ -238,6 +246,7 @@ class InitialViewController: UIViewController {
     func finishedLoggingIn() {
         self.animationMask.isHidden = true
         self._loggingIn = false
+        self._connecting = false
         self.view.setNeedsLayout()
     }
     
@@ -258,7 +267,7 @@ class InitialViewController: UIViewController {
      This function will either show (enable) or hide (disable) the connect button.
      */
     func showOrHideConnectButton() {
-        self.connectButton.isEnabled = (nil != MainAppDelegate.connectionObject) && !MainAppDelegate.connectionStatus && !(self.enterURLTextItem.text?.isEmpty)!
+        self.connectButton.isEnabled = (nil == MainAppDelegate.connectionObject) && !(self.enterURLTextItem.text?.isEmpty)! && !MainAppDelegate.connectionStatus
         self.disconnectButton.isEnabled = (nil != MainAppDelegate.connectionObject) && MainAppDelegate.connectionStatus
     }
     
@@ -267,7 +276,7 @@ class InitialViewController: UIViewController {
      This shows or hides items, depending on the login status.
      */
     func setLoginStatusUI() {
-        if (nil != MainAppDelegate.connectionObject) && MainAppDelegate.connectionStatus {
+        if !self._connecting && (nil != MainAppDelegate.connectionObject) && MainAppDelegate.connectionStatus {
             self.urlEntryItemsContainerView.isHidden = true
             if MainAppDelegate.connectionObject.isAdminLoggedIn {
                 self.logoutButton.isHidden = false
@@ -289,6 +298,7 @@ class InitialViewController: UIViewController {
             self.urlEntryItemsContainerView.isHidden = false
             self.adminUnavailableLabel.isHidden = true
         }
+        
         self.showOrHideConnectButton()
         self.showOrHideLoginButton()
     }
