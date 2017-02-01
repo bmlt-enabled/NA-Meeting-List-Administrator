@@ -19,6 +19,8 @@
 //
 
 import Foundation
+import LocalAuthentication
+import Security
 
 /* ###################################################################################################################################### */
 // MARK: - Prefs Class -
@@ -29,6 +31,9 @@ import Foundation
  type of prefs most users set in their "gear" screen.
  */
 class AppStaticPrefs {
+    /** This is a simple typealias for a login pair. */
+    typealias LoginPairTuple = (url: String, loginID: String)
+    
     /* ################################################################## */
     // MARK: Private Static Properties
     /* ################################################################## */
@@ -50,7 +55,12 @@ class AppStaticPrefs {
     private enum PrefsKeys: String {
         /** This is the Root Server URI */
         case RootServerURI = "BMLTRootServerURI"
+        /** This is the plist key for the default (initial) URI. */
         case DefaultRootServerURIPlistKey = "BMLTDefaultRootServerURI"
+        /** This is the key for the stored URI/login sets. */
+        case RootServerLoginDictionaryKey = "BMLTStoredLoginIDs"
+        /** This is the key for the last login value pair. */
+        case LastLoginPair = "BMLTLastLoginPair"
     }
     
     /* ################################################################## */
@@ -127,6 +137,29 @@ class AppStaticPrefs {
     }
     
     /* ################################################################## */
+    /**
+     This is a simple test to see if the device supports TouchID.
+     
+     - returns: true, if the device supports TouchID.
+     */
+    static var supportsTouchID: Bool {
+        get {
+            var ret: Bool = false
+            var error: NSError? = nil
+            
+            let authenticationContext = LAContext()
+            
+            ret = authenticationContext.canEvaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, error: &error)
+            
+            if(nil != error) {  // Very basic. Any problems, no can do.
+                ret = false
+            }
+            
+            return ret
+        }
+    }
+
+    /* ################################################################## */
     // MARK: Instance Static Methods
     /* ################################################################## */
     /**
@@ -146,6 +179,12 @@ class AppStaticPrefs {
         let index = weekdayIndex + firstWeekday
         return weekdaySymbols[index]
     }
+    
+    /* ################################################################## */
+    // MARK: Instance Properties
+    /* ################################################################## */
+    /** This is a keychain simplifier. */
+    private let _keychainWrapper:FXKeychain! = FXKeychain.default()
 
     /* ################################################################## */
     // MARK: Instance Calculated Properties
@@ -188,5 +227,217 @@ class AppStaticPrefs {
                 self._savePrefs()
             }
         }
+    }
+    
+    var lastLogin: LoginPairTuple {
+        get {
+            var ret: LoginPairTuple = (url: "", loginID: "")
+            
+            if self._loadPrefs() {
+                if let temp = self._loadedPrefs.object(forKey: PrefsKeys.LastLoginPair.rawValue) as? [String] {
+                    if 2 == temp.count {
+                        ret = (url: temp[0], loginID: temp[1])
+                    }
+                }
+            }
+            
+            return ret
+        }
+        
+        set {
+            if self._loadPrefs() {
+                if newValue.url.isEmpty {
+                    self._loadedPrefs.removeObject(forKey: PrefsKeys.LastLoginPair.rawValue)
+                } else {
+                    let ret: [String] = [newValue.url, newValue.loginID]
+                    self._loadedPrefs.setObject(ret, forKey: PrefsKeys.LastLoginPair.rawValue as NSString)
+                }
+                self._savePrefs()
+            }
+        }
+    }
+    
+    /* ################################################################## */
+    // MARK: Instance Methods
+    /* ################################################################## */
+    /**
+     */
+    func getUsersForRootURI(_ inRooutURI: String) -> [String]! {
+        var ret: [String]! = nil
+        
+        if self._loadPrefs() {
+            if let temp = self._loadedPrefs.object(forKey: PrefsKeys.RootServerLoginDictionaryKey.rawValue) as? [String:[String]] {
+                ret = temp[inRooutURI]
+            }
+        }
+        
+        return ret
+    }
+    
+    /* ################################################################## */
+    /**
+     This method allows us to add a login ID and password to be saved.
+     The login ID is keyed to the URL, so you could have the same login for different servers.
+     The password is only saved if we support TouchID.
+     If the password is nil or blank, then the login is stored, but the password is removed from the keychain.
+     
+     - parameter inRooutURI: The URI of the Root Server, as a String
+     - parameter inUser: The User login ID, as a String
+     - parameter inPassword: An optional string for the password. If nil or empty, then the password is removed. Default is nil.
+     */
+    func updateUserForRootURI(_ inRooutURI: String, inUser: String, inPassword: String! = nil) {
+        if self._loadPrefs() {
+            // In this first step, we add the user to our list for that URI, if necessary.
+            var loginDictionary: [String:[String]] = [:]
+            var needToUpdate: Bool = true
+            var urlUsers: [String] = []
+            
+            if let temp = self._loadedPrefs.object(forKey: PrefsKeys.RootServerLoginDictionaryKey.rawValue) as? [String:[String]] {
+                loginDictionary = temp
+            }
+            
+            // We may not need to add the user (Maybe we're just changing the stored password).
+            if var users = loginDictionary[inRooutURI] {
+                urlUsers = users
+                for i in 0..<users.count {
+                    if users[i] == inUser {
+                        needToUpdate = false    // If we already know about this login, we don't need to update.
+                        break
+                    }
+                }
+            }
+            
+            if needToUpdate {
+                urlUsers.append(inUser)
+                loginDictionary[inRooutURI] = urlUsers
+                
+                self._loadedPrefs.setObject(loginDictionary, forKey: PrefsKeys.RootServerLoginDictionaryKey.rawValue as NSString)
+                
+                self._savePrefs()
+            }
+            
+            // At this point, we have the login ID saved in the dictionary.
+            // Now, if we support TouchID, we will also save the password in the keychain.
+            
+            let key = inRooutURI + "-" + inUser   // This will be our unique key for the password.
+
+            self._keychainWrapper.removeObject(forKey: key)  // We start by clearing the deck, then re-add, if necessary.
+
+            // We only store the password if we support TouchID, and we aren't deleting it.
+            if type(of: self).supportsTouchID && (nil != inPassword) && !inPassword.isEmpty {
+                self._keychainWrapper.setObject(inPassword, forKey: key) // Store the password in our keychain.
+            }
+        }
+    }
+    
+    /* ################################################################## */
+    /**
+     - parameter inRooutURI: The URI of the Root Server, as a String
+     - parameter inUser: An optional string for the login ID. If nil or empty, then all users for the URI are removed. Default is nil.
+     */
+    func removeUserForRootURI(_ inRooutURI: String, inUser: String! = nil) {
+        if self._loadPrefs() {
+            var loginDictionary: [String:[String]] = [:]
+            var urlUsers: [String] = []
+            
+            if (nil != inUser) && !inUser.isEmpty {
+                self.updateUserForRootURI(inRooutURI, inUser: inUser)   // Clear any stored password, first.
+                
+                if let temp = self._loadedPrefs.object(forKey: PrefsKeys.RootServerLoginDictionaryKey.rawValue) as? [String:[String]] {
+                    loginDictionary = temp
+                }
+                
+                // We remove the user if we find them.
+                if var users = loginDictionary[inRooutURI] {
+                    for i in 0..<users.count {
+                        if users[i] == inUser {
+                            users.remove(at: i)
+                            break
+                        }
+                    }
+                    urlUsers = users
+                }
+            } else {
+                // If there was no user specified, then we are to remove all users from this URI.
+                if let temp = self._loadedPrefs.object(forKey: PrefsKeys.RootServerLoginDictionaryKey.rawValue) as? [String:[String]] {
+                    loginDictionary = temp
+                    // If we have a dictionary, then we'll be removing all stored passwords for that URI.
+                    if var users = loginDictionary[inRooutURI] {
+                        for i in 0..<users.count {
+                            self.updateUserForRootURI(inRooutURI, inUser: users[i])
+                        }
+                    }
+                }
+            }
+            
+            // If this was the last user, we delete the whole URI.
+            if urlUsers.isEmpty {
+                loginDictionary.removeValue(forKey: inRooutURI)
+            } else {
+                loginDictionary[inRooutURI] = urlUsers
+            }
+            
+            self._loadedPrefs.setObject(loginDictionary, forKey: PrefsKeys.RootServerLoginDictionaryKey.rawValue as NSString)
+            
+            self._savePrefs()
+        }
+    }
+    
+    /* ################################################################## */
+    /**
+     Quick test to see if this user is stored for the given URL.
+     
+     - parameter inRooutURI: The URI of the Root Server, as a String
+     - parameter inUser: A String for the login ID.
+     
+     - returns: true, if the user exists for this URI.
+     */
+    func userExistsForRootURI(_ inRooutURI: String, inUser: String) -> Bool {
+        var ret: Bool = false
+        
+        if self._loadPrefs() {
+            if let temp = self._loadedPrefs.object(forKey: PrefsKeys.RootServerLoginDictionaryKey.rawValue) as? [String:[String]] {
+                if var users = temp[inRooutURI] {
+                    for i in 0..<users.count {
+                        if users[i] == inUser {
+                            ret = true
+                            break
+                        }
+                    }
+                }
+            }
+        }
+        
+        return ret
+    }
+    
+    /* ################################################################## */
+    /**
+     Quick test to see if this user has a stored password for the given URL.
+     
+     - parameter inRooutURI: The URI of the Root Server, as a String
+     - parameter inUser: A String for the login ID.
+     
+     - returns: true, if the user exists for this URI, and has a password stored.
+     */
+    func userHasStoredPasswordRootURI(_ inRooutURI: String, inUser: String) -> Bool {
+        var ret: Bool = false
+        
+        if self._loadPrefs() {
+            if let temp = self._loadedPrefs.object(forKey: PrefsKeys.RootServerLoginDictionaryKey.rawValue) as? [String:[String]] {
+                if var users = temp[inRooutURI] {
+                    for i in 0..<users.count {
+                        if users[i] == inUser {
+                            let key = inRooutURI + "-" + inUser   // This will be our unique key for the password.
+                            
+                            ret = nil != self._keychainWrapper.object(forKey: key)
+                            break
+                        }
+                    }
+                }
+            }
+        }
+        
+        return ret
     }
 }

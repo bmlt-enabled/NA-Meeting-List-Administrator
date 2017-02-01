@@ -19,10 +19,23 @@
 //  along with this code.  If not, see <http://www.gnu.org/licenses/>.
 
 import UIKit
+import LocalAuthentication
+import Security
 
 /* ###################################################################################################################################### */
 // MARK: - Initial View Controller Class -
 /* ###################################################################################################################################### */
+/**
+ This class is the first controller to appear when the app starts.
+ 
+ It's job is to handle all of the connection and login stuff. Nothing else in the app can be done until it has passed this stage.
+ 
+ Once the user has successfully logged in, the Navigation Controller will bring in the main tabbed interface.
+ 
+ This View Controller starts off with a URL text entry, and a simple connect button.
+ 
+ Once the user has sucessfully connected, they are presented with a login screen that may include a TouchID button.
+ */
 class InitialViewController: UIViewController {
     /* ################################################################## */
     // MARK: Instance IB Properties
@@ -59,6 +72,8 @@ class InitialViewController: UIViewController {
     @IBOutlet weak var settingsButton: UIButton!
     /** This is the "DISCONNECT" button that shows up when we are connected. */
     @IBOutlet weak var disconnectButton: UIButton!
+    /** This is the TouchID "thumbprint" button. */
+    @IBOutlet weak var touchIDButton: UIButton!
     
     /* ################################################################## */
     // MARK: Instance Properties
@@ -67,6 +82,8 @@ class InitialViewController: UIViewController {
     private var _loggingIn: Bool = false
     /** This is set to true while we are in the process of connecting. */
     private var _connecting: Bool = false
+    /** This is a keychain simplifier. */
+    private let _keychainWrapper:FXKeychain! = FXKeychain.default()
     
     /* ################################################################## */
     // MARK: Overridden Instance Methods
@@ -77,6 +94,7 @@ class InitialViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         MainAppDelegate.appDelegateObject.initialViewController = self
+        self.navigationItem.title = NSLocalizedString(self.navigationItem.title!, comment: "")
         self.loginItemsLabel.text = NSLocalizedString(self.loginItemsLabel.text!, comment: "")
         self.loginIDLabel.text = NSLocalizedString(self.loginIDLabel.text!, comment: "")
         self.loginIDTextField.placeholder = NSLocalizedString(self.loginIDTextField.placeholder!, comment: "")
@@ -87,9 +105,17 @@ class InitialViewController: UIViewController {
         self.adminUnavailableLabel.text = NSLocalizedString(self.adminUnavailableLabel.text!, comment: "")
         self.enterURLItemsLabel.text = NSLocalizedString(self.enterURLItemsLabel.text!, comment: "")
         self.enterURLTextItem.placeholder = NSLocalizedString(self.enterURLTextItem.placeholder!, comment: "")
-        self.enterURLTextItem.text = AppStaticPrefs.prefs.rootURI
         self.connectButton.setTitle(NSLocalizedString(self.connectButton.title(for: UIControlState.normal)!, comment: ""), for: UIControlState.normal)
         self.disconnectButton.setTitle(NSLocalizedString(self.disconnectButton.title(for: UIControlState.normal)!, comment: ""), for: UIControlState.normal)
+        
+        let lastLogin = AppStaticPrefs.prefs.lastLogin
+        
+        if !lastLogin.url.isEmpty && !lastLogin.loginID.isEmpty {
+            self.enterURLTextItem.text = lastLogin.url
+        } else {
+            self.enterURLTextItem.text = AppStaticPrefs.prefs.rootURI
+        }
+        
         self._loggingIn = false
         self.setLoginStatusUI()
     }
@@ -105,6 +131,7 @@ class InitialViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = true;
         self._loggingIn = false
+        self.passwordTextField.text = "" // We start off with no password (security).
         super.viewWillAppear(animated)
     }
     
@@ -127,6 +154,7 @@ class InitialViewController: UIViewController {
      */
     @IBAction func loginTextChanged(_ sender: UITextField) {
         self.showOrHideLoginButton()
+        self.showOrHideTouchIDButton()
     }
     
     /* ################################################################## */
@@ -176,15 +204,6 @@ class InitialViewController: UIViewController {
     
     /* ################################################################## */
     /**
-     Called when the Settings button is hit.
-     
-     - parameter sender: The IB item that called this.
-     */
-    @IBAction func settingsButtonHit(_ sender: UIButton) {
-    }
-    
-    /* ################################################################## */
-    /**
      Called when the "LOG IN" button is hit.
      
      - parameter sender: The IB item that called this.
@@ -216,7 +235,81 @@ class InitialViewController: UIViewController {
     }
     
     /* ################################################################## */
+    /**
+     Called when the TouchID button is hit.
+     
+     - parameter sender: The IB item that called this.
+     */
+    @IBAction func touchIDButtonHit(_ sender: UIButton) {
+        let authenticationContext = LAContext()
+        authenticationContext.evaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, localizedReason: NSLocalizedString("LOCAL-TOUCHID-REASON", comment: ""), reply: self.touchIDCallback )
+    }
+    
+    /* ################################################################## */
+    /**
+     Called when the Settings button is hit.
+     
+     - parameter sender: The IB item that called this.
+     */
+    @IBAction func settingsButtonHit(_ sender: UIButton) {
+    }
+    
+    /* ################################################################## */
+    /**
+     Called when the background is tapped. This closes any open text keyboards.
+     
+     - parameter sender: The IB item that called this.
+     */
+    @IBAction func tappedInBackground(_ sender: UITapGestureRecognizer) {
+        self.loginIDTextField.resignFirstResponder()
+        self.passwordTextField.resignFirstResponder()
+        self.enterURLTextItem.resignFirstResponder()
+    }
+    
+    /* ################################################################## */
     // MARK: Instance Methods
+    /* ################################################################## */
+    /**
+     This is the callback from the TouchID login attempt.
+     
+     - parameter inSuccess: If true, then the TouchID was successful.
+     - parameter inError: Any error that may have occurred.
+     */
+    func touchIDCallback ( _ inSuccess: Bool, inError: Error?) -> Void {
+        DispatchQueue.main.async(execute: {
+            var success = inSuccess
+            
+            if success {
+                if nil != self._keychainWrapper {
+                    if let passwordFetched = self._keychainWrapper.object(forKey: self.enterURLTextItem.text! + "-" + self.loginIDTextField!.text!) {
+                        self.passwordTextField.text = (passwordFetched as! String)
+                        self.connectButtonHit(self.connectButton)
+                    }
+                    else {
+                        success = false
+                    }
+                }
+                else {
+                    success = false
+                }
+            }
+            
+            if(!success) {
+                var description: String! = nil
+                
+                if let temp = inError?.localizedDescription {
+                    description = temp
+                }
+                
+                if (nil == description) || (description?.isEmpty)! {
+                    description = "UNABLE-TO-LOGIN-ERROR"
+                }
+                
+                MainAppDelegate.displayAlert("UNABLE-TO-LOGIN-ERROR-TITLE", inMessage: description!)
+            }
+        })
+    }
+
     /* ################################################################## */
     /**
      Starts the connecting animation
@@ -234,6 +327,18 @@ class InitialViewController: UIViewController {
      */
     func finishedConnecting() {
         self.animationMask.isHidden = true
+        
+        self.loginIDTextField.text = ""
+        self.passwordTextField.text = ""
+
+        if self._connecting && (nil != MainAppDelegate.connectionObject) && MainAppDelegate.connectionStatus {
+            let lastLogin = AppStaticPrefs.prefs.lastLogin
+            
+            if !lastLogin.url.isEmpty && !lastLogin.loginID.isEmpty && (lastLogin.url == self.enterURLTextItem.text) {
+                self.loginIDTextField.text = lastLogin.loginID
+            }
+        }
+
         self._loggingIn = false
         self._connecting = false
         self.view.setNeedsLayout()
@@ -244,6 +349,11 @@ class InitialViewController: UIViewController {
      Stops the connecting animation.
      */
     func finishedLoggingIn() {
+        // If we are successfully logged in, then we save the login and (maybe) the password.
+        if (nil != MainAppDelegate.connectionObject) && MainAppDelegate.connectionStatus && MainAppDelegate.connectionObject.isAdminLoggedIn {
+            AppStaticPrefs.prefs.updateUserForRootURI(self.enterURLTextItem.text!, inUser: self.loginIDTextField.text!, inPassword: self.passwordTextField.text)
+            AppStaticPrefs.prefs.lastLogin = (url: self.enterURLTextItem.text!, loginID: self.loginIDTextField.text!)
+        }
         self.animationMask.isHidden = true
         self._loggingIn = false
         self._connecting = false
@@ -252,14 +362,27 @@ class InitialViewController: UIViewController {
     
     /* ################################################################## */
     /**
-     This function will either show (enable) or hide (disable) the login button.
+     This function will either show (enable) or hide (disable) the login button (and maybe the TouchID button).
      */
     func showOrHideLoginButton() {
         let loginIDFieldIsEmpty = self.loginIDTextField.text?.isEmpty
         let passwordFieldIsEmpty = self.passwordTextField.text?.isEmpty
         let hideLoginButton = loginIDFieldIsEmpty! || passwordFieldIsEmpty!
         
+        self.touchIDButton.isHidden = hideLoginButton || !AppStaticPrefs.supportsTouchID
         self.loginButton.isEnabled = !hideLoginButton
+    }
+    
+    /* ################################################################## */
+    /**
+     This function will either show or hide the TouchID button.
+     */
+    func showOrHideTouchIDButton() {
+        let hideTouchIDButton = (self.loginIDTextField.text?.isEmpty)!
+                                || !AppStaticPrefs.supportsTouchID
+                                || !AppStaticPrefs.prefs.userHasStoredPasswordRootURI(self.enterURLTextItem.text!, inUser: self.loginIDTextField.text!)
+        
+        self.touchIDButton.isHidden = hideTouchIDButton
     }
     
     /* ################################################################## */
@@ -301,6 +424,7 @@ class InitialViewController: UIViewController {
         
         self.showOrHideConnectButton()
         self.showOrHideLoginButton()
+        self.showOrHideTouchIDButton()
     }
 }
 

@@ -162,11 +162,7 @@ class MainAppDelegate: UIResponder, UIApplicationDelegate, BMLTiOSLibDelegate {
             type(of: self).displayAlert("NAMeetingListAdministrator-ErrorAlertTitle", inMessage: "BAD-URI-ERROR-TEXT")
         } else {
             // Otherwise, we raise a ruckus.
-            var description = error.localizedDescription
-            
-            if description.isEmpty {
-                
-            }
+            let description = error.localizedDescription
             type(of: self).displayAlert("NAMeetingListAdministrator-ErrorAlertTitle", inMessage: description)
         }
     }
