@@ -35,7 +35,21 @@ import LocalAuthentication
  
  Once the user has sucessfully connected, they are presented with a login screen that may include a TouchID button.
  */
-class InitialViewController: UIViewController {
+class InitialViewController: UIViewController, UITextFieldDelegate {
+    /* ################################################################## */
+    // MARK: Private Instance Constant Properties
+    /* ################################################################## */
+    /** This is the ID for the segue we use to bring in the editor. */
+    private let _showEditorSegueID = "bring-in-editor"
+    
+    /* ################################################################## */
+    // MARK: Private Instance Properties
+    /* ################################################################## */
+    /** This is set to true while we are in the process of logging in. */
+    private var _loggingIn: Bool = false
+    /** This is set to true while we are in the process of connecting. */
+    private var _connecting: Bool = false
+    
     /* ################################################################## */
     // MARK: Instance IB Properties
     /* ################################################################## */
@@ -73,14 +87,10 @@ class InitialViewController: UIViewController {
     @IBOutlet weak var disconnectButton: UIButton!
     /** This is the TouchID "thumbprint" button. */
     @IBOutlet weak var touchIDButton: UIButton!
-    
-    /* ################################################################## */
-    // MARK: Instance Properties
-    /* ################################################################## */
-    /** This is set to true while we are in the process of logging in. */
-    private var _loggingIn: Bool = false
-    /** This is set to true while we are in the process of connecting. */
-    private var _connecting: Bool = false
+    /** This is the bar button that brings in the Service Body Selector screen. */
+    @IBOutlet weak var serviceBodyBarButton: UIBarButtonItem!
+    /** This is the bar button item that brings in the main Editor screen. */
+    @IBOutlet weak var editorBarButton: UIBarButtonItem!
     
     /* ################################################################## */
     // MARK: Overridden Instance Methods
@@ -91,7 +101,7 @@ class InitialViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         MainAppDelegate.appDelegateObject.initialViewController = self
-        self.navigationItem.title = NSLocalizedString(self.navigationItem.title!, comment: "")
+        self.navigationItem.backBarButtonItem?.title = NSLocalizedString((self.navigationItem.backBarButtonItem?.title!)!, comment: "")
         self.loginItemsLabel.text = NSLocalizedString(self.loginItemsLabel.text!, comment: "")
         self.loginIDLabel.text = NSLocalizedString(self.loginIDLabel.text!, comment: "")
         self.loginIDTextField.placeholder = NSLocalizedString(self.loginIDTextField.placeholder!, comment: "")
@@ -104,7 +114,9 @@ class InitialViewController: UIViewController {
         self.enterURLTextItem.placeholder = NSLocalizedString(self.enterURLTextItem.placeholder!, comment: "")
         self.connectButton.setTitle(NSLocalizedString(self.connectButton.title(for: UIControlState.normal)!, comment: ""), for: UIControlState.normal)
         self.disconnectButton.setTitle(NSLocalizedString(self.disconnectButton.title(for: UIControlState.normal)!, comment: ""), for: UIControlState.normal)
-        
+        self.serviceBodyBarButton.title = NSLocalizedString(self.serviceBodyBarButton.title!, comment: "")
+        self.editorBarButton.title = NSLocalizedString(self.editorBarButton.title!, comment: "")
+
         let lastLogin = AppStaticPrefs.prefs.lastLogin
         
         if !lastLogin.url.isEmpty && !lastLogin.loginID.isEmpty {
@@ -127,19 +139,12 @@ class InitialViewController: UIViewController {
      */
     override func viewWillAppear(_ animated: Bool) {
         self.closeKeyboard()
-        self.navigationController?.isNavigationBarHidden = true;
+        if let navController = self.navigationController {
+            navController.isNavigationBarHidden = !((nil != MainAppDelegate.connectionObject) && MainAppDelegate.connectionObject.isAdminLoggedIn)
+        }
         self._loggingIn = false
         self.passwordTextField.text = "" // We start off with no password (security).
         super.viewWillAppear(animated)
-    }
-    
-    /* ################################################################## */
-    /**
-     We use this opportunity to make sure our various login items are set up.
-     */
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        self.setLoginStatusUI()
     }
     
     /* ################################################################## */
@@ -214,7 +219,7 @@ class InitialViewController: UIViewController {
             if MainAppDelegate.connectionObject.adminLogin(loginID: self.loginIDTextField.text!, password: self.passwordTextField.text!) {
                 self.animationMask.isHidden = false
                 self._loggingIn = true
-                self.view.setNeedsLayout()
+                self.setLoginStatusUI()
             }
         }
     }
@@ -231,7 +236,7 @@ class InitialViewController: UIViewController {
             if MainAppDelegate.connectionObject.adminLogout() {
                 self.animationMask.isHidden = true
                 self._loggingIn = false
-                self.view.setNeedsLayout()
+                self.setLoginStatusUI()
             }
         }
     }
@@ -266,6 +271,14 @@ class InitialViewController: UIViewController {
      */
     @IBAction func tappedInBackground(_ sender: UITapGestureRecognizer) {
         self.closeKeyboard()
+    }
+    
+    /* ################################################################## */
+    /**
+     Brings in the editor.
+     */
+    @IBAction func sendInTheClowns(_ sender: UIBarButtonItem) {
+        self.performSegue(withIdentifier: self._showEditorSegueID, sender: nil)
     }
     
     /* ################################################################## */
@@ -323,7 +336,7 @@ class InitialViewController: UIViewController {
         self.animationMask.isHidden = false
         self._loggingIn = false
         self._connecting = true
-        self.view.setNeedsLayout()
+        self.setLoginStatusUI()
     }
     
     /* ################################################################## */
@@ -347,7 +360,7 @@ class InitialViewController: UIViewController {
 
         self._loggingIn = false
         self._connecting = false
-        self.view.setNeedsLayout()
+        self.setLoginStatusUI()
     }
     
     /* ################################################################## */
@@ -364,7 +377,7 @@ class InitialViewController: UIViewController {
         self.animationMask.isHidden = true
         self._loggingIn = false
         self._connecting = false
-        self.view.setNeedsLayout()
+        self.setLoginStatusUI()
     }
     
     /* ################################################################## */
@@ -404,12 +417,19 @@ class InitialViewController: UIViewController {
      This shows or hides items, depending on the login status.
      */
     func setLoginStatusUI() {
+        if let navController = self.navigationController {
+            navController.isNavigationBarHidden = true
+        }
+        
         if !self._connecting && (nil != MainAppDelegate.connectionObject) && MainAppDelegate.connectionStatus {
             self.urlEntryItemsContainerView.isHidden = true
             if MainAppDelegate.connectionObject.isAdminLoggedIn {
                 self.logoutButton.isHidden = false
                 self.adminUnavailableLabel.isHidden = true
                 self.loginItemsContainer.isHidden = true
+                if let navController = self.navigationController {
+                    navController.isNavigationBarHidden = false
+                }
             } else {
                 self.logoutButton.isHidden = true
                 
@@ -430,6 +450,40 @@ class InitialViewController: UIViewController {
         self.showOrHideConnectButton()
         self.showOrHideLoginButton()
         self.showOrHideTouchIDButton()
+    }
+    
+    /* ################################################################## */
+    // MARK: UITextFieldDelegate Methods
+    /* ################################################################## */
+    /**
+     This function responds to the return button being hit.
+     Each text field has a different response.
+     
+     - parameter textField: The text field being edited.
+     */
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        if self.enterURLTextItem == textField {
+            self.connectButtonHit(self.connectButton)   // Simple connect for this one.
+        } else {
+            // We have to have both fields filled before we can log in, so if they aren't both filled, we go to the empty one next.
+            if self.loginIDTextField == textField {
+                if !(self.passwordTextField.text?.isEmpty)! {
+                    self.loginButtonHit(self.loginButton)
+                } else {
+                    self.passwordTextField.becomeFirstResponder()
+                }
+            } else {
+                if self.passwordTextField == textField {
+                    if !(self.loginIDTextField.text?.isEmpty)! {
+                        self.loginButtonHit(self.loginButton)
+                    } else {
+                        self.loginIDTextField.becomeFirstResponder()
+                    }
+                }
+            }
+        }
+        return true
     }
 }
 

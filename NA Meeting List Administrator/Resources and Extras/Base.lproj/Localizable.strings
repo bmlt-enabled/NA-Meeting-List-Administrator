@@ -39,3 +39,5 @@
 "LOCAL-TOUCHID-REASON"                                                                          =   "Automatically log into the server.";
 "UNABLE-TO-LOGIN-ERROR-TITLE"                                                                   =   "TouchID Error";
 "UNABLE-TO-LOGIN-ERROR"                                                                         =   "TouchID was not able to log into the server.";
+"SERVICE-BODY-BUTTON"                                                                           =   "Service Bodies";
+"EDITOR-BUTTON"                                                                                 =   "Edit";
