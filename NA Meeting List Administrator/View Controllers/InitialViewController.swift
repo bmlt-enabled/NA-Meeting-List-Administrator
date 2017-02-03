@@ -41,6 +41,10 @@ class InitialViewController: UIViewController, UITextFieldDelegate {
     /* ################################################################## */
     /** This is the ID for the segue we use to bring in the editor. */
     private let _showEditorSegueID = "bring-in-editor"
+    /** This is the ID for the Service body selector segue */
+    private let _showServiceBodyESelectorSeueID = "select-service-bodies"
+    /** This is the segue that brings in the Settings screen. */
+    private let _showSettingsSegueID = "show-settings-screen"
     
     /* ################################################################## */
     // MARK: Private Instance Properties
@@ -49,6 +53,8 @@ class InitialViewController: UIViewController, UITextFieldDelegate {
     private var _loggingIn: Bool = false
     /** This is set to true while we are in the process of connecting. */
     private var _connecting: Bool = false
+    /** This is the Tab Bar Controller for the editors (it will be nil if we are not in the editor). */
+    private var _editorTabBarController: EditorTabBarController! = nil
     
     /* ################################################################## */
     // MARK: Instance IB Properties
@@ -131,7 +137,7 @@ class InitialViewController: UIViewController, UITextFieldDelegate {
     
     /* ################################################################## */
     /**
-     We simply use this to make sure our NavBar is hidden.
+     We simply use this to make sure our NavBar is hidden if necessary.
      
      Simplify, simplify, simplify.
      
@@ -142,9 +148,23 @@ class InitialViewController: UIViewController, UITextFieldDelegate {
         if let navController = self.navigationController {
             navController.isNavigationBarHidden = !((nil != MainAppDelegate.connectionObject) && MainAppDelegate.connectionObject.isAdminLoggedIn)
         }
+        self._editorTabBarController = nil // We will always be setting this to nil when we first appear. Makes it easier to track.
         self._loggingIn = false
         self.passwordTextField.text = "" // We start off with no password (security).
         super.viewWillAppear(animated)
+    }
+    
+    /* ################################################################## */
+    /**
+     This allows us to track the editor tab controller object.
+     
+     - parameter for: The segue object being called.
+     - parameter sender: Any data we crammed into the segue.
+     */
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if type(of: segue.destination) == EditorTabBarController.self {
+            self._editorTabBarController = segue.destination as! EditorTabBarController
+        }
     }
     
     /* ################################################################## */
@@ -279,6 +299,22 @@ class InitialViewController: UIViewController, UITextFieldDelegate {
      */
     @IBAction func sendInTheClowns(_ sender: UIBarButtonItem) {
         self.performSegue(withIdentifier: self._showEditorSegueID, sender: nil)
+    }
+    
+    /* ################################################################## */
+    /**
+     Brings in the Service body selector.
+     */
+    @IBAction func selectYourClowns(_ sender: UIBarButtonItem) {
+        self.performSegue(withIdentifier: self._showServiceBodyESelectorSeueID, sender: nil)
+    }
+    
+    /* ################################################################## */
+    /**
+     Brings in the Settings screen.
+     */
+    @IBAction func showSettings(_ sender: UIButton) {
+        self.performSegue(withIdentifier: self._showSettingsSegueID, sender: nil)
     }
     
     /* ################################################################## */
@@ -421,9 +457,10 @@ class InitialViewController: UIViewController, UITextFieldDelegate {
             navController.isNavigationBarHidden = true
         }
         
+        // If we are not currently attempting a connection, and are currently connected.
         if !self._connecting && (nil != MainAppDelegate.connectionObject) && MainAppDelegate.connectionStatus {
             self.urlEntryItemsContainerView.isHidden = true
-            if MainAppDelegate.connectionObject.isAdminLoggedIn {
+            if MainAppDelegate.connectionObject.isAdminLoggedIn {   // If we are logged in as an admin.
                 self.logoutButton.isHidden = false
                 self.adminUnavailableLabel.isHidden = true
                 self.loginItemsContainer.isHidden = true

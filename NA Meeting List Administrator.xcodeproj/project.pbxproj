@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		770E78461E42685C0061F344 /* BMLTiOSLib.framework in Copy Framework */ = {isa = PBXBuildFile; fileRef = 77A099B61E379DAB0066F6A2 /* BMLTiOSLib.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		77140E901E37D3E1008BBB12 /* FXKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 77140E8F1E37D3E1008BBB12 /* FXKeychain.m */; };
+		777178141E454AB30027F8E4 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777178131E454AB30027F8E4 /* SettingsViewController.swift */; };
+		777178181E454C0D0027F8E4 /* SelectServiceBodiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777178171E454C0D0027F8E4 /* SelectServiceBodiesViewController.swift */; };
+		7784D3DC1E454D0300953CA0 /* ListEditableMeetingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7784D3DB1E454D0300953CA0 /* ListEditableMeetingsViewController.swift */; };
+		7784D3E01E454D4900953CA0 /* EditorTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7784D3DF1E454D4900953CA0 /* EditorTabBarController.swift */; };
 		779BE3AF1E37D5A600350D11 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779BE3AE1E37D5A600350D11 /* InitialViewController.swift */; };
 		779BE3B11E37D5B500350D11 /* MainAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779BE3B01E37D5B500350D11 /* MainAppDelegate.swift */; };
 		779BE3BC1E37D5FA00350D11 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 779BE3B21E37D5FA00350D11 /* Assets.xcassets */; };
@@ -69,6 +73,10 @@
 		770E5E931E37937400CBE834 /* LICENSE.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		77140E8E1E37D3E1008BBB12 /* FXKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FXKeychain.h; path = FXKeychain/FXKeychain/FXKeychain.h; sourceTree = SOURCE_ROOT; };
 		77140E8F1E37D3E1008BBB12 /* FXKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FXKeychain.m; path = FXKeychain/FXKeychain/FXKeychain.m; sourceTree = SOURCE_ROOT; };
+		777178131E454AB30027F8E4 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsViewController.swift; path = "View Controllers/SettingsViewController.swift"; sourceTree = "<group>"; };
+		777178171E454C0D0027F8E4 /* SelectServiceBodiesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectServiceBodiesViewController.swift; path = "View Controllers/SelectServiceBodiesViewController.swift"; sourceTree = "<group>"; };
+		7784D3DB1E454D0300953CA0 /* ListEditableMeetingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListEditableMeetingsViewController.swift; path = "View Controllers/ListEditableMeetingsViewController.swift"; sourceTree = "<group>"; };
+		7784D3DF1E454D4900953CA0 /* EditorTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditorTabBarController.swift; path = "View Controllers/EditorTabBarController.swift"; sourceTree = "<group>"; };
 		779BE3AE1E37D5A600350D11 /* InitialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InitialViewController.swift; path = "View Controllers/InitialViewController.swift"; sourceTree = "<group>"; };
 		779BE3B01E37D5B500350D11 /* MainAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainAppDelegate.swift; path = "Main App/MainAppDelegate.swift"; sourceTree = "<group>"; };
 		779BE3B21E37D5FA00350D11 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "Resources and Extras/Assets.xcassets"; sourceTree = "<group>"; };
@@ -114,6 +122,10 @@
 			isa = PBXGroup;
 			children = (
 				779BE3AE1E37D5A600350D11 /* InitialViewController.swift */,
+				777178171E454C0D0027F8E4 /* SelectServiceBodiesViewController.swift */,
+				777178131E454AB30027F8E4 /* SettingsViewController.swift */,
+				7784D3DF1E454D4900953CA0 /* EditorTabBarController.swift */,
+				7784D3DB1E454D0300953CA0 /* ListEditableMeetingsViewController.swift */,
 			);
 			name = "View Controllers";
 			path = "NA Meeting List Administrator";
@@ -294,9 +306,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				777178181E454C0D0027F8E4 /* SelectServiceBodiesViewController.swift in Sources */,
 				77B50A681E381E31004019B8 /* AppStaticPrefs.swift in Sources */,
+				7784D3DC1E454D0300953CA0 /* ListEditableMeetingsViewController.swift in Sources */,
 				779BE3B11E37D5B500350D11 /* MainAppDelegate.swift in Sources */,
 				77140E901E37D3E1008BBB12 /* FXKeychain.m in Sources */,
+				777178141E454AB30027F8E4 /* SettingsViewController.swift in Sources */,
+				7784D3E01E454D4900953CA0 /* EditorTabBarController.swift in Sources */,
 				779BE3AF1E37D5A600350D11 /* InitialViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

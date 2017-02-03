@@ -20,6 +20,7 @@
   along with this code.  If not, see <http://www.gnu.org/licenses/>.
 */
 "CONNECT-TITLE"                                                                                 =   "CONNECT";
+"SERVICE-BODY-SELECTION-TITLE"                                                                  =   "Select Service Bodies";
 "NAMeetingListAdministrator-OKButtonText"                                                       =   "OK";
 "NAMeetingListAdministrator-ErrorAlertTitle"                                                    =   "ERROR!";
 "ENTER-URI-LABEL"                                                                               =   "Connect to the Server";
