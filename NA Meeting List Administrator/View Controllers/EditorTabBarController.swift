@@ -27,3 +27,39 @@ import UIKit
  */
 class EditorTabBarController : UITabBarController {
 }
+
+/* ###################################################################################################################################### */
+// MARK: - This is a base class for the various editor pages. -
+/* ###################################################################################################################################### */
+/**
+ */
+class EditorViewControllerBaseClass : UIViewController {
+    override func viewWillAppear(_ animated: Bool) {
+        let topColor = (self.view as! EditorViewBaseClass).topColor
+        let bottomColor = (self.view as! EditorViewBaseClass).bottomColor
+        
+        self.navigationController?.navigationBar.barTintColor = topColor
+        self.tabBarController?.tabBar.barTintColor = bottomColor
+        
+        super.viewWillAppear(animated)
+    }
+}
+
+/* ###################################################################################################################################### */
+// MARK: - This is a base class for the various editor pages. -
+/* ###################################################################################################################################### */
+/**
+ I cribbed the basics of this from here: https://www.hackingwithswift.com/read/37/4/adding-a-cagradientlayer-with-ibdesignable-and-ibinspectable
+ */
+class EditorViewBaseClass : UIView {
+    @IBInspectable var topColor: UIColor = UIColor.white
+    @IBInspectable var bottomColor: UIColor = UIColor.black
+    
+    override class var layerClass: AnyClass {
+        return CAGradientLayer.self
+    }
+    
+    override func layoutSubviews() {
+        (layer as! CAGradientLayer).colors = [topColor.cgColor, bottomColor.cgColor]
+    }
+}

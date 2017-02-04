@@ -25,5 +25,5 @@ import UIKit
 /* ###################################################################################################################################### */
 /**
  */
-class ListEditableMeetingsViewController : UIViewController {
+class ListEditableMeetingsViewController : EditorViewControllerBaseClass {
 }

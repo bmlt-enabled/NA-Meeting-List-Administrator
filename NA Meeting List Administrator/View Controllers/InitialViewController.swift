@@ -35,7 +35,7 @@ import LocalAuthentication
  
  Once the user has sucessfully connected, they are presented with a login screen that may include a TouchID button.
  */
-class InitialViewController: UIViewController, UITextFieldDelegate {
+class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate {
     /* ################################################################## */
     // MARK: Private Instance Constant Properties
     /* ################################################################## */
@@ -151,6 +151,7 @@ class InitialViewController: UIViewController, UITextFieldDelegate {
         self._editorTabBarController = nil // We will always be setting this to nil when we first appear. Makes it easier to track.
         self._loggingIn = false
         self.passwordTextField.text = "" // We start off with no password (security).
+        
         super.viewWillAppear(animated)
     }
     

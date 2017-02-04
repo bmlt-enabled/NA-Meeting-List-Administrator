@@ -42,21 +42,18 @@
                         <viewControllerLayoutGuide type="top" id="jiB-76-cT8"/>
                         <viewControllerLayoutGuide type="bottom" id="qjw-Pg-mBu"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Ngp-Vd-TOI">
+                    <view key="view" contentMode="scaleToFill" id="Ngp-Vd-TOI" customClass="EditorViewBaseClass" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="640"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BackgroundGradient" translatesAutoresizingMaskIntoConstraints="NO" id="dmB-DC-RaB">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="591"/>
-                            </imageView>
-                        </subviews>
-                        <color key="backgroundColor" red="0.99215686270000003" green="0.71764705880000002" blue="0.12941176469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="dmB-DC-RaB" secondAttribute="trailing" id="ge7-yB-MVQ"/>
-                            <constraint firstItem="dmB-DC-RaB" firstAttribute="leading" secondItem="Ngp-Vd-TOI" secondAttribute="leading" id="jf2-pk-sCc"/>
-                            <constraint firstItem="dmB-DC-RaB" firstAttribute="top" secondItem="Ngp-Vd-TOI" secondAttribute="top" id="jfw-nf-6XQ"/>
-                            <constraint firstItem="qjw-Pg-mBu" firstAttribute="top" secondItem="dmB-DC-RaB" secondAttribute="bottom" id="pgH-Vb-d5T"/>
-                        </constraints>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="topColor">
+                                <color key="value" red="0.0" green="1" blue="0.1470982143" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="bottomColor">
+                                <color key="value" red="0.71593479199999999" green="0.93850808809999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item 1" id="qM6-Hh-PL4"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
@@ -153,7 +150,7 @@
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" customClass="EditorViewBaseClass" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="640"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -435,6 +432,14 @@
                             <constraint firstAttribute="trailingMargin" secondItem="uYT-bo-7UZ" secondAttribute="trailing" id="veX-4t-caD"/>
                             <constraint firstItem="NCu-J0-7Hc" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="zX7-QD-mnS"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="topColor">
+                                <color key="value" red="0.97254901959999995" green="0.61960784310000006" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="bottomColor">
+                                <color key="value" red="0.99215686270000003" green="0.97647058819999999" blue="0.50588235290000005" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="8hf-9t-Uxn" appends="YES" id="jm3-BM-R0y"/>
                         </connections>
