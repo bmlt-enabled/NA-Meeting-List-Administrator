@@ -136,6 +136,7 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" red="0.99215686270000003" green="0.71764705880000002" blue="0.12941176469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="tintColor" red="0.0" green="0.0" blue="0.79866071429999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="SyW-zK-uYR" firstAttribute="leading" secondItem="YSR-uc-ltt" secondAttribute="leading" id="Kc1-a9-GqM"/>
                             <constraint firstItem="7h6-7Q-LxS" firstAttribute="top" secondItem="SyW-zK-uYR" secondAttribute="bottom" id="MDQ-AP-noP"/>

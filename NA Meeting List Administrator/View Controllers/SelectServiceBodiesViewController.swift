@@ -28,33 +28,15 @@ import BMLTiOSLib
 /**
  */
 class SelectServiceBodiesViewController : UIViewController, UITableViewDataSource {
-    private typealias CheckBoxServiceBodyTuple = (checkBoxObject: SimpleCheckbox?, serviceBodyObject: BMLTiOSLibHierarchicalServiceBodyNode?, selected: Bool)
-    
-    private var _collectedCheckboxes: [CheckBoxServiceBodyTuple] = []
-    
     @IBOutlet weak var serviceBodyTableView: UITableView!
     
     /* ################################################################## */
     /**
      */
-    override func viewDidLoad() {
-        if nil != MainAppDelegate.connectionObject {
-            self._collectedCheckboxes = []
-            
-            for sbObject in MainAppDelegate.connectionObject.serviceBodiesICanEdit {
-                self._collectedCheckboxes.append((checkBoxObject: nil, serviceBodyObject: sbObject, selected: true))
-            }
-        }
-    }
-    
-    /* ################################################################## */
-    /**
-     */
     func checkboxChanged(_ sender: SimpleCheckbox) {
-        for cb in self._collectedCheckboxes {
-            if cb.checkBoxObject == sender {
-                self.changeSBSelection(inServiceBodyObject: cb.serviceBodyObject!, inSelection: sender.checked)
-            }
+        if let serviceBodyObject = sender.extraData as? BMLTiOSLibHierarchicalServiceBodyNode {
+            self.changeSBSelection(inServiceBodyObject: serviceBodyObject, inSelection: sender.checked)
+            self.serviceBodyTableView.reloadData()
         }
     }
     
@@ -62,63 +44,47 @@ class SelectServiceBodiesViewController : UIViewController, UITableViewDataSourc
     /**
      */
     func changeSBSelection(inServiceBodyObject: BMLTiOSLibHierarchicalServiceBodyNode, inSelection: Bool) {
-        for i in 0..<self._collectedCheckboxes.count {
-            if self._collectedCheckboxes[i].serviceBodyObject == inServiceBodyObject {
-                self._collectedCheckboxes[i].selected = inSelection
-                for sbChild in inServiceBodyObject.children {
-                    self.changeSBSelection(inServiceBodyObject: sbChild, inSelection: inSelection)
-                }
-                
-                if nil != self._collectedCheckboxes[i].checkBoxObject {
-                    self._collectedCheckboxes[i].checkBoxObject!.checked = inSelection
-                }
-            }
+        for sbChild in inServiceBodyObject.children {
+            self.changeSBSelection(inServiceBodyObject: sbChild, inSelection: inSelection)
         }
+        
+        AppStaticPrefs.prefs.setServiceBodySelection(serviceBodyObject: inServiceBodyObject, selected: inSelection)
     }
     
     /* ################################################################## */
     /**
      */
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self._collectedCheckboxes.count
+        return AppStaticPrefs.prefs.allEditableServiceBodies.count
     }
     
     /* ################################################################## */
     /**
      */
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let serviceBodyObject = self._collectedCheckboxes[indexPath.row].serviceBodyObject {
-            let reuseID = String(serviceBodyObject.id)
-            var cell = tableView.dequeueReusableCell(withIdentifier: reuseID) as? ServiceBodyTableCellView
+        let serviceBodyObject = AppStaticPrefs.prefs.allEditableServiceBodies[indexPath.row]
+        let reuseID = String(serviceBodyObject.id)
+        var cell: ServiceBodyTableCellView! = tableView.dequeueReusableCell(withIdentifier: reuseID) as? ServiceBodyTableCellView
+        
+        if nil == cell {
+            var frame = tableView.bounds
+            frame.size.height = tableView.rowHeight
+            frame.origin = CGPoint.zero
+            let indent = CGFloat(serviceBodyObject.howDeepInTheRabbitHoleAmI) + 1
             
-            if nil == cell {
-                cell = ServiceBodyTableCellView(style: UITableViewCellStyle.default, reuseIdentifier: reuseID)
-                if nil != cell {
-                    cell!.backgroundColor = UIColor.clear
-                    if let view = Bundle.main.loadNibNamed("SingleServiceBodyTableCell", owner: cell, options: nil)?.first as? UIView {
-                        var frame = tableView.bounds
-                        frame.size.height = tableView.rowHeight
-                        frame.origin = CGPoint.zero
-                        view.frame = frame
-                        cell!.addSubview(view)
-                    }
-                }
-            }
+            cell = ServiceBodyTableCellView(style: UITableViewCellStyle.default, reuseIdentifier: reuseID, frame: frame, indent: indent, inTextColor: self.view.tintColor)
             
             if nil != cell {
+                cell!.serviceBodyCheckbox.extraData = serviceBodyObject
                 cell!.serviceBodyNameLabel.text = serviceBodyObject.name
-                let indent = CGFloat(serviceBodyObject.howDeepInTheRabbitHoleAmI) + 1
-                let multiplier = CGFloat(ServiceBodyTableCellView.indentSizeInDisplayUnits)
-                cell!.checkboxIndentConstraint.constant = multiplier * indent
-                for i in 0..<self._collectedCheckboxes.count {
-                    if self._collectedCheckboxes[i].serviceBodyObject == serviceBodyObject {
-                        self._collectedCheckboxes[i].checkBoxObject = cell!.serviceBodyCheckbox
-                        cell!.serviceBodyCheckbox.checked = self._collectedCheckboxes[i].selected
-                        cell!.serviceBodyCheckbox.addTarget(self, action: #selector(SelectServiceBodiesViewController.checkboxChanged(_:)), for: UIControlEvents.valueChanged)
-                    }
-                }
-                return cell!
             }
+        }
+        
+        if nil != cell {
+            cell!.serviceBodyCheckbox.removeTarget(self, action: #selector(SelectServiceBodiesViewController.checkboxChanged(_:)), for: UIControlEvents.valueChanged)   // Make sure we don't send out any callbacks when we set the selection.
+            cell!.serviceBodyCheckbox.checked = AppStaticPrefs.prefs.serviceBodyIsSelected(serviceBodyObject)
+            cell!.serviceBodyCheckbox.addTarget(self, action: #selector(SelectServiceBodiesViewController.checkboxChanged(_:)), for: UIControlEvents.valueChanged)
+            return cell
         }
         
         return UITableViewCell()
@@ -131,9 +97,41 @@ class SelectServiceBodiesViewController : UIViewController, UITableViewDataSourc
 /**
  */
 class ServiceBodyTableCellView: UITableViewCell {
-    static let indentSizeInDisplayUnits: Int = 16
+    static let indentSizeInDisplayUnits: CGFloat = 16
+    static let checkboxPaddingInDisplayUnits: CGFloat = 4
     
-    @IBOutlet weak var serviceBodyCheckbox: SimpleCheckbox!
-    @IBOutlet weak var serviceBodyNameLabel: UILabel!
-    @IBOutlet weak var checkboxIndentConstraint: NSLayoutConstraint!
+    var serviceBodyCheckbox: SimpleCheckbox!
+    var serviceBodyNameLabel: UILabel!
+    
+    init(style: UITableViewCellStyle, reuseIdentifier: String, frame: CGRect, indent: CGFloat, inTextColor: UIColor) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        let view = UIView(frame: frame)
+        self.backgroundColor = UIColor.clear
+        view.backgroundColor = UIColor.clear
+        
+        var cbFrame = frame
+        cbFrame.origin.x = indent * type(of: self).indentSizeInDisplayUnits
+        cbFrame.origin.y = type(of: self).checkboxPaddingInDisplayUnits
+        cbFrame.size.height = frame.size.height - (type(of: self).checkboxPaddingInDisplayUnits * 2)
+        cbFrame.size.width = cbFrame.size.height
+        
+        self.serviceBodyCheckbox = SimpleCheckbox(frame: cbFrame)
+        view.addSubview(self.serviceBodyCheckbox)
+        
+        var labelFrame = CGRect.zero
+        labelFrame.size.height = frame.size.height
+        labelFrame.origin.x = cbFrame.origin.x + cbFrame.size.width + type(of: self).checkboxPaddingInDisplayUnits
+        labelFrame.size.width = frame.size.width - labelFrame.origin.x
+        self.serviceBodyNameLabel = UILabel(frame: labelFrame)
+        self.serviceBodyNameLabel.textColor = inTextColor
+        
+        view.addSubview(self.serviceBodyNameLabel)
+        
+        self.addSubview(view)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
 }

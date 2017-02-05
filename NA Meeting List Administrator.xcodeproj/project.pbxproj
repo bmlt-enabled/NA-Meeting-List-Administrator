@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		770E78461E42685C0061F344 /* BMLTiOSLib.framework in Copy Framework */ = {isa = PBXBuildFile; fileRef = 77A099B61E379DAB0066F6A2 /* BMLTiOSLib.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		77140E901E37D3E1008BBB12 /* FXKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 77140E8F1E37D3E1008BBB12 /* FXKeychain.m */; };
-		7743BAFA1E46CE3F0029AD4B /* SingleServiceBodyTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7743BAF81E46CE3F0029AD4B /* SingleServiceBodyTableCell.xib */; };
 		777178141E454AB30027F8E4 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777178131E454AB30027F8E4 /* SettingsViewController.swift */; };
 		777178181E454C0D0027F8E4 /* SelectServiceBodiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777178171E454C0D0027F8E4 /* SelectServiceBodiesViewController.swift */; };
 		7784D3DC1E454D0300953CA0 /* ListEditableMeetingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7784D3DB1E454D0300953CA0 /* ListEditableMeetingsViewController.swift */; };
@@ -75,7 +74,6 @@
 		770E5E931E37937400CBE834 /* LICENSE.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		77140E8E1E37D3E1008BBB12 /* FXKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FXKeychain.h; path = FXKeychain/FXKeychain/FXKeychain.h; sourceTree = SOURCE_ROOT; };
 		77140E8F1E37D3E1008BBB12 /* FXKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FXKeychain.m; path = FXKeychain/FXKeychain/FXKeychain.m; sourceTree = SOURCE_ROOT; };
-		7743BAF91E46CE3F0029AD4B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = "Resources and Extras/Base.lproj/SingleServiceBodyTableCell.xib"; sourceTree = "<group>"; };
 		777178131E454AB30027F8E4 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsViewController.swift; path = "View Controllers/SettingsViewController.swift"; sourceTree = "<group>"; };
 		777178171E454C0D0027F8E4 /* SelectServiceBodiesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectServiceBodiesViewController.swift; path = "View Controllers/SelectServiceBodiesViewController.swift"; sourceTree = "<group>"; };
 		7784D3DB1E454D0300953CA0 /* ListEditableMeetingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListEditableMeetingsViewController.swift; path = "View Controllers/ListEditableMeetingsViewController.swift"; sourceTree = "<group>"; };
@@ -117,7 +115,6 @@
 				779BE3B21E37D5FA00350D11 /* Assets.xcassets */,
 				779BE3B61E37D5FA00350D11 /* LaunchScreen.storyboard */,
 				779BE3B41E37D5FA00350D11 /* Default-568h@2x.png */,
-				7743BAF81E46CE3F0029AD4B /* SingleServiceBodyTableCell.xib */,
 			);
 			name = Resources;
 			path = "NA Meeting List Administrator";
@@ -297,7 +294,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7743BAFA1E46CE3F0029AD4B /* SingleServiceBodyTableCell.xib in Resources */,
 				77B7D1221E3AA0A80031FF6B /* Localizable.strings in Resources */,
 				779BE3BE1E37D5FA00350D11 /* LaunchScreen.storyboard in Resources */,
 				779BE3BC1E37D5FA00350D11 /* Assets.xcassets in Resources */,
@@ -336,14 +332,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		7743BAF81E46CE3F0029AD4B /* SingleServiceBodyTableCell.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				7743BAF91E46CE3F0029AD4B /* Base */,
-			);
-			name = SingleServiceBodyTableCell.xib;
-			sourceTree = "<group>";
-		};
 		779BE3B41E37D5FA00350D11 /* Default-568h@2x.png */ = {
 			isa = PBXVariantGroup;
 			children = (

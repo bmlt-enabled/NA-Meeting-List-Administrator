@@ -31,6 +31,9 @@ class SimpleCheckbox: UIButton {
     internal var _checked: Bool = false
     /** This is a flag we set to keep the checkbox from being caught in a loop, if the handler changes the value. */
     private var _actionItem: Bool = false
+    /** We use this to associate any extra data we want with the instance. */
+    var extraData: Any? = nil
+    
     /* This is a functional interface to ensure that the control gets redrawn when the state changes. */
     var checked: Bool {
         get {

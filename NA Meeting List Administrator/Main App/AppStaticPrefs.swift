@@ -21,6 +21,7 @@
 import Foundation
 import LocalAuthentication
 import Security
+import BMLTiOSLib
 
 /* ###################################################################################################################################### */
 // MARK: - Prefs Class -
@@ -33,20 +34,24 @@ import Security
 class AppStaticPrefs {
     /** This is a simple typealias for a login pair. */
     typealias LoginPairTuple = (url: String, loginID: String)
+    /** This is used to track whether or not we have a selected Service body. */
+    typealias SelectableServiceBodyTuple = (serviceBodyObject: BMLTiOSLibHierarchicalServiceBodyNode?, selected: Bool)
     
     /* ################################################################## */
     // MARK: Private Static Properties
     /* ################################################################## */
     /** This is the key for the prefs used by this app. */
     private static let _mainPrefsKey: String = "NAMeetingListAdministratorAppStaticPrefs"
+    /** This is how we enforce a SINGLETON pattern. */
+    private static var _sSingletonPrefs: AppStaticPrefs! = nil
     
     /* ################################################################## */
     // MARK: Private Variable Properties
     /* ################################################################## */
     /** We load the user prefs into this Dictionary object. */
     private var _loadedPrefs: NSMutableDictionary! = nil
-    /** This is how we enforce a SINGLETON pattern. */
-    private static var _sSingletonPrefs: AppStaticPrefs! = nil
+    /** This tracks our selected Service bodies. */
+    private var _selectedServiceBodies: [SelectableServiceBodyTuple] = []
     
     /* ################################################################## */
     // MARK: Private Enums
@@ -61,6 +66,8 @@ class AppStaticPrefs {
         case RootServerLoginDictionaryKey = "BMLTStoredLoginIDs"
         /** This is the key for the last login value pair. */
         case LastLoginPair = "BMLTLastLoginPair"
+        /** This will refer to an array of Int that will indicate selected Service body IDs. */
+        case SelectedServiceBodies = "BMLTSelectedServiceBodies"
     }
     
     /* ################################################################## */
@@ -229,6 +236,10 @@ class AppStaticPrefs {
         }
     }
     
+    /* ################################################################## */
+    /**
+     This saves and returns the last successful login, for quick restoration later.
+     */
     var lastLogin: LoginPairTuple {
         get {
             var ret: LoginPairTuple = (url: "", loginID: "")
@@ -258,9 +269,101 @@ class AppStaticPrefs {
     }
     
     /* ################################################################## */
+    /**
+     This returns all the Service bodies available.
+     */
+    var allEditableServiceBodies: [BMLTiOSLibHierarchicalServiceBodyNode] {
+        get {
+            var ret: [BMLTiOSLibHierarchicalServiceBodyNode] = []
+            
+            if (nil != MainAppDelegate.connectionObject) && MainAppDelegate.connectionObject.isConnected && MainAppDelegate.connectionObject.isAdminLoggedIn {
+                ret = MainAppDelegate.connectionObject.serviceBodiesICanEdit
+            }
+            
+            return ret
+        }
+    }
+    
+    /* ################################################################## */
+    /**
+     This returns a selectable array of objects, with indications as to whether or not they have been selected.
+     
+     We associate the selections with a URL/login pair (the last successful one), so this can change from login to login.
+     */
+    var selectableServiceBodies: [SelectableServiceBodyTuple] {
+        get {
+            var ret: [SelectableServiceBodyTuple] = []
+            
+            if self._loadPrefs() {
+                for sb in self.allEditableServiceBodies {
+                    var tempTuple: SelectableServiceBodyTuple = (serviceBodyObject: sb, selected: false)
+                    if let temp = self._loadedPrefs.object(forKey: PrefsKeys.SelectedServiceBodies.rawValue) as? [String:[Int]] {
+                        let loginSet = self.lastLogin
+                        let key = loginSet.url + "-" + loginSet.loginID
+                        if let mySBSelectionArray = temp[key] {
+                            let sbID = sb.id
+                        
+                            for selectedSBID in mySBSelectionArray {
+                                if selectedSBID == sbID {
+                                    tempTuple.selected = true
+                                }
+                            }
+                        } else {
+                            tempTuple.selected = true   // Default is selected.
+                        }
+                    }
+                    
+                    ret.append(tempTuple)
+                }
+            }
+
+            return ret
+        }
+        
+        set {
+            var newDictionary: [String:[Int]] = [:]
+            if self._loadPrefs() {
+                if let temp = self._loadedPrefs.object(forKey: PrefsKeys.SelectedServiceBodies.rawValue) as? [String:[Int]] {
+                    newDictionary = temp
+                }
+            }
+            
+            var newArray: [Int] = []
+            
+            for sbTuple in newValue {
+                if sbTuple.selected {
+                    newArray.append((sbTuple.serviceBodyObject?.id)!)
+                }
+            }
+            
+            let loginSet = self.lastLogin
+            let key = loginSet.url + "-" + loginSet.loginID
+
+            if newArray.isEmpty {
+                newDictionary.removeValue(forKey: key)
+            } else {
+                newDictionary.updateValue(newArray, forKey: key)
+            }
+            
+            if newDictionary.isEmpty {
+                self._loadedPrefs.removeObject(forKey: PrefsKeys.SelectedServiceBodies.rawValue)
+            } else {
+                self._loadedPrefs.setObject(newDictionary, forKey: PrefsKeys.SelectedServiceBodies.rawValue as NSString)
+            }
+            
+            self._savePrefs()
+        }
+    }
+    
+    /* ################################################################## */
     // MARK: Instance Methods
     /* ################################################################## */
     /**
+     Returns a list of login IDs for the given Root Server URI.
+     
+     - parameter inRootURI: The URL (as a String) for the Root Server
+     
+     - returns an Array of String, with each element being a login stored for that Root Server URI.
      */
     func getUsersForRootURI(_ inRooutURI: String) -> [String]! {
         var ret: [String]! = nil
@@ -272,6 +375,38 @@ class AppStaticPrefs {
         }
         
         return ret
+    }
+    
+    /* ################################################################## */
+    /**
+     This updates our stored selection state for the given Service body.
+     
+     - parameter serviceBodyObject: The Service body object that is being selected or deselected.
+     - parameter selected: True, if the Service body object is being selected.
+     */
+    func setServiceBodySelection(serviceBodyObject: BMLTiOSLibHierarchicalServiceBodyNode, selected: Bool) {
+        for i in 0..<self.selectableServiceBodies.count {
+            if self.selectableServiceBodies[i].serviceBodyObject?.id == serviceBodyObject.id {
+                self.selectableServiceBodies[i].selected = selected
+                break
+            }
+        }
+    }
+    
+    /* ################################################################## */
+    /**
+     This returns the selection state for the given Service body.
+     
+     - parameter serviceBodyObject: The Service body object that is being selected or deselected.
+     - returns: True, if the Service body object is currently selected.
+     */
+    func serviceBodyIsSelected(_ serviceBodyObject: BMLTiOSLibHierarchicalServiceBodyNode) -> Bool {
+        for i in 0..<self.selectableServiceBodies.count {
+            if self.selectableServiceBodies[i].serviceBodyObject?.id == serviceBodyObject.id {
+                return self.selectableServiceBodies[i].selected
+            }
+        }
+        return false
     }
     
     /* ################################################################## */
