@@ -20,10 +20,112 @@
 //  along with this code.  If not, see <http://www.gnu.org/licenses/>.
 
 import UIKit
+import BMLTiOSLib
+
 /* ###################################################################################################################################### */
 // MARK: - Select Service Bodies View Controller Class -
 /* ###################################################################################################################################### */
 /**
  */
-class SelectServiceBodiesViewController : UIViewController {
+class SelectServiceBodiesViewController : UIViewController, UITableViewDataSource {
+    private typealias CheckBoxServiceBodyTuple = (checkBoxObject: SimpleCheckbox?, serviceBodyObject: BMLTiOSLibHierarchicalServiceBodyNode?, selected: Bool)
+    
+    private var _collectedCheckboxes: [CheckBoxServiceBodyTuple] = []
+    
+    @IBOutlet weak var serviceBodyTableView: UITableView!
+    
+    /* ################################################################## */
+    /**
+     */
+    override func viewDidLoad() {
+        if nil != MainAppDelegate.connectionObject {
+            self._collectedCheckboxes = []
+            
+            for sbObject in MainAppDelegate.connectionObject.serviceBodiesICanEdit {
+                self._collectedCheckboxes.append((checkBoxObject: nil, serviceBodyObject: sbObject, selected: true))
+            }
+        }
+    }
+    
+    /* ################################################################## */
+    /**
+     */
+    func checkboxChanged(_ sender: SimpleCheckbox) {
+        for cb in self._collectedCheckboxes {
+            if cb.checkBoxObject == sender {
+                self.changeSBSelection(inServiceBodyObject: cb.serviceBodyObject!, inSelection: sender.checked)
+            }
+        }
+    }
+    
+    /* ################################################################## */
+    /**
+     */
+    func changeSBSelection(inServiceBodyObject: BMLTiOSLibHierarchicalServiceBodyNode, inSelection: Bool) {
+        for i in 0..<self._collectedCheckboxes.count {
+            if self._collectedCheckboxes[i].serviceBodyObject == inServiceBodyObject {
+                self._collectedCheckboxes[i].selected = inSelection
+                for sbChild in inServiceBodyObject.children {
+                    self.changeSBSelection(inServiceBodyObject: sbChild, inSelection: inSelection)
+                }
+                
+                if nil != self._collectedCheckboxes[i].checkBoxObject {
+                    self._collectedCheckboxes[i].checkBoxObject!.checked = inSelection
+                }
+            }
+        }
+    }
+    
+    /* ################################################################## */
+    /**
+     */
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self._collectedCheckboxes.count
+    }
+    
+    /* ################################################################## */
+    /**
+     */
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: ServiceBodyTableCellView.selectorCellReuseID) as? ServiceBodyTableCellView {
+            if let serviceBodyObject = self._collectedCheckboxes[indexPath.row].serviceBodyObject {
+                cell.serviceBodyNameLabel.text = serviceBodyObject.name
+                cell.backgroundColor = UIColor.clear
+                let indent = CGFloat(serviceBodyObject.howDeepInTheRabbitHoleAmI) + 1
+                let multiplier = CGFloat(ServiceBodyTableCellView.indentSizeInDisplayUnits)
+                cell.checkboxIndentConstraint.constant = multiplier * indent
+                for i in 0..<self._collectedCheckboxes.count {
+                    if self._collectedCheckboxes[i].serviceBodyObject == serviceBodyObject {
+                        self._collectedCheckboxes[i].checkBoxObject = cell.serviceBodyCheckbox
+                        cell.serviceBodyCheckbox.checked = self._collectedCheckboxes[i].selected
+                        cell.serviceBodyCheckbox.addTarget(self, action: #selector(SelectServiceBodiesViewController.checkboxChanged(_:)), for: UIControlEvents.valueChanged)
+                    }
+                }
+                return cell
+            }
+        }
+        
+        return UITableViewCell()
+    }
+}
+
+/* ###################################################################################################################################### */
+// MARK: - This is the prototype class for a Service body table cell -
+/* ###################################################################################################################################### */
+/**
+ */
+class ServiceBodyTableCellView: UITableViewCell {
+    static let selectorCellReuseID = "serviceBodySelectorCell"
+    static let indentSizeInDisplayUnits: Int = 16
+    
+    @IBOutlet weak var serviceBodyCheckbox: SimpleCheckbox!
+    @IBOutlet weak var serviceBodyNameLabel: UILabel!
+    @IBOutlet weak var checkboxIndentConstraint: NSLayoutConstraint!
+    
+    /* ################################################################## */
+    /**
+     */
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
 }

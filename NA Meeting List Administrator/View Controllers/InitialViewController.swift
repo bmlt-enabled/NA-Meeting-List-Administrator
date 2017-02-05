@@ -106,7 +106,9 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate 
      */
     override func viewDidLoad() {
         super.viewDidLoad()
-        MainAppDelegate.appDelegateObject.initialViewController = self
+        MainAppDelegate.appDelegateObject.initialViewController = self  // This allows the app delegate to easily find us.
+        // Set all of the various localized text items.
+        // Each item has the key set as its text, so we replace with the localized version.
         self.navigationItem.backBarButtonItem?.title = NSLocalizedString((self.navigationItem.backBarButtonItem?.title!)!, comment: "")
         self.loginItemsLabel.text = NSLocalizedString(self.loginItemsLabel.text!, comment: "")
         self.loginIDLabel.text = NSLocalizedString(self.loginIDLabel.text!, comment: "")
@@ -125,6 +127,8 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate 
 
         let lastLogin = AppStaticPrefs.prefs.lastLogin
         
+        
+        // If there is no saved login from the last connection, we use the somewhat more static one (or the default from the plist).
         if !lastLogin.url.isEmpty && !lastLogin.loginID.isEmpty {
             self.enterURLTextItem.text = lastLogin.url
         } else {
