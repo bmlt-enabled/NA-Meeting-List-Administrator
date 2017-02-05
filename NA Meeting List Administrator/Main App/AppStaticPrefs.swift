@@ -80,14 +80,6 @@ class AppStaticPrefs {
     // MARK: Private Instance Methods
     /* ################################################################## */
     /**
-     This method simply saves the main preferences Dictionary into the standard user defaults.
-     */
-    private func _savePrefs() {
-        UserDefaults.standard.set(self._loadedPrefs, forKey: type(of: self)._mainPrefsKey)
-    }
-    
-    /* ################################################################## */
-    /**
      This method loads the main prefs into our instance storage.
      
      NOTE: This will overwrite any unsaved changes to the current _loadedPrefs property.
@@ -95,10 +87,12 @@ class AppStaticPrefs {
      - returns: a Bool. True, if the load was successful.
      */
     private func _loadPrefs() -> Bool {
-        if let temp = UserDefaults.standard.object(forKey: type(of: self)._mainPrefsKey) as? NSDictionary {
-            self._loadedPrefs = NSMutableDictionary(dictionary: temp)
-        } else {
-            self._loadedPrefs = NSMutableDictionary()
+        if nil == self._loadedPrefs {
+            if let temp = UserDefaults.standard.object(forKey: type(of: self)._mainPrefsKey) as? NSDictionary {
+                self._loadedPrefs = NSMutableDictionary(dictionary: temp)
+            } else {
+                self._loadedPrefs = NSMutableDictionary()
+            }
         }
         
         return nil != self._loadedPrefs
@@ -231,7 +225,6 @@ class AppStaticPrefs {
                 } else {
                     self._loadedPrefs.setObject(newValue, forKey: PrefsKeys.RootServerURI.rawValue as NSString)
                 }
-                self._savePrefs()
             }
         }
     }
@@ -263,7 +256,6 @@ class AppStaticPrefs {
                     let ret: [String] = [newValue.url, newValue.loginID]
                     self._loadedPrefs.setObject(ret, forKey: PrefsKeys.LastLoginPair.rawValue as NSString)
                 }
-                self._savePrefs()
             }
         }
     }
@@ -293,27 +285,28 @@ class AppStaticPrefs {
     var selectableServiceBodies: [SelectableServiceBodyTuple] {
         get {
             var ret: [SelectableServiceBodyTuple] = []
+            let loginSet = self.lastLogin
+            let key = loginSet.url + "-" + loginSet.loginID
             
             if self._loadPrefs() {
-                for sb in self.allEditableServiceBodies {
-                    var tempTuple: SelectableServiceBodyTuple = (serviceBodyObject: sb, selected: false)
-                    if let temp = self._loadedPrefs.object(forKey: PrefsKeys.SelectedServiceBodies.rawValue) as? [String:[Int]] {
-                        let loginSet = self.lastLogin
-                        let key = loginSet.url + "-" + loginSet.loginID
-                        if let mySBSelectionArray = temp[key] {
-                            let sbID = sb.id
-                        
-                            for selectedSBID in mySBSelectionArray {
-                                if selectedSBID == sbID {
-                                    tempTuple.selected = true
+                if 1 == self.allEditableServiceBodies.count {   // If we only have one body, then it is always selected, and can't be deselected.
+                    ret = [(serviceBodyObject: self.allEditableServiceBodies[0], selected: true)]
+                } else {
+                    for sb in self.allEditableServiceBodies {
+                        let sbID = sb.id
+                        var tempTuple: SelectableServiceBodyTuple = (serviceBodyObject: sb, selected: false)
+                        if let temp = self._loadedPrefs.object(forKey: PrefsKeys.SelectedServiceBodies.rawValue) as? [String:[Int]] {
+                            if let mySBSelectionArray = temp[key] {
+                                for selectedSBID in mySBSelectionArray {
+                                    if selectedSBID == sbID {
+                                        tempTuple.selected = true
+                                    }
                                 }
                             }
-                        } else {
-                            tempTuple.selected = true   // Default is selected.
                         }
+                        
+                        ret.append(tempTuple)
                     }
-                    
-                    ret.append(tempTuple)
                 }
             }
 
@@ -350,8 +343,6 @@ class AppStaticPrefs {
             } else {
                 self._loadedPrefs.setObject(newDictionary, forKey: PrefsKeys.SelectedServiceBodies.rawValue as NSString)
             }
-            
-            self._savePrefs()
         }
     }
     
@@ -379,16 +370,23 @@ class AppStaticPrefs {
     
     /* ################################################################## */
     /**
+     This method simply saves the main preferences Dictionary into the standard user defaults.
+     */
+    func savePrefs() {
+        UserDefaults.standard.set(self._loadedPrefs, forKey: type(of: self)._mainPrefsKey)
+    }
+    
+    /* ################################################################## */
+    /**
      This updates our stored selection state for the given Service body.
      
-     - parameter serviceBodyObject: The Service body object that is being selected or deselected.
+     - parameter serviceBodyObject: The Service body object that is being selected or deselected. If nil, then the selection is applied to all available Service bodies.
      - parameter selected: True, if the Service body object is being selected.
      */
-    func setServiceBodySelection(serviceBodyObject: BMLTiOSLibHierarchicalServiceBodyNode, selected: Bool) {
+    func setServiceBodySelection(serviceBodyObject: BMLTiOSLibHierarchicalServiceBodyNode!, selected: Bool) {
         for i in 0..<self.selectableServiceBodies.count {
-            if self.selectableServiceBodies[i].serviceBodyObject?.id == serviceBodyObject.id {
+            if (1 == self.selectableServiceBodies.count) || (nil == serviceBodyObject) || (self.selectableServiceBodies[i].serviceBodyObject?.id == serviceBodyObject.id) {
                 self.selectableServiceBodies[i].selected = selected
-                break
             }
         }
     }
@@ -398,12 +396,12 @@ class AppStaticPrefs {
      This returns the selection state for the given Service body.
      
      - parameter serviceBodyObject: The Service body object that is being selected or deselected.
-     - returns: True, if the Service body object is currently selected.
+     - returns: True, if the Service body object is currently selected. If we only have one editable Service body, then it is always selected.
      */
     func serviceBodyIsSelected(_ serviceBodyObject: BMLTiOSLibHierarchicalServiceBodyNode) -> Bool {
         for i in 0..<self.selectableServiceBodies.count {
             if self.selectableServiceBodies[i].serviceBodyObject?.id == serviceBodyObject.id {
-                return self.selectableServiceBodies[i].selected
+                return self.selectableServiceBodies[i].selected || (1 == self.selectableServiceBodies.count)
             }
         }
         return false
@@ -419,8 +417,12 @@ class AppStaticPrefs {
      - parameter inRooutURI: The URI of the Root Server, as a String
      - parameter inUser: The User login ID, as a String
      - parameter inPassword: An optional string for the password. If nil or empty, then the password is removed. Default is nil.
+     
+     - returns: True, if this was the first login for this user.
      */
-    func updateUserForRootURI(_ inRooutURI: String, inUser: String, inPassword: String! = nil) {
+    func updateUserForRootURI(_ inRooutURI: String, inUser: String, inPassword: String! = nil) -> Bool {
+        var ret: Bool = false
+        
         if self._loadPrefs() {
             // In this first step, we add the user to our list for that URI, if necessary.
             var loginDictionary: [String:[String]] = [:]
@@ -445,10 +447,9 @@ class AppStaticPrefs {
             if needToUpdate {
                 urlUsers.append(inUser)
                 loginDictionary[inRooutURI] = urlUsers
+                ret = true  // If we need to update, then this was the first login.
                 
                 self._loadedPrefs.setObject(loginDictionary, forKey: PrefsKeys.RootServerLoginDictionaryKey.rawValue as NSString)
-                
-                self._savePrefs()
             }
             
             // At this point, we have the login ID saved in the dictionary.
@@ -463,6 +464,8 @@ class AppStaticPrefs {
                 self._keychainWrapper.setObject(inPassword, forKey: key) // Store the password in our keychain.
             }
         }
+        
+        return ret
     }
     
     /* ################################################################## */
@@ -476,7 +479,7 @@ class AppStaticPrefs {
             var urlUsers: [String] = []
             
             if (nil != inUser) && !inUser.isEmpty {
-                self.updateUserForRootURI(inRooutURI, inUser: inUser)   // Clear any stored password, first.
+                let _ = self.updateUserForRootURI(inRooutURI, inUser: inUser)   // Clear any stored password, first.
                 
                 if let temp = self._loadedPrefs.object(forKey: PrefsKeys.RootServerLoginDictionaryKey.rawValue) as? [String:[String]] {
                     loginDictionary = temp
@@ -499,7 +502,7 @@ class AppStaticPrefs {
                     // If we have a dictionary, then we'll be removing all stored passwords for that URI.
                     if var users = loginDictionary[inRooutURI] {
                         for i in 0..<users.count {
-                            self.updateUserForRootURI(inRooutURI, inUser: users[i])
+                            let _ = self.updateUserForRootURI(inRooutURI, inUser: users[i])
                         }
                     }
                 }
@@ -513,8 +516,6 @@ class AppStaticPrefs {
             }
             
             self._loadedPrefs.setObject(loginDictionary, forKey: PrefsKeys.RootServerLoginDictionaryKey.rawValue as NSString)
-            
-            self._savePrefs()
         }
     }
     

@@ -22,7 +22,6 @@
 		77A099BD1E379DC40066F6A2 /* BMLTiOSLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77A099B61E379DAB0066F6A2 /* BMLTiOSLib.framework */; };
 		77B50A681E381E31004019B8 /* AppStaticPrefs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B50A671E381E31004019B8 /* AppStaticPrefs.swift */; };
 		77B7D1221E3AA0A80031FF6B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 77B7D1201E3AA0A80031FF6B /* Localizable.strings */; };
-		77FF85451E469B310094A92B /* SimpleCheckbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77FF85441E469B310094A92B /* SimpleCheckbox.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,7 +91,6 @@
 		77B7D1211E3AA0A80031FF6B /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = "Resources and Extras/Base.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		77DC3EA61E378B6300BF24B7 /* NA Meeting List Administrator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NA Meeting List Administrator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		77DC3EBB1E378C4F00BF24B7 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		77FF85441E469B310094A92B /* SimpleCheckbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SimpleCheckbox.swift; path = "Main App/SimpleCheckbox.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,7 +189,6 @@
 			children = (
 				779BE3B01E37D5B500350D11 /* MainAppDelegate.swift */,
 				77B50A671E381E31004019B8 /* AppStaticPrefs.swift */,
-				77FF85441E469B310094A92B /* SimpleCheckbox.swift */,
 			);
 			name = "Main App";
 			path = "NA Meeting List Administrator";
@@ -311,7 +308,6 @@
 			files = (
 				777178181E454C0D0027F8E4 /* SelectServiceBodiesViewController.swift in Sources */,
 				77B50A681E381E31004019B8 /* AppStaticPrefs.swift in Sources */,
-				77FF85451E469B310094A92B /* SimpleCheckbox.swift in Sources */,
 				7784D3DC1E454D0300953CA0 /* ListEditableMeetingsViewController.swift in Sources */,
 				779BE3B11E37D5B500350D11 /* MainAppDelegate.swift in Sources */,
 				77140E901E37D3E1008BBB12 /* FXKeychain.m in Sources */,

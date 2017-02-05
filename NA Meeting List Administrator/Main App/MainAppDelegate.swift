@@ -129,6 +129,27 @@ class MainAppDelegate: UIResponder, UIApplicationDelegate, BMLTiOSLibDelegate {
     }
     
     /* ################################################################## */
+    /**
+     */
+    func applicationWillResignActive(_ application: UIApplication) {
+        AppStaticPrefs.prefs.savePrefs()
+    }
+    
+    /* ################################################################## */
+    /**
+     */
+    func applicationWillTerminate(_ application: UIApplication) {
+        AppStaticPrefs.prefs.savePrefs()
+    }
+    
+    /* ################################################################## */
+    /**
+     */
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        AppStaticPrefs.prefs.savePrefs()
+    }
+    
+    /* ################################################################## */
     // MARK: BMLTiOSLibDelegate Methods
     /* ################################################################## */
     /**

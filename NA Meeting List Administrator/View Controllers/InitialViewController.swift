@@ -127,7 +127,6 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate 
 
         let lastLogin = AppStaticPrefs.prefs.lastLogin
         
-        
         // If there is no saved login from the last connection, we use the somewhat more static one (or the default from the plist).
         if !lastLogin.url.isEmpty && !lastLogin.loginID.isEmpty {
             self.enterURLTextItem.text = lastLogin.url
@@ -155,6 +154,7 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate 
         self._editorTabBarController = nil // We will always be setting this to nil when we first appear. Makes it easier to track.
         self._loggingIn = false
         self.passwordTextField.text = "" // We start off with no password (security).
+        self.enableOrDisableTheEditButton()
         
         super.viewWillAppear(animated)
     }
@@ -411,8 +411,13 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate 
     func finishedLoggingIn() {
         // If we are successfully logged in, then we save the login and (maybe) the password.
         if (nil != MainAppDelegate.connectionObject) && MainAppDelegate.connectionStatus && MainAppDelegate.connectionObject.isAdminLoggedIn {
-            AppStaticPrefs.prefs.updateUserForRootURI(self.enterURLTextItem.text!, inUser: self.loginIDTextField.text!, inPassword: self.passwordTextField.text)
+            let firstTime = AppStaticPrefs.prefs.updateUserForRootURI(self.enterURLTextItem.text!, inUser: self.loginIDTextField.text!, inPassword: self.passwordTextField.text)
             AppStaticPrefs.prefs.lastLogin = (url: self.enterURLTextItem.text!, loginID: self.loginIDTextField.text!)
+            
+            if firstTime {  // If this was the first time we logged in, then we 
+                AppStaticPrefs.prefs.setServiceBodySelection(serviceBodyObject: nil, selected: true)
+            }
+            AppStaticPrefs.prefs.savePrefs()
         }
         self.passwordTextField.text = ""
         self.animationMask.isHidden = true
@@ -432,6 +437,24 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate 
         
         self.touchIDButton.isHidden = hideLoginButton || !AppStaticPrefs.supportsTouchID
         self.loginButton.isEnabled = !hideLoginButton
+    }
+    
+    /* ################################################################## */
+    /**
+     This function will enable or disable the Navbar Edit button, depending on whether or not we have any selected Service bodies.
+     */
+    func enableOrDisableTheEditButton() {
+        // We only enable the editor button if we have editable Service bodies selected.
+        var enableEditButton = false
+        
+        for sbTuple in AppStaticPrefs.prefs.selectableServiceBodies {
+            if sbTuple.selected {
+                enableEditButton = true
+                break
+            }
+        }
+        
+        self.editorBarButton.isEnabled = enableEditButton
     }
     
     /* ################################################################## */
@@ -494,6 +517,7 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate 
         self.showOrHideConnectButton()
         self.showOrHideLoginButton()
         self.showOrHideTouchIDButton()
+        self.enableOrDisableTheEditButton()
     }
     
     /* ################################################################## */
