@@ -109,7 +109,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S0K-YC-UgK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="457" y="790"/>
+            <point key="canvasLocation" x="459" y="772"/>
         </scene>
         <!--Select Service Bodies View Controller-->
         <scene sceneID="23k-zI-W9B">
@@ -126,51 +126,10 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BackgroundGradient" translatesAutoresizingMaskIntoConstraints="NO" id="SyW-zK-uYR">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="576"/>
                             </imageView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="30" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="O1H-PG-TpL">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" allowsSelection="NO" rowHeight="30" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="O1H-PG-TpL">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="576"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" shouldIndentWhileEditing="NO" reuseIdentifier="serviceBodySelectorCell" id="70c-Vk-3Qj" customClass="ServiceBodyTableCellView" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="320" height="30"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="70c-Vk-3Qj" id="0xb-CG-Dmg">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="30"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JEg-Yb-UtI" userLabel="Service Body Checkbox" customClass="SimpleCheckbox" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
-                                                    <rect key="frame" x="4" y="4" width="26" height="26"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="26" id="GGF-bu-DC5"/>
-                                                        <constraint firstAttribute="width" constant="26" id="LRA-uL-eD0"/>
-                                                    </constraints>
-                                                    <state key="normal" backgroundImage="Checkbox-unselected"/>
-                                                </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gy3-ge-WAW" userLabel="Service Body Name">
-                                                    <rect key="frame" x="34" y="4" width="278" height="26"/>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.79866071429999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                            <constraints>
-                                                <constraint firstItem="JEg-Yb-UtI" firstAttribute="leading" secondItem="0xb-CG-Dmg" secondAttribute="leading" constant="4" id="Amx-FC-Gfq"/>
-                                                <constraint firstItem="JEg-Yb-UtI" firstAttribute="top" secondItem="0xb-CG-Dmg" secondAttribute="top" constant="4" id="I0G-hU-gUl"/>
-                                                <constraint firstItem="Gy3-ge-WAW" firstAttribute="leading" secondItem="JEg-Yb-UtI" secondAttribute="trailing" constant="4" id="PnP-7D-hIo"/>
-                                                <constraint firstItem="Gy3-ge-WAW" firstAttribute="bottom" secondItem="JEg-Yb-UtI" secondAttribute="bottom" id="SQL-Ia-apr"/>
-                                                <constraint firstItem="Gy3-ge-WAW" firstAttribute="top" secondItem="JEg-Yb-UtI" secondAttribute="top" id="SbX-YN-1W0"/>
-                                                <constraint firstAttribute="trailing" secondItem="Gy3-ge-WAW" secondAttribute="trailing" constant="8" id="ySH-iN-OeH"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <connections>
-                                            <outlet property="checkboxIndentConstraint" destination="Amx-FC-Gfq" id="FHk-89-NOx"/>
-                                            <outlet property="serviceBodyCheckbox" destination="JEg-Yb-UtI" id="Jra-vO-7iW"/>
-                                            <outlet property="serviceBodyNameLabel" destination="Gy3-ge-WAW" id="5SB-ai-wxn"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
+                                <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="2We-Oi-Q5b" id="jjZ-il-7hF"/>
                                 </connections>
@@ -196,7 +155,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Fy-kB-OUO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-194.20289855072465" y="789.94565217391312"/>
+            <point key="canvasLocation" x="-197" y="772"/>
         </scene>
         <!--Connect-->
         <scene sceneID="tne-QT-ifu">
@@ -553,7 +512,6 @@
     </scenes>
     <resources>
         <image name="BackgroundGradient" width="1" height="2732"/>
-        <image name="Checkbox-unselected" width="26" height="26"/>
         <image name="List" width="25" height="25"/>
         <image name="Settings" width="25" height="25"/>
         <image name="Settings-Highlight" width="25" height="25"/>

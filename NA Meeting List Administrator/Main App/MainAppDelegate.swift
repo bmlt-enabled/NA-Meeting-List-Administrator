@@ -179,6 +179,10 @@ class MainAppDelegate: UIResponder, UIApplicationDelegate, BMLTiOSLibDelegate {
      - parameter loginChangedTo: A Bool, true, if the session is currently connected.
      */
     func bmltLibInstance(_ inLibInstance: BMLTiOSLib, loginChangedTo: Bool) {
+        if loginChangedTo && (1 > type(of: self)._libraryObject.serviceBodiesICanEdit.count) {  // We have to be able to edit at least one Service body for this to work.
+            let _ = type(of: self)._libraryObject.adminLogout()
+        }
+        
         self.initialViewController.finishedLoggingIn()
     }
 }

@@ -472,6 +472,8 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate 
                 if let navController = self.navigationController {
                     navController.isNavigationBarHidden = false
                 }
+                
+                self.serviceBodyBarButton.isEnabled = (1 < MainAppDelegate.connectionObject.serviceBodiesICanEdit.count)
             } else {
                 self.logoutButton.isHidden = true
                 

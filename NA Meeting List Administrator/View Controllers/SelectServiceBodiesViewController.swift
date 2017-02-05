@@ -87,21 +87,37 @@ class SelectServiceBodiesViewController : UIViewController, UITableViewDataSourc
     /**
      */
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: ServiceBodyTableCellView.selectorCellReuseID) as? ServiceBodyTableCellView {
-            if let serviceBodyObject = self._collectedCheckboxes[indexPath.row].serviceBodyObject {
-                cell.serviceBodyNameLabel.text = serviceBodyObject.name
-                cell.backgroundColor = UIColor.clear
-                let indent = CGFloat(serviceBodyObject.howDeepInTheRabbitHoleAmI) + 1
-                let multiplier = CGFloat(ServiceBodyTableCellView.indentSizeInDisplayUnits)
-                cell.checkboxIndentConstraint.constant = multiplier * indent
-                for i in 0..<self._collectedCheckboxes.count {
-                    if self._collectedCheckboxes[i].serviceBodyObject == serviceBodyObject {
-                        self._collectedCheckboxes[i].checkBoxObject = cell.serviceBodyCheckbox
-                        cell.serviceBodyCheckbox.checked = self._collectedCheckboxes[i].selected
-                        cell.serviceBodyCheckbox.addTarget(self, action: #selector(SelectServiceBodiesViewController.checkboxChanged(_:)), for: UIControlEvents.valueChanged)
+        if let serviceBodyObject = self._collectedCheckboxes[indexPath.row].serviceBodyObject {
+            let reuseID = String(serviceBodyObject.id)
+            var cell = tableView.dequeueReusableCell(withIdentifier: reuseID) as? ServiceBodyTableCellView
+            
+            if nil == cell {
+                cell = ServiceBodyTableCellView(style: UITableViewCellStyle.default, reuseIdentifier: reuseID)
+                if nil != cell {
+                    cell!.backgroundColor = UIColor.clear
+                    if let view = Bundle.main.loadNibNamed("SingleServiceBodyTableCell", owner: cell, options: nil)?.first as? UIView {
+                        var frame = tableView.bounds
+                        frame.size.height = tableView.rowHeight
+                        frame.origin = CGPoint.zero
+                        view.frame = frame
+                        cell!.addSubview(view)
                     }
                 }
-                return cell
+            }
+            
+            if nil != cell {
+                cell!.serviceBodyNameLabel.text = serviceBodyObject.name
+                let indent = CGFloat(serviceBodyObject.howDeepInTheRabbitHoleAmI) + 1
+                let multiplier = CGFloat(ServiceBodyTableCellView.indentSizeInDisplayUnits)
+                cell!.checkboxIndentConstraint.constant = multiplier * indent
+                for i in 0..<self._collectedCheckboxes.count {
+                    if self._collectedCheckboxes[i].serviceBodyObject == serviceBodyObject {
+                        self._collectedCheckboxes[i].checkBoxObject = cell!.serviceBodyCheckbox
+                        cell!.serviceBodyCheckbox.checked = self._collectedCheckboxes[i].selected
+                        cell!.serviceBodyCheckbox.addTarget(self, action: #selector(SelectServiceBodiesViewController.checkboxChanged(_:)), for: UIControlEvents.valueChanged)
+                    }
+                }
+                return cell!
             }
         }
         
@@ -115,17 +131,9 @@ class SelectServiceBodiesViewController : UIViewController, UITableViewDataSourc
 /**
  */
 class ServiceBodyTableCellView: UITableViewCell {
-    static let selectorCellReuseID = "serviceBodySelectorCell"
     static let indentSizeInDisplayUnits: Int = 16
     
     @IBOutlet weak var serviceBodyCheckbox: SimpleCheckbox!
     @IBOutlet weak var serviceBodyNameLabel: UILabel!
     @IBOutlet weak var checkboxIndentConstraint: NSLayoutConstraint!
-    
-    /* ################################################################## */
-    /**
-     */
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-    }
 }
