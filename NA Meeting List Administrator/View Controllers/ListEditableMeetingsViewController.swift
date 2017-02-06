@@ -32,6 +32,16 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
     
     @IBOutlet weak var busyAnimationView: UIView!
     @IBOutlet weak var meetingListTableView: UITableView!
+    @IBOutlet weak var weekdaySwitchesContainerView: UIView!
+    @IBOutlet weak var allWeekdaysSwitchContainerView: UIView!
+    @IBOutlet weak var sundaySwitchContainerView: UIView!
+    @IBOutlet weak var mondaySwitchContainerView: UIView!
+    @IBOutlet weak var tuesdaySwitchContainerView: UIView!
+    @IBOutlet weak var wednesdaySwitchContainerView: UIView!
+    @IBOutlet weak var thursdaySwitchContainerView: UIView!
+    @IBOutlet weak var fridaySwitchContainerView: UIView!
+    @IBOutlet weak var saturdaySwitchContainerView: UIView!
+    
     /* ################################################################## */
     // MARK: Overridden Base Class Methods
     /* ################################################################## */
@@ -71,6 +81,13 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
     func updateSearch(inMeetingObjects:[BMLTiOSLibMeetingNode]) {
         self.busyAnimationView.isHidden = true
         self.meetingListTableView.reloadData()
+    }
+    
+    /* ################################################################## */
+    /**
+     We call this to set up our weekday selectors.
+     */
+    func setUpWeekdayViews() {
     }
     
     /* ################################################################## */
@@ -152,6 +169,7 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
         }
     }
 }
+
 /* ###################################################################################################################################### */
 // MARK: - Custom Meeting Table View Class -
 /* ###################################################################################################################################### */
@@ -175,4 +193,13 @@ class MeetingTableViewCell : UITableViewCell {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
+}
+
+/* ###################################################################################################################################### */
+// MARK: - Custom Weekday Switch View Class -
+/* ###################################################################################################################################### */
+/**
+ */
+class WeekdaySwitchContainerView : UIView {
+    var weekdayIndex: Int = 0
 }
