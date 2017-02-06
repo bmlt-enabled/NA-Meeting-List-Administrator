@@ -42,3 +42,6 @@
 "UNABLE-TO-LOGIN-ERROR"                                                                         =   "TouchID was not able to log into the server.";
 "SERVICE-BODY-BUTTON"                                                                           =   "Service Bodies";
 "EDITOR-BUTTON"                                                                                 =   "Edit";
+"MIDNIGHT"                                                                                      =   "Midnight";
+"NOON"                                                                                          =   "Noon";
+"MEETING-TIME-FORMAT"                                                                           =   "%@, %@";

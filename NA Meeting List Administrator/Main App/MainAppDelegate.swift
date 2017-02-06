@@ -138,6 +138,10 @@ class MainAppDelegate: UIResponder, UIApplicationDelegate, BMLTiOSLibDelegate {
         get {
             return self._fullArrayOfMeetingObjects
         }
+        
+        set {
+            self._fullArrayOfMeetingObjects = newValue
+        }
     }
     
     /* ################################################################## */

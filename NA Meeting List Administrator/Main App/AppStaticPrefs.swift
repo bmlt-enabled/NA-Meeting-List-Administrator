@@ -185,7 +185,7 @@ class AppStaticPrefs {
     // MARK: Instance Properties
     /* ################################################################## */
     /** This is a keychain simplifier. */
-    private let _keychainWrapper:FXKeychain! = FXKeychain.default()
+    private let _keychainWrapper: FXKeychain! = FXKeychain.default()
 
     /* ################################################################## */
     // MARK: Instance Calculated Properties
