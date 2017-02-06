@@ -569,15 +569,15 @@ class AppStaticPrefs {
     func userHasStoredPasswordRootURI(_ inRooutURI: String, inUser: String) -> Bool {
         var ret: Bool = false
         
-        if type(of: self).supportsTouchID { // No TouchID, no stored password.
+        let key = inRooutURI + "-" + inUser   // This will be our unique key for the password.
+        
+        if type(of: self).supportsTouchID && (nil != self._keychainWrapper) { // No TouchID, no stored password.
             if self._loadPrefs() {
                 if let temp = self._loadedPrefs.object(forKey: PrefsKeys.RootServerLoginDictionaryKey.rawValue) as? [String:[String]] {
                     if var users = temp[inRooutURI] {
                         for i in 0..<users.count {
                             if users[i] == inUser {
-                                let key = inRooutURI + "-" + inUser   // This will be our unique key for the password.
-                                
-                                ret = nil != self._keychainWrapper.object(forKey: key)
+                                ret = (nil != self._keychainWrapper.object(forKey: key))
                                 break
                             }
                         }

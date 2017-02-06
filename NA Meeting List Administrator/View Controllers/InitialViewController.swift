@@ -409,9 +409,11 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate 
      Stops the connecting animation.
      */
     func finishedLoggingIn() {
+        var firstTime = false
+        
         // If we are successfully logged in, then we save the login and (maybe) the password.
         if (nil != MainAppDelegate.connectionObject) && MainAppDelegate.connectionStatus && MainAppDelegate.connectionObject.isAdminLoggedIn {
-            let firstTime = AppStaticPrefs.prefs.updateUserForRootURI(self.enterURLTextItem.text!, inUser: self.loginIDTextField.text!, inPassword: self.passwordTextField.text)
+            firstTime = AppStaticPrefs.prefs.updateUserForRootURI(self.enterURLTextItem.text!, inUser: self.loginIDTextField.text!, inPassword: self.passwordTextField.text)
             AppStaticPrefs.prefs.lastLogin = (url: self.enterURLTextItem.text!, loginID: self.loginIDTextField.text!)
             
             if firstTime {  // If this was the first time we logged in, then we 
@@ -424,6 +426,15 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate 
         self._loggingIn = false
         self._connecting = false
         self.setLoginStatusUI()
+        
+        // The first time we log in with a user, and we have multiple Service bodies, we allow them to choose their Service bodies first.
+        if firstTime && (1 < AppStaticPrefs.prefs.allEditableServiceBodies.count){
+            self.selectYourClowns(self.serviceBodyBarButton)
+        } else {    // If we just have one Service body, then we just go straight to the editor.
+            if 1 == AppStaticPrefs.prefs.allEditableServiceBodies.count {
+                self.sendInTheClowns(self.editorBarButton)
+            }
+        }
     }
     
     /* ################################################################## */
@@ -435,7 +446,6 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate 
         let passwordFieldIsEmpty = self.passwordTextField.text?.isEmpty
         let hideLoginButton = loginIDFieldIsEmpty! || passwordFieldIsEmpty!
         
-        self.touchIDButton.isHidden = hideLoginButton || !AppStaticPrefs.supportsTouchID
         self.loginButton.isEnabled = !hideLoginButton
     }
     
