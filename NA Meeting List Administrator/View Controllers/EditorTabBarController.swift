@@ -20,12 +20,31 @@
 //  along with this code.  If not, see <http://www.gnu.org/licenses/>.
 
 import UIKit
+import BMLTiOSLib
+
 /* ###################################################################################################################################### */
 // MARK: - This is the main tab controller for the various editor pages -
 /* ###################################################################################################################################### */
 /**
  */
 class EditorTabBarController : UITabBarController {
+    enum TabIndexes: Int {
+        case ListTab = 0
+    }
+    
+    /* ################################################################## */
+    // MARK: Instance Methods
+    /* ################################################################## */
+    /**
+     This is called when the search updates.
+     
+     - parameter inMeetingObjects: An array of meeting objects.
+     */
+    func updateSearch(inMeetingObjects:[BMLTiOSLibMeetingNode]) {
+        if let listViewController = self.viewControllers?[TabIndexes.ListTab.rawValue] as? ListEditableMeetingsViewController {
+            listViewController.updateSearch(inMeetingObjects: inMeetingObjects)
+        }
+    }
 }
 
 /* ###################################################################################################################################### */

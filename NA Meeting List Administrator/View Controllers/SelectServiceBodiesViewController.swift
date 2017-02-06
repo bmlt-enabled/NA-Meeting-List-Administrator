@@ -34,6 +34,9 @@ class SelectServiceBodiesViewController : UIViewController, UITableViewDataSourc
     // MARK: Overridden Base Class Methods
     /* ################################################################## */
     /**
+     This is called just before the view disappears. We take the opportunity to save the prefs.
+     
+     - parameter animated: If true, then the disappearance is animated.
      */
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)

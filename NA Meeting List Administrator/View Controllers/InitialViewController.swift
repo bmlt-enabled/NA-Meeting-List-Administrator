@@ -20,6 +20,7 @@
 
 import UIKit
 import LocalAuthentication
+import BMLTiOSLib
 
 /* ###################################################################################################################################### */
 // MARK: - Initial View Controller Class -
@@ -303,6 +304,10 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate 
     /* ################################################################## */
     /**
      Brings in the editor.
+     
+     By the time the editor is called, we are logged in, and have at least one Service body selected.
+     
+     - parameter sender: The IB item that called this. This is ignored.
      */
     @IBAction func sendInTheClowns(_ sender: UIBarButtonItem) {
         self.performSegue(withIdentifier: self._showEditorSegueID, sender: nil)
@@ -311,6 +316,8 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate 
     /* ################################################################## */
     /**
      Brings in the Service body selector.
+     
+     - parameter sender: The IB item that called this. This is ignored.
      */
     @IBAction func selectYourClowns(_ sender: UIBarButtonItem) {
         self.performSegue(withIdentifier: self._showServiceBodyESelectorSeueID, sender: nil)
@@ -319,6 +326,8 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate 
     /* ################################################################## */
     /**
      Brings in the Settings screen.
+     
+     - parameter sender: The IB item that called this. This is ignored.
      */
     @IBAction func showSettings(_ sender: UIButton) {
         self.performSegue(withIdentifier: self._showSettingsSegueID, sender: nil)
@@ -531,6 +540,16 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate 
         self.showOrHideLoginButton()
         self.showOrHideTouchIDButton()
         self.enableOrDisableTheEditButton()
+    }
+    
+    /* ################################################################## */
+    /**
+     This is called when the search updates.
+     
+     - parameter inMeetingObjects: An array of meeting objects.
+     */
+    func updateSearch(inMeetingObjects:[BMLTiOSLibMeetingNode]) {
+        self._editorTabBarController.updateSearch(inMeetingObjects: inMeetingObjects)
     }
     
     /* ################################################################## */

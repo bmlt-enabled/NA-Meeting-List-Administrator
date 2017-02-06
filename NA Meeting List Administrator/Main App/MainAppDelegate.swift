@@ -107,7 +107,15 @@ class MainAppDelegate: UIResponder, UIApplicationDelegate, BMLTiOSLibDelegate {
     }
     
     /* ################################################################## */
-    // MARK: Instance Stored Properties
+    // MARK: Private Instance Stored Properties
+    /* ################################################################## */
+    /**
+     This is the container for our full meeting search.
+     */
+    private var _fullArrayOfMeetingObjects: [BMLTiOSLibMeetingNode] = []
+    
+    /* ################################################################## */
+    // MARK: Internal Instance Stored Properties
     /* ################################################################## */
     /**
      This is the app main window object.
@@ -117,7 +125,20 @@ class MainAppDelegate: UIResponder, UIApplicationDelegate, BMLTiOSLibDelegate {
     /** This is set to true if we have a valid connection (the connection process has completed). */
     var validConnection: Bool = false
     
+    /** This stores the main connection view controller reference. */
     var initialViewController: InitialViewController! = nil
+    
+    /* ################################################################## */
+    // MARK: Instance Calculated Properties
+    /* ################################################################## */
+    /**
+     Accessor for the stored meeting objects.
+     */
+    var meetingObjects: [BMLTiOSLibMeetingNode] {
+        get {
+            return self._fullArrayOfMeetingObjects
+        }
+    }
     
     /* ################################################################## */
     // MARK: UIApplicationDelegate Methods
@@ -205,6 +226,30 @@ class MainAppDelegate: UIResponder, UIApplicationDelegate, BMLTiOSLibDelegate {
         }
         
         self.initialViewController.finishedLoggingIn()
+    }
+    
+    /* ################################################################## */
+    /**
+     Response to a meeting search.
+     
+     - parameter inLibInstance: the BMLTiOSLib instance.
+     - parameter meetingSearchResults: An array of meeting objects.
+     */
+    func bmltLibInstance(_ inLibInstance: BMLTiOSLib, meetingSearchResults: [BMLTiOSLibMeetingNode]) {
+        self._fullArrayOfMeetingObjects = meetingSearchResults
+        self.initialViewController.updateSearch(inMeetingObjects: self.meetingObjects)
+    }
+    
+    
+    /* ################################################################## */
+    /**
+     Response to a format search.
+     
+     - parameter inLibInstance: the BMLTiOSLib instance.
+     - parameter formatSearchResults: An array of format objects.
+     */
+    func bmltLibInstance(_ inLibInstance: BMLTiOSLib, formatSearchResults: [BMLTiOSLibFormatNode]) {
+        
     }
 }
 
