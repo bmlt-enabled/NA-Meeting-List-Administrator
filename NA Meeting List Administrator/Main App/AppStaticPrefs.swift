@@ -278,71 +278,41 @@ class AppStaticPrefs {
     
     /* ################################################################## */
     /**
-     This returns a selectable array of objects, with indications as to whether or not they have been selected.
+     This returns an array of Service body objects, corresponding to the ones selected by the user.
      
      We associate the selections with a URL/login pair (the last successful one), so this can change from login to login.
      */
-    var selectableServiceBodies: [SelectableServiceBodyTuple] {
+    var selectedServiceBodies: [BMLTiOSLibHierarchicalServiceBodyNode] {
         get {
-            var ret: [SelectableServiceBodyTuple] = []
+            var ret: [BMLTiOSLibHierarchicalServiceBodyNode] = []
             let loginSet = self.lastLogin
             let key = loginSet.url + "-" + loginSet.loginID
             
             if self._loadPrefs() {
                 if 1 == self.allEditableServiceBodies.count {   // If we only have one body, then it is always selected, and can't be deselected.
-                    ret = [(serviceBodyObject: self.allEditableServiceBodies[0], selected: true)]
+                    ret = [self.allEditableServiceBodies[0]]
                 } else {
-                    for sb in self.allEditableServiceBodies {
-                        let sbID = sb.id
-                        var tempTuple: SelectableServiceBodyTuple = (serviceBodyObject: sb, selected: false)
+                    var newDictionary: [String:[Int]] = [:]
+                    
+                    if self._loadPrefs() {
                         if let temp = self._loadedPrefs.object(forKey: PrefsKeys.SelectedServiceBodies.rawValue) as? [String:[Int]] {
-                            if let mySBSelectionArray = temp[key] {
-                                for selectedSBID in mySBSelectionArray {
-                                    if selectedSBID == sbID {
-                                        tempTuple.selected = true
-                                    }
+                            newDictionary = temp
+                        }
+                        
+                        let oldArray: [Int] = (nil != newDictionary[key]) ? newDictionary[key]! as [Int] : []
+                        
+                        if 0 < oldArray.count {
+                            for sb in self.allEditableServiceBodies {
+                                if oldArray.contains(sb.id) {
+                                    ret.append(sb)
                                 }
                             }
                         }
-                        
-                        ret.append(tempTuple)
                     }
                 }
             }
 
             return ret
-        }
-        
-        set {
-            var newDictionary: [String:[Int]] = [:]
-            if self._loadPrefs() {
-                if let temp = self._loadedPrefs.object(forKey: PrefsKeys.SelectedServiceBodies.rawValue) as? [String:[Int]] {
-                    newDictionary = temp
-                }
-            }
-            
-            var newArray: [Int] = []
-            
-            for sbTuple in newValue {
-                if sbTuple.selected {
-                    newArray.append((sbTuple.serviceBodyObject?.id)!)
-                }
-            }
-            
-            let loginSet = self.lastLogin
-            let key = loginSet.url + "-" + loginSet.loginID
-
-            if newArray.isEmpty {
-                newDictionary.removeValue(forKey: key)
-            } else {
-                newDictionary.updateValue(newArray, forKey: key)
-            }
-            
-            if newDictionary.isEmpty {
-                self._loadedPrefs.removeObject(forKey: PrefsKeys.SelectedServiceBodies.rawValue)
-            } else {
-                self._loadedPrefs.setObject(newDictionary, forKey: PrefsKeys.SelectedServiceBodies.rawValue as NSString)
-            }
         }
     }
     
@@ -384,9 +354,49 @@ class AppStaticPrefs {
      - parameter selected: True, if the Service body object is being selected.
      */
     func setServiceBodySelection(serviceBodyObject: BMLTiOSLibHierarchicalServiceBodyNode!, selected: Bool) {
-        for i in 0..<self.selectableServiceBodies.count {
-            if (1 == self.selectableServiceBodies.count) || (nil == serviceBodyObject) || (self.selectableServiceBodies[i].serviceBodyObject?.id == serviceBodyObject.id) {
-                self.selectableServiceBodies[i].selected = selected
+        if self._loadPrefs() {
+            let loginSet = self.lastLogin
+            let key = loginSet.url + "-" + loginSet.loginID
+            
+            var newDictionary: [String:[Int]] = [:]
+            
+            if self._loadPrefs() {
+                if let temp = self._loadedPrefs.object(forKey: PrefsKeys.SelectedServiceBodies.rawValue) as? [String:[Int]] {
+                    newDictionary = temp
+                }
+
+                let oldArray: [Int] = (nil != newDictionary[key]) ? newDictionary[key]! as [Int] : []
+                var newArray: [Int] = []
+                
+                let inputID = (nil != serviceBodyObject) ? serviceBodyObject!.id : 0
+                
+                if (1 == self.allEditableServiceBodies.count) && (0 < inputID) { // If we only have one available Service body, then we ignore the selected flag, and force a selection.
+                    newArray = [inputID]
+                } else {    // If we have more than one, then we can choose to select or deselect bodies.
+                    if selected && (0 < inputID) {
+                        newArray.append(inputID)
+                    }
+                    
+                    // We simply copy over the state of all the other
+                    for sbID in oldArray {
+                        if sbID != inputID {
+                            newArray.append(sbID)
+                        }
+                    }
+                }
+                
+                // Now, save the new values out to the prefs.
+                if newArray.isEmpty {
+                    newDictionary.removeValue(forKey: key)
+                } else {
+                    newDictionary.updateValue(newArray, forKey: key)
+                }
+                
+                if newDictionary.isEmpty {
+                    self._loadedPrefs.removeObject(forKey: PrefsKeys.SelectedServiceBodies.rawValue)
+                } else {
+                    self._loadedPrefs.setObject(newDictionary, forKey: PrefsKeys.SelectedServiceBodies.rawValue as NSString)
+                }
             }
         }
     }
@@ -399,9 +409,9 @@ class AppStaticPrefs {
      - returns: True, if the Service body object is currently selected. If we only have one editable Service body, then it is always selected.
      */
     func serviceBodyIsSelected(_ serviceBodyObject: BMLTiOSLibHierarchicalServiceBodyNode) -> Bool {
-        for i in 0..<self.selectableServiceBodies.count {
-            if self.selectableServiceBodies[i].serviceBodyObject?.id == serviceBodyObject.id {
-                return self.selectableServiceBodies[i].selected || (1 == self.selectableServiceBodies.count)
+        for sb in self.selectedServiceBodies {
+            if sb.id == serviceBodyObject.id {
+                return true
             }
         }
         return false

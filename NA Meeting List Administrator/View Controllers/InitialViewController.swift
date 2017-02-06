@@ -444,17 +444,7 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate 
      This function will enable or disable the Navbar Edit button, depending on whether or not we have any selected Service bodies.
      */
     func enableOrDisableTheEditButton() {
-        // We only enable the editor button if we have editable Service bodies selected.
-        var enableEditButton = false
-        
-        for sbTuple in AppStaticPrefs.prefs.selectableServiceBodies {
-            if sbTuple.selected {
-                enableEditButton = true
-                break
-            }
-        }
-        
-        self.editorBarButton.isEnabled = enableEditButton
+        self.editorBarButton.isEnabled = 0 < AppStaticPrefs.prefs.selectedServiceBodies.count
     }
     
     /* ################################################################## */
