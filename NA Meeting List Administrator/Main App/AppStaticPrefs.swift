@@ -377,10 +377,19 @@ class AppStaticPrefs {
                         newArray.append(inputID)
                     }
                     
-                    // We simply copy over the state of all the other
-                    for sbID in oldArray {
-                        if sbID != inputID {
-                            newArray.append(sbID)
+                    if nil == serviceBodyObject {   // If we had nil passed in, then we are either setting or clearing all IDs.
+                        if selected {   // If setting, we set every ID. If clearing, we simply fall through.
+                            for sb in self.allEditableServiceBodies {
+                                let sbID = sb.id
+                                newArray.append(sbID)
+                            }
+                        }
+                    } else {
+                        // We simply copy over the state of all the other
+                        for sbID in oldArray {
+                            if sbID != inputID {
+                                newArray.append(sbID)
+                            }
                         }
                     }
                 }
@@ -460,6 +469,7 @@ class AppStaticPrefs {
                 ret = true  // If we need to update, then this was the first login.
                 
                 self._loadedPrefs.setObject(loginDictionary, forKey: PrefsKeys.RootServerLoginDictionaryKey.rawValue as NSString)
+                self.setServiceBodySelection(serviceBodyObject: nil, selected: true)    // First time through, the user always has everything turned on.
             }
             
             // At this point, we have the login ID saved in the dictionary.

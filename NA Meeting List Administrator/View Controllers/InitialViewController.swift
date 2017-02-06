@@ -275,7 +275,9 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate 
     @IBAction func touchIDButtonHit(_ sender: UIButton) {
         self.closeKeyboard()
         let authenticationContext = LAContext()
-        authenticationContext.evaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, localizedReason: NSLocalizedString("LOCAL-TOUCHID-REASON", comment: ""), reply: self.touchIDCallback )
+        let userName = self.loginIDTextField.text!
+        let reason = String(format: NSLocalizedString("LOCAL-TOUCHID-REASON-FORMAT", comment: ""), userName)
+        authenticationContext.evaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason, reply: self.touchIDCallback )
     }
     
     /* ################################################################## */
@@ -344,17 +346,28 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate 
     func touchIDCallback(_ inSuccess: Bool, inError: Error?) {
         DispatchQueue.main.async(execute: {
             if(!inSuccess) {
-                var description: String! = nil
-                
-                if let temp = inError?.localizedDescription {
-                    description = temp
+                if LAError.Code.userCancel.rawValue != (inError as! NSError).code {   // We ignore user canceled error.
+                    if LAError.Code.userFallback.rawValue == (inError as! NSError).code {   // Fallback means that we will use the password, so we nuke the stored password.
+                        let _ = AppStaticPrefs.prefs.updateUserForRootURI(self.enterURLTextItem.text!, inUser: self.loginIDTextField.text!)
+                        self.touchIDButton.isHidden = true
+                        // Wow. This is one hell of a kludge, but it works.
+                        // There's a "feature" in iOS, where the TouchID callback is triggered out of sync with the main queue (slightly before the next run cycle, I guess).
+                        // If we immediately set the field as first responder in this callback, then it gets selected, but the keyboard doesn't come up.
+                        // This 'orrible, 'orrible hack tells iOS to select the field after the handler for this TouchID has had time to wrap up.
+                        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + DispatchTimeInterval.milliseconds(10)) { self.passwordTextField.becomeFirstResponder() }
+                    } else {
+                        var description: String! = nil
+                        if let temp = inError?.localizedDescription {
+                            description = temp
+                        }
+                        
+                        if (nil == description) || (description?.isEmpty)! {
+                            description = "UNABLE-TO-LOGIN-ERROR"
+                        }
+                        
+                        MainAppDelegate.displayAlert("UNABLE-TO-LOGIN-ERROR-TITLE", inMessage: description!)
+                    }
                 }
-                
-                if (nil == description) || (description?.isEmpty)! {
-                    description = "UNABLE-TO-LOGIN-ERROR"
-                }
-                
-                MainAppDelegate.displayAlert("UNABLE-TO-LOGIN-ERROR-TITLE", inMessage: description!)
             } else {
                 self.passwordTextField.text = AppStaticPrefs.prefs.getStoredPasswordForUser(self.enterURLTextItem.text!, inUser: self.loginIDTextField.text!)
                 if !(self.passwordTextField.text?.isEmpty)! {

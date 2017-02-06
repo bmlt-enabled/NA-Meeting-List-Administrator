@@ -37,7 +37,7 @@
 "ADMIN-UNAVAILABLE-TEXT"                                                                        =   "This server does not allow administration by this app.";
 "BAD-URI-ERROR-TEXT"                                                                            =   "The URL entered does not point to a valid Root Server.";
 "The operation couldn’t be completed. (BMLTiOSLibErrorDomains-Permission-Error error 201000.)"  =   "The login ID or password was not recognized by the server.";
-"LOCAL-TOUCHID-REASON"                                                                          =   "Automatically log into the server.";
+"LOCAL-TOUCHID-REASON-FORMAT"                                                                   =   "Automatically log \"%@\" into the server.";
 "UNABLE-TO-LOGIN-ERROR-TITLE"                                                                   =   "TouchID Error";
 "UNABLE-TO-LOGIN-ERROR"                                                                         =   "TouchID was not able to log into the server.";
 "SERVICE-BODY-BUTTON"                                                                           =   "Service Bodies";
