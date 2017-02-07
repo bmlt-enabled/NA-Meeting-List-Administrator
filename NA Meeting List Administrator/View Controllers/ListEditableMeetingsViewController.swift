@@ -28,13 +28,28 @@ import BMLTiOSLib
 /**
  */
 class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITableViewDataSource, UITableViewDelegate {
+    /* ################################################################## */
+    // MARK: Private Instance Properties
+    /* ################################################################## */
+    /** This is the table prototype ID for the standard meeting display */
     private let _meetingPrototypeReuseID = "Meeting-Table-View-Prototype"
+    /** This contains all the meetings currently displayed */
+    private var _currentMeetingList: [BMLTiOSLibMeetingNode] = []
     
+    /* ################################################################## */
+    // MARK: Internal IB Instance Properties
+    /* ################################################################## */
+    /** This covers the screen with a busy throbber when we are searching */
     @IBOutlet weak var busyAnimationView: UIView!
-    @IBOutlet weak var meetingListTableView: UITableView!
+    /** This has 8 checkboxes, which allows the user to select certain weekdays. */
     @IBOutlet weak var weekdaySwitchesContainerView: UIView!
+    /** This displays the meetings */
+    @IBOutlet weak var meetingListTableView: UITableView!
     
-    var allWeekdaysSwitchContainerView: WeekdaySwitchContainerView!
+    /* ################################################################## */
+    // MARK: Internal Instance Properties
+    /* ################################################################## */
+    /** This carries the state of the selected/unselected weekday checkboxes. */
     var selectedWeekdays: BMLTiOSLibSearchCriteria.SelectableWeekdayDictionary = [.Sunday:.Selected,.Monday:.Selected,.Tuesday:.Selected,.Wednesday:.Selected,.Thursday:.Selected,.Friday:.Selected,.Saturday:.Selected]
 
     /* ################################################################## */
@@ -57,11 +72,11 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
             }
         }
         
-        MainAppDelegate.appDelegateObject.meetingObjects = []
-        self.meetingListTableView.reloadData()
-        MainAppDelegate.connectionObject.searchCriteria.publishedStatus = .Both
-        
         self.busyAnimationView.isHidden = false
+        self._currentMeetingList = []
+        self.meetingListTableView.reloadData()
+        MainAppDelegate.appDelegateObject.meetingObjects = []
+        MainAppDelegate.connectionObject.searchCriteria.publishedStatus = .Both
         MainAppDelegate.connectionObject.searchCriteria.performMeetingSearch(.MeetingsOnly)
     }
     
@@ -85,6 +100,27 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
      */
     func updateSearch(inMeetingObjects:[BMLTiOSLibMeetingNode]) {
         self.busyAnimationView.isHidden = true
+        self._currentMeetingList = MainAppDelegate.appDelegateObject.meetingObjects
+        self.allChangedTo(inState: .Selected)
+        self.updateDisplayedMeetings()
+    }
+    
+    /* ################################################################## */
+    /**
+     This sorts through the available meetings, and filters out the ones we want, according to the weekday checkboxes.
+     */
+    func updateDisplayedMeetings() {
+        self._currentMeetingList = []
+        
+        for meeting in MainAppDelegate.appDelegateObject.meetingObjects {
+            for weekdaySelection in self.selectedWeekdays {
+                if (weekdaySelection.value == .Selected) && (weekdaySelection.key.rawValue == meeting.weekdayIndex) {
+                    self._currentMeetingList.append(meeting)
+                    break
+                }
+            }
+        }
+        
         self.meetingListTableView.reloadData()
     }
     
@@ -112,6 +148,7 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
     
     /* ################################################################## */
     /**
+     This changes all of the checkboxes to match the "All" checkbox state.
      */
     func allChangedTo(inState : BMLTiOSLibSearchCriteria.SelectionState) {
         for subView in self.weekdaySwitchesContainerView.subviews {
@@ -121,15 +158,22 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
                 }
             }
         }
+        
+        self.updateDisplayedMeetings()
     }
     
     /* ################################################################## */
     /**
+     This is called when one of the weekday checkboxes is changed.
      */
     func weekdaySelectionChanged(inWeekdayIndex: Int, newSelectionState: BMLTiOSLibSearchCriteria.SelectionState) {
         if 0 == inWeekdayIndex {
             self.allChangedTo(inState: newSelectionState)
         } else {
+            if let indexAsEnum = BMLTiOSLibSearchCriteria.WeekdayIndex(rawValue: inWeekdayIndex) {
+                self.selectedWeekdays[indexAsEnum] = newSelectionState
+                self.updateDisplayedMeetings()
+            }
         }
     }
     
@@ -143,7 +187,7 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
      - returns the number of rows to display.
      */
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return MainAppDelegate.appDelegateObject.meetingObjects.count
+        return self._currentMeetingList.count
     }
     
     /* ################################################################## */
@@ -157,8 +201,9 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
      */
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let ret = tableView.dequeueReusableCell(withIdentifier: self._meetingPrototypeReuseID) as? MeetingTableViewCell {
+            // We alternate with slightly darker cells. */
             ret.backgroundColor = (0 == (indexPath.row % 2)) ? UIColor.clear : UIColor.init(white: 0, alpha: 0.1)
-            if let meetingObject = MainAppDelegate.appDelegateObject.meetingObjects[indexPath.row] as? BMLTiOSLibEditableMeetingNode {
+            if let meetingObject = self._currentMeetingList[indexPath.row] as? BMLTiOSLibEditableMeetingNode {
                 ret.meetingInfoLabel.text = meetingObject.name
                 ret.addressLabel.text = meetingObject.basicAddress
                 if var hour = meetingObject.startTimeAndDay.hour {
@@ -217,10 +262,14 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
 // MARK: - Custom Meeting Table View Class -
 /* ###################################################################################################################################### */
 /**
+ This is a simple class that allows us to access the template items.
  */
 class MeetingTableViewCell : UITableViewCell {
+    /** The top label */
     @IBOutlet weak var meetingTimeAndPlaceLabel: UILabel!
+    /** The middle (italic) label */
     @IBOutlet weak var addressLabel: UILabel!
+    /** The bottom label */
     @IBOutlet weak var meetingInfoLabel: UILabel!
 }
 
@@ -230,11 +279,24 @@ class MeetingTableViewCell : UITableViewCell {
 /**
  */
 class WeekdaySwitchContainerView : UIView {
+    /** This is the weekday index (1-based) */
     var weekdayIndex: Int!
+    /** This is the list selection view controller that "owns" this instance */
     var owner: ListEditableMeetingsViewController! = nil
+    /** This is the checkbox control object */
     var selectionSwitchControl: ThreeStateCheckbox!
+    /** This is the label containing the name being displayed */
     var weekdayNameLabel: UILabel!
     
+    /* ################################################################## */
+    /**
+     The default initializer. It creates the embedded views, and sets the state.
+     We set the ThreeStateCheckbox object to be a simple binary checkbox.
+     
+     - parameter frame: The frame within the superview this will be placed.
+     - parameter weekdayIndex: The 1-based weekday index.
+     - parameter inOwner: The list view controller that "owns" this view.
+     */
     init(frame: CGRect, weekdayIndex: Int, inOwner: ListEditableMeetingsViewController) {
         super.init(frame: frame)
         self.owner = inOwner
@@ -258,6 +320,7 @@ class WeekdaySwitchContainerView : UIView {
             checkboxFrame.origin.x = (frame.size.width - checkboxFrame.size.width) / 2  // Center the switch at the top of the view.
             
             self.selectionSwitchControl = ThreeStateCheckbox(frame: checkboxFrame)
+            self.selectionSwitchControl.binaryState = true
             
             if 0 < self.weekdayIndex {
                 if let indexAsEnum = BMLTiOSLibSearchCriteria.WeekdayIndex(rawValue: self.weekdayIndex) {
@@ -303,10 +366,20 @@ class WeekdaySwitchContainerView : UIView {
         }
     }
     
+    /* ################################################################## */
+    /**
+     This is required. Why? Not sure.
+     
+     - parameter coder: The decoder for this object.
+     */
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
+    /* ################################################################## */
+    /**
+     We override this to make sure we put away all our toys.
+     */
     override func removeFromSuperview() {
         self.selectionSwitchControl.removeFromSuperview()
         self.selectionSwitchControl = nil
@@ -315,6 +388,12 @@ class WeekdaySwitchContainerView : UIView {
         super.removeFromSuperview()
     }
     
+    /* ################################################################## */
+    /**
+     The callback for our checkbox changing. We basically reroute to the owner.
+     
+     - parameter inCheckbox: The ThreeStateCheckbox object that called this.
+     */
     func checkboxSelectionChanged(_ inCheckbox: ThreeStateCheckbox) {
         self.owner.weekdaySelectionChanged(inWeekdayIndex: self.weekdayIndex, newSelectionState: inCheckbox.selectionState)
     }

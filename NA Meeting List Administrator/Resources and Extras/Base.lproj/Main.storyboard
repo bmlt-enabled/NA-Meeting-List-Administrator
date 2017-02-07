@@ -106,6 +106,13 @@
                                     <outlet property="delegate" destination="w5k-wt-KU4" id="VVP-UO-ugG"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WiI-pa-W7F" userLabel="Weekday Switch Container View">
+                                <rect key="frame" x="8" y="72" width="304" height="60"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="NWE-bF-u0e"/>
+                                </constraints>
+                            </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CYQ-I8-Ytf">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="640"/>
                                 <subviews>
@@ -122,13 +129,6 @@
                                 <constraints>
                                     <constraint firstItem="Eis-cv-kRB" firstAttribute="centerY" secondItem="CYQ-I8-Ytf" secondAttribute="centerY" id="Ami-eM-qtO"/>
                                     <constraint firstItem="Eis-cv-kRB" firstAttribute="centerX" secondItem="CYQ-I8-Ytf" secondAttribute="centerX" id="jOU-aD-1lC"/>
-                                </constraints>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WiI-pa-W7F" userLabel="Weekday Switch Container View">
-                                <rect key="frame" x="8" y="72" width="304" height="60"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="NWE-bF-u0e"/>
                                 </constraints>
                             </view>
                         </subviews>
