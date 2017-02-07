@@ -33,14 +33,15 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
     @IBOutlet weak var busyAnimationView: UIView!
     @IBOutlet weak var meetingListTableView: UITableView!
     @IBOutlet weak var weekdaySwitchesContainerView: UIView!
-    @IBOutlet weak var allWeekdaysSwitchContainerView: UIView!
-    @IBOutlet weak var sundaySwitchContainerView: UIView!
-    @IBOutlet weak var mondaySwitchContainerView: UIView!
-    @IBOutlet weak var tuesdaySwitchContainerView: UIView!
-    @IBOutlet weak var wednesdaySwitchContainerView: UIView!
-    @IBOutlet weak var thursdaySwitchContainerView: UIView!
-    @IBOutlet weak var fridaySwitchContainerView: UIView!
-    @IBOutlet weak var saturdaySwitchContainerView: UIView!
+    var allWeekdaysSwitchContainerView: WeekdaySwitchContainerView!
+    
+    var sundaySwitchContainerView: WeekdaySwitchContainerView!
+    var mondaySwitchContainerView: WeekdaySwitchContainerView!
+    var tuesdaySwitchContainerView: WeekdaySwitchContainerView!
+    var wednesdaySwitchContainerView: WeekdaySwitchContainerView!
+    var thursdaySwitchContainerView: WeekdaySwitchContainerView!
+    var fridaySwitchContainerView: WeekdaySwitchContainerView!
+    var saturdaySwitchContainerView: WeekdaySwitchContainerView!
     
     /* ################################################################## */
     // MARK: Overridden Base Class Methods
@@ -179,20 +180,6 @@ class MeetingTableViewCell : UITableViewCell {
     @IBOutlet weak var meetingTimeAndPlaceLabel: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var meetingInfoLabel: UILabel!
-    
-    /* ################################################################## */
-    /**
-     */
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-    }
-    
-    /* ################################################################## */
-    /**
-     */
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
 }
 
 /* ###################################################################################################################################### */
@@ -201,5 +188,49 @@ class MeetingTableViewCell : UITableViewCell {
 /**
  */
 class WeekdaySwitchContainerView : UIView {
-    var weekdayIndex: Int = 0
+    var weekdayIndex: Int!
+    var selectionSwitchControl: ThreeStateCheckbox!
+    var weekdayNameLabel: UILabel!
+    
+    init(frame: CGRect, weekdayIndex: Int, inLabelTextColor: UIColor) {
+        super.init(frame: frame)
+        self.backgroundColor = UIColor.clear
+        self.isUserInteractionEnabled = true
+        if let testImage = UIImage(named: "checkbox-clear") {
+            var checkboxFrame: CGRect = CGRect.zero
+            checkboxFrame.size = testImage.size
+            
+            if checkboxFrame.size.width > frame.size.width {
+                checkboxFrame.size.width = frame.size.width
+                checkboxFrame.size.height = frame.size.width
+            }
+            
+            if checkboxFrame.size.height > frame.size.height {
+                checkboxFrame.size.height = frame.size.height
+                checkboxFrame.size.width = frame.size.height
+            }
+            
+            checkboxFrame.origin.x = (frame.size.width - checkboxFrame.size.width) / 2  // Center the switch at the top of the view.
+            
+            self.selectionSwitchControl = ThreeStateCheckbox(frame: checkboxFrame)
+
+            var labelFrame: CGRect = CGRect.zero
+            labelFrame.size.width = frame.size.width
+            labelFrame.size.height = frame.size.height - checkboxFrame.size.height
+            labelFrame.origin.y = checkboxFrame.size.height
+            
+            self.weekdayNameLabel = UILabel(frame: labelFrame)
+            self.weekdayNameLabel.textColor = inLabelTextColor
+            self.weekdayNameLabel.textAlignment = .center
+            self.weekdayNameLabel.font = UIFont.boldSystemFont(ofSize: 14)
+            self.weekdayNameLabel.text = AppStaticPrefs.weekdayNameFromWeekdayNumber(weekdayIndex, isShort: true)
+            
+            self.addSubview(self.selectionSwitchControl)
+            self.addSubview(self.weekdayNameLabel)
+        }
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
 }

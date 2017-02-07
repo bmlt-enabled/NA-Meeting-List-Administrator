@@ -106,79 +106,6 @@
                                     <outlet property="delegate" destination="w5k-wt-KU4" id="VVP-UO-ugG"/>
                                 </connections>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WiI-pa-W7F" userLabel="Weekday Switch Container View">
-                                <rect key="frame" x="0.0" y="64" width="320" height="60"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UKm-8x-jCR" userLabel="All Switch View" customClass="WeekdaySwitchContainerView" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="40" height="60"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                    </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sfd-UN-DNY" userLabel="Sunday View" customClass="WeekdaySwitchContainerView" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
-                                        <rect key="frame" x="40" y="0.0" width="40" height="60"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                    </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KQc-6Z-mH9" userLabel="Monday View" customClass="WeekdaySwitchContainerView" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
-                                        <rect key="frame" x="80" y="0.0" width="40" height="60"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                    </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GzF-9t-g6J" userLabel="Tuesday View" customClass="WeekdaySwitchContainerView" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
-                                        <rect key="frame" x="120" y="0.0" width="40" height="60"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                    </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rJL-Sd-dBn" userLabel="Wednesday View" customClass="WeekdaySwitchContainerView" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
-                                        <rect key="frame" x="160" y="0.0" width="40" height="60"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                    </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="byP-Xk-8iG" userLabel="Thursday View" customClass="WeekdaySwitchContainerView" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
-                                        <rect key="frame" x="200" y="0.0" width="40" height="60"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                    </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VEv-Qf-r3u" userLabel="Friday View" customClass="WeekdaySwitchContainerView" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
-                                        <rect key="frame" x="240" y="0.0" width="40" height="60"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                    </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G0y-td-0mb" userLabel="Saturday View" customClass="WeekdaySwitchContainerView" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
-                                        <rect key="frame" x="280" y="0.0" width="40" height="60"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                    </view>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstItem="VEv-Qf-r3u" firstAttribute="leading" secondItem="byP-Xk-8iG" secondAttribute="trailing" id="2va-xo-yG9"/>
-                                    <constraint firstAttribute="bottom" secondItem="G0y-td-0mb" secondAttribute="bottom" id="6vJ-am-eCs"/>
-                                    <constraint firstItem="KQc-6Z-mH9" firstAttribute="leading" secondItem="Sfd-UN-DNY" secondAttribute="trailing" id="8UZ-LO-7p1"/>
-                                    <constraint firstAttribute="height" constant="60" id="Bnh-Dh-2vy"/>
-                                    <constraint firstItem="UKm-8x-jCR" firstAttribute="leading" secondItem="WiI-pa-W7F" secondAttribute="leading" id="DwT-fe-P4e"/>
-                                    <constraint firstAttribute="bottom" secondItem="GzF-9t-g6J" secondAttribute="bottom" id="G5P-g5-Aot"/>
-                                    <constraint firstItem="byP-Xk-8iG" firstAttribute="top" secondItem="WiI-pa-W7F" secondAttribute="top" id="GZn-gy-Ich"/>
-                                    <constraint firstItem="G0y-td-0mb" firstAttribute="width" secondItem="UKm-8x-jCR" secondAttribute="width" id="HPK-Sq-JH0"/>
-                                    <constraint firstAttribute="bottom" secondItem="Sfd-UN-DNY" secondAttribute="bottom" id="IWj-rD-iVf"/>
-                                    <constraint firstAttribute="bottom" secondItem="byP-Xk-8iG" secondAttribute="bottom" id="LWl-7b-uEw"/>
-                                    <constraint firstAttribute="bottom" secondItem="rJL-Sd-dBn" secondAttribute="bottom" id="NGn-hE-D4w"/>
-                                    <constraint firstItem="VEv-Qf-r3u" firstAttribute="width" secondItem="UKm-8x-jCR" secondAttribute="width" id="OwE-xG-axs"/>
-                                    <constraint firstItem="G0y-td-0mb" firstAttribute="top" secondItem="WiI-pa-W7F" secondAttribute="top" id="QSI-mM-QC3"/>
-                                    <constraint firstItem="G0y-td-0mb" firstAttribute="leading" secondItem="VEv-Qf-r3u" secondAttribute="trailing" id="RUD-Dx-AG5"/>
-                                    <constraint firstItem="byP-Xk-8iG" firstAttribute="width" secondItem="UKm-8x-jCR" secondAttribute="width" id="UYP-YG-ALC"/>
-                                    <constraint firstAttribute="bottom" secondItem="KQc-6Z-mH9" secondAttribute="bottom" id="Vi1-7r-dgg"/>
-                                    <constraint firstItem="rJL-Sd-dBn" firstAttribute="width" secondItem="UKm-8x-jCR" secondAttribute="width" id="Vj1-bf-Vbl"/>
-                                    <constraint firstItem="rJL-Sd-dBn" firstAttribute="top" secondItem="WiI-pa-W7F" secondAttribute="top" id="WDD-sz-qYi"/>
-                                    <constraint firstItem="byP-Xk-8iG" firstAttribute="leading" secondItem="rJL-Sd-dBn" secondAttribute="trailing" id="WJz-p3-fTy"/>
-                                    <constraint firstItem="VEv-Qf-r3u" firstAttribute="top" secondItem="WiI-pa-W7F" secondAttribute="top" id="afS-2Y-dCr"/>
-                                    <constraint firstItem="Sfd-UN-DNY" firstAttribute="leading" secondItem="UKm-8x-jCR" secondAttribute="trailing" id="dba-dM-DA0"/>
-                                    <constraint firstItem="GzF-9t-g6J" firstAttribute="width" secondItem="UKm-8x-jCR" secondAttribute="width" id="gUs-R3-0TI"/>
-                                    <constraint firstItem="KQc-6Z-mH9" firstAttribute="top" secondItem="WiI-pa-W7F" secondAttribute="top" id="hRB-EC-oKw"/>
-                                    <constraint firstAttribute="bottom" secondItem="UKm-8x-jCR" secondAttribute="bottom" id="kNg-P2-kMe"/>
-                                    <constraint firstItem="Sfd-UN-DNY" firstAttribute="top" secondItem="WiI-pa-W7F" secondAttribute="top" id="m9P-O1-Zkk"/>
-                                    <constraint firstItem="rJL-Sd-dBn" firstAttribute="leading" secondItem="GzF-9t-g6J" secondAttribute="trailing" id="nGV-hz-oqN"/>
-                                    <constraint firstAttribute="trailing" secondItem="G0y-td-0mb" secondAttribute="trailing" id="pPC-qn-Z1y"/>
-                                    <constraint firstItem="GzF-9t-g6J" firstAttribute="top" secondItem="WiI-pa-W7F" secondAttribute="top" id="pPm-BD-vsk"/>
-                                    <constraint firstAttribute="bottom" secondItem="VEv-Qf-r3u" secondAttribute="bottom" id="wYc-7a-Iyd"/>
-                                    <constraint firstItem="Sfd-UN-DNY" firstAttribute="width" secondItem="UKm-8x-jCR" secondAttribute="width" id="y5y-f5-YCP"/>
-                                    <constraint firstItem="KQc-6Z-mH9" firstAttribute="width" secondItem="UKm-8x-jCR" secondAttribute="width" id="yET-gD-TJr"/>
-                                    <constraint firstItem="UKm-8x-jCR" firstAttribute="top" secondItem="WiI-pa-W7F" secondAttribute="top" id="z4D-0N-7Jy"/>
-                                    <constraint firstItem="GzF-9t-g6J" firstAttribute="leading" secondItem="KQc-6Z-mH9" secondAttribute="trailing" id="zmV-iE-FTA"/>
-                                </constraints>
-                            </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CYQ-I8-Ytf">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="640"/>
                                 <subviews>
@@ -197,19 +124,27 @@
                                     <constraint firstItem="Eis-cv-kRB" firstAttribute="centerX" secondItem="CYQ-I8-Ytf" secondAttribute="centerX" id="jOU-aD-1lC"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WiI-pa-W7F" userLabel="Weekday Switch Container View">
+                                <rect key="frame" x="8" y="64" width="304" height="60"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="NWE-bF-u0e"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="0.0" green="0.0" blue="0.79866071429999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="WiI-pa-W7F" secondAttribute="trailing" constant="8" id="0Up-Ls-Wlt"/>
+                            <constraint firstItem="WiI-pa-W7F" firstAttribute="top" secondItem="jiB-76-cT8" secondAttribute="bottom" id="9oy-DL-fBD"/>
                             <constraint firstItem="Itu-Ng-B3d" firstAttribute="leading" secondItem="Ngp-Vd-TOI" secondAttribute="leading" id="DmH-JU-TJD"/>
+                            <constraint firstItem="WiI-pa-W7F" firstAttribute="leading" secondItem="Ngp-Vd-TOI" secondAttribute="leading" constant="8" id="FQb-lS-cEr"/>
                             <constraint firstAttribute="bottom" secondItem="CYQ-I8-Ytf" secondAttribute="bottom" id="KQJ-Ts-QRH"/>
-                            <constraint firstItem="WiI-pa-W7F" firstAttribute="leading" secondItem="Ngp-Vd-TOI" secondAttribute="leading" id="TgN-4i-mWx"/>
+                            <constraint firstItem="Itu-Ng-B3d" firstAttribute="top" secondItem="WiI-pa-W7F" secondAttribute="bottom" id="LZa-B5-ou3"/>
                             <constraint firstItem="CYQ-I8-Ytf" firstAttribute="leading" secondItem="Ngp-Vd-TOI" secondAttribute="leading" id="Ug2-Fc-uI7"/>
-                            <constraint firstAttribute="trailing" secondItem="WiI-pa-W7F" secondAttribute="trailing" id="WoU-hf-Ao4"/>
                             <constraint firstAttribute="trailing" secondItem="Itu-Ng-B3d" secondAttribute="trailing" id="ahI-dU-vfh"/>
                             <constraint firstItem="CYQ-I8-Ytf" firstAttribute="top" secondItem="Ngp-Vd-TOI" secondAttribute="top" id="ahU-Mb-4u5"/>
                             <constraint firstAttribute="trailing" secondItem="CYQ-I8-Ytf" secondAttribute="trailing" id="eXX-YP-bNr"/>
-                            <constraint firstItem="WiI-pa-W7F" firstAttribute="top" secondItem="jiB-76-cT8" secondAttribute="bottom" id="joa-7B-deW"/>
-                            <constraint firstItem="Itu-Ng-B3d" firstAttribute="top" secondItem="WiI-pa-W7F" secondAttribute="bottom" id="jxD-Q2-xGZ"/>
                             <constraint firstItem="qjw-Pg-mBu" firstAttribute="top" secondItem="Itu-Ng-B3d" secondAttribute="bottom" id="utL-gR-jiC"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
@@ -224,16 +159,8 @@
                     <tabBarItem key="tabBarItem" title="Meetings" image="List" id="qM6-Hh-PL4"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
-                        <outlet property="allWeekdaysSwitchContainerView" destination="UKm-8x-jCR" id="ASp-FF-C5s"/>
                         <outlet property="busyAnimationView" destination="CYQ-I8-Ytf" id="KFH-M9-aan"/>
-                        <outlet property="fridaySwitchContainerView" destination="VEv-Qf-r3u" id="4Mp-7M-gJz"/>
                         <outlet property="meetingListTableView" destination="Itu-Ng-B3d" id="iFg-TT-2IF"/>
-                        <outlet property="mondaySwitchContainerView" destination="KQc-6Z-mH9" id="luN-MW-Fys"/>
-                        <outlet property="saturdaySwitchContainerView" destination="G0y-td-0mb" id="6gh-rv-6BE"/>
-                        <outlet property="sundaySwitchContainerView" destination="Sfd-UN-DNY" id="wBT-2z-tco"/>
-                        <outlet property="thursdaySwitchContainerView" destination="byP-Xk-8iG" id="PHY-1a-2EM"/>
-                        <outlet property="tuesdaySwitchContainerView" destination="GzF-9t-g6J" id="bmn-nR-WWY"/>
-                        <outlet property="wednesdaySwitchContainerView" destination="rJL-Sd-dBn" id="siy-Jx-VE1"/>
                         <outlet property="weekdaySwitchesContainerView" destination="WiI-pa-W7F" id="1vf-Yl-hAh"/>
                     </connections>
                 </viewController>

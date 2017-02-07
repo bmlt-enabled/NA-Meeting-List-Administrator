@@ -139,6 +139,16 @@ class AppStaticPrefs {
     
     /* ################################################################## */
     /**
+     - returns: An integer, with the 1-based index of the first day of the week.
+     */
+    static var firstWeekdayIndex: Int {
+        get {
+            return Calendar.current.firstWeekday
+        }
+    }
+    
+    /* ################################################################## */
+    /**
      This is a simple test to see if the device supports TouchID.
      
      - returns: true, if the device supports TouchID.
@@ -169,17 +179,19 @@ class AppStaticPrefs {
      Cribbed from Here: http://stackoverflow.com/questions/7330420/how-do-i-get-the-name-of-a-day-of-the-week-in-the-users-locale#answer-34289913
      
      - parameter weekdayNumber: 1-based index (1 - 7)
+     - parameter isShort: Optional. If true, then the shortened version of the name will be returned. Default is false.
      
      - returns: The localized, full-length weekday name.
      */
-    class func weekdayNameFromWeekdayNumber(_ weekdayNumber: Int) -> String {
+    class func weekdayNameFromWeekdayNumber(_ weekdayNumber: Int, isShort: Bool = false) -> String {
         let calendar = Calendar.current
-        let weekdaySymbols = calendar.weekdaySymbols
-        let firstWeekday = calendar.firstWeekday - 1
+        let weekdaySymbols = isShort ? calendar.shortWeekdaySymbols : calendar.weekdaySymbols
+        let firstWeekday = self.firstWeekdayIndex - 1
         let weekdayIndex = weekdayNumber - 1
         let index = weekdayIndex + firstWeekday
         return weekdaySymbols[index]
     }
+    
     
     /* ################################################################## */
     // MARK: Instance Properties

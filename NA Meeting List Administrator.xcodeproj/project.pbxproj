@@ -20,6 +20,7 @@
 		779BE3BE1E37D5FA00350D11 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 779BE3B61E37D5FA00350D11 /* LaunchScreen.storyboard */; };
 		779BE3BF1E37D5FA00350D11 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 779BE3B81E37D5FA00350D11 /* Main.storyboard */; };
 		77A099BD1E379DC40066F6A2 /* BMLTiOSLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77A099B61E379DAB0066F6A2 /* BMLTiOSLib.framework */; };
+		77B31A7E1E49369D0047F655 /* ThreeStateCheckbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B31A7D1E49369D0047F655 /* ThreeStateCheckbox.swift */; };
 		77B50A681E381E31004019B8 /* AppStaticPrefs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B50A671E381E31004019B8 /* AppStaticPrefs.swift */; };
 		77B7D1221E3AA0A80031FF6B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 77B7D1201E3AA0A80031FF6B /* Localizable.strings */; };
 /* End PBXBuildFile section */
@@ -86,6 +87,7 @@
 		779BE3BA1E37D5FA00350D11 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = "Resources and Extras/Info.plist"; sourceTree = "<group>"; };
 		779BE3BB1E37D5FA00350D11 /* NA Meeting List Administrator-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NA Meeting List Administrator-Bridging-Header.h"; path = "Resources and Extras/NA Meeting List Administrator-Bridging-Header.h"; sourceTree = "<group>"; };
 		77A099AF1E379DAB0066F6A2 /* BMLTiOSLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BMLTiOSLib.xcodeproj; path = BMLTiOSLib/BMLTiOSLib.xcodeproj; sourceTree = SOURCE_ROOT; };
+		77B31A7D1E49369D0047F655 /* ThreeStateCheckbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ThreeStateCheckbox.swift; path = "Main App/ThreeStateCheckbox.swift"; sourceTree = "<group>"; };
 		77B50A671E381E31004019B8 /* AppStaticPrefs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppStaticPrefs.swift; path = "Main App/AppStaticPrefs.swift"; sourceTree = "<group>"; };
 		77B5410E1E42605700A0A880 /* NA Meeting List Administrator.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = "NA Meeting List Administrator.entitlements"; path = "Resources and Extras/NA Meeting List Administrator.entitlements"; sourceTree = "<group>"; };
 		77B7D1211E3AA0A80031FF6B /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = "Resources and Extras/Base.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -189,6 +191,7 @@
 			children = (
 				779BE3B01E37D5B500350D11 /* MainAppDelegate.swift */,
 				77B50A671E381E31004019B8 /* AppStaticPrefs.swift */,
+				77B31A7D1E49369D0047F655 /* ThreeStateCheckbox.swift */,
 			);
 			name = "Main App";
 			path = "NA Meeting List Administrator";
@@ -308,6 +311,7 @@
 			files = (
 				777178181E454C0D0027F8E4 /* SelectServiceBodiesViewController.swift in Sources */,
 				77B50A681E381E31004019B8 /* AppStaticPrefs.swift in Sources */,
+				77B31A7E1E49369D0047F655 /* ThreeStateCheckbox.swift in Sources */,
 				7784D3DC1E454D0300953CA0 /* ListEditableMeetingsViewController.swift in Sources */,
 				779BE3B11E37D5B500350D11 /* MainAppDelegate.swift in Sources */,
 				77140E901E37D3E1008BBB12 /* FXKeychain.m in Sources */,

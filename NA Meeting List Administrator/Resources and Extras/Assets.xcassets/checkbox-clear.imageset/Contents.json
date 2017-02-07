@@ -3,17 +3,17 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "checkbox-selected-disabled~universal@1x.png"
+      "filename" : "checkbox-clear~universal@1x.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "checkbox-selected-disabled~universal@2x.png"
+      "filename" : "checkbox-clear~universal@2x.png"
     },
     {
       "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "checkbox-selected-disabled~universal@3x.png"
+      "filename" : "checkbox-clear~universal@3x.png"
     }
   ],
   "info" : {
