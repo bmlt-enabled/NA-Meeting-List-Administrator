@@ -45,3 +45,4 @@
 "MIDNIGHT"                                                                                      =   "Midnight";
 "NOON"                                                                                          =   "Noon";
 "MEETING-TIME-FORMAT"                                                                           =   "%@, %@";
+"ALL-DAYS"                                                                                      =   "All";

@@ -33,16 +33,10 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
     @IBOutlet weak var busyAnimationView: UIView!
     @IBOutlet weak var meetingListTableView: UITableView!
     @IBOutlet weak var weekdaySwitchesContainerView: UIView!
+    
     var allWeekdaysSwitchContainerView: WeekdaySwitchContainerView!
-    
-    var sundaySwitchContainerView: WeekdaySwitchContainerView!
-    var mondaySwitchContainerView: WeekdaySwitchContainerView!
-    var tuesdaySwitchContainerView: WeekdaySwitchContainerView!
-    var wednesdaySwitchContainerView: WeekdaySwitchContainerView!
-    var thursdaySwitchContainerView: WeekdaySwitchContainerView!
-    var fridaySwitchContainerView: WeekdaySwitchContainerView!
-    var saturdaySwitchContainerView: WeekdaySwitchContainerView!
-    
+    var selectedWeekdays: BMLTiOSLibSearchCriteria.SelectableWeekdayDictionary = [.Sunday:.Selected,.Monday:.Selected,.Tuesday:.Selected,.Wednesday:.Selected,.Thursday:.Selected,.Friday:.Selected,.Saturday:.Selected]
+
     /* ################################################################## */
     // MARK: Overridden Base Class Methods
     /* ################################################################## */
@@ -72,6 +66,16 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
     }
     
     /* ################################################################## */
+    /**
+     Called just after the view set up its subviews.
+     We take this opportunity to create or update the weekday switches.
+     */
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        self.setUpWeekdayViews()
+    }
+    
+    /* ################################################################## */
     // MARK: Instance Methods
     /* ################################################################## */
     /**
@@ -89,6 +93,44 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
      We call this to set up our weekday selectors.
      */
     func setUpWeekdayViews() {
+        for subView in self.weekdaySwitchesContainerView.subviews {
+            subView.removeFromSuperview()
+        }
+        
+        let containerFrame = self.weekdaySwitchesContainerView.bounds
+        
+        let individualFrameWidth: CGFloat = containerFrame.size.width / 8
+        
+        var xOrigin: CGFloat = 0
+        for index in 0..<8 {
+            let newFrame = CGRect(x: xOrigin, y: 0, width: individualFrameWidth, height: containerFrame.height)
+            let newView = WeekdaySwitchContainerView(frame: newFrame, weekdayIndex: index, inOwner: self)
+            self.weekdaySwitchesContainerView.addSubview(newView)
+            xOrigin += individualFrameWidth
+        }
+    }
+    
+    /* ################################################################## */
+    /**
+     */
+    func allChangedTo(inState : BMLTiOSLibSearchCriteria.SelectionState) {
+        for subView in self.weekdaySwitchesContainerView.subviews {
+            if let castView = subView as? WeekdaySwitchContainerView {
+                if 0 != castView.weekdayIndex {
+                    castView.selectionSwitchControl.selectionState = inState
+                }
+            }
+        }
+    }
+    
+    /* ################################################################## */
+    /**
+     */
+    func weekdaySelectionChanged(inWeekdayIndex: Int, newSelectionState: BMLTiOSLibSearchCriteria.SelectionState) {
+        if 0 == inWeekdayIndex {
+            self.allChangedTo(inState: newSelectionState)
+        } else {
+        }
     }
     
     /* ################################################################## */
@@ -189,11 +231,14 @@ class MeetingTableViewCell : UITableViewCell {
  */
 class WeekdaySwitchContainerView : UIView {
     var weekdayIndex: Int!
+    var owner: ListEditableMeetingsViewController! = nil
     var selectionSwitchControl: ThreeStateCheckbox!
     var weekdayNameLabel: UILabel!
     
-    init(frame: CGRect, weekdayIndex: Int, inLabelTextColor: UIColor) {
+    init(frame: CGRect, weekdayIndex: Int, inOwner: ListEditableMeetingsViewController) {
         super.init(frame: frame)
+        self.owner = inOwner
+        self.weekdayIndex = weekdayIndex
         self.backgroundColor = UIColor.clear
         self.isUserInteractionEnabled = true
         if let testImage = UIImage(named: "checkbox-clear") {
@@ -213,17 +258,45 @@ class WeekdaySwitchContainerView : UIView {
             checkboxFrame.origin.x = (frame.size.width - checkboxFrame.size.width) / 2  // Center the switch at the top of the view.
             
             self.selectionSwitchControl = ThreeStateCheckbox(frame: checkboxFrame)
-
+            
+            if 0 < self.weekdayIndex {
+                if let indexAsEnum = BMLTiOSLibSearchCriteria.WeekdayIndex(rawValue: self.weekdayIndex) {
+                    if let weekdaySelection = owner.selectedWeekdays[indexAsEnum] {
+                        self.selectionSwitchControl.selectionState = weekdaySelection
+                    }
+                }
+            } else {
+                var selectionState: BMLTiOSLibSearchCriteria.SelectionState! = nil
+                for weekday in owner.selectedWeekdays {
+                    if nil == selectionState {
+                        selectionState = weekday.value
+                    } else {
+                        if weekday.value != selectionState {
+                            selectionState = .Clear
+                            break
+                        }
+                    }
+                }
+                
+                if nil == selectionState {
+                    selectionState = .Clear
+                }
+                
+                self.selectionSwitchControl.selectionState = selectionState!
+            }
+            
+            self.selectionSwitchControl.addTarget(self, action: #selector(WeekdaySwitchContainerView.checkboxSelectionChanged(_:)), for: UIControlEvents.valueChanged)
+            
             var labelFrame: CGRect = CGRect.zero
             labelFrame.size.width = frame.size.width
             labelFrame.size.height = frame.size.height - checkboxFrame.size.height
             labelFrame.origin.y = checkboxFrame.size.height
             
             self.weekdayNameLabel = UILabel(frame: labelFrame)
-            self.weekdayNameLabel.textColor = inLabelTextColor
+            self.weekdayNameLabel.textColor = inOwner.view.tintColor
             self.weekdayNameLabel.textAlignment = .center
             self.weekdayNameLabel.font = UIFont.boldSystemFont(ofSize: 14)
-            self.weekdayNameLabel.text = AppStaticPrefs.weekdayNameFromWeekdayNumber(weekdayIndex, isShort: true)
+            self.weekdayNameLabel.text = (0 == weekdayIndex) ? NSLocalizedString("ALL-DAYS", comment: "") : AppStaticPrefs.weekdayNameFromWeekdayNumber(weekdayIndex, isShort: true)
             
             self.addSubview(self.selectionSwitchControl)
             self.addSubview(self.weekdayNameLabel)
@@ -232,5 +305,17 @@ class WeekdaySwitchContainerView : UIView {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+    }
+    
+    override func removeFromSuperview() {
+        self.selectionSwitchControl.removeFromSuperview()
+        self.selectionSwitchControl = nil
+        self.weekdayNameLabel.removeFromSuperview()
+        self.weekdayNameLabel = nil
+        super.removeFromSuperview()
+    }
+    
+    func checkboxSelectionChanged(_ inCheckbox: ThreeStateCheckbox) {
+        self.owner.weekdaySelectionChanged(inWeekdayIndex: self.weekdayIndex, newSelectionState: inCheckbox.selectionState)
     }
 }
