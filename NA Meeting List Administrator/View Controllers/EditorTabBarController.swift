@@ -32,6 +32,12 @@ class EditorTabBarController : UITabBarController {
         case ListTab = 0
     }
     
+    override func viewDidLoad() {
+        if let listViewController = self.viewControllers?[TabIndexes.ListTab.rawValue] as? ListEditableMeetingsViewController {
+            listViewController.tabBarItem.title = NSLocalizedString(listViewController.tabBarItem.title!, comment: "")
+        }
+    }
+    
     /* ################################################################## */
     // MARK: Instance Methods
     /* ################################################################## */

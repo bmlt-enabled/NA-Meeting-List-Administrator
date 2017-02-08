@@ -29,10 +29,16 @@ import BMLTiOSLib
  */
 class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITableViewDataSource, UITableViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     /* ################################################################## */
-    // MARK: Private Instance Properties
+    // MARK: Private Constant Instance Properties
     /* ################################################################## */
     /** This is the table prototype ID for the standard meeting display */
     private let _meetingPrototypeReuseID = "Meeting-Table-View-Prototype"
+    /** This is the segue ID for bringing in a meeting to edit. */
+    private let _editSingleMeetingSegueID = "show-single-meeting-to-edit"
+    
+    /* ################################################################## */
+    // MARK: Private Instance Properties
+    /* ################################################################## */
     /** This contains all the meetings currently displayed */
     private var _currentMeetingList: [BMLTiOSLibMeetingNode] = []
     /** This is a semaphore, indicating that we have performed a search, and don't need to do another one. */
@@ -71,12 +77,44 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
     
     /* ################################################################## */
     /**
-     Trigger a search.
+     We take this opportunity to deselect any selected rows.
+     
+     - parameter animated: True, if the appearance is animated (ignored).
+     */
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if nil != self.meetingListTableView {
+            for row in 0..<self.meetingListTableView.numberOfRows(inSection: 0) {
+                self.meetingListTableView.deselectRow(at: IndexPath(row: row, section: 0), animated: true)
+            }
+        }
+    }
+    
+    /* ################################################################## */
+    /**
+     Trigger a search upon appearance.
+     
+     - parameter animated: True, if the appearance is animated (ignored).
      */
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if !self._searchDone {
             self.doSearch()
+        }
+    }
+    
+    /* ################################################################## */
+    /**
+     Reference the selected meeting before bringing in the editor.
+     
+     - parameter for: The segue object
+     - parameter sender: Attached data (We attached the meeting object).
+     */
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let meetingObject = sender as? BMLTiOSLibEditableMeetingNode {
+            if let destinationController = segue.destination as? EditSingleMeetingViewController {
+                destinationController.meetingObject = meetingObject
+            }
         }
     }
     
@@ -210,7 +248,22 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
     
     /* ################################################################## */
     /**
+     Called to initiate editing of a meeting.
+     
+     - parameter inMeetingObject: The meeting to be edited.
+     */
+    func editSingleMeeting(_ inMeetingObject: BMLTiOSLibMeetingNode!) {
+        if nil != inMeetingObject {
+            self.performSegue(withIdentifier: self._editSingleMeetingSegueID, sender: inMeetingObject)
+        }
+    }
+    
+    /* ################################################################## */
+    /**
      This is called when one of the weekday checkboxes is changed.
+     
+     - parameter inWeekdayIndex: 1-based index of the weekday represented by the checkbox.
+     - parameter newSelectionState: The new state for selection.
      */
     func weekdaySelectionChanged(inWeekdayIndex: Int, newSelectionState: BMLTiOSLibSearchCriteria.SelectionState) {
         if 0 == inWeekdayIndex {
@@ -224,7 +277,7 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
     }
     
     /* ################################################################## */
-    // MARK: UITableViewDelegate Methods
+    // MARK: UITableViewDataSource Methods
     /* ################################################################## */
     /**
      - parameter tableView: The UITableView object requesting the view
@@ -301,6 +354,23 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
         } else {
             return UITableViewCell()
         }
+    }
+    
+    /* ################################################################## */
+    // MARK: - UITableViewDelegate Methods -
+    /* ################################################################## */
+    /**
+     Called before a row is selected.
+     
+     - parameter tableView: The table view being checked
+     - parameter willSelectRowAt: The indexpath of the row being selected.
+     
+     - returns: the indexpath.
+     */
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        self.editSingleMeeting(self._currentMeetingList[indexPath.row])
+        
+        return indexPath
     }
     
     /* ################################################################## */

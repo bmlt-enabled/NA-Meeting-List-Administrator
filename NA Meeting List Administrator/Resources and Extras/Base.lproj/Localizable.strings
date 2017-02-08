@@ -47,3 +47,4 @@
 "MEETING-TIME-FORMAT"                                                                           =   "%@, %@";
 "ALL-DAYS"                                                                                      =   "All";
 "LOCAL-SEARCH-PICKER-NONE"                                                                      =   "All Towns and Boroughs";
+"MEETINGS-TAB-BAR-NAME"                                                                         =   "Meetings";

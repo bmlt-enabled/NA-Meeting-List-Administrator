@@ -23,6 +23,8 @@
 		77B31A7E1E49369D0047F655 /* ThreeStateCheckbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B31A7D1E49369D0047F655 /* ThreeStateCheckbox.swift */; };
 		77B50A681E381E31004019B8 /* AppStaticPrefs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B50A671E381E31004019B8 /* AppStaticPrefs.swift */; };
 		77B7D1221E3AA0A80031FF6B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 77B7D1201E3AA0A80031FF6B /* Localizable.strings */; };
+		77D92ED71E4B50CC009F02B2 /* MeetingEditorBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D92ED61E4B50CC009F02B2 /* MeetingEditorBaseViewController.swift */; };
+		77D92EDB1E4B5146009F02B2 /* EditSingleMeetingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D92EDA1E4B5146009F02B2 /* EditSingleMeetingViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +93,8 @@
 		77B50A671E381E31004019B8 /* AppStaticPrefs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppStaticPrefs.swift; path = "Main App/AppStaticPrefs.swift"; sourceTree = "<group>"; };
 		77B5410E1E42605700A0A880 /* NA Meeting List Administrator.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = "NA Meeting List Administrator.entitlements"; path = "Resources and Extras/NA Meeting List Administrator.entitlements"; sourceTree = "<group>"; };
 		77B7D1211E3AA0A80031FF6B /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = "Resources and Extras/Base.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		77D92ED61E4B50CC009F02B2 /* MeetingEditorBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MeetingEditorBaseViewController.swift; path = "View Controllers/MeetingEditorBaseViewController.swift"; sourceTree = "<group>"; };
+		77D92EDA1E4B5146009F02B2 /* EditSingleMeetingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditSingleMeetingViewController.swift; path = "View Controllers/EditSingleMeetingViewController.swift"; sourceTree = "<group>"; };
 		77DC3EA61E378B6300BF24B7 /* NA Meeting List Administrator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NA Meeting List Administrator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		77DC3EBB1E378C4F00BF24B7 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -128,6 +132,8 @@
 				777178131E454AB30027F8E4 /* SettingsViewController.swift */,
 				7784D3DF1E454D4900953CA0 /* EditorTabBarController.swift */,
 				7784D3DB1E454D0300953CA0 /* ListEditableMeetingsViewController.swift */,
+				77D92ED61E4B50CC009F02B2 /* MeetingEditorBaseViewController.swift */,
+				77D92EDA1E4B5146009F02B2 /* EditSingleMeetingViewController.swift */,
 			);
 			name = "View Controllers";
 			path = "NA Meeting List Administrator";
@@ -317,6 +323,8 @@
 				77140E901E37D3E1008BBB12 /* FXKeychain.m in Sources */,
 				777178141E454AB30027F8E4 /* SettingsViewController.swift in Sources */,
 				7784D3E01E454D4900953CA0 /* EditorTabBarController.swift in Sources */,
+				77D92ED71E4B50CC009F02B2 /* MeetingEditorBaseViewController.swift in Sources */,
+				77D92EDB1E4B5146009F02B2 /* EditSingleMeetingViewController.swift in Sources */,
 				779BE3AF1E37D5A600350D11 /* InitialViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
