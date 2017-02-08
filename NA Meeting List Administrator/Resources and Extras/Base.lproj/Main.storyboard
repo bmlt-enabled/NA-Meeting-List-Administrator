@@ -106,10 +106,11 @@
                                     <outlet property="delegate" destination="w5k-wt-KU4" id="VVP-UO-ugG"/>
                                 </connections>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WiI-pa-W7F" userLabel="Weekday Switch Container View">
-                                <rect key="frame" x="8" y="72" width="304" height="60"/>
+                            <view contentMode="scaleToFill" horizontalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="WiI-pa-W7F" userLabel="Weekday Switch Container View">
+                                <rect key="frame" x="10" y="72" width="300" height="60"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="4sZ-qv-GGH"/>
                                     <constraint firstAttribute="height" constant="60" id="NWE-bF-u0e"/>
                                 </constraints>
                             </view>
@@ -135,10 +136,9 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <color key="tintColor" red="0.0" green="0.0" blue="0.79866071429999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="WiI-pa-W7F" secondAttribute="trailing" constant="8" id="0Up-Ls-Wlt"/>
+                            <constraint firstItem="WiI-pa-W7F" firstAttribute="centerX" secondItem="Ngp-Vd-TOI" secondAttribute="centerX" id="3Rh-my-WsY"/>
                             <constraint firstItem="WiI-pa-W7F" firstAttribute="top" secondItem="jiB-76-cT8" secondAttribute="bottom" constant="8" id="9oy-DL-fBD"/>
                             <constraint firstItem="Itu-Ng-B3d" firstAttribute="leading" secondItem="Ngp-Vd-TOI" secondAttribute="leading" id="DmH-JU-TJD"/>
-                            <constraint firstItem="WiI-pa-W7F" firstAttribute="leading" secondItem="Ngp-Vd-TOI" secondAttribute="leading" constant="8" id="FQb-lS-cEr"/>
                             <constraint firstAttribute="bottom" secondItem="CYQ-I8-Ytf" secondAttribute="bottom" id="KQJ-Ts-QRH"/>
                             <constraint firstItem="Itu-Ng-B3d" firstAttribute="top" secondItem="WiI-pa-W7F" secondAttribute="bottom" id="LZa-B5-ou3"/>
                             <constraint firstItem="CYQ-I8-Ytf" firstAttribute="leading" secondItem="Ngp-Vd-TOI" secondAttribute="leading" id="Ug2-Fc-uI7"/>

@@ -35,6 +35,8 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
     private let _meetingPrototypeReuseID = "Meeting-Table-View-Prototype"
     /** This contains all the meetings currently displayed */
     private var _currentMeetingList: [BMLTiOSLibMeetingNode] = []
+    /** This is a semaphore, indicating that we have performed a search, and don't need to do another one. */
+    private var _searchDone: Bool = false
     
     /* ################################################################## */
     // MARK: Internal IB Instance Properties
@@ -56,42 +58,53 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
     // MARK: Overridden Base Class Methods
     /* ################################################################## */
     /**
-     Called just after the view loads.
-     We take this opportunity to load all the available meetings. We will filter through these in the future.
-     */
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // First, get the IDs of the Service bodies we'll be checking.
-        let sbArray = AppStaticPrefs.prefs.selectedServiceBodies
-        
-        let sbSelectorArray = MainAppDelegate.connectionObject.searchCriteria.serviceBodies
-        
-        for sb in sbSelectorArray {
-            if sbArray.contains(sb.item) {
-                sb.selection = .Selected
-            }
-        }
-        
-        self.busyAnimationView.isHidden = false
-        self._currentMeetingList = []
-        self.meetingListTableView.reloadData()
-        MainAppDelegate.appDelegateObject.meetingObjects = []
-        MainAppDelegate.connectionObject.searchCriteria.publishedStatus = .Both
-        MainAppDelegate.connectionObject.searchCriteria.performMeetingSearch(.MeetingsOnly)
-    }
-    
-    /* ################################################################## */
-    /**
      Called just after the view set up its subviews.
      We take this opportunity to create or update the weekday switches.
      */
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
+    override func viewDidLoad() {
+        super.viewDidLoad()
         self.setUpWeekdayViews()
     }
     
     /* ################################################################## */
+    /**
+     Trigger a search.
+     */
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if !self._searchDone {
+            self.doSearch()
+        }
+    }
+    
+    /* ################################################################## */
     // MARK: Instance Methods
+    /* ################################################################## */
+    /**
+     Trigger a search.
+     */
+    func doSearch() {
+        self._searchDone = true
+        // First, get the IDs of the Service bodies we'll be checking.
+        let sbArray = AppStaticPrefs.prefs.selectedServiceBodies
+        
+        let count = MainAppDelegate.connectionObject.searchCriteria.serviceBodies.count
+        
+        for i in 0..<count {
+            let sb = MainAppDelegate.connectionObject.searchCriteria.serviceBodies[i].item
+            if sbArray.contains(sb) {
+                MainAppDelegate.connectionObject.searchCriteria.serviceBodies[i].selection = .Selected
+            }
+        }
+        self._currentMeetingList = []
+        self.meetingListTableView.reloadData()
+        MainAppDelegate.appDelegateObject.meetingObjects = []
+        MainAppDelegate.connectionObject.searchCriteria.publishedStatus = .Both
+        self.busyAnimationView.isHidden = false
+        self.allChangedTo(inState: .Selected)
+        MainAppDelegate.connectionObject.searchCriteria.performMeetingSearch(.MeetingsOnly)
+    }
+    
     /* ################################################################## */
     /**
      This is called when the search updates.
