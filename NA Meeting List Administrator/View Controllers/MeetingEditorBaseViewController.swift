@@ -27,6 +27,38 @@ import BMLTiOSLib
 /* ###################################################################################################################################### */
 /**
  */
-class MeetingEditorBaseViewController : EditorViewControllerBaseClass {
+class MeetingEditorBaseViewController : EditorViewControllerBaseClass, UITableViewDataSource {
+    @IBInspectable var showDelete: Bool!
+    @IBInspectable var showDuplicate: Bool!
+    @IBInspectable var showHistory: Bool!
+    
+    @IBOutlet var containerTableView: UITableView!
+
     var meetingObject: BMLTiOSLibEditableMeetingNode! = nil
+    
+    /* ################################################################## */
+    // MARK: UITableViewDataSource Methods
+    /* ################################################################## */
+    /**
+     - parameter tableView: The UITableView object requesting the view
+     - parameter numberOfRowsInSection: The section index (0-based).
+     
+     - returns the number of rows to display.
+     */
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 0
+    }
+    
+    /* ################################################################## */
+    /**
+     This is the routine that creates a new table row for the Meeting indicated by the index.
+     
+     - parameter tableView: The UITableView object requesting the view
+     - parameter cellForRowAt: The IndexPath of the requested cell.
+     
+     - returns a nice, shiny cell (or sets the state of a reused one).
+     */
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return UITableViewCell()
+    }
 }

@@ -464,11 +464,11 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
      - parameter component:The component (always 0)
      */
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        if 1 < row {
-            self.updateDisplayedMeetings()
-        } else {
+        if 1 == row {
             pickerView.selectRow(0, inComponent: 0, animated: true)
         }
+        
+        self.updateDisplayedMeetings()
     }
 }
 
