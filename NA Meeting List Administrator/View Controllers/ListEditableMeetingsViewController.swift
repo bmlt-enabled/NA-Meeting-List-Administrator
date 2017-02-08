@@ -27,7 +27,7 @@ import BMLTiOSLib
 /* ###################################################################################################################################### */
 /**
  */
-class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITableViewDataSource, UITableViewDelegate {
+class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITableViewDataSource, UITableViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     /* ################################################################## */
     // MARK: Private Instance Properties
     /* ################################################################## */
@@ -37,6 +37,8 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
     private var _currentMeetingList: [BMLTiOSLibMeetingNode] = []
     /** This is a semaphore, indicating that we have performed a search, and don't need to do another one. */
     private var _searchDone: Bool = false
+    /** This contains the towns extracted from the meetings. */
+    private var _townsAndBoroughs: [String] = []
     
     /* ################################################################## */
     // MARK: Internal IB Instance Properties
@@ -47,6 +49,7 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
     @IBOutlet weak var weekdaySwitchesContainerView: UIView!
     /** This displays the meetings */
     @IBOutlet weak var meetingListTableView: UITableView!
+    @IBOutlet weak var townBoroughPickerView: UIPickerView!
     
     /* ################################################################## */
     // MARK: Internal Instance Properties
@@ -97,7 +100,9 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
             }
         }
         self._currentMeetingList = []
+        self._townsAndBoroughs = []
         self.meetingListTableView.reloadData()
+        self.townBoroughPickerView.reloadAllComponents()
         MainAppDelegate.appDelegateObject.meetingObjects = []
         MainAppDelegate.connectionObject.searchCriteria.publishedStatus = .Both
         self.busyAnimationView.isHidden = false
@@ -113,8 +118,26 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
      */
     func updateSearch(inMeetingObjects:[BMLTiOSLibMeetingNode]) {
         self.busyAnimationView.isHidden = true
-        self._currentMeetingList = MainAppDelegate.appDelegateObject.meetingObjects
-        self.allChangedTo(inState: .Selected)
+        self._currentMeetingList = MainAppDelegate.appDelegateObject.meetingObjects // We start by grabbing all the meetings.
+        self.allChangedTo(inState: .Selected)   // We select all weekdays.
+        
+        // Extract all the towns and boroughs from the entire list.
+        self._townsAndBoroughs = []
+        var tempTowns: [String] = []
+        
+        for meeting in MainAppDelegate.appDelegateObject.meetingObjects {
+            // We give boroughs precedence over towns.
+            let town = meeting.locationBorough.isEmpty ? meeting.locationTown : meeting.locationBorough
+
+            if !town.isEmpty && !tempTowns.contains(town) {
+                tempTowns.append(town)
+            }
+        }
+        
+        self._townsAndBoroughs = tempTowns.sorted()
+        
+        // Select every town and borough
+        self.townBoroughPickerView.selectRow(0, inComponent: 0, animated: false)
         self.updateDisplayedMeetings()
     }
     
@@ -128,13 +151,23 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
         for meeting in MainAppDelegate.appDelegateObject.meetingObjects {
             for weekdaySelection in self.selectedWeekdays {
                 if (weekdaySelection.value == .Selected) && (weekdaySelection.key.rawValue == meeting.weekdayIndex) {
-                    self._currentMeetingList.append(meeting)
-                    break
+                    if 1 < self.townBoroughPickerView.selectedRow(inComponent: 0) {
+                        let row = self.townBoroughPickerView.selectedRow(inComponent: 0) - 2
+                        let townString = self._townsAndBoroughs[row]
+                        if (meeting.locationBorough == townString) || (meeting.locationTown == townString) {
+                            self._currentMeetingList.append(meeting)
+                            break
+                        }
+                    } else {
+                        self._currentMeetingList.append(meeting)
+                        break
+                    }
                 }
             }
         }
         
         self.meetingListTableView.reloadData()
+        self.townBoroughPickerView.reloadAllComponents()
     }
     
     /* ################################################################## */
@@ -267,6 +300,104 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
             return ret
         } else {
             return UITableViewCell()
+        }
+    }
+    
+    /* ################################################################## */
+    // MARK: - UIPickerViewDataSource Methods -
+    /* ################################################################## */
+    /**
+     We only have 1 component.
+     
+     - parameter pickerView:The UIPickerView being checked
+     
+     - returns: 1
+     */
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    /* ################################################################## */
+    /**
+     We will always have 2 more than the number of towns, as we have the first and second rows.
+     
+     - parameter pickerView:The UIPickerView being checked
+     
+     - returns: Either 0, or the number of towns to be displayed, plus 2.
+     */
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        if self._townsAndBoroughs.isEmpty {
+            return 1
+        } else {
+            return self._townsAndBoroughs.count + 1
+        }
+    }
+    
+    /* ################################################################## */
+    // MARK: - UIPickerViewDelegate Methods -
+    /* ################################################################## */
+    /**
+     This returns the name for the given row.
+     
+     - parameter pickerView: The UIPickerView being checked
+     - parameter row: The row being checked
+     - parameter forComponent: The component (always 0)
+     - parameter reusing: If the view is being reused, it is passed in here.
+     
+     - returns: a view, containing a label with the string for the row.
+     */
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        let size = pickerView.rowSize(forComponent: 0)
+        var frame = pickerView.bounds
+        frame.size.height = size.height
+        frame.origin = CGPoint.zero
+        
+        var pickerValue: String = ""
+        
+        if 0 == row {
+            pickerValue = NSLocalizedString("LOCAL-SEARCH-PICKER-NONE", comment: "")
+        } else {
+            if 1 < row {
+                pickerValue = self._townsAndBoroughs[row - 2]
+            }
+        }
+        
+        let ret:UIView = UIView(frame: frame)
+        
+        ret.backgroundColor = UIColor.clear
+        
+        let label = UILabel(frame: frame)
+        
+        if !pickerValue.isEmpty {
+            label.backgroundColor = self.view.tintColor.withAlphaComponent(0.5)
+            label.textColor = UIColor.white
+            label.text = pickerValue
+            label.textAlignment = NSTextAlignment.center
+        } else {
+            label.backgroundColor = UIColor.clear
+        }
+        
+        ret.addSubview(label)
+        
+        return ret
+    }
+    
+    /* ################################################################## */
+    /**
+     This is called when the user finishes selecting a row.
+     We use this to add the selected town to the filter.
+     
+     If it is one of the top 2 rows, we select the first row, and ignore it.
+     
+     - parameter pickerView:The UIPickerView being checked
+     - parameter row:The row being checked
+     - parameter component:The component (always 0)
+     */
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if 1 < row {
+            self.updateDisplayedMeetings()
+        } else {
+            pickerView.selectRow(0, inComponent: 0, animated: true)
         }
     }
 }
