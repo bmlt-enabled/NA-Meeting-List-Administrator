@@ -24,6 +24,121 @@ import Security
 import BMLTiOSLib
 
 /* ###################################################################################################################################### */
+// MARK: - Class Extensions -
+/* ###################################################################################################################################### */
+/**
+ This adds various functionality to the String class.
+ */
+extension String {
+    /* ################################################################## */
+    /**
+     This tests a string to see if a given substring is present at the start.
+     
+     - parameter inSubstring: The substring to test.
+     
+     - returns: true, if the string begins with the given substring.
+     */
+    func beginsWith (_ inSubstring: String) -> Bool {
+        var ret: Bool = false
+        if let range = self.range(of: inSubstring) {
+            ret = (range.lowerBound == self.startIndex)
+        }
+        return ret
+    }
+    
+    /* ################################################################## */
+    /**
+     The following function comes from this: http://stackoverflow.com/a/27736118/879365
+     
+     This extension function cleans up a URI string.
+     
+     - returns: a string, cleaned for URI.
+     */
+    func URLEncodedString() -> String? {
+        let customAllowedSet =  CharacterSet.urlQueryAllowed
+        if let ret = self.addingPercentEncoding(withAllowedCharacters: customAllowedSet) {
+            return ret
+        } else {
+            return ""
+        }
+    }
+    
+    /* ################################################################## */
+    /**
+     The following function comes from this: http://stackoverflow.com/a/27736118/879365
+     
+     This extension function creates a URI query string from given parameters.
+     
+     - parameter parameters: a dictionary containing query parameters and their values.
+     
+     - returns: a String, with the parameter list.
+     */
+    static func queryStringFromParameters(_ parameters: Dictionary<String,String>) -> String? {
+        if (parameters.count == 0)
+        {
+            return nil
+        }
+        var queryString : String? = nil
+        for (key, value) in parameters {
+            if let encodedKey = key.URLEncodedString() {
+                if let encodedValue = value.URLEncodedString() {
+                    if queryString == nil
+                    {
+                        queryString = "?"
+                    }
+                    else
+                    {
+                        queryString! += "&"
+                    }
+                    queryString! += encodedKey + "=" + encodedValue
+                }
+            }
+        }
+        return queryString
+    }
+    
+    /* ################################################################## */
+    /**
+     "Cleans" a URI
+     
+     - returns: an implicitly unwrapped optional String. This is the given URI, "cleaned up."
+     "http[s]://" may be prefixed.
+     */
+    func cleanURI() -> String! {
+        return self.cleanURI(sslRequired: true)
+    }
+    
+    /* ################################################################## */
+    /**
+     "Cleans" a URI, allowing SSL requirement to be specified.
+     
+     - parameter sslRequired: If true, then we insist on SSL.
+     
+     - returns: an implicitly unwrapped optional String. This is the given URI, "cleaned up."
+     "http[s]://" may be prefixed.
+     */
+    func cleanURI(sslRequired: Bool) -> String! {
+        var ret: String! = self.URLEncodedString()
+        
+        
+        // Very kludgy way of checking for an HTTPS URI.
+        let wasHTTP: Bool = ret.lowercased().beginsWith("http://")
+        let wasHTTPS: Bool = ret.lowercased().beginsWith("https://")
+        
+        // Yeah, this is pathetic, but it's quick, simple, and works a charm.
+        ret = ret.replacingOccurrences(of: "^http[s]{0,1}://", with: "", options: NSString.CompareOptions.regularExpression)
+        
+        if wasHTTPS || (sslRequired && !wasHTTP && !wasHTTPS) {
+            ret = "https://" + ret
+        } else {
+            ret = "http://" + ret
+        }
+        
+        return ret
+    }
+}
+
+/* ###################################################################################################################################### */
 // MARK: - Prefs Class -
 /* ###################################################################################################################################### */
 /**
@@ -221,7 +336,7 @@ class AppStaticPrefs {
                 if let plistPath = Bundle.main.path(forResource: "Info", ofType: "plist") {
                     if let plistDictionary = NSDictionary(contentsOfFile: plistPath) as? [String: Any] {
                         if let uri = plistDictionary[type(of: self).PrefsKeys.DefaultRootServerURIPlistKey.rawValue] as? NSString {
-                            ret = uri as String
+                            ret = (uri as String).cleanURI()
                         }
                     }
                 }
@@ -235,7 +350,7 @@ class AppStaticPrefs {
                 if newValue.isEmpty {
                     self._loadedPrefs.removeObject(forKey: PrefsKeys.RootServerURI.rawValue)
                 } else {
-                    self._loadedPrefs.setObject(newValue, forKey: PrefsKeys.RootServerURI.rawValue as NSString)
+                    self._loadedPrefs.setObject(newValue.cleanURI(), forKey: PrefsKeys.RootServerURI.rawValue as NSString)
                 }
             }
         }
@@ -265,7 +380,7 @@ class AppStaticPrefs {
                 if newValue.url.isEmpty {
                     self._loadedPrefs.removeObject(forKey: PrefsKeys.LastLoginPair.rawValue)
                 } else {
-                    let ret: [String] = [newValue.url, newValue.loginID]
+                    let ret: [String] = [newValue.url.cleanURI(), newValue.loginID]
                     self._loadedPrefs.setObject(ret, forKey: PrefsKeys.LastLoginPair.rawValue as NSString)
                 }
             }
@@ -298,7 +413,7 @@ class AppStaticPrefs {
         get {
             var ret: [BMLTiOSLibHierarchicalServiceBodyNode] = []
             let loginSet = self.lastLogin
-            let key = loginSet.url + "-" + loginSet.loginID
+            let key = loginSet.url.cleanURI() + "-" + loginSet.loginID
             
             if self._loadPrefs() {
                 if 1 == self.allEditableServiceBodies.count {   // If we only have one body, then it is always selected, and can't be deselected.
@@ -343,7 +458,7 @@ class AppStaticPrefs {
         
         if self._loadPrefs() {
             if let temp = self._loadedPrefs.object(forKey: PrefsKeys.RootServerLoginDictionaryKey.rawValue) as? [String:[String]] {
-                ret = temp[inRooutURI]
+                ret = temp[inRooutURI.cleanURI()]
             }
         }
         
@@ -368,7 +483,7 @@ class AppStaticPrefs {
     func setServiceBodySelection(serviceBodyObject: BMLTiOSLibHierarchicalServiceBodyNode!, selected: Bool) {
         if self._loadPrefs() {
             let loginSet = self.lastLogin
-            let key = loginSet.url + "-" + loginSet.loginID
+            let key = loginSet.url.cleanURI() + "-" + loginSet.loginID
             
             var newDictionary: [String:[Int]] = [:]
             
@@ -487,7 +602,7 @@ class AppStaticPrefs {
             // At this point, we have the login ID saved in the dictionary.
             // Now, if we support TouchID, we will also save the password in the keychain.
             
-            let key = inRooutURI + "-" + inUser   // This will be our unique key for the password.
+            let key = inRooutURI.cleanURI() + "-" + inUser   // This will be our unique key for the password.
 
             self._keychainWrapper.removeObject(forKey: key)  // We start by clearing the deck, then re-add, if necessary.
 
@@ -591,7 +706,7 @@ class AppStaticPrefs {
     func userHasStoredPasswordRootURI(_ inRooutURI: String, inUser: String) -> Bool {
         var ret: Bool = false
         
-        let key = inRooutURI + "-" + inUser   // This will be our unique key for the password.
+        let key = inRooutURI.cleanURI() + "-" + inUser   // This will be our unique key for the password.
         
         if type(of: self).supportsTouchID && (nil != self._keychainWrapper) { // No TouchID, no stored password.
             if self._loadPrefs() {
@@ -621,7 +736,7 @@ class AppStaticPrefs {
         
         if type(of: self).supportsTouchID { // No TouchID, no stored password.
             if nil != self._keychainWrapper {
-                if let passwordFetched = self._keychainWrapper.object(forKey: inRooutURI + "-" + inUser) {
+                if let passwordFetched = self._keychainWrapper.object(forKey: inRooutURI.cleanURI() + "-" + inUser) {
                     ret = (passwordFetched as! String)
                 }
             }

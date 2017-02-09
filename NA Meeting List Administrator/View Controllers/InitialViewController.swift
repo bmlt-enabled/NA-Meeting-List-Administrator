@@ -130,7 +130,7 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate 
         
         // If there is no saved login from the last connection, we use the somewhat more static one (or the default from the plist).
         if !lastLogin.url.isEmpty && !lastLogin.loginID.isEmpty {
-            self.enterURLTextItem.text = lastLogin.url
+            self.enterURLTextItem.text = lastLogin.url.cleanURI(sslRequired: true)
         } else {
             self.enterURLTextItem.text = AppStaticPrefs.prefs.rootURI
         }
@@ -438,7 +438,7 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate 
             firstTime = AppStaticPrefs.prefs.updateUserForRootURI(self.enterURLTextItem.text!, inUser: self.loginIDTextField.text!, inPassword: self.passwordTextField.text)
             AppStaticPrefs.prefs.lastLogin = (url: self.enterURLTextItem.text!, loginID: self.loginIDTextField.text!)
             
-            if firstTime {  // If this was the first time we logged in, then we 
+            if firstTime {  // If this was the first time we logged in, then we set all our Service bodies to selected.
                 AppStaticPrefs.prefs.setServiceBodySelection(serviceBodyObject: nil, selected: true)
             }
             AppStaticPrefs.prefs.savePrefs()
