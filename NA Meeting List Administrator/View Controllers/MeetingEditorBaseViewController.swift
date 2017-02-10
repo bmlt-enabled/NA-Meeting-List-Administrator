@@ -145,7 +145,7 @@ class MeetingEditorBaseViewController : EditorViewControllerBaseClass, UITableVi
     /* ################################################################## */
     /**
      - parameter tableView: The UITableView object requesting the view
-     - parameter cellForRowAt: The IndexPath of the requested cell.
+     - parameter heightForRowAt: The IndexPath of the requested cell.
      
      - returns the height of the cell.
      */
