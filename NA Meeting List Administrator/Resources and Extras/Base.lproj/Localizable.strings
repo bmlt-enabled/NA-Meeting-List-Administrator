@@ -51,3 +51,5 @@
 
 "MEETING-NAME-LABEL"                                                                            =   "Meeting Name:";
 "MEETING-NAME-PLACEHOLDER"                                                                      =   "Enter A Meeting Name";
+
+"SAVE-BUTTON"                                                                                   =   "Save";

@@ -46,7 +46,11 @@ class MeetingEditorBaseViewController : EditorViewControllerBaseClass, UITableVi
     /** This is a list of all the cells (editor sections). */
     var editorSections: [MeetingEditorViewCell] = []
     
+    /** This is the structural table view */
     @IBOutlet var tableView: UITableView!
+    
+    /** THis is the bar button item for saving changes. */
+    @IBOutlet weak var saveButton: UIBarButtonItem!
     
     /** The following are sections in our table. Each is described by a prototype. */
     
@@ -70,6 +74,30 @@ class MeetingEditorBaseViewController : EditorViewControllerBaseClass, UITableVi
         super.viewWillAppear(animated)
         self.editorSections = []
         self.tableView.reloadData()
+        self.saveButton.title = NSLocalizedString(self.saveButton.title!, comment: "")
+    }
+    
+    /* ################################################################## */
+    // MARK: IB Methods
+    /* ################################################################## */
+    /**
+     Called when the NavBar Save button is touched.
+     
+     - parameter sender: The IB item that called this.
+     */
+    @IBAction func saveButtonTouched(_ sender: UIBarButtonItem) {
+    }
+    
+    /* ################################################################## */
+    // MARK: Instance Methods
+    /* ################################################################## */
+    /**
+     Called when something changes in the various controls.
+     
+     - parameter inChangedCell: The table cell object that experienced the change.
+     */
+    func updateEditorDisplay(_ inChangedCell: MeetingNameEditorTableViewCell) {
+        
     }
     
     /* ################################################################## */
@@ -103,6 +131,7 @@ class MeetingEditorBaseViewController : EditorViewControllerBaseClass, UITableVi
         let reuseID = self.reuseIDBase + String(indexPath.row)
         
         if let returnableCell = tableView.dequeueReusableCell(withIdentifier: reuseID) as? MeetingEditorViewCell {
+            returnableCell.owner = self
             returnableCell.meetingObject = self.meetingObject
             self.editorSections.append(returnableCell)
             return returnableCell
@@ -123,7 +152,14 @@ class MeetingEditorBaseViewController : EditorViewControllerBaseClass, UITableVi
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let reuseID = self.reuseIDBase + String(indexPath.row)
         
-        return self._internalRowHeights[reuseID]!
+        switch(reuseID) {   // This allows us to set dynamic heights.
+        default:
+            if let height = self._internalRowHeights[reuseID] { // By default, we use our table, but we may not have something there.
+                return height
+            }
+        }
+        
+        return tableView.rowHeight  // All else fails, use the default table row height.
     }
 }
 
@@ -136,6 +172,9 @@ class MeetingEditorBaseViewController : EditorViewControllerBaseClass, UITableVi
 class MeetingEditorViewCell: UITableViewCell {
     /** This will contain the meeting object associated with this object. */
     private var _meetingObject: BMLTiOSLibEditableMeetingNode! = nil
+    
+    /** This is our "owner" meeting editor View Controller */
+    var owner: MeetingEditorBaseViewController! = nil
     
     /* ################################################################## */
     /**
@@ -167,6 +206,21 @@ class MeetingNameEditorTableViewCell: MeetingEditorViewCell {
     @IBOutlet weak var meetingNameLabel: UILabel!
     @IBOutlet weak var meetingNameTextField: UITextField!
     
+    /* ################################################################## */
+    // MARK: IB Methods
+    /* ################################################################## */
+    /**
+     Respond to text changing in the text field.
+     
+     - parameter sender: The IB object that initiated this change.
+     */
+    @IBAction func meetingNameTextChanged(_ sender: UITextField) {
+        self.meetingObject.name = sender.text!
+        self.owner.updateEditorDisplay(self)
+    }
+    
+    /* ################################################################## */
+    // MARK: Overridden Base Class Methods
     /* ################################################################## */
     /**
      We set up our label, name and placeholder.
