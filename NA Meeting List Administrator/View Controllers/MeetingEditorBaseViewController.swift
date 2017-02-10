@@ -28,12 +28,14 @@ import BMLTiOSLib
 /**
  This class describes the basic functionality for a full meeting editor.
  */
-class MeetingEditorBaseViewController : EditorViewControllerBaseClass, UITableViewDataSource {
+class MeetingEditorBaseViewController : EditorViewControllerBaseClass, UITableViewDataSource, UITableViewDelegate {
     /** This is a list of the indexes for our prototypes. */
     enum PrototypeSectionIndexes: Int {
         /** The Meeting Name Editable Section */
         case MeetingNameSection = 0
     }
+    
+    private var _internalRowHeights: [String:CGFloat] = ["editor-row-0":60]
     
     /** We use this as a common prefix for our reuse IDs, and the index as the suffix. */
     let reuseIDBase = "editor-row-"
@@ -108,6 +110,21 @@ class MeetingEditorBaseViewController : EditorViewControllerBaseClass, UITableVi
         
         return UITableViewCell()
     }
+    
+    /* ################################################################## */
+    // MARK: UITableViewDelegate Methods
+    /* ################################################################## */
+    /**
+     - parameter tableView: The UITableView object requesting the view
+     - parameter cellForRowAt: The IndexPath of the requested cell.
+     
+     - returns the height of the cell.
+     */
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let reuseID = self.reuseIDBase + String(indexPath.row)
+        
+        return self._internalRowHeights[reuseID]!
+    }
 }
 
 /* ###################################################################################################################################### */
@@ -117,8 +134,13 @@ class MeetingEditorBaseViewController : EditorViewControllerBaseClass, UITableVi
  This is the base table view class for the various cell prototypes.
  */
 class MeetingEditorViewCell: UITableViewCell {
+    /** This will contain the meeting object associated with this object. */
     private var _meetingObject: BMLTiOSLibEditableMeetingNode! = nil
     
+    /* ################################################################## */
+    /**
+     This is an accessor for the meeting object. Getting is no big deal, but setting calls our meetingObjectUpdated() method.
+     */
     var meetingObject: BMLTiOSLibEditableMeetingNode! {
         get { return self._meetingObject }
         set {
@@ -127,9 +149,11 @@ class MeetingEditorViewCell: UITableViewCell {
         }
     }
     
-    func meetingObjectUpdated() {
-        
-    }
+    /* ################################################################## */
+    /**
+     This is designed to be overloaded. This is called when the meetingObject property is set, and gives us a chance to set up our object.
+     */
+    func meetingObjectUpdated(){}
 }
 
 /* ###################################################################################################################################### */
@@ -143,8 +167,13 @@ class MeetingNameEditorTableViewCell: MeetingEditorViewCell {
     @IBOutlet weak var meetingNameLabel: UILabel!
     @IBOutlet weak var meetingNameTextField: UITextField!
     
+    /* ################################################################## */
+    /**
+     We set up our label, name and placeholder.
+     */
     override func meetingObjectUpdated() {
         self.meetingNameLabel.text = NSLocalizedString(self.meetingNameLabel.text!, comment: "")
         self.meetingNameTextField.placeholder = NSLocalizedString(self.meetingNameTextField.placeholder!, comment: "")
+        self.meetingNameTextField.text = self.meetingObject.name
     }
 }
