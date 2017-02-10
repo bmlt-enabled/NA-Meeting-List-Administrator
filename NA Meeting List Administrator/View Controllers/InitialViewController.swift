@@ -550,7 +550,7 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate 
      - parameter inMeetingObjects: An array of meeting objects.
      */
     func updateSearch(inMeetingObjects:[BMLTiOSLibMeetingNode]) {
-        self._editorTabBarController.updateSearch(inMeetingObjects: inMeetingObjects)
+        self._editorTabBarController.updateSearch(inMeetingObjects: inMeetingObjects)   // We pass this on to our Tab controller, who will take it from there.
     }
     
     /* ################################################################## */
@@ -569,16 +569,16 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate 
         } else {
             // We have to have both fields filled before we can log in, so if they aren't both filled, we go to the empty one next.
             if self.loginIDTextField == textField {
-                if !(self.passwordTextField.text?.isEmpty)! {
+                if !(self.passwordTextField.text?.isEmpty)! {   // If the password field is empty, we go to that.
                     self.loginButtonHit(self.loginButton)
-                } else {
+                } else {    // If not, we try the login.
                     self.passwordTextField.becomeFirstResponder()
                 }
             } else {
                 if self.passwordTextField == textField {
-                    if !(self.loginIDTextField.text?.isEmpty)! {
+                    if !(self.loginIDTextField.text?.isEmpty)! {    // If the login field is empty, we go to that.
                         self.loginButtonHit(self.loginButton)
-                    } else {
+                    } else {    // Otherwise, let's try logging in.
                         self.loginIDTextField.becomeFirstResponder()
                     }
                 }
