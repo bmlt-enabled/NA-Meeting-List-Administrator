@@ -52,4 +52,7 @@
 "MEETING-NAME-LABEL"                                                                            =   "Meeting Name:";
 "MEETING-NAME-PLACEHOLDER"                                                                      =   "Enter A Meeting Name";
 
+"WEEKDAY-LABEL"                                                                                 =   "Weekday:";
+
 "SAVE-BUTTON"                                                                                   =   "Save";
+"CANCEL-BUTTON"                                                                                 =   "Cancel";

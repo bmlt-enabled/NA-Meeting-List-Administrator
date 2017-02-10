@@ -245,6 +245,61 @@
                                             <outlet property="meetingNameTextField" destination="8Jp-XV-pAa" id="PXd-e9-qbF"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="editor-row-1" rowHeight="60" id="dZg-VJ-rdc" userLabel="Weekday" customClass="WeekdayEditorTableViewCell" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="88" width="320" height="60"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dZg-VJ-rdc" id="0T1-0y-P3r">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WEEKDAY-LABEL" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cAO-I4-mc0" userLabel="Weekday Label">
+                                                    <rect key="frame" x="8" y="8" width="304" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="xcT-Wu-ryl"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.79866071429999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="L8x-a2-RhK">
+                                                    <rect key="frame" x="8" y="30" width="304" height="29"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="28" id="A0V-AA-lda"/>
+                                                    </constraints>
+                                                    <segments>
+                                                        <segment title=""/>
+                                                        <segment title=""/>
+                                                        <segment title=""/>
+                                                        <segment title=""/>
+                                                        <segment title=""/>
+                                                        <segment title=""/>
+                                                        <segment title=""/>
+                                                    </segments>
+                                                    <connections>
+                                                        <action selector="weekdayChanged:" destination="dZg-VJ-rdc" eventType="valueChanged" id="kTh-ag-JF5"/>
+                                                    </connections>
+                                                </segmentedControl>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstItem="cAO-I4-mc0" firstAttribute="trailing" secondItem="0T1-0y-P3r" secondAttribute="trailingMargin" id="8cN-QN-TKD"/>
+                                                <constraint firstItem="cAO-I4-mc0" firstAttribute="trailing" secondItem="0T1-0y-P3r" secondAttribute="trailingMargin" id="Cea-F3-Uok"/>
+                                                <constraint firstItem="cAO-I4-mc0" firstAttribute="top" secondItem="0T1-0y-P3r" secondAttribute="topMargin" id="LB4-As-4KV"/>
+                                                <constraint firstItem="cAO-I4-mc0" firstAttribute="leading" secondItem="0T1-0y-P3r" secondAttribute="leadingMargin" id="RXj-Qm-k34"/>
+                                                <constraint firstItem="L8x-a2-RhK" firstAttribute="leading" secondItem="0T1-0y-P3r" secondAttribute="leading" constant="8" id="chU-Ef-SvM"/>
+                                                <constraint firstAttribute="bottom" secondItem="L8x-a2-RhK" secondAttribute="bottom" constant="2" id="enb-nr-l1g"/>
+                                                <constraint firstItem="cAO-I4-mc0" firstAttribute="leading" secondItem="0T1-0y-P3r" secondAttribute="leadingMargin" id="eqJ-gC-Kys"/>
+                                                <constraint firstItem="cAO-I4-mc0" firstAttribute="top" secondItem="0T1-0y-P3r" secondAttribute="topMargin" id="oes-ZK-YQm"/>
+                                                <constraint firstAttribute="trailing" secondItem="L8x-a2-RhK" secondAttribute="trailing" constant="8" id="qAw-an-Pch"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <color key="tintColor" red="0.0" green="0.0" blue="0.79866071429999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <outlet property="weekdayLabel" destination="cAO-I4-mc0" id="g28-Yc-Eqx"/>
+                                            <outlet property="weekdaySegmentedView" destination="L8x-a2-RhK" id="sFf-dJ-URN"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                                 <sections/>
                                 <userDefinedRuntimeAttributes>
@@ -279,20 +334,26 @@
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" id="zYe-KI-a9a">
-                        <barButtonItem key="leftBarButtonItem" title="SAVE-BUTTON" id="Pqd-qA-Ywy">
+                        <barButtonItem key="leftBarButtonItem" title="CANCEL-BUTTON" id="1gs-FS-fYy">
+                            <connections>
+                                <action selector="cancelButtonTouched:" destination="m2u-A7-bWE" id="JzK-2X-YVw"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="SAVE-BUTTON" id="Pqd-qA-Ywy">
                             <connections>
                                 <action selector="saveButtonTouched:" destination="m2u-A7-bWE" id="Uot-P2-VjV"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="cancelButton" destination="1gs-FS-fYy" id="Aq7-Co-NFw"/>
                         <outlet property="saveButton" destination="Pqd-qA-Ywy" id="Ojg-el-eHF"/>
                         <outlet property="tableView" destination="hu8-sJ-cp5" id="89g-qD-XPR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BfB-TS-gxz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2543" y="124"/>
+            <point key="canvasLocation" x="2542.5" y="123.59154929577466"/>
         </scene>
         <!--Editor Tab Controller-->
         <scene sceneID="4Vp-tc-l3t">

@@ -28,4 +28,31 @@ import BMLTiOSLib
 /**
  */
 class EditSingleMeetingViewController : MeetingEditorBaseViewController {
+    /** THis is the bar button item for canceling editing. */
+    @IBOutlet weak var cancelButton: UIBarButtonItem!
+    
+    /* ################################################################## */
+    // MARK: Overridden Base Class Methods
+    /* ################################################################## */
+    /**
+     Called as the view is about to appear.
+     
+     - parameter animated: True, if the appearance is animated.
+     */
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.cancelButton.title = NSLocalizedString(self.cancelButton.title!, comment: "")
+    }
+    
+    /* ################################################################## */
+    // MARK: IB Methods
+    /* ################################################################## */
+    /**
+     Called when the NavBar Cancel button is touched.
+     
+     - parameter sender: The IB item that called this.
+     */
+    @IBAction func cancelButtonTouched(_ sender: UIBarButtonItem) {
+        let _ = self.navigationController?.popViewController(animated: true)
+    }
 }
