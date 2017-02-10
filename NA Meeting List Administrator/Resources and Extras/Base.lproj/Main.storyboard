@@ -176,7 +176,7 @@
                         <outlet property="meetingListTableView" destination="Itu-Ng-B3d" id="iFg-TT-2IF"/>
                         <outlet property="townBoroughPickerView" destination="3VS-JC-wjl" id="52E-cf-Oye"/>
                         <outlet property="weekdaySwitchesContainerView" destination="WiI-pa-W7F" id="1vf-Yl-hAh"/>
-                        <segue destination="Bdl-jf-4TV" kind="show" identifier="show-single-meeting-to-edit" id="ugW-Gn-YCB"/>
+                        <segue destination="m2u-A7-bWE" kind="show" identifier="show-single-meeting-to-edit" id="ZqS-vk-bcD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P47-cy-4rj" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -184,50 +184,103 @@
             <point key="canvasLocation" x="1742" y="123"/>
         </scene>
         <!--Edit Single Meeting View Controller-->
-        <scene sceneID="K7w-Xr-IXy">
+        <scene sceneID="lTA-iq-h3x">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="Bdl-jf-4TV" customClass="EditSingleMeetingViewController" customModule="NA_Meeting_List_Administrator" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="m2u-A7-bWE" customClass="EditSingleMeetingViewController" customModule="NA_Meeting_List_Administrator" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="7lU-UD-6L7"/>
-                        <viewControllerLayoutGuide type="bottom" id="cEP-D9-hVb"/>
+                        <viewControllerLayoutGuide type="top" id="hbw-4E-5Fl"/>
+                        <viewControllerLayoutGuide type="bottom" id="nCd-vQ-VIX"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="aII-ZF-FmP" customClass="EditorViewBaseClass" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="64" width="320" height="576"/>
+                    <view key="view" contentMode="scaleToFill" id="tAG-NX-Teg" customClass="EditorViewBaseClass" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="64" width="320" height="527"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="uv9-nq-vdZ">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="640"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hu8-sJ-cp5">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="527"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <color key="tintColor" red="0.0" green="0.0" blue="0.79866071429999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="editor-row-0" rowHeight="60" id="aO9-xg-X1Z" userLabel="Meeting Name" customClass="MeetingNameEditorTableViewCell" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="60"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aO9-xg-X1Z" id="Asb-Qn-aCB">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="MEETING-NAME-PLACEHOLDER" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8Jp-XV-pAa">
+                                                    <rect key="frame" x="8" y="29.5" width="304" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="QUj-hK-eMK"/>
+                                                    </constraints>
+                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MEETING-NAME-LABEL" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hzI-YZ-ajt">
+                                                    <rect key="frame" x="8" y="8" width="304" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="BWq-4j-dYf"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.79866071429999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="8Jp-XV-pAa" secondAttribute="bottom" id="8KW-HA-HR5"/>
+                                                <constraint firstItem="hzI-YZ-ajt" firstAttribute="trailing" secondItem="Asb-Qn-aCB" secondAttribute="trailingMargin" id="HYl-iA-ncz"/>
+                                                <constraint firstItem="hzI-YZ-ajt" firstAttribute="leading" secondItem="Asb-Qn-aCB" secondAttribute="leadingMargin" id="W3l-2O-x0g"/>
+                                                <constraint firstAttribute="trailing" secondItem="8Jp-XV-pAa" secondAttribute="trailing" constant="8" id="hBs-ZO-oWl"/>
+                                                <constraint firstItem="hzI-YZ-ajt" firstAttribute="top" secondItem="Asb-Qn-aCB" secondAttribute="topMargin" id="hke-ld-jzD"/>
+                                                <constraint firstItem="8Jp-XV-pAa" firstAttribute="leading" secondItem="Asb-Qn-aCB" secondAttribute="leading" constant="8" id="tzU-iY-Zip"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <color key="tintColor" red="0.0" green="0.0" blue="0.79866071429999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <outlet property="meetingNameLabel" destination="hzI-YZ-ajt" id="fRi-lS-CW4"/>
+                                            <outlet property="meetingNameTextField" destination="8Jp-XV-pAa" id="PXd-e9-qbF"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <sections/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="topColor">
+                                        <color key="value" red="0.84313725490000002" green="0.76470588240000004" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="bottomColor">
+                                        <color key="value" red="0.99215686270000003" green="0.97647058819999999" blue="0.50588235290000005" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outlet property="dataSource" destination="m2u-A7-bWE" id="6zL-G5-Ud5"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="uv9-nq-vdZ" firstAttribute="leading" secondItem="aII-ZF-FmP" secondAttribute="leading" id="5n2-Q7-lrZ"/>
-                            <constraint firstItem="cEP-D9-hVb" firstAttribute="top" secondItem="uv9-nq-vdZ" secondAttribute="bottom" id="D0h-8u-Vc9"/>
-                            <constraint firstAttribute="trailing" secondItem="uv9-nq-vdZ" secondAttribute="trailing" id="YQX-y5-VIJ"/>
-                            <constraint firstItem="uv9-nq-vdZ" firstAttribute="top" secondItem="7lU-UD-6L7" secondAttribute="bottom" id="qjj-uD-hTz"/>
+                            <constraint firstAttribute="trailing" secondItem="hu8-sJ-cp5" secondAttribute="trailing" id="58w-K2-LEU"/>
+                            <constraint firstItem="hu8-sJ-cp5" firstAttribute="leading" secondItem="tAG-NX-Teg" secondAttribute="leading" id="Q3h-tK-m3A"/>
+                            <constraint firstItem="nCd-vQ-VIX" firstAttribute="top" secondItem="hu8-sJ-cp5" secondAttribute="bottom" id="UXd-VB-iNM"/>
+                            <constraint firstItem="hu8-sJ-cp5" firstAttribute="top" secondItem="hbw-4E-5Fl" secondAttribute="bottom" id="uQY-51-YEd"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="topColor">
-                                <color key="value" red="0.42745098040000001" green="0.52156862749999999" blue="0.94901960780000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="value" red="0.84313725490000002" green="0.76470588240000004" blue="0.1843137255" alpha="1" colorSpace="calibratedRGB"/>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="color" keyPath="bottomColor">
-                                <color key="value" red="0.55294117649999996" green="0.81176470590000005" blue="0.97647058819999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="value" red="0.99215686270000003" green="0.97647058819999999" blue="0.50588235290000005" alpha="1" colorSpace="calibratedRGB"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
-                    <nil key="simulatedBottomBarMetrics"/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="showDelete" value="YES"/>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="showDuplicate" value="YES"/>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="showHistory" value="YES"/>
-                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <outlet property="tableView" destination="hu8-sJ-cp5" id="89g-qD-XPR"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="S8E-V0-Z87" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BfB-TS-gxz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2540.625" y="122.53521126760563"/>
+            <point key="canvasLocation" x="2543" y="124"/>
         </scene>
         <!--Editor Tab Controller-->
         <scene sceneID="4Vp-tc-l3t">

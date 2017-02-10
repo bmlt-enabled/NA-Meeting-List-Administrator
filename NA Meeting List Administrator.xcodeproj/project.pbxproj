@@ -132,8 +132,8 @@
 				777178131E454AB30027F8E4 /* SettingsViewController.swift */,
 				7784D3DF1E454D4900953CA0 /* EditorTabBarController.swift */,
 				7784D3DB1E454D0300953CA0 /* ListEditableMeetingsViewController.swift */,
-				77D92EDA1E4B5146009F02B2 /* EditSingleMeetingViewController.swift */,
 				77D92ED61E4B50CC009F02B2 /* MeetingEditorBaseViewController.swift */,
+				77D92EDA1E4B5146009F02B2 /* EditSingleMeetingViewController.swift */,
 			);
 			name = "View Controllers";
 			path = "NA Meeting List Administrator";

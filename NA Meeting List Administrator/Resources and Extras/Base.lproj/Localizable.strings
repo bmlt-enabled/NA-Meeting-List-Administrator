@@ -48,3 +48,6 @@
 "ALL-DAYS"                                                                                      =   "All";
 "LOCAL-SEARCH-PICKER-NONE"                                                                      =   "All Towns and Boroughs";
 "MEETINGS-TAB-BAR-NAME"                                                                         =   "Meetings";
+
+"MEETING-NAME-LABEL"                                                                            =   "Meeting Name:";
+"MEETING-NAME-PLACEHOLDER"                                                                      =   "Enter A Meeting Name";
