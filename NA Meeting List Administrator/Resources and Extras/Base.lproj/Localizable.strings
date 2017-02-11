@@ -49,10 +49,12 @@
 "LOCAL-SEARCH-PICKER-NONE"                                                                      =   "All Towns and Boroughs";
 "MEETINGS-TAB-BAR-NAME"                                                                         =   "Meetings";
 
+"SAVE-BUTTON"                                                                                   =   "Save";
+"CANCEL-BUTTON"                                                                                 =   "Cancel";
+
+"PUBLISHED-LABEL"                                                                               =   "Meeting Is Published";
+
 "MEETING-NAME-LABEL"                                                                            =   "Meeting Name:";
 "MEETING-NAME-PLACEHOLDER"                                                                      =   "Enter A Meeting Name";
 
 "WEEKDAY-LABEL"                                                                                 =   "Weekday:";
-
-"SAVE-BUTTON"                                                                                   =   "Save";
-"CANCEL-BUTTON"                                                                                 =   "Cancel";

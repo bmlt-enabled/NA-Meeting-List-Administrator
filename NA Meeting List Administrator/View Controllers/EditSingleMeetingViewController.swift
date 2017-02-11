@@ -53,6 +53,7 @@ class EditSingleMeetingViewController : MeetingEditorBaseViewController {
      - parameter sender: The IB item that called this.
      */
     @IBAction func cancelButtonTouched(_ sender: UIBarButtonItem) {
+        self.meetingObject.restoreToOriginal()
         let _ = self.navigationController?.popViewController(animated: true)
     }
 }

@@ -31,14 +31,17 @@ import BMLTiOSLib
 class MeetingEditorBaseViewController : EditorViewControllerBaseClass, UITableViewDataSource, UITableViewDelegate {
     /** This is a list of the indexes for our prototypes. */
     enum PrototypeSectionIndexes: Int {
+        /** The Published Switch Section */
+        case PublishedSection = 0
         /** The Meeting Name Editable Section */
-        case MeetingNameSection = 0
+        case MeetingNameSection
         /** The Weekday Selection section. */
         case WeekdaySection
     }
     
-    private var _internalRowHeights: [String:CGFloat] = ["editor-row-0":60,
-                                                         "editor-row-1":60]
+    private var _internalRowHeights: [String:CGFloat] = ["editor-row-0":37,
+                                                         "editor-row-1":60,
+                                                         "editor-row-2":60]
     
     /** We use this as a common prefix for our reuse IDs, and the index as the suffix. */
     let reuseIDBase = "editor-row-"
@@ -91,6 +94,8 @@ class MeetingEditorBaseViewController : EditorViewControllerBaseClass, UITableVi
      - parameter sender: The IB item that called this.
      */
     @IBAction func saveButtonTouched(_ sender: UIBarButtonItem) {
+        self.meetingObject.saveChanges()
+        let _ = self.navigationController?.popViewController(animated: true)
     }
     
     /* ################################################################## */
@@ -276,3 +281,40 @@ class WeekdayEditorTableViewCell: MeetingEditorViewCell {
         self.weekdaySegmentedView.selectedSegmentIndex = self.meetingObject.weekdayIndex - 1
     }
 }
+
+/* ###################################################################################################################################### */
+// MARK: - Meeting Name Editor Table Cell Class -
+/* ###################################################################################################################################### */
+/**
+ This is the table view class for the name editor prototype.
+ */
+class PublishedEditorTableViewCell: MeetingEditorViewCell {
+    /** This is the meeting name section. */
+    @IBOutlet weak var publishedLabel: UILabel!
+    @IBOutlet weak var publishedSwitch: UISwitch!
+    
+    /* ################################################################## */
+    // MARK: IB Methods
+    /* ################################################################## */
+    /**
+     Respond to weekday selection changing in the segmented control.
+     
+     - parameter sender: The IB object that initiated this change.
+     */
+    @IBAction func publishedChanged(_ sender: UISwitch) {
+        self.meetingObject.published = sender.isOn
+        self.owner.updateEditorDisplay(self)
+    }
+    
+    /* ################################################################## */
+    // MARK: Overridden Base Class Methods
+    /* ################################################################## */
+    /**
+     We set up our label, name and placeholder.
+     */
+    override func meetingObjectUpdated() {
+        self.publishedLabel.text = NSLocalizedString(self.publishedLabel.text!, comment: "")
+        self.publishedSwitch.isOn = self.meetingObject.published
+    }
+}
+

@@ -199,8 +199,52 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="527"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="editor-row-0" rowHeight="60" id="aO9-xg-X1Z" userLabel="Meeting Name" customClass="MeetingNameEditorTableViewCell" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="320" height="60"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="editor-row-0" rowHeight="37" id="I7d-EO-pHQ" userLabel="Published" customClass="PublishedEditorTableViewCell" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="37"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="I7d-EO-pHQ" id="YDM-mg-7Ie">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="37"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="abf-OL-Vpr">
+                                                    <rect key="frame" x="8" y="3" width="51" height="31"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="31" id="LXU-gg-7M5"/>
+                                                        <constraint firstAttribute="width" constant="49" id="eaN-v8-4At"/>
+                                                    </constraints>
+                                                    <connections>
+                                                        <action selector="publishedChanged:" destination="I7d-EO-pHQ" eventType="valueChanged" id="UHs-vZ-WHs"/>
+                                                    </connections>
+                                                </switch>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PUBLISHED-LABEL" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VAq-EW-ezQ" userLabel="Published Label">
+                                                    <rect key="frame" x="65" y="8" width="247" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="B6r-eO-MLf"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.79866071429999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstItem="abf-OL-Vpr" firstAttribute="top" secondItem="YDM-mg-7Ie" secondAttribute="top" constant="3" id="3lL-ds-is8"/>
+                                                <constraint firstItem="VAq-EW-ezQ" firstAttribute="leading" secondItem="abf-OL-Vpr" secondAttribute="trailing" constant="8" id="I2x-8J-hTG"/>
+                                                <constraint firstAttribute="trailing" secondItem="VAq-EW-ezQ" secondAttribute="trailing" constant="8" id="JXl-8d-yCb"/>
+                                                <constraint firstItem="abf-OL-Vpr" firstAttribute="leading" secondItem="YDM-mg-7Ie" secondAttribute="leading" constant="8" id="OzM-Gy-hNr"/>
+                                                <constraint firstItem="VAq-EW-ezQ" firstAttribute="centerY" secondItem="YDM-mg-7Ie" secondAttribute="centerY" id="U40-e4-9J0"/>
+                                                <constraint firstItem="abf-OL-Vpr" firstAttribute="centerY" secondItem="YDM-mg-7Ie" secondAttribute="centerY" id="laU-45-b86"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <color key="tintColor" red="0.0" green="0.0" blue="0.79866071429999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <outlet property="publishedLabel" destination="VAq-EW-ezQ" id="TRT-8Q-0ZT"/>
+                                            <outlet property="publishedSwitch" destination="abf-OL-Vpr" id="Z28-nb-FR5"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="editor-row-1" rowHeight="60" id="aO9-xg-X1Z" userLabel="Meeting Name" customClass="MeetingNameEditorTableViewCell" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="65" width="320" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aO9-xg-X1Z" id="Asb-Qn-aCB">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
@@ -245,8 +289,8 @@
                                             <outlet property="meetingNameTextField" destination="8Jp-XV-pAa" id="PXd-e9-qbF"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="editor-row-1" rowHeight="60" id="dZg-VJ-rdc" userLabel="Weekday" customClass="WeekdayEditorTableViewCell" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="88" width="320" height="60"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="editor-row-2" rowHeight="60" id="dZg-VJ-rdc" userLabel="Weekday" customClass="WeekdayEditorTableViewCell" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="125" width="320" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dZg-VJ-rdc" id="0T1-0y-P3r">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
