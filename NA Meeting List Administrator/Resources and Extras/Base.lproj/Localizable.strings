@@ -58,3 +58,5 @@
 "MEETING-NAME-PLACEHOLDER"                                                                      =   "Enter A Meeting Name";
 
 "WEEKDAY-LABEL"                                                                                 =   "Weekday:";
+
+"START-TIME-LABEL"                                                                              =   "Start Time:";

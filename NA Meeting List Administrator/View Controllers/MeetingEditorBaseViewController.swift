@@ -29,19 +29,10 @@ import BMLTiOSLib
  This class describes the basic functionality for a full meeting editor.
  */
 class MeetingEditorBaseViewController : EditorViewControllerBaseClass, UITableViewDataSource, UITableViewDelegate {
-    /** This is a list of the indexes for our prototypes. */
-    enum PrototypeSectionIndexes: Int {
-        /** The Published Switch Section */
-        case PublishedSection = 0
-        /** The Meeting Name Editable Section */
-        case MeetingNameSection
-        /** The Weekday Selection section. */
-        case WeekdaySection
-    }
-    
     private var _internalRowHeights: [String:CGFloat] = ["editor-row-0":37,
                                                          "editor-row-1":60,
-                                                         "editor-row-2":60]
+                                                         "editor-row-2":60,
+                                                         "editor-row-3":100]
     
     /** We use this as a common prefix for our reuse IDs, and the index as the suffix. */
     let reuseIDBase = "editor-row-"
@@ -146,12 +137,7 @@ class MeetingEditorBaseViewController : EditorViewControllerBaseClass, UITableVi
      - returns the number of rows to display.
      */
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // Got this tip from here: http://natecook.com/blog/2014/10/loopy-random-enum-ideas/
-        var max: Int = 0
-        
-        while let _ = PrototypeSectionIndexes(rawValue: max) { max += 1 }
-        
-        return max
+        return self._internalRowHeights.count
     }
     
     /* ################################################################## */
@@ -341,6 +327,50 @@ class PublishedEditorTableViewCell: MeetingEditorViewCell {
     override func meetingObjectUpdated() {
         self.publishedLabel.text = NSLocalizedString(self.publishedLabel.text!, comment: "")
         self.publishedSwitch.isOn = self.meetingObject.published
+    }
+}
+
+/* ###################################################################################################################################### */
+// MARK: - Meeting Name Editor Table Cell Class -
+/* ###################################################################################################################################### */
+/**
+ This is the table view class for the name editor prototype.
+ */
+class StartTimeEditorTableViewCell: MeetingEditorViewCell {
+    /** This is the meeting name section. */
+    @IBOutlet weak var startTimeLabel: UILabel!
+    @IBOutlet weak var startTimeDatePicker: UIDatePicker!
+    
+    /* ################################################################## */
+    // MARK: IB Methods
+    /* ################################################################## */
+    /**
+     Respond to start time selection changing in the date picker control.
+     
+     - parameter sender: The IB object that initiated this change.
+     */
+    @IBAction func startTimeChanged(_ sender: UIDatePicker) {
+        let startTimeDate = sender.date
+        let unitFlags: NSCalendar.Unit = [.hour, .minute]
+        let startComponents = NSCalendar(identifier: NSCalendar.Identifier.gregorian)?.components(unitFlags, from: startTimeDate)
+        self.meetingObject.startTime = startComponents
+        self.owner.updateEditorDisplay(self)
+    }
+    
+    /* ################################################################## */
+    // MARK: Overridden Base Class Methods
+    /* ################################################################## */
+    /**
+     We set up our label, name and placeholder.
+     */
+    override func meetingObjectUpdated() {
+        self.startTimeLabel.text = NSLocalizedString(self.startTimeLabel.text!, comment: "")
+        self.startTimeDatePicker.setValue(self.owner.view.tintColor, forKeyPath: "textColor")
+        if let components = self.meetingObject.startTimeAndDay {
+            if let date = NSCalendar(identifier: NSCalendar.Identifier.gregorian)?.date(from: components) {
+                self.startTimeDatePicker.setDate(date, animated: true)
+            }
+        }
     }
 }
 
