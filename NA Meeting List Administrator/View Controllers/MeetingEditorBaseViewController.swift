@@ -52,6 +52,10 @@ class MeetingEditorBaseViewController : EditorViewControllerBaseClass, UITableVi
     /** This is a list of all the cells (editor sections). */
     var editorSections: [MeetingEditorViewCell] = []
     
+    /** These store the original (unpublished) colors for the background gradient. */
+    private var _publishedTopColor: UIColor! = nil
+    private var _publishedBottomColor: UIColor! = nil
+    
     /** This is the structural table view */
     @IBOutlet var tableView: UITableView!
     
@@ -69,9 +73,22 @@ class MeetingEditorBaseViewController : EditorViewControllerBaseClass, UITableVi
     @IBInspectable var showHistory: Bool!
     /** If true, then we show the cancel button. */
     @IBInspectable var showCancel: Bool!
+    /** If the meeting is unpublished, we have a different color background gradient. */
+    @IBInspectable var unpublishedTopColor: UIColor!
+    @IBInspectable var unpublishedBottomColor: UIColor!
     
     /* ################################################################## */
     // MARK: Overridden Base Class Methods
+    /* ################################################################## */
+    /**
+     We take this opportunity to save our published colors.
+     */
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self._publishedTopColor = (self.view as! EditorViewBaseClass).topColor
+        self._publishedBottomColor = (self.view as! EditorViewBaseClass).bottomColor
+    }
+    
     /* ################################################################## */
     /**
      Called as the view is about to appear.
@@ -83,6 +100,7 @@ class MeetingEditorBaseViewController : EditorViewControllerBaseClass, UITableVi
         self.editorSections = []
         self.tableView.reloadData()
         self.saveButton.title = NSLocalizedString(self.saveButton.title!, comment: "")
+        self.updateEditorDisplay()
     }
     
     /* ################################################################## */
@@ -104,10 +122,18 @@ class MeetingEditorBaseViewController : EditorViewControllerBaseClass, UITableVi
     /**
      Called when something changes in the various controls.
      
-     - parameter inChangedCell: The table cell object that experienced the change.
+     - parameter inChangedCell: The table cell object that experienced the change. If nil, then no meeting cell was changed. nil is default.
      */
-    func updateEditorDisplay(_ inChangedCell: MeetingEditorViewCell) {
+    func updateEditorDisplay(_ inChangedCell: MeetingEditorViewCell! = nil) {
+        if self.meetingObject.published {
+            (self.view as! EditorViewBaseClass).topColor = self._publishedTopColor
+            (self.view as! EditorViewBaseClass).bottomColor = self._publishedBottomColor
+        } else {
+            (self.view as! EditorViewBaseClass).topColor = self.unpublishedTopColor
+            (self.view as! EditorViewBaseClass).bottomColor = self.unpublishedBottomColor
+        }
         
+        self.view.setNeedsLayout()
     }
     
     /* ################################################################## */

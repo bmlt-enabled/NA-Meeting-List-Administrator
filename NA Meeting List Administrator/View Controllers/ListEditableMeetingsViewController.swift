@@ -74,6 +74,9 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
     @IBOutlet weak var meetingListTableView: UITableView!
     /** This is a picker view that displays all the towns. */
     @IBOutlet weak var townBoroughPickerView: UIPickerView!
+    /** If the meeting is unpublished, we have a different color background. */
+    @IBInspectable var unpublishedRowColorEven: UIColor!
+    @IBInspectable var unpublishedRowColorOdd: UIColor!
     
     /* ################################################################## */
     // MARK: Internal Instance Properties
@@ -356,8 +359,12 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let ret = tableView.dequeueReusableCell(withIdentifier: self._meetingPrototypeReuseID) as? MeetingTableViewCell {
             // We alternate with slightly darker cells. */
-            ret.backgroundColor = (0 == (indexPath.row % 2)) ? UIColor.clear : UIColor.init(white: 0, alpha: 0.1)
             if let meetingObject = self._currentMeetingList[indexPath.row] as? BMLTiOSLibEditableMeetingNode {
+                if meetingObject.published {
+                    ret.backgroundColor = (0 == (indexPath.row % 2)) ? UIColor.clear : UIColor.init(white: 0, alpha: 0.1)
+                } else {
+                    ret.backgroundColor = (0 == (indexPath.row % 2)) ? self.unpublishedRowColorEven : self.unpublishedRowColorOdd
+                }
                 ret.meetingInfoLabel.text = meetingObject.name
                 ret.addressLabel.text = meetingObject.basicAddress
                 if var hour = meetingObject.startTimeAndDay.hour {
