@@ -411,6 +411,56 @@
                                             <outlet property="startTimeLabel" destination="Jnw-WD-nkG" id="2sX-rl-jmt"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="editor-row-4" rowHeight="100" id="8Kx-r0-m82" userLabel="Duration" customClass="DurationEditorTableViewCell" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="285" width="320" height="100"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8Kx-r0-m82" id="2FQ-zV-Q8o">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DURATION-LABEL" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j7r-CJ-ohc" userLabel="Duration Label">
+                                                    <rect key="frame" x="8" y="8" width="304" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="yUA-Cd-GjY"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.79866071429999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="countDownTimer" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="489-Xv-YcV">
+                                                    <rect key="frame" x="10" y="37" width="300" height="60"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="60" id="Sdp-Qp-24b"/>
+                                                        <constraint firstAttribute="width" constant="300" id="fOT-bi-BDL"/>
+                                                    </constraints>
+                                                    <date key="date" timeIntervalSinceReferenceDate="508541078.269301">
+                                                        <!--2017-02-11 21:24:38 +0000-->
+                                                    </date>
+                                                    <connections>
+                                                        <action selector="durationChanged:" destination="8Kx-r0-m82" eventType="valueChanged" id="BYx-At-Ybh"/>
+                                                    </connections>
+                                                </datePicker>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstItem="489-Xv-YcV" firstAttribute="centerX" secondItem="2FQ-zV-Q8o" secondAttribute="centerX" id="9xD-ae-Etg"/>
+                                                <constraint firstItem="j7r-CJ-ohc" firstAttribute="top" secondItem="2FQ-zV-Q8o" secondAttribute="topMargin" id="GAq-WZ-oJk"/>
+                                                <constraint firstItem="j7r-CJ-ohc" firstAttribute="top" secondItem="2FQ-zV-Q8o" secondAttribute="topMargin" id="M1V-1U-HwB"/>
+                                                <constraint firstItem="j7r-CJ-ohc" firstAttribute="trailing" secondItem="2FQ-zV-Q8o" secondAttribute="trailingMargin" id="XDZ-mK-CpP"/>
+                                                <constraint firstAttribute="bottom" secondItem="489-Xv-YcV" secondAttribute="bottom" constant="3" id="Zki-wM-H83"/>
+                                                <constraint firstItem="j7r-CJ-ohc" firstAttribute="leading" secondItem="2FQ-zV-Q8o" secondAttribute="leadingMargin" id="n5Z-87-lf1"/>
+                                                <constraint firstItem="j7r-CJ-ohc" firstAttribute="leading" secondItem="2FQ-zV-Q8o" secondAttribute="leadingMargin" id="vHs-5X-K6j"/>
+                                                <constraint firstItem="j7r-CJ-ohc" firstAttribute="trailing" secondItem="2FQ-zV-Q8o" secondAttribute="trailingMargin" id="vI4-7F-6wZ"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <color key="tintColor" red="0.0" green="0.0" blue="0.79866071429999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <outlet property="durationDatePicker" destination="489-Xv-YcV" id="xCz-xf-zbp"/>
+                                            <outlet property="durationLabel" destination="j7r-CJ-ohc" id="BAf-vv-glq"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                                 <sections/>
                                 <userDefinedRuntimeAttributes>

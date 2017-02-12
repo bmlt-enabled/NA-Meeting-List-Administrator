@@ -60,3 +60,5 @@
 "WEEKDAY-LABEL"                                                                                 =   "Weekday:";
 
 "START-TIME-LABEL"                                                                              =   "Start Time:";
+
+"DURATION-LABEL"                                                                                =   "Duration:";

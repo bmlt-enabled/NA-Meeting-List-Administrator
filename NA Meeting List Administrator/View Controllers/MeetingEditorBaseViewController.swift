@@ -32,7 +32,9 @@ class MeetingEditorBaseViewController : EditorViewControllerBaseClass, UITableVi
     private var _internalRowHeights: [String:CGFloat] = ["editor-row-0":37,
                                                          "editor-row-1":60,
                                                          "editor-row-2":60,
-                                                         "editor-row-3":100]
+                                                         "editor-row-3":100,
+                                                         "editor-row-4":100
+    ]
     
     /** We use this as a common prefix for our reuse IDs, and the index as the suffix. */
     let reuseIDBase = "editor-row-"
@@ -186,7 +188,7 @@ class MeetingEditorBaseViewController : EditorViewControllerBaseClass, UITableVi
 }
 
 /* ###################################################################################################################################### */
-// MARK: - Meeting Name Editor Table Cell Class -
+// MARK: - Meeting Editor Table Cell Base Class -
 /* ###################################################################################################################################### */
 /**
  This is the base table view class for the various cell prototypes.
@@ -218,84 +220,7 @@ class MeetingEditorViewCell: UITableViewCell {
 }
 
 /* ###################################################################################################################################### */
-// MARK: - Meeting Name Editor Table Cell Class -
-/* ###################################################################################################################################### */
-/**
- This is the table view class for the name editor prototype.
- */
-class MeetingNameEditorTableViewCell: MeetingEditorViewCell {
-    /** This is the meeting name section. */
-    @IBOutlet weak var meetingNameLabel: UILabel!
-    @IBOutlet weak var meetingNameTextField: UITextField!
-    
-    /* ################################################################## */
-    // MARK: IB Methods
-    /* ################################################################## */
-    /**
-     Respond to text changing in the text field.
-     
-     - parameter sender: The IB object that initiated this change.
-     */
-    @IBAction func meetingNameTextChanged(_ sender: UITextField) {
-        self.meetingObject.name = sender.text!
-        self.owner.updateEditorDisplay(self)
-    }
-    
-    /* ################################################################## */
-    // MARK: Overridden Base Class Methods
-    /* ################################################################## */
-    /**
-     We set up our label, name and placeholder.
-     */
-    override func meetingObjectUpdated() {
-        self.meetingNameLabel.text = NSLocalizedString(self.meetingNameLabel.text!, comment: "")
-        self.meetingNameTextField.placeholder = NSLocalizedString(self.meetingNameTextField.placeholder!, comment: "")
-        self.meetingNameTextField.text = self.meetingObject.name
-    }
-}
-
-/* ###################################################################################################################################### */
-// MARK: - Meeting Name Editor Table Cell Class -
-/* ###################################################################################################################################### */
-/**
- This is the table view class for the name editor prototype.
- */
-class WeekdayEditorTableViewCell: MeetingEditorViewCell {
-    /** This is the meeting name section. */
-    @IBOutlet weak var weekdayLabel: UILabel!
-    @IBOutlet weak var weekdaySegmentedView: UISegmentedControl!
-    
-    /* ################################################################## */
-    // MARK: IB Methods
-    /* ################################################################## */
-    /**
-     Respond to weekday selection changing in the segmented control.
-     
-     - parameter sender: The IB object that initiated this change.
-     */
-    @IBAction func weekdayChanged(_ sender: UISegmentedControl) {
-        self.meetingObject.weekdayIndex = sender.selectedSegmentIndex + 1
-        self.owner.updateEditorDisplay(self)
-    }
-    
-    /* ################################################################## */
-    // MARK: Overridden Base Class Methods
-    /* ################################################################## */
-    /**
-     We set up our label, name and placeholder.
-     */
-    override func meetingObjectUpdated() {
-        self.weekdayLabel.text = NSLocalizedString(self.weekdayLabel.text!, comment: "")
-        for i in 0..<7 {
-            let weekdayName = AppStaticPrefs.weekdayNameFromWeekdayNumber(i + 1, isShort: true)
-            self.weekdaySegmentedView.setTitle(weekdayName, forSegmentAt: i)
-        }
-        self.weekdaySegmentedView.selectedSegmentIndex = self.meetingObject.weekdayIndex - 1
-    }
-}
-
-/* ###################################################################################################################################### */
-// MARK: - Meeting Name Editor Table Cell Class -
+// MARK: - Meeting Published Status Editor Table Cell Class -
 /* ###################################################################################################################################### */
 /**
  This is the table view class for the name editor prototype.
@@ -336,6 +261,83 @@ class PublishedEditorTableViewCell: MeetingEditorViewCell {
 /**
  This is the table view class for the name editor prototype.
  */
+class MeetingNameEditorTableViewCell: MeetingEditorViewCell {
+    /** This is the meeting name section. */
+    @IBOutlet weak var meetingNameLabel: UILabel!
+    @IBOutlet weak var meetingNameTextField: UITextField!
+    
+    /* ################################################################## */
+    // MARK: IB Methods
+    /* ################################################################## */
+    /**
+     Respond to text changing in the text field.
+     
+     - parameter sender: The IB object that initiated this change.
+     */
+    @IBAction func meetingNameTextChanged(_ sender: UITextField) {
+        self.meetingObject.name = sender.text!
+        self.owner.updateEditorDisplay(self)
+    }
+    
+    /* ################################################################## */
+    // MARK: Overridden Base Class Methods
+    /* ################################################################## */
+    /**
+     We set up our label, name and placeholder.
+     */
+    override func meetingObjectUpdated() {
+        self.meetingNameLabel.text = NSLocalizedString(self.meetingNameLabel.text!, comment: "")
+        self.meetingNameTextField.placeholder = NSLocalizedString(self.meetingNameTextField.placeholder!, comment: "")
+        self.meetingNameTextField.text = self.meetingObject.name
+    }
+}
+
+/* ###################################################################################################################################### */
+// MARK: - Meeting Weekday Editor Table Cell Class -
+/* ###################################################################################################################################### */
+/**
+ This is the table view class for the name editor prototype.
+ */
+class WeekdayEditorTableViewCell: MeetingEditorViewCell {
+    /** This is the meeting name section. */
+    @IBOutlet weak var weekdayLabel: UILabel!
+    @IBOutlet weak var weekdaySegmentedView: UISegmentedControl!
+    
+    /* ################################################################## */
+    // MARK: IB Methods
+    /* ################################################################## */
+    /**
+     Respond to weekday selection changing in the segmented control.
+     
+     - parameter sender: The IB object that initiated this change.
+     */
+    @IBAction func weekdayChanged(_ sender: UISegmentedControl) {
+        self.meetingObject.weekdayIndex = sender.selectedSegmentIndex + 1
+        self.owner.updateEditorDisplay(self)
+    }
+    
+    /* ################################################################## */
+    // MARK: Overridden Base Class Methods
+    /* ################################################################## */
+    /**
+     We set up our label, name and placeholder.
+     */
+    override func meetingObjectUpdated() {
+        self.weekdayLabel.text = NSLocalizedString(self.weekdayLabel.text!, comment: "")
+        for i in 0..<7 {
+            let weekdayName = AppStaticPrefs.weekdayNameFromWeekdayNumber(i + 1, isShort: true)
+            self.weekdaySegmentedView.setTitle(weekdayName, forSegmentAt: i)
+        }
+        self.weekdaySegmentedView.selectedSegmentIndex = self.meetingObject.weekdayIndex - 1
+    }
+}
+
+/* ###################################################################################################################################### */
+// MARK: - Meeting Start Time Editor Table Cell Class -
+/* ###################################################################################################################################### */
+/**
+ This is the table view class for the name editor prototype.
+ */
 class StartTimeEditorTableViewCell: MeetingEditorViewCell {
     /** This is the meeting name section. */
     @IBOutlet weak var startTimeLabel: UILabel!
@@ -368,9 +370,52 @@ class StartTimeEditorTableViewCell: MeetingEditorViewCell {
         self.startTimeDatePicker.setValue(self.owner.view.tintColor, forKeyPath: "textColor")
         if let components = self.meetingObject.startTimeAndDay {
             if let date = NSCalendar(identifier: NSCalendar.Identifier.gregorian)?.date(from: components) {
-                self.startTimeDatePicker.setDate(date, animated: true)
+                self.startTimeDatePicker.setDate(date, animated: false)
             }
         }
+    }
+}
+
+/* ###################################################################################################################################### */
+// MARK: - Meeting Duration Editor Table Cell Class -
+/* ###################################################################################################################################### */
+/**
+ This is the table view class for the name editor prototype.
+ */
+class DurationEditorTableViewCell: MeetingEditorViewCell {
+    /** This is the meeting name section. */
+    @IBOutlet weak var durationLabel: UILabel!
+    @IBOutlet weak var durationDatePicker: UIDatePicker!
+    
+    /* ################################################################## */
+    // MARK: IB Methods
+    /* ################################################################## */
+    /**
+     Respond to duration selection changing in the date picker control.
+     
+     - parameter sender: The IB object that initiated this change.
+     */
+    @IBAction func durationChanged(_ sender: UIDatePicker) {
+        let startTimeDate = sender.date
+        let unitFlags: NSCalendar.Unit = [.hour, .minute]
+        let durationComponents = NSCalendar(identifier: NSCalendar.Identifier.gregorian)?.components(unitFlags, from: startTimeDate)
+        self.meetingObject.durationInMinutes = ((durationComponents?.hour)! * 60) + (durationComponents?.minute)!
+        self.owner.updateEditorDisplay(self)
+    }
+    
+    /* ################################################################## */
+    // MARK: Overridden Base Class Methods
+    /* ################################################################## */
+    /**
+     We set up our label, name and placeholder.
+     */
+    override func meetingObjectUpdated() {
+        self.durationLabel.text = NSLocalizedString(self.durationLabel.text!, comment: "")
+        self.durationDatePicker.setValue(self.owner.view.tintColor, forKeyPath: "textColor")
+        let minutes = self.meetingObject.durationInMinutes
+        let timeDuration: TimeInterval = Double(minutes) * 60
+        
+        self.durationDatePicker.countDownDuration = timeDuration
     }
 }
 
