@@ -33,7 +33,8 @@ class MeetingEditorBaseViewController : EditorViewControllerBaseClass, UITableVi
                                                          "editor-row-1":60,
                                                          "editor-row-2":60,
                                                          "editor-row-3":100,
-                                                         "editor-row-4":100
+                                                         "editor-row-4":100,
+                                                         "editor-row-5":277
     ]
     
     /** We use this as a common prefix for our reuse IDs, and the index as the suffix. */
@@ -416,6 +417,114 @@ class DurationEditorTableViewCell: MeetingEditorViewCell {
         let timeDuration: TimeInterval = Double(minutes) * 60
         
         self.durationDatePicker.countDownDuration = timeDuration
+    }
+}
+
+/* ###################################################################################################################################### */
+// MARK: - Meeting Address Editor Table Cell Class -
+/* ###################################################################################################################################### */
+/**
+ This is the table view class for the address entry section (several components).
+ */
+class AddressEditorTableViewCell: MeetingEditorViewCell {
+    @IBOutlet weak var venueNameLabel: UILabel!
+    @IBOutlet weak var venueNameTextField: UITextField!
+    
+    @IBOutlet weak var streetAddressLabel: UILabel!
+    @IBOutlet weak var streetAddressTextField: UITextField!
+    
+    @IBOutlet weak var neighborhoodLabel: UILabel!
+    @IBOutlet weak var neighborhoodTextField: UITextField!
+    
+    @IBOutlet weak var boroughLabel: UILabel!
+    @IBOutlet weak var boroughTextField: UITextField!
+    
+    @IBOutlet weak var townLabel: UILabel!
+    @IBOutlet weak var townTextField: UITextField!
+    
+    @IBOutlet weak var countyLabel: UILabel!
+    @IBOutlet weak var countyTextField: UITextField!
+    
+    @IBOutlet weak var stateLabel: UILabel!
+    @IBOutlet weak var stateTextField: UITextField!
+    
+    @IBOutlet weak var zipLabel: UILabel!
+    @IBOutlet weak var zipTextField: UITextField!
+    
+    @IBOutlet weak var nationLabel: UILabel!
+    @IBOutlet weak var nationTextField: UITextField!
+    
+    @IBOutlet weak var extraInfoLabel: UILabel!
+    @IBOutlet weak var extraInfoTextField: UITextField!
+    
+    /* ################################################################## */
+    // MARK: IB Methods
+    /* ################################################################## */
+    /**
+     Respond to text changing in the text field.
+     
+     - parameter sender: The IB object that initiated this change.
+     */
+    @IBAction func locationNameTextChanged(_ sender: UITextField) {
+        self.meetingObject.locationName = sender.text!
+        self.owner.updateEditorDisplay(self)
+    }
+    
+    /* ################################################################## */
+    /**
+     Respond to text changing in the text field.
+     
+     - parameter sender: The IB object that initiated this change.
+     */
+    @IBAction func streetAddressTextChanged(_ sender: UITextField) {
+        self.meetingObject.locationStreetAddress = sender.text!
+        self.owner.updateEditorDisplay(self)
+    }
+    
+    /* ################################################################## */
+    /**
+     Respond to text changing in the text field.
+     
+     - parameter sender: The IB object that initiated this change.
+     */
+    @IBAction func neighborhoodTextChanged(_ sender: UITextField) {
+        self.meetingObject.locationNeighborhood = sender.text!
+        self.owner.updateEditorDisplay(self)
+    }
+    
+    /* ################################################################## */
+    /**
+     Respond to text changing in the text field.
+     
+     - parameter sender: The IB object that initiated this change.
+     */
+    @IBAction func boroughTextChanged(_ sender: UITextField) {
+        self.meetingObject.locationBorough = sender.text!
+        self.owner.updateEditorDisplay(self)
+    }
+    
+    /* ################################################################## */
+    // MARK: Overridden Base Class Methods
+    /* ################################################################## */
+    /**
+     We set up our label, name and placeholder.
+     */
+    override func meetingObjectUpdated() {
+        self.venueNameLabel.text = NSLocalizedString(self.venueNameLabel.text!, comment: "")
+        self.venueNameTextField.placeholder = NSLocalizedString(self.venueNameTextField.placeholder!, comment: "")
+        self.venueNameTextField.text = self.meetingObject.locationName
+        
+        self.streetAddressLabel.text = NSLocalizedString(self.streetAddressLabel.text!, comment: "")
+        self.streetAddressTextField.placeholder = NSLocalizedString(self.streetAddressTextField.placeholder!, comment: "")
+        self.streetAddressTextField.text = self.meetingObject.locationStreetAddress
+        
+        self.neighborhoodLabel.text = NSLocalizedString(self.neighborhoodLabel.text!, comment: "")
+        self.neighborhoodTextField.placeholder = NSLocalizedString(self.neighborhoodTextField.placeholder!, comment: "")
+        self.neighborhoodTextField.text = self.meetingObject.locationNeighborhood
+        
+        self.boroughLabel.text = NSLocalizedString(self.boroughLabel.text!, comment: "")
+        self.boroughTextField.placeholder = NSLocalizedString(self.boroughTextField.placeholder!, comment: "")
+        self.boroughTextField.text = self.meetingObject.locationBorough
     }
 }
 

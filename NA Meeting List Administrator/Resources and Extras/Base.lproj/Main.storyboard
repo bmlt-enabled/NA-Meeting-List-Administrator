@@ -200,11 +200,11 @@
                         <viewControllerLayoutGuide type="bottom" id="nCd-vQ-VIX"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="tAG-NX-Teg" customClass="EditorViewBaseClass" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="64" width="320" height="527"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="1887"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hu8-sJ-cp5">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="527"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="1887"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="editor-row-0" rowHeight="37" id="I7d-EO-pHQ" userLabel="Published" customClass="PublishedEditorTableViewCell" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
@@ -276,7 +276,7 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.79866071429999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="MEETING-NAME-PLACEHOLDER" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8Jp-XV-pAa">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="MEETING-NAME-PLACEHOLDER" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="8Jp-XV-pAa">
                                                     <rect key="frame" x="8" y="30" width="304" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="QUj-hK-eMK"/>
@@ -461,6 +461,140 @@
                                             <outlet property="durationLabel" destination="j7r-CJ-ohc" id="BAf-vv-glq"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="editor-row-5" rowHeight="277" id="sLE-EG-x4O" userLabel="Address" customClass="AddressEditorTableViewCell" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="385" width="320" height="277"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sLE-EG-x4O" id="hr9-om-ynX">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="277"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LOCATION-NAME-LABEL" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HZf-ir-fyH">
+                                                    <rect key="frame" x="8" y="8" width="304" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="7aO-9L-1mg"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="LOCATION-NAME-PLACEHOLDER" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="8XV-SV-B1v">
+                                                    <rect key="frame" x="8" y="37" width="304" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="30f-jZ-Rf3"/>
+                                                    </constraints>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="locationNameTextChanged:" destination="sLE-EG-x4O" eventType="editingChanged" id="gPz-Mh-wBb"/>
+                                                    </connections>
+                                                </textField>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="STREET-ADDRESS-LABEL" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rDA-h6-U1Q">
+                                                    <rect key="frame" x="8" y="75" width="304" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="eKg-aS-JF9"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="STREET-ADDRESS-PLACEHOLDER" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="I8E-Dc-mZq">
+                                                    <rect key="frame" x="8" y="104" width="304" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="w9q-jM-xWI"/>
+                                                    </constraints>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="streetAddressTextChanged:" destination="sLE-EG-x4O" eventType="editingChanged" id="qsA-E8-i49"/>
+                                                    </connections>
+                                                </textField>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NEIGHBORHOOD-LABEL" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mns-A4-j2N">
+                                                    <rect key="frame" x="8" y="142" width="304" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="mIG-gC-Sr1"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="NEIGHBORHOOD-PLACEHOLDER" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="dAl-cq-HU3">
+                                                    <rect key="frame" x="8" y="171" width="304" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="0RU-sn-gEJ"/>
+                                                    </constraints>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="neighborhoodTextChanged:" destination="sLE-EG-x4O" eventType="editingChanged" id="m2D-rE-E8E"/>
+                                                    </connections>
+                                                </textField>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BOROUGH-LABEL" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ww5-Hz-3Zn">
+                                                    <rect key="frame" x="8" y="209" width="304" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="3V7-iP-sUj"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="BOROUGH-PLACEHOLDER" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="rhl-pA-sks">
+                                                    <rect key="frame" x="8" y="238" width="304" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="a4X-OY-qjC"/>
+                                                    </constraints>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="boroughTextChanged:" destination="sLE-EG-x4O" eventType="editingChanged" id="sbQ-eP-Bul"/>
+                                                    </connections>
+                                                </textField>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstItem="mns-A4-j2N" firstAttribute="trailing" secondItem="hr9-om-ynX" secondAttribute="trailingMargin" id="9SP-A1-4Tq"/>
+                                                <constraint firstItem="8XV-SV-B1v" firstAttribute="top" secondItem="HZf-ir-fyH" secondAttribute="bottom" constant="8" id="AAc-5p-jg6"/>
+                                                <constraint firstItem="I8E-Dc-mZq" firstAttribute="trailing" secondItem="hr9-om-ynX" secondAttribute="trailingMargin" id="Aiv-47-JmX"/>
+                                                <constraint firstItem="8XV-SV-B1v" firstAttribute="trailing" secondItem="hr9-om-ynX" secondAttribute="trailingMargin" id="Cyo-Yg-KbS"/>
+                                                <constraint firstItem="HZf-ir-fyH" firstAttribute="top" secondItem="hr9-om-ynX" secondAttribute="topMargin" id="Eft-uq-e3P"/>
+                                                <constraint firstItem="rDA-h6-U1Q" firstAttribute="trailing" secondItem="hr9-om-ynX" secondAttribute="trailingMargin" id="Ft5-Fv-BYY"/>
+                                                <constraint firstItem="ww5-Hz-3Zn" firstAttribute="trailing" secondItem="hr9-om-ynX" secondAttribute="trailingMargin" id="H7E-Pg-IHB"/>
+                                                <constraint firstAttribute="leadingMargin" secondItem="8XV-SV-B1v" secondAttribute="leading" id="J35-JS-sus"/>
+                                                <constraint firstItem="mns-A4-j2N" firstAttribute="top" secondItem="I8E-Dc-mZq" secondAttribute="bottom" constant="8" id="JhH-mV-eq4"/>
+                                                <constraint firstItem="ww5-Hz-3Zn" firstAttribute="top" secondItem="dAl-cq-HU3" secondAttribute="bottom" constant="8" id="RWL-tx-I81"/>
+                                                <constraint firstItem="dAl-cq-HU3" firstAttribute="trailing" secondItem="hr9-om-ynX" secondAttribute="trailingMargin" id="Tv6-X5-4GU"/>
+                                                <constraint firstItem="dAl-cq-HU3" firstAttribute="leading" secondItem="hr9-om-ynX" secondAttribute="leadingMargin" id="WIc-IM-Y9t"/>
+                                                <constraint firstItem="HZf-ir-fyH" firstAttribute="leading" secondItem="hr9-om-ynX" secondAttribute="leadingMargin" id="dbh-Ph-Vhk"/>
+                                                <constraint firstItem="I8E-Dc-mZq" firstAttribute="leading" secondItem="hr9-om-ynX" secondAttribute="leadingMargin" id="dvB-4b-8Lf"/>
+                                                <constraint firstItem="rDA-h6-U1Q" firstAttribute="top" secondItem="8XV-SV-B1v" secondAttribute="bottom" constant="8" id="fc8-DZ-hyJ"/>
+                                                <constraint firstItem="rhl-pA-sks" firstAttribute="trailing" secondItem="hr9-om-ynX" secondAttribute="trailingMargin" id="gOQ-Cj-ofj"/>
+                                                <constraint firstItem="HZf-ir-fyH" firstAttribute="trailing" secondItem="hr9-om-ynX" secondAttribute="trailingMargin" id="ipu-2e-FnO"/>
+                                                <constraint firstItem="rDA-h6-U1Q" firstAttribute="leading" secondItem="hr9-om-ynX" secondAttribute="leadingMargin" id="mTP-LM-rQs"/>
+                                                <constraint firstItem="mns-A4-j2N" firstAttribute="leading" secondItem="hr9-om-ynX" secondAttribute="leadingMargin" id="oxl-Ct-ifQ"/>
+                                                <constraint firstItem="dAl-cq-HU3" firstAttribute="top" secondItem="mns-A4-j2N" secondAttribute="bottom" constant="8" id="tak-jN-aaj"/>
+                                                <constraint firstItem="I8E-Dc-mZq" firstAttribute="top" secondItem="rDA-h6-U1Q" secondAttribute="bottom" constant="8" id="uID-3h-j4q"/>
+                                                <constraint firstItem="rhl-pA-sks" firstAttribute="leading" secondItem="hr9-om-ynX" secondAttribute="leadingMargin" id="ubc-NH-pEI"/>
+                                                <constraint firstItem="rhl-pA-sks" firstAttribute="top" secondItem="ww5-Hz-3Zn" secondAttribute="bottom" constant="8" id="we9-VP-wvo"/>
+                                                <constraint firstItem="8XV-SV-B1v" firstAttribute="leading" secondItem="hr9-om-ynX" secondAttribute="leadingMargin" id="xxv-Ur-Seq"/>
+                                                <constraint firstItem="ww5-Hz-3Zn" firstAttribute="leading" secondItem="hr9-om-ynX" secondAttribute="leadingMargin" id="z7K-KW-WDP"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <color key="tintColor" red="0.0" green="0.0" blue="0.79866071429999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <outlet property="boroughLabel" destination="ww5-Hz-3Zn" id="qfz-nK-bEK"/>
+                                            <outlet property="boroughTextField" destination="rhl-pA-sks" id="VXC-U8-L7D"/>
+                                            <outlet property="neighborhoodLabel" destination="mns-A4-j2N" id="R2B-xE-oHL"/>
+                                            <outlet property="neighborhoodTextField" destination="dAl-cq-HU3" id="XU3-VL-vr7"/>
+                                            <outlet property="streetAddressLabel" destination="rDA-h6-U1Q" id="5OM-tr-b8Q"/>
+                                            <outlet property="streetAddressTextField" destination="I8E-Dc-mZq" id="a1l-Ua-fRf"/>
+                                            <outlet property="venueNameLabel" destination="HZf-ir-fyH" id="QDf-MV-Fov"/>
+                                            <outlet property="venueNameTextField" destination="8XV-SV-B1v" id="zMk-80-qqd"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                                 <sections/>
                                 <userDefinedRuntimeAttributes>
@@ -507,6 +641,8 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="2000"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="color" keyPath="unpublishedTopColor">
                             <color key="value" red="1" green="0.42993861607142858" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>

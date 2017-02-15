@@ -62,3 +62,15 @@
 "START-TIME-LABEL"                                                                              =   "Start Time:";
 
 "DURATION-LABEL"                                                                                =   "Duration:";
+
+"LOCATION-NAME-LABEL"                                                                           =   "Location Name:";
+"LOCATION-NAME-PLACEHOLDER"                                                                     =   "Enter A Location Name";
+
+"STREET-ADDRESS-LABEL"                                                                          =   "Street Address:";
+"STREET-ADDRESS-PLACEHOLDER"                                                                    =   "Enter A Street Address";
+
+"NEIGHBORHOOD-LABEL"                                                                            =   "Neighborhood:";
+"NEIGHBORHOOD-PLACEHOLDER"                                                                      =   "Enter A Neighborhood";
+
+"BOROUGH-LABEL"                                                                                 =   "Borough:";
+"BOROUGH-PLACEHOLDER"                                                                           =   "Enter A Borough";
