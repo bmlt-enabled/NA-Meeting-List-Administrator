@@ -72,5 +72,20 @@
 "NEIGHBORHOOD-LABEL"                                                                            =   "Neighborhood:";
 "NEIGHBORHOOD-PLACEHOLDER"                                                                      =   "Enter A Neighborhood";
 
-"BOROUGH-LABEL"                                                                                 =   "Borough:";
-"BOROUGH-PLACEHOLDER"                                                                           =   "Enter A Borough";
+"BOROUGH-LABEL"                                                                                 =   "Borough or City Ward:";
+"BOROUGH-PLACEHOLDER"                                                                           =   "Enter A Borough or Ward";
+
+"TOWN-LABEL"                                                                                    =   "Town or City:";
+"TOWN-PLACEHOLDER"                                                                              =   "Enter A Town or City";
+
+"COUNTY-LABEL"                                                                                  =   "County:";
+"COUNTY-PLACEHOLDER"                                                                            =   "Enter A County";
+
+"STATE-LABEL"                                                                                   =   "State or Province:";
+"STATE-NAG-LABEL"                                                                               =   "(Always Use Abbreviation)";
+
+"ZIP-LABEL"                                                                                     =   "Postal (Zip) Code:";
+
+"NATION-LABEL"                                                                                  =   "Nation:";
+"NATION-PLACEHOLDER"                                                                            =   "Enter A Nation (Use Abbreviation)";
+

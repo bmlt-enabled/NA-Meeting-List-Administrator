@@ -34,7 +34,7 @@ class MeetingEditorBaseViewController : EditorViewControllerBaseClass, UITableVi
                                                          "editor-row-2":60,
                                                          "editor-row-3":100,
                                                          "editor-row-4":100,
-                                                         "editor-row-5":277
+                                                         "editor-row-5":619
     ]
     
     /** We use this as a common prefix for our reuse IDs, and the index as the suffix. */
@@ -447,6 +447,7 @@ class AddressEditorTableViewCell: MeetingEditorViewCell {
     
     @IBOutlet weak var stateLabel: UILabel!
     @IBOutlet weak var stateTextField: UITextField!
+    @IBOutlet weak var stateNagLabel: UILabel!
     
     @IBOutlet weak var zipLabel: UILabel!
     @IBOutlet weak var zipTextField: UITextField!
@@ -504,6 +505,61 @@ class AddressEditorTableViewCell: MeetingEditorViewCell {
     }
     
     /* ################################################################## */
+    /**
+     Respond to text changing in the text field.
+     
+     - parameter sender: The IB object that initiated this change.
+     */
+    @IBAction func townTextChanged(_ sender: UITextField) {
+        self.meetingObject.locationTown = sender.text!
+        self.owner.updateEditorDisplay(self)
+    }
+    
+    /* ################################################################## */
+    /**
+     Respond to text changing in the text field.
+     
+     - parameter sender: The IB object that initiated this change.
+     */
+    @IBAction func countyTextChanged(_ sender: UITextField) {
+        self.meetingObject.locationCounty = sender.text!
+        self.owner.updateEditorDisplay(self)
+    }
+    
+    /* ################################################################## */
+    /**
+     Respond to text changing in the text field.
+     
+     - parameter sender: The IB object that initiated this change.
+     */
+    @IBAction func stateTextChanged(_ sender: UITextField) {
+        self.meetingObject.locationState = sender.text!
+        self.owner.updateEditorDisplay(self)
+    }
+    
+    /* ################################################################## */
+    /**
+     Respond to text changing in the text field.
+     
+     - parameter sender: The IB object that initiated this change.
+     */
+    @IBAction func zipTextChanged(_ sender: UITextField) {
+        self.meetingObject.locationZip = sender.text!
+        self.owner.updateEditorDisplay(self)
+    }
+    
+    /* ################################################################## */
+    /**
+     Respond to text changing in the text field.
+     
+     - parameter sender: The IB object that initiated this change.
+     */
+    @IBAction func nationTextChanged(_ sender: UITextField) {
+        self.meetingObject.locationNation = sender.text!
+        self.owner.updateEditorDisplay(self)
+    }
+    
+    /* ################################################################## */
     // MARK: Overridden Base Class Methods
     /* ################################################################## */
     /**
@@ -525,6 +581,25 @@ class AddressEditorTableViewCell: MeetingEditorViewCell {
         self.boroughLabel.text = NSLocalizedString(self.boroughLabel.text!, comment: "")
         self.boroughTextField.placeholder = NSLocalizedString(self.boroughTextField.placeholder!, comment: "")
         self.boroughTextField.text = self.meetingObject.locationBorough
+        
+        self.townLabel.text = NSLocalizedString(self.townLabel.text!, comment: "")
+        self.townTextField.placeholder = NSLocalizedString(self.townTextField.placeholder!, comment: "")
+        self.townTextField.text = self.meetingObject.locationTown
+        
+        self.countyLabel.text = NSLocalizedString(self.countyLabel.text!, comment: "")
+        self.countyTextField.placeholder = NSLocalizedString(self.countyTextField.placeholder!, comment: "")
+        self.countyTextField.text = self.meetingObject.locationCounty
+        
+        self.stateLabel.text = NSLocalizedString(self.stateLabel.text!, comment: "")
+        self.stateNagLabel.text = NSLocalizedString(self.stateNagLabel.text!, comment: "")
+        self.stateTextField.text = self.meetingObject.locationState
+        
+        self.zipLabel.text = NSLocalizedString(self.zipLabel.text!, comment: "")
+        self.zipTextField.text = self.meetingObject.locationZip
+        
+        self.nationLabel.text = NSLocalizedString(self.nationLabel.text!, comment: "")
+        self.nationTextField.placeholder = NSLocalizedString(self.nationTextField.placeholder!, comment: "")
+        self.nationTextField.text = self.meetingObject.locationNation
     }
 }
 
