@@ -885,16 +885,14 @@ class MapTableViewCell: MeetingEditorViewCell, MKMapViewDelegate {
         
         var span: MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: self._mapSizeInDegrees, longitudeDelta: 0)
         
-        if inSetZoom {
-            span = MKCoordinateSpan(latitudeDelta: self._mapSizeInDegrees, longitudeDelta: 0)
-        } else {
+        if !inSetZoom {
             span = currentRegion.span
         }
         
         let newRegion: MKCoordinateRegion = MKCoordinateRegion(center: self.meetingObject.locationCoords, span: span)
         self.mapView.setRegion(newRegion, animated: false)
         
-        self._meetingMarker = MapAnnotation(coordinate: self.meetingObject.locationCoords, meetings: [self.meetingObject])
+        self._meetingMarker = MapAnnotation(coordinate: self.meetingObject.locationCoords, locations: [self.meetingObject])
         
         // Set the marker up.
         self.mapView.addAnnotation(self._meetingMarker)

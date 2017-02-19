@@ -1,31 +1,5 @@
 //
 //  MapMarker.swift
-//  BMLT NA Meeting Search
-//
-//  Created by MAGSHARE
-//
-//  https://bmlt.magshare.net/bmltioslib/
-//
-//  This software is licensed under the MIT License.
-//  Copyright (c) 2017 MAGSHARE
-//
-//  Permission is hereby granted, free of charge, to any person obtaining a copy
-//  of this software and associated documentation files (the "Software"), to deal
-//  in the Software without restriction, including without limitation the rights
-//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-//  copies of the Software, and to permit persons to whom the Software is
-//  furnished to do so, subject to the following conditions:
-//
-//  The above copyright notice and this permission notice shall be included in all
-//  copies or substantial portions of the Software.
-//
-//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-//  SOFTWARE.
 
 /**
  This file contains a couple of classes that allow us to establish and manipulate markers in our map.
@@ -45,30 +19,30 @@ class MapAnnotation : NSObject, MKAnnotation, NSCoding {
     let sMeetingsObjectKey: String = "MapAnnotation_Meetings"
 
     @objc var coordinate: CLLocationCoordinate2D = kCLLocationCoordinate2DInvalid
-    var meetings: [BMLTiOSLibMeetingNode] = []
+    var locations: [BMLTiOSLibMeetingNode] = []
     
     /* ################################################################## */
     /**
      Default initializer.
      
      - parameter coordinate: the coordinate for this annotation display.
-     - parameter meetings: a list of meetings to be assigned to this annotation.
+     - parameter locations: a list of locations to be assigned to this annotation.
      */
-    init(coordinate: CLLocationCoordinate2D, meetings: [BMLTiOSLibMeetingNode]) {
+    init(coordinate: CLLocationCoordinate2D, locations: [BMLTiOSLibMeetingNode]) {
         self.coordinate = coordinate
-        self.meetings = meetings
+        self.locations = locations
     }
     
     /* ################################################################## */
     // MARK: - NSCoding Protocol Methods -
     /* ################################################################## */
     /**
-     This method will restore the meetings and coordinate objects from the coder passed in.
+     This method will restore the locations and coordinate objects from the coder passed in.
      
      - parameter aDecoder: The coder that will contain the coordinates.
      */
     @objc required init?(coder aDecoder: NSCoder) {
-        self.meetings = aDecoder.decodeObject(forKey: self.sMeetingsObjectKey) as! [BMLTiOSLibMeetingNode]
+        self.locations = aDecoder.decodeObject(forKey: self.sMeetingsObjectKey) as! [BMLTiOSLibMeetingNode]
         if let tempCoordinate = aDecoder.decodeObject(forKey: self.sCoordinateObjectKey) as! [NSNumber]! {
             self.coordinate.longitude = tempCoordinate[0].doubleValue
             self.coordinate.latitude = tempCoordinate[1].doubleValue
@@ -77,7 +51,7 @@ class MapAnnotation : NSObject, MKAnnotation, NSCoding {
     
     /* ################################################################## */
     /**
-     This method saves the meetings and coordinates as part of the serialization.
+     This method saves the locations and coordinates as part of the serialization.
      
      - parameter aCoder: The coder that contains the coordinates.
      */
@@ -87,7 +61,7 @@ class MapAnnotation : NSObject, MKAnnotation, NSCoding {
         let values: [NSNumber] = [long, lat]
         
         aCoder.encode(values, forKey: self.sCoordinateObjectKey)
-        aCoder.encode(self.meetings, forKey: self.sMeetingsObjectKey)
+        aCoder.encode(self.locations, forKey: self.sMeetingsObjectKey)
     }
 }
 
@@ -102,8 +76,8 @@ class MapMarker : MKAnnotationView {
     // MARK: - Constant Properties -
     /* ################################################################## */
     let sAnnotationObjectKey: String = "MapMarker_Annotation"
-    let sRegularAnnotationOffsetUp: CGFloat     = 24; /**< This is how many display units to shift the annotation view up. */
-    let sRegularAnnotationOffsetRight: CGFloat  = 5;  /**< This is how many display units to shift the annotation view right. */
+    let sRegularAnnotationOffsetUp: CGFloat     = 0; /**< This is how many display units to shift the annotation view up. */
+    let sRegularAnnotationOffsetRight: CGFloat  = 0;  /**< This is how many display units to shift the annotation view right. */
 
     /* ################################################################## */
     // MARK: - Private Properties -
@@ -125,8 +99,8 @@ class MapMarker : MKAnnotationView {
         }
         
         set {
-            // You can only drag if there are no meetings, or just one meeting.
-            if 2 > self.meetings.count {
+            // You can only drag if there are no locations, or just one location.
+            if 2 > self.locations.count {
                 super.isDraggable = newValue
             } else {
                 super.isDraggable = false
@@ -150,9 +124,9 @@ class MapMarker : MKAnnotationView {
     /**
      This gives us a shortcut to the annotation prpoerty.
      */
-    var meetings: [BMLTiOSLibMeetingNode] {
+    var locations: [BMLTiOSLibMeetingNode] {
         get {
-            return ((self.annotation as! MapAnnotation).meetings)
+            return ((self.annotation as! MapAnnotation).locations)
         }
     }
     
@@ -194,7 +168,8 @@ class MapMarker : MKAnnotationView {
         
         self.backgroundColor = UIColor.clear
         self.image = self.selectImage(false)
-        self.centerOffset = CGPoint(x: self.sRegularAnnotationOffsetRight, y: -self.sRegularAnnotationOffsetUp)
+        self.centerOffset = CGPoint(x: self.sRegularAnnotationOffsetRight, y: self.sRegularAnnotationOffsetUp)
+        self._normalFrame = self.frame
     }
     
     /* ################################################################## */
@@ -209,7 +184,7 @@ class MapMarker : MKAnnotationView {
      */
     func selectImage(_ inAnimated: Bool) -> UIImage! {
         var image: UIImage! = nil
-        if self.isDraggable && (2 > self.meetings.count) {
+        if self.isDraggable && (2 > self.locations.count) {
             if self.dragState == MKAnnotationViewDragState.dragging {
                 if inAnimated {
                     image = self._animationFrames[self._currentFrame]
@@ -217,21 +192,15 @@ class MapMarker : MKAnnotationView {
                     if self._currentFrame >= self._animationFrames.count {
                         self._currentFrame = 0
                     }
-                } else {
-                    image = UIImage(named: "MapMarkerGreen", in: nil, compatibleWith: nil)
                 }
             } else {
-                image = UIImage(named: "MapMarkerBlack", in: nil, compatibleWith: nil)
+                image = UIImage(named: "BlackMarker", in: nil, compatibleWith: nil)
             }
         } else {
-            if self.isSelected {
-                image = UIImage(named: "MapMarkerGreen", in: nil, compatibleWith: nil)
+            if 1 < self.locations.count {
+                image = UIImage(named: "RedMarker", in: nil, compatibleWith: nil)
             } else {
-                if 1 < self.meetings.count {
-                    image = UIImage(named: "MapMarkerRed", in: nil, compatibleWith: nil)
-                } else {
-                    image = UIImage(named: "MapMarkerBlue", in: nil, compatibleWith: nil)
-                }
+                image = UIImage(named: "BlueMarker", in: nil, compatibleWith: nil)
             }
         }
         
@@ -294,14 +263,14 @@ class MapMarker : MKAnnotationView {
         case MKAnnotationViewDragState.starting:
             subsequentDragState = MKAnnotationViewDragState.dragging
             self._currentFrame = 0
-            self._normalFrame = self.frame
             self.frame.size = CGSize(width: 80, height: 80)
             
         case MKAnnotationViewDragState.dragging:
-            _ = self.selectImage(true)
+            self.startTimer()
             subsequentDragState = MKAnnotationViewDragState.dragging
-
+            
         default:
+            self.stopTimer()
             self.frame.size = self._normalFrame.size
             subsequentDragState = MKAnnotationViewDragState.none
         }
@@ -325,7 +294,7 @@ class MapMarker : MKAnnotationView {
     
     /* ################################################################## */
     /**
-     This method saves the meetings and coordinates as part of the serialization.
+     This method saves the locations and coordinates as part of the serialization.
      
      - parameter  aCoder: The coder that contains the coordinates.
      */
