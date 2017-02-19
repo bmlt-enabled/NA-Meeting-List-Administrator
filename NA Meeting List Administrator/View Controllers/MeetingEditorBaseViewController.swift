@@ -21,6 +21,7 @@
 
 import UIKit
 import BMLTiOSLib
+import MapKit
 
 /* ###################################################################################################################################### */
 // MARK: - Base Single Meeting Editor View Controller Class -
@@ -28,13 +29,15 @@ import BMLTiOSLib
 /**
  This class describes the basic functionality for a full meeting editor.
  */
-class MeetingEditorBaseViewController : EditorViewControllerBaseClass, UITableViewDataSource, UITableViewDelegate {
+class MeetingEditorBaseViewController : EditorViewControllerBaseClass, UITableViewDataSource, UITableViewDelegate, MKMapViewDelegate, CLLocationManagerDelegate {
     private var _internalRowHeights: [String:CGFloat] = ["editor-row-0":37,
                                                          "editor-row-1":60,
                                                          "editor-row-2":60,
                                                          "editor-row-3":100,
                                                          "editor-row-4":100,
-                                                         "editor-row-5":619
+                                                         "editor-row-5":619,
+                                                         "editor-row-6":0,
+                                                         "editor-row-7":210
     ]
     
     /** We use this as a common prefix for our reuse IDs, and the index as the suffix. */
@@ -43,12 +46,21 @@ class MeetingEditorBaseViewController : EditorViewControllerBaseClass, UITableVi
     /** This is the meeting object for this instance. */
     var meetingObject: BMLTiOSLibEditableMeetingNode! = nil
     
-    /** This is a list of all the cells (editor sections). */
-    var editorSections: [MeetingEditorViewCell] = []
-    
     /** These store the original (unpublished) colors for the background gradient. */
     private var _publishedTopColor: UIColor! = nil
     private var _publishedBottomColor: UIColor! = nil
+    
+    /** This holds our geocoder object when we are looking up addresses. */
+    private var _geocoder: CLGeocoder! = nil
+    
+    /** This will hold our location manager. */
+    private var _locationManager: CLLocationManager! = nil
+    
+    /** This will hold our address section (for geocoding and reverse geocoding). */
+    private var _addressInstance: AddressEditorTableViewCell! = nil
+    
+    /** This will hold our long/lat section (for geocoding and reverse geocoding). */
+    private var _longLatInstance: LongLatTableViewCell! = nil
     
     /** This is the structural table view */
     @IBOutlet var tableView: UITableView!
@@ -91,10 +103,26 @@ class MeetingEditorBaseViewController : EditorViewControllerBaseClass, UITableVi
      */
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.editorSections = []
         self.tableView.reloadData()
         self.saveButton.title = NSLocalizedString(self.saveButton.title!, comment: "")
         self.updateEditorDisplay()
+        
+        if nil != self._locationManager {
+            self._locationManager.stopUpdatingLocation()
+            self._locationManager = nil
+        }
+    }
+    /* ################################################################## */
+    /**
+     Called as the view is about to appear.
+     
+     - parameter animated: True, if the appearance is animated.
+     */
+    override func viewWillDisappear(_ animated: Bool) {
+        if nil != self._locationManager {
+            self._locationManager.stopUpdatingLocation()
+            self._locationManager = nil
+        }
     }
     
     /* ################################################################## */
@@ -131,6 +159,63 @@ class MeetingEditorBaseViewController : EditorViewControllerBaseClass, UITableVi
     }
     
     /* ################################################################## */
+    /**
+     Called after the long/lat is reverse geocoded.
+     
+     :param: placeMarks
+     :param: error
+     */
+    func reverseGecodeCompletionHandler (_ placeMarks: [CLPlacemark]?, error: Error?) {
+        self._geocoder = nil
+        if (nil != error) || (nil == placeMarks) || (0 == placeMarks!.count) {
+            MainAppDelegate.displayAlert("LOCAL-EDIT-REVERSE-GEOCODE-FAIL-TITLE", inMessage: "LOCAL-EDIT-REVERSE-GEOCODE-FAILURE-MESSAGE")
+        } else {
+            let placeMark = placeMarks![0]
+            if let location = placeMark.location {
+                print("\(location)")
+//                let coordinate = location.coordinate
+//                let locationName = placeMark.name
+//                let streetNumber = placeMark.subThoroughfare
+//                let streetName = placeMark.thoroughfare
+//                let borough = placeMark.subLocality
+//                let town = placeMark.locality
+//                let county = placeMark.subAdministrativeArea
+//                let state = placeMark.administrativeArea
+//                let zip = placeMark.postalCode
+            }
+        }
+    }
+    
+    /* ################################################################## */
+    /**
+     */
+    func lookUpAddressForMe() {
+        let addressString = self.meetingObject.basicAddress
+        self._geocoder = CLGeocoder()
+        self._geocoder.geocodeAddressString(addressString, completionHandler: self.gecodeCompletionHandler )
+    }
+    
+    /* ################################################################## */
+    /**
+     Called after the address geocode is done.
+     
+     :param: placeMarks
+     :param: error
+     */
+    func gecodeCompletionHandler (_ placeMarks: [CLPlacemark]?, error: Error?) {
+        DispatchQueue.main.async(execute: {
+            self._geocoder = nil
+            if (nil != error) || (nil == placeMarks) || (0 == placeMarks!.count) {
+                MainAppDelegate.displayAlert("LOCAL-EDIT-GEOCODE-FAIL-TITLE", inMessage: "LOCAL-EDIT-GEOCODE-FAILURE-MESSAGE")
+            } else {
+                if let location = placeMarks![0].location {
+                    self._longLatInstance.coordinate = location.coordinate
+                }
+            }
+        })
+    }
+    
+    /* ################################################################## */
     // MARK: UITableViewDataSource Methods
     /* ################################################################## */
     /**
@@ -158,7 +243,18 @@ class MeetingEditorBaseViewController : EditorViewControllerBaseClass, UITableVi
         if let returnableCell = tableView.dequeueReusableCell(withIdentifier: reuseID) as? MeetingEditorViewCell {
             returnableCell.owner = self
             returnableCell.meetingObject = self.meetingObject
-            self.editorSections.append(returnableCell)
+            // These are special sections that we hang onto.
+            if "editor-row-5" == reuseID {
+                // This contains all the address fields.
+                self._addressInstance = returnableCell as! AddressEditorTableViewCell
+            } else {
+                if "editor-row-7" == reuseID {
+                    // This contains the longitude and latitude editor.
+                    self._longLatInstance = returnableCell as! LongLatTableViewCell
+                } else {
+                    
+                }
+            }
             return returnableCell
         }
         
@@ -178,6 +274,9 @@ class MeetingEditorBaseViewController : EditorViewControllerBaseClass, UITableVi
         let reuseID = self.reuseIDBase + String(indexPath.row)
         
         switch(reuseID) {   // This allows us to set dynamic heights.
+        case "editor-row-6":    // The map view is a big square.
+            return tableView.bounds.width
+            
         default:
             if let height = self._internalRowHeights[reuseID] { // By default, we use our table, but we may not have something there.
                 return height
@@ -185,6 +284,38 @@ class MeetingEditorBaseViewController : EditorViewControllerBaseClass, UITableVi
         }
         
         return tableView.rowHeight  // All else fails, use the default table row height.
+    }
+    
+    /* ################################################################## */
+    // MARK: - CLLocationManagerDelegate Methods -
+    /* ################################################################## */
+    /**
+     Called if there was a failure with the location manager.
+     
+     :param: manager The Location Manager object that had the error.
+     :param: error The error in question.
+     */
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        self._locationManager.stopUpdatingLocation()
+        self._locationManager = nil
+        MainAppDelegate.displayAlert("LOCAL-EDIT-LOCATION-FAIL-TITLE", inMessage: "LOCAL-EDIT-LOCATION-FAILURE-MESSAGE")
+    }
+    
+    /* ################################################################## */
+    /**
+     Called when the location manager updates the locations.
+     
+     :param: manager The Location Manager object that had the event.
+     :param: locations an array of updated locations.
+     */
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        self._locationManager.stopUpdatingLocation()
+        self._locationManager = nil
+        if 0 < locations.count {
+            let newLocation = locations[0]
+            self._geocoder = CLGeocoder()
+            self._geocoder.reverseGeocodeLocation(newLocation, completionHandler: self.reverseGecodeCompletionHandler )
+        }
     }
 }
 
@@ -603,3 +734,130 @@ class AddressEditorTableViewCell: MeetingEditorViewCell {
     }
 }
 
+/* ###################################################################################################################################### */
+// MARK: - Long/Lat Editor Table Cell Class -
+/* ###################################################################################################################################### */
+/**
+ This is the table view class for the logitude and Latitude editor prototype.
+ */
+class LongLatTableViewCell: MeetingEditorViewCell {
+    @IBOutlet weak var longitudeLabel: UILabel!
+    @IBOutlet weak var longitudeTextField: UITextField!
+    @IBOutlet weak var latitudeLabel: UILabel!
+    @IBOutlet weak var latitudeTextField: UITextField!
+    @IBOutlet weak var setFromAddressButton: UIButton!
+    @IBOutlet weak var setFromMapButton: UIButton!
+    @IBOutlet weak var animationMaskView: UIView!
+    
+    /* ################################################################## */
+    // MARK: Instance Calculated Properties
+    /* ################################################################## */
+    /**
+     Gets and sets the long/lat from the location manager type.
+     */
+    var coordinate: CLLocationCoordinate2D {
+        get {
+            var ret: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 0, longitude: 0)
+            if let long = Double(self.longitudeTextField.text!) {
+                if let lat = Double(self.latitudeTextField.text!) {
+                    ret = CLLocationCoordinate2D(latitude: lat, longitude: long)
+                }
+            }
+            
+            return ret
+        }
+        
+        set {
+            self.animationMaskView.isHidden = true
+            self.longitudeTextField.text = String(newValue.longitude)
+            self.latitudeTextField.text = String(newValue.longitude)
+            self.owner.updateEditorDisplay(self)
+        }
+    }
+    
+    /* ################################################################## */
+    // MARK: IB Methods
+    /* ################################################################## */
+    /**
+     Respond to text changing in the text field.
+     
+     - parameter sender: The IB object that initiated this change.
+     */
+    @IBAction func longitudeOrLatitudeTextChanged(_ sender: UITextField) {
+        if sender == self.longitudeTextField {
+            self.meetingObject.locationCoords.longitude = Double ( sender.text! )!
+        } else {
+            self.meetingObject.locationCoords.latitude = Double ( sender.text! )!
+        }
+        self.owner.updateEditorDisplay(self)
+    }
+    
+    /* ################################################################## */
+    // MARK: IB Methods
+    /* ################################################################## */
+    /**
+     Respond to text changing in the text field.
+     
+     - parameter sender: The IB object that initiated this change.
+     */
+    @IBAction func setFromAddressButtonHit(_ sender: UIButton) {
+        self.animationMaskView.isHidden = false
+        self.owner.lookUpAddressForMe()
+    }
+    
+    /* ################################################################## */
+    // MARK: IB Methods
+    /* ################################################################## */
+    /**
+     Respond to text changing in the text field.
+     
+     - parameter sender: The IB object that initiated this change.
+     */
+    @IBAction func setAddressFromMapButtonHit(_ sender: UIButton) {
+        self.owner.updateEditorDisplay(self)
+    }
+    
+    /* ################################################################## */
+    // MARK: Overridden Base Class Methods
+    /* ################################################################## */
+    /**
+     We set up our label, name and placeholder.
+     */
+    override func meetingObjectUpdated() {
+        self.longitudeLabel.text = NSLocalizedString(self.longitudeLabel.text!, comment: "")
+        self.longitudeTextField.placeholder = NSLocalizedString(self.longitudeTextField.placeholder!, comment: "")
+        self.longitudeTextField.text = String(self.meetingObject.locationCoords.longitude)
+        self.latitudeLabel.text = NSLocalizedString(self.latitudeLabel.text!, comment: "")
+        self.latitudeTextField.placeholder = NSLocalizedString(self.latitudeTextField.placeholder!, comment: "")
+        self.latitudeTextField.text = String(self.meetingObject.locationCoords.latitude)
+        self.setFromAddressButton.setTitle(NSLocalizedString(self.setFromAddressButton.title(for: UIControlState.normal)!, comment: ""), for: UIControlState.normal)
+        self.setFromMapButton.setTitle(NSLocalizedString(self.setFromMapButton.title(for: UIControlState.normal)!, comment: ""), for: UIControlState.normal)
+        self.animationMaskView.isHidden = true
+    }
+}
+
+/* ###################################################################################################################################### */
+// MARK: - Map Editor Table Cell Class -
+/* ###################################################################################################################################### */
+/**
+ This is the table view class for the map editor prototype.
+ */
+class MapTableViewCell: MeetingEditorViewCell {
+    @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var mapTypeSegmentedView: UISegmentedControl!
+
+    @IBAction func mapTypeChanged(_ sender: UISegmentedControl) {
+    }
+    
+    /* ################################################################## */
+    // MARK: Overridden Base Class Methods
+    /* ################################################################## */
+    /**
+     We set up our label, name and placeholder.
+     */
+    override func meetingObjectUpdated() {
+        for index in 0..<self.mapTypeSegmentedView.numberOfSegments {
+            self.mapTypeSegmentedView.setTitle(NSLocalizedString(self.mapTypeSegmentedView.titleForSegment(at: index)!, comment: ""), forSegmentAt: index)
+        }
+    }
+}

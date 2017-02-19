@@ -89,3 +89,20 @@
 "NATION-LABEL"                                                                                  =   "Nation:";
 "NATION-PLACEHOLDER"                                                                            =   "Enter A Nation (Use Abbreviation)";
 
+"LONGITUDE-LABEL"                                                                               =   "Longitude:";
+"LONGITUDE-PLACEHOLDER"                                                                         =   "Enter The Meeting Location Longitude.";
+
+"LATITUDE-LABEL"                                                                                =   "Latitude:";
+"LATITUDE-PLACEHOLDER"                                                                          =   "Enter The Meeting Location Latitude.";
+
+"LONG-LAT-SET-FROM-ADDRESS-BUTTON"                                                              =   "Set Map to Match Address";
+"LONG-LAT-SET-FROM-MAP-BUTTON"                                                                  =   "Set Address From Map";
+
+"LOCAL-EDIT-LOCATION-FAIL-TITLE"                                                                =   "Location Error";
+"LOCAL-EDIT-LOCATION-FAILURE-MESSAGE"                                                           =   "Unable to determine a location from the address.";
+"LOCAL-EDIT-REVERSE-GEOCODE-FAILURE-MESSAGE"                                                    =   "Unable to determine an address from your location.";
+
+"MAP-TYPE-NORMAL"                                                                               =   "Standard";
+"MAP-TYPE-HYBRID"                                                                               =   "Hybrid";
+"MAP-TYPE-SATELLITE"                                                                            =   "Satellite";
+
