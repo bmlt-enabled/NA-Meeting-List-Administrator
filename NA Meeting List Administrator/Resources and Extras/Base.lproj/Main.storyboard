@@ -787,10 +787,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="VBd-Ma-4wP">
-                                                    <rect key="frame" x="12" y="4" width="296" height="287"/>
+                                                    <rect key="frame" x="20" y="8" width="280" height="283"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="6N9-1o-df9" id="7oc-Ni-nTM"/>
+                                                    </connections>
                                                 </mapView>
                                                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="qat-vV-uyK">
-                                                    <rect key="frame" x="12" y="291" width="296" height="29"/>
+                                                    <rect key="frame" x="20" y="291" width="280" height="29"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="28" id="HTu-YW-dWX"/>
                                                     </constraints>
@@ -807,12 +810,12 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstItem="qat-vV-uyK" firstAttribute="top" secondItem="VBd-Ma-4wP" secondAttribute="bottom" id="OV0-GH-cFH"/>
-                                                <constraint firstAttribute="trailing" secondItem="VBd-Ma-4wP" secondAttribute="trailing" constant="12" id="Qf4-lc-CO5"/>
+                                                <constraint firstAttribute="trailing" secondItem="VBd-Ma-4wP" secondAttribute="trailing" constant="20" id="Qf4-lc-CO5"/>
                                                 <constraint firstItem="qat-vV-uyK" firstAttribute="width" secondItem="VBd-Ma-4wP" secondAttribute="width" id="Rgy-xN-yJI"/>
-                                                <constraint firstItem="VBd-Ma-4wP" firstAttribute="top" secondItem="jiA-gh-gim" secondAttribute="top" constant="4" id="WY7-ge-xN8"/>
+                                                <constraint firstItem="VBd-Ma-4wP" firstAttribute="top" secondItem="jiA-gh-gim" secondAttribute="top" constant="8" id="WY7-ge-xN8"/>
                                                 <constraint firstItem="qat-vV-uyK" firstAttribute="leading" secondItem="VBd-Ma-4wP" secondAttribute="leading" id="hGw-Kl-QK0"/>
                                                 <constraint firstAttribute="bottom" secondItem="qat-vV-uyK" secondAttribute="bottom" constant="1" id="ywY-K1-OOl"/>
-                                                <constraint firstItem="VBd-Ma-4wP" firstAttribute="leading" secondItem="jiA-gh-gim" secondAttribute="leading" constant="12" id="zbc-u1-IcS"/>
+                                                <constraint firstItem="VBd-Ma-4wP" firstAttribute="leading" secondItem="jiA-gh-gim" secondAttribute="leading" constant="20" id="zbc-u1-IcS"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>

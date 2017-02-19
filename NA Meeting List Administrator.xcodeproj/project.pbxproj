@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		770E78461E42685C0061F344 /* BMLTiOSLib.framework in Copy Framework */ = {isa = PBXBuildFile; fileRef = 77A099B61E379DAB0066F6A2 /* BMLTiOSLib.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		77140E901E37D3E1008BBB12 /* FXKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 77140E8F1E37D3E1008BBB12 /* FXKeychain.m */; };
+		7746B14A1E59FA5800030B66 /* MapMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7746B1491E59FA5800030B66 /* MapMarker.swift */; };
 		777178141E454AB30027F8E4 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777178131E454AB30027F8E4 /* SettingsViewController.swift */; };
 		777178181E454C0D0027F8E4 /* SelectServiceBodiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777178171E454C0D0027F8E4 /* SelectServiceBodiesViewController.swift */; };
 		7784D3DC1E454D0300953CA0 /* ListEditableMeetingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7784D3DB1E454D0300953CA0 /* ListEditableMeetingsViewController.swift */; };
@@ -76,6 +77,7 @@
 		770E5E931E37937400CBE834 /* LICENSE.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		77140E8E1E37D3E1008BBB12 /* FXKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FXKeychain.h; path = FXKeychain/FXKeychain/FXKeychain.h; sourceTree = SOURCE_ROOT; };
 		77140E8F1E37D3E1008BBB12 /* FXKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FXKeychain.m; path = FXKeychain/FXKeychain/FXKeychain.m; sourceTree = SOURCE_ROOT; };
+		7746B1491E59FA5800030B66 /* MapMarker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapMarker.swift; path = "Main App/MapMarker.swift"; sourceTree = "<group>"; };
 		777178131E454AB30027F8E4 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsViewController.swift; path = "View Controllers/SettingsViewController.swift"; sourceTree = "<group>"; };
 		777178171E454C0D0027F8E4 /* SelectServiceBodiesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectServiceBodiesViewController.swift; path = "View Controllers/SelectServiceBodiesViewController.swift"; sourceTree = "<group>"; };
 		7784D3DB1E454D0300953CA0 /* ListEditableMeetingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListEditableMeetingsViewController.swift; path = "View Controllers/ListEditableMeetingsViewController.swift"; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 				779BE3B01E37D5B500350D11 /* MainAppDelegate.swift */,
 				77B50A671E381E31004019B8 /* AppStaticPrefs.swift */,
 				77B31A7D1E49369D0047F655 /* ThreeStateCheckbox.swift */,
+				7746B1491E59FA5800030B66 /* MapMarker.swift */,
 			);
 			name = "Main App";
 			path = "NA Meeting List Administrator";
@@ -317,6 +320,7 @@
 			files = (
 				777178181E454C0D0027F8E4 /* SelectServiceBodiesViewController.swift in Sources */,
 				77B50A681E381E31004019B8 /* AppStaticPrefs.swift in Sources */,
+				7746B14A1E59FA5800030B66 /* MapMarker.swift in Sources */,
 				77B31A7E1E49369D0047F655 /* ThreeStateCheckbox.swift in Sources */,
 				7784D3DC1E454D0300953CA0 /* ListEditableMeetingsViewController.swift in Sources */,
 				779BE3B11E37D5B500350D11 /* MainAppDelegate.swift in Sources */,

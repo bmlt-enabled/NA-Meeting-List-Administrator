@@ -842,9 +842,13 @@ class LongLatTableViewCell: MeetingEditorViewCell {
 /**
  This is the table view class for the map editor prototype.
  */
-class MapTableViewCell: MeetingEditorViewCell {
+class MapTableViewCell: MeetingEditorViewCell, MKMapViewDelegate {
+    private let _mapSizeInDegrees = 0.25
+    
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var mapTypeSegmentedView: UISegmentedControl!
+    
+    private var _meetingMarker: MapAnnotation! = nil
 
     @IBAction func mapTypeChanged(_ sender: UISegmentedControl) {
     }
@@ -859,5 +863,66 @@ class MapTableViewCell: MeetingEditorViewCell {
         for index in 0..<self.mapTypeSegmentedView.numberOfSegments {
             self.mapTypeSegmentedView.setTitle(NSLocalizedString(self.mapTypeSegmentedView.titleForSegment(at: index)!, comment: ""), forSegmentAt: index)
         }
+        self.addMeetingMarker(true)
+    }
+    
+    /* ################################################################## */
+    // MARK: Instance Methods
+    /* ################################################################## */
+    /**
+     Tells the object to add its meeting marker to the map.
+     This also sets the map to be right at the meeting location.
+     
+     - parameter inSetZoom: If true, the map will force a zoom. Otherwise, the zoom will be unchanged.
+     */
+    func addMeetingMarker(_ inSetZoom: Bool) {
+        if nil != self._meetingMarker {
+            self.mapView.removeAnnotation(self._meetingMarker)
+        }
+        
+        // Now, zoom the map to just around the marker.
+        let currentRegion = self.mapView.region
+        
+        var span: MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: self._mapSizeInDegrees, longitudeDelta: 0)
+        
+        if inSetZoom {
+            span = MKCoordinateSpan(latitudeDelta: self._mapSizeInDegrees, longitudeDelta: 0)
+        } else {
+            span = currentRegion.span
+        }
+        
+        let newRegion: MKCoordinateRegion = MKCoordinateRegion(center: self.meetingObject.locationCoords, span: span)
+        self.mapView.setRegion(newRegion, animated: false)
+        
+        self._meetingMarker = MapAnnotation(coordinate: self.meetingObject.locationCoords, meetings: [self.meetingObject])
+        
+        // Set the marker up.
+        self.mapView.addAnnotation(self._meetingMarker)
+    }
+    
+    /* ################################################################## */
+    /**
+     - parameter coordinate: New coordinate
+     - parameter inSetZoom: If true, the map will forse a zoom. Otherwise, the zoom will be unchanged.
+     */
+    func moveMeetingMarkerToLocation(_ coordinate: CLLocationCoordinate2D, inSetZoom: Bool) {
+        self.meetingObject.locationCoords = coordinate
+        self.addMeetingMarker(inSetZoom)
+        self.owner.updateEditorDisplay(self)
+    }
+    
+    /* ################################################################## */
+    // MARK: - MKMapViewDelegate Methods -
+    /* ################################################################## */
+    /**
+     */
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        if annotation.isKind(of: MapAnnotation.self) {
+            let reuseID = String(self.meetingObject.id)
+            let myAnnotation = annotation as! MapAnnotation
+            return MapMarker(annotation: myAnnotation, draggable: true, reuseID: reuseID)
+        }
+        
+        return nil
     }
 }
