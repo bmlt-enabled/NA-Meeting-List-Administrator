@@ -62,6 +62,9 @@ class MeetingEditorBaseViewController : EditorViewControllerBaseClass, UITableVi
     /** This will hold our long/lat section (for geocoding and reverse geocoding). */
     private var _longLatInstance: LongLatTableViewCell! = nil
     
+    /** This will hold our map section (for geocoding and reverse geocoding). */
+    private var _mapInstance: MapTableViewCell! = nil
+    
     /** This is the structural table view */
     @IBOutlet var tableView: UITableView!
     
@@ -160,30 +163,10 @@ class MeetingEditorBaseViewController : EditorViewControllerBaseClass, UITableVi
     
     /* ################################################################## */
     /**
-     Called after the long/lat is reverse geocoded.
-     
-     :param: placeMarks
-     :param: error
      */
-    func reverseGecodeCompletionHandler (_ placeMarks: [CLPlacemark]?, error: Error?) {
-        self._geocoder = nil
-        if (nil != error) || (nil == placeMarks) || (0 == placeMarks!.count) {
-            MainAppDelegate.displayAlert("LOCAL-EDIT-REVERSE-GEOCODE-FAIL-TITLE", inMessage: "LOCAL-EDIT-REVERSE-GEOCODE-FAILURE-MESSAGE")
-        } else {
-            let placeMark = placeMarks![0]
-            if let location = placeMark.location {
-                print("\(location)")
-//                let coordinate = location.coordinate
-//                let locationName = placeMark.name
-//                let streetNumber = placeMark.subThoroughfare
-//                let streetName = placeMark.thoroughfare
-//                let borough = placeMark.subLocality
-//                let town = placeMark.locality
-//                let county = placeMark.subAdministrativeArea
-//                let state = placeMark.administrativeArea
-//                let zip = placeMark.postalCode
-            }
-        }
+    func updateCoordinates(_ inCoords: CLLocationCoordinate2D) {
+        self._longLatInstance.coordinate = inCoords
+        self.updateEditorDisplay()
     }
     
     /* ################################################################## */
@@ -193,6 +176,15 @@ class MeetingEditorBaseViewController : EditorViewControllerBaseClass, UITableVi
         let addressString = self.meetingObject.basicAddress
         self._geocoder = CLGeocoder()
         self._geocoder.geocodeAddressString(addressString, completionHandler: self.gecodeCompletionHandler )
+    }
+    
+    /* ################################################################## */
+    /**
+     */
+    func lookUpCoordinatesForMe() {
+        let location = CLLocation(latitude: self._longLatInstance.coordinate.latitude, longitude: self._longLatInstance.coordinate.longitude)
+        self._geocoder = CLGeocoder()
+        self._geocoder.reverseGeocodeLocation(location, completionHandler: self.reverseGecodeCompletionHandler )
     }
     
     /* ################################################################## */
@@ -210,11 +202,71 @@ class MeetingEditorBaseViewController : EditorViewControllerBaseClass, UITableVi
             } else {
                 if let location = placeMarks![0].location {
                     self._longLatInstance.coordinate = location.coordinate
+                    self._mapInstance.moveMeetingMarkerToLocation(location.coordinate, inSetZoom: false)
                 }
             }
         })
     }
     
+    /* ################################################################## */
+    /**
+     Called after the long/lat is reverse geocoded.
+     
+     :param: placeMarks
+     :param: error
+     */
+    func reverseGecodeCompletionHandler (_ placeMarks: [CLPlacemark]?, error: Error?) {
+        DispatchQueue.main.async(execute: {
+            self._geocoder = nil
+            self._longLatInstance.animationMaskView.isHidden = true    // Yuck. But this is the best place for this.
+            if (nil != error) || (nil == placeMarks) || (0 == placeMarks!.count) {
+                MainAppDelegate.displayAlert("LOCAL-EDIT-REVERSE-GEOCODE-FAIL-TITLE", inMessage: "LOCAL-EDIT-REVERSE-GEOCODE-FAILURE-MESSAGE")
+            } else {
+                if let placeMark = placeMarks?[0] {
+                    if let locationName = placeMark.name {
+                        self._addressInstance.venueNameTextField.text = locationName
+                    }
+                    
+                    if let street = placeMark.thoroughfare {
+                        if let number = placeMark.subThoroughfare {
+                            self._addressInstance.streetAddressTextField.text = number + " " + street
+                        } else {
+                            self._addressInstance.streetAddressTextField.text = street
+                        }
+                    } else {
+                        if let number = placeMark.subThoroughfare {
+                            self._addressInstance.streetAddressTextField.text = number
+                        }
+                    }
+                    
+                    if let borough = placeMark.subLocality {
+                        self._addressInstance.boroughTextField.text = borough
+                    }
+                    
+                    if let town = placeMark.locality {
+                        self._addressInstance.townTextField.text = town
+                    }
+                    
+                    if let county = placeMark.subAdministrativeArea {
+                        self._addressInstance.countyTextField.text = county
+                    }
+                    
+                    if let state = placeMark.administrativeArea {
+                        self._addressInstance.stateTextField.text = state
+                    }
+                    
+                    if let zip = placeMark.postalCode {
+                        self._addressInstance.zipTextField.text = zip
+                    }
+                    
+                    if let nation = placeMark.isoCountryCode {
+                        self._addressInstance.nationTextField.text = nation
+                    }
+                }
+            }
+        })
+    }
+   
     /* ################################################################## */
     // MARK: UITableViewDataSource Methods
     /* ################################################################## */
@@ -248,11 +300,16 @@ class MeetingEditorBaseViewController : EditorViewControllerBaseClass, UITableVi
                 // This contains all the address fields.
                 self._addressInstance = returnableCell as! AddressEditorTableViewCell
             } else {
-                if "editor-row-7" == reuseID {
-                    // This contains the longitude and latitude editor.
-                    self._longLatInstance = returnableCell as! LongLatTableViewCell
+                if "editor-row-6" == reuseID {
+                    // This contains the map editor.
+                    self._mapInstance = returnableCell as! MapTableViewCell
                 } else {
-                    
+                    if "editor-row-7" == reuseID {
+                        // This contains the longitude and latitude editor.
+                        self._longLatInstance = returnableCell as! LongLatTableViewCell
+                    } else {
+                        
+                    }
                 }
             }
             return returnableCell
@@ -735,123 +792,23 @@ class AddressEditorTableViewCell: MeetingEditorViewCell {
 }
 
 /* ###################################################################################################################################### */
-// MARK: - Long/Lat Editor Table Cell Class -
-/* ###################################################################################################################################### */
-/**
- This is the table view class for the logitude and Latitude editor prototype.
- */
-class LongLatTableViewCell: MeetingEditorViewCell {
-    @IBOutlet weak var longitudeLabel: UILabel!
-    @IBOutlet weak var longitudeTextField: UITextField!
-    @IBOutlet weak var latitudeLabel: UILabel!
-    @IBOutlet weak var latitudeTextField: UITextField!
-    @IBOutlet weak var setFromAddressButton: UIButton!
-    @IBOutlet weak var setFromMapButton: UIButton!
-    @IBOutlet weak var animationMaskView: UIView!
-    
-    /* ################################################################## */
-    // MARK: Instance Calculated Properties
-    /* ################################################################## */
-    /**
-     Gets and sets the long/lat from the location manager type.
-     */
-    var coordinate: CLLocationCoordinate2D {
-        get {
-            var ret: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 0, longitude: 0)
-            if let long = Double(self.longitudeTextField.text!) {
-                if let lat = Double(self.latitudeTextField.text!) {
-                    ret = CLLocationCoordinate2D(latitude: lat, longitude: long)
-                }
-            }
-            
-            return ret
-        }
-        
-        set {
-            self.animationMaskView.isHidden = true
-            self.longitudeTextField.text = String(newValue.longitude)
-            self.latitudeTextField.text = String(newValue.longitude)
-            self.owner.updateEditorDisplay(self)
-        }
-    }
-    
-    /* ################################################################## */
-    // MARK: IB Methods
-    /* ################################################################## */
-    /**
-     Respond to text changing in the text field.
-     
-     - parameter sender: The IB object that initiated this change.
-     */
-    @IBAction func longitudeOrLatitudeTextChanged(_ sender: UITextField) {
-        if sender == self.longitudeTextField {
-            self.meetingObject.locationCoords.longitude = Double ( sender.text! )!
-        } else {
-            self.meetingObject.locationCoords.latitude = Double ( sender.text! )!
-        }
-        self.owner.updateEditorDisplay(self)
-    }
-    
-    /* ################################################################## */
-    // MARK: IB Methods
-    /* ################################################################## */
-    /**
-     Respond to text changing in the text field.
-     
-     - parameter sender: The IB object that initiated this change.
-     */
-    @IBAction func setFromAddressButtonHit(_ sender: UIButton) {
-        self.animationMaskView.isHidden = false
-        self.owner.lookUpAddressForMe()
-    }
-    
-    /* ################################################################## */
-    // MARK: IB Methods
-    /* ################################################################## */
-    /**
-     Respond to text changing in the text field.
-     
-     - parameter sender: The IB object that initiated this change.
-     */
-    @IBAction func setAddressFromMapButtonHit(_ sender: UIButton) {
-        self.owner.updateEditorDisplay(self)
-    }
-    
-    /* ################################################################## */
-    // MARK: Overridden Base Class Methods
-    /* ################################################################## */
-    /**
-     We set up our label, name and placeholder.
-     */
-    override func meetingObjectUpdated() {
-        self.longitudeLabel.text = NSLocalizedString(self.longitudeLabel.text!, comment: "")
-        self.longitudeTextField.placeholder = NSLocalizedString(self.longitudeTextField.placeholder!, comment: "")
-        self.longitudeTextField.text = String(self.meetingObject.locationCoords.longitude)
-        self.latitudeLabel.text = NSLocalizedString(self.latitudeLabel.text!, comment: "")
-        self.latitudeTextField.placeholder = NSLocalizedString(self.latitudeTextField.placeholder!, comment: "")
-        self.latitudeTextField.text = String(self.meetingObject.locationCoords.latitude)
-        self.setFromAddressButton.setTitle(NSLocalizedString(self.setFromAddressButton.title(for: UIControlState.normal)!, comment: ""), for: UIControlState.normal)
-        self.setFromMapButton.setTitle(NSLocalizedString(self.setFromMapButton.title(for: UIControlState.normal)!, comment: ""), for: UIControlState.normal)
-        self.animationMaskView.isHidden = true
-    }
-}
-
-/* ###################################################################################################################################### */
 // MARK: - Map Editor Table Cell Class -
 /* ###################################################################################################################################### */
 /**
  This is the table view class for the map editor prototype.
  */
 class MapTableViewCell: MeetingEditorViewCell, MKMapViewDelegate {
-    private let _mapSizeInDegrees = 0.25
+    enum MapTypeValues: Int {
+        case Normal = 0
+        case Hybrid
+        case Satellite
+    }
+    private let _mapSizeInDegrees = 0.125
     
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var mapTypeSegmentedView: UISegmentedControl!
     
     private var _meetingMarker: MapAnnotation! = nil
-
-    @IBAction func mapTypeChanged(_ sender: UISegmentedControl) {
-    }
     
     /* ################################################################## */
     // MARK: Overridden Base Class Methods
@@ -864,6 +821,25 @@ class MapTableViewCell: MeetingEditorViewCell, MKMapViewDelegate {
             self.mapTypeSegmentedView.setTitle(NSLocalizedString(self.mapTypeSegmentedView.titleForSegment(at: index)!, comment: ""), forSegmentAt: index)
         }
         self.addMeetingMarker(true)
+    }
+    
+    /* ################################################################## */
+    // MARK: IB Methods
+    /* ################################################################## */
+    /**
+     Called when the user taps on the map. Zooms in the map.
+     
+     :param: sender The gesture recognizer.
+     */
+    @IBAction func mapTypeChanged(_ sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case type(of: self).MapTypeValues.Satellite.rawValue:
+            self.mapView.mapType = MKMapType.satellite
+        case type(of: self).MapTypeValues.Hybrid.rawValue:
+            self.mapView.mapType = MKMapType.hybridFlyover
+        default:
+            self.mapView.mapType = MKMapType.standard
+        }
     }
     
     /* ################################################################## */
@@ -901,7 +877,7 @@ class MapTableViewCell: MeetingEditorViewCell, MKMapViewDelegate {
     /* ################################################################## */
     /**
      - parameter coordinate: New coordinate
-     - parameter inSetZoom: If true, the map will forse a zoom. Otherwise, the zoom will be unchanged.
+     - parameter inSetZoom: If true, the map will force a zoom. Otherwise, the zoom will be unchanged.
      */
     func moveMeetingMarkerToLocation(_ coordinate: CLLocationCoordinate2D, inSetZoom: Bool) {
         self.meetingObject.locationCoords = coordinate
@@ -913,6 +889,12 @@ class MapTableViewCell: MeetingEditorViewCell, MKMapViewDelegate {
     // MARK: - MKMapViewDelegate Methods -
     /* ################################################################## */
     /**
+     Creates a new marker annotiation for the map.
+     
+     - parameter mapView: The MKMapView object that is having the marker added.
+     - parameter viewFor: The annotation that we need to generate a view for.
+     
+     - returns: A new annotation view, with our marker.
      */
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if annotation.isKind(of: MapAnnotation.self) {
@@ -922,5 +904,126 @@ class MapTableViewCell: MeetingEditorViewCell, MKMapViewDelegate {
         }
         
         return nil
+    }
+    
+    /* ################################################################## */
+    /**
+     This responds to a marker being moved.
+     
+     - parameter mapView: The MKMapView object that contains the marker being moved.
+     - parameter annotationView: The annotation that was changed.
+     - parameter didChange: The new state of the marker.
+     - parameter fromOldState: The previous state of the marker.
+     */
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, didChange newState: MKAnnotationViewDragState, fromOldState oldState: MKAnnotationViewDragState) {
+        switch newState {
+        case .none:
+            if .dragging == oldState {  // If this is a drag ending, we extract the new coordinates, and change the meeting object.
+                self.meetingObject.locationCoords = view.annotation?.coordinate
+                self.owner.updateCoordinates((view.annotation?.coordinate)!)
+            }
+            
+        default:
+            break
+        }
+    }
+}
+
+/* ###################################################################################################################################### */
+// MARK: - Long/Lat Editor Table Cell Class -
+/* ###################################################################################################################################### */
+/**
+ This is the table view class for the logitude and Latitude editor prototype.
+ */
+class LongLatTableViewCell: MeetingEditorViewCell {
+    @IBOutlet weak var longitudeLabel: UILabel!
+    @IBOutlet weak var longitudeTextField: UITextField!
+    @IBOutlet weak var latitudeLabel: UILabel!
+    @IBOutlet weak var latitudeTextField: UITextField!
+    @IBOutlet weak var setFromAddressButton: UIButton!
+    @IBOutlet weak var setFromMapButton: UIButton!
+    @IBOutlet weak var animationMaskView: UIView!
+    
+    /* ################################################################## */
+    // MARK: Instance Calculated Properties
+    /* ################################################################## */
+    /**
+     Gets and sets the long/lat from the location manager type.
+     */
+    var coordinate: CLLocationCoordinate2D {
+        get {
+            var ret: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 0, longitude: 0)
+            if let long = Double(self.longitudeTextField.text!) {
+                if let lat = Double(self.latitudeTextField.text!) {
+                    ret = CLLocationCoordinate2D(latitude: lat, longitude: long)
+                }
+            }
+            
+            return ret
+        }
+        
+        set {
+            self.animationMaskView.isHidden = true
+            self.longitudeTextField.text = String(newValue.longitude)
+            self.latitudeTextField.text = String(newValue.latitude)
+            self.owner.updateEditorDisplay(self)
+        }
+    }
+    
+    /* ################################################################## */
+    // MARK: IB Methods
+    /* ################################################################## */
+    /**
+     Respond to text changing in the text field.
+     
+     - parameter sender: The IB object that initiated this change.
+     */
+    @IBAction func longitudeOrLatitudeTextChanged(_ sender: UITextField) {
+        if sender == self.longitudeTextField {
+            self.meetingObject.locationCoords.longitude = Double ( sender.text! )!
+        } else {
+            self.meetingObject.locationCoords.latitude = Double ( sender.text! )!
+        }
+        self.owner.updateEditorDisplay(self)
+    }
+    
+    /* ################################################################## */
+    /**
+     Respond to text changing in the text field.
+     
+     - parameter sender: The IB object that initiated this change.
+     */
+    @IBAction func setFromAddressButtonHit(_ sender: UIButton) {
+        self.animationMaskView.isHidden = false
+        self.owner.lookUpAddressForMe()
+    }
+    
+    /* ################################################################## */
+    /**
+     Respond to text changing in the text field.
+     
+     - parameter sender: The IB object that initiated this change.
+     */
+    @IBAction func setAddressFromMapButtonHit(_ sender: UIButton) {
+        self.animationMaskView.isHidden = false
+        self.owner.lookUpCoordinatesForMe()
+    }
+    
+    /* ################################################################## */
+    // MARK: Overridden Base Class Methods
+    /* ################################################################## */
+    /**
+     We set up our label, name and placeholder.
+     */
+    override func meetingObjectUpdated() {
+        self.longitudeLabel.text = NSLocalizedString(self.longitudeLabel.text!, comment: "")
+        self.longitudeTextField.placeholder = NSLocalizedString(self.longitudeTextField.placeholder!, comment: "")
+        self.longitudeTextField.text = String(self.meetingObject.locationCoords.longitude)
+        self.latitudeLabel.text = NSLocalizedString(self.latitudeLabel.text!, comment: "")
+        self.latitudeTextField.placeholder = NSLocalizedString(self.latitudeTextField.placeholder!, comment: "")
+        self.latitudeTextField.text = String(self.meetingObject.locationCoords.latitude)
+        self.setFromAddressButton.setTitle(NSLocalizedString(self.setFromAddressButton.title(for: UIControlState.normal)!, comment: ""), for: UIControlState.normal)
+        self.setFromMapButton.setTitle(NSLocalizedString(self.setFromMapButton.title(for: UIControlState.normal)!, comment: ""), for: UIControlState.normal)
+        self.animationMaskView.isHidden = true
     }
 }

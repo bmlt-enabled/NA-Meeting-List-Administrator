@@ -803,7 +803,7 @@
                                                         <segment title="MAP-TYPE-SATELLITE"/>
                                                     </segments>
                                                     <connections>
-                                                        <action selector="mapTypeChanged:" destination="6N9-1o-df9" eventType="valueChanged" id="nqO-TE-RRe"/>
+                                                        <action selector="mapTypeChanged:" destination="6N9-1o-df9" eventType="valueChanged" id="TYy-qt-Ufw"/>
                                                     </connections>
                                                 </segmentedControl>
                                             </subviews>
