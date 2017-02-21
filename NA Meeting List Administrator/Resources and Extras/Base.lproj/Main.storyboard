@@ -788,6 +788,7 @@
                                             <subviews>
                                                 <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="VBd-Ma-4wP">
                                                     <rect key="frame" x="20" y="8" width="280" height="283"/>
+                                                    <gestureRecognizers/>
                                                     <connections>
                                                         <outlet property="delegate" destination="6N9-1o-df9" id="7oc-Ni-nTM"/>
                                                     </connections>
@@ -960,6 +961,51 @@
                                             <outlet property="longitudeTextField" destination="Gfu-cW-kkB" id="hfc-JQ-hVw"/>
                                             <outlet property="setFromAddressButton" destination="9Qf-TG-nUA" id="jZC-F1-h9y"/>
                                             <outlet property="setFromMapButton" destination="B7Q-Y6-ms1" id="2uF-2M-cLy"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="editor-row-8" rowHeight="100" id="2pj-LT-NSr" userLabel="Comments" customClass="MeetingCommentsEditorTableViewCell" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="1534" width="320" height="100"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2pj-LT-NSr" id="ivO-xH-nNx">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="COMMENTS-LABEL" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z5n-Ti-RF3">
+                                                    <rect key="frame" x="8" y="8" width="304" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="JSi-Eh-0wb"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="9py-4R-AUc">
+                                                    <rect key="frame" x="8" y="33" width="304" height="67"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" enablesReturnKeyAutomatically="YES"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="2pj-LT-NSr" id="IjI-il-TqB"/>
+                                                    </connections>
+                                                </textView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstItem="Z5n-Ti-RF3" firstAttribute="leading" secondItem="ivO-xH-nNx" secondAttribute="leading" constant="8" id="ICW-rZ-HxS"/>
+                                                <constraint firstAttribute="trailing" secondItem="9py-4R-AUc" secondAttribute="trailing" constant="8" id="Sfm-8r-LmL"/>
+                                                <constraint firstItem="9py-4R-AUc" firstAttribute="top" secondItem="Z5n-Ti-RF3" secondAttribute="bottom" constant="4" id="Zbo-if-kms"/>
+                                                <constraint firstAttribute="bottom" secondItem="9py-4R-AUc" secondAttribute="bottom" id="jxl-Or-gTG"/>
+                                                <constraint firstItem="Z5n-Ti-RF3" firstAttribute="top" secondItem="ivO-xH-nNx" secondAttribute="top" constant="8" id="mOf-oi-5cx"/>
+                                                <constraint firstAttribute="trailing" secondItem="Z5n-Ti-RF3" secondAttribute="trailing" constant="8" id="neY-Zx-Q1H"/>
+                                                <constraint firstItem="9py-4R-AUc" firstAttribute="leading" secondItem="ivO-xH-nNx" secondAttribute="leading" constant="8" id="swt-J8-LGB"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <color key="tintColor" red="0.0" green="0.0" blue="0.79866071429999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <outlet property="commentsNameLabel" destination="Z5n-Ti-RF3" id="6ts-Xu-YeH"/>
+                                            <outlet property="commentsTextView" destination="9py-4R-AUc" id="NXl-U6-7O3"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

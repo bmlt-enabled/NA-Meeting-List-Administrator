@@ -106,3 +106,4 @@
 "MAP-TYPE-HYBRID"                                                                               =   "Hybrid";
 "MAP-TYPE-SATELLITE"                                                                            =   "Satellite";
 
+"COMMENTS-LABEL"                                                                                =   "Comments:";

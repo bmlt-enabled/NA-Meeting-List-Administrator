@@ -37,7 +37,8 @@ class MeetingEditorBaseViewController : EditorViewControllerBaseClass, UITableVi
                                                          "editor-row-4":100,
                                                          "editor-row-5":619,
                                                          "editor-row-6":0,
-                                                         "editor-row-7":210
+                                                         "editor-row-7":210,
+                                                         "editor-row-8":100,
     ]
     
     /** We use this as a common prefix for our reuse IDs, and the index as the suffix. */
@@ -820,6 +821,7 @@ class MapTableViewCell: MeetingEditorViewCell, MKMapViewDelegate {
         for index in 0..<self.mapTypeSegmentedView.numberOfSegments {
             self.mapTypeSegmentedView.setTitle(NSLocalizedString(self.mapTypeSegmentedView.titleForSegment(at: index)!, comment: ""), forSegmentAt: index)
         }
+
         self.addMeetingMarker(true)
     }
     
@@ -827,9 +829,9 @@ class MapTableViewCell: MeetingEditorViewCell, MKMapViewDelegate {
     // MARK: IB Methods
     /* ################################################################## */
     /**
-     Called when the user taps on the map. Zooms in the map.
+     Called when the user changes the map type.
      
-     :param: sender The gesture recognizer.
+     - parameter sender: The segmented control.
      */
     @IBAction func mapTypeChanged(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
@@ -1027,3 +1029,27 @@ class LongLatTableViewCell: MeetingEditorViewCell {
         self.animationMaskView.isHidden = true
     }
 }
+
+/* ###################################################################################################################################### */
+// MARK: - Meeting Name Editor Table Cell Class -
+/* ###################################################################################################################################### */
+/**
+ This is the table view class for the name editor prototype.
+ */
+class MeetingCommentsEditorTableViewCell: MeetingEditorViewCell, UITextViewDelegate {
+    /** This is the meeting name section. */
+    @IBOutlet weak var commentsNameLabel: UILabel!
+    @IBOutlet weak var commentsTextView: UITextView!
+    
+    /* ################################################################## */
+    // MARK: Overridden Base Class Methods
+    /* ################################################################## */
+    /**
+     We set up our label, name and placeholder.
+     */
+    override func meetingObjectUpdated() {
+        self.commentsNameLabel.text = NSLocalizedString(self.commentsNameLabel.text!, comment: "")
+        self.commentsTextView.text = self.meetingObject.comments
+    }
+}
+
