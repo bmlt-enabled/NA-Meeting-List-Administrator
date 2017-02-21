@@ -23,6 +23,31 @@ import UIKit
 import BMLTiOSLib
 import MapKit
 
+
+/* ###################################################################################################################################### */
+// MARK: - This view extension allows us to fetch the first responder -
+/* ###################################################################################################################################### */
+/**
+ This class describes the basic functionality for a full meeting editor.
+ */
+extension UIView {
+    var currentFirstResponder: UIResponder? {
+        get {
+            if self.isFirstResponder {
+                return self
+            }
+            
+            for view in self.subviews {
+                if let responder = view.currentFirstResponder {
+                    return responder
+                }
+            }
+            
+            return nil
+        }
+    }
+}
+
 /* ###################################################################################################################################### */
 // MARK: - Base Single Meeting Editor View Controller Class -
 /* ###################################################################################################################################### */
@@ -143,6 +168,16 @@ class MeetingEditorBaseViewController : EditorViewControllerBaseClass, UITableVi
     }
     
     /* ################################################################## */
+    /**
+     Called when the main view is tapped (closes any open keyboards).
+     
+     - parameter sender: The IB item that called this.
+     */
+    @IBAction func tapInBackground(_ sender: UITapGestureRecognizer) {
+        self.closeKeyboard()
+    }
+    
+    /* ################################################################## */
     // MARK: Instance Methods
     /* ################################################################## */
     /**
@@ -164,6 +199,19 @@ class MeetingEditorBaseViewController : EditorViewControllerBaseClass, UITableVi
     
     /* ################################################################## */
     /**
+     Closes any open keyboards.
+     */
+    func closeKeyboard() {
+        if let firstResponder = self.view.currentFirstResponder {
+            firstResponder.resignFirstResponder()
+        }
+    }
+    
+    /* ################################################################## */
+    /**
+     Updates the coordinates in our Long/Lat editor
+     
+     - parameter inCoords: The coordinates to set the text items to.
      */
     func updateCoordinates(_ inCoords: CLLocationCoordinate2D) {
         self._longLatInstance.coordinate = inCoords
@@ -172,20 +220,12 @@ class MeetingEditorBaseViewController : EditorViewControllerBaseClass, UITableVi
     
     /* ################################################################## */
     /**
+     This starts a geocode, based on the current address in the address editor.
      */
     func lookUpAddressForMe() {
         let addressString = self.meetingObject.basicAddress
         self._geocoder = CLGeocoder()
         self._geocoder.geocodeAddressString(addressString, completionHandler: self.gecodeCompletionHandler )
-    }
-    
-    /* ################################################################## */
-    /**
-     */
-    func lookUpCoordinatesForMe() {
-        let location = CLLocation(latitude: self._longLatInstance.coordinate.latitude, longitude: self._longLatInstance.coordinate.longitude)
-        self._geocoder = CLGeocoder()
-        self._geocoder.reverseGeocodeLocation(location, completionHandler: self.reverseGecodeCompletionHandler )
     }
     
     /* ################################################################## */
@@ -207,6 +247,16 @@ class MeetingEditorBaseViewController : EditorViewControllerBaseClass, UITableVi
                 }
             }
         })
+    }
+    
+    /* ################################################################## */
+    /**
+     This starts a reverse geocode, based on the coordinates in the map/long/lat editor.
+     */
+    func lookUpCoordinatesForMe() {
+        let location = CLLocation(latitude: self._longLatInstance.coordinate.latitude, longitude: self._longLatInstance.coordinate.longitude)
+        self._geocoder = CLGeocoder()
+        self._geocoder.reverseGeocodeLocation(location, completionHandler: self.reverseGecodeCompletionHandler )
     }
     
     /* ################################################################## */
@@ -1050,6 +1100,22 @@ class MeetingCommentsEditorTableViewCell: MeetingEditorViewCell, UITextViewDeleg
     override func meetingObjectUpdated() {
         self.commentsNameLabel.text = NSLocalizedString(self.commentsNameLabel.text!, comment: "")
         self.commentsTextView.text = self.meetingObject.comments
+    }
+    
+    /* ################################################################## */
+    // MARK: - UITextViewDelegate Protocol Methods -
+    /* ################################################################## */
+    /**
+     - parameter textView: The text view that experienced the text change.
+     */
+    func textViewDidChange(_ textView: UITextView) {
+        switch textView {
+        case self.commentsTextView:
+            self.meetingObject.comments = textView.text
+            self.owner.updateEditorDisplay(self)
+        default:
+            print("Unknown Text View: \(textView)")
+        }
     }
 }
 
