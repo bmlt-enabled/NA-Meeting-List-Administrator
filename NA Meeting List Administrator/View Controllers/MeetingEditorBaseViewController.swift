@@ -402,7 +402,7 @@ class MeetingEditorBaseViewController : EditorViewControllerBaseClass, UITableVi
         let reuseID = self.reuseIDBase + String(indexPath.row)
         
         switch(reuseID) {   // This allows us to set dynamic heights.
-        case "editor-row-0":
+        case "editor-row-0":    // If we are editing more than one Service body, then we can switch between them.
             if 1 < AppStaticPrefs.prefs.selectedServiceBodies.count {
                 return self._publishedMultiServiceBody
             } else {
@@ -498,10 +498,12 @@ class MeetingEditorViewCell: UITableViewCell {
 /**
  This is the table view class for the name editor prototype.
  */
-class PublishedEditorTableViewCell: MeetingEditorViewCell {
+class PublishedEditorTableViewCell: MeetingEditorViewCell, UIPickerViewDelegate, UIPickerViewDataSource {
     /** This is the meeting name section. */
     @IBOutlet weak var publishedLabel: UILabel!
     @IBOutlet weak var publishedSwitch: UISwitch!
+    @IBOutlet weak var serviceBodyPickerLabel: UILabel!
+    @IBOutlet weak var serviceBodyPickerView: UIPickerView!
     
     /* ################################################################## */
     // MARK: IB Methods
@@ -525,6 +527,95 @@ class PublishedEditorTableViewCell: MeetingEditorViewCell {
     override func meetingObjectUpdated() {
         self.publishedLabel.text = NSLocalizedString(self.publishedLabel.text!, comment: "")
         self.publishedSwitch.isOn = self.meetingObject.published
+        if 1 < AppStaticPrefs.prefs.selectedServiceBodies.count {
+            self.serviceBodyPickerLabel.text = NSLocalizedString(self.serviceBodyPickerLabel.text!, comment: "")
+            var index: Int = 0
+            for serviceBody in AppStaticPrefs.prefs.selectedServiceBodies {
+                if serviceBody.id == self.meetingObject.serviceBodyId {
+                    break
+                }
+                index += 1
+            }
+            
+            if index < AppStaticPrefs.prefs.selectedServiceBodies.count {
+                self.serviceBodyPickerView.selectRow(index, inComponent: 0, animated: false)
+            }
+        }
+    }
+    
+    /* ################################################################## */
+    // MARK: UIPickerViewDelegate Methods
+    /* ################################################################## */
+    /**
+     This returns the name for the given row.
+     
+     - parameter pickerView: The UIPickerView being checked
+     - parameter row: The row being checked
+     - parameter component: The component (always 0)
+     
+     - returns: a view, containing a label with the string for the row.
+     */
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        let size = pickerView.rowSize(forComponent: 0)
+        var frame = pickerView.bounds
+        frame.size.height = size.height
+        frame.origin = CGPoint.zero
+        
+        let ret:UIView = UIView(frame: frame)
+        
+        ret.backgroundColor = UIColor.clear
+        
+        let label = UILabel(frame: frame)
+        
+        label.textColor = self.tintColor
+        label.backgroundColor = UIColor.clear
+        label.textAlignment = .center
+        
+        label.text = AppStaticPrefs.prefs.selectedServiceBodies[row].name
+        
+        ret.addSubview(label)
+        
+        return ret
+    }
+    
+    /* ################################################################## */
+    /**
+     This is called when the user finishes selecting a row.
+     We use this to set the Service body.
+     
+     - parameter pickerView: The UIPickerView being checked
+     - parameter row: The row being checked
+     - parameter component: The component (always 0)
+     */
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        self.meetingObject.serviceBodyId = AppStaticPrefs.prefs.selectedServiceBodies[row].id
+        self.owner.updateEditorDisplay(self)
+    }
+    
+    /* ################################################################## */
+    // MARK: UIPickerViewDataSource Methods
+    /* ################################################################## */
+    /**
+     We only have 1 component.
+     
+     - parameter pickerView: The UIPickerView being checked
+     
+     - returns 1
+     */
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    /* ################################################################## */
+    /**
+     Returns the number of Service bodies
+     
+     - parameter pickerView: The UIPickerView being checked
+     
+     - returns the number of Service bodies to display.
+     */
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return AppStaticPrefs.prefs.selectedServiceBodies.count
     }
 }
 

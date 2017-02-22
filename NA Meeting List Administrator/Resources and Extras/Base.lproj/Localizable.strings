@@ -53,6 +53,7 @@
 "CANCEL-BUTTON"                                                                                 =   "Cancel";
 
 "PUBLISHED-LABEL"                                                                               =   "Meeting Is Published";
+"SERVICE-BODY-LABEL"                                                                            =   "Meeting Service Body:";
 
 "MEETING-NAME-LABEL"                                                                            =   "Meeting Name:";
 "MEETING-NAME-PLACEHOLDER"                                                                      =   "Enter A Meeting Name";
