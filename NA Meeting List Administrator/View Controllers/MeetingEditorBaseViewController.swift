@@ -64,6 +64,7 @@ class MeetingEditorBaseViewController : EditorViewControllerBaseClass, UITableVi
                                                          "editor-row-6":0,
                                                          "editor-row-7":210,
                                                          "editor-row-8":100,
+                                                         "editor-row-9":200
     ]
     
     /** We use this as a common prefix for our reuse IDs, and the index as the suffix. */
@@ -275,44 +276,55 @@ class MeetingEditorBaseViewController : EditorViewControllerBaseClass, UITableVi
             } else {
                 if let placeMark = placeMarks?[0] {
                     if let locationName = placeMark.name {
+                        self.meetingObject.locationName = locationName
                         self._addressInstance.venueNameTextField.text = locationName
                     }
                     
                     if let street = placeMark.thoroughfare {
                         if let number = placeMark.subThoroughfare {
-                            self._addressInstance.streetAddressTextField.text = number + " " + street
+                            self.meetingObject.locationStreetAddress = number + " " + street
                         } else {
-                            self._addressInstance.streetAddressTextField.text = street
+                            self.meetingObject.locationStreetAddress = street
                         }
                     } else {
                         if let number = placeMark.subThoroughfare {
-                            self._addressInstance.streetAddressTextField.text = number
+                            self.meetingObject.locationStreetAddress = number
                         }
                     }
                     
+                    self._addressInstance.streetAddressTextField.text = self.meetingObject.locationStreetAddress
+                    
                     if let borough = placeMark.subLocality {
+                        self.meetingObject.locationBorough = borough
                         self._addressInstance.boroughTextField.text = borough
                     }
                     
                     if let town = placeMark.locality {
+                        self.meetingObject.locationTown = town
                         self._addressInstance.townTextField.text = town
                     }
                     
                     if let county = placeMark.subAdministrativeArea {
+                        self.meetingObject.locationCounty = county
                         self._addressInstance.countyTextField.text = county
                     }
                     
                     if let state = placeMark.administrativeArea {
+                        self.meetingObject.locationState = state
                         self._addressInstance.stateTextField.text = state
                     }
                     
                     if let zip = placeMark.postalCode {
+                        self.meetingObject.locationZip = zip
                         self._addressInstance.zipTextField.text = zip
                     }
                     
                     if let nation = placeMark.isoCountryCode {
+                        self.meetingObject.locationNation = nation
                         self._addressInstance.nationTextField.text = nation
                     }
+                    
+                    self.updateEditorDisplay(self._addressInstance)
                 }
             }
         })
@@ -1087,15 +1099,16 @@ class LongLatTableViewCell: MeetingEditorViewCell {
  This is the table view class for the name editor prototype.
  */
 class MeetingCommentsEditorTableViewCell: MeetingEditorViewCell, UITextViewDelegate {
-    /** This is the meeting name section. */
+    /** This is the comments label. */
     @IBOutlet weak var commentsNameLabel: UILabel!
+    /** This is the comments text view. */
     @IBOutlet weak var commentsTextView: UITextView!
     
     /* ################################################################## */
     // MARK: Overridden Base Class Methods
     /* ################################################################## */
     /**
-     We set up our label, name and placeholder.
+     We set up our label and initial text.
      */
     override func meetingObjectUpdated() {
         self.commentsNameLabel.text = NSLocalizedString(self.commentsNameLabel.text!, comment: "")
@@ -1106,6 +1119,8 @@ class MeetingCommentsEditorTableViewCell: MeetingEditorViewCell, UITextViewDeleg
     // MARK: - UITextViewDelegate Protocol Methods -
     /* ################################################################## */
     /**
+     This updates the comments value.
+     
      - parameter textView: The text view that experienced the text change.
      */
     func textViewDidChange(_ textView: UITextView) {
@@ -1116,6 +1131,55 @@ class MeetingCommentsEditorTableViewCell: MeetingEditorViewCell, UITextViewDeleg
         default:
             print("Unknown Text View: \(textView)")
         }
+    }
+}
+
+/* ###################################################################################################################################### */
+// MARK: - Meeting Name Editor Table Cell Class -
+/* ###################################################################################################################################### */
+/**
+ This is the table view class for the name editor prototype.
+ */
+class FormatsEditorTableViewCell: MeetingEditorViewCell, UITableViewDataSource {
+    @IBOutlet weak var formatNameLabel: UILabel!
+    @IBOutlet weak var formatDisplayTableView: UITableView!
+    
+    /* ################################################################## */
+    // MARK: Overridden Base Class Methods
+    /* ################################################################## */
+    /**
+     We set up our label and initial text.
+     */
+    override func meetingObjectUpdated() {
+        self.formatNameLabel.text = NSLocalizedString(self.formatNameLabel.text!, comment: "")
+    }
+    
+    /* ################################################################## */
+    // MARK: UITableViewDataSource Methods
+    /* ################################################################## */
+    /**
+     Returns the number of rows to display.
+     
+     - parameter tableView: The UITableView asking for rows.
+     - paramater numberOfRowsInSection: The section index (0-based).
+     
+     - returns: the number of rows to display
+     */
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 0
+    }
+    
+    /* ################################################################## */
+    /**
+     Returns a cell for one row.
+     
+     - parameter tableView: The UITableView asking for a cell.
+     - paramater cellForRowAt: The index path of the cell we want.
+     
+     - returns: a table cell, containing the row
+     */
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return UITableViewCell()
     }
 }
 

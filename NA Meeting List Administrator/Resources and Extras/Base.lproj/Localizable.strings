@@ -107,3 +107,5 @@
 "MAP-TYPE-SATELLITE"                                                                            =   "Satellite";
 
 "COMMENTS-LABEL"                                                                                =   "Comments:";
+
+"FORMATS-LABEL"                                                                                 =   "Formats:";
