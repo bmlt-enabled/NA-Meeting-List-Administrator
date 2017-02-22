@@ -55,7 +55,7 @@ extension UIView {
  This class describes the basic functionality for a full meeting editor.
  */
 class MeetingEditorBaseViewController : EditorViewControllerBaseClass, UITableViewDataSource, UITableViewDelegate, MKMapViewDelegate, CLLocationManagerDelegate {
-    private var _internalRowHeights: [String:CGFloat] = ["editor-row-0":37,
+    private var _internalRowHeights: [String:CGFloat] = ["editor-row-0":0,
                                                          "editor-row-1":60,
                                                          "editor-row-2":60,
                                                          "editor-row-3":100,
@@ -66,6 +66,9 @@ class MeetingEditorBaseViewController : EditorViewControllerBaseClass, UITableVi
                                                          "editor-row-8":100,
                                                          "editor-row-9":200
     ]
+    
+    private let _publishedSingleServiceBody: CGFloat    = 37
+    private let _publishedMultiServiceBody: CGFloat     = 155
     
     /** We use this as a common prefix for our reuse IDs, and the index as the suffix. */
     let reuseIDBase = "editor-row-"
@@ -399,6 +402,13 @@ class MeetingEditorBaseViewController : EditorViewControllerBaseClass, UITableVi
         let reuseID = self.reuseIDBase + String(indexPath.row)
         
         switch(reuseID) {   // This allows us to set dynamic heights.
+        case "editor-row-0":
+            if 1 < AppStaticPrefs.prefs.selectedServiceBodies.count {
+                return self._publishedMultiServiceBody
+            } else {
+                return self._publishedSingleServiceBody
+            }
+            
         case "editor-row-6":    // The map view is a big square.
             return tableView.bounds.width
             
@@ -1152,7 +1162,7 @@ class MeetingCommentsEditorTableViewCell: MeetingEditorViewCell, UITextViewDeleg
  This is the table view class for the name editor prototype.
  */
 class FormatsEditorTableViewCell: MeetingEditorViewCell, UITableViewDataSource {
-    static let sLabelHeight: CGFloat                    = 34
+    static let sLabelHeight: CGFloat                    = 40
     static let sFormatCheckboxIndent: CGFloat           = 2
     static let sFormatCheckboxContainerHeight: CGFloat  = 40
     static let sFormatCheckboxContainerWidth: CGFloat   = 80
