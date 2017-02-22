@@ -1024,9 +1024,8 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="52F-ij-Z7G">
+                                                <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" canCancelContentTouches="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="52F-ij-Z7G">
                                                     <rect key="frame" x="8" y="37" width="304" height="163"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <connections>
                                                         <outlet property="dataSource" destination="KfE-Hu-h7V" id="SoU-IW-oyN"/>
@@ -1037,7 +1036,11 @@
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="FYz-9I-GHR" secondAttribute="trailing" constant="8" id="5Pk-2r-cX2"/>
                                                 <constraint firstItem="FYz-9I-GHR" firstAttribute="top" secondItem="PqB-sL-yMB" secondAttribute="top" constant="8" id="8kB-pc-a2f"/>
+                                                <constraint firstAttribute="bottom" secondItem="52F-ij-Z7G" secondAttribute="bottom" id="9JE-bf-onj"/>
+                                                <constraint firstItem="52F-ij-Z7G" firstAttribute="top" secondItem="FYz-9I-GHR" secondAttribute="bottom" constant="8" id="M5J-Bn-BDd"/>
+                                                <constraint firstItem="52F-ij-Z7G" firstAttribute="leading" secondItem="PqB-sL-yMB" secondAttribute="leading" constant="8" id="eNL-L9-f4j"/>
                                                 <constraint firstItem="FYz-9I-GHR" firstAttribute="leading" secondItem="PqB-sL-yMB" secondAttribute="leading" constant="8" id="lwu-Yp-u0k"/>
+                                                <constraint firstAttribute="trailing" secondItem="52F-ij-Z7G" secondAttribute="trailing" constant="8" id="m4e-eV-sK8"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
