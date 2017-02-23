@@ -1382,7 +1382,7 @@ class FormatsEditorTableViewCell: MeetingEditorViewCell, UITableViewDataSource, 
             let frame = CGRect(x: indent, y: 0, width: type(of: self).sFormatCheckboxContainerWidth, height: type(of: self).sFormatCheckboxContainerHeight)
             let formatSubCell = UIView(frame: frame)
             formatSubCell.backgroundColor = UIColor.clear
-            let checkBoxFrame = CGRect(x: type(of: self).sFormatCheckboxIndent, y: type(of: self).sFormatCheckboxIndent, width: type(of: self).sFormatCheckboxContainerHeight, height: type(of: self).sFormatCheckboxContainerHeight - (type(of: self).sFormatCheckboxIndent * 2))
+            let checkBoxFrame = CGRect(x: type(of: self).sFormatCheckboxIndent, y: type(of: self).sFormatCheckboxIndent, width: type(of: self).sFormatCheckboxContainerHeight - (type(of: self).sFormatCheckboxIndent * 2), height: type(of: self).sFormatCheckboxContainerHeight - (type(of: self).sFormatCheckboxIndent * 2))
             let checkBoxObject = ThreeStateCheckbox(frame: checkBoxFrame)
             checkBoxObject.binaryState = true
             checkBoxObject.extraData = formatObject

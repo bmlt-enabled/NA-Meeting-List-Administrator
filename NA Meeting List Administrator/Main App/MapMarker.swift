@@ -85,7 +85,6 @@ class MapMarker : MKAnnotationView {
     private var _currentFrame: Int = 0
     private var _animationTimer: Timer! = nil
     private var _animationFrames: [UIImage] = []
-    private var _normalFrame: CGRect = CGRect.zero
     
     /* ################################################################## */
     // MARK: - Computed Properties -
@@ -99,13 +98,7 @@ class MapMarker : MKAnnotationView {
         }
         
         set {
-            // You can only drag if there are no locations, or just one location.
-            if 2 > self.locations.count {
-                super.isDraggable = newValue
-            } else {
-                super.isDraggable = false
-            }
-            
+            super.isDraggable = newValue
             self.setNeedsDisplay()
         }
     }
@@ -169,7 +162,6 @@ class MapMarker : MKAnnotationView {
         self.backgroundColor = UIColor.clear
         self.image = self.selectImage(false)
         self.centerOffset = CGPoint(x: self.sRegularAnnotationOffsetRight, y: self.sRegularAnnotationOffsetUp)
-        self._normalFrame = self.frame
     }
     
     /* ################################################################## */
@@ -263,7 +255,6 @@ class MapMarker : MKAnnotationView {
         case MKAnnotationViewDragState.starting:
             subsequentDragState = MKAnnotationViewDragState.dragging
             self._currentFrame = 0
-            self.frame.size = CGSize(width: 80, height: 80)
             
         case MKAnnotationViewDragState.dragging:
             self.startTimer()
@@ -271,7 +262,6 @@ class MapMarker : MKAnnotationView {
             
         default:
             self.stopTimer()
-            self.frame.size = self._normalFrame.size
             subsequentDragState = MKAnnotationViewDragState.none
         }
         
