@@ -129,6 +129,7 @@ class MeetingEditorBaseViewController : EditorViewControllerBaseClass, UITableVi
         super.viewDidLoad()
         self._publishedTopColor = (self.view as! EditorViewBaseClass).topColor
         self._publishedBottomColor = (self.view as! EditorViewBaseClass).bottomColor
+        self.tableView.rowHeight = UITableViewAutomaticDimension
     }
     
     /* ################################################################## */
@@ -148,7 +149,9 @@ class MeetingEditorBaseViewController : EditorViewControllerBaseClass, UITableVi
      */
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.tableView.reloadData()
+        if nil != self._formatContainerView {
+            self.tableView.reloadData()
+        }
         self.saveButton.title = NSLocalizedString(self.saveButton.title!, comment: "")
         self.updateEditorDisplay()
         
@@ -422,10 +425,7 @@ class MeetingEditorBaseViewController : EditorViewControllerBaseClass, UITableVi
             return tableView.bounds.width
             
         case "editor-row-9":
-            let numFormats = MainAppDelegate.connectionObject.allPossibleFormats.count
-            let formatsPerRow = Int(tableView.bounds.size.width / FormatsEditorTableViewCell.sFormatCheckboxContainerWidth)
-            
-            return FormatsEditorTableViewCell.sLabelHeight + CGFloat(Int((numFormats + (formatsPerRow - 1)) / formatsPerRow)) * FormatsEditorTableViewCell.sFormatCheckboxContainerHeight
+            return (nil != self._formatContainerView) ? self._formatContainerView.cellHeight : self._internalRowHeights[reuseID]!
 
         default:
             if let height = self._internalRowHeights[reuseID] { // By default, we use our table, but we may not have something there.
@@ -1262,13 +1262,39 @@ class MeetingCommentsEditorTableViewCell: MeetingEditorViewCell, UITextViewDeleg
  This is the table view class for the name editor prototype.
  */
 class FormatsEditorTableViewCell: MeetingEditorViewCell, UITableViewDataSource, UITableViewDelegate {
-    static let sLabelHeight: CGFloat                    = 100
+    static let sLabelHeight: CGFloat                    = 44
     static let sFormatCheckboxIndent: CGFloat           = 2
-    static let sFormatCheckboxContainerHeight: CGFloat  = 40
+    static let sFormatCheckboxContainerHeight: CGFloat  = 44
     static let sFormatCheckboxContainerWidth: CGFloat   = 80
 
     @IBOutlet weak var formatNameLabel: UILabel!
     @IBOutlet weak var formatDisplayTableView: UITableView!
+    
+    /* ################################################################## */
+    /**
+     Return the height of the table
+     */
+    var tableHeight: CGFloat {
+        get {
+            let numFormats = MainAppDelegate.connectionObject.allPossibleFormats.count
+            if nil != self.superview {
+                let formatsPerRow = Int(self.superview!.bounds.size.width / type(of: self).sFormatCheckboxContainerWidth)
+                return CGFloat(Int(numFormats + (formatsPerRow - 1)) / formatsPerRow) * type(of: self).sFormatCheckboxContainerHeight
+            }
+            
+            return 0
+        }
+    }
+    
+    /* ################################################################## */
+    /**
+     Retun the height of the entire cell
+     */
+    var cellHeight: CGFloat {
+        get {
+            return self.tableHeight + type(of: self).sLabelHeight
+        }
+    }
     
     /* ################################################################## */
     // MARK: Overridden Base Class Methods
@@ -1278,6 +1304,7 @@ class FormatsEditorTableViewCell: MeetingEditorViewCell, UITableViewDataSource, 
      */
     override func meetingObjectUpdated() {
         self.formatNameLabel.text = NSLocalizedString(self.formatNameLabel.text!, comment: "")
+        self.formatDisplayTableView.rowHeight = UITableViewAutomaticDimension
         self.formatDisplayTableView.reloadData()
     }
     
@@ -1303,12 +1330,11 @@ class FormatsEditorTableViewCell: MeetingEditorViewCell, UITableViewDataSource, 
     }
     
     /* ################################################################## */
-    // MARK: UITableViewDelegate Methods
-    /* ################################################################## */
     /**
+     Forces the table to reload
      */
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return type(of: self).sFormatCheckboxContainerHeight
+    func reloadTableData() {
+        self.formatDisplayTableView.reloadData()
     }
     
     /* ################################################################## */
@@ -1356,7 +1382,7 @@ class FormatsEditorTableViewCell: MeetingEditorViewCell, UITableViewDataSource, 
             let frame = CGRect(x: indent, y: 0, width: type(of: self).sFormatCheckboxContainerWidth, height: type(of: self).sFormatCheckboxContainerHeight)
             let formatSubCell = UIView(frame: frame)
             formatSubCell.backgroundColor = UIColor.clear
-            let checkBoxFrame = CGRect(x: type(of: self).sFormatCheckboxIndent, y: 0, width: type(of: self).sFormatCheckboxContainerHeight, height: type(of: self).sFormatCheckboxContainerHeight)
+            let checkBoxFrame = CGRect(x: type(of: self).sFormatCheckboxIndent, y: type(of: self).sFormatCheckboxIndent, width: type(of: self).sFormatCheckboxContainerHeight, height: type(of: self).sFormatCheckboxContainerHeight - (type(of: self).sFormatCheckboxIndent * 2))
             let checkBoxObject = ThreeStateCheckbox(frame: checkBoxFrame)
             checkBoxObject.binaryState = true
             checkBoxObject.extraData = formatObject
