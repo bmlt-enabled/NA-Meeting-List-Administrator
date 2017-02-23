@@ -60,11 +60,11 @@ class EditSingleMeetingViewController : MeetingEditorBaseViewController {
             
             alertController.addAction(saveAction)
             
-            let saveCopyAction = UIAlertAction(title: NSLocalizedString("SAVE-COPY-BUTTON", comment: ""), style: UIAlertActionStyle.destructive, handler: self.saveOKCopyCallback)
+            let saveCopyAction = UIAlertAction(title: NSLocalizedString("SAVE-COPY-BUTTON", comment: ""), style: UIAlertActionStyle.default, handler: self.saveOKCopyCallback)
             
             alertController.addAction(saveCopyAction)
             
-            let cancelAction = UIAlertAction(title: NSLocalizedString("SAVE-CANCEL-BUTTON", comment: ""), style: UIAlertActionStyle.default, handler: nil)
+            let cancelAction = UIAlertAction(title: NSLocalizedString("SAVE-CANCEL-BUTTON", comment: ""), style: UIAlertActionStyle.cancel, handler: nil)
             
             alertController.addAction(cancelAction)
             
@@ -72,11 +72,11 @@ class EditSingleMeetingViewController : MeetingEditorBaseViewController {
         } else {
             let alertController = UIAlertController(title: NSLocalizedString("SAVE-AS-COPY", comment: ""), message: NSLocalizedString("SAVE-AS-COPY-MESSAGE", comment: ""), preferredStyle: .alert)
             
-            let saveCopyAction = UIAlertAction(title: NSLocalizedString("SAVE-COPY-BUTTON", comment: ""), style: UIAlertActionStyle.destructive, handler: self.saveOKCopyCallback)
+            let saveCopyAction = UIAlertAction(title: NSLocalizedString("SAVE-COPY-BUTTON", comment: ""), style: UIAlertActionStyle.default, handler: self.saveOKCopyCallback)
             
             alertController.addAction(saveCopyAction)
             
-            let cancelAction = UIAlertAction(title: NSLocalizedString("SAVE-CANCEL-BUTTON", comment: ""), style: UIAlertActionStyle.default, handler: nil)
+            let cancelAction = UIAlertAction(title: NSLocalizedString("SAVE-CANCEL-BUTTON", comment: ""), style: UIAlertActionStyle.cancel, handler: nil)
             
             alertController.addAction(cancelAction)
             
@@ -102,6 +102,7 @@ class EditSingleMeetingViewController : MeetingEditorBaseViewController {
      - parameter inAction: The alert action object (ignored)
      */
     func saveOKCopyCallback(_ inAction: UIAlertAction) {
+        MainAppDelegate.connectionObject.saveMeetingAsCopy(self.meetingObject)
         let _ = self.navigationController?.popViewController(animated: true)
     }
     
