@@ -133,6 +133,15 @@ class MeetingEditorBaseViewController : EditorViewControllerBaseClass, UITableVi
     
     /* ################################################################## */
     /**
+     We take this opportunity to save our published colors.
+     */
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        self.tableView.reloadData()
+    }
+    
+    /* ################################################################## */
+    /**
      Called as the view is about to appear.
      
      - parameter animated: True, if the appearance is animated.
@@ -1252,8 +1261,8 @@ class MeetingCommentsEditorTableViewCell: MeetingEditorViewCell, UITextViewDeleg
 /**
  This is the table view class for the name editor prototype.
  */
-class FormatsEditorTableViewCell: MeetingEditorViewCell, UITableViewDataSource {
-    static let sLabelHeight: CGFloat                    = 40
+class FormatsEditorTableViewCell: MeetingEditorViewCell, UITableViewDataSource, UITableViewDelegate {
+    static let sLabelHeight: CGFloat                    = 100
     static let sFormatCheckboxIndent: CGFloat           = 2
     static let sFormatCheckboxContainerHeight: CGFloat  = 40
     static let sFormatCheckboxContainerWidth: CGFloat   = 80
@@ -1291,6 +1300,15 @@ class FormatsEditorTableViewCell: MeetingEditorViewCell, UITableViewDataSource {
             }
         }
         self.owner.updateEditorDisplay(self)
+    }
+    
+    /* ################################################################## */
+    // MARK: UITableViewDelegate Methods
+    /* ################################################################## */
+    /**
+     */
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return type(of: self).sFormatCheckboxContainerHeight
     }
     
     /* ################################################################## */
