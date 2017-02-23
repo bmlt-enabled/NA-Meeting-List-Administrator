@@ -453,10 +453,8 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate 
         // The first time we log in with a user, and we have multiple Service bodies, we allow them to choose their Service bodies first.
         if firstTime && (1 < AppStaticPrefs.prefs.allEditableServiceBodies.count){
             self.selectYourClowns(self.serviceBodyBarButton)
-        } else {    // If we just have one Service body, then we just go straight to the editor; whether or not we are at the first go.
-            if 1 == AppStaticPrefs.prefs.allEditableServiceBodies.count {
-                self.sendInTheClowns(self.editorBarButton)
-            }
+        } else {    // Otherwise, we just go straight to the editor; whether or not we are at the first go.
+            self.sendInTheClowns(self.editorBarButton)
         }
     }
     
