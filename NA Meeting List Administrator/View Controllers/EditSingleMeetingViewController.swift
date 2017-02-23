@@ -48,6 +48,65 @@ class EditSingleMeetingViewController : MeetingEditorBaseViewController {
     // MARK: IB Methods
     /* ################################################################## */
     /**
+     Called when the NavBar Save button is touched.
+     
+     - parameter sender: The IB item that called this.
+     */
+    @IBAction func saveButtonTouched(_ sender: UIBarButtonItem) {
+        if self.meetingObject.isDirty {
+            let alertController = UIAlertController(title: NSLocalizedString("SAVE-AS-OR-COPY", comment: ""), message: NSLocalizedString("SAVE-AS-OR-COPY-MESSAGE", comment: ""), preferredStyle: .alert)
+            
+            let saveAction = UIAlertAction(title: NSLocalizedString("SAVE-CHANGES-BUTTON", comment: ""), style: UIAlertActionStyle.destructive, handler: self.saveOKCallback)
+            
+            alertController.addAction(saveAction)
+            
+            let saveCopyAction = UIAlertAction(title: NSLocalizedString("SAVE-COPY-BUTTON", comment: ""), style: UIAlertActionStyle.destructive, handler: self.saveOKCopyCallback)
+            
+            alertController.addAction(saveCopyAction)
+            
+            let cancelAction = UIAlertAction(title: NSLocalizedString("SAVE-CANCEL-BUTTON", comment: ""), style: UIAlertActionStyle.default, handler: nil)
+            
+            alertController.addAction(cancelAction)
+            
+            self.present(alertController, animated: true, completion: nil)
+        } else {
+            let alertController = UIAlertController(title: NSLocalizedString("SAVE-AS-COPY", comment: ""), message: NSLocalizedString("SAVE-AS-COPY-MESSAGE", comment: ""), preferredStyle: .alert)
+            
+            let saveCopyAction = UIAlertAction(title: NSLocalizedString("SAVE-COPY-BUTTON", comment: ""), style: UIAlertActionStyle.destructive, handler: self.saveOKCopyCallback)
+            
+            alertController.addAction(saveCopyAction)
+            
+            let cancelAction = UIAlertAction(title: NSLocalizedString("SAVE-CANCEL-BUTTON", comment: ""), style: UIAlertActionStyle.default, handler: nil)
+            
+            alertController.addAction(cancelAction)
+            
+            self.present(alertController, animated: true, completion: nil)
+        }
+    }
+    
+    /* ################################################################## */
+    /**
+     If the user wants to save the meeting, we do so here..
+     
+     - parameter inAction: The alert action object (ignored)
+     */
+    func saveOKCallback(_ inAction: UIAlertAction) {
+        self.meetingObject.saveChanges()
+        let _ = self.navigationController?.popViewController(animated: true)
+    }
+    
+    /* ################################################################## */
+    /**
+     If the user wants to save the meeting as a copy, we generate a change URI, and send it to the server.
+     
+     - parameter inAction: The alert action object (ignored)
+     */
+    func saveOKCopyCallback(_ inAction: UIAlertAction) {
+        let _ = self.navigationController?.popViewController(animated: true)
+    }
+    
+    /* ################################################################## */
+    /**
      Called when the NavBar Cancel button is touched.
      
      - parameter sender: The IB item that called this.

@@ -110,3 +110,14 @@
 "COMMENTS-LABEL"                                                                                =   "Comments:";
 
 "FORMATS-LABEL"                                                                                 =   "Formats:";
+
+"SAVE-AS-OR-COPY"                                                                               =   "Save Meeting Changes";
+"SAVE-AS-OR-COPY-MESSAGE"                                                                       =   "Changes have been made to this meeting.\nDo you want to save these changes?";
+
+"SAVE-AS-COPY"                                                                                  =   "Save Meeting As A Copy";
+"SAVE-AS-COPY-MESSAGE"                                                                          =   "Do you want to duplicate this meeting?";
+
+"SAVE-COPY-BUTTON"                                                                              =   "Save A Copy of This Meeting";
+"SAVE-CHANGES-BUTTON"                                                                           =   "Save Changes";
+"SAVE-CANCEL-BUTTON"                                                                            =   "Cancel";
+

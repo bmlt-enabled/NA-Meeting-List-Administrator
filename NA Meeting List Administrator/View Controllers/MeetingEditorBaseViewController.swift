@@ -177,17 +177,6 @@ class MeetingEditorBaseViewController : EditorViewControllerBaseClass, UITableVi
     // MARK: IB Methods
     /* ################################################################## */
     /**
-     Called when the NavBar Save button is touched.
-     
-     - parameter sender: The IB item that called this.
-     */
-    @IBAction func saveButtonTouched(_ sender: UIBarButtonItem) {
-        self.meetingObject.saveChanges()
-        let _ = self.navigationController?.popViewController(animated: true)
-    }
-    
-    /* ################################################################## */
-    /**
      Called when the main view is tapped (closes any open keyboards).
      
      - parameter sender: The IB item that called this.
