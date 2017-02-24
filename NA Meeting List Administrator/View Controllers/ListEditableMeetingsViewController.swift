@@ -346,9 +346,9 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
         if 0 == inWeekdayIndex {
             self.allChangedTo(inState: newSelectionState)
         } else {
-            if !self._checkingAll {
-                if let indexAsEnum = BMLTiOSLibSearchCriteria.WeekdayIndex(rawValue: inWeekdayIndex) {
-                    self.selectedWeekdays[indexAsEnum] = newSelectionState
+            if let indexAsEnum = BMLTiOSLibSearchCriteria.WeekdayIndex(rawValue: inWeekdayIndex) {
+                self.selectedWeekdays[indexAsEnum] = newSelectionState
+                if !self._checkingAll {
                     self.updateDisplayedMeetings()
                 }
             }
