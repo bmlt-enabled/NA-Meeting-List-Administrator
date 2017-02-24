@@ -1,4 +1,3 @@
-//
 //  MeetingEditorBaseViewController.swift
 //  NA Meeting List Administrator
 //

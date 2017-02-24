@@ -1,8 +1,9 @@
-//
 //  AppStaticPrefs.swift
 //  BMLT NA Meeting Search
 //
 //  Created by MAGSHARE
+//
+//  Copyright 2017 MAGSHARE
 //
 //  This is free software: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License as published by

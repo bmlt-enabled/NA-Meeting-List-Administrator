@@ -1,31 +1,22 @@
-//
 //  ThreeStateCheckbox.swift
-//  BMLT NA Meeting Search
+//  NA Meeting List Administrator
 //
-//  Created by MAGSHARE
+//  Created by MAGSHARE.
 //
-//  https://bmlt.magshare.net/bmltioslib/
+//  Copyright 2017 MAGSHARE
 //
-//  This software is licensed under the MIT License.
-//  Copyright (c) 2017 MAGSHARE
+//  This is free software: you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License as published by
+//  the Free Software Foundation, either version 3 of the License, or
+//  (at your option) any later version.
 //
-//  Permission is hereby granted, free of charge, to any person obtaining a copy
-//  of this software and associated documentation files (the "Software"), to deal
-//  in the Software without restriction, including without limitation the rights
-//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-//  copies of the Software, and to permit persons to whom the Software is
-//  furnished to do so, subject to the following conditions:
+//  NA Meeting List Administrator is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
 //
-//  The above copyright notice and this permission notice shall be included in all
-//  copies or substantial portions of the Software.
-//
-//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-//  SOFTWARE.
+//  You should have received a copy of the GNU General Public License
+//  along with this code.  If not, see <http://www.gnu.org/licenses/>.
 
 import UIKit
 import BMLTiOSLib
@@ -38,20 +29,24 @@ import BMLTiOSLib
 class ThreeStateCheckbox: UIButton {
     /** This will hold any extra data we want to associate with the checkbox. */
     var extraData: AnyObject? = nil
-    /** If this is true, then we can only have on and off. If false, then we have 3 states. */
+    /** If this is true, then we can only have on and off. If false, then we have 3 states. Default is false. */
     var binaryState: Bool = false
     
     /** This holds the actual state condition. This should not be accessed outside the class. */
-    internal var _selectionState: BMLTiOSLibSearchCriteria.SelectionState = .Clear
+    internal var _selectionState: BMLTiOSLibSearchCriteria.SelectionState = BMLTiOSLibSearchCriteria.SelectionState.Clear
     /* This is a functional interface to ensure that the control gets redrawn when the state changes. */
     var selectionState: BMLTiOSLibSearchCriteria.SelectionState {
         get {
             return self._selectionState
         }
         set {
-            self._selectionState = newValue
-            self.sendActions(for: UIControlEvents.valueChanged)
-            self.setNeedsLayout()
+            // If we are in "binary" mode, then we can only be selected or clear.
+            let newVal: BMLTiOSLibSearchCriteria.SelectionState = (self.binaryState ? (newValue == BMLTiOSLibSearchCriteria.SelectionState.Deselected ? BMLTiOSLibSearchCriteria.SelectionState.Clear : BMLTiOSLibSearchCriteria.SelectionState.Deselected) : BMLTiOSLibSearchCriteria.SelectionState.Selected)
+            if self._selectionState != newVal {
+                self._selectionState = newVal
+                self.sendActions(for: UIControlEvents.valueChanged)
+                self.setNeedsLayout()
+            }
         }
     }
     
@@ -61,8 +56,7 @@ class ThreeStateCheckbox: UIButton {
         select those images when our subviews are laid out.
     */
     override func layoutSubviews() {
-        super.layoutSubviews()
-        switch self._selectionState {
+        switch self.selectionState {
         case .Clear:
             self.setBackgroundImage(UIImage(named: "checkbox-clear"), for: UIControlState())
             self.setBackgroundImage(UIImage(named: "checkbox-clear-highlight"), for: UIControlState.selected)
@@ -79,6 +73,7 @@ class ThreeStateCheckbox: UIButton {
             self.setBackgroundImage(UIImage(named: "checkbox-unselected-highlight"), for: UIControlState.highlighted)
             self.setBackgroundImage(UIImage(named: "checkbox-unselected-highlight"), for: UIControlState.disabled)
         }
+        super.layoutSubviews()
     }
     
     /* ################################################################## */

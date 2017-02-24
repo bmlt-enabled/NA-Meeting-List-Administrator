@@ -1,4 +1,3 @@
-//
 //  ListEditableMeetingsViewController.swift
 //  NA Meeting List Administrator
 //
@@ -348,7 +347,7 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
         } else {
             if let indexAsEnum = BMLTiOSLibSearchCriteria.WeekdayIndex(rawValue: inWeekdayIndex) {
                 self.selectedWeekdays[indexAsEnum] = newSelectionState
-                if !self._checkingAll {
+                if !self._checkingAll { // We don't update if we are in the middle of changing all the checkboxes.
                     self.updateDisplayedMeetings()
                 }
             }
