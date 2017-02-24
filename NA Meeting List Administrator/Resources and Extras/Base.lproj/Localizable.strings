@@ -50,6 +50,7 @@
 "MEETINGS-TAB-BAR-NAME"                                                                         =   "Meetings";
 
 "SAVE-BUTTON"                                                                                   =   "Save";
+"SAVE-BUTTON-DUPLICATE"                                                                         =   "Duplicate";
 "CANCEL-BUTTON"                                                                                 =   "Cancel";
 
 "PUBLISHED-LABEL"                                                                               =   "Meeting Is Published";

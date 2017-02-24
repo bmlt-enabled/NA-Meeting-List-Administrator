@@ -1093,13 +1093,35 @@
                                     <outlet property="delegate" destination="m2u-A7-bWE" id="dSu-L1-G5i"/>
                                 </connections>
                             </tableView>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="64l-pk-tFP" userLabel="Animation View">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="1887"/>
+                                <subviews>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="M4K-1n-cW3">
+                                        <rect key="frame" x="142" y="925" width="37" height="37"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="M4K-1n-cW3" secondAttribute="height" multiplier="1:1" id="mIJ-j0-aQd"/>
+                                            <constraint firstAttribute="width" constant="37" id="nru-5q-DqT"/>
+                                        </constraints>
+                                        <color key="color" red="0.71593479199999999" green="0.93850808809999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.036142560050000001" green="0.16316006350000001" blue="0.28024899590000002" alpha="0.5" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="M4K-1n-cW3" firstAttribute="centerY" secondItem="64l-pk-tFP" secondAttribute="centerY" id="See-VX-st1"/>
+                                    <constraint firstItem="M4K-1n-cW3" firstAttribute="centerX" secondItem="64l-pk-tFP" secondAttribute="centerX" id="phe-dQ-xBZ"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <color key="tintColor" red="0.0" green="0.0" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="nCd-vQ-VIX" firstAttribute="top" secondItem="64l-pk-tFP" secondAttribute="bottom" id="4Ge-f4-8b5"/>
                             <constraint firstAttribute="trailing" secondItem="hu8-sJ-cp5" secondAttribute="trailing" id="58w-K2-LEU"/>
+                            <constraint firstItem="64l-pk-tFP" firstAttribute="leading" secondItem="tAG-NX-Teg" secondAttribute="leading" id="Cxn-zc-CQx"/>
                             <constraint firstItem="hu8-sJ-cp5" firstAttribute="leading" secondItem="tAG-NX-Teg" secondAttribute="leading" id="Q3h-tK-m3A"/>
                             <constraint firstItem="nCd-vQ-VIX" firstAttribute="top" secondItem="hu8-sJ-cp5" secondAttribute="bottom" id="UXd-VB-iNM"/>
+                            <constraint firstItem="64l-pk-tFP" firstAttribute="top" secondItem="hbw-4E-5Fl" secondAttribute="bottom" id="V8Y-Ps-n8o"/>
+                            <constraint firstAttribute="trailing" secondItem="64l-pk-tFP" secondAttribute="trailing" id="Vke-ua-vM2"/>
                             <constraint firstItem="hu8-sJ-cp5" firstAttribute="top" secondItem="hbw-4E-5Fl" secondAttribute="bottom" id="uQY-51-YEd"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
@@ -1135,6 +1157,7 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                     <connections>
+                        <outlet property="animationCover" destination="64l-pk-tFP" id="WHa-oF-AaE"/>
                         <outlet property="cancelButton" destination="1gs-FS-fYy" id="Aq7-Co-NFw"/>
                         <outlet property="saveButton" destination="Pqd-qA-Ywy" id="Ojg-el-eHF"/>
                         <outlet property="tableView" destination="hu8-sJ-cp5" id="89g-qD-XPR"/>

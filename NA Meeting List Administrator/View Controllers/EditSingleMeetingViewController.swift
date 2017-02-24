@@ -30,6 +30,9 @@ import BMLTiOSLib
 class EditSingleMeetingViewController : MeetingEditorBaseViewController {
     /** THis is the bar button item for canceling editing. */
     @IBOutlet weak var cancelButton: UIBarButtonItem!
+    @IBOutlet weak var animationCover: UIView!
+    
+    var ownerController: ListEditableMeetingsViewController! = nil
     
     /* ################################################################## */
     // MARK: Overridden Base Class Methods
@@ -85,6 +88,24 @@ class EditSingleMeetingViewController : MeetingEditorBaseViewController {
     }
     
     /* ################################################################## */
+    // MAR: Instance Methods
+    /* ################################################################## */
+    /**
+     Called when something changes in the various controls.
+     
+     - parameter inChangedCell: The table cell object that experienced the change. If nil, then no meeting cell was changed. nil is default.
+     */
+    override func updateEditorDisplay(_ inChangedCell: MeetingEditorViewCell! = nil) {
+        if self.meetingObject.isDirty {
+            self.saveButton.title = NSLocalizedString("SAVE-BUTTON", comment: "")
+        } else {
+            self.saveButton.title = NSLocalizedString("SAVE-BUTTON-DUPLICATE", comment: "")
+        }
+        
+        super.updateEditorDisplay(inChangedCell)
+    }
+   
+    /* ################################################################## */
     /**
      If the user wants to save the meeting, we do so here..
      
@@ -102,8 +123,20 @@ class EditSingleMeetingViewController : MeetingEditorBaseViewController {
      - parameter inAction: The alert action object (ignored)
      */
     func saveOKCopyCallback(_ inAction: UIAlertAction) {
+        self.animationCover.isHidden = false
+        self.ownerController.callMeWhenYoureDone = self.callMeWhenYoureDone
         MainAppDelegate.connectionObject.saveMeetingAsCopy(self.meetingObject)
-        let _ = self.navigationController?.popViewController(animated: true)
+    }
+    
+    /* ################################################################## */
+    /**
+     - parameter inEditor: The list view controller.
+     */
+    func callMeWhenYoureDone(_ inEditor : ListEditableMeetingsViewController) -> Bool {
+        self.meetingObject = inEditor.currentMeetingList[0] as! BMLTiOSLibEditableMeetingNode
+        self.animationCover.isHidden = true
+        self.updateEditorDisplay()
+        return true
     }
     
     /* ################################################################## */
