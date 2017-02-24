@@ -224,21 +224,10 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
     func sortMeetings() {
         self.currentMeetingList = self.currentMeetingList.sorted(by: { (a, b) -> Bool in
             if .Time == self._resultsSort {
-                let aComp = a.startTimeAndDay
-                let bComp = b.startTimeAndDay
+                let aComp = a.timeDayAsInteger
+                let bComp = b.timeDayAsInteger
                 
-                if (aComp?.weekday)! < (bComp?.weekday)! {
-                    return true
-                } else {
-                    if (aComp?.weekday)! > (bComp?.weekday)! {
-                        return false
-                    } else {
-                        let aTime = (aComp?.hour)! * 100 + (aComp?.minute)!
-                        let bTime = (bComp?.hour)! * 100 + (bComp?.minute)!
-                        
-                        return aTime < bTime
-                    }
-                }
+                return aComp < bComp
             } else {
                 let aTown = a.locationBorough.isEmpty ? a.locationTown : a.locationBorough
                 let bTown = b.locationBorough.isEmpty ? b.locationTown : b.locationBorough

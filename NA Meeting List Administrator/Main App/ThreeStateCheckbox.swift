@@ -40,8 +40,13 @@ class ThreeStateCheckbox: UIButton {
             return self._selectionState
         }
         set {
+            var newVal: BMLTiOSLibSearchCriteria.SelectionState = .Clear
+            
             // If we are in "binary" mode, then we can only be selected or clear.
-            let newVal: BMLTiOSLibSearchCriteria.SelectionState = (self.binaryState ? (newValue == BMLTiOSLibSearchCriteria.SelectionState.Deselected ? BMLTiOSLibSearchCriteria.SelectionState.Clear : BMLTiOSLibSearchCriteria.SelectionState.Deselected) : BMLTiOSLibSearchCriteria.SelectionState.Selected)
+            if self.binaryState && (.Deselected != newValue) {
+                newVal = newValue
+            }
+
             if self._selectionState != newVal {
                 self._selectionState = newVal
                 self.sendActions(for: UIControlEvents.valueChanged)
