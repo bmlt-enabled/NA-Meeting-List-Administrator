@@ -450,6 +450,77 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
     }
     
     /* ################################################################## */
+    /**
+     Indicate that a row can be edited (for left-swipe delete).
+     
+     - parameter tableView: The table view being checked
+     - parameter canEditRowAt: The indexpath of the row to be checked.
+     
+     - returns: true, always.
+     */
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    /* ################################################################## */
+    /**
+     Called to do a delete action.
+     
+     - parameter tableView: The table view being checked
+     - parameter commit: The action to perform.
+     - parameter forRowAt: The indexpath of the row to be deleted.
+     */
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == UITableViewCellEditingStyle.delete) {
+            let meetingObject = self.currentMeetingList[indexPath.row]
+
+            let alertController = UIAlertController(title: NSLocalizedString("DELETE-HEADER", comment: ""), message: String(format: NSLocalizedString("DELETE-MESSAGE-FORMAT", comment: ""), meetingObject.name), preferredStyle: .alert)
+            
+            let deleteAction = UIAlertAction(title: NSLocalizedString("DELETE-OK-BUTTON", comment: ""), style: UIAlertActionStyle.destructive, handler: {(_: UIAlertAction) in self.doADirtyDeedCheap(tableView, forRowAt: indexPath)})
+            
+            alertController.addAction(deleteAction)
+            
+            let cancelAction = UIAlertAction(title: NSLocalizedString("DELETE-CANCEL-BUTTON", comment: ""), style: UIAlertActionStyle.default, handler: {(_: UIAlertAction) in self.dontDoADirtyDeedCheap(tableView)})
+            
+            alertController.addAction(cancelAction)
+            
+            self.present(alertController, animated: true, completion: nil)
+        }
+    }
+    
+    /* ################################################################## */
+    /**
+     Called to do a delete action.
+     
+     - parameter tableView: The table view being checked
+     - parameter forRowAt: The indexpath of the row to be deleted.
+     */
+    func doADirtyDeedCheap(_ tableView: UITableView, forRowAt indexPath: IndexPath) {
+        let meetingObject = self.currentMeetingList[indexPath.row]
+        self.currentMeetingList.remove(at: indexPath.row)
+        for i in 0..<MainAppDelegate.appDelegateObject.meetingObjects.count {
+            let originalMeetingObject = MainAppDelegate.appDelegateObject.meetingObjects[i]
+            if originalMeetingObject.id == meetingObject.id {
+                MainAppDelegate.appDelegateObject.meetingObjects.remove(at: i)
+                break
+            }
+        }
+        self._meetingBeingEdited = nil
+        MainAppDelegate.connectionObject.deleteMeeting(meetingObject.id)
+        tableView.deleteRows(at: [indexPath], with: .fade)
+    }
+    
+    /* ################################################################## */
+    /**
+     Called to cancel a delete action.
+     
+     - parameter tableView: The table view being checked
+     */
+    func dontDoADirtyDeedCheap(_ tableView: UITableView) {
+        tableView.isEditing = false
+    }
+    
+    /* ################################################################## */
     // MARK: - UIPickerViewDataSource Methods -
     /* ################################################################## */
     /**

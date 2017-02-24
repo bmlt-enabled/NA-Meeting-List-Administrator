@@ -49,6 +49,11 @@
 "LOCAL-SEARCH-PICKER-NONE"                                                                      =   "All Towns and Boroughs";
 "MEETINGS-TAB-BAR-NAME"                                                                         =   "Meetings";
 
+"DELETE-HEADER"                                                                                 =   "Do You Want to Delete This Meeting?";
+"DELETE-MESSAGE-FORMAT"                                                                         =   "The Meeting \"%@\" will be deleted. Are you sure that you want to delete it?";
+"DELETE-OK-BUTTON"                                                                              =   "Delete This Meeting";
+"DELETE-CANCEL-BUTTON"                                                                          =   "Cancel";
+
 "SAVE-BUTTON"                                                                                   =   "Save";
 "SAVE-BUTTON-DUPLICATE"                                                                         =   "Duplicate";
 "CANCEL-BUTTON"                                                                                 =   "Cancel";
