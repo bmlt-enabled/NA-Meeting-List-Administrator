@@ -14,6 +14,7 @@
 		777178181E454C0D0027F8E4 /* SelectServiceBodiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777178171E454C0D0027F8E4 /* SelectServiceBodiesViewController.swift */; };
 		7784D3DC1E454D0300953CA0 /* ListEditableMeetingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7784D3DB1E454D0300953CA0 /* ListEditableMeetingsViewController.swift */; };
 		7784D3E01E454D4900953CA0 /* EditorTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7784D3DF1E454D4900953CA0 /* EditorTabBarController.swift */; };
+		779462241E60C77900EC133D /* DeletedMeetingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779462231E60C77900EC133D /* DeletedMeetingsViewController.swift */; };
 		779BE3AF1E37D5A600350D11 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779BE3AE1E37D5A600350D11 /* InitialViewController.swift */; };
 		779BE3B11E37D5B500350D11 /* MainAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779BE3B01E37D5B500350D11 /* MainAppDelegate.swift */; };
 		779BE3BC1E37D5FA00350D11 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 779BE3B21E37D5FA00350D11 /* Assets.xcassets */; };
@@ -82,6 +83,7 @@
 		777178171E454C0D0027F8E4 /* SelectServiceBodiesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectServiceBodiesViewController.swift; path = "View Controllers/SelectServiceBodiesViewController.swift"; sourceTree = "<group>"; };
 		7784D3DB1E454D0300953CA0 /* ListEditableMeetingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListEditableMeetingsViewController.swift; path = "View Controllers/ListEditableMeetingsViewController.swift"; sourceTree = "<group>"; };
 		7784D3DF1E454D4900953CA0 /* EditorTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditorTabBarController.swift; path = "View Controllers/EditorTabBarController.swift"; sourceTree = "<group>"; };
+		779462231E60C77900EC133D /* DeletedMeetingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DeletedMeetingsViewController.swift; path = "View Controllers/DeletedMeetingsViewController.swift"; sourceTree = "<group>"; };
 		779BE3AE1E37D5A600350D11 /* InitialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InitialViewController.swift; path = "View Controllers/InitialViewController.swift"; sourceTree = "<group>"; };
 		779BE3B01E37D5B500350D11 /* MainAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainAppDelegate.swift; path = "Main App/MainAppDelegate.swift"; sourceTree = "<group>"; };
 		779BE3B21E37D5FA00350D11 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "Resources and Extras/Assets.xcassets"; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 				7784D3DB1E454D0300953CA0 /* ListEditableMeetingsViewController.swift */,
 				77D92ED61E4B50CC009F02B2 /* MeetingEditorBaseViewController.swift */,
 				77D92EDA1E4B5146009F02B2 /* EditSingleMeetingViewController.swift */,
+				779462231E60C77900EC133D /* DeletedMeetingsViewController.swift */,
 			);
 			name = "View Controllers";
 			path = "NA Meeting List Administrator";
@@ -325,6 +328,7 @@
 				7784D3DC1E454D0300953CA0 /* ListEditableMeetingsViewController.swift in Sources */,
 				779BE3B11E37D5B500350D11 /* MainAppDelegate.swift in Sources */,
 				77140E901E37D3E1008BBB12 /* FXKeychain.m in Sources */,
+				779462241E60C77900EC133D /* DeletedMeetingsViewController.swift in Sources */,
 				777178141E454AB30027F8E4 /* SettingsViewController.swift in Sources */,
 				7784D3E01E454D4900953CA0 /* EditorTabBarController.swift in Sources */,
 				77D92ED71E4B50CC009F02B2 /* MeetingEditorBaseViewController.swift in Sources */,

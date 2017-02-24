@@ -26,6 +26,7 @@ import BMLTiOSLib
 // MARK: - List Editable Meetings View Controller Class -
 /* ###################################################################################################################################### */
 /**
+ This class controls the list of editable meetings that is the first editor screen to be shown.
  */
 class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITableViewDataSource, UITableViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     /* ################################################################## */
@@ -62,6 +63,8 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
     private var _meetingBeingEdited: Int! = nil
     /** This is the sort key. It is either day/time (default), or town. */
     private var _resultsSort: SortKey = .Time
+    /** This is a semaphore we use to reduce update overhead when checking the "All" weekday checkbox. */
+    private var _checkingAll: Bool = false
     
     /* ################################################################## */
     // MARK: Internal IB Instance Properties
@@ -217,6 +220,7 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
     
     /* ################################################################## */
     /**
+     This sorts the meeting list by the weekday, then the start time.
      */
     func sortMeetings() {
         self.currentMeetingList = self.currentMeetingList.sorted(by: { (a, b) -> Bool in
@@ -247,7 +251,7 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
     
     /* ################################################################## */
     /**
-     This sorts through the available meetings, and filters out the ones we want, according to the weekday checkboxes.
+     This sorts through the available meetings, and filters out the ones we want, according to the weekday checkboxes and the selected town.
      */
     func updateDisplayedMeetings() {
         self.currentMeetingList = []
@@ -301,6 +305,7 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
      This changes all of the checkboxes to match the "All" checkbox state.
      */
     func allChangedTo(inState : BMLTiOSLibSearchCriteria.SelectionState) {
+        self._checkingAll = true
         for subView in self.weekdaySwitchesContainerView.subviews {
             if let castView = subView as? WeekdaySwitchContainerView {
                 if 0 != castView.weekdayIndex {
@@ -308,7 +313,7 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
                 }
             }
         }
-        
+        self._checkingAll = false
         self.updateDisplayedMeetings()
     }
     
@@ -341,9 +346,11 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
         if 0 == inWeekdayIndex {
             self.allChangedTo(inState: newSelectionState)
         } else {
-            if let indexAsEnum = BMLTiOSLibSearchCriteria.WeekdayIndex(rawValue: inWeekdayIndex) {
-                self.selectedWeekdays[indexAsEnum] = newSelectionState
-                self.updateDisplayedMeetings()
+            if !self._checkingAll {
+                if let indexAsEnum = BMLTiOSLibSearchCriteria.WeekdayIndex(rawValue: inWeekdayIndex) {
+                    self.selectedWeekdays[indexAsEnum] = newSelectionState
+                    self.updateDisplayedMeetings()
+                }
             }
         }
     }

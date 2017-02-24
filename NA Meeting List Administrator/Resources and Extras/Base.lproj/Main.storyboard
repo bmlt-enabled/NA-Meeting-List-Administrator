@@ -1185,6 +1185,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="w5k-wt-KU4" kind="relationship" relationship="viewControllers" id="0Zn-jP-lQ7"/>
+                        <segue destination="bWe-vY-4fv" kind="relationship" relationship="viewControllers" id="BRX-mB-Nzq"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RHM-ep-pLH" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1220,6 +1221,34 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S0K-YC-UgK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="471" y="988"/>
+        </scene>
+        <!--DELETED-MEETINGS-TAB-BAR-NAME-->
+        <scene sceneID="XBh-dK-PIz">
+            <objects>
+                <viewController id="bWe-vY-4fv" customClass="DeletedMeetingsViewController" customModule="NA_Meeting_List_Administrator" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Kq9-FH-8KC"/>
+                        <viewControllerLayoutGuide type="bottom" id="DkU-cp-hmi"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="1e9-mM-tnz" customClass="EditorViewBaseClass" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="640"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="0.0" green="0.0" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="topColor">
+                                <color key="value" red="0.6244977679" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="bottomColor">
+                                <color key="value" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="DELETED-MEETINGS-TAB-BAR-NAME" image="Deleted" id="h6s-pn-xQu"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gB0-Ni-LdW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1742" y="988"/>
         </scene>
         <!--Select Service Bodies View Controller-->
         <scene sceneID="23k-zI-W9B">
@@ -1623,6 +1652,7 @@
     </scenes>
     <resources>
         <image name="BackgroundGradient" width="1" height="2732"/>
+        <image name="Deleted" width="25" height="25"/>
         <image name="List" width="25" height="25"/>
         <image name="Settings" width="25" height="25"/>
         <image name="Settings-Highlight" width="25" height="25"/>

@@ -29,12 +29,22 @@ import BMLTiOSLib
  */
 class EditorTabBarController : UITabBarController {
     enum TabIndexes: Int {
-        case ListTab = 0
+        case ListTab = 0, DeletedTab
     }
     
+    /* ################################################################## */
+    // MARK: Overridden Base Class Methods
+    /* ################################################################## */
+    /**
+     Called when the view has finished loading.
+     */
     override func viewDidLoad() {
         if let listViewController = self.viewControllers?[TabIndexes.ListTab.rawValue] as? ListEditableMeetingsViewController {
             listViewController.tabBarItem.title = NSLocalizedString(listViewController.tabBarItem.title!, comment: "")
+        }
+        
+        if let deletedViewController = self.viewControllers?[TabIndexes.DeletedTab.rawValue] as? DeletedMeetingsViewController {
+            deletedViewController.tabBarItem.title = NSLocalizedString(deletedViewController.tabBarItem.title!, comment: "")
         }
     }
     
@@ -54,7 +64,7 @@ class EditorTabBarController : UITabBarController {
 }
 
 /* ###################################################################################################################################### */
-// MARK: - This is a base class for the various editor pages. -
+// MARK: - This is a base class for the various editor view controllers. -
 /* ###################################################################################################################################### */
 /**
  */
@@ -80,11 +90,22 @@ class EditorViewBaseClass : UIView {
     @IBInspectable var topColor: UIColor = UIColor.white
     @IBInspectable var bottomColor: UIColor = UIColor.black
     
+    /* ################################################################## */
+    // MARK: Overridden Base Class Methods
+    /* ################################################################## */
+    /**
+     This casts our layer to a gradient layer.
+     */
     override class var layerClass: AnyClass {
         return CAGradientLayer.self
     }
     
+    /* ################################################################## */
+    /**
+     Called when the class is to lay out its subviews.
+     */
     override func layoutSubviews() {
         (layer as! CAGradientLayer).colors = [topColor.cgColor, bottomColor.cgColor]
+        super.layoutSubviews()
     }
 }

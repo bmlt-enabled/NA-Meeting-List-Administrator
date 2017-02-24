@@ -26,6 +26,7 @@ import BMLTiOSLib
 // MARK: - Single Meeting Editor View Controller Class -
 /* ###################################################################################################################################### */
 /**
+ This is the subclass for the editor (as opposed to the new meeting creator).
  */
 class EditSingleMeetingViewController : MeetingEditorBaseViewController {
     /** THis is the bar button item for canceling editing. */
