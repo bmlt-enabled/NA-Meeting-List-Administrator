@@ -244,12 +244,14 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
     func updateDisplayedMeetings() {
         self.currentMeetingList = []
         
+        let row = self.townBoroughPickerView.selectedRow(inComponent: 0) - 2
+        let townString: String = (0 <= row) ? self._townsAndBoroughs[row] : ""
+        
         for meeting in MainAppDelegate.appDelegateObject.meetingObjects {
+            let weekdayIndex = meeting.weekdayIndex
             for weekdaySelection in self.selectedWeekdays {
-                if (weekdaySelection.value == .Selected) && (weekdaySelection.key.rawValue == meeting.weekdayIndex) {
-                    if 1 < self.townBoroughPickerView.selectedRow(inComponent: 0) {
-                        let row = self.townBoroughPickerView.selectedRow(inComponent: 0) - 2
-                        let townString = self._townsAndBoroughs[row]
+                if (weekdaySelection.value == .Selected) && (weekdaySelection.key.rawValue == weekdayIndex) {
+                    if !townString.isEmpty {
                         if (meeting.locationBorough == townString) || (meeting.locationTown == townString) {
                             self.currentMeetingList.append(meeting)
                             break
@@ -261,9 +263,13 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
                 }
             }
         }
+        
         self.sortMeetings()
-        self.meetingListTableView.reloadData()
-        self.townBoroughPickerView.reloadAllComponents()
+        
+        DispatchQueue.main.async(execute: {
+            self.meetingListTableView.reloadData()
+            self.townBoroughPickerView.reloadAllComponents()
+        })
     }
     
     /* ################################################################## */
@@ -302,7 +308,9 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
             }
         }
         self._checkingAll = false
-        self.updateDisplayedMeetings()
+        DispatchQueue.main.async(execute: {
+            self.updateDisplayedMeetings()
+        })
     }
     
     /* ################################################################## */
@@ -337,7 +345,9 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
             if let indexAsEnum = BMLTiOSLibSearchCriteria.WeekdayIndex(rawValue: inWeekdayIndex) {
                 self.selectedWeekdays[indexAsEnum] = newSelectionState
                 if !self._checkingAll { // We don't update if we are in the middle of changing all the checkboxes.
-                    self.updateDisplayedMeetings()
+                    DispatchQueue.main.async(execute: {
+                        self.updateDisplayedMeetings()
+                    })
                 }
             }
         }
