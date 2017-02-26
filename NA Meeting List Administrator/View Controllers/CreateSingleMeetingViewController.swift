@@ -1,4 +1,4 @@
-//  EditSingleMeetingViewController.swift
+//  CreateSingleMeetingViewController.swift
 //  NA Meeting List Administrator
 //
 //  Created by MAGSHARE.
@@ -27,13 +27,9 @@ import BMLTiOSLib
 /**
  This is the subclass for the editor (as opposed to the new meeting creator).
  */
-class EditSingleMeetingViewController : MeetingEditorBaseViewController {
+class CreateSingleMeetingViewController : MeetingEditorBaseViewController {
     /** THis is the bar button item for canceling editing. */
     @IBOutlet weak var cancelButton: UIBarButtonItem!
-    
-    /** This is the bar button item for saving changes. */
-    @IBOutlet weak var saveButton: UIBarButtonItem!
-
     @IBOutlet weak var animationCover: UIView!
     
     var ownerController: ListEditableMeetingsViewController! = nil
@@ -52,26 +48,6 @@ class EditSingleMeetingViewController : MeetingEditorBaseViewController {
             navController.isNavigationBarHidden = false
         }
         self.cancelButton.title = NSLocalizedString(self.cancelButton.title!, comment: "")
-        self.saveButton.title = NSLocalizedString(self.saveButton.title!, comment: "")
-        self.updateEditorDisplay()
-    }
-    
-    /* ################################################################## */
-    // MAR: Instance Methods
-    /* ################################################################## */
-    /**
-     Called when something changes in the various controls.
-     
-     - parameter inChangedCell: The table cell object that experienced the change. If nil, then no meeting cell was changed. nil is default.
-     */
-    override func updateEditorDisplay(_ inChangedCell: MeetingEditorViewCell! = nil) {
-        if self.meetingObject.isDirty {
-            self.saveButton.title = NSLocalizedString("SAVE-BUTTON", comment: "")
-        } else {
-            self.saveButton.title = NSLocalizedString("SAVE-BUTTON-DUPLICATE", comment: "")
-        }
-        
-        super.updateEditorDisplay(inChangedCell)
     }
     
     /* ################################################################## */
@@ -84,27 +60,11 @@ class EditSingleMeetingViewController : MeetingEditorBaseViewController {
      */
     @IBAction func saveButtonTouched(_ sender: UIBarButtonItem) {
         if self.meetingObject.isDirty {
-            let alertController = UIAlertController(title: NSLocalizedString("SAVE-AS-OR-COPY", comment: ""), message: NSLocalizedString("SAVE-AS-OR-COPY-MESSAGE", comment: ""), preferredStyle: .alert)
+            let alertController = UIAlertController(title: NSLocalizedString("SAVE-NEW-TITLE", comment: ""), message: NSLocalizedString("SAVE-NEW-MESSAGE", comment: ""), preferredStyle: .alert)
             
-            let saveAction = UIAlertAction(title: NSLocalizedString("SAVE-CHANGES-BUTTON", comment: ""), style: UIAlertActionStyle.destructive, handler: self.saveOKCallback)
+            let saveAction = UIAlertAction(title: NSLocalizedString("SAVE-NEW-BUTTON", comment: ""), style: UIAlertActionStyle.destructive, handler: self.saveOKCallback)
             
             alertController.addAction(saveAction)
-            
-            let saveCopyAction = UIAlertAction(title: NSLocalizedString("SAVE-COPY-BUTTON", comment: ""), style: UIAlertActionStyle.default, handler: self.saveOKCopyCallback)
-            
-            alertController.addAction(saveCopyAction)
-            
-            let cancelAction = UIAlertAction(title: NSLocalizedString("SAVE-CANCEL-BUTTON", comment: ""), style: UIAlertActionStyle.cancel, handler: nil)
-            
-            alertController.addAction(cancelAction)
-            
-            self.present(alertController, animated: true, completion: nil)
-        } else {
-            let alertController = UIAlertController(title: NSLocalizedString("SAVE-AS-COPY", comment: ""), message: NSLocalizedString("SAVE-AS-COPY-MESSAGE", comment: ""), preferredStyle: .alert)
-            
-            let saveCopyAction = UIAlertAction(title: NSLocalizedString("SAVE-COPY-BUTTON", comment: ""), style: UIAlertActionStyle.default, handler: self.saveOKCopyCallback)
-            
-            alertController.addAction(saveCopyAction)
             
             let cancelAction = UIAlertAction(title: NSLocalizedString("SAVE-CANCEL-BUTTON", comment: ""), style: UIAlertActionStyle.cancel, handler: nil)
             
@@ -127,6 +87,16 @@ class EditSingleMeetingViewController : MeetingEditorBaseViewController {
     
     /* ################################################################## */
     // MARK: Instance Methods
+    /* ################################################################## */
+    /**
+     Called when something changes in the various controls.
+     
+     - parameter inChangedCell: The table cell object that experienced the change. If nil, then no meeting cell was changed. nil is default.
+     */
+    override func updateEditorDisplay(_ inChangedCell: MeetingEditorViewCell! = nil) {
+        super.updateEditorDisplay(inChangedCell)
+    }
+   
     /* ################################################################## */
     /**
      If the user wants to save the meeting, we do so here..

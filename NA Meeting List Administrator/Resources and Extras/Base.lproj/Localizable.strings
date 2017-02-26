@@ -129,3 +129,6 @@
 "SAVE-CHANGES-BUTTON"                                                                           =   "Save Changes";
 "SAVE-CANCEL-BUTTON"                                                                            =   "Cancel";
 
+"SAVE-NEW-TITLE"                                                                                =   "Create This New Meeting";
+"SAVE-NEW-MESSAGE"                                                                              =   "If you touch \"Create New Meeting\", this meeting will be created as a new meeting.";
+"SAVE-NEW-BUTTON"                                                                               =   "Create New Meeting";

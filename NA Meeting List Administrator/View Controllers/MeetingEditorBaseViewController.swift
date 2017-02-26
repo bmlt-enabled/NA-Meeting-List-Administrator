@@ -100,20 +100,6 @@ class MeetingEditorBaseViewController : EditorViewControllerBaseClass, UITableVi
     /** This is the structural table view */
     @IBOutlet var tableView: UITableView!
     
-    /** THis is the bar button item for saving changes. */
-    @IBOutlet weak var saveButton: UIBarButtonItem!
-    
-    /** The following are sections in our table. Each is described by a prototype. */
-    
-    /** These are the three "dynamics" in the editor. */
-    /** If true, then we allow the meeting to be deleted. */
-    @IBInspectable var showDelete: Bool!
-    /** If true, then we allow the meeting to be saved as a duplicate. */
-    @IBInspectable var showDuplicate: Bool!
-    /** If true, then we allow meeting history to be shown. */
-    @IBInspectable var showHistory: Bool!
-    /** If true, then we show the cancel button. */
-    @IBInspectable var showCancel: Bool!
     /** If the meeting is unpublished, we have a different color background gradient. */
     @IBInspectable var unpublishedTopColor: UIColor!
     @IBInspectable var unpublishedBottomColor: UIColor!
@@ -151,8 +137,6 @@ class MeetingEditorBaseViewController : EditorViewControllerBaseClass, UITableVi
         if nil != self._formatContainerView {
             self.tableView.reloadData()
         }
-        self.saveButton.title = NSLocalizedString(self.saveButton.title!, comment: "")
-        self.updateEditorDisplay()
         
         if nil != self._locationManager {
             self._locationManager.stopUpdatingLocation()
@@ -1029,6 +1013,11 @@ class MapTableViewCell: MeetingEditorViewCell, MKMapViewDelegate {
             self.mapView.removeAnnotation(self._meetingMarker)
         }
         
+        self._meetingMarker = MapAnnotation(coordinate: self.meetingObject.locationCoords, locations: [self.meetingObject])
+        
+        // Set the marker up.
+        self.mapView.addAnnotation(self._meetingMarker)
+        
         // Now, zoom the map to just around the marker.
         let currentRegion = self.mapView.region
         
@@ -1040,11 +1029,6 @@ class MapTableViewCell: MeetingEditorViewCell, MKMapViewDelegate {
         
         let newRegion: MKCoordinateRegion = MKCoordinateRegion(center: self.meetingObject.locationCoords, span: span)
         self.mapView.setRegion(newRegion, animated: false)
-        
-        self._meetingMarker = MapAnnotation(coordinate: self.meetingObject.locationCoords, locations: [self.meetingObject])
-        
-        // Set the marker up.
-        self.mapView.addAnnotation(self._meetingMarker)
     }
     
     /* ################################################################## */
@@ -1104,6 +1088,30 @@ class MapTableViewCell: MeetingEditorViewCell, MKMapViewDelegate {
         default:
             break
         }
+    }
+    
+    /* ################################################################## */
+    /**
+     This responds to the map's region being changed.
+     We simply use this to "preselect" the marker, so there's no need for two taps.
+     
+     - parameter mapView: The MKMapView object that contains the marker being moved.
+     - parameter animated: True, if the change was animated.
+     */
+    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+        self.mapView.selectAnnotation(self._meetingMarker, animated: false)
+    }
+    
+    /* ################################################################## */
+    /**
+     This responds to the marker's selection turning off.
+     We simply use this to "preselect" the marker, so there's no need for two taps.
+     
+     - parameter mapView: The MKMapView object that contains the marker being moved.
+     - parameter didDeselect: The annotation view (it's ignored. We always select our marker, no matter what).
+     */
+    func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
+        self.mapView.selectAnnotation(self._meetingMarker, animated: false)
     }
 }
 
@@ -1207,7 +1215,7 @@ class LongLatTableViewCell: MeetingEditorViewCell {
 }
 
 /* ###################################################################################################################################### */
-// MARK: - Meeting Name Editor Table Cell Class -
+// MARK: - Meeting Comments Editor Table Cell Class -
 /* ###################################################################################################################################### */
 /**
  This is the table view class for the name editor prototype.
@@ -1249,7 +1257,7 @@ class MeetingCommentsEditorTableViewCell: MeetingEditorViewCell, UITextViewDeleg
 }
 
 /* ###################################################################################################################################### */
-// MARK: - Meeting Name Editor Table Cell Class -
+// MARK: - Meeting Format Editor Table Cell Class -
 /* ###################################################################################################################################### */
 /**
  This is the table view class for the name editor prototype.
