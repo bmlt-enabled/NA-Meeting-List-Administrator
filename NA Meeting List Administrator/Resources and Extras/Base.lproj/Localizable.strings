@@ -132,3 +132,9 @@
 "SAVE-NEW-TITLE"                                                                                =   "Create This New Meeting";
 "SAVE-NEW-MESSAGE"                                                                              =   "If you touch \"Create New Meeting\", this meeting will be created as a new meeting.";
 "SAVE-NEW-BUTTON"                                                                               =   "Create New Meeting";
+
+"CANCEL-HEADER"                                                                                 =   "Changes Have Been Made to This Meeting.";
+"CANCEL-MESSAGE"                                                                                =   "If you touch \"Lose Changes\", the changes that you made to this meeting will be discarded, and the meeting will revert to its original state.\nIf you touch \"Cancel\", then you will be returned to the meeting editor.";
+"CANCEL-LOSE-CHANGES-BUTTON"                                                                    =   "Lose Changes";
+"CANCEL-CANCEL-BUTTON"                                                                          =   "Cancel";
+

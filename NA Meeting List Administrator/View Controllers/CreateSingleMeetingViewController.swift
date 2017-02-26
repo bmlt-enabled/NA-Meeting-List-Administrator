@@ -28,7 +28,7 @@ import BMLTiOSLib
  This is the subclass for the editor (as opposed to the new meeting creator).
  */
 class CreateSingleMeetingViewController : MeetingEditorBaseViewController {
-    /** THis is the bar button item for canceling editing. */
+    /** This is the bar button item for canceling editing. */
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     @IBOutlet weak var animationCover: UIView!
     
@@ -36,6 +36,16 @@ class CreateSingleMeetingViewController : MeetingEditorBaseViewController {
     
     /* ################################################################## */
     // MARK: Overridden Base Class Methods
+    /* ################################################################## */
+    /**
+     Called when the view first loads.
+     */
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.publishedItems.publishedLabel.isHidden = true
+        self.publishedItems.publishedSwitch.isHidden = true
+    }
+    
     /* ################################################################## */
     /**
      Called as the view is about to appear.

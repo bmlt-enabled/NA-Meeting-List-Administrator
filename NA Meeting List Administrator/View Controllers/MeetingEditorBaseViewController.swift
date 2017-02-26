@@ -97,6 +97,9 @@ class MeetingEditorBaseViewController : EditorViewControllerBaseClass, UITableVi
     /** This will reference our formats container. */
     private var _formatContainerView: FormatsEditorTableViewCell! = nil
     
+    /** This will reference the top item in the window (the "Published" handler). */
+    var publishedItems: PublishedEditorTableViewCell! = nil
+    
     /** This is the structural table view */
     @IBOutlet var tableView: UITableView!
     
@@ -349,24 +352,30 @@ class MeetingEditorBaseViewController : EditorViewControllerBaseClass, UITableVi
             returnableCell.owner = self
             returnableCell.meetingObject = self.meetingObject
             // These are special sections that we hang onto.
-            if "editor-row-5" == reuseID {
-                // This contains all the address fields.
-                self._addressInstance = returnableCell as! AddressEditorTableViewCell
+            if "editor-row-0" == reuseID {
+                // This is the first cell of the table.
+                self.publishedItems = returnableCell as! PublishedEditorTableViewCell
             } else {
-                if "editor-row-6" == reuseID {
-                    // This contains the map editor.
-                    self._mapInstance = returnableCell as! MapTableViewCell
+                if "editor-row-5" == reuseID {
+                    // This contains all the address fields.
+                    self._addressInstance = returnableCell as! AddressEditorTableViewCell
                 } else {
-                    if "editor-row-7" == reuseID {
-                        // This contains the longitude and latitude editor.
-                        self._longLatInstance = returnableCell as! LongLatTableViewCell
+                    if "editor-row-6" == reuseID {
+                        // This contains the map editor.
+                        self._mapInstance = returnableCell as! MapTableViewCell
                     } else {
-                        if "editor-row-9" == reuseID {
-                            self._formatContainerView = returnableCell as! FormatsEditorTableViewCell
+                        if "editor-row-7" == reuseID {
+                            // This contains the longitude and latitude editor.
+                            self._longLatInstance = returnableCell as! LongLatTableViewCell
+                        } else {
+                            if "editor-row-9" == reuseID {
+                                self._formatContainerView = returnableCell as! FormatsEditorTableViewCell
+                            }
                         }
                     }
                 }
             }
+            
             return returnableCell
         }
         

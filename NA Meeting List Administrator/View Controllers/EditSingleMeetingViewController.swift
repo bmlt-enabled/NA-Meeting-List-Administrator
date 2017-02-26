@@ -28,7 +28,7 @@ import BMLTiOSLib
  This is the subclass for the editor (as opposed to the new meeting creator).
  */
 class EditSingleMeetingViewController : MeetingEditorBaseViewController {
-    /** THis is the bar button item for canceling editing. */
+    /** This is the bar button item for canceling editing. */
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     
     /** This is the bar button item for saving changes. */
@@ -121,12 +121,36 @@ class EditSingleMeetingViewController : MeetingEditorBaseViewController {
      - parameter sender: The IB item that called this.
      */
     @IBAction func cancelButtonTouched(_ sender: UIBarButtonItem) {
-        self.meetingObject.restoreToOriginal()
-        let _ = self.navigationController?.popViewController(animated: true)
+        if self.meetingObject.isDirty {
+            let alertController = UIAlertController(title: NSLocalizedString("CANCEL-HEADER", comment: ""), message: NSLocalizedString("CANCEL-MESSAGE", comment: ""), preferredStyle: .alert)
+            
+            let deleteAction = UIAlertAction(title: NSLocalizedString("CANCEL-LOSE-CHANGES-BUTTON", comment: ""), style: UIAlertActionStyle.destructive, handler: self.cancelOKCallback)
+            
+            alertController.addAction(deleteAction)
+            
+            let cancelAction = UIAlertAction(title: NSLocalizedString("CANCEL-CANCEL-BUTTON", comment: ""), style: UIAlertActionStyle.cancel, handler: nil)
+            
+            alertController.addAction(cancelAction)
+            
+            self.present(alertController, animated: true, completion: nil)
+        } else {
+            let _ = self.navigationController?.popViewController(animated: true)
+        }
     }
     
     /* ################################################################## */
     // MARK: Instance Methods
+    /* ################################################################## */
+    /**
+     If the user wants to delete the changes they made, do so here.
+     
+     - parameter inAction: The alert action object (ignored)
+     */
+    func cancelOKCallback(_ inAction: UIAlertAction) {
+        self.meetingObject.restoreToOriginal()
+        let _ = self.navigationController?.popViewController(animated: true)
+    }
+    
     /* ################################################################## */
     /**
      If the user wants to save the meeting, we do so here..
