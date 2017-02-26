@@ -1072,8 +1072,13 @@ class MapTableViewCell: MeetingEditorViewCell, MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if annotation.isKind(of: MapAnnotation.self) {
             let reuseID = String(self.meetingObject.id)
-            let myAnnotation = annotation as! MapAnnotation
-            return MapMarker(annotation: myAnnotation, draggable: true, reuseID: reuseID)
+            var myAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseID)
+            
+            if nil == myAnnotationView {
+                myAnnotationView = MapMarker(annotation: annotation as! MapAnnotation, draggable: true, reuseID: reuseID)
+            }
+            
+            return myAnnotationView
         }
         
         return nil

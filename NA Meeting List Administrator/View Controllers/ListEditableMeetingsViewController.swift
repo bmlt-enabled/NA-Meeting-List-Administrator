@@ -79,6 +79,10 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
     /** If the meeting is unpublished, we have a different color background. */
     @IBInspectable var unpublishedRowColorEven: UIColor!
     @IBInspectable var unpublishedRowColorOdd: UIColor!
+    /** This is the navbar item that allows you to create a new meeting. */
+    @IBOutlet weak var addNewMeetingButton: UIBarButtonItem!
+    /** This is the navbar button that acts as a back button. */
+    @IBOutlet weak var backButton: UIBarButtonItem!
     
     /* ################################################################## */
     // MARK: Internal Instance Properties
@@ -91,6 +95,23 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
     var currentMeetingList: [BMLTiOSLibMeetingNode] = []
 
     /* ################################################################## */
+    // MARK: IB Methods
+    /* ################################################################## */
+    /**
+     - parameter sender: The bar button item that called this.
+     */
+    @IBAction func backButtonHit(_ sender: UIBarButtonItem) {
+        let _ = self.navigationController?.popViewController(animated: true)
+    }
+    
+    /* ################################################################## */
+    /**
+     - parameter sender: The bar button item that called this.
+     */
+    @IBAction func addNewMeetingHit(_ sender: UIBarButtonItem) {
+    }
+    
+    /* ################################################################## */
     // MARK: Overridden Base Class Methods
     /* ################################################################## */
     /**
@@ -99,6 +120,7 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
      */
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.backButton.title = NSLocalizedString(self.backButton.title!, comment: "")
         self.setUpWeekdayViews()
     }
     
@@ -110,6 +132,9 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
      */
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        if let navController = self.navigationController {
+            navController.isNavigationBarHidden = true
+        }
         if nil != self._meetingBeingEdited {
             self.meetingListTableView.reloadRows(at: [IndexPath(row: self._meetingBeingEdited!, section: 0)], with: UITableViewRowAnimation.automatic)
         

@@ -119,7 +119,7 @@ class MapMarker : MKAnnotationView {
             self.setNeedsDisplay()
         }
     }
-    
+
     /* ################################################################## */
     /**
      This gives us a shortcut to the annotation prpoerty.
@@ -132,7 +132,7 @@ class MapMarker : MKAnnotationView {
     
     /* ################################################################## */
     /**
-     This gives us a shortcut to the annotation prpoerty.
+     This gives us a shortcut to the annotation property.
      */
     var locations: [BMLTiOSLibMeetingNode] {
         get {
@@ -193,8 +193,8 @@ class MapMarker : MKAnnotationView {
      */
     func selectImage(_ inAnimated: Bool) -> UIImage! {
         var image: UIImage! = nil
-        if self.isDraggable && (2 > self.locations.count) {
-            if self.dragState == MKAnnotationViewDragState.dragging {
+        if self.isDraggable {
+            if (self.dragState == MKAnnotationViewDragState.dragging) || self.isSelected {
                 if inAnimated {
                     image = self._animationFrames[self._currentFrame]
                     self._currentFrame += 1
@@ -206,10 +206,14 @@ class MapMarker : MKAnnotationView {
                 image = UIImage(named: "BlackMarker", in: nil, compatibleWith: nil)
             }
         } else {
-            if 1 < self.locations.count {
-                image = UIImage(named: "RedMarker", in: nil, compatibleWith: nil)
+            if self.isSelected {
+                image = UIImage(named: "DragMarker/Frame01", in: nil, compatibleWith: nil)
             } else {
-                image = UIImage(named: "BlueMarker", in: nil, compatibleWith: nil)
+                if 1 < self.locations.count {
+                    image = UIImage(named: "RedMarker", in: nil, compatibleWith: nil)
+                } else {
+                    image = UIImage(named: "BlueMarker", in: nil, compatibleWith: nil)
+                }
             }
         }
         
@@ -257,6 +261,18 @@ class MapMarker : MKAnnotationView {
         if self.dragState == MKAnnotationViewDragState.dragging {
             self.startTimer()
         }
+    }
+    
+    /* ################################################################## */
+    /**
+     This is called when the user taps and selects the marker.
+     
+     - parameter selection: This is true if the marker is being selected.
+     - parameter animated: True, if the selection is being animated.
+     */
+    override func setSelected(_ selection: Bool, animated: Bool) {
+        super.setSelected(selection, animated: animated)
+        self.setDragState(MKAnnotationViewDragState.starting, animated: animated)
     }
     
     /* ################################################################## */

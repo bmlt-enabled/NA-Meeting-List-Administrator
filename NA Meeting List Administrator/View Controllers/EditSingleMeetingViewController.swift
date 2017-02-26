@@ -44,6 +44,9 @@ class EditSingleMeetingViewController : MeetingEditorBaseViewController {
      */
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        if let navController = self.navigationController {
+            navController.isNavigationBarHidden = false
+        }
         self.cancelButton.title = NSLocalizedString(self.cancelButton.title!, comment: "")
     }
     
