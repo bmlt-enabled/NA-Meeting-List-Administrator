@@ -208,8 +208,10 @@ class MeetingEditorBaseViewController : EditorViewControllerBaseClass, UITableVi
      - parameter inCoords: The coordinates to set the text items to.
      */
     func updateCoordinates(_ inCoords: CLLocationCoordinate2D) {
-        self._longLatInstance.coordinate = inCoords
-        self.updateEditorDisplay()
+        if nil != self._longLatInstance {
+            self._longLatInstance.coordinate = inCoords
+            self.updateEditorDisplay()
+        }
     }
     
     /* ################################################################## */
@@ -236,8 +238,13 @@ class MeetingEditorBaseViewController : EditorViewControllerBaseClass, UITableVi
                 MainAppDelegate.displayAlert("LOCAL-EDIT-GEOCODE-FAIL-TITLE", inMessage: "LOCAL-EDIT-GEOCODE-FAILURE-MESSAGE")
             } else {
                 if let location = placeMarks![0].location {
-                    self._longLatInstance.coordinate = location.coordinate
-                    self._mapInstance.moveMeetingMarkerToLocation(location.coordinate, inSetZoom: false)
+                    if nil != self._longLatInstance {
+                        self._longLatInstance.coordinate = location.coordinate
+                    }
+                    
+                    if nil != self._mapInstance {
+                        self._mapInstance.moveMeetingMarkerToLocation(location.coordinate, inSetZoom: false)
+                    }
                 }
             }
         })
@@ -248,9 +255,11 @@ class MeetingEditorBaseViewController : EditorViewControllerBaseClass, UITableVi
      This starts a reverse geocode, based on the coordinates in the map/long/lat editor.
      */
     func lookUpCoordinatesForMe() {
-        let location = CLLocation(latitude: self._longLatInstance.coordinate.latitude, longitude: self._longLatInstance.coordinate.longitude)
-        self._geocoder = CLGeocoder()
-        self._geocoder.reverseGeocodeLocation(location, completionHandler: self.reverseGecodeCompletionHandler )
+        if nil != self._longLatInstance {
+            let location = CLLocation(latitude: self._longLatInstance.coordinate.latitude, longitude: self._longLatInstance.coordinate.longitude)
+            self._geocoder = CLGeocoder()
+            self._geocoder.reverseGeocodeLocation(location, completionHandler: self.reverseGecodeCompletionHandler )
+        }
     }
     
     /* ################################################################## */
@@ -490,6 +499,7 @@ class MeetingEditorViewCell: UITableViewCell {
  */
 class PublishedEditorTableViewCell: MeetingEditorViewCell, UIPickerViewDelegate, UIPickerViewDataSource {
     /** This is the meeting name section. */
+    @IBOutlet weak var publishedContainerView: UIView!
     @IBOutlet weak var publishedLabel: UILabel!
     @IBOutlet weak var publishedSwitch: UISwitch!
     @IBOutlet weak var serviceBodyPickerLabel: UILabel!
@@ -1091,6 +1101,9 @@ class MapTableViewCell: MeetingEditorViewCell, MKMapViewDelegate {
         case .none:
             if .dragging == oldState {  // If this is a drag ending, we extract the new coordinates, and change the meeting object.
                 self.meetingObject.locationCoords = view.annotation?.coordinate
+                let span = self.mapView.region.span
+                let newRegion: MKCoordinateRegion = MKCoordinateRegion(center: self.meetingObject.locationCoords, span: span)
+                self.mapView.setRegion(newRegion, animated: true)
                 self.owner.updateCoordinates((view.annotation?.coordinate)!)
             }
             

@@ -30,6 +30,10 @@ import BMLTiOSLib
 class CreateSingleMeetingViewController : MeetingEditorBaseViewController {
     /** This is the bar button item for canceling editing. */
     @IBOutlet weak var cancelButton: UIBarButtonItem!
+    
+    /** This is the bar button item for saving changes. */
+    @IBOutlet weak var saveButton: UIBarButtonItem!
+    
     @IBOutlet weak var animationCover: UIView!
     
     var ownerController: ListEditableMeetingsViewController! = nil
@@ -38,12 +42,20 @@ class CreateSingleMeetingViewController : MeetingEditorBaseViewController {
     // MARK: Overridden Base Class Methods
     /* ################################################################## */
     /**
-     Called when the view first loads.
      */
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.publishedItems.publishedLabel.isHidden = true
-        self.publishedItems.publishedSwitch.isHidden = true
+        let initialValues: [String:String] = ["published":"0",
+                                              "id_bigint":"0",
+                                              "meeting_name":NSLocalizedString("BMLTiOSLib-Default-Meeting-Name", comment: ""),
+                                              "weekday_tinyint":"1",
+                                              "start_time":"20:30:00",
+                                              "duration_time":"1:00:00",
+                                              "longitude":String(MainAppDelegate.connectionObject.defaultLocation.longitude),
+                                              "latitude":String(MainAppDelegate.connectionObject.defaultLocation.latitude)
+                                              ]
+        self.meetingObject = BMLTiOSLibEditableMeetingNode(initialValues, inHandler: MainAppDelegate.connectionObject)
+        self.meetingObject.name = NSLocalizedString(self.meetingObject.name, comment: "")
     }
     
     /* ################################################################## */
@@ -56,8 +68,14 @@ class CreateSingleMeetingViewController : MeetingEditorBaseViewController {
         super.viewWillAppear(animated)
         if let navController = self.navigationController {
             navController.isNavigationBarHidden = false
+            if let title = self.navigationItem.title {
+                self.navigationItem.title = NSLocalizedString(title, comment: "")
+            }
         }
+        
         self.cancelButton.title = NSLocalizedString(self.cancelButton.title!, comment: "")
+        self.saveButton.title = NSLocalizedString(self.saveButton.title!, comment: "")
+        self.updateEditorDisplay()
     }
     
     /* ################################################################## */

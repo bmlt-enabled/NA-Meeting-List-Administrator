@@ -50,7 +50,12 @@ class EditSingleMeetingViewController : MeetingEditorBaseViewController {
         super.viewWillAppear(animated)
         if let navController = self.navigationController {
             navController.isNavigationBarHidden = false
+            if (0 < self.meetingObject.id) && (nil != self.navigationItem.title) {
+                let title = self.navigationItem.title!
+                self.navigationItem.title = String(format: NSLocalizedString(title, comment: ""), self.meetingObject.id)
+            }
         }
+        
         self.cancelButton.title = NSLocalizedString(self.cancelButton.title!, comment: "")
         self.saveButton.title = NSLocalizedString(self.saveButton.title!, comment: "")
         self.updateEditorDisplay()

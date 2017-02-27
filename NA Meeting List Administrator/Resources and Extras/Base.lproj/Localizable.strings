@@ -50,6 +50,8 @@
 "MEETINGS-TAB-BAR-NAME"                                                                         =   "Meetings";
 "DELETED-MEETINGS-TAB-BAR-NAME"                                                                 =   "Deleted";
 "CONNECT-BACK-TITLE"                                                                            =   "Back";
+"MEETING-ID-FORMAT"                                                                             =   "Meeting ID %d";
+"NEW-MEETING-TITLE"                                                                             =   "New Meeting";
 
 "DELETE-HEADER"                                                                                 =   "Do You Want to Delete This Meeting?";
 "DELETE-MESSAGE-FORMAT"                                                                         =   "The Meeting \"%@\" will be deleted. Are you sure that you want to delete it?";
@@ -137,4 +139,6 @@
 "CANCEL-MESSAGE"                                                                                =   "If you touch \"Lose Changes\", the changes that you made to this meeting will be discarded, and the meeting will revert to its original state.\nIf you touch \"Cancel\", then you will be returned to the meeting editor.";
 "CANCEL-LOSE-CHANGES-BUTTON"                                                                    =   "Lose Changes";
 "CANCEL-CANCEL-BUTTON"                                                                          =   "Cancel";
+
+"BMLTiOSLib-Default-Meeting-Name"                                                               =   "NA Meeting";
 
