@@ -187,8 +187,6 @@ class MeetingEditorBaseViewController : EditorViewControllerBaseClass, UITableVi
             (self.view as! EditorViewBaseClass).topColor = self.unpublishedTopColor
             (self.view as! EditorViewBaseClass).bottomColor = self.unpublishedBottomColor
         }
-        
-        self.view.setNeedsLayout()
     }
     
     /* ################################################################## */

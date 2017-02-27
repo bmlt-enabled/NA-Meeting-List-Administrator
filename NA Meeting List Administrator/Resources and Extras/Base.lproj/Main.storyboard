@@ -65,7 +65,7 @@
                                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="EME-ln-lfk">
                                             <connections>
                                                 <action selector="addNewMeetingHit:" destination="w5k-wt-KU4" id="dnK-xS-wNE"/>
-                                                <segue destination="nqe-fN-Jmf" kind="show" id="VjT-y3-x76"/>
+                                                <segue destination="nqe-fN-Jmf" kind="show" identifier="open-new-meeting-editor" id="VjT-y3-x76"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>

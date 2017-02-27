@@ -132,6 +132,7 @@ class CreateSingleMeetingViewController : MeetingEditorBaseViewController {
      - parameter inAction: The alert action object (ignored)
      */
     func saveOKCallback(_ inAction: UIAlertAction) {
+        self.ownerController.newMeetingBeingSaved = true
         self.meetingObject.saveChanges()
         let _ = self.navigationController?.popViewController(animated: true)
     }
@@ -153,7 +154,7 @@ class CreateSingleMeetingViewController : MeetingEditorBaseViewController {
      - parameter inEditor: The list view controller.
      */
     func callMeWhenYoureDone(_ inEditor : ListEditableMeetingsViewController) -> Bool {
-        self.meetingObject = inEditor.currentMeetingList[0] as! BMLTiOSLibEditableMeetingNode
+        self.meetingObject = inEditor.lastMeeting as BMLTiOSLibEditableMeetingNode
         self.animationCover.isHidden = true
         self.updateEditorDisplay()
         return true
