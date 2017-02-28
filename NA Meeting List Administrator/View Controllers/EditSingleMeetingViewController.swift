@@ -51,8 +51,7 @@ class EditSingleMeetingViewController : MeetingEditorBaseViewController {
         if let navController = self.navigationController {
             navController.isNavigationBarHidden = false
             if (0 < self.meetingObject.id) && (nil != self.navigationItem.title) {
-                let title = self.navigationItem.title!
-                self.navigationItem.title = String(format: NSLocalizedString(title, comment: ""), self.meetingObject.id)
+                self.navigationItem.title = String(format: NSLocalizedString("MEETING-ID-FORMAT", comment: ""), self.meetingObject.id)
             }
         }
         
@@ -164,6 +163,7 @@ class EditSingleMeetingViewController : MeetingEditorBaseViewController {
      */
     func saveOKCallback(_ inAction: UIAlertAction) {
         self.meetingObject.saveChanges()
+        self.ownerController.searchDone = false
         self.ownerController.showMeTheMoney = self.meetingObject
         let _ = self.navigationController?.popViewController(animated: true)
     }
@@ -177,7 +177,11 @@ class EditSingleMeetingViewController : MeetingEditorBaseViewController {
     func saveOKCopyCallback(_ inAction: UIAlertAction) {
         self.animationCover.isHidden = false
         self.ownerController.showMeTheMoney = self.meetingObject
+        self.ownerController.searchDone = false
         self.ownerController.callMeWhenYoureDone = self.callMeWhenYoureDone
+        if nil != self.navigationItem.title {
+            self.navigationItem.title = ""
+        }
         MainAppDelegate.connectionObject.saveMeetingAsCopy(self.meetingObject)
     }
     
@@ -188,6 +192,10 @@ class EditSingleMeetingViewController : MeetingEditorBaseViewController {
     func callMeWhenYoureDone(_ inEditor : ListEditableMeetingsViewController, _ meetingObject: BMLTiOSLibEditableMeetingNode?) -> Bool {
         self.meetingObject = meetingObject
         self.animationCover.isHidden = true
+        if (0 < self.meetingObject.id) && (nil != self.navigationItem.title) {
+            self.navigationItem.title = String(format: NSLocalizedString("MEETING-ID-FORMAT", comment: ""), self.meetingObject.id)
+        }
+        self.ownerController.searchDone = false
         self.updateEditorDisplay()
         return true
     }

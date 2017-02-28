@@ -61,8 +61,6 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
     private var _resultsSort: SortKey = .Time
     /** This is a semaphore we use to reduce update overhead when checking the "All" weekday checkbox. */
     private var _checkingAll: Bool = false
-    /** This is a semaphore that we use to prevent too many searches. */
-    private var _searchDone: Bool = false
     
     /* ################################################################## */
     // MARK: Internal IB Instance Properties
@@ -96,6 +94,8 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
     var newMeetingBeingSaved: Bool = false
     /** This is set to ask the view to scroll to expose a meeting object. */
     var showMeTheMoney: BMLTiOSLibEditableMeetingNode! = nil
+    /** This is a semaphore that we use to prevent too many searches. */
+    var searchDone: Bool = false
     
     /* ################################################################## */
     // MARK: IB Methods
@@ -141,7 +141,7 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
      */
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if !self._searchDone && !self.newMeetingBeingSaved {
+        if !self.searchDone && !self.newMeetingBeingSaved {
             self.doSearch()
         }
         self.newMeetingBeingSaved = false
@@ -175,7 +175,7 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
      */
     func doSearch() {
         self.newMeetingBeingSaved = false
-        self._searchDone = false
+        self.searchDone = false
         MainAppDelegate.connectionObject.searchCriteria.clearAll()
         // First, get the IDs of the Service bodies we'll be checking.
         let sbArray = AppStaticPrefs.prefs.selectedServiceBodies
@@ -225,7 +225,7 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
                 var index = 0
                 for meeting in self.currentMeetingList {
                     if meeting.id == lastMeeting.id {
-                        self._searchDone = false
+                        self.searchDone = false
                         self.editSingleMeeting(meeting)
                         break
                     }
@@ -388,6 +388,7 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
      */
     func editSingleMeeting(_ inMeetingObject: BMLTiOSLibMeetingNode!) {
         if nil != inMeetingObject {
+            self.searchDone = true
             self.performSegue(withIdentifier: self._editSingleMeetingSegueID, sender: inMeetingObject)
         }
     }
@@ -524,12 +525,12 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
      - parameter tableView: The table view being checked
      - parameter willSelectRowAt: The indexpath of the row being selected.
      
-     - returns: the indexpath.
+     - returns: nil (don't let selection happen).
      */
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         self.editSingleMeeting(self.currentMeetingList[indexPath.row])
         
-        return indexPath
+        return nil
     }
     
     /* ################################################################## */
