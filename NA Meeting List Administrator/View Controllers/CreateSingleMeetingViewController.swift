@@ -45,10 +45,12 @@ class CreateSingleMeetingViewController : MeetingEditorBaseViewController {
      */
     override func viewDidLoad() {
         super.viewDidLoad()
+        let serviceBodyID: Int = AppStaticPrefs.prefs.selectedServiceBodies[0].id
         let initialValues: [String:String] = ["published":"0",
                                               "id_bigint":"0",
                                               "meeting_name":NSLocalizedString("BMLTiOSLib-Default-Meeting-Name", comment: ""),
                                               "weekday_tinyint":"1",
+                                              "service_body_bigint": String(serviceBodyID),
                                               "start_time":"20:30:00",
                                               "duration_time":"1:00:00",
                                               "longitude":String(MainAppDelegate.connectionObject.defaultLocation.longitude),
@@ -153,8 +155,8 @@ class CreateSingleMeetingViewController : MeetingEditorBaseViewController {
     /**
      - parameter inEditor: The list view controller.
      */
-    func callMeWhenYoureDone(_ inEditor : ListEditableMeetingsViewController) -> Bool {
-        self.meetingObject = inEditor.lastMeeting as BMLTiOSLibEditableMeetingNode
+    func callMeWhenYoureDone(_ inEditor : ListEditableMeetingsViewController, _ meetingObject: BMLTiOSLibEditableMeetingNode?) -> Bool {
+        self.meetingObject = meetingObject
         self.animationCover.isHidden = true
         self.updateEditorDisplay()
         return true

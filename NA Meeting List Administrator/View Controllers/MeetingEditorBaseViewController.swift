@@ -180,13 +180,19 @@ class MeetingEditorBaseViewController : EditorViewControllerBaseClass, UITableVi
      - parameter inChangedCell: The table cell object that experienced the change. If nil, then no meeting cell was changed. nil is default.
      */
     func updateEditorDisplay(_ inChangedCell: MeetingEditorViewCell! = nil) {
-        if self.meetingObject.published {
-            (self.view as! EditorViewBaseClass).topColor = self._publishedTopColor
-            (self.view as! EditorViewBaseClass).bottomColor = self._publishedBottomColor
-        } else {
-            (self.view as! EditorViewBaseClass).topColor = self.unpublishedTopColor
-            (self.view as! EditorViewBaseClass).bottomColor = self.unpublishedBottomColor
-        }
+        DispatchQueue.main.async(execute: {
+            if (nil == inChangedCell) || (self.publishedItems == inChangedCell) {
+                if self.meetingObject.published {
+                    (self.view as! EditorViewBaseClass).topColor = self._publishedTopColor
+                    (self.view as! EditorViewBaseClass).bottomColor = self._publishedBottomColor
+                } else {
+                    (self.view as! EditorViewBaseClass).topColor = self.unpublishedTopColor
+                    (self.view as! EditorViewBaseClass).bottomColor = self.unpublishedBottomColor
+                }
+                
+                self.view.setNeedsLayout()
+            }
+        })
     }
     
     /* ################################################################## */

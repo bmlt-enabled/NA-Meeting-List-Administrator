@@ -164,6 +164,7 @@ class EditSingleMeetingViewController : MeetingEditorBaseViewController {
      */
     func saveOKCallback(_ inAction: UIAlertAction) {
         self.meetingObject.saveChanges()
+        self.ownerController.showMeTheMoney = self.meetingObject
         let _ = self.navigationController?.popViewController(animated: true)
     }
     
@@ -175,6 +176,7 @@ class EditSingleMeetingViewController : MeetingEditorBaseViewController {
      */
     func saveOKCopyCallback(_ inAction: UIAlertAction) {
         self.animationCover.isHidden = false
+        self.ownerController.showMeTheMoney = self.meetingObject
         self.ownerController.callMeWhenYoureDone = self.callMeWhenYoureDone
         MainAppDelegate.connectionObject.saveMeetingAsCopy(self.meetingObject)
     }
@@ -183,8 +185,8 @@ class EditSingleMeetingViewController : MeetingEditorBaseViewController {
     /**
      - parameter inEditor: The list view controller.
      */
-    func callMeWhenYoureDone(_ inEditor : ListEditableMeetingsViewController) -> Bool {
-        self.meetingObject = inEditor.currentMeetingList[0] as! BMLTiOSLibEditableMeetingNode
+    func callMeWhenYoureDone(_ inEditor : ListEditableMeetingsViewController, _ meetingObject: BMLTiOSLibEditableMeetingNode?) -> Bool {
+        self.meetingObject = meetingObject
         self.animationCover.isHidden = true
         self.updateEditorDisplay()
         return true
