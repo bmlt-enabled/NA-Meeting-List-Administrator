@@ -28,8 +28,13 @@ import BMLTiOSLib
  This class controls the list of deleted meetings that can be restored.
  */
 class DeletedMeetingsViewController : EditorViewControllerBaseClass {
+    private var _deletedMeetingChanges: [BMLTiOSLibChangeNode] = []
     /** This is the navbar button that acts as a back button. */
     @IBOutlet weak var backButton: UIBarButtonItem!
+    /** This is our animated "busy cover." */
+    @IBOutlet weak var animationMaskView: UIView!
+    /** This is a semaphore that we use to prevent too many searches. */
+    var searchDone: Bool = false
     
     /* ################################################################## */
     // MARK: IB Methods
@@ -62,5 +67,23 @@ class DeletedMeetingsViewController : EditorViewControllerBaseClass {
         if let navController = self.navigationController {
             navController.isNavigationBarHidden = true
         }
+        
+        if !self.searchDone {
+            self.animationMaskView.isHidden = false
+            MainAppDelegate.connectionObject.getDeletedMeetingChanges()
+        }
+    }
+    
+    /* ################################################################## */
+    /**
+     This is called when the search updates.
+     The way the BMLTiOSLib works, is that only deleted meetings that we are allowed to restore are returned.
+     
+     - parameter changeListResults: An array of change objects.
+     */
+    func updateDeletedResponse(changeListResults: [BMLTiOSLibChangeNode]) {
+        self.animationMaskView.isHidden = false
+        self.searchDone = true
+        self._deletedMeetingChanges = changeListResults
     }
 }

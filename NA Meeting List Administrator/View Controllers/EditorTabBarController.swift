@@ -63,6 +63,33 @@ class EditorTabBarController : UITabBarController, UITabBarControllerDelegate {
         }
     }
     
+    /* ################################################################## */
+    /**
+     This is called when the library returns change updates.
+     
+     - parameter changeListResults: An array of change objects.
+     */
+    func updateChangeResponse(changeListResults: [BMLTiOSLibChangeNode]) {
+    }
+    
+    /* ################################################################## */
+    /**
+     This is called when the library returns change updates for deleted meetings.
+     
+     - parameter changeListResults: An array of change objects.
+     */
+    func updateDeletedResponse(changeListResults: [BMLTiOSLibChangeNode]) {
+        if let deletedViewController = self.viewControllers?[TabIndexes.DeletedTab.rawValue] as? DeletedMeetingsViewController {
+            deletedViewController.updateDeletedResponse(changeListResults: changeListResults)
+        }
+    }
+    
+    /* ################################################################## */
+    // MARK: UITabBarControllerDelegate Methods
+    /* ################################################################## */
+    /**
+     - parameter tabBarController: An array of meeting objects.
+     */
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         if viewController.isKind(of: ListEditableMeetingsViewController.self) {
             if let listViewController = self.viewControllers?[TabIndexes.ListTab.rawValue] as? ListEditableMeetingsViewController {

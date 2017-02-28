@@ -255,5 +255,27 @@ class MainAppDelegate: UIResponder, UIApplicationDelegate, BMLTiOSLibDelegate {
     func bmltLibInstance(_ inLibInstance: BMLTiOSLib, formatSearchResults: [BMLTiOSLibFormatNode]) {
         
     }
+    
+    /* ################################################################## */
+    /**
+     Returns the result of a change list request.
+     
+     - parameter inLibInstance: the BMLTiOSLib instance.
+     - parameter changeListResults: An array of change objects.
+     */
+    func bmltLibInstance(_ inLibInstance: BMLTiOSLib, changeListResults: [BMLTiOSLibChangeNode]) {
+        self.initialViewController.updateChangeResponse(changeListResults: changeListResults)
+    }
+    
+    /* ################################################################## */
+    /**
+     Returns the result of a change list request for deleted meetings.
+     
+     - parameter inLibInstance: the BMLTiOSLib instance.
+     - parameter deletedChangeListResults: An array of change objects.
+     */
+    func bmltLibInstance(_ inLibInstance: BMLTiOSLib, deletedChangeListResults: [BMLTiOSLibChangeNode]) {
+        self.initialViewController.updateDeletedResponse(changeListResults: deletedChangeListResults)
+    }
 }
 

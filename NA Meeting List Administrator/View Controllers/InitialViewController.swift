@@ -552,6 +552,26 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate 
     }
     
     /* ################################################################## */
+    /**
+     This is called when the library returns change updates.
+     
+     - parameter changeListResults: An array of change objects.
+     */
+    func updateChangeResponse(changeListResults: [BMLTiOSLibChangeNode]) {
+        self._editorTabBarController.updateChangeResponse(changeListResults: changeListResults)   // We pass this on to our Tab controller, who will take it from there.
+    }
+    
+    /* ################################################################## */
+    /**
+     This is called when the library returns change updates for deleted meetings.
+     
+     - parameter changeListResults: An array of change objects.
+     */
+    func updateDeletedResponse(changeListResults: [BMLTiOSLibChangeNode]) {
+        self._editorTabBarController.updateDeletedResponse(changeListResults: changeListResults)   // We pass this on to our Tab controller, who will take it from there.
+    }
+    
+    /* ################################################################## */
     // MARK: UITextFieldDelegate Methods
     /* ################################################################## */
     /**
