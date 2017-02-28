@@ -47,11 +47,12 @@
 "MEETING-TIME-FORMAT"                                                                           =   "%@, %@";
 "ALL-DAYS"                                                                                      =   "All";
 "LOCAL-SEARCH-PICKER-NONE"                                                                      =   "All Towns and Boroughs";
-"MEETINGS-TAB-BAR-NAME"                                                                         =   "Meetings";
-"DELETED-MEETINGS-TAB-BAR-NAME"                                                                 =   "Deleted";
 "CONNECT-BACK-TITLE"                                                                            =   "Back";
 "MEETING-ID-FORMAT"                                                                             =   "Meeting ID %d";
 "NEW-MEETING-TITLE"                                                                             =   "New Meeting";
+
+"MEETINGS-TAB-BAR-NAME"                                                                         =   "Current Meetings";
+"DELETED-MEETINGS-TAB-BAR-NAME"                                                                 =   "Deleted Meetings";
 
 "DELETE-HEADER"                                                                                 =   "Do You Want to Delete This Meeting?";
 "DELETE-MESSAGE-FORMAT"                                                                         =   "The Meeting \"%@\" will be deleted. Are you sure that you want to delete it?";

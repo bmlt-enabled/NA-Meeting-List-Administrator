@@ -122,8 +122,6 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
     
     /* ################################################################## */
     /**
-     We take this opportunity to deselect any selected rows.
-     
      - parameter animated: True, if the appearance is animated (ignored).
      */
     override func viewWillAppear(_ animated: Bool) {

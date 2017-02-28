@@ -1267,8 +1267,33 @@
                     <view key="view" contentMode="scaleToFill" id="1e9-mM-tnz" customClass="EditorViewBaseClass" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="640"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xWv-Db-VuY">
+                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="bqk-vM-ZvH"/>
+                                </constraints>
+                                <color key="barTintColor" red="0.6244977679" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <items>
+                                    <navigationItem id="2qq-he-CAK">
+                                        <barButtonItem key="leftBarButtonItem" title="CONNECT-BACK-TITLE" id="Pml-rb-LrT">
+                                            <color key="tintColor" red="1" green="1" blue="0.58892299110000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <connections>
+                                                <action selector="backButtonHit:" destination="bWe-vY-4fv" id="YvB-oT-naE"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <color key="tintColor" red="0.0" green="0.0" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="xWv-Db-VuY" firstAttribute="leading" secondItem="1e9-mM-tnz" secondAttribute="leading" id="AEy-up-Xsr"/>
+                            <constraint firstAttribute="trailing" secondItem="xWv-Db-VuY" secondAttribute="trailing" id="qWE-w4-gx5"/>
+                            <constraint firstItem="xWv-Db-VuY" firstAttribute="top" secondItem="Kq9-FH-8KC" secondAttribute="bottom" id="qur-eA-7RB"/>
+                        </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="topColor">
                                 <color key="value" red="0.6244977679" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -1279,6 +1304,12 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                     <tabBarItem key="tabBarItem" title="DELETED-MEETINGS-TAB-BAR-NAME" image="Deleted" id="h6s-pn-xQu"/>
+                    <toolbarItems/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="backButton" destination="Pml-rb-LrT" id="PSO-CF-yed"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gB0-Ni-LdW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

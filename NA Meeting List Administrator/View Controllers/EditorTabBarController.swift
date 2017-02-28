@@ -26,7 +26,7 @@ import BMLTiOSLib
 /* ###################################################################################################################################### */
 /**
  */
-class EditorTabBarController : UITabBarController {
+class EditorTabBarController : UITabBarController, UITabBarControllerDelegate {
     enum TabIndexes: Int {
         case ListTab = 0, DeletedTab
     }
@@ -45,6 +45,8 @@ class EditorTabBarController : UITabBarController {
         if let deletedViewController = self.viewControllers?[TabIndexes.DeletedTab.rawValue] as? DeletedMeetingsViewController {
             deletedViewController.tabBarItem.title = NSLocalizedString(deletedViewController.tabBarItem.title!, comment: "")
         }
+        
+        self.delegate = self
     }
     
     /* ################################################################## */
@@ -59,6 +61,16 @@ class EditorTabBarController : UITabBarController {
         if let listViewController = self.viewControllers?[TabIndexes.ListTab.rawValue] as? ListEditableMeetingsViewController {
             listViewController.updateSearch(inMeetingObjects: inMeetingObjects)
         }
+    }
+    
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        if viewController.isKind(of: ListEditableMeetingsViewController.self) {
+            if let listViewController = self.viewControllers?[TabIndexes.ListTab.rawValue] as? ListEditableMeetingsViewController {
+                listViewController.searchDone = true    // We do this to prevent a new load being done just for a context switch.
+            }
+        }
+        
+        return true
     }
 }
 

@@ -28,9 +28,39 @@ import BMLTiOSLib
  This class controls the list of deleted meetings that can be restored.
  */
 class DeletedMeetingsViewController : EditorViewControllerBaseClass {
+    /** This is the navbar button that acts as a back button. */
+    @IBOutlet weak var backButton: UIBarButtonItem!
+    
+    /* ################################################################## */
+    // MARK: IB Methods
+    /* ################################################################## */
+    /**
+     - parameter sender: The bar button item that called this.
+     */
+    @IBAction func backButtonHit(_ sender: UIBarButtonItem) {
+        let _ = self.navigationController?.popViewController(animated: true)
+    }
+
     /* ################################################################## */
     // MARK:
     /* ################################################################## */
     /**
+     Called just after the view set up its subviews.
+     We take this opportunity to create or update the weekday switches.
      */
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.backButton.title = NSLocalizedString(self.backButton.title!, comment: "")
+    }
+    
+    /* ################################################################## */
+    /**
+     - parameter animated: True, if the appearance is animated (ignored).
+     */
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let navController = self.navigationController {
+            navController.isNavigationBarHidden = true
+        }
+    }
 }
