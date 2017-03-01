@@ -57,13 +57,14 @@ class MeetingEditorBaseViewController : EditorViewControllerBaseClass, UITableVi
     private var _internalRowHeights: [String:CGFloat] = ["editor-row-0":0,
                                                          "editor-row-1":60,
                                                          "editor-row-2":60,
-                                                         "editor-row-3":100,
+                                                         "editor-row-3":60,
                                                          "editor-row-4":100,
-                                                         "editor-row-5":619,
-                                                         "editor-row-6":0,
-                                                         "editor-row-7":210,
-                                                         "editor-row-8":100,
-                                                         "editor-row-9":200
+                                                         "editor-row-5":100,
+                                                         "editor-row-6":619,
+                                                         "editor-row-7":0,
+                                                         "editor-row-8":210,
+                                                         "editor-row-9":100,
+                                                         "editor-row-10":200
     ]
     
     private let _publishedSingleServiceBody: CGFloat    = 37
@@ -369,19 +370,19 @@ class MeetingEditorBaseViewController : EditorViewControllerBaseClass, UITableVi
                 // This is the first cell of the table.
                 self.publishedItems = returnableCell as! PublishedEditorTableViewCell
             } else {
-                if "editor-row-5" == reuseID {
+                if "editor-row-6" == reuseID {
                     // This contains all the address fields.
                     self._addressInstance = returnableCell as! AddressEditorTableViewCell
                 } else {
-                    if "editor-row-6" == reuseID {
+                    if "editor-row-7" == reuseID {
                         // This contains the map editor.
                         self._mapInstance = returnableCell as! MapTableViewCell
                     } else {
-                        if "editor-row-7" == reuseID {
+                        if "editor-row-8" == reuseID {
                             // This contains the longitude and latitude editor.
                             self._longLatInstance = returnableCell as! LongLatTableViewCell
                         } else {
-                            if "editor-row-9" == reuseID {
+                            if "editor-row-10" == reuseID {
                                 self._formatContainerView = returnableCell as! FormatsEditorTableViewCell
                             }
                         }
@@ -415,10 +416,10 @@ class MeetingEditorBaseViewController : EditorViewControllerBaseClass, UITableVi
                 return self._publishedSingleServiceBody
             }
             
-        case "editor-row-6":    // The map view is a big square.
+        case "editor-row-7":    // The map view is a big square.
             return tableView.bounds.width
             
-        case "editor-row-9":
+        case "editor-row-10":
             return (nil != self._formatContainerView) ? self._formatContainerView.cellHeight : self._internalRowHeights[reuseID]!
 
         default:
@@ -620,6 +621,43 @@ class PublishedEditorTableViewCell: MeetingEditorViewCell, UIPickerViewDelegate,
      */
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return AppStaticPrefs.prefs.selectedServiceBodies.count
+    }
+}
+
+/* ###################################################################################################################################### */
+// MARK: - World ID Editor Table Cell Class -
+/* ###################################################################################################################################### */
+/**
+ This is the table view class for the World (NAWS) ID editor prototype.
+ */
+class WorldIDEditorTableViewCell: MeetingEditorViewCell {
+    /** This is the meeting name section. */
+    @IBOutlet weak var worldIDLabel: UILabel!
+    @IBOutlet weak var worldIDTextField: UITextField!
+    
+    /* ################################################################## */
+    // MARK: IB Methods
+    /* ################################################################## */
+    /**
+     Respond to text changing in the text field.
+     
+     - parameter sender: The IB object that initiated this change.
+     */
+    @IBAction func worldIDTextChanged(_ sender: UITextField) {
+        self.meetingObject.worldID = sender.text!
+        self.owner.updateEditorDisplay(self)
+    }
+    
+    /* ################################################################## */
+    // MARK: Overridden Base Class Methods
+    /* ################################################################## */
+    /**
+     We set up our label, name and placeholder.
+     */
+    override func meetingObjectUpdated() {
+        self.worldIDLabel.text = NSLocalizedString(self.worldIDLabel.text!, comment: "")
+        self.worldIDTextField.placeholder = NSLocalizedString(self.worldIDTextField.placeholder!, comment: "")
+        self.worldIDTextField.text = self.meetingObject.worldID
     }
 }
 

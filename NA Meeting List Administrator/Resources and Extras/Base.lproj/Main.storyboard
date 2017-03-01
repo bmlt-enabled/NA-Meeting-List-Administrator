@@ -321,8 +321,54 @@
                                             <outlet property="serviceBodyPickerView" destination="9Qr-Oq-as3" id="JoN-2w-6fO"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="editor-row-1" rowHeight="60" id="aO9-xg-X1Z" userLabel="Meeting Name" customClass="MeetingNameEditorTableViewCell" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="editor-row-1" rowHeight="60" id="0fu-ei-iFI" userLabel="World ID" customClass="WorldIDEditorTableViewCell" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="183" width="320" height="60"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0fu-ei-iFI" id="QeT-xQ-U1K">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WORLD-ID-LABEL" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TBz-OO-Fec">
+                                                    <rect key="frame" x="8" y="8" width="304" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="l89-Wz-kIx"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.79866071429999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="WORLD-ID-PLACEHOLDER" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Gu5-6G-Wgh">
+                                                    <rect key="frame" x="8" y="30" width="304" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="VLB-11-geX"/>
+                                                    </constraints>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="worldIDTextChanged:" destination="0fu-ei-iFI" eventType="editingChanged" id="WFX-6H-92R"/>
+                                                    </connections>
+                                                </textField>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="Gu5-6G-Wgh" secondAttribute="trailing" constant="8" id="BWI-Vd-HUA"/>
+                                                <constraint firstItem="TBz-OO-Fec" firstAttribute="leading" secondItem="QeT-xQ-U1K" secondAttribute="leadingMargin" id="LZe-27-vWa"/>
+                                                <constraint firstItem="TBz-OO-Fec" firstAttribute="top" secondItem="QeT-xQ-U1K" secondAttribute="topMargin" id="Uip-vm-BtX"/>
+                                                <constraint firstAttribute="bottom" secondItem="Gu5-6G-Wgh" secondAttribute="bottom" id="YQM-DG-w8L"/>
+                                                <constraint firstItem="Gu5-6G-Wgh" firstAttribute="leading" secondItem="QeT-xQ-U1K" secondAttribute="leading" constant="8" id="bX0-re-iEn"/>
+                                                <constraint firstItem="TBz-OO-Fec" firstAttribute="trailing" secondItem="QeT-xQ-U1K" secondAttribute="trailingMargin" id="zIs-I1-Qwo"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <color key="tintColor" red="0.0" green="0.0" blue="0.79866071429999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <outlet property="worldIDLabel" destination="TBz-OO-Fec" id="Jka-e9-DZb"/>
+                                            <outlet property="worldIDTextField" destination="Gu5-6G-Wgh" id="yf3-XR-YLf"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="editor-row-2" rowHeight="60" id="aO9-xg-X1Z" userLabel="Meeting Name" customClass="MeetingNameEditorTableViewCell" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="243" width="320" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aO9-xg-X1Z" id="Asb-Qn-aCB">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
@@ -367,8 +413,8 @@
                                             <outlet property="meetingNameTextField" destination="8Jp-XV-pAa" id="PXd-e9-qbF"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="editor-row-2" rowHeight="60" id="dZg-VJ-rdc" userLabel="Weekday" customClass="WeekdayEditorTableViewCell" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="243" width="320" height="60"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="editor-row-3" rowHeight="60" id="dZg-VJ-rdc" userLabel="Weekday" customClass="WeekdayEditorTableViewCell" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="303" width="320" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dZg-VJ-rdc" id="0T1-0y-P3r">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
@@ -422,8 +468,8 @@
                                             <outlet property="weekdaySegmentedView" destination="L8x-a2-RhK" id="sFf-dJ-URN"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="editor-row-3" rowHeight="100" id="xgh-7T-zbq" userLabel="Start Time" customClass="StartTimeEditorTableViewCell" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="303" width="320" height="100"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="editor-row-4" rowHeight="100" id="xgh-7T-zbq" userLabel="Start Time" customClass="StartTimeEditorTableViewCell" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="363" width="320" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xgh-7T-zbq" id="HnT-uB-4p4">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
@@ -472,8 +518,8 @@
                                             <outlet property="startTimeLabel" destination="Jnw-WD-nkG" id="2sX-rl-jmt"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="editor-row-4" rowHeight="100" id="8Kx-r0-m82" userLabel="Duration" customClass="DurationEditorTableViewCell" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="403" width="320" height="100"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="editor-row-5" rowHeight="100" id="8Kx-r0-m82" userLabel="Duration" customClass="DurationEditorTableViewCell" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="463" width="320" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8Kx-r0-m82" id="2FQ-zV-Q8o">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
@@ -522,8 +568,8 @@
                                             <outlet property="durationLabel" destination="j7r-CJ-ohc" id="BAf-vv-glq"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="editor-row-5" rowHeight="619" id="sLE-EG-x4O" userLabel="Address" customClass="AddressEditorTableViewCell" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="503" width="320" height="619"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="editor-row-6" rowHeight="619" id="sLE-EG-x4O" userLabel="Address" customClass="AddressEditorTableViewCell" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="563" width="320" height="619"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sLE-EG-x4O" id="hr9-om-ynX">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="619"/>
@@ -840,8 +886,8 @@
                                             <outlet property="zipTextField" destination="ivq-xr-3Wn" id="Vyu-JM-Ywd"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="editor-row-6" rowHeight="320" id="6N9-1o-df9" userLabel="Map" customClass="MapTableViewCell" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="1122" width="320" height="320"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="editor-row-7" rowHeight="320" id="6N9-1o-df9" userLabel="Map" customClass="MapTableViewCell" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="1182" width="320" height="320"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6N9-1o-df9" id="jiA-gh-gim">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
@@ -887,8 +933,8 @@
                                             <outlet property="mapView" destination="VBd-Ma-4wP" id="xXl-pM-NeG"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="editor-row-7" rowHeight="210" id="7A0-39-1cK" userLabel="Longitude and Latitude" customClass="LongLatTableViewCell" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="1442" width="320" height="210"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="editor-row-8" rowHeight="210" id="7A0-39-1cK" userLabel="Longitude and Latitude" customClass="LongLatTableViewCell" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="1502" width="320" height="210"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7A0-39-1cK" id="hiz-yk-QFo">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="210"/>
@@ -1024,8 +1070,8 @@
                                             <outlet property="setFromMapButton" destination="B7Q-Y6-ms1" id="2uF-2M-cLy"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="editor-row-8" rowHeight="100" id="2pj-LT-NSr" userLabel="Comments" customClass="MeetingCommentsEditorTableViewCell" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="1652" width="320" height="100"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="editor-row-9" rowHeight="100" id="2pj-LT-NSr" userLabel="Comments" customClass="MeetingCommentsEditorTableViewCell" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="1712" width="320" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2pj-LT-NSr" id="ivO-xH-nNx">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
@@ -1069,8 +1115,8 @@
                                             <outlet property="commentsTextView" destination="9py-4R-AUc" id="NXl-U6-7O3"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="editor-row-9" rowHeight="300" id="KfE-Hu-h7V" userLabel="Formats" customClass="FormatsEditorTableViewCell" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="1752" width="320" height="300"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="editor-row-10" rowHeight="300" id="KfE-Hu-h7V" userLabel="Formats" customClass="FormatsEditorTableViewCell" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="1812" width="320" height="300"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KfE-Hu-h7V" id="PqB-sL-yMB">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="300"/>
@@ -1795,6 +1841,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="1956"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ixB-tS-XEC" userLabel="Animation View">
+                                <rect key="frame" x="0.0" y="20" width="320" height="1936"/>
+                                <subviews>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="ywb-Rt-L8v">
+                                        <rect key="frame" x="142" y="950" width="37" height="37"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="ywb-Rt-L8v" secondAttribute="height" multiplier="1:1" id="tz5-p8-3rr"/>
+                                            <constraint firstAttribute="width" constant="37" id="ywk-Wz-de2"/>
+                                        </constraints>
+                                        <color key="color" red="0.71593479199999999" green="0.93850808809999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.036142560050000001" green="0.16316006350000001" blue="0.28024899590000002" alpha="0.5" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="ywb-Rt-L8v" firstAttribute="centerX" secondItem="ixB-tS-XEC" secondAttribute="centerX" id="2j3-tW-0k2"/>
+                                    <constraint firstItem="ywb-Rt-L8v" firstAttribute="centerY" secondItem="ixB-tS-XEC" secondAttribute="centerY" id="vPD-LA-yet"/>
+                                </constraints>
+                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="h7p-nX-YOf">
                                 <rect key="frame" x="0.0" y="20" width="320" height="1936"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -1880,8 +1944,54 @@
                                             <outlet property="serviceBodyPickerView" destination="hxU-cK-DOr" id="EBw-om-8IU"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="editor-row-1" rowHeight="60" id="u9x-yC-Me5" userLabel="Meeting Name" customClass="MeetingNameEditorTableViewCell" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="editor-row-1" rowHeight="60" id="4ca-hp-1aA" userLabel="World ID" customClass="WorldIDEditorTableViewCell" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="183" width="320" height="60"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4ca-hp-1aA" id="VDx-Tw-cjs">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="59"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WORLD-ID-LABEL" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A40-WS-j8F">
+                                                    <rect key="frame" x="8" y="8" width="304" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="uqL-Sh-xQ2"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.79866071429999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="WORLD-ID-PLACEHOLDER" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="EIn-AU-a5I">
+                                                    <rect key="frame" x="8" y="30" width="304" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="lXs-82-0Ae"/>
+                                                    </constraints>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="worldIDTextChanged:" destination="4ca-hp-1aA" eventType="editingChanged" id="YJG-ne-dtk"/>
+                                                    </connections>
+                                                </textField>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstItem="A40-WS-j8F" firstAttribute="top" secondItem="VDx-Tw-cjs" secondAttribute="topMargin" id="1tF-bU-gRX"/>
+                                                <constraint firstItem="A40-WS-j8F" firstAttribute="trailing" secondItem="VDx-Tw-cjs" secondAttribute="trailingMargin" id="Afe-Qs-T7j"/>
+                                                <constraint firstItem="A40-WS-j8F" firstAttribute="leading" secondItem="VDx-Tw-cjs" secondAttribute="leadingMargin" id="MVd-oq-0Qw"/>
+                                                <constraint firstAttribute="bottom" secondItem="EIn-AU-a5I" secondAttribute="bottom" id="PXy-EG-uEc"/>
+                                                <constraint firstAttribute="trailing" secondItem="EIn-AU-a5I" secondAttribute="trailing" constant="8" id="TX0-rG-tXu"/>
+                                                <constraint firstItem="EIn-AU-a5I" firstAttribute="leading" secondItem="VDx-Tw-cjs" secondAttribute="leading" constant="8" id="s2u-or-wP7"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <color key="tintColor" red="0.0" green="0.0" blue="0.79866071429999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <outlet property="worldIDLabel" destination="A40-WS-j8F" id="vN2-Eb-GKY"/>
+                                            <outlet property="worldIDTextField" destination="EIn-AU-a5I" id="S65-LY-OCs"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="editor-row-2" rowHeight="60" id="u9x-yC-Me5" userLabel="Meeting Name" customClass="MeetingNameEditorTableViewCell" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="243" width="320" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="u9x-yC-Me5" id="vgd-VT-Gyk">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
@@ -1926,8 +2036,8 @@
                                             <outlet property="meetingNameTextField" destination="sBt-Vq-qkR" id="uGw-CW-zYP"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="editor-row-2" rowHeight="60" id="5X1-k2-eZp" userLabel="Weekday" customClass="WeekdayEditorTableViewCell" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="243" width="320" height="60"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="editor-row-3" rowHeight="60" id="5X1-k2-eZp" userLabel="Weekday" customClass="WeekdayEditorTableViewCell" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="303" width="320" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5X1-k2-eZp" id="Sbz-md-pKz">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
@@ -1981,8 +2091,8 @@
                                             <outlet property="weekdaySegmentedView" destination="IYL-xg-x0W" id="dMx-uO-4je"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="editor-row-3" rowHeight="100" id="dVp-lG-FkR" userLabel="Start Time" customClass="StartTimeEditorTableViewCell" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="303" width="320" height="100"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="editor-row-4" rowHeight="100" id="dVp-lG-FkR" userLabel="Start Time" customClass="StartTimeEditorTableViewCell" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="363" width="320" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dVp-lG-FkR" id="dDR-9W-bRl">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
@@ -2031,8 +2141,8 @@
                                             <outlet property="startTimeLabel" destination="kmh-VM-zlk" id="c5U-Lw-q2J"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="editor-row-4" rowHeight="100" id="S2F-wP-n9l" userLabel="Duration" customClass="DurationEditorTableViewCell" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="403" width="320" height="100"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="editor-row-5" rowHeight="100" id="S2F-wP-n9l" userLabel="Duration" customClass="DurationEditorTableViewCell" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="463" width="320" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="S2F-wP-n9l" id="gkl-nf-Rbm">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
@@ -2081,8 +2191,8 @@
                                             <outlet property="durationLabel" destination="IFU-G2-ykw" id="MJa-te-7Qq"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="editor-row-5" rowHeight="619" id="KH3-Os-9Po" userLabel="Address" customClass="AddressEditorTableViewCell" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="503" width="320" height="619"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="editor-row-6" rowHeight="619" id="KH3-Os-9Po" userLabel="Address" customClass="AddressEditorTableViewCell" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="563" width="320" height="619"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KH3-Os-9Po" id="MAH-tY-5eH">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="619"/>
@@ -2399,8 +2509,8 @@
                                             <outlet property="zipTextField" destination="Bwc-OW-1KP" id="rNm-Us-eof"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="editor-row-6" rowHeight="320" id="mn9-uh-e6f" userLabel="Map" customClass="MapTableViewCell" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="1122" width="320" height="320"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="editor-row-7" rowHeight="320" id="mn9-uh-e6f" userLabel="Map" customClass="MapTableViewCell" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="1182" width="320" height="320"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mn9-uh-e6f" id="Y7d-L2-8j8">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
@@ -2446,8 +2556,8 @@
                                             <outlet property="mapView" destination="IHr-7K-WTu" id="BBX-TA-Zwo"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="editor-row-7" rowHeight="210" id="nAC-Xy-NTF" userLabel="Longitude and Latitude" customClass="LongLatTableViewCell" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="1442" width="320" height="210"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="editor-row-8" rowHeight="210" id="nAC-Xy-NTF" userLabel="Longitude and Latitude" customClass="LongLatTableViewCell" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="1502" width="320" height="210"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nAC-Xy-NTF" id="TlI-38-sQ2">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="210"/>
@@ -2583,8 +2693,8 @@
                                             <outlet property="setFromMapButton" destination="WnP-70-M5H" id="DKj-Ul-eYQ"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="editor-row-8" rowHeight="100" id="WT7-es-dqK" userLabel="Comments" customClass="MeetingCommentsEditorTableViewCell" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="1652" width="320" height="100"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="editor-row-9" rowHeight="100" id="WT7-es-dqK" userLabel="Comments" customClass="MeetingCommentsEditorTableViewCell" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="1712" width="320" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WT7-es-dqK" id="rgS-Eb-IYA">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
@@ -2628,8 +2738,8 @@
                                             <outlet property="commentsTextView" destination="O8V-GZ-YTG" id="mIj-gj-aPv"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="editor-row-9" rowHeight="300" id="uki-fD-DXe" userLabel="Formats" customClass="FormatsEditorTableViewCell" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="1752" width="320" height="300"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="editor-row-10" rowHeight="300" id="uki-fD-DXe" userLabel="Formats" customClass="FormatsEditorTableViewCell" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="1812" width="320" height="300"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uki-fD-DXe" id="cyG-IL-J77">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="300"/>
@@ -2686,24 +2796,6 @@
                                     <outlet property="delegate" destination="nqe-fN-Jmf" id="jI7-UN-455"/>
                                 </connections>
                             </tableView>
-                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ixB-tS-XEC" userLabel="Animation View">
-                                <rect key="frame" x="0.0" y="20" width="320" height="1936"/>
-                                <subviews>
-                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="ywb-Rt-L8v">
-                                        <rect key="frame" x="142" y="950" width="37" height="37"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="ywb-Rt-L8v" secondAttribute="height" multiplier="1:1" id="tz5-p8-3rr"/>
-                                            <constraint firstAttribute="width" constant="37" id="ywk-Wz-de2"/>
-                                        </constraints>
-                                        <color key="color" red="0.71593479199999999" green="0.93850808809999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    </activityIndicatorView>
-                                </subviews>
-                                <color key="backgroundColor" red="0.036142560050000001" green="0.16316006350000001" blue="0.28024899590000002" alpha="0.5" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstItem="ywb-Rt-L8v" firstAttribute="centerX" secondItem="ixB-tS-XEC" secondAttribute="centerX" id="2j3-tW-0k2"/>
-                                    <constraint firstItem="ywb-Rt-L8v" firstAttribute="centerY" secondItem="ixB-tS-XEC" secondAttribute="centerY" id="vPD-LA-yet"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <color key="tintColor" red="0.0" green="0.0" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

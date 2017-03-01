@@ -66,6 +66,9 @@
 "PUBLISHED-LABEL"                                                                               =   "Meeting Is Published";
 "SERVICE-BODY-LABEL"                                                                            =   "Meeting Service Body:";
 
+"WORLD-ID-LABEL"                                                                                =   "World ID:";
+"WORLD-ID-PLACEHOLDER"                                                                          =   "Enter A NAWS Committee Code";
+
 "MEETING-NAME-LABEL"                                                                            =   "Meeting Name:";
 "MEETING-NAME-PLACEHOLDER"                                                                      =   "Enter A Meeting Name";
 
@@ -142,4 +145,6 @@
 "CANCEL-CANCEL-BUTTON"                                                                          =   "Cancel";
 
 "BMLTiOSLib-Default-Meeting-Name"                                                               =   "NA Meeting";
+
+"DELETED-NAME-FORMAT"                                                                           =   "%@ (%d)";
 

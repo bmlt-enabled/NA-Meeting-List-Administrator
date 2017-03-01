@@ -260,7 +260,7 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate 
         self.closeKeyboard()
         if (nil != MainAppDelegate.connectionObject) && MainAppDelegate.connectionStatus && MainAppDelegate.connectionObject.isAdminAvailable {
             if MainAppDelegate.connectionObject.adminLogout() {
-                self.animationMask.isHidden = true
+                self.animationMask.isHidden = false
                 self._loggingIn = false
                 self.setLoginStatusUI()
             }
@@ -428,10 +428,10 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate 
     
     /* ################################################################## */
     /**
-     Stops the connecting animation.
+     Stops the connecting animation and sends you to the correct destination.
      */
     func finishedLoggingIn() {
-        var firstTime = false
+        var firstTime = true
         
         // If we are successfully logged in, then we save the login and (maybe) the password.
         if (nil != MainAppDelegate.connectionObject) && MainAppDelegate.connectionStatus && MainAppDelegate.connectionObject.isAdminLoggedIn {
@@ -451,10 +451,12 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate 
         self.setLoginStatusUI()
         
         // The first time we log in with a user, and we have multiple Service bodies, we allow them to choose their Service bodies first.
-        if firstTime && (1 < AppStaticPrefs.prefs.allEditableServiceBodies.count){
+        if firstTime && MainAppDelegate.connectionObject.isAdminLoggedIn && (1 < AppStaticPrefs.prefs.allEditableServiceBodies.count){
             self.selectYourClowns(self.serviceBodyBarButton)
         } else {    // Otherwise, we just go straight to the editor; whether or not we are at the first go.
-            self.sendInTheClowns(self.editorBarButton)
+            if MainAppDelegate.connectionObject.isAdminLoggedIn {
+                self.sendInTheClowns(self.editorBarButton)
+            }
         }
     }
     

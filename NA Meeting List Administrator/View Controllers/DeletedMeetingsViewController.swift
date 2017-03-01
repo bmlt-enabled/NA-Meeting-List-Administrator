@@ -28,7 +28,10 @@ import BMLTiOSLib
  This class controls the list of deleted meetings that can be restored.
  */
 class DeletedMeetingsViewController : EditorViewControllerBaseClass, UITableViewDataSource, UITableViewDelegate {
+    /** This is the table cell ID */
     let sPrototypeID:String = "one-deletion-row"
+    /** This is used to determine if we have dragged the scroll enough to rate a reload. */
+    let sScrollToReloadThreshold: CGFloat = -80
     
     private var _deletedMeetingChanges: [BMLTiOSLibChangeNode] = []
     /** This is the navbar button that acts as a back button. */
@@ -73,13 +76,20 @@ class DeletedMeetingsViewController : EditorViewControllerBaseClass, UITableView
         }
         
         if !self.searchDone {
-            self.animationMaskView.isHidden = false
-            var ids: [Int] = []
-            for sb in AppStaticPrefs.prefs.selectedServiceBodies {
-                ids.append(sb.id)
-            }
-            MainAppDelegate.connectionObject.getDeletedMeetingChanges(serviceBodyIDs: ids)
+            self.getDeletedMeetings()
         }
+    }
+    
+    /* ################################################################## */
+    /**
+     */
+    func getDeletedMeetings() {
+        self.animationMaskView.isHidden = false
+        var ids: [Int] = []
+        for sb in AppStaticPrefs.prefs.selectedServiceBodies {
+            ids.append(sb.id)
+        }
+        MainAppDelegate.connectionObject.getDeletedMeetingChanges(serviceBodyIDs: ids)
     }
     
     /* ################################################################## */
@@ -94,6 +104,23 @@ class DeletedMeetingsViewController : EditorViewControllerBaseClass, UITableView
         self.searchDone = true
         self._deletedMeetingChanges = changeListResults
         self.tableView.reloadData()
+    }
+    
+    /* ################################################################## */
+    // MARK: UIScrollViewDelegate Protocol Methods
+    /* ################################################################## */
+    /**
+     This is called when the scroll view has ended dragging.
+     We use this to trigger a reload, if the scroll was pulled beyond its limit by a certain number of display units.
+     
+     :param: scrollView The text view that experienced the change.
+     :param: velocity The velocity of the scroll at the time of this call.
+     :param: targetContentOffset We can use this to send an offset to the scroller (ignored).
+     */
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        if ( (velocity.y < 0) && (scrollView.contentOffset.y < self.sScrollToReloadThreshold) ) {
+            self.getDeletedMeetings()
+        }
     }
     
     /* ################################################################## */
@@ -125,7 +152,7 @@ class DeletedMeetingsViewController : EditorViewControllerBaseClass, UITableView
             // We alternate with slightly darker cells. */
             if let meetingObject = changeObject.beforeObject as? BMLTiOSLibEditableMeetingNode {
                 ret.backgroundColor = (0 == (indexPath.row % 2)) ? UIColor.clear : UIColor.init(white: 0, alpha: 0.1)
-                ret.nameLabel.text = meetingObject.name
+                ret.nameLabel.text = String(format: NSLocalizedString("DELETED-NAME-FORMAT", comment: ""), meetingObject.name, meetingObject.id)
                 return ret
             }
         }
