@@ -27,12 +27,16 @@ import BMLTiOSLib
 /**
  This class controls the list of deleted meetings that can be restored.
  */
-class DeletedMeetingsViewController : EditorViewControllerBaseClass {
+class DeletedMeetingsViewController : EditorViewControllerBaseClass, UITableViewDataSource, UITableViewDelegate {
+    let sPrototypeID:String = "one-deletion-row"
+    
     private var _deletedMeetingChanges: [BMLTiOSLibChangeNode] = []
     /** This is the navbar button that acts as a back button. */
     @IBOutlet weak var backButton: UIBarButtonItem!
     /** This is our animated "busy cover." */
     @IBOutlet weak var animationMaskView: UIView!
+    /** This is the table view that lists the deletions. */
+    @IBOutlet weak var tableView: UITableView!
     /** This is a semaphore that we use to prevent too many searches. */
     var searchDone: Bool = false
     
@@ -70,7 +74,11 @@ class DeletedMeetingsViewController : EditorViewControllerBaseClass {
         
         if !self.searchDone {
             self.animationMaskView.isHidden = false
-            MainAppDelegate.connectionObject.getDeletedMeetingChanges()
+            var ids: [Int] = []
+            for sb in AppStaticPrefs.prefs.selectedServiceBodies {
+                ids.append(sb.id)
+            }
+            MainAppDelegate.connectionObject.getDeletedMeetingChanges(serviceBodyIDs: ids)
         }
     }
     
@@ -82,8 +90,72 @@ class DeletedMeetingsViewController : EditorViewControllerBaseClass {
      - parameter changeListResults: An array of change objects.
      */
     func updateDeletedResponse(changeListResults: [BMLTiOSLibChangeNode]) {
-        self.animationMaskView.isHidden = false
+        self.animationMaskView.isHidden = true
         self.searchDone = true
         self._deletedMeetingChanges = changeListResults
+        self.tableView.reloadData()
     }
+    
+    /* ################################################################## */
+    // MARK: UITableViewDataSource Methods
+    /* ################################################################## */
+    /**
+     - parameter tableView: The UITableView object requesting the view
+     - parameter numberOfRowsInSection: The section index (0-based).
+     
+     - returns the number of rows to display.
+     */
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self._deletedMeetingChanges.count
+    }
+    
+    /* ################################################################## */
+    /**
+     This is the routine that creates a new table row for the Meeting indicated by the index.
+     
+     - parameter tableView: The UITableView object requesting the view
+     - parameter cellForRowAt: The IndexPath of the requested cell.
+     
+     - returns a nice, shiny cell (or sets the state of a reused one).
+     */
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let changeObject = self._deletedMeetingChanges[indexPath.row]
+        
+        if let ret = tableView.dequeueReusableCell(withIdentifier: self.sPrototypeID) as? DeletedRowTableCellView {
+            // We alternate with slightly darker cells. */
+            if let meetingObject = changeObject.beforeObject as? BMLTiOSLibEditableMeetingNode {
+                ret.backgroundColor = (0 == (indexPath.row % 2)) ? UIColor.clear : UIColor.init(white: 0, alpha: 0.1)
+                ret.nameLabel.text = meetingObject.name
+                return ret
+            }
+        }
+        
+        return UITableViewCell()
+    }
+    
+    /* ################################################################## */
+    // MARK: UITableViewDelegate Methods
+    /* ################################################################## */
+    /**
+     Called before a row is selected.
+     
+     - parameter tableView: The table view being checked
+     - parameter willSelectRowAt: The indexpath of the row being selected.
+     
+     - returns: nil (don't let selection happen).
+     */
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        return nil
+    }
+}
+
+/* ###################################################################################################################################### */
+// MARK: - List Deleted Meetings Single Cell Class -
+/* ###################################################################################################################################### */
+/**
+ This class controls the list of deleted meetings that can be restored.
+ */
+class DeletedRowTableCellView: UITableViewCell {
+    /** This displays the meeting name. */
+    @IBOutlet weak var nameLabel: UILabel!
 }

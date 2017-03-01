@@ -414,7 +414,7 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
     }
     
     /* ################################################################## */
-    // MARK: - UIScrollViewDelegate Protocol Methods -
+    // MARK: UIScrollViewDelegate Protocol Methods
     /* ################################################################## */
     /**
      This is called when the scroll view has ended dragging.
@@ -515,7 +515,7 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
     }
     
     /* ################################################################## */
-    // MARK: - UITableViewDelegate Methods -
+    // MARK: UITableViewDelegate Methods
     /* ################################################################## */
     /**
      Called before a row is selected.
@@ -605,7 +605,7 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
     }
     
     /* ################################################################## */
-    // MARK: - UIPickerViewDataSource Methods -
+    // MARK: UIPickerViewDataSource Methods
     /* ################################################################## */
     /**
      We only have 1 component.
@@ -635,7 +635,7 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
     }
     
     /* ################################################################## */
-    // MARK: - UIPickerViewDelegate Methods -
+    // MARK: UIPickerViewDelegate Methods
     /* ################################################################## */
     /**
      This returns the name for the given row.
