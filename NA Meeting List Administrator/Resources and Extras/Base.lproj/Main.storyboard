@@ -38,13 +38,13 @@
         <!--List Meetings-->
         <scene sceneID="Atl-49-uMn">
             <objects>
-                <viewController id="w5k-wt-KU4" userLabel="List Meetings" customClass="ListEditableMeetingsViewController" customModule="NA_Meeting_List_Administrator" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="w5k-wt-KU4" userLabel="List Meetings" customClass="ListEditableMeetingsViewController" customModule="NA_Meeting_List_Administrator" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jiB-76-cT8"/>
                         <viewControllerLayoutGuide type="bottom" id="qjw-Pg-mBu"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Ngp-Vd-TOI" customClass="EditorViewBaseClass" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="596"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="640"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="imF-iu-7Pc">
@@ -90,7 +90,7 @@
                                 </connections>
                             </pickerView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Itu-Ng-B3d">
-                                <rect key="frame" x="0.0" y="208" width="320" height="388"/>
+                                <rect key="frame" x="0.0" y="208" width="320" height="383"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Meeting-Table-View-Prototype" id="McT-DJ-Epx" customClass="MeetingTableViewCell" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
@@ -150,10 +150,10 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CYQ-I8-Ytf">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="596"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="640"/>
                                 <subviews>
                                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Eis-cv-kRB">
-                                        <rect key="frame" x="142" y="280" width="37" height="37"/>
+                                        <rect key="frame" x="142" y="302" width="37" height="37"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="37" id="is4-nN-aKk"/>
                                             <constraint firstAttribute="width" secondItem="Eis-cv-kRB" secondAttribute="height" multiplier="1:1" id="qnO-zt-ith"/>
@@ -197,11 +197,9 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
-                    <extendedEdge key="edgesForExtendedLayout" top="YES"/>
                     <tabBarItem key="tabBarItem" title="MEETINGS-TAB-BAR-NAME" image="List" id="qM6-Hh-PL4"/>
                     <toolbarItems/>
                     <nil key="simulatedTopBarMetrics"/>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="color" keyPath="unpublishedRowColorEven">
                             <color key="value" red="1" green="0.61205357140000005" blue="0.37419084819999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -222,7 +220,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P47-cy-4rj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1742" y="123"/>
+            <point key="canvasLocation" x="1741.875" y="122.53521126760563"/>
         </scene>
         <!--MEETING-ID-FORMAT-->
         <scene sceneID="lTA-iq-h3x">
@@ -233,11 +231,11 @@
                         <viewControllerLayoutGuide type="bottom" id="nCd-vQ-VIX"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="tAG-NX-Teg" customClass="EditorViewBaseClass" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="1956"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="2000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hu8-sJ-cp5">
-                                <rect key="frame" x="0.0" y="20" width="320" height="1936"/>
+                                <rect key="frame" x="0.0" y="20" width="320" height="1980"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="editor-row-0" rowHeight="155" id="I7d-EO-pHQ" userLabel="Published" customClass="PublishedEditorTableViewCell" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
@@ -1174,10 +1172,10 @@
                                 </connections>
                             </tableView>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="64l-pk-tFP" userLabel="Animation View">
-                                <rect key="frame" x="0.0" y="20" width="320" height="1936"/>
+                                <rect key="frame" x="0.0" y="20" width="320" height="1980"/>
                                 <subviews>
                                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="M4K-1n-cW3">
-                                        <rect key="frame" x="142" y="949.5" width="37" height="37"/>
+                                        <rect key="frame" x="142" y="971.5" width="37" height="37"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="M4K-1n-cW3" secondAttribute="height" multiplier="1:1" id="mIJ-j0-aQd"/>
                                             <constraint firstAttribute="width" constant="37" id="nru-5q-DqT"/>
@@ -1213,7 +1211,6 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
-                    <extendedEdge key="edgesForExtendedLayout" top="YES"/>
                     <navigationItem key="navigationItem" title="MEETING-ID-FORMAT" id="zYe-KI-a9a">
                         <barButtonItem key="leftBarButtonItem" title="CANCEL-BUTTON" id="1gs-FS-fYy">
                             <connections>
@@ -1226,6 +1223,7 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="2000"/>
                     <userDefinedRuntimeAttributes>
@@ -1324,7 +1322,7 @@
                                 <items>
                                     <navigationItem id="2qq-he-CAK">
                                         <barButtonItem key="leftBarButtonItem" title="CONNECT-BACK-TITLE" id="Pml-rb-LrT">
-                                            <color key="tintColor" red="1" green="1" blue="0.58892299110000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="tintColor" red="0.71593479199999999" green="0.93850808809999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <connections>
                                                 <action selector="backButtonHit:" destination="bWe-vY-4fv" id="YvB-oT-naE"/>
                                             </connections>
@@ -1332,39 +1330,78 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6Ck-ir-MFd">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="130" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6Ck-ir-MFd">
                                 <rect key="frame" x="0.0" y="64" width="320" height="532"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="tintColor" red="1" green="1" blue="0.58892299110000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="one-deletion-row" id="GxZ-6j-7MN" customClass="DeletedRowTableCellView" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="320" height="60"/>
+                                        <rect key="frame" x="0.0" y="28" width="320" height="130"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GxZ-6j-7MN" id="GS6-0S-eI7">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="130"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AOH-Uf-6Ca">
-                                                    <rect key="frame" x="8" y="0.0" width="304" height="21"/>
+                                                    <rect key="frame" x="8" y="0.0" width="304" height="18"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="21" id="KmI-M4-v06"/>
+                                                        <constraint firstAttribute="height" constant="18" id="KmI-M4-v06"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="1" green="1" blue="0.58892299110000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CaO-Sq-1xW">
+                                                    <rect key="frame" x="8" y="18" width="304" height="16"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="16" id="ncw-Gl-Ua1"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                                    <color key="textColor" red="1" green="1" blue="0.58892299110000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="yap-et-HU9">
+                                                    <rect key="frame" x="4" y="34" width="304" height="44"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="44" id="xSY-Yb-myG"/>
+                                                    </constraints>
+                                                    <color key="textColor" red="1" green="1" blue="0.58892299110000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="NAl-Tp-Ycb">
+                                                    <rect key="frame" x="4" y="78" width="304" height="52"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <color key="textColor" red="1" green="1" blue="0.58892299110000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" type="italicSystem" pointSize="12"/>
+                                                    <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
+                                                </textView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
+                                                <constraint firstItem="CaO-Sq-1xW" firstAttribute="leading" secondItem="GS6-0S-eI7" secondAttribute="leadingMargin" id="8y7-F0-C4Q"/>
+                                                <constraint firstAttribute="bottom" secondItem="NAl-Tp-Ycb" secondAttribute="bottom" id="IkW-0K-z1L"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="CaO-Sq-1xW" secondAttribute="trailing" id="JfJ-QM-xu1"/>
+                                                <constraint firstAttribute="trailing" secondItem="NAl-Tp-Ycb" secondAttribute="trailing" constant="12" id="Jsn-ch-Q6F"/>
                                                 <constraint firstItem="AOH-Uf-6Ca" firstAttribute="top" secondItem="GS6-0S-eI7" secondAttribute="top" id="L0i-T2-yvh"/>
+                                                <constraint firstItem="CaO-Sq-1xW" firstAttribute="top" secondItem="AOH-Uf-6Ca" secondAttribute="bottom" id="OTJ-mb-2V2"/>
                                                 <constraint firstItem="AOH-Uf-6Ca" firstAttribute="leading" secondItem="GS6-0S-eI7" secondAttribute="leading" constant="8" id="PvU-O4-f4G"/>
                                                 <constraint firstAttribute="trailing" secondItem="AOH-Uf-6Ca" secondAttribute="trailing" constant="8" id="RGd-3F-h8a"/>
+                                                <constraint firstItem="NAl-Tp-Ycb" firstAttribute="leading" secondItem="GS6-0S-eI7" secondAttribute="leading" constant="4" id="YH0-8P-GYZ"/>
+                                                <constraint firstItem="NAl-Tp-Ycb" firstAttribute="top" secondItem="yap-et-HU9" secondAttribute="bottom" id="ad2-LV-iI7"/>
+                                                <constraint firstAttribute="trailing" secondItem="yap-et-HU9" secondAttribute="trailing" constant="12" id="jzC-Y8-HoO"/>
+                                                <constraint firstItem="yap-et-HU9" firstAttribute="top" secondItem="CaO-Sq-1xW" secondAttribute="bottom" id="l4q-49-va2"/>
+                                                <constraint firstItem="yap-et-HU9" firstAttribute="leading" secondItem="GS6-0S-eI7" secondAttribute="leading" constant="4" id="u9g-fD-g2v"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
+                                            <outlet property="addressTextView" destination="yap-et-HU9" id="g9x-pR-QOF"/>
+                                            <outlet property="deletionDescription" destination="NAl-Tp-Ycb" id="jDi-X3-gUx"/>
                                             <outlet property="nameLabel" destination="AOH-Uf-6Ca" id="TOL-Th-9Go"/>
+                                            <outlet property="timeLabel" destination="CaO-Sq-1xW" id="g1f-XO-dw5"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -1376,6 +1413,15 @@
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uG1-nk-xc3">
                                 <rect key="frame" x="0.0" y="20" width="320" height="620"/>
                                 <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DELETED-LOADING-HEADER" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vhZ-0a-JUl">
+                                        <rect key="frame" x="8" y="247" width="304" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="ibf-Gz-EOl"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                        <color key="textColor" red="1" green="1" blue="0.58892299110000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="R6d-n4-Zg0">
                                         <rect key="frame" x="142" y="292" width="37" height="37"/>
                                         <constraints>
@@ -1384,11 +1430,26 @@
                                         </constraints>
                                         <color key="color" red="1" green="1" blue="0.58892299110000002" alpha="1" colorSpace="calibratedRGB"/>
                                     </activityIndicatorView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DELETED-LOADING-SUBTEXT" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IPw-nc-6f1">
+                                        <rect key="frame" x="8" y="353" width="304" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="QWS-jy-2Yx"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="1" green="1" blue="0.58892299110000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.036142560050000001" green="0.16316006350000001" blue="0.28024899590000002" alpha="0.5" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstItem="R6d-n4-Zg0" firstAttribute="top" secondItem="vhZ-0a-JUl" secondAttribute="bottom" constant="24" id="Bve-6k-aXk"/>
+                                    <constraint firstAttribute="trailing" secondItem="IPw-nc-6f1" secondAttribute="trailing" constant="8" id="CMY-iK-59E"/>
                                     <constraint firstItem="R6d-n4-Zg0" firstAttribute="centerX" secondItem="uG1-nk-xc3" secondAttribute="centerX" id="OUs-Ej-9OY"/>
+                                    <constraint firstItem="IPw-nc-6f1" firstAttribute="top" secondItem="R6d-n4-Zg0" secondAttribute="bottom" constant="24" id="Ol8-2u-gdh"/>
                                     <constraint firstItem="R6d-n4-Zg0" firstAttribute="centerY" secondItem="uG1-nk-xc3" secondAttribute="centerY" id="Reb-5P-Zyp"/>
+                                    <constraint firstItem="vhZ-0a-JUl" firstAttribute="leading" secondItem="uG1-nk-xc3" secondAttribute="leading" constant="8" id="a05-v2-PPO"/>
+                                    <constraint firstItem="IPw-nc-6f1" firstAttribute="leading" secondItem="uG1-nk-xc3" secondAttribute="leading" constant="8" id="cnD-RY-VB8"/>
+                                    <constraint firstAttribute="trailing" secondItem="vhZ-0a-JUl" secondAttribute="trailing" constant="8" id="sje-5C-xIN"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -1423,6 +1484,8 @@
                     <connections>
                         <outlet property="animationMaskView" destination="uG1-nk-xc3" id="236-d3-xD9"/>
                         <outlet property="backButton" destination="Pml-rb-LrT" id="PSO-CF-yed"/>
+                        <outlet property="deletedWaitHeader" destination="vhZ-0a-JUl" id="TqB-a9-bIw"/>
+                        <outlet property="deletedWaitMessage" destination="IPw-nc-6f1" id="OMW-MV-200"/>
                         <outlet property="tableView" destination="6Ck-ir-MFd" id="Hwn-bb-n1d"/>
                     </connections>
                 </viewController>
@@ -1838,14 +1901,14 @@
                         <viewControllerLayoutGuide type="bottom" id="XgX-vs-crS"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="cLr-oa-ct3" customClass="EditorViewBaseClass" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="1956"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="2000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ixB-tS-XEC" userLabel="Animation View">
-                                <rect key="frame" x="0.0" y="20" width="320" height="1936"/>
+                                <rect key="frame" x="0.0" y="20" width="320" height="1980"/>
                                 <subviews>
                                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="ywb-Rt-L8v">
-                                        <rect key="frame" x="142" y="950" width="37" height="37"/>
+                                        <rect key="frame" x="142" y="972" width="37" height="37"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="ywb-Rt-L8v" secondAttribute="height" multiplier="1:1" id="tz5-p8-3rr"/>
                                             <constraint firstAttribute="width" constant="37" id="ywk-Wz-de2"/>
@@ -1860,7 +1923,7 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="h7p-nX-YOf">
-                                <rect key="frame" x="0.0" y="20" width="320" height="1936"/>
+                                <rect key="frame" x="0.0" y="20" width="320" height="1980"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="editor-row-0" rowHeight="155" id="tYD-BA-1yM" userLabel="Published" customClass="PublishedEditorTableViewCell" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
@@ -1948,7 +2011,7 @@
                                         <rect key="frame" x="0.0" y="183" width="320" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4ca-hp-1aA" id="VDx-Tw-cjs">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="59"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WORLD-ID-LABEL" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A40-WS-j8F">
@@ -2818,7 +2881,6 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
-                    <extendedEdge key="edgesForExtendedLayout" top="YES"/>
                     <navigationItem key="navigationItem" title="NEW-MEETING-TITLE" id="BG0-Ty-fTx">
                         <barButtonItem key="leftBarButtonItem" title="CANCEL-BUTTON" id="GXp-JS-zqD">
                             <connections>
@@ -2831,6 +2893,7 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="2000"/>
                     <userDefinedRuntimeAttributes>

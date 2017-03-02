@@ -93,7 +93,7 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
     /** This is a semaphore that is set when we are saving a duplicate or a new meeting. It is used to tell the class to open the new meeting. */
     var newMeetingBeingSaved: Bool = false
     /** This is set to ask the view to scroll to expose a meeting object. */
-    var showMeTheMoney: BMLTiOSLibEditableMeetingNode! = nil
+    var showMeTheMoneyID: Int! = nil
     /** This is a semaphore that we use to prevent too many searches. */
     var searchDone: Bool = false
     
@@ -117,6 +117,7 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
     override func viewDidLoad() {
         super.viewDidLoad()
         self.backButton.title = NSLocalizedString(self.backButton.title!, comment: "")
+        self.tabBarController?.tabBar.isHidden = true
         self.setUpWeekdayViews()
     }
     
@@ -191,6 +192,7 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
         MainAppDelegate.appDelegateObject.meetingObjects = []
         MainAppDelegate.connectionObject.searchCriteria.publishedStatus = .Both
         self.busyAnimationView.isHidden = false
+        self.tabBarController?.tabBar.isHidden = true
         self.allChangedTo(inState: .Selected)
         MainAppDelegate.connectionObject.searchCriteria.performMeetingSearch(.MeetingsOnly)
     }
@@ -202,42 +204,36 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
      - parameter inMeetingObjects: An array of meeting objects.
      */
     func updateSearch(inMeetingObjects:[BMLTiOSLibMeetingNode]) {
-        if self.newMeetingBeingSaved {
-            if 1 == inMeetingObjects.count {
-                let lastMeeting = inMeetingObjects[0] as! BMLTiOSLibEditableMeetingNode
-                var found: Bool = false
-                
-                for meeting in self.currentMeetingList {
-                    if meeting.id == lastMeeting.id {
-                        found = true
-                        break
-                    }
-                }
-                
-                if !found {
-                    self.currentMeetingList.append(lastMeeting)
-                    self.sortMeetings()
-                }
-                
-                self.newMeetingBeingSaved = false
-                var index = 0
-                for meeting in self.currentMeetingList {
-                    if meeting.id == lastMeeting.id {
-                        self.searchDone = false
-                        self.editSingleMeeting(meeting)
-                        break
-                    }
-                    index += 1
+        if let newID = self.showMeTheMoneyID {  // If this is a new meeting...
+            self.showMeTheMoneyID = nil
+            self.newMeetingBeingSaved = false
+            self.currentMeetingList = MainAppDelegate.appDelegateObject.meetingObjects // We start by grabbing all the meetings.
+            self.busyAnimationView.isHidden = true
+            self.tabBarController?.tabBar.isHidden = false
+            // We change to everything exposed, so we can display new meetings that may fall outside our search criteria.
+            self.townBoroughPickerView.selectRow(0, inComponent: 0, animated: false)
+            self.allChangedTo(inState: BMLTiOSLibSearchCriteria.SelectionState.Selected)
+            for meeting in self.currentMeetingList {
+                if meeting.id == newID {
+                    self.scrollToExposeMeeting(meeting as! BMLTiOSLibEditableMeetingNode)
+                    self.editSingleMeeting(meeting as! BMLTiOSLibEditableMeetingNode)
+                    break
                 }
             }
         } else {
             if let callback = self.callMeWhenYoureDone {
                 self.callMeWhenYoureDone = nil
-                if callback(self, inMeetingObjects[0] as? BMLTiOSLibEditableMeetingNode) {
-                    self.updateDisplayedMeetings()
+                if let selectedMeeting = inMeetingObjects[0] as? BMLTiOSLibEditableMeetingNode {
+                    if callback(self, selectedMeeting) {
+                        // We change to everything exposed, so we can display newly edited meetings that may now fall outside our search criteria.
+                        self.townBoroughPickerView.selectRow(0, inComponent: 0, animated: false)
+                        self.allChangedTo(inState: BMLTiOSLibSearchCriteria.SelectionState.Selected)
+                        self.searchDone = false
+                    }
                 }
             } else {
                 self.busyAnimationView.isHidden = true
+                self.tabBarController?.tabBar.isHidden = false
                 self.currentMeetingList = MainAppDelegate.appDelegateObject.meetingObjects // We start by grabbing all the meetings.
                 self.allChangedTo(inState: .Selected)   // We select all weekdays.
                 
@@ -259,12 +255,32 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
                 // Select every town and borough
                 self.townBoroughPickerView.selectRow(0, inComponent: 0, animated: false)
                 self.updateDisplayedMeetings()
-                if nil != self.showMeTheMoney {
-                    self.scrollToExposeMeeting(self.showMeTheMoney)
-                    self.showMeTheMoney = nil
+                if nil != self.showMeTheMoneyID {
+                    var meetingObject: BMLTiOSLibEditableMeetingNode! = nil
+                    for meeting in self.currentMeetingList {
+                        if meeting.id == self.showMeTheMoneyID {
+                            meetingObject = meeting as! BMLTiOSLibEditableMeetingNode
+                            break
+                        }
+                    }
+                    if nil != meetingObject {
+                        self.scrollToExposeMeeting(meetingObject)
+                    }
+                    self.showMeTheMoneyID = nil
                 }
             }
         }
+    }
+    
+    /* ################################################################## */
+    /**
+     This is called when a new meeting has been added.
+     
+     - parameter inMeetingObject: The new meeting object.
+     */
+    func updateNewMeeting(inMeetingObject: BMLTiOSLibEditableMeetingNode) {
+        self.showMeTheMoneyID = inMeetingObject.id
+        self.doSearch()
     }
     
     /* ################################################################## */

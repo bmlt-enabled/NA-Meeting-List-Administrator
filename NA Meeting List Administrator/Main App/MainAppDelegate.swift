@@ -258,6 +258,17 @@ class MainAppDelegate: UIResponder, UIApplicationDelegate, BMLTiOSLibDelegate {
     
     /* ################################################################## */
     /**
+     Called when a new meeting has been added, or a deleted meeting has been restored.
+     
+     - parameter inLibInstance: the BMLTiOSLib instance.
+     - parameter newMeetingAdded: Meeting object.
+     */
+    func bmltLibInstance(_ inLibInstance: BMLTiOSLib, newMeetingAdded: BMLTiOSLibEditableMeetingNode) {
+        self.initialViewController.updateNewMeeting(inMeetingObject: newMeetingAdded)
+    }
+    
+    /* ################################################################## */
+    /**
      Returns the result of a change list request.
      
      - parameter inLibInstance: the BMLTiOSLib instance.

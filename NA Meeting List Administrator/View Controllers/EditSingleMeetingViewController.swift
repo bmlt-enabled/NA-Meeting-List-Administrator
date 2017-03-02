@@ -164,7 +164,7 @@ class EditSingleMeetingViewController : MeetingEditorBaseViewController {
     func saveOKCallback(_ inAction: UIAlertAction) {
         self.meetingObject.saveChanges()
         self.ownerController.searchDone = false
-        self.ownerController.showMeTheMoney = self.meetingObject
+        self.ownerController.showMeTheMoneyID = self.meetingObject.id
         let _ = self.navigationController?.popViewController(animated: true)
     }
     
@@ -176,7 +176,7 @@ class EditSingleMeetingViewController : MeetingEditorBaseViewController {
      */
     func saveOKCopyCallback(_ inAction: UIAlertAction) {
         self.animationCover.isHidden = false
-        self.ownerController.showMeTheMoney = self.meetingObject
+        self.ownerController.showMeTheMoneyID = self.meetingObject.id
         self.ownerController.searchDone = false
         self.ownerController.callMeWhenYoureDone = self.callMeWhenYoureDone
         if nil != self.navigationItem.title {
@@ -195,7 +195,6 @@ class EditSingleMeetingViewController : MeetingEditorBaseViewController {
         if (0 < self.meetingObject.id) && (nil != self.navigationItem.title) {
             self.navigationItem.title = String(format: NSLocalizedString("MEETING-ID-FORMAT", comment: ""), self.meetingObject.id)
         }
-        self.ownerController.searchDone = false
         self.updateEditorDisplay()
         return true
     }

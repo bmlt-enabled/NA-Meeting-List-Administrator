@@ -555,6 +555,16 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate 
     
     /* ################################################################## */
     /**
+     This is called when a new meeting has been added.
+     
+     - parameter inMeetingObject: The new meeting object.
+     */
+    func updateNewMeeting(inMeetingObject: BMLTiOSLibEditableMeetingNode) {
+        self._editorTabBarController.updateNewMeetingAdded(inMeetingObject)   // We pass this on to our Tab controller, who will take it from there.
+    }
+    
+    /* ################################################################## */
+    /**
      This is called when the library returns change updates.
      
      - parameter changeListResults: An array of change objects.

@@ -148,3 +148,11 @@
 
 "DELETED-NAME-FORMAT"                                                                           =   "%@ (%d)";
 
+"DELETED-ALERT-HEADER"                                                                          =   "Restoring A Deleted Meeting";
+"DELETED-ALERT-FORMAT"                                                                          =   "If you touch \"Restore Meeting\", the meeting \"%@\" will be restored.\nIt will show up as an unpublished meeting, and you will be taken to its editor.\nIf you touch \"Cancel\", nothing will happen.";
+"DELETED-RESTORE-BUTTON"                                                                        =   "Restore Meeting";
+"DELETED-CANCEL-BUTTON"                                                                         =   "Cancel";
+
+"DELETED-LOADING-HEADER"                                                                        =   "Loading Deleted Meetings";
+"DELETED-LOADING-SUBTEXT"                                                                       =   "This may take a long time.";
+

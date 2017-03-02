@@ -33,15 +33,24 @@ class DeletedMeetingsViewController : EditorViewControllerBaseClass, UITableView
     /** This is used to determine if we have dragged the scroll enough to rate a reload. */
     let sScrollToReloadThreshold: CGFloat = -80
     
+    /** This has our list of deleted meetings (stored as changes). */
     private var _deletedMeetingChanges: [BMLTiOSLibChangeNode] = []
+    
     /** This is the navbar button that acts as a back button. */
     @IBOutlet weak var backButton: UIBarButtonItem!
     /** This is our animated "busy cover." */
     @IBOutlet weak var animationMaskView: UIView!
     /** This is the table view that lists the deletions. */
     @IBOutlet weak var tableView: UITableView!
+    /** This is the header for our "Hurry up and wait" message. */
+    @IBOutlet weak var deletedWaitHeader: UILabel!
+    /** This is our "Hurry up and wait. " message. */
+    @IBOutlet weak var deletedWaitMessage: UILabel!
+    
     /** This is a semaphore that we use to prevent too many searches. */
     var searchDone: Bool = false
+    /** This references our tab controller (makes it easy to get at it). */
+    var myBarTab: EditorTabBarController! = nil
     
     /* ################################################################## */
     // MARK: IB Methods
@@ -54,7 +63,7 @@ class DeletedMeetingsViewController : EditorViewControllerBaseClass, UITableView
     }
 
     /* ################################################################## */
-    // MARK:
+    // MARK: Overloaded Base Class Methods
     /* ################################################################## */
     /**
      Called just after the view set up its subviews.
@@ -63,10 +72,15 @@ class DeletedMeetingsViewController : EditorViewControllerBaseClass, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         self.backButton.title = NSLocalizedString(self.backButton.title!, comment: "")
+        self.deletedWaitHeader.text = NSLocalizedString(self.deletedWaitHeader.text!, comment: "")
+        self.deletedWaitMessage.text = NSLocalizedString(self.deletedWaitMessage.text!, comment: "")
     }
     
     /* ################################################################## */
     /**
+     Called just before the view is to appear.
+     We take this opportunity to start a search, if one has not been done.
+     
      - parameter animated: True, if the appearance is animated (ignored).
      */
     override func viewWillAppear(_ animated: Bool) {
@@ -81,10 +95,15 @@ class DeletedMeetingsViewController : EditorViewControllerBaseClass, UITableView
     }
     
     /* ################################################################## */
+    // MARK: Instance Methods
+    /* ################################################################## */
     /**
+     This searches for all of our deleted meetings.
+     Only valid meetings that we can edit with the selected Service bodies are presented.
      */
     func getDeletedMeetings() {
         self.animationMaskView.isHidden = false
+        self.tabBarController?.tabBar.isHidden = true
         var ids: [Int] = []
         for sb in AppStaticPrefs.prefs.selectedServiceBodies {
             ids.append(sb.id)
@@ -101,9 +120,48 @@ class DeletedMeetingsViewController : EditorViewControllerBaseClass, UITableView
      */
     func updateDeletedResponse(changeListResults: [BMLTiOSLibChangeNode]) {
         self.animationMaskView.isHidden = true
+        self.tabBarController?.tabBar.isHidden = false
         self.searchDone = true
         self._deletedMeetingChanges = changeListResults
         self.tableView.reloadData()
+    }
+    
+    /* ################################################################## */
+    /**
+     This is called when the user taps on a deleted meeting in the table.
+     We interpret it as a request to restore the meeting.
+     An alert is presented, explaining the request and options.
+     
+     - parameter inRow: An Int, with the row of the change object we'll be restoring.
+     */
+    func requestMeetingBeRestored(_ inRow: Int) {
+        if let meetingObject = self._deletedMeetingChanges[inRow].beforeObject as? BMLTiOSLibEditableMeetingNode {
+            let alertController = UIAlertController(title: NSLocalizedString("DELETED-ALERT-HEADER", comment: ""), message: String(format: NSLocalizedString("DELETED-ALERT-FORMAT", comment: ""), meetingObject.name), preferredStyle: .alert)
+            
+            let deleteAction = UIAlertAction(title: NSLocalizedString("DELETED-RESTORE-BUTTON", comment: ""), style: UIAlertActionStyle.destructive, handler: {(_: UIAlertAction) in self.restoreMeeting(inMeeting: meetingObject)})
+            
+            alertController.addAction(deleteAction)
+            
+            let cancelAction = UIAlertAction(title: NSLocalizedString("DELETED-CANCEL-BUTTON", comment: ""), style: UIAlertActionStyle.default, handler: nil)
+            
+            alertController.addAction(cancelAction)
+            
+            self.present(alertController, animated: true, completion: nil)
+        }
+    }
+    
+    /* ################################################################## */
+    /**
+     Called to do a restore action.
+     
+     - parameter inMeeting: The meeting object to be restored.
+     */
+    func restoreMeeting(inMeeting: BMLTiOSLibEditableMeetingNode) {
+        if MainAppDelegate.connectionObject.restoreDeletedMeeting(inMeeting.id) {
+            if let tabBarController = self.myBarTab {
+                tabBarController.select(thisMeetingID: inMeeting.id)
+            }
+        }
     }
     
     /* ################################################################## */
@@ -153,6 +211,51 @@ class DeletedMeetingsViewController : EditorViewControllerBaseClass, UITableView
             if let meetingObject = changeObject.beforeObject as? BMLTiOSLibEditableMeetingNode {
                 ret.backgroundColor = (0 == (indexPath.row % 2)) ? UIColor.clear : UIColor.init(white: 0, alpha: 0.1)
                 ret.nameLabel.text = String(format: NSLocalizedString("DELETED-NAME-FORMAT", comment: ""), meetingObject.name, meetingObject.id)
+                ret.deletionDescription.text = changeObject.description
+                if var hour = meetingObject.startTimeAndDay.hour {
+                    if let minute = meetingObject.startTimeAndDay.minute {
+                        var time = ""
+                        
+                        if ((23 == hour) && (55 <= minute)) || ((0 == hour) && (0 == minute)) || (24 == hour) {
+                            time = NSLocalizedString("MIDNIGHT", comment: "")
+                        } else {
+                            if (12 == hour) && (0 == minute) {
+                                time = NSLocalizedString("NOON", comment: "")
+                            } else {
+                                let formatter = DateFormatter()
+                                formatter.locale = Locale.current
+                                formatter.dateStyle = .none
+                                formatter.timeStyle = .short
+                                
+                                let dateString = formatter.string(from: Date())
+                                let amRange = dateString.range(of: formatter.amSymbol)
+                                let pmRange = dateString.range(of: formatter.pmSymbol)
+                                
+                                if !(pmRange == nil && amRange == nil) {
+                                    var amPm = formatter.amSymbol
+                                    
+                                    if 12 < hour {
+                                        hour -= 12
+                                        amPm = formatter.pmSymbol
+                                    } else {
+                                        if 12 == hour {
+                                            amPm = formatter.pmSymbol
+                                        }
+                                    }
+                                    time = String(format: "%d:%02d %@", hour, minute, amPm!)
+                                } else {
+                                    time = String(format: "%d:%02d", hour, minute)
+                                }
+                            }
+                        }
+                        
+                        let weekday = AppStaticPrefs.weekdayNameFromWeekdayNumber(meetingObject.weekdayIndex)
+                        let localizedFormat = NSLocalizedString("MEETING-TIME-FORMAT", comment: "")
+                        ret.addressTextView.text = meetingObject.basicAddress
+                        ret.timeLabel.text = String(format: localizedFormat, weekday, time)
+                    }
+                }
+                
                 return ret
             }
         }
@@ -172,6 +275,7 @@ class DeletedMeetingsViewController : EditorViewControllerBaseClass, UITableView
      - returns: nil (don't let selection happen).
      */
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        self.requestMeetingBeRestored(indexPath.row)
         return nil
     }
 }
@@ -185,4 +289,10 @@ class DeletedMeetingsViewController : EditorViewControllerBaseClass, UITableView
 class DeletedRowTableCellView: UITableViewCell {
     /** This displays the meeting name. */
     @IBOutlet weak var nameLabel: UILabel!
+    /** This displays the meeting day and time. */
+    @IBOutlet weak var timeLabel: UILabel!
+    /** This is a text view that contains a basic address for the meeting. */
+    @IBOutlet weak var addressTextView: UITextView!
+    /** This is a text view that contains a basic description of the change. */
+    @IBOutlet weak var deletionDescription: UITextView!
 }

@@ -44,6 +44,7 @@ class EditorTabBarController : UITabBarController, UITabBarControllerDelegate {
         
         if let deletedViewController = self.viewControllers?[TabIndexes.DeletedTab.rawValue] as? DeletedMeetingsViewController {
             deletedViewController.tabBarItem.title = NSLocalizedString(deletedViewController.tabBarItem.title!, comment: "")
+            deletedViewController.myBarTab = self
         }
         
         self.delegate = self
@@ -51,6 +52,17 @@ class EditorTabBarController : UITabBarController, UITabBarControllerDelegate {
     
     /* ################################################################## */
     // MARK: Instance Methods
+    /* ################################################################## */
+    /**
+     */
+    func select(thisMeetingID inID: Int) {
+        if let listViewController = self.viewControllers?[TabIndexes.ListTab.rawValue] as? ListEditableMeetingsViewController {
+            listViewController.searchDone = false
+            listViewController.showMeTheMoneyID = inID
+            self.selectedIndex = TabIndexes.ListTab.rawValue
+        }
+    }
+    
     /* ################################################################## */
     /**
      This is called when the search updates.
@@ -70,6 +82,18 @@ class EditorTabBarController : UITabBarController, UITabBarControllerDelegate {
      - parameter changeListResults: An array of change objects.
      */
     func updateChangeResponse(changeListResults: [BMLTiOSLibChangeNode]) {
+    }
+    
+    /* ################################################################## */
+    /**
+     This is called when the library gets a new meeting added.
+     
+     - parameter inNewMeeting: The new meeting object.
+     */
+    func updateNewMeetingAdded(_ inNewMeeting: BMLTiOSLibMeetingNode) {
+        if let listViewController = self.viewControllers?[TabIndexes.ListTab.rawValue] as? ListEditableMeetingsViewController {
+            listViewController.updateNewMeeting(inMeetingObject: inNewMeeting as! BMLTiOSLibEditableMeetingNode)
+        }
     }
     
     /* ################################################################## */
