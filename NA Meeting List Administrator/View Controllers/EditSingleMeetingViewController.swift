@@ -35,6 +35,7 @@ class EditSingleMeetingViewController : MeetingEditorBaseViewController {
     @IBOutlet weak var saveButton: UIBarButtonItem!
 
     @IBOutlet weak var animationCover: UIView!
+    @IBOutlet weak var historyEraserButton: UIButton!
     
     var ownerController: ListEditableMeetingsViewController! = nil
     
@@ -46,17 +47,33 @@ class EditSingleMeetingViewController : MeetingEditorBaseViewController {
      
      - parameter animated: True, if the appearance is animated.
      */
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        if let navController = self.navigationController {
-            navController.isNavigationBarHidden = false
-            if (0 < self.meetingObject.id) && (nil != self.navigationItem.title) {
-                self.navigationItem.title = String(format: NSLocalizedString("MEETING-ID-FORMAT", comment: ""), self.meetingObject.id)
-            }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        if (0 < self.meetingObject.id) && (nil != self.navigationItem.title) {
+            self.navigationItem.title = String(format: NSLocalizedString("MEETING-ID-FORMAT", comment: ""), self.meetingObject.id)
         }
+        let backButton = UIBarButtonItem()
+        backButton.title = NSLocalizedString("CANCEL-BUTTON", comment: "")
+        self.navigationItem.backBarButtonItem = backButton
         
         self.cancelButton.title = NSLocalizedString(self.cancelButton.title!, comment: "")
         self.saveButton.title = NSLocalizedString(self.saveButton.title!, comment: "")
+        self.historyEraserButton.setTitle(NSLocalizedString(self.historyEraserButton.title(for: UIControlState.normal)!, comment: ""), for: UIControlState.normal)
+    }
+    
+    /* ################################################################## */
+    /**
+     Called as the view is about to appear.
+     
+     - parameter animated: True, if the appearance is animated.
+     */
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if let navController = self.navigationController {
+            navController.isNavigationBarHidden = false
+        }
+        
         self.updateEditorDisplay()
     }
     
@@ -76,6 +93,10 @@ class EditSingleMeetingViewController : MeetingEditorBaseViewController {
         }
         
         super.updateEditorDisplay(inChangedCell)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
     }
     
     /* ################################################################## */

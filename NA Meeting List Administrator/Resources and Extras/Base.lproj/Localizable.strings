@@ -125,6 +125,8 @@
 
 "FORMATS-LABEL"                                                                                 =   "Formats:";
 
+"HISTORY-ERASER-BUTTON"                                                                         =   "Change History";
+
 "SAVE-AS-OR-COPY"                                                                               =   "Save Meeting Changes";
 "SAVE-AS-OR-COPY-MESSAGE"                                                                       =   "Changes have been made to this meeting.\nDo you want to save these changes?";
 

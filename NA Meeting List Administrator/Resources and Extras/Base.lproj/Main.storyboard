@@ -234,8 +234,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="2000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="73J-zm-pQ7">
+                                <rect key="frame" x="16" y="20" width="288" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Rey-QI-zav"/>
+                                </constraints>
+                                <state key="normal" title="HISTORY-ERASER-BUTTON"/>
+                                <connections>
+                                    <segue destination="xgD-05-36X" kind="show" id="8ug-Gs-TJY"/>
+                                </connections>
+                            </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hu8-sJ-cp5">
-                                <rect key="frame" x="0.0" y="20" width="320" height="1980"/>
+                                <rect key="frame" x="0.0" y="50" width="320" height="1950"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="editor-row-0" rowHeight="155" id="I7d-EO-pHQ" userLabel="Published" customClass="PublishedEditorTableViewCell" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
@@ -1195,12 +1205,15 @@
                         <constraints>
                             <constraint firstItem="nCd-vQ-VIX" firstAttribute="top" secondItem="64l-pk-tFP" secondAttribute="bottom" id="4Ge-f4-8b5"/>
                             <constraint firstAttribute="trailing" secondItem="hu8-sJ-cp5" secondAttribute="trailing" id="58w-K2-LEU"/>
+                            <constraint firstItem="73J-zm-pQ7" firstAttribute="top" secondItem="hbw-4E-5Fl" secondAttribute="bottom" id="78f-wy-cd2"/>
                             <constraint firstItem="64l-pk-tFP" firstAttribute="leading" secondItem="tAG-NX-Teg" secondAttribute="leading" id="Cxn-zc-CQx"/>
+                            <constraint firstItem="73J-zm-pQ7" firstAttribute="leading" secondItem="tAG-NX-Teg" secondAttribute="leadingMargin" id="M4M-8l-pE5"/>
                             <constraint firstItem="hu8-sJ-cp5" firstAttribute="leading" secondItem="tAG-NX-Teg" secondAttribute="leading" id="Q3h-tK-m3A"/>
+                            <constraint firstItem="hu8-sJ-cp5" firstAttribute="top" secondItem="73J-zm-pQ7" secondAttribute="bottom" id="Qpg-K1-Wsl"/>
                             <constraint firstItem="nCd-vQ-VIX" firstAttribute="top" secondItem="hu8-sJ-cp5" secondAttribute="bottom" id="UXd-VB-iNM"/>
                             <constraint firstItem="64l-pk-tFP" firstAttribute="top" secondItem="hbw-4E-5Fl" secondAttribute="bottom" id="V8Y-Ps-n8o"/>
                             <constraint firstAttribute="trailing" secondItem="64l-pk-tFP" secondAttribute="trailing" id="Vke-ua-vM2"/>
-                            <constraint firstItem="hu8-sJ-cp5" firstAttribute="top" secondItem="hbw-4E-5Fl" secondAttribute="bottom" id="uQY-51-YEd"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="73J-zm-pQ7" secondAttribute="trailing" id="jIz-b8-mez"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="topColor">
@@ -1237,6 +1250,7 @@
                     <connections>
                         <outlet property="animationCover" destination="64l-pk-tFP" id="WHa-oF-AaE"/>
                         <outlet property="cancelButton" destination="1gs-FS-fYy" id="Aq7-Co-NFw"/>
+                        <outlet property="historyEraserButton" destination="73J-zm-pQ7" id="0bR-DE-jRu"/>
                         <outlet property="saveButton" destination="Pqd-qA-Ywy" id="Ojg-el-eHF"/>
                         <outlet property="tableView" destination="hu8-sJ-cp5" id="89g-qD-XPR"/>
                     </connections>
@@ -1249,6 +1263,36 @@
                 </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2558" y="-1399"/>
+        </scene>
+        <!--HISTORY-ERASER-BUTTON-->
+        <scene sceneID="iTe-1h-6gv">
+            <objects>
+                <viewController id="xgD-05-36X" customClass="HistoryListViewController" customModule="NA_Meeting_List_Administrator" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="D3O-K3-iDB"/>
+                        <viewControllerLayoutGuide type="bottom" id="HFg-RZ-gLw"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="K5l-Gc-llX" customClass="EditorViewBaseClass" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="640"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="0.0" green="0.0" blue="0.79866071429999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="topColor">
+                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="bottomColor">
+                                <color key="value" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <navigationItem key="navigationItem" title="HISTORY-ERASER-BUTTON" id="P7d-x6-NFO"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="640"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aQs-4n-zf4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3362" y="-2119"/>
         </scene>
         <!--Editor Tab Controller-->
         <scene sceneID="4Vp-tc-l3t">
