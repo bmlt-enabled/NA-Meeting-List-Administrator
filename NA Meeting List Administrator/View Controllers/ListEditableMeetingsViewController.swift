@@ -86,12 +86,8 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
     /* ################################################################## */
     /** This carries the state of the selected/unselected weekday checkboxes. */
     var selectedWeekdays: BMLTiOSLibSearchCriteria.SelectableWeekdayDictionary = [.Sunday:.Selected,.Monday:.Selected,.Tuesday:.Selected,.Wednesday:.Selected,.Thursday:.Selected,.Friday:.Selected,.Saturday:.Selected]
-    /** This is a callback that, if set, should be made. */
-    var callMeWhenYoureDone: ((_ : ListEditableMeetingsViewController, _ meetingObject: BMLTiOSLibEditableMeetingNode?) -> Bool)! = nil
     /** This contains all the meetings currently displayed */
     var currentMeetingList: [BMLTiOSLibMeetingNode] = []
-    /** This is a semaphore that is set when we are saving a duplicate or a new meeting. It is used to tell the class to open the new meeting. */
-    var newMeetingBeingSaved: Bool = false
     /** This is set to ask the view to scroll to expose a meeting object. */
     var showMeTheMoneyID: Int! = nil
     /** This is a semaphore that we use to prevent too many searches. */
@@ -140,10 +136,9 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
      */
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if !self.searchDone && !self.newMeetingBeingSaved {
+        if !self.searchDone {
             self.doSearch()
         }
-        self.newMeetingBeingSaved = false
     }
     
     /* ################################################################## */
@@ -173,7 +168,6 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
      Trigger a search.
      */
     func doSearch() {
-        self.newMeetingBeingSaved = false
         self.searchDone = false
         MainAppDelegate.connectionObject.searchCriteria.clearAll()
         // First, get the IDs of the Service bodies we'll be checking.
@@ -193,7 +187,7 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
         MainAppDelegate.connectionObject.searchCriteria.publishedStatus = .Both
         self.busyAnimationView.isHidden = false
         self.tabBarController?.tabBar.isHidden = true
-        self.allChangedTo(inState: .Selected)
+        self.allChangedTo(inState: BMLTiOSLibSearchCriteria.SelectionState.Selected)
         MainAppDelegate.connectionObject.searchCriteria.performMeetingSearch(.MeetingsOnly)
     }
     
@@ -204,71 +198,43 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
      - parameter inMeetingObjects: An array of meeting objects.
      */
     func updateSearch(inMeetingObjects:[BMLTiOSLibMeetingNode]) {
-        if let newID = self.showMeTheMoneyID {  // If this is a new meeting...
-            self.showMeTheMoneyID = nil
-            self.newMeetingBeingSaved = false
-            self.currentMeetingList = MainAppDelegate.appDelegateObject.meetingObjects // We start by grabbing all the meetings.
-            self.busyAnimationView.isHidden = true
-            self.tabBarController?.tabBar.isHidden = false
-            // We change to everything exposed, so we can display new meetings that may fall outside our search criteria.
-            self.townBoroughPickerView.selectRow(0, inComponent: 0, animated: false)
-            self.allChangedTo(inState: BMLTiOSLibSearchCriteria.SelectionState.Selected)
+        self.busyAnimationView.isHidden = true
+        self.tabBarController?.tabBar.isHidden = false
+        self.currentMeetingList = MainAppDelegate.appDelegateObject.meetingObjects // We start by grabbing all the meetings.
+        self.allChangedTo(inState: BMLTiOSLibSearchCriteria.SelectionState.Selected)   // We select all weekdays.
+        
+        // Extract all the towns and boroughs from the entire list.
+        self._townsAndBoroughs = []
+        var tempTowns: [String] = []
+        
+        for meeting in MainAppDelegate.appDelegateObject.meetingObjects {
+            // We give boroughs precedence over towns.
+            let town = meeting.locationBorough.isEmpty ? meeting.locationTown : meeting.locationBorough
+
+            if !town.isEmpty && !tempTowns.contains(town) {
+                tempTowns.append(town)
+            }
+        }
+        
+        self._townsAndBoroughs = tempTowns.sorted()
+        
+        // Select every town and borough
+        self.townBoroughPickerView.selectRow(0, inComponent: 0, animated: false)
+        self.updateDisplayedMeetings()
+        // If we provide an ID, then we need to scroll to expose that ID, and then open the editor for it.
+        if nil != self.showMeTheMoneyID {
+            var meetingObject: BMLTiOSLibEditableMeetingNode! = nil
             for meeting in self.currentMeetingList {
-                if meeting.id == newID {
-                    self.scrollToExposeMeeting(meeting as! BMLTiOSLibEditableMeetingNode)
-                    self.editSingleMeeting(meeting as! BMLTiOSLibEditableMeetingNode)
+                if meeting.id == self.showMeTheMoneyID {
+                    meetingObject = meeting as! BMLTiOSLibEditableMeetingNode
                     break
                 }
             }
-        } else {
-            if let callback = self.callMeWhenYoureDone {
-                self.callMeWhenYoureDone = nil
-                if let selectedMeeting = inMeetingObjects[0] as? BMLTiOSLibEditableMeetingNode {
-                    if callback(self, selectedMeeting) {
-                        // We change to everything exposed, so we can display newly edited meetings that may now fall outside our search criteria.
-                        self.townBoroughPickerView.selectRow(0, inComponent: 0, animated: false)
-                        self.allChangedTo(inState: BMLTiOSLibSearchCriteria.SelectionState.Selected)
-                        self.searchDone = false
-                    }
-                }
-            } else {
-                self.busyAnimationView.isHidden = true
-                self.tabBarController?.tabBar.isHidden = false
-                self.currentMeetingList = MainAppDelegate.appDelegateObject.meetingObjects // We start by grabbing all the meetings.
-                self.allChangedTo(inState: .Selected)   // We select all weekdays.
-                
-                // Extract all the towns and boroughs from the entire list.
-                self._townsAndBoroughs = []
-                var tempTowns: [String] = []
-                
-                for meeting in MainAppDelegate.appDelegateObject.meetingObjects {
-                    // We give boroughs precedence over towns.
-                    let town = meeting.locationBorough.isEmpty ? meeting.locationTown : meeting.locationBorough
-
-                    if !town.isEmpty && !tempTowns.contains(town) {
-                        tempTowns.append(town)
-                    }
-                }
-                
-                self._townsAndBoroughs = tempTowns.sorted()
-                
-                // Select every town and borough
-                self.townBoroughPickerView.selectRow(0, inComponent: 0, animated: false)
-                self.updateDisplayedMeetings()
-                if nil != self.showMeTheMoneyID {
-                    var meetingObject: BMLTiOSLibEditableMeetingNode! = nil
-                    for meeting in self.currentMeetingList {
-                        if meeting.id == self.showMeTheMoneyID {
-                            meetingObject = meeting as! BMLTiOSLibEditableMeetingNode
-                            break
-                        }
-                    }
-                    if nil != meetingObject {
-                        self.scrollToExposeMeeting(meetingObject)
-                    }
-                    self.showMeTheMoneyID = nil
-                }
+            if nil != meetingObject {
+                self.scrollToExposeMeeting(meetingObject)
+                self.editSingleMeeting(meetingObject)
             }
+            self.showMeTheMoneyID = nil
         }
     }
     

@@ -164,7 +164,6 @@ class EditSingleMeetingViewController : MeetingEditorBaseViewController {
     func saveOKCallback(_ inAction: UIAlertAction) {
         self.meetingObject.saveChanges()
         self.ownerController.searchDone = false
-        self.ownerController.showMeTheMoneyID = self.meetingObject.id
         let _ = self.navigationController?.popViewController(animated: true)
     }
     
@@ -175,27 +174,8 @@ class EditSingleMeetingViewController : MeetingEditorBaseViewController {
      - parameter inAction: The alert action object (ignored)
      */
     func saveOKCopyCallback(_ inAction: UIAlertAction) {
-        self.animationCover.isHidden = false
-        self.ownerController.showMeTheMoneyID = self.meetingObject.id
-        self.ownerController.searchDone = false
-        self.ownerController.callMeWhenYoureDone = self.callMeWhenYoureDone
-        if nil != self.navigationItem.title {
-            self.navigationItem.title = ""
-        }
         MainAppDelegate.connectionObject.saveMeetingAsCopy(self.meetingObject)
-    }
-    
-    /* ################################################################## */
-    /**
-     - parameter inEditor: The list view controller.
-     */
-    func callMeWhenYoureDone(_ inEditor : ListEditableMeetingsViewController, _ meetingObject: BMLTiOSLibEditableMeetingNode?) -> Bool {
-        self.meetingObject = meetingObject
-        self.animationCover.isHidden = true
-        if (0 < self.meetingObject.id) && (nil != self.navigationItem.title) {
-            self.navigationItem.title = String(format: NSLocalizedString("MEETING-ID-FORMAT", comment: ""), self.meetingObject.id)
-        }
-        self.updateEditorDisplay()
-        return true
+        self.ownerController.searchDone = false
+        let _ = self.navigationController?.popViewController(animated: true)
     }
 }

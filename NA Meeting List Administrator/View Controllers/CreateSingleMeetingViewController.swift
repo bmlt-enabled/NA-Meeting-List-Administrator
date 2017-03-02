@@ -48,6 +48,7 @@ class CreateSingleMeetingViewController : MeetingEditorBaseViewController {
         let serviceBodyID: Int = AppStaticPrefs.prefs.selectedServiceBodies[0].id
         let initialValues: [String:String] = ["published":"0",
                                               "id_bigint":"0",
+                                              "worldid_mixed":"",
                                               "meeting_name":NSLocalizedString("BMLTiOSLib-Default-Meeting-Name", comment: ""),
                                               "weekday_tinyint":"1",
                                               "service_body_bigint": String(serviceBodyID),
@@ -134,7 +135,6 @@ class CreateSingleMeetingViewController : MeetingEditorBaseViewController {
      - parameter inAction: The alert action object (ignored)
      */
     func saveOKCallback(_ inAction: UIAlertAction) {
-        self.ownerController.newMeetingBeingSaved = true
         self.meetingObject.saveChanges()
         let _ = self.navigationController?.popViewController(animated: true)
     }
@@ -146,9 +146,8 @@ class CreateSingleMeetingViewController : MeetingEditorBaseViewController {
      - parameter inAction: The alert action object (ignored)
      */
     func saveOKCopyCallback(_ inAction: UIAlertAction) {
-        self.animationCover.isHidden = false
-        self.ownerController.callMeWhenYoureDone = self.callMeWhenYoureDone
         MainAppDelegate.connectionObject.saveMeetingAsCopy(self.meetingObject)
+        let _ = self.navigationController?.popViewController(animated: true)
     }
     
     /* ################################################################## */
