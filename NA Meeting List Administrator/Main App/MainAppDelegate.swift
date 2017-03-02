@@ -244,16 +244,17 @@ class MainAppDelegate: UIResponder, UIApplicationDelegate, BMLTiOSLibDelegate {
         self.initialViewController.updateSearch(inMeetingObjects: self.meetingObjects)
     }
     
-    
     /* ################################################################## */
     /**
-     Response to a format search.
+     Called when a new meeting has been deleted.
      
      - parameter inLibInstance: the BMLTiOSLib instance.
-     - parameter formatSearchResults: An array of format objects.
+     - parameter deleteMeetingSuccessful: true, if the operation was successful.
      */
-    func bmltLibInstance(_ inLibInstance: BMLTiOSLib, formatSearchResults: [BMLTiOSLibFormatNode]) {
-        
+    func bmltLibInstance(_ inLibInstance: BMLTiOSLib, deleteMeetingSuccessful: Bool) {
+        if deleteMeetingSuccessful {
+            self.initialViewController.updateDeletedMeeting()
+        }
     }
     
     /* ################################################################## */

@@ -86,6 +86,17 @@ class EditorTabBarController : UITabBarController, UITabBarControllerDelegate {
     
     /* ################################################################## */
     /**
+     This is called after we successfully delete a meeting.
+     We use this as a trigger to tell the deleted meetings tab it needs a reload.
+     */
+    func updateDeletedMeeting() {
+        if let deletedViewController = self.viewControllers?[TabIndexes.DeletedTab.rawValue] as? DeletedMeetingsViewController {
+            deletedViewController.searchDone = false
+        }
+    }
+    
+    /* ################################################################## */
+    /**
      This is called when the library gets a new meeting added.
      
      - parameter inNewMeeting: The new meeting object.

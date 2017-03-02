@@ -65,6 +65,9 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
     /* ################################################################## */
     // MARK: Internal IB Instance Properties
     /* ################################################################## */
+    /** If the meeting is unpublished, we have a different color background. */
+    @IBInspectable var unpublishedRowColorEven: UIColor!
+    @IBInspectable var unpublishedRowColorOdd: UIColor!
     /** This covers the screen with a busy throbber when we are searching */
     @IBOutlet weak var busyAnimationView: UIView!
     /** This has 8 checkboxes, which allows the user to select certain weekdays. */
@@ -73,9 +76,6 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
     @IBOutlet weak var meetingListTableView: UITableView!
     /** This is a picker view that displays all the towns. */
     @IBOutlet weak var townBoroughPickerView: UIPickerView!
-    /** If the meeting is unpublished, we have a different color background. */
-    @IBInspectable var unpublishedRowColorEven: UIColor!
-    @IBInspectable var unpublishedRowColorOdd: UIColor!
     /** This is the navbar item that allows you to create a new meeting. */
     @IBOutlet weak var addNewMeetingButton: UIBarButtonItem!
     /** This is the navbar button that acts as a back button. */
@@ -125,6 +125,10 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
         super.viewWillAppear(animated)
         if let navController = self.navigationController {
             navController.isNavigationBarHidden = true
+        }
+        
+        if let tabBar = self.tabBarController?.tabBar {
+            tabBar.tintColor = self.view.tintColor
         }
     }
     
@@ -186,6 +190,7 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
         MainAppDelegate.appDelegateObject.meetingObjects = []
         MainAppDelegate.connectionObject.searchCriteria.publishedStatus = .Both
         self.busyAnimationView.isHidden = false
+        self.meetingListTableView.isHidden = true
         self.tabBarController?.tabBar.isHidden = true
         self.allChangedTo(inState: BMLTiOSLibSearchCriteria.SelectionState.Selected)
         MainAppDelegate.connectionObject.searchCriteria.performMeetingSearch(.MeetingsOnly)
@@ -199,6 +204,7 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
      */
     func updateSearch(inMeetingObjects:[BMLTiOSLibMeetingNode]) {
         self.busyAnimationView.isHidden = true
+        self.meetingListTableView.isHidden = false
         self.tabBarController?.tabBar.isHidden = false
         self.currentMeetingList = MainAppDelegate.appDelegateObject.meetingObjects // We start by grabbing all the meetings.
         self.allChangedTo(inState: BMLTiOSLibSearchCriteria.SelectionState.Selected)   // We select all weekdays.
@@ -220,7 +226,6 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
         
         // Select every town and borough
         self.townBoroughPickerView.selectRow(0, inComponent: 0, animated: false)
-        self.updateDisplayedMeetings()
         // If we provide an ID, then we need to scroll to expose that ID, and then open the editor for it.
         if nil != self.showMeTheMoneyID {
             var meetingObject: BMLTiOSLibEditableMeetingNode! = nil
@@ -236,6 +241,7 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
             }
             self.showMeTheMoneyID = nil
         }
+        self.updateDisplayedMeetings()
     }
     
     /* ################################################################## */
@@ -355,9 +361,7 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
             }
         }
         self._checkingAll = false
-        DispatchQueue.main.async(execute: {
-            self.updateDisplayedMeetings()
-        })
+        self.updateDisplayedMeetings()
     }
     
     /* ################################################################## */
@@ -387,9 +391,7 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
             if let indexAsEnum = BMLTiOSLibSearchCriteria.WeekdayIndex(rawValue: inWeekdayIndex) {
                 self.selectedWeekdays[indexAsEnum] = newSelectionState
                 if !self._checkingAll { // We don't update if we are in the middle of changing all the checkboxes.
-                    DispatchQueue.main.async(execute: {
-                        self.updateDisplayedMeetings()
-                    })
+                    self.updateDisplayedMeetings()
                 }
             }
         }

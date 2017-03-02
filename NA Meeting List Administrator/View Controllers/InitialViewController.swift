@@ -584,6 +584,15 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate 
     }
     
     /* ################################################################## */
+    /**
+     This is called after we successfully delete a meeting.
+     We use this as a trigger to tell the deleted meetings tab it needs a reload.
+     */
+    func updateDeletedMeeting() {
+        self._editorTabBarController.updateDeletedMeeting()
+    }
+    
+    /* ################################################################## */
     // MARK: UITextFieldDelegate Methods
     /* ################################################################## */
     /**

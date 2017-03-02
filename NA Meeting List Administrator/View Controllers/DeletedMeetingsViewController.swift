@@ -89,6 +89,10 @@ class DeletedMeetingsViewController : EditorViewControllerBaseClass, UITableView
             navController.isNavigationBarHidden = true
         }
         
+        if let tabBar = self.tabBarController?.tabBar {
+            tabBar.tintColor = self.view.tintColor
+        }
+        
         if !self.searchDone {
             self.getDeletedMeetings()
         }
@@ -103,6 +107,7 @@ class DeletedMeetingsViewController : EditorViewControllerBaseClass, UITableView
      */
     func getDeletedMeetings() {
         self.animationMaskView.isHidden = false
+        self.tableView.isHidden = true
         self.tabBarController?.tabBar.isHidden = true
         var ids: [Int] = []
         for sb in AppStaticPrefs.prefs.selectedServiceBodies {
@@ -120,6 +125,7 @@ class DeletedMeetingsViewController : EditorViewControllerBaseClass, UITableView
      */
     func updateDeletedResponse(changeListResults: [BMLTiOSLibChangeNode]) {
         self.animationMaskView.isHidden = true
+        self.tableView.isHidden = false
         self.tabBarController?.tabBar.isHidden = false
         self.searchDone = true
         self._deletedMeetingChanges = changeListResults
@@ -138,7 +144,7 @@ class DeletedMeetingsViewController : EditorViewControllerBaseClass, UITableView
         if let meetingObject = self._deletedMeetingChanges[inRow].beforeObject as? BMLTiOSLibEditableMeetingNode {
             let alertController = UIAlertController(title: NSLocalizedString("DELETED-ALERT-HEADER", comment: ""), message: String(format: NSLocalizedString("DELETED-ALERT-FORMAT", comment: ""), meetingObject.name), preferredStyle: .alert)
             
-            let deleteAction = UIAlertAction(title: NSLocalizedString("DELETED-RESTORE-BUTTON", comment: ""), style: UIAlertActionStyle.destructive, handler: {(_: UIAlertAction) in self.restoreMeeting(inMeeting: meetingObject)})
+            let deleteAction = UIAlertAction(title: NSLocalizedString("DELETED-RESTORE-BUTTON", comment: ""), style: UIAlertActionStyle.destructive, handler: {(_: UIAlertAction) in self.restoreMeeting(inMeeting: meetingObject, row: inRow)})
             
             alertController.addAction(deleteAction)
             
@@ -155,9 +161,12 @@ class DeletedMeetingsViewController : EditorViewControllerBaseClass, UITableView
      Called to do a restore action.
      
      - parameter inMeeting: The meeting object to be restored.
+     - parameter row: The row the meeting is on (will be deleted).
      */
-    func restoreMeeting(inMeeting: BMLTiOSLibEditableMeetingNode) {
+    func restoreMeeting(inMeeting: BMLTiOSLibEditableMeetingNode, row: Int) {
         if MainAppDelegate.connectionObject.restoreDeletedMeeting(inMeeting.id) {
+            self._deletedMeetingChanges.remove(at: row)
+            self.tableView.reloadData()
             if let tabBarController = self.myBarTab {
                 tabBarController.select(thisMeetingID: inMeeting.id)
             }

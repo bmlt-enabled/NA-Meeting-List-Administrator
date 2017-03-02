@@ -390,6 +390,9 @@ class MeetingEditorBaseViewController : EditorViewControllerBaseClass, UITableVi
                 }
             }
             
+            // This allows us to close the keyboard for taps pretty much everywhere.
+            let newGestureReconizer = UITapGestureRecognizer(target: self, action: #selector(MeetingEditorBaseViewController.tapInBackground(_:)))
+            returnableCell.addGestureRecognizer(newGestureReconizer)
             return returnableCell
         }
         
@@ -521,6 +524,7 @@ class PublishedEditorTableViewCell: MeetingEditorViewCell, UIPickerViewDelegate,
     @IBAction func publishedChanged(_ sender: UISwitch) {
         self.meetingObject.published = sender.isOn
         self.owner.updateEditorDisplay(self)
+        self.owner.closeKeyboard()
     }
     
     /* ################################################################## */
@@ -595,6 +599,7 @@ class PublishedEditorTableViewCell: MeetingEditorViewCell, UIPickerViewDelegate,
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         self.meetingObject.serviceBodyId = AppStaticPrefs.prefs.selectedServiceBodies[row].id
         self.owner.updateEditorDisplay(self)
+        self.owner.closeKeyboard()
     }
     
     /* ################################################################## */
@@ -720,6 +725,7 @@ class WeekdayEditorTableViewCell: MeetingEditorViewCell {
     @IBAction func weekdayChanged(_ sender: UISegmentedControl) {
         self.meetingObject.weekdayIndex = sender.selectedSegmentIndex + 1
         self.owner.updateEditorDisplay(self)
+        self.owner.closeKeyboard()
     }
     
     /* ################################################################## */
@@ -763,6 +769,7 @@ class StartTimeEditorTableViewCell: MeetingEditorViewCell {
         let startComponents = NSCalendar(identifier: NSCalendar.Identifier.gregorian)?.components(unitFlags, from: startTimeDate)
         self.meetingObject.startTime = startComponents
         self.owner.updateEditorDisplay(self)
+        self.owner.closeKeyboard()
     }
     
     /* ################################################################## */
@@ -807,6 +814,7 @@ class DurationEditorTableViewCell: MeetingEditorViewCell {
         let durationComponents = NSCalendar(identifier: NSCalendar.Identifier.gregorian)?.components(unitFlags, from: startTimeDate)
         self.meetingObject.durationInMinutes = ((durationComponents?.hour)! * 60) + (durationComponents?.minute)!
         self.owner.updateEditorDisplay(self)
+        self.owner.closeKeyboard()
     }
     
     /* ################################################################## */
@@ -1246,6 +1254,7 @@ class LongLatTableViewCell: MeetingEditorViewCell {
     @IBAction func setFromAddressButtonHit(_ sender: UIButton) {
         self.animationMaskView.isHidden = false
         self.owner.lookUpAddressForMe()
+        self.owner.closeKeyboard()
     }
     
     /* ################################################################## */
@@ -1257,6 +1266,7 @@ class LongLatTableViewCell: MeetingEditorViewCell {
     @IBAction func setAddressFromMapButtonHit(_ sender: UIButton) {
         self.animationMaskView.isHidden = false
         self.owner.lookUpCoordinatesForMe()
+        self.owner.closeKeyboard()
     }
     
     /* ################################################################## */
@@ -1392,6 +1402,7 @@ class FormatsEditorTableViewCell: MeetingEditorViewCell, UITableViewDataSource, 
             }
         }
         self.owner.updateEditorDisplay(self)
+        self.owner.closeKeyboard()
     }
     
     /* ################################################################## */
