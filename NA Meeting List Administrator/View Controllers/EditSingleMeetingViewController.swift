@@ -78,7 +78,7 @@ class EditSingleMeetingViewController : MeetingEditorBaseViewController {
     }
     
     /* ################################################################## */
-    // MAR: Instance Methods
+    // MARK: Instance Methods
     /* ################################################################## */
     /**
      Called when something changes in the various controls.
@@ -95,8 +95,18 @@ class EditSingleMeetingViewController : MeetingEditorBaseViewController {
         super.updateEditorDisplay(inChangedCell)
     }
     
+    /* ################################################################## */
+    /**
+     Called before we bring in the history for this meeting..
+     
+     - parameter segue: The segue being triggered.
+     - parameter sender: Any data associated with this segue (there isn't any).
+     */
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
+        if let destination = segue.destination as? HistoryListViewController {
+            destination.meetingObject = self.meetingObject
+        }
     }
     
     /* ################################################################## */

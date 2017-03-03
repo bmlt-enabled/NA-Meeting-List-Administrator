@@ -54,27 +54,26 @@ extension UIView {
  This class describes the basic functionality for a full meeting editor.
  */
 class MeetingEditorBaseViewController : EditorViewControllerBaseClass, UITableViewDataSource, UITableViewDelegate, MKMapViewDelegate, CLLocationManagerDelegate {
-    private var _internalRowHeights: [String:CGFloat] = ["editor-row-0":0,
-                                                         "editor-row-1":60,
-                                                         "editor-row-2":60,
-                                                         "editor-row-3":60,
-                                                         "editor-row-4":100,
-                                                         "editor-row-5":100,
-                                                         "editor-row-6":619,
-                                                         "editor-row-7":0,
-                                                         "editor-row-8":210,
-                                                         "editor-row-9":100,
-                                                         "editor-row-10":200
-    ]
-    
+    /** The height of the published cell if we only have one Service body. */
     private let _publishedSingleServiceBody: CGFloat    = 37
+    /** The height of the Published cell if we can select Service bodies. */
     private let _publishedMultiServiceBody: CGFloat     = 155
-    
     /** We use this as a common prefix for our reuse IDs, and the index as the suffix. */
-    let reuseIDBase = "editor-row-"
+    private let _reuseIDBase = "editor-row-"
     
-    /** This is the meeting object for this instance. */
-    var meetingObject: BMLTiOSLibEditableMeetingNode! = nil
+    /** This is a table of heights for our table rows. */
+    private var _internalRowHeights: [String:CGFloat] = ["editor-row-0": 0,
+                                                         "editor-row-1": 60,
+                                                         "editor-row-2": 60,
+                                                         "editor-row-3": 60,
+                                                         "editor-row-4": 100,
+                                                         "editor-row-5": 100,
+                                                         "editor-row-6": 619,
+                                                         "editor-row-7": 0,
+                                                         "editor-row-8": 210,
+                                                         "editor-row-9": 100,
+                                                         "editor-row-10": 200
+    ]
     
     /** These store the original (unpublished) colors for the background gradient. */
     private var _publishedTopColor: UIColor! = nil
@@ -101,6 +100,9 @@ class MeetingEditorBaseViewController : EditorViewControllerBaseClass, UITableVi
     /** This will reference the top item in the window (the "Published" handler). */
     var publishedItems: PublishedEditorTableViewCell! = nil
     
+    /** This is the meeting object for this instance. */
+    var meetingObject: BMLTiOSLibEditableMeetingNode! = nil
+
     /** This is the structural table view */
     @IBOutlet var tableView: UITableView!
     
@@ -360,7 +362,7 @@ class MeetingEditorBaseViewController : EditorViewControllerBaseClass, UITableVi
      - returns a nice, shiny cell (or sets the state of a reused one).
      */
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let reuseID = self.reuseIDBase + String(indexPath.row)
+        let reuseID = self._reuseIDBase + String(indexPath.row)
         
         if let returnableCell = tableView.dequeueReusableCell(withIdentifier: reuseID) as? MeetingEditorViewCell {
             returnableCell.owner = self
@@ -409,7 +411,7 @@ class MeetingEditorBaseViewController : EditorViewControllerBaseClass, UITableVi
      - returns the height of the cell.
      */
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let reuseID = self.reuseIDBase + String(indexPath.row)
+        let reuseID = self._reuseIDBase + String(indexPath.row)
         
         switch(reuseID) {   // This allows us to set dynamic heights.
         case "editor-row-0":    // If we are editing more than one Service body, then we can switch between them.

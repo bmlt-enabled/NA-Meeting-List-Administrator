@@ -28,6 +28,15 @@ import BMLTiOSLib
  This class controls the list of history items for a meeting, with some allowing rollback.
  */
 class HistoryListViewController : EditorViewControllerBaseClass, UITableViewDataSource, UITableViewDelegate {
+    /** The reuse ID for the history prototype. */
+    private let _reuseID = "history-item"
+    /** This is the table view that displays all the history items. */
+    @IBOutlet weak var tableView: UITableView!
+    /** This is the "busy" animation. */
+    @IBOutlet weak var animationCoverView: UIView!
+    /** This is the meeting object for this instance. */
+    var meetingObject: BMLTiOSLibEditableMeetingNode! = nil
+
     /* ################################################################## */
     // MARK: Overridden Base Class Methods
     /* ################################################################## */
@@ -42,8 +51,26 @@ class HistoryListViewController : EditorViewControllerBaseClass, UITableViewData
             navController.isNavigationBarHidden = false
             self.navigationItem.title = NSLocalizedString(self.navigationItem.title!, comment: "")
         }
+        
+        if nil == self.meetingObject.changes {
+            self.animationCoverView.isHidden = false
+            self.meetingObject.getChanges()
+        } else {
+            self.updateHistory()
+        }
     }
 
+    /* ################################################################## */
+    // MARK: Internal Methods
+    /* ################################################################## */
+    /**
+     Called to tell the controller to update it's appearance.
+     */
+    func updateHistory() {
+        self.animationCoverView.isHidden = true
+        self.tableView.reloadData()
+    }
+    
     /* ################################################################## */
     // MARK: UITableViewDataSource Methods
     /* ################################################################## */
@@ -54,7 +81,7 @@ class HistoryListViewController : EditorViewControllerBaseClass, UITableViewData
      - returns the number of rows to display.
      */
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return (nil != self.meetingObject.changes) ? self.meetingObject.changes.count : 0
     }
     
     /* ################################################################## */
@@ -67,6 +94,14 @@ class HistoryListViewController : EditorViewControllerBaseClass, UITableViewData
      - returns a nice, shiny cell (or sets the state of a reused one).
      */
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if let ret = tableView.dequeueReusableCell(withIdentifier: self._reuseID) as? HistoryListTableViewCell {
+            let changeObject = self.meetingObject.changes[indexPath.row]
+            ret.textView.text = changeObject.description + "\n" + changeObject.details
+            ret.revertButton.setTitle(NSLocalizedString(ret.revertButton.title(for: UIControlState.normal)!, comment: ""), for: UIControlState.normal)
+            ret.revertButton.isHidden = (nil == changeObject.beforeObject)
+            return ret
+        }
+        
         return UITableViewCell()
     }
     
@@ -83,5 +118,27 @@ class HistoryListViewController : EditorViewControllerBaseClass, UITableViewData
      */
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         return nil
+    }
+}
+
+/* ###################################################################################################################################### */
+// MARK: - List History Items Table Cell View Class -
+/* ###################################################################################################################################### */
+/**
+ This class controls one history list row.
+ */
+class HistoryListTableViewCell : UITableViewCell {
+    @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var revertButton: UIButton!
+    
+    /* ################################################################## */
+    // MARK: IB Methods
+    /* ################################################################## */
+    /**
+     Called when someone hits the "revert" button.
+     
+     - parameter sender: The button object
+     */
+    @IBAction func revertButtonHit(_ sender: UIButton) {
     }
 }

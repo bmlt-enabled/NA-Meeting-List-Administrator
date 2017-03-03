@@ -125,7 +125,8 @@
 
 "FORMATS-LABEL"                                                                                 =   "Formats:";
 
-"HISTORY-ERASER-BUTTON"                                                                         =   "Change History";
+"HISTORY-ERASER-BUTTON"                                                                         =   "View Meeting Change History";
+"HISTORY-ERASER-TITLE"                                                                          =   "Meeting Change History";
 
 "SAVE-AS-OR-COPY"                                                                               =   "Save Meeting Changes";
 "SAVE-AS-OR-COPY-MESSAGE"                                                                       =   "Changes have been made to this meeting.\nDo you want to save these changes?";
@@ -158,3 +159,4 @@
 "DELETED-LOADING-HEADER"                                                                        =   "Loading Deleted Meetings";
 "DELETED-LOADING-SUBTEXT"                                                                       =   "This may take a long time.";
 
+"REVERT-BUTTON"                                                                                 =   "Revert";

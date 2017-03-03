@@ -257,6 +257,28 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
     
     /* ################################################################## */
     /**
+     This is called when a meeting rollback is complete.
+     
+     - parameter inMeeting: The meeting that was updated.
+     */
+    func updateRollback(_ inMeeting: BMLTiOSLibMeetingNode) {
+        if let historyController = self.navigationController?.topViewController as? HistoryListViewController {
+            historyController.updateHistory()
+        }
+    }
+    
+    /* ################################################################## */
+    /**
+     This is called when a change fetch is complete.
+     */
+    func updateChangeFetch() {
+        if let historyController = self.navigationController?.topViewController as? HistoryListViewController {
+            historyController.updateHistory()
+        }
+    }
+    
+    /* ################################################################## */
+    /**
      Scrolls the table to expose the given meeting object.
      
      - parameter meetingObject: The meeting object we want to see.

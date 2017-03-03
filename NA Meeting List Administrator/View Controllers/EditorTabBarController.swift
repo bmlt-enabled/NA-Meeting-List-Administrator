@@ -86,6 +86,28 @@ class EditorTabBarController : UITabBarController, UITabBarControllerDelegate {
     
     /* ################################################################## */
     /**
+     This is called when a meeting rollback is complete.
+     
+     - parameter inMeeting: The meeting that was updated.
+     */
+    func updateRollback(_ inMeeting: BMLTiOSLibMeetingNode) {
+        if let listViewController = self.viewControllers?[TabIndexes.ListTab.rawValue] as? ListEditableMeetingsViewController {
+            listViewController.updateRollback(inMeeting)
+        }
+    }
+    
+    /* ################################################################## */
+    /**
+     This is called when a change fetch is complete.
+     */
+    func updateChangeFetch() {
+        if let listViewController = self.viewControllers?[TabIndexes.ListTab.rawValue] as? ListEditableMeetingsViewController {
+            listViewController.updateChangeFetch()
+        }
+    }
+    
+    /* ################################################################## */
+    /**
      This is called after we successfully delete a meeting.
      We use this as a trigger to tell the deleted meetings tab it needs a reload.
      */

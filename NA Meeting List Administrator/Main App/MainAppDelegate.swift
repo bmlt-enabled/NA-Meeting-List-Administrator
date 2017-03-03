@@ -270,13 +270,24 @@ class MainAppDelegate: UIResponder, UIApplicationDelegate, BMLTiOSLibDelegate {
     
     /* ################################################################## */
     /**
+     Called when a meeting has been rolled back to a previous version.
+     
+     - parameter inLibInstance: the BMLTiOSLib instance.
+     - parameter meetingRolledback: Meeting object.
+     */
+    func bmltLibInstance(_ inLibInstance: BMLTiOSLib, meetingRolledback: BMLTiOSLibEditableMeetingNode) {
+        self.initialViewController.updateRollback(meetingRolledback)
+    }
+    
+    /* ################################################################## */
+    /**
      Returns the result of a change list request.
      
      - parameter inLibInstance: the BMLTiOSLib instance.
      - parameter changeListResults: An array of change objects.
      */
     func bmltLibInstance(_ inLibInstance: BMLTiOSLib, changeListResults: [BMLTiOSLibChangeNode]) {
-        self.initialViewController.updateChangeResponse(changeListResults: changeListResults)
+        self.initialViewController.updateChangeFetch()
     }
     
     /* ################################################################## */

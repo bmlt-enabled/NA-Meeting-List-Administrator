@@ -585,6 +585,24 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate 
     
     /* ################################################################## */
     /**
+     This is called when a meeting rollback is complete.
+     
+     - parameter inMeeting: The meeting that was updated.
+     */
+    func updateRollback(_ inMeeting: BMLTiOSLibMeetingNode) {
+        self._editorTabBarController.updateRollback(inMeeting)
+    }
+    
+    /* ################################################################## */
+    /**
+     This is called when a change fetch is complete.
+     */
+    func updateChangeFetch() {
+        self._editorTabBarController.updateChangeFetch()
+    }
+    
+    /* ################################################################## */
+    /**
      This is called after we successfully delete a meeting.
      We use this as a trigger to tell the deleted meetings tab it needs a reload.
      */
