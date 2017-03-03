@@ -169,6 +169,7 @@ class EditSingleMeetingViewController : MeetingEditorBaseViewController {
             
             self.present(alertController, animated: true, completion: nil)
         } else {
+            self.updateEditorDisplay()
             let _ = self.navigationController?.popViewController(animated: true)
         }
     }
@@ -183,6 +184,7 @@ class EditSingleMeetingViewController : MeetingEditorBaseViewController {
      */
     func cancelOKCallback(_ inAction: UIAlertAction) {
         self.meetingObject.restoreToOriginal()
+        self.updateEditorDisplay()
         let _ = self.navigationController?.popViewController(animated: true)
     }
     

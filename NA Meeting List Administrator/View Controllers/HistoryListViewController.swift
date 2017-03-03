@@ -99,6 +99,8 @@ class HistoryListViewController : EditorViewControllerBaseClass, UITableViewData
             ret.textView.text = changeObject.description + "\n" + changeObject.details
             ret.revertButton.setTitle(NSLocalizedString(ret.revertButton.title(for: UIControlState.normal)!, comment: ""), for: UIControlState.normal)
             ret.revertButton.isHidden = (nil == changeObject.beforeObject)
+            ret.owner = self
+            ret.changeObject = changeObject
             return ret
         }
         
@@ -128,6 +130,9 @@ class HistoryListViewController : EditorViewControllerBaseClass, UITableViewData
  This class controls one history list row.
  */
 class HistoryListTableViewCell : UITableViewCell {
+    var owner: HistoryListViewController! = nil
+    var changeObject: BMLTiOSLibChangeNode! = nil
+    
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var revertButton: UIButton!
     
@@ -140,5 +145,8 @@ class HistoryListTableViewCell : UITableViewCell {
      - parameter sender: The button object
      */
     @IBAction func revertButtonHit(_ sender: UIButton) {
+        if self.owner.meetingObject.revertMeetingToBeforeThisChange(self.changeObject) {
+            _ = self.owner.navigationController?.popViewController(animated: true)
+        }
     }
 }
