@@ -46,5 +46,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>This app needs to know where you are in order to find the meeting you are at, or to find the address you are at.</string>
+	<key>BMLTButtonURL</key>
+	<string>https://bmlt.magshare.net</string>
 </dict>
 </plist>

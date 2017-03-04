@@ -25,7 +25,66 @@ import UIKit
 /**
  */
 class SettingsViewController : UIViewController {
+    /* ################################################################## */
+    // MARK: IB Properties
+    /* ################################################################## */
     @IBOutlet weak var clearAllLoginsButton: UIButton!
+    @IBOutlet weak var blurbHeaderLabel: UILabel!
+    @IBOutlet weak var appNameLabel: UILabel!
+    /** This displays the version. */
+    @IBOutlet weak var versionLabel: UILabel!
+    
+    /* ################################################################## */
+    // MARK: Internal Instance Properties
+    /* ################################################################## */
+    /** This is the URI that is executed when someone hits the "Beanie Button." */
+    var buttonURI: String = ""
+
+    /* ################################################################## */
+    /**
+     Called when the view has been initially loaded.
+     */
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        if let navController = self.navigationController {
+            navController.isNavigationBarHidden = false
+        }
+        
+        var appName = ""
+        var appVersion = ""
+        
+        if let plistPath = Bundle.main.path(forResource: "Info", ofType: "plist") {
+            if let plistDictionary = NSDictionary(contentsOfFile: plistPath) as? [String: Any] {
+                if let appNameTemp = plistDictionary["CFBundleName"] as? NSString {
+                    appName = appNameTemp as String
+                }
+                
+                if let versionTemp = plistDictionary["CFBundleShortVersionString"] as? NSString {
+                    appVersion = versionTemp as String
+                }
+                
+                if let version2Temp = plistDictionary["CFBundleVersion"] as? NSString {
+                    appVersion += "." + (version2Temp as String)
+                }
+                
+                if let buttonURI = plistDictionary["BMLTButtonURL"] as? NSString {
+                    self.buttonURI = buttonURI as String
+                }
+            }
+        }
+        
+        self.appNameLabel.text = appName
+        
+        self.versionLabel.text = String(format:NSLocalizedString("VERSION-LABEL-FORMAT", comment: ""), appVersion)
+        
+        self.blurbHeaderLabel.text = NSLocalizedString(self.blurbHeaderLabel.text!, comment: "")
+        
+        self.clearAllLoginsButton.setTitle(NSLocalizedString(self.clearAllLoginsButton.title(for: UIControlState.normal)!, comment: ""), for: UIControlState.normal)
+        
+        self.clearAllLoginsButton.isEnabled = AppStaticPrefs.prefs.hasStoredLogins
+    }
+    
     /* ################################################################## */
     /**
      We use this to make sure our navbar is displayed. This can be called before we are logged in.
@@ -37,10 +96,19 @@ class SettingsViewController : UIViewController {
             navController.isNavigationBarHidden = false
         }
         super.viewWillAppear(animated)
-        
-        self.clearAllLoginsButton.setTitle(NSLocalizedString(self.clearAllLoginsButton.title(for: UIControlState.normal)!, comment: ""), for: UIControlState.normal)
-        
-        self.clearAllLoginsButton.isEnabled = AppStaticPrefs.prefs.hasStoredLogins
+    }
+    
+    /* ################################################################## */
+    /**
+     Called when the Beanie is banged.
+     
+     - parameter sender: The button that called this.
+     */
+    @IBAction func beanieButtonHit(_ sender: Any) {
+        if !self.buttonURI.isEmpty {
+            let openLink = NSURL(string : self.buttonURI)
+            UIApplication.shared.open(openLink as! URL, options: [:], completionHandler: nil)
+        }
     }
   
     /* ################################################################## */
