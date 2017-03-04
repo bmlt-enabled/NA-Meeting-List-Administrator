@@ -222,7 +222,7 @@ class AppStaticPrefs {
      
      The syntax is:
      
-         let myPrefs = AppStaticPrefs.prefs
+     let myPrefs = AppStaticPrefs.prefs
      */
     static var prefs: AppStaticPrefs {
         get {
@@ -307,7 +307,6 @@ class AppStaticPrefs {
         let index = weekdayIndex + firstWeekday
         return weekdaySymbols[index]
     }
-    
     
     /* ################################################################## */
     // MARK: Instance Properties
@@ -445,6 +444,21 @@ class AppStaticPrefs {
     }
     
     /* ################################################################## */
+    /**
+     This returns true, if we currently have stored logins.
+     */
+    var hasStoredLogins: Bool {
+        get {
+            if self._loadPrefs() {
+                if let temp = self._loadedPrefs.object(forKey: PrefsKeys.RootServerLoginDictionaryKey.rawValue) as? [String:[String]] {
+                    return !temp.isEmpty
+                }
+            }
+            return false
+        }
+    }
+    
+    /* ################################################################## */
     // MARK: Instance Methods
     /* ################################################################## */
     /**
@@ -472,6 +486,36 @@ class AppStaticPrefs {
      */
     func savePrefs() {
         UserDefaults.standard.set(self._loadedPrefs, forKey: type(of: self)._mainPrefsKey)
+    }
+    
+    /* ################################################################## */
+    /**
+     This method is called to delete the saved URLs and logins (but not other saved prefs).
+     */
+    func deleteSavedLoginsAndURLs() {
+        if self._loadPrefs() {
+            if type(of: self).supportsTouchID {
+                // All of this crap is to remove the keys we have stored in the keychain.
+                if let temp = self._loadedPrefs.object(forKey: PrefsKeys.RootServerLoginDictionaryKey.rawValue) as? [String:[String]] {
+                    let keys = temp.keys
+                    for key in keys {
+                        if let users = temp[key] {
+                            for user in users {
+                                let keychainKey = key.cleanURI() + "-" + user
+                                self._keychainWrapper.removeObject(forKey: keychainKey)
+                            }
+                        }
+                    }
+                }
+            }
+            
+            // Finally, we remove the list of URLs and logins.
+            self._loadedPrefs.removeObject(forKey: PrefsKeys.RootServerLoginDictionaryKey.rawValue as NSString)
+            
+            self.lastLogin = (url: "", loginID: "")
+            
+            self.savePrefs()
+        }
     }
     
     /* ################################################################## */

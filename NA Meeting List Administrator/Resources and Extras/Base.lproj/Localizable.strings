@@ -160,3 +160,12 @@
 "DELETED-LOADING-SUBTEXT"                                                                       =   "This may take a long time.";
 
 "REVERT-BUTTON"                                                                                 =   "Revert";
+
+"CLEAR-ALL-SAVED-LOGINS"                                                                        =   "Remove All Saved Logins and URLs";
+
+"FORGET-STORED-LOGINS-HEADER"                                                                   =   "Are You Sure?";
+"FORGET-STORED-LOGINS-MESSAGE"                                                                  =   "If you touch \"Forget Stored Logins\", all of the stored URLs and logins will be deleted.";
+"FORGET-STORED-LOGINS-MESSAGE-SUFFIX"                                                           =   "\nYou will also be logged out of your current session.";
+"FORGET-STORED-LOGINS-OK-BUTTON"                                                                =   "Forget Stored Logins";
+"FORGET-STORED-LOGINS-CANCEL-BUTTON"                                                            =   "Cancel";
+
