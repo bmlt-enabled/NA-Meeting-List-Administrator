@@ -174,6 +174,12 @@
 "LOCAL-MAGSHARE-BLURB-LABEL"                                                                    =   "Another Fine MAGSHARE Project";
 "LOCAL-MAGSHARE-URI-LABEL"                                                                      =   "Find Out More at https://bmlt.magshare.net";
 "LOCAL-MAGSHARE-URI"                                                                            =   "https://bmlt.magshare.net/";
-/** The version label text */
+
 "VERSION-LABEL-FORMAT"                                                                          =   "Version %@";
 
+"WHAT-MEETING-AM-I-AT-NOW"                                                                      =   "What Meeting Am I At Now?";
+
+"LOCATION-ERROR-HEADER"                                                                         =   "Location Error";
+"LOCATION-ERROR-MESSAGE"                                                                        =   "Unable to determine your current location.";
+"NO-MEETING-HEADER"                                                                             =   "No Meeting Found";
+"NO-MEETING-MESSAGE"                                                                            =   "No meeting found that matches your current location and time.";

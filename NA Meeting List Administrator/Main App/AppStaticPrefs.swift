@@ -184,6 +184,8 @@ class AppStaticPrefs {
         case LastLoginPair = "BMLTLastLoginPair"
         /** This will refer to an array of Int that will indicate selected Service body IDs. */
         case SelectedServiceBodies = "BMLTSelectedServiceBodies"
+        /** This represents how long we allow a meeting to be in progress before we remove it from our list of candidates. */
+        case GracePeriod = "gracePeriod"
     }
     
     /* ################################################################## */
@@ -440,6 +442,16 @@ class AppStaticPrefs {
             }
 
             return ret
+        }
+    }
+    
+    /* ################################################################## */
+    /**
+     - returns: the "grace period" we give meetings (How long they have to already be running before we decide not to attend).
+     */
+    var gracePeriodInMinutes: Int {
+        get {
+            return 15   // We use a fixed 15 minutes for now.
         }
     }
     

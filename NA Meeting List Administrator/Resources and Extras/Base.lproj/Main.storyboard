@@ -89,8 +89,18 @@
                                     <outlet property="delegate" destination="w5k-wt-KU4" id="tYW-CG-bjG"/>
                                 </connections>
                             </pickerView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VhF-F3-wYi">
+                                <rect key="frame" x="8" y="208" width="304" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="jwd-d6-YJl"/>
+                                </constraints>
+                                <state key="normal" title="WHAT-MEETING-AM-I-AT-NOW"/>
+                                <connections>
+                                    <action selector="whereAmIHit:" destination="w5k-wt-KU4" eventType="touchUpInside" id="2qA-MU-tXT"/>
+                                </connections>
+                            </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Itu-Ng-B3d">
-                                <rect key="frame" x="0.0" y="208" width="320" height="383"/>
+                                <rect key="frame" x="0.0" y="238" width="320" height="353"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Meeting-Table-View-Prototype" id="McT-DJ-Epx" customClass="MeetingTableViewCell" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
@@ -174,10 +184,11 @@
                             <constraint firstItem="imF-iu-7Pc" firstAttribute="top" secondItem="jiB-76-cT8" secondAttribute="bottom" id="2Ag-DZ-SQ1"/>
                             <constraint firstItem="WiI-pa-W7F" firstAttribute="centerX" secondItem="Ngp-Vd-TOI" secondAttribute="centerX" id="3Rh-my-WsY"/>
                             <constraint firstAttribute="trailing" secondItem="imF-iu-7Pc" secondAttribute="trailing" id="4Du-iw-7e8"/>
+                            <constraint firstItem="VhF-F3-wYi" firstAttribute="leading" secondItem="Ngp-Vd-TOI" secondAttribute="leading" constant="8" id="7Vr-Az-UbS"/>
                             <constraint firstItem="Itu-Ng-B3d" firstAttribute="leading" secondItem="Ngp-Vd-TOI" secondAttribute="leading" id="DmH-JU-TJD"/>
                             <constraint firstItem="3VS-JC-wjl" firstAttribute="top" secondItem="WiI-pa-W7F" secondAttribute="bottom" id="GWN-5K-0dv"/>
-                            <constraint firstItem="Itu-Ng-B3d" firstAttribute="top" secondItem="3VS-JC-wjl" secondAttribute="bottom" id="IaP-kQ-WPN"/>
                             <constraint firstAttribute="bottom" secondItem="CYQ-I8-Ytf" secondAttribute="bottom" id="KQJ-Ts-QRH"/>
+                            <constraint firstItem="Itu-Ng-B3d" firstAttribute="top" secondItem="VhF-F3-wYi" secondAttribute="bottom" id="LBo-Za-z8E"/>
                             <constraint firstItem="3VS-JC-wjl" firstAttribute="leading" secondItem="Ngp-Vd-TOI" secondAttribute="leading" id="Lq0-0s-E1E"/>
                             <constraint firstItem="CYQ-I8-Ytf" firstAttribute="leading" secondItem="Ngp-Vd-TOI" secondAttribute="leading" id="Ug2-Fc-uI7"/>
                             <constraint firstItem="imF-iu-7Pc" firstAttribute="leading" secondItem="Ngp-Vd-TOI" secondAttribute="leading" id="WgY-J3-1lG"/>
@@ -186,6 +197,8 @@
                             <constraint firstItem="WiI-pa-W7F" firstAttribute="top" secondItem="imF-iu-7Pc" secondAttribute="bottom" constant="4" id="dNL-Js-RoN"/>
                             <constraint firstAttribute="trailing" secondItem="CYQ-I8-Ytf" secondAttribute="trailing" id="eXX-YP-bNr"/>
                             <constraint firstAttribute="trailing" secondItem="3VS-JC-wjl" secondAttribute="trailing" id="fuA-x6-4ef"/>
+                            <constraint firstItem="VhF-F3-wYi" firstAttribute="top" secondItem="3VS-JC-wjl" secondAttribute="bottom" id="gox-YF-xge"/>
+                            <constraint firstAttribute="trailing" secondItem="VhF-F3-wYi" secondAttribute="trailing" constant="8" id="ty2-q0-G8A"/>
                             <constraint firstItem="qjw-Pg-mBu" firstAttribute="top" secondItem="Itu-Ng-B3d" secondAttribute="bottom" id="utL-gR-jiC"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
@@ -215,6 +228,7 @@
                         <outlet property="meetingListTableView" destination="Itu-Ng-B3d" id="iFg-TT-2IF"/>
                         <outlet property="townBoroughPickerView" destination="3VS-JC-wjl" id="52E-cf-Oye"/>
                         <outlet property="weekdaySwitchesContainerView" destination="WiI-pa-W7F" id="1vf-Yl-hAh"/>
+                        <outlet property="whereAmINowButton" destination="VhF-F3-wYi" id="lnJ-MU-F3p"/>
                         <segue destination="m2u-A7-bWE" kind="show" identifier="show-single-meeting-to-edit" id="ZqS-vk-bcD"/>
                     </connections>
                 </viewController>

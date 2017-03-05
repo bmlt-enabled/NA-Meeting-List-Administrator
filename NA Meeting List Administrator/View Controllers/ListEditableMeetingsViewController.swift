@@ -20,6 +20,7 @@
 
 import UIKit
 import BMLTiOSLib
+import MapKit
 
 /* ###################################################################################################################################### */
 // MARK: - List Editable Meetings View Controller Class -
@@ -27,7 +28,7 @@ import BMLTiOSLib
 /**
  This class controls the list of editable meetings that is the first editor screen to be shown.
  */
-class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITableViewDataSource, UITableViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
+class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITableViewDataSource, UITableViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource, CLLocationManagerDelegate {
     /* ################################################################## */
     // MARK: Enums
     /* ################################################################## */
@@ -51,6 +52,8 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
     private let _meetingPrototypeReuseID = "Meeting-Table-View-Prototype"
     /** This is the segue ID for bringing in a meeting to edit. */
     private let _editSingleMeetingSegueID = "show-single-meeting-to-edit"
+    /** This will hold our location manager. */
+    private var _locationManager: CLLocationManager! = nil
     
     /* ################################################################## */
     // MARK: Private Instance Properties
@@ -61,6 +64,12 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
     private var _resultsSort: SortKey = .Time
     /** This is a semaphore we use to reduce update overhead when checking the "All" weekday checkbox. */
     private var _checkingAll: Bool = false
+    /** We can do two tries to determine location. This is set to true after the first one. */
+    private var _locationFailedOnce: Bool = false
+    /** This is a semaphore we set to tell the view controller that we are looking up our current location. */
+    private var _whereAmIInProgress: Bool = false
+    /** This contains the coordinates we found when we geolocated. */
+    private var _searchCenterCoords: CLLocationCoordinate2D = CLLocationCoordinate2D()
     
     /* ################################################################## */
     // MARK: Internal IB Instance Properties
@@ -80,6 +89,8 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
     @IBOutlet weak var addNewMeetingButton: UIBarButtonItem!
     /** This is the navbar button that acts as a back button. */
     @IBOutlet weak var backButton: UIBarButtonItem!
+    /** This is the "What Meeting Am I At Now?" button. */
+    @IBOutlet weak var whereAmINowButton: UIButton!
     
     /* ################################################################## */
     // MARK: Internal Instance Properties
@@ -94,13 +105,93 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
     var searchDone: Bool = false
     
     /* ################################################################## */
+    // MARK: Private Instance Methods
+    /* ################################################################## */
+    /**
+     Handles a found location. This starts the process of finding meetings that start today, after our current time.
+     We add tomorrow, as well, looping the week if we are at the end.
+     
+     - parameter coordinate: The coordinate of the user's location.
+     */
+    private func _startWhereAmISearch(_ coordinate: CLLocationCoordinate2D) {
+        self._searchCenterCoords = coordinate
+        if let criteriaObject = MainAppDelegate.connectionObject.searchCriteria {
+            criteriaObject.clearAll()
+            criteriaObject.searchLocation = coordinate
+            
+            let date = NSDate()
+            let calendar = NSCalendar.current
+            let today = calendar.component(.weekday, from: date as Date)
+            let tomorrow = (7 > today) ? today + 1 : 1
+            
+            if let todayIndex = BMLTiOSLibSearchCriteria.WeekdayIndex(rawValue: today) {
+                criteriaObject.weekdays[todayIndex] = .Selected
+            }
+            
+            if let tomorrowIndex = BMLTiOSLibSearchCriteria.WeekdayIndex(rawValue: tomorrow) {
+                criteriaObject.weekdays[tomorrowIndex] = .Selected
+            }
+            
+            criteriaObject.searchRadius = -1    // We keep the search very tight. Just the nearest meeting
+            criteriaObject.performMeetingSearch(.MeetingsOnly)
+        }
+    }
+    
+    /* ################################################################## */
+    /**
+     Called to sort through the meetings we found in our search, and see if any of them are our meeting.
+     
+     - parameter inMeetings: The found meetings.
+     */
+    private func _sortThroughWhereAmI(_ inMeetings: [BMLTiOSLibMeetingNode]) {
+        self._whereAmIInProgress = false
+        // After we fetch all the results, we then sort through them, and remove ones that have already passed today (We leave tomorrow alone).
+        var finalResult: BMLTiOSLibMeetingNode! = nil
+        let calendar = NSCalendar.current
+        let today = calendar.component(.weekday, from: Date())
+        let hour = calendar.component(.hour, from: Date())
+        let minute = calendar.component(.minute, from: Date())
+        let nowInMinutes: Int = (hour * 60) + minute
+        
+        for meeting in inMeetings {
+            let startTimeInMinutes = (meeting.startTime.minute! + (meeting.startTime.hour! * 60)) - AppStaticPrefs.prefs.gracePeriodInMinutes
+            let endTimeInMinutes = startTimeInMinutes + meeting.durationInMinutes + AppStaticPrefs.prefs.gracePeriodInMinutes
+            if (meeting.weekdayIndex == today) && (nowInMinutes >= startTimeInMinutes) && (nowInMinutes <= endTimeInMinutes) {
+                finalResult = meeting
+                break
+            }
+        }
+        
+        if nil != finalResult { // We got ourselves a meeting.
+            self.scrollToExposeMeeting(finalResult as! BMLTiOSLibEditableMeetingNode)
+            self.editSingleMeeting(finalResult)
+        } else { // We ain't got ourselves a meeting.
+            MainAppDelegate.displayAlert("NO-MEETING-HEADER", inMessage: "NO-MEETING-MESSAGE", presentedBy: self)
+        }
+    }
+    
+    /* ################################################################## */
     // MARK: IB Methods
     /* ################################################################## */
     /**
      - parameter sender: The bar button item that called this.
      */
     @IBAction func backButtonHit(_ sender: UIBarButtonItem) {
+        if nil != self._locationManager {
+            self._locationManager.stopUpdatingLocation()
+            self._locationManager.delegate = nil
+            self._locationManager = nil
+        }
         let _ = self.navigationController?.popViewController(animated: true)
+    }
+    
+    /* ################################################################## */
+    /**
+     - parameter sender: The button item that called this.
+     */
+    @IBAction func whereAmIHit(_ sender: Any) {
+        self._locationFailedOnce = false
+        self.startLookingForMyMeeting()
     }
     
     /* ################################################################## */
@@ -113,6 +204,7 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
     override func viewDidLoad() {
         super.viewDidLoad()
         self.backButton.title = NSLocalizedString(self.backButton.title!, comment: "")
+        self.whereAmINowButton.setTitle(NSLocalizedString(self.whereAmINowButton.title(for: UIControlState.normal)!, comment: ""), for: UIControlState.normal)
         self.tabBarController?.tabBar.isHidden = true
         self.setUpWeekdayViews()
     }
@@ -130,6 +222,21 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
         if let tabBar = self.tabBarController?.tabBar {
             tabBar.tintColor = self.view.tintColor
         }
+    }
+    
+    /* ################################################################## */
+    /**
+     - parameter animated: True, if the appearance is animated (ignored).
+     */
+    override func viewWillDisappear(_ animated: Bool) {
+        if nil != self._locationManager {
+            self._locationManager.stopUpdatingLocation()
+            self._locationManager.delegate = nil
+            self._locationManager = nil
+            self._locationFailedOnce = false
+            self._whereAmIInProgress = false
+        }
+        super.viewWillDisappear(animated)
     }
     
     /* ################################################################## */
@@ -172,7 +279,6 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
      Trigger a search.
      */
     func doSearch() {
-        self.searchDone = false
         MainAppDelegate.connectionObject.searchCriteria.clearAll()
         // First, get the IDs of the Service bodies we'll be checking.
         let sbArray = AppStaticPrefs.prefs.selectedServiceBodies
@@ -206,42 +312,49 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
         self.busyAnimationView.isHidden = true
         self.meetingListTableView.isHidden = false
         self.tabBarController?.tabBar.isHidden = false
-        self.currentMeetingList = MainAppDelegate.appDelegateObject.meetingObjects // We start by grabbing all the meetings.
-        self.allChangedTo(inState: BMLTiOSLibSearchCriteria.SelectionState.Selected)   // We select all weekdays.
-        
-        // Extract all the towns and boroughs from the entire list.
-        self._townsAndBoroughs = []
-        var tempTowns: [String] = []
-        
-        for meeting in MainAppDelegate.appDelegateObject.meetingObjects {
-            // We give boroughs precedence over towns.
-            let town = meeting.locationBorough.isEmpty ? meeting.locationTown : meeting.locationBorough
+        if self._whereAmIInProgress {
+            self._sortThroughWhereAmI(inMeetingObjects)
+            self.doSearch()
+        } else {
+            self.searchDone = true
+            self.currentMeetingList = MainAppDelegate.appDelegateObject.meetingObjects // We start by grabbing all the meetings.
+            self.allChangedTo(inState: BMLTiOSLibSearchCriteria.SelectionState.Selected)   // We select all weekdays.
+            
+            // Extract all the towns and boroughs from the entire list.
+            self._townsAndBoroughs = []
+            var tempTowns: [String] = []
+            
+            for meeting in MainAppDelegate.appDelegateObject.meetingObjects {
+                // We give boroughs precedence over towns.
+                let town = meeting.locationBorough.isEmpty ? meeting.locationTown : meeting.locationBorough
 
-            if !town.isEmpty && !tempTowns.contains(town) {
-                tempTowns.append(town)
-            }
-        }
-        
-        self._townsAndBoroughs = tempTowns.sorted()
-        
-        // Select every town and borough
-        self.townBoroughPickerView.selectRow(0, inComponent: 0, animated: false)
-        // If we provide an ID, then we need to scroll to expose that ID, and then open the editor for it.
-        if nil != self.showMeTheMoneyID {
-            var meetingObject: BMLTiOSLibEditableMeetingNode! = nil
-            for meeting in self.currentMeetingList {
-                if meeting.id == self.showMeTheMoneyID {
-                    meetingObject = meeting as! BMLTiOSLibEditableMeetingNode
-                    break
+                if !town.isEmpty && !tempTowns.contains(town) {
+                    tempTowns.append(town)
                 }
             }
-            if nil != meetingObject {
-                self.scrollToExposeMeeting(meetingObject)
-                self.editSingleMeeting(meetingObject)
+            
+            self._townsAndBoroughs = tempTowns.sorted()
+            
+            // Select every town and borough
+            self.townBoroughPickerView.selectRow(0, inComponent: 0, animated: false)
+            // If we provide an ID, then we need to scroll to expose that ID, and then open the editor for it.
+            if nil != self.showMeTheMoneyID {
+                var meetingObject: BMLTiOSLibEditableMeetingNode! = nil
+                for meeting in self.currentMeetingList {
+                    if meeting.id == self.showMeTheMoneyID {
+                        meetingObject = meeting as! BMLTiOSLibEditableMeetingNode
+                        break
+                    }
+                }
+                if nil != meetingObject {
+                    self.scrollToExposeMeeting(meetingObject)
+                    self.editSingleMeeting(meetingObject)
+                }
+                self.showMeTheMoneyID = nil
             }
-            self.showMeTheMoneyID = nil
+            
+            self.updateDisplayedMeetings()
         }
-        self.updateDisplayedMeetings()
     }
     
     /* ################################################################## */
@@ -416,6 +529,68 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
                     self.updateDisplayedMeetings()
                 }
             }
+        }
+    }
+    
+    /* ################################################################## */
+    /**
+     Called to tell the app to start searching for where we are.
+     */
+    func startLookingForMyMeeting() {
+        self.searchDone = false // Make sure we update again to refresh the meeting list.
+        self.busyAnimationView.isHidden = false
+        self.meetingListTableView.isHidden = true
+        self.tabBarController?.tabBar.isHidden = true
+        self._locationManager = CLLocationManager()
+        self._locationManager.requestWhenInUseAuthorization()
+        self._locationManager.delegate = self
+        self._locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        self._whereAmIInProgress = true
+        self._locationManager.startUpdatingLocation()
+    }
+
+    /* ################################################################## */
+    // MARK: Internal CLLocationManagerDelegate Methods
+    /* ################################################################## */
+    /**
+     This is called if the location manager suffers a failure.
+     
+     - parameter manager: The Location Manager object that had the error.
+     - parameter didFailWithError: The error in question.
+     */
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        if self._locationFailedOnce {   // If at second, you don't succeed...
+            self._locationManager.stopUpdatingLocation()
+            self._locationManager.delegate = nil
+            self._locationManager = nil
+            self._locationFailedOnce = false
+            MainAppDelegate.displayAlert("LOCATION-ERROR-HEADER", inMessage: "LOCATION-ERROR-MESSAGE", presentedBy: self)
+        } else {    // Love me two times, I'm goin' away...
+            self._locationFailedOnce = true
+            self.startLookingForMyMeeting()
+        }
+    }
+
+    /* ################################################################## */
+    /**
+     Callback to handle found locations.
+     
+     - parameter manager: The Location Manager object that had the event.
+     - parameter didUpdateLocations: an array of updated locations.
+     */
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        self._locationManager.stopUpdatingLocation()
+        self._locationManager.delegate = nil
+        self._locationManager = nil
+        self._locationFailedOnce = false
+        if 0 < locations.count {
+            let coordinate = locations[0].coordinate
+            DispatchQueue.main.async(execute: {
+                self._whereAmIInProgress = true
+                self._startWhereAmISearch(coordinate)
+            })
+        } else {
+            MainAppDelegate.displayAlert("LOCATION-ERROR-HEADER", inMessage: "LOCATION-ERROR-MESSAGE", presentedBy: self)
         }
     }
     
