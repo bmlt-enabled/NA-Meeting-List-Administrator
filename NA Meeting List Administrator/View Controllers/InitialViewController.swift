@@ -28,7 +28,7 @@ import BMLTiOSLib
 /**
  This class is the first controller to appear when the app starts.
  
- It's job is to handle all of the connection and login stuff. Nothing else in the app can be done until it has passed this stage.
+ Its job is to handle all of the connection and login stuff. Nothing else in the app can be done until it has passed this stage.
  
  Once the user has successfully logged in, the Navigation Controller will bring in the main tabbed interface.
  
@@ -43,7 +43,7 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate 
     /** This is the ID for the segue we use to bring in the editor. */
     private let _showEditorSegueID = "bring-in-editor"
     /** This is the ID for the Service body selector segue */
-    private let _showServiceBodyESelectorSeueID = "select-service-bodies"
+    private let _showServiceBodySelectorSegueID = "select-service-bodies"
     /** This is the segue that brings in the Settings screen. */
     private let _showSettingsSegueID = "show-settings-screen"
     
@@ -320,7 +320,7 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate 
      - parameter sender: The IB item that called this. This is ignored.
      */
     @IBAction func selectYourClowns(_ sender: UIBarButtonItem) {
-        self.performSegue(withIdentifier: self._showServiceBodyESelectorSeueID, sender: nil)
+        self.performSegue(withIdentifier: self._showServiceBodySelectorSegueID, sender: nil)
     }
     
     /* ################################################################## */
