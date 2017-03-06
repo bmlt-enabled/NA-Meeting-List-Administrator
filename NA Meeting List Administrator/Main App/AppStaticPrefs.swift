@@ -162,6 +162,12 @@ class AppStaticPrefs {
     private static var _sSingletonPrefs: AppStaticPrefs! = nil
     
     /* ################################################################## */
+    // MARK: Private Constant Properties
+    /* ################################################################## */
+    /** This is the default "slop" around a meeting for the "Where AmI?" search. This will be subtracted from the start time, and added to the end time. */
+    private let _defaultGracePeriodInMinutes: Int = 15
+    
+    /* ################################################################## */
     // MARK: Private Variable Properties
     /* ################################################################## */
     /** We load the user prefs into this Dictionary object. */
@@ -225,6 +231,8 @@ class AppStaticPrefs {
      The syntax is:
      
      let myPrefs = AppStaticPrefs.prefs
+     
+     - returns the current prefs object.
      */
     static var prefs: AppStaticPrefs {
         get {
@@ -239,6 +247,8 @@ class AppStaticPrefs {
     /* ################################################################## */
     /**
      This tells us whether or not the device is set for military time.
+     
+     - returns: True, if the device is set for Ante Meridian (AM/PM) time.
      */
     static var using12hClockFormat: Bool {
         get {
@@ -338,7 +348,7 @@ class AppStaticPrefs {
                 if let plistPath = Bundle.main.path(forResource: "Info", ofType: "plist") {
                     if let plistDictionary = NSDictionary(contentsOfFile: plistPath) as? [String: Any] {
                         if let uri = plistDictionary[type(of: self).PrefsKeys.DefaultRootServerURIPlistKey.rawValue] as? NSString {
-                            ret = (uri as String).cleanURI()
+                            ret = !(uri as String).isEmpty ? (uri as String).cleanURI() : ""
                         }
                     }
                 }
@@ -360,7 +370,9 @@ class AppStaticPrefs {
     
     /* ################################################################## */
     /**
-     This saves and returns the last successful login, for quick restoration later.
+     Saves or returns the last successful login.
+     
+     - returns the last successful login, for quick restoration later.
      */
     var lastLogin: LoginPairTuple {
         get {
@@ -391,7 +403,7 @@ class AppStaticPrefs {
     
     /* ################################################################## */
     /**
-     This returns all the Service bodies available.
+     - returns all the Service bodies available.
      */
     var allEditableServiceBodies: [BMLTiOSLibHierarchicalServiceBodyNode] {
         get {
@@ -407,7 +419,7 @@ class AppStaticPrefs {
     
     /* ################################################################## */
     /**
-     This returns an array of Service body objects, corresponding to the ones selected by the user.
+     - returns an array of Service body objects, corresponding to the ones selected by the user.
      
      We associate the selections with a URL/login pair (the last successful one), so this can change from login to login.
      */
@@ -447,17 +459,17 @@ class AppStaticPrefs {
     
     /* ################################################################## */
     /**
-     - returns: the "grace period" we give meetings (How long they have to already be running before we decide not to attend).
+     - returns: the "grace period" we give meetings ("slop" for the "Where Am I?" search).
      */
     var gracePeriodInMinutes: Int {
         get {
-            return 15   // We use a fixed 15 minutes for now.
+            return self._defaultGracePeriodInMinutes
         }
     }
     
     /* ################################################################## */
     /**
-     This returns true, if we currently have stored logins.
+     - returns true, if we currently have stored logins.
      */
     var hasStoredLogins: Bool {
         get {
@@ -524,9 +536,14 @@ class AppStaticPrefs {
             // Finally, we remove the list of URLs and logins.
             self._loadedPrefs.removeObject(forKey: PrefsKeys.RootServerLoginDictionaryKey.rawValue as NSString)
             
+            // ...and any saved Root URI.
+            self._loadedPrefs.removeObject(forKey: PrefsKeys.RootServerURI.rawValue)
+
             self.lastLogin = (url: "", loginID: "")
             
             self.savePrefs()
+            
+            self._loadedPrefs = nil // Force a reload of the prefs.
         }
     }
     
@@ -674,6 +691,8 @@ class AppStaticPrefs {
     
     /* ################################################################## */
     /**
+     Removes the stored user and login from this URL.
+     
      - parameter inRooutURI: The URI of the Root Server, as a String
      - parameter inUser: An optional string for the login ID. If nil or empty, then all users for the URI are removed. Default is nil.
      */
@@ -785,8 +804,12 @@ class AppStaticPrefs {
     
     /* ################################################################## */
     /**
+     Fetch the user's stored password after thumbprint ID.
+     
      - parameter inRooutURI: The URI of the Root Server, as a String
      - parameter inUser: A String for the login ID.
+     
+     - returns: The stored password, fetched from the keychain.
      */
     func getStoredPasswordForUser(_ inRooutURI: String, inUser: String) -> String {
         var ret: String = ""

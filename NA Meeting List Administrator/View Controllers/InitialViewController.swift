@@ -156,7 +156,7 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate 
         self._loggingIn = false
         self.passwordTextField.text = "" // We start off with no password (security).
         self.enableOrDisableTheEditButton()
-        
+        self.showOrHideConnectButton()
         super.viewWillAppear(animated)
     }
     

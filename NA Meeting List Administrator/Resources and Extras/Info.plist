@@ -5,7 +5,7 @@
 	<key>BMLTButtonURL</key>
 	<string>https://bmlt.magshare.net</string>
 	<key>BMLTDefaultRootServerURI</key>
-	<string>https://tkddevel.com/bmltwork/bmlt/main_server</string>
+	<string></string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>

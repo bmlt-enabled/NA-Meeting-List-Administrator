@@ -147,6 +147,7 @@ class SettingsViewController : UIViewController {
      */
     func terminateWithExtremePrejudice(_ inAction: UIAlertAction) {
         MainAppDelegate.connectionStatus = false
+        MainAppDelegate.appDelegateObject.initialViewController.enterURLTextItem.text = ""
         AppStaticPrefs.prefs.deleteSavedLoginsAndURLs()
         self.clearAllLoginsButton.isEnabled = false
         // We need to do this, because the initial view controller may close its navigation bar, which is also ours.
