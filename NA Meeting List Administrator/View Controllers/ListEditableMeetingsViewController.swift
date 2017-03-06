@@ -165,6 +165,7 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
         }
         
         if nil != finalResult { // We got ourselves a meeting.
+            self.searchDone = false // Make sure we update again to refresh the meeting list.
             self.scrollToExposeMeeting(finalResult as! BMLTiOSLibEditableMeetingNode)
             self.editSingleMeeting(finalResult)
         } else { // We ain't got ourselves a meeting.
@@ -568,7 +569,6 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
      Called to tell the app to start searching for where we are.
      */
     func startLookingForMyMeeting() {
-        self.searchDone = false // Make sure we update again to refresh the meeting list.
         self.busyAnimationView.isHidden = false
         self.meetingListTableView.isHidden = true
         self.tabBarController?.tabBar.isHidden = true

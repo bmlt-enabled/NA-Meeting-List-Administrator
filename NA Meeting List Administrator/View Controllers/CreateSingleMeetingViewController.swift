@@ -90,19 +90,17 @@ class CreateSingleMeetingViewController : MeetingEditorBaseViewController {
      - parameter sender: The IB item that called this.
      */
     @IBAction func saveButtonTouched(_ sender: UIBarButtonItem) {
-        if self.meetingObject.isDirty {
-            let alertController = UIAlertController(title: NSLocalizedString("SAVE-NEW-TITLE", comment: ""), message: NSLocalizedString("SAVE-NEW-MESSAGE", comment: ""), preferredStyle: .alert)
-            
-            let saveAction = UIAlertAction(title: NSLocalizedString("SAVE-NEW-BUTTON", comment: ""), style: UIAlertActionStyle.destructive, handler: self.saveOKCallback)
-            
-            alertController.addAction(saveAction)
-            
-            let cancelAction = UIAlertAction(title: NSLocalizedString("SAVE-CANCEL-BUTTON", comment: ""), style: UIAlertActionStyle.cancel, handler: nil)
-            
-            alertController.addAction(cancelAction)
-            
-            self.present(alertController, animated: true, completion: nil)
-        }
+        let alertController = UIAlertController(title: NSLocalizedString("SAVE-NEW-TITLE", comment: ""), message: NSLocalizedString("SAVE-NEW-MESSAGE", comment: ""), preferredStyle: .alert)
+        
+        let saveAction = UIAlertAction(title: NSLocalizedString("SAVE-NEW-BUTTON", comment: ""), style: UIAlertActionStyle.destructive, handler: self.saveOKCallback)
+        
+        alertController.addAction(saveAction)
+        
+        let cancelAction = UIAlertAction(title: NSLocalizedString("SAVE-CANCEL-BUTTON", comment: ""), style: UIAlertActionStyle.cancel, handler: nil)
+        
+        alertController.addAction(cancelAction)
+        
+        self.present(alertController, animated: true, completion: nil)
     }
     
     /* ################################################################## */
