@@ -101,6 +101,8 @@
 		77B50A671E381E31004019B8 /* AppStaticPrefs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppStaticPrefs.swift; path = "Main App/AppStaticPrefs.swift"; sourceTree = "<group>"; };
 		77B5410E1E42605700A0A880 /* NA Meeting List Administrator.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = "NA Meeting List Administrator.entitlements"; path = "Resources and Extras/NA Meeting List Administrator.entitlements"; sourceTree = "<group>"; };
 		77B7D1211E3AA0A80031FF6B /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = "Resources and Extras/Base.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		77CF6B891E6CEA07005F2ECB /* HuntingtonNY.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = HuntingtonNY.gpx; path = "spec/GPX Files/HuntingtonNY.gpx"; sourceTree = SOURCE_ROOT; };
+		77CF6B8A1E6CEA07005F2ECB /* TampaFL.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = TampaFL.gpx; path = "spec/GPX Files/TampaFL.gpx"; sourceTree = SOURCE_ROOT; };
 		77D92ED61E4B50CC009F02B2 /* MeetingEditorBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MeetingEditorBaseViewController.swift; path = "View Controllers/MeetingEditorBaseViewController.swift"; sourceTree = "<group>"; };
 		77D92EDA1E4B5146009F02B2 /* EditSingleMeetingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditSingleMeetingViewController.swift; path = "View Controllers/EditSingleMeetingViewController.swift"; sourceTree = "<group>"; };
 		77DC3EA61E378B6300BF24B7 /* NA Meeting List Administrator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NA Meeting List Administrator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -172,6 +174,7 @@
 		77B5410F1E42609E00A0A880 /* Extras */ = {
 			isa = PBXGroup;
 			children = (
+				77CF6B8D1E6CEA0E005F2ECB /* GPX Files */,
 				77B5410E1E42605700A0A880 /* NA Meeting List Administrator.entitlements */,
 				779BE3BA1E37D5FA00350D11 /* Info.plist */,
 				779BE3BB1E37D5FA00350D11 /* NA Meeting List Administrator-Bridging-Header.h */,
@@ -180,6 +183,15 @@
 			);
 			name = Extras;
 			path = "NA Meeting List Administrator";
+			sourceTree = "<group>";
+		};
+		77CF6B8D1E6CEA0E005F2ECB /* GPX Files */ = {
+			isa = PBXGroup;
+			children = (
+				77CF6B891E6CEA07005F2ECB /* HuntingtonNY.gpx */,
+				77CF6B8A1E6CEA07005F2ECB /* TampaFL.gpx */,
+			);
+			name = "GPX Files";
 			sourceTree = "<group>";
 		};
 		77DC3E9D1E378B6100BF24B7 = {

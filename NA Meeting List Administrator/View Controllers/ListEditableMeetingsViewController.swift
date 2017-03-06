@@ -70,6 +70,8 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
     private var _whereAmIInProgress: Bool = false
     /** This contains the coordinates we found when we geolocated. */
     private var _searchCenterCoords: CLLocationCoordinate2D = CLLocationCoordinate2D()
+    /** This contains our weekday checkbox objects. */
+    private var _weekdayCheckboxObjects: [ThreeStateCheckbox] = []
     
     /* ################################################################## */
     // MARK: Internal IB Instance Properties
@@ -132,7 +134,7 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
                 criteriaObject.weekdays[tomorrowIndex] = .Selected
             }
             
-            criteriaObject.searchRadius = -1    // We keep the search very tight. Just the nearest meeting
+            criteriaObject.searchRadius = 0.057    // We keep the search very tight. Just within 100 yards.
             criteriaObject.performMeetingSearch(.MeetingsOnly)
         }
     }
@@ -455,6 +457,33 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
             }
         }
         
+        // We do this, because we want the "All" checkbox to be set/cleared if all the rest of the checkboxes are the same value.
+        if 8 == self._weekdayCheckboxObjects.count {
+            let allCheckBox = self._weekdayCheckboxObjects[0]
+            
+            var allState: BMLTiOSLibSearchCriteria.SelectionState = .Deselected
+            var different: Bool = false
+            
+            // Look to see if there's a difference of opinion amongst the various days.
+            for i in 1..<8 {
+                let checkBox = self._weekdayCheckboxObjects[i]
+                
+                if allState != .Deselected {
+                    if allState != checkBox.selectionState {
+                        different = true
+                        break
+                    }
+                } else {
+                    allState = checkBox.selectionState
+                }
+            }
+            
+            // If they all agree on a state, then we set the "All" checkbox to that state.
+            if (allState != .Deselected) && !different {
+                allCheckBox.selectionState = allState
+            }
+        }
+        
         self.sortMeetings()
         self.meetingListTableView.reloadData()
         self.townBoroughPickerView.reloadAllComponents()
@@ -474,10 +503,12 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
         let individualFrameWidth: CGFloat = containerFrame.size.width / 8
         
         var xOrigin: CGFloat = 0
+        self._weekdayCheckboxObjects = []
         for index in 0..<8 {
             let newFrame = CGRect(x: xOrigin, y: 0, width: individualFrameWidth, height: containerFrame.height)
             let newView = WeekdaySwitchContainerView(frame: newFrame, weekdayIndex: index, inOwner: self)
             self.weekdaySwitchesContainerView.addSubview(newView)
+            self._weekdayCheckboxObjects.append(newView.selectionSwitchControl)
             xOrigin += individualFrameWidth
         }
     }
