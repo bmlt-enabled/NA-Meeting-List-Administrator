@@ -437,7 +437,7 @@ class MeetingEditorBaseViewController : EditorViewControllerBaseClass, UITableVi
     }
     
     /* ################################################################## */
-    // MARK: - CLLocationManagerDelegate Methods -
+    // MARK: CLLocationManagerDelegate Methods
     /* ################################################################## */
     /**
      Called if there was a failure with the location manager.
@@ -1114,7 +1114,7 @@ class MapTableViewCell: MeetingEditorViewCell, MKMapViewDelegate {
     }
     
     /* ################################################################## */
-    // MARK: - MKMapViewDelegate Methods -
+    // MARK: MKMapViewDelegate Methods
     /* ################################################################## */
     /**
      Creates a new marker annotiation for the map.
@@ -1314,7 +1314,7 @@ class MeetingCommentsEditorTableViewCell: MeetingEditorViewCell, UITextViewDeleg
     }
     
     /* ################################################################## */
-    // MARK: - UITextViewDelegate Protocol Methods -
+    // MARK: UITextViewDelegate Protocol Methods
     /* ################################################################## */
     /**
      This updates the comments value.
@@ -1460,7 +1460,10 @@ class FormatsEditorTableViewCell: MeetingEditorViewCell, UITableViewDataSource, 
             let frame = CGRect(x: indent, y: 0, width: type(of: self).sFormatCheckboxContainerWidth, height: type(of: self).sFormatCheckboxContainerHeight)
             let formatSubCell = UIView(frame: frame)
             formatSubCell.backgroundColor = UIColor.clear
-            let checkBoxFrame = CGRect(x: type(of: self).sFormatCheckboxIndent, y: type(of: self).sFormatCheckboxIndent, width: type(of: self).sFormatCheckboxContainerHeight - (type(of: self).sFormatCheckboxIndent * 2), height: type(of: self).sFormatCheckboxContainerHeight - (type(of: self).sFormatCheckboxIndent * 2))
+            var checkBoxFrame = CGRect(x: type(of: self).sFormatCheckboxIndent, y: type(of: self).sFormatCheckboxIndent, width: type(of: self).sFormatCheckboxContainerHeight - (type(of: self).sFormatCheckboxIndent * 2), height: type(of: self).sFormatCheckboxContainerHeight - (type(of: self).sFormatCheckboxIndent * 2))
+            // Just to make sure we're square.
+            checkBoxFrame.size.width = min(checkBoxFrame.size.width, checkBoxFrame.size.height)
+            checkBoxFrame.size.height = min(checkBoxFrame.size.width, checkBoxFrame.size.height)
             let checkBoxObject = ThreeStateCheckbox(frame: checkBoxFrame)
             checkBoxObject.binaryState = true
             checkBoxObject.extraData = formatObject

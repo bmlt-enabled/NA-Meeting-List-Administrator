@@ -72,10 +72,10 @@
                                 </items>
                             </navigationBar>
                             <view contentMode="scaleToFill" horizontalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="WiI-pa-W7F" userLabel="Weekday Switch Container View">
-                                <rect key="frame" x="10" y="68" width="300" height="60"/>
+                                <rect key="frame" x="4" y="68" width="312" height="60"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="300" id="4sZ-qv-GGH"/>
+                                    <constraint firstAttribute="width" constant="312" id="4sZ-qv-GGH"/>
                                     <constraint firstAttribute="height" constant="60" id="NWE-bF-u0e"/>
                                 </constraints>
                             </view>

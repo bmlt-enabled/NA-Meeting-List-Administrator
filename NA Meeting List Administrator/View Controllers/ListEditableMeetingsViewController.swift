@@ -963,16 +963,8 @@ class WeekdaySwitchContainerView : UIView {
         if let testImage = UIImage(named: "checkbox-clear") {
             var checkboxFrame: CGRect = CGRect.zero
             checkboxFrame.size = testImage.size
-            
-            if checkboxFrame.size.width > frame.size.width {
-                checkboxFrame.size.width = frame.size.width
-                checkboxFrame.size.height = frame.size.width
-            }
-            
-            if checkboxFrame.size.height > frame.size.height {
-                checkboxFrame.size.height = frame.size.height
-                checkboxFrame.size.width = frame.size.height
-            }
+            checkboxFrame.size.width = min(checkboxFrame.size.width, checkboxFrame.size.height)
+            checkboxFrame.size.height = min(checkboxFrame.size.width, checkboxFrame.size.height)
             
             checkboxFrame.origin.x = (frame.size.width - checkboxFrame.size.width) / 2  // Center the switch at the top of the view.
             

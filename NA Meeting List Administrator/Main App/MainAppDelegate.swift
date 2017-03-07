@@ -74,7 +74,9 @@ class MainAppDelegate: UIResponder, UIApplicationDelegate, BMLTiOSLibDelegate {
             } else {
                 if newValue {
                     self.appDelegateObject.initialViewController.startConnection()
-                    self._libraryObject = BMLTiOSLib(inRootServerURI: AppStaticPrefs.prefs.rootURI, inDelegate: self.appDelegateObject)
+                    if let url = self.appDelegateObject.initialViewController.enterURLTextItem.text {
+                        self._libraryObject = BMLTiOSLib(inRootServerURI: url, inDelegate: self.appDelegateObject)
+                    }
                 }
             }
         }

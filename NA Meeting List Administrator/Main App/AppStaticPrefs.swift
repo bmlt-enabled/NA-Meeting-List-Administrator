@@ -180,8 +180,6 @@ class AppStaticPrefs {
     /* ################################################################## */
     /** These are the keys we use for our persistent prefs dictionary. */
     private enum PrefsKeys: String {
-        /** This is the Root Server URI */
-        case RootServerURI = "BMLTRootServerURI"
         /** This is the plist key for the default (initial) URI. */
         case DefaultRootServerURIPlistKey = "BMLTDefaultRootServerURI"
         /** This is the key for the stored URI/login sets. */
@@ -338,9 +336,7 @@ class AppStaticPrefs {
             var ret: String = ""
             
             if self._loadPrefs() {
-                if let temp = self._loadedPrefs.object(forKey: PrefsKeys.RootServerURI.rawValue) as? String {
-                    ret = temp
-                }
+                ret = self.lastLogin.url    // First thing we try is the URL used the last time.
             }
             
             if ret.isEmpty {
@@ -355,16 +351,6 @@ class AppStaticPrefs {
             }
             
             return ret
-        }
-        
-        set {
-            if self._loadPrefs() {
-                if newValue.isEmpty {
-                    self._loadedPrefs.removeObject(forKey: PrefsKeys.RootServerURI.rawValue)
-                } else {
-                    self._loadedPrefs.setObject(newValue.cleanURI(), forKey: PrefsKeys.RootServerURI.rawValue as NSString)
-                }
-            }
         }
     }
     
@@ -535,9 +521,6 @@ class AppStaticPrefs {
             
             // Finally, we remove the list of URLs and logins.
             self._loadedPrefs.removeObject(forKey: PrefsKeys.RootServerLoginDictionaryKey.rawValue as NSString)
-            
-            // ...and any saved Root URI.
-            self._loadedPrefs.removeObject(forKey: PrefsKeys.RootServerURI.rawValue)
 
             self.lastLogin = (url: "", loginID: "")
             

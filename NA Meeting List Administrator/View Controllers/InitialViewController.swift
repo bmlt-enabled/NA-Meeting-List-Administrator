@@ -56,6 +56,8 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate 
     private var _connecting: Bool = false
     /** This is the Tab Bar Controller for the editors (it will be nil if we are not in the editor). */
     private var _editorTabBarController: EditorTabBarController! = nil
+    /** This is the URL we will be accessing. */
+    private var _url: String = ""
     
     /* ################################################################## */
     // MARK: Instance IB Properties
@@ -126,14 +128,14 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate 
         self.serviceBodyBarButton.title = NSLocalizedString(self.serviceBodyBarButton.title!, comment: "")
         self.editorBarButton.title = NSLocalizedString(self.editorBarButton.title!, comment: "")
 
-        let lastLogin = AppStaticPrefs.prefs.lastLogin
+        var url = AppStaticPrefs.prefs.rootURI
         
-        // If there is no saved login from the last connection, we use the somewhat more static one (or the default from the plist).
-        if !lastLogin.url.isEmpty && !lastLogin.loginID.isEmpty {
-            self.enterURLTextItem.text = lastLogin.url.cleanURI(sslRequired: true)
-        } else {
-            self.enterURLTextItem.text = AppStaticPrefs.prefs.rootURI
+        if !url.isEmpty {
+            url = url.cleanURI(sslRequired: true)
         }
+        
+        self._url = url
+        self.enterURLTextItem.text = self._url
         
         self._loggingIn = false
         self.setLoginStatusUI()
@@ -203,7 +205,7 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate 
      - parameter sender: The IB item that called this.
      */
     @IBAction func urlTextChanged(_ sender: UITextField) {
-        AppStaticPrefs.prefs.rootURI = sender.text!
+        self._url = sender.text!
         self.showOrHideConnectButton()
     }
     
