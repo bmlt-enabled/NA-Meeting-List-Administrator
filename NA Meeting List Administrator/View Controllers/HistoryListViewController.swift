@@ -30,6 +30,10 @@ import BMLTiOSLib
 class HistoryListViewController : EditorViewControllerBaseClass, UITableViewDataSource, UITableViewDelegate {
     /** The reuse ID for the history prototype. */
     private let _reuseID = "history-item"
+    /** The segue ID for the manually-triggered "More Details" viewer. */
+    private let _detailSegueID = "more-info-segue"
+    /** This contains a list of changelists, associated with more info buttons. */
+    private var _moreDetailHistoryItems: [UIButton:BMLTiOSLibChangeNode] = [:]
     /** This is the table view that displays all the history items. */
     @IBOutlet weak var tableView: UITableView!
     /** This is the "busy" animation. */
@@ -59,7 +63,31 @@ class HistoryListViewController : EditorViewControllerBaseClass, UITableViewData
             self.updateHistory()
         }
     }
-
+    
+    /* ################################################################## */
+    /**
+     Called to tell the controller to update it's appearance.
+     */
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? HistoryDetailViewController {
+            if let changeObject = sender as? BMLTiOSLibChangeNode {
+                destination.changeObject = changeObject
+            }
+        }
+    }
+    
+    /* ################################################################## */
+    // MARK: IB Methods
+    /* ################################################################## */
+    /**
+     Called when the More Info button is hit.
+     */
+    @IBAction func moreInfoButtonHit(_ sender: UIButton) {
+        if let changeObject = self._moreDetailHistoryItems[sender] {
+            self.performSegue(withIdentifier: self._detailSegueID, sender: changeObject)
+        }
+    }
+    
     /* ################################################################## */
     // MARK: Internal Methods
     /* ################################################################## */
@@ -96,11 +124,14 @@ class HistoryListViewController : EditorViewControllerBaseClass, UITableViewData
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let ret = tableView.dequeueReusableCell(withIdentifier: self._reuseID) as? HistoryListTableViewCell {
             let changeObject = self.meetingObject.changes[indexPath.row]
-            ret.textView.text = changeObject.description + "\n" + changeObject.details
+            let descriptionText = changeObject.description
+            ret.textView.text = descriptionText
             ret.revertButton.setTitle(NSLocalizedString(ret.revertButton.title(for: UIControlState.normal)!, comment: ""), for: UIControlState.normal)
             ret.revertButton.isHidden = (nil == changeObject.beforeObject)
+            self._moreDetailHistoryItems[ret.moreInfoButton] = changeObject
             ret.owner = self
             ret.changeObject = changeObject
+            ret.backgroundColor = (0 == (indexPath.row % 2)) ? UIColor.clear : UIColor.init(white: 0, alpha: 0.1)
             return ret
         }
         
@@ -134,6 +165,7 @@ class HistoryListTableViewCell : UITableViewCell {
     var changeObject: BMLTiOSLibChangeNode! = nil
     
     @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var moreInfoButton: UIButton!
     @IBOutlet weak var revertButton: UIButton!
     
     /* ################################################################## */
@@ -148,5 +180,28 @@ class HistoryListTableViewCell : UITableViewCell {
         if self.owner.meetingObject.revertMeetingToBeforeThisChange(self.changeObject) {
             _ = self.owner.navigationController?.popViewController(animated: true)
         }
+    }
+}
+/* ###################################################################################################################################### */
+// MARK: - List History Items View Controller Class -
+/* ###################################################################################################################################### */
+/**
+ This class controls the display of a detailed history of the one event.
+ */
+class HistoryDetailViewController : EditorViewControllerBaseClass {
+    /** This is our change object. */
+    var changeObject: BMLTiOSLibChangeNode! = nil
+    /** This contains our details. */
+    @IBOutlet var historyDetailTextView: UITextView!
+    
+    /* ################################################################## */
+    // MARK: Overridden Base Class Methods
+    /* ################################################################## */
+    /**
+     Called as the view has completed loading.
+     */
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.historyDetailTextView.text = self.changeObject.details
     }
 }
