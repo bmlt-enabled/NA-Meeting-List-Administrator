@@ -23,7 +23,12 @@ The NA Meeting List Administrator app is [GPL V3](https://opensource.org/license
 
 CHANGELIST
 ----------
+***Version 1.0.0.2002* ** *- TBD*
+
+- Fixed a possible crash that could be caused by bad history.
+
 ***Version 1.0.0.2001* ** *- March 7, 2017*
+
 - Fixed a case-sensitivity issue with the asset catalog. This resulted in the checkmarks not displaying correctly.
 - Made sure that the various checkboxes are perfectly round.
 - Simplified the way the initial URI is stored. This will help prevent "crosstalk."

@@ -21,6 +21,7 @@
 */
 /** The Location Description String. */
 "LOCAL-LOCATION-FLAG"                       =   "This app needs to know where you are in order to find the meeting you are at, or to find the address you are at.";   /**< This is the message shown by the location permissions alert. */
+"ERR-STRING-SHORT"                                                                              =   "ERR";
 
 "CONNECT-TITLE"                                                                                 =   "CONNECT";
 "SERVICE-BODY-SELECTION-TITLE"                                                                  =   "Select Service Bodies";

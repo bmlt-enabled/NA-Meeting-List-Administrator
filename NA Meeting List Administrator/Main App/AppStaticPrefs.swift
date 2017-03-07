@@ -310,12 +310,16 @@ class AppStaticPrefs {
      - returns: The localized, full-length weekday name.
      */
     class func weekdayNameFromWeekdayNumber(_ weekdayNumber: Int, isShort: Bool = false) -> String {
-        let calendar = Calendar.current
-        let weekdaySymbols = isShort ? calendar.shortWeekdaySymbols : calendar.weekdaySymbols
-        let firstWeekday = self.firstWeekdayIndex - 1
-        let weekdayIndex = weekdayNumber - 1
-        let index = weekdayIndex + firstWeekday
-        return weekdaySymbols[index]
+        if (0 < weekdayNumber) && (8 > weekdayNumber) {
+            let calendar = Calendar.current
+            let weekdaySymbols = isShort ? calendar.shortWeekdaySymbols : calendar.weekdaySymbols
+            let firstWeekday = self.firstWeekdayIndex - 1
+            let weekdayIndex = weekdayNumber - 1
+            let index = weekdayIndex + firstWeekday
+            return weekdaySymbols[index]
+        } else {
+            return NSLocalizedString("ERR-STRING-SHORT", comment: "")
+        }
     }
     
     /* ################################################################## */
