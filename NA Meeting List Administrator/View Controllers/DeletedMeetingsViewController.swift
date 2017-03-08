@@ -95,6 +95,19 @@ class DeletedMeetingsViewController : EditorViewControllerBaseClass, UITableView
         
         if !self.searchDone {
             self.getDeletedMeetings()
+        } else {
+            self.view.setNeedsLayout()
+        }
+    }
+    
+    /* ################################################################## */
+    /**
+     Called when we are to lay out the subviews.
+     */
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        if nil != self.tableView {
+            self.tableView.reloadData()
         }
     }
     
@@ -129,7 +142,7 @@ class DeletedMeetingsViewController : EditorViewControllerBaseClass, UITableView
         self.tabBarController?.tabBar.isHidden = false
         self.searchDone = true
         self._deletedMeetingChanges = changeListResults
-        self.tableView.reloadData()
+        self.view.setNeedsLayout()
     }
     
     /* ################################################################## */
@@ -166,7 +179,7 @@ class DeletedMeetingsViewController : EditorViewControllerBaseClass, UITableView
     func restoreMeeting(inMeeting: BMLTiOSLibEditableMeetingNode, row: Int) {
         if MainAppDelegate.connectionObject.restoreDeletedMeeting(inMeeting.id) {
             self._deletedMeetingChanges.remove(at: row)
-            self.tableView.reloadData()
+            self.view.setNeedsLayout()
             if let tabBarController = self.myBarTab {
                 tabBarController.select(thisMeetingID: inMeeting.id)
             }

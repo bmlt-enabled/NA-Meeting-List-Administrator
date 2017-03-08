@@ -82,9 +82,6 @@ class HistoryListViewController : EditorViewControllerBaseClass, UITableViewData
      */
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        let tabBarHeight = self.tabBarController?.tabBar.bounds.height
-        self.edgesForExtendedLayout = UIRectEdge.all
-        self.tableView.contentInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: tabBarHeight!, right: 0.0)
         self.tableView.reloadData()
     }
     

@@ -23,6 +23,10 @@ The NA Meeting List Administrator app is [GPL V3](https://opensource.org/license
 
 CHANGELIST
 ----------
+***Version 1.0.0.2003* ** *- March 8, 2017*
+
+- Fixed a crash in the history view.
+
 ***Version 1.0.0.2002* ** *- March 8, 2017*
 
 - Fixed a possible crash that could be caused by bad history.
