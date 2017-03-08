@@ -3,7 +3,7 @@ DESCRIPTION
 
 NA Meeting List Administrator is an iOS app for [the BMLT](https://bmlt.magshare.net) that is an administrative expression of [the BMLTiOSLib Communication Framework](https://bmlt.magshare.net/specific-topics/bmltioslib/).
 
-It is very similar to [the BMLTAdmin iOS app](https://bmlt.magshare.net/satellites/ios-app/the-bmltadmin-app/). It has a few different bhaviors (mostly as a nod to usability), but "under the hood," it is a very different application from the BMLTAdmin app.
+It is very similar to [the BMLTAdmin iOS app](https://bmlt.magshare.net/satellites/ios-app/the-bmltadmin-app/). It has a few different behaviors (mostly as a nod to usability), but "under the hood," it is very different from the BMLTAdmin app.
 
 This app has been designed to eventually supercede the BMLTAdmin app. Since it requires HTTPS and Root Server 2.8.12 or above, it is being delivered as a separate app, and not as a new version of BMLTAdmin.
 
@@ -28,6 +28,7 @@ CHANGELIST
 - Tweaked the parameters for the URI text entry, so the proper keyboard shows up, and no correction is performed.
 - Make sure the header of an edited meeting (NavBar) is the correct color to match the published status.
 - Ensure that deleted meetings with bad weekday indexes (bad data) don't get displayed.
+- Now hide the Deleted NavBar as well while fetching deleted meetings.
 
 ***Version 1.0.0.2003* ** *- March 8, 2017*
 

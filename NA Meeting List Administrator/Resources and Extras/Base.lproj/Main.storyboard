@@ -1783,6 +1783,7 @@
                         <outlet property="backButton" destination="Pml-rb-LrT" id="PSO-CF-yed"/>
                         <outlet property="deletedWaitHeader" destination="vhZ-0a-JUl" id="TqB-a9-bIw"/>
                         <outlet property="deletedWaitMessage" destination="IPw-nc-6f1" id="OMW-MV-200"/>
+                        <outlet property="myNavBar" destination="xWv-Db-VuY" id="G9f-p0-aQ5"/>
                         <outlet property="tableView" destination="6Ck-ir-MFd" id="Hwn-bb-n1d"/>
                     </connections>
                 </viewController>
