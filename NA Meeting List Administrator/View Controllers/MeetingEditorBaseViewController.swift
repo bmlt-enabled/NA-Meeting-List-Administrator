@@ -193,6 +193,9 @@ class MeetingEditorBaseViewController : EditorViewControllerBaseClass, UITableVi
                     (self.view as! EditorViewBaseClass).bottomColor = self.unpublishedBottomColor
                 }
                 
+                self.navigationController?.navigationBar.barTintColor = (self.view as! EditorViewBaseClass).topColor
+                self.tabBarController?.tabBar.barTintColor = (self.view as! EditorViewBaseClass).bottomColor
+                
                 self.view.setNeedsLayout()
             }
         })

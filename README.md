@@ -26,6 +26,8 @@ CHANGELIST
 ***Version 1.0.0.2004* ** *- TBD*
 
 - Tweaked the parameters for the URI text entry, so the proper keyboard shows up, and no correction is performed.
+- Make sure the header of an edited meeting (NavBar) is the correct color to match the published status.
+- Ensure that deleted meetings with bad weekday indexes (bad data) don't get displayed.
 
 ***Version 1.0.0.2003* ** *- March 8, 2017*
 
