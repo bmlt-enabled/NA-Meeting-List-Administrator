@@ -208,7 +208,6 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
         super.viewDidLoad()
         self.backButton.title = NSLocalizedString(self.backButton.title!, comment: "")
         self.whereAmINowButton.setTitle(NSLocalizedString(self.whereAmINowButton.title(for: UIControlState.normal)!, comment: ""), for: UIControlState.normal)
-        self.tabBarController?.tabBar.isHidden = true
         self.setUpWeekdayViews()
     }
     
@@ -300,7 +299,6 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
         MainAppDelegate.connectionObject.searchCriteria.publishedStatus = .Both
         self.busyAnimationView.isHidden = false
         self.meetingListTableView.isHidden = true
-        self.tabBarController?.tabBar.isHidden = true
         self.allChangedTo(inState: BMLTiOSLibSearchCriteria.SelectionState.Selected)
         MainAppDelegate.connectionObject.searchCriteria.performMeetingSearch(.MeetingsOnly)
     }
@@ -314,7 +312,6 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
     func updateSearch(inMeetingObjects:[BMLTiOSLibMeetingNode]) {
         self.busyAnimationView.isHidden = true
         self.meetingListTableView.isHidden = false
-        self.tabBarController?.tabBar.isHidden = false
         if self._whereAmIInProgress {
             self._sortThroughWhereAmI(inMeetingObjects)
             self.doSearch()
@@ -571,7 +568,6 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
     func startLookingForMyMeeting() {
         self.busyAnimationView.isHidden = false
         self.meetingListTableView.isHidden = true
-        self.tabBarController?.tabBar.isHidden = true
         self._locationManager = CLLocationManager()
         self._locationManager.requestWhenInUseAuthorization()
         self._locationManager.delegate = self

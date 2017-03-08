@@ -38,7 +38,7 @@
         <!--List Meetings-->
         <scene sceneID="Atl-49-uMn">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="w5k-wt-KU4" userLabel="List Meetings" customClass="ListEditableMeetingsViewController" customModule="NA_Meeting_List_Administrator" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="w5k-wt-KU4" userLabel="List Meetings" customClass="ListEditableMeetingsViewController" customModule="NA_Meeting_List_Administrator" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jiB-76-cT8"/>
                         <viewControllerLayoutGuide type="bottom" id="qjw-Pg-mBu"/>
@@ -106,7 +106,7 @@
                                     <constraint firstAttribute="height" constant="0.5" id="fyb-1S-ZKu"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Itu-Ng-B3d">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Itu-Ng-B3d">
                                 <rect key="frame" x="0.0" y="239" width="320" height="352"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -190,26 +190,26 @@
                         <constraints>
                             <constraint firstItem="imF-iu-7Pc" firstAttribute="top" secondItem="jiB-76-cT8" secondAttribute="bottom" id="2Ag-DZ-SQ1"/>
                             <constraint firstItem="WiI-pa-W7F" firstAttribute="centerX" secondItem="Ngp-Vd-TOI" secondAttribute="centerX" id="3Rh-my-WsY"/>
+                            <constraint firstItem="Itu-Ng-B3d" firstAttribute="bottom" secondItem="qjw-Pg-mBu" secondAttribute="top" id="3ge-eO-qc9"/>
                             <constraint firstAttribute="trailing" secondItem="imF-iu-7Pc" secondAttribute="trailing" id="4Du-iw-7e8"/>
                             <constraint firstItem="VhF-F3-wYi" firstAttribute="leading" secondItem="Ngp-Vd-TOI" secondAttribute="leading" constant="8" id="7Vr-Az-UbS"/>
                             <constraint firstItem="zf7-jz-lhI" firstAttribute="top" secondItem="VhF-F3-wYi" secondAttribute="bottom" id="9Xm-Fe-7a4"/>
-                            <constraint firstItem="Itu-Ng-B3d" firstAttribute="leading" secondItem="Ngp-Vd-TOI" secondAttribute="leading" id="DmH-JU-TJD"/>
                             <constraint firstItem="3VS-JC-wjl" firstAttribute="top" secondItem="WiI-pa-W7F" secondAttribute="bottom" id="GWN-5K-0dv"/>
                             <constraint firstAttribute="bottom" secondItem="CYQ-I8-Ytf" secondAttribute="bottom" id="KQJ-Ts-QRH"/>
                             <constraint firstItem="3VS-JC-wjl" firstAttribute="leading" secondItem="Ngp-Vd-TOI" secondAttribute="leading" id="Lq0-0s-E1E"/>
                             <constraint firstItem="zf7-jz-lhI" firstAttribute="leading" secondItem="Ngp-Vd-TOI" secondAttribute="leading" id="TzE-aO-uzx"/>
                             <constraint firstItem="CYQ-I8-Ytf" firstAttribute="leading" secondItem="Ngp-Vd-TOI" secondAttribute="leading" id="Ug2-Fc-uI7"/>
                             <constraint firstItem="imF-iu-7Pc" firstAttribute="leading" secondItem="Ngp-Vd-TOI" secondAttribute="leading" id="WgY-J3-1lG"/>
-                            <constraint firstItem="Itu-Ng-B3d" firstAttribute="top" secondItem="zf7-jz-lhI" secondAttribute="bottom" id="ZYd-ZA-Xel"/>
-                            <constraint firstAttribute="trailing" secondItem="Itu-Ng-B3d" secondAttribute="trailing" id="ahI-dU-vfh"/>
                             <constraint firstItem="CYQ-I8-Ytf" firstAttribute="top" secondItem="Ngp-Vd-TOI" secondAttribute="top" id="ahU-Mb-4u5"/>
+                            <constraint firstItem="Itu-Ng-B3d" firstAttribute="top" secondItem="zf7-jz-lhI" secondAttribute="bottom" id="d7L-7i-ea8"/>
                             <constraint firstItem="WiI-pa-W7F" firstAttribute="top" secondItem="imF-iu-7Pc" secondAttribute="bottom" constant="4" id="dNL-Js-RoN"/>
+                            <constraint firstAttribute="trailing" secondItem="Itu-Ng-B3d" secondAttribute="trailing" id="dXb-N1-zeg"/>
                             <constraint firstAttribute="trailing" secondItem="CYQ-I8-Ytf" secondAttribute="trailing" id="eXX-YP-bNr"/>
                             <constraint firstAttribute="trailing" secondItem="3VS-JC-wjl" secondAttribute="trailing" id="fuA-x6-4ef"/>
                             <constraint firstItem="VhF-F3-wYi" firstAttribute="top" secondItem="3VS-JC-wjl" secondAttribute="bottom" id="gox-YF-xge"/>
+                            <constraint firstItem="Itu-Ng-B3d" firstAttribute="leading" secondItem="Ngp-Vd-TOI" secondAttribute="leading" id="h3n-KX-Cpn"/>
                             <constraint firstAttribute="trailing" secondItem="VhF-F3-wYi" secondAttribute="trailing" constant="8" id="ty2-q0-G8A"/>
                             <constraint firstAttribute="trailing" secondItem="zf7-jz-lhI" secondAttribute="trailing" id="umF-1m-e1G"/>
-                            <constraint firstItem="qjw-Pg-mBu" firstAttribute="top" secondItem="Itu-Ng-B3d" secondAttribute="bottom" id="utL-gR-jiC"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="topColor">
@@ -220,9 +220,11 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <tabBarItem key="tabBarItem" title="MEETINGS-TAB-BAR-NAME" image="List" id="qM6-Hh-PL4"/>
                     <toolbarItems/>
                     <nil key="simulatedTopBarMetrics"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="color" keyPath="unpublishedRowColorEven">
                             <color key="value" red="1" green="0.61205357140000005" blue="0.37419084819999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -1748,7 +1750,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="tintColor" red="1" green="1" blue="0.58892299110000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="uG1-nk-xc3" secondAttribute="trailing" id="6Lt-Oz-EeL"/>
