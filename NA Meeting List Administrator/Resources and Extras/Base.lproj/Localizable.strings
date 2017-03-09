@@ -163,6 +163,8 @@
 "DELETED-LOADING-HEADER"                                                                        =   "Loading Deleted Meetings";
 "DELETED-LOADING-SUBTEXT"                                                                       =   "This may take a long time.";
 
+"NO-HISTORY-LABEL"                                                                              =   "No History";
+
 "REVERT-BUTTON"                                                                                 =   "Revert";
 
 "CLEAR-ALL-SAVED-LOGINS"                                                                        =   "Remove All Saved Logins and URLs";

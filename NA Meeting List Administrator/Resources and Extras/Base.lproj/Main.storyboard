@@ -1381,6 +1381,15 @@
                                     <outlet property="delegate" destination="xgD-05-36X" id="jSA-d3-JLi"/>
                                 </connections>
                             </tableView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NO-HISTORY-LABEL" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n6w-zS-zih">
+                                <rect key="frame" x="16" y="304.5" width="288" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="68G-fj-JG0"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.79866071429999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4ik-xe-Udd">
                                 <rect key="frame" x="0.0" y="64" width="320" height="576"/>
                                 <subviews>
@@ -1403,13 +1412,16 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <color key="tintColor" red="0.0" green="0.0" blue="0.79866071429999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="n6w-zS-zih" secondAttribute="trailing" id="2dL-Ed-pLT"/>
                             <constraint firstItem="AEh-MB-BnD" firstAttribute="top" secondItem="K5l-Gc-llX" secondAttribute="top" id="Aa7-ZC-tf6"/>
+                            <constraint firstItem="n6w-zS-zih" firstAttribute="leading" secondItem="K5l-Gc-llX" secondAttribute="leadingMargin" id="BqZ-5l-UXW"/>
                             <constraint firstAttribute="trailing" secondItem="AEh-MB-BnD" secondAttribute="trailing" id="Ico-Xc-u5h"/>
                             <constraint firstAttribute="trailing" secondItem="4ik-xe-Udd" secondAttribute="trailing" id="PHa-UZ-wI2"/>
                             <constraint firstItem="4ik-xe-Udd" firstAttribute="leading" secondItem="K5l-Gc-llX" secondAttribute="leading" id="Pr1-1z-SFR"/>
                             <constraint firstItem="HFg-RZ-gLw" firstAttribute="top" secondItem="4ik-xe-Udd" secondAttribute="bottom" id="SEM-Jb-7eo"/>
                             <constraint firstItem="AEh-MB-BnD" firstAttribute="leading" secondItem="K5l-Gc-llX" secondAttribute="leading" id="VfO-fI-Ifq"/>
                             <constraint firstItem="4ik-xe-Udd" firstAttribute="top" secondItem="D3O-K3-iDB" secondAttribute="bottom" id="b9v-BT-LgJ"/>
+                            <constraint firstItem="n6w-zS-zih" firstAttribute="centerY" secondItem="K5l-Gc-llX" secondAttribute="centerY" id="dSj-DR-46d"/>
                             <constraint firstItem="HFg-RZ-gLw" firstAttribute="top" secondItem="AEh-MB-BnD" secondAttribute="bottom" id="tAd-hq-dmu"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
@@ -1427,6 +1439,7 @@
                     <size key="freeformSize" width="320" height="640"/>
                     <connections>
                         <outlet property="animationCoverView" destination="4ik-xe-Udd" id="zQS-xt-XR6"/>
+                        <outlet property="noHistoryLabel" destination="n6w-zS-zih" id="BOr-KZ-h6m"/>
                         <outlet property="tableView" destination="AEh-MB-BnD" id="5A4-2h-kal"/>
                         <segue destination="Czn-Pf-LXx" kind="show" identifier="more-info-segue" id="i7T-uU-yRe"/>
                     </connections>

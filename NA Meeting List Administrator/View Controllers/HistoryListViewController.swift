@@ -38,6 +38,8 @@ class HistoryListViewController : EditorViewControllerBaseClass, UITableViewData
     @IBOutlet weak var tableView: UITableView!
     /** This is the "busy" animation. */
     @IBOutlet weak var animationCoverView: UIView!
+    /** This label is displayed when we have an empty history. */
+    @IBOutlet weak var noHistoryLabel: UILabel!
     /** This is the meeting object for this instance. */
     var meetingObject: BMLTiOSLibEditableMeetingNode! = nil
 
@@ -78,11 +80,22 @@ class HistoryListViewController : EditorViewControllerBaseClass, UITableViewData
     
     /* ################################################################## */
     /**
+     Called when the load is complete. We use this to set the text for the hidden "no history" item.
+     */
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.noHistoryLabel.text = NSLocalizedString(self.noHistoryLabel.text!, comment: "")
+        self.noHistoryLabel.isHidden = true
+    }
+    
+    /* ################################################################## */
+    /**
      Called when the layout is complete. We use this to trigger a new table update.
      */
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         self.tableView.reloadData()
+        self.noHistoryLabel.isHidden = !((nil == self.meetingObject.changes) || self.meetingObject.changes.isEmpty)
     }
     
     /* ################################################################## */
