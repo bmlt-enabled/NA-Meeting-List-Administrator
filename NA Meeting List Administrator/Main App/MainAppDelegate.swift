@@ -115,6 +115,10 @@ class MainAppDelegate: UIResponder, UIApplicationDelegate, BMLTiOSLibDelegate {
      This is the container for our full meeting search.
      */
     private var _fullArrayOfMeetingObjects: [BMLTiOSLibMeetingNode] = []
+    /**
+     This is used to determine whether or not we force a disconnect.
+     */
+    private var _lastTimeIWasAlive: TimeInterval = 0
     
     /* ################################################################## */
     // MARK: Internal Instance Stored Properties
@@ -150,6 +154,12 @@ class MainAppDelegate: UIResponder, UIApplicationDelegate, BMLTiOSLibDelegate {
     // MARK: UIApplicationDelegate Methods
     /* ################################################################## */
     /**
+     Called when the app is about to start. It politely asks for permission.
+     
+     - parameter application: The application object.
+     - parameter didFinishLaunchingWithOptions: The various launch options
+     
+     - returns true (all the time). This tells the app to go ahead and launch.
      */
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         return true
@@ -157,23 +167,57 @@ class MainAppDelegate: UIResponder, UIApplicationDelegate, BMLTiOSLibDelegate {
     
     /* ################################################################## */
     /**
+     Called when the app is about to come into its own.
+     
+     - parameter application: The application object.
+     */
+    func applicationWillEnterForeground(_ application: UIApplication) {
+        if let navController = self.initialViewController.navigationController {
+            let elapsedTime = Date().timeIntervalSinceReferenceDate - self._lastTimeIWasAlive
+            
+            if elapsedTime > AppStaticPrefs.prefs.timeoutInterval {
+                type(of: self).connectionStatus = false // Force a disconnect for waiting too long.
+                _ = navController.popToRootViewController(animated: false)
+            }
+            
+            // Oh, God (facepalm). We need to do this vicious hack because the damn disconnection can cause the navbar to be hidden.
+            if let topView = navController.topViewController as? SettingsViewController {
+                topView.view.setNeedsLayout()
+            }
+        }
+    }
+    
+    /* ################################################################## */
+    /**
+     Called when the app is about to resign the active state.
+     
+     - parameter application: The application object.
      */
     func applicationWillResignActive(_ application: UIApplication) {
         AppStaticPrefs.prefs.savePrefs()
+        self._lastTimeIWasAlive = Date.timeIntervalSinceReferenceDate
     }
     
     /* ################################################################## */
     /**
+     Called when the app is about to run down the curtain and shuffle off this mortal coil.
+     
+     - parameter application: The application object.
      */
     func applicationWillTerminate(_ application: UIApplication) {
         AppStaticPrefs.prefs.savePrefs()
+        type(of: self).connectionStatus = false // Force an immediate disconnect when terminating.
     }
     
     /* ################################################################## */
     /**
+     Called when the app is about to go into background mode.
+     
+     - parameter application: The application object.
      */
     func applicationDidEnterBackground(_ application: UIApplication) {
         AppStaticPrefs.prefs.savePrefs()
+        self._lastTimeIWasAlive = Date.timeIntervalSinceReferenceDate
     }
     
     /* ################################################################## */

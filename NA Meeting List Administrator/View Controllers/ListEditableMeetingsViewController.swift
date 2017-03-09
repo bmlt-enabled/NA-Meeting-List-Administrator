@@ -93,6 +93,8 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
     @IBOutlet weak var backButton: UIBarButtonItem!
     /** This is the "What Meeting Am I At Now?" button. */
     @IBOutlet weak var whereAmINowButton: UIButton!
+    /** This is the navigation bar, shown at the top. */
+    @IBOutlet weak var myNavBar: UINavigationBar!
     
     /* ################################################################## */
     // MARK: Internal Instance Properties
@@ -206,9 +208,19 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
      */
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tabBarController?.tabBar.isHidden = true
         self.backButton.title = NSLocalizedString(self.backButton.title!, comment: "")
         self.whereAmINowButton.setTitle(NSLocalizedString(self.whereAmINowButton.title(for: UIControlState.normal)!, comment: ""), for: UIControlState.normal)
         self.setUpWeekdayViews()
+    }
+    
+    /* ################################################################## */
+    /**
+     Called just after the view did its layout.
+     */
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        self.updateDisplayedMeetings()
     }
     
     /* ################################################################## */
@@ -281,6 +293,7 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
      Trigger a search.
      */
     func doSearch() {
+        self.tabBarController?.tabBar.isHidden = true
         MainAppDelegate.connectionObject.searchCriteria.clearAll()
         // First, get the IDs of the Service bodies we'll be checking.
         let sbArray = AppStaticPrefs.prefs.selectedServiceBodies
@@ -312,6 +325,7 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
     func updateSearch(inMeetingObjects:[BMLTiOSLibMeetingNode]) {
         self.busyAnimationView.isHidden = true
         self.meetingListTableView.isHidden = false
+        self.tabBarController?.tabBar.isHidden = false
         if self._whereAmIInProgress {
             self._sortThroughWhereAmI(inMeetingObjects)
             self.doSearch()
@@ -353,7 +367,7 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
                 self.showMeTheMoneyID = nil
             }
             
-            self.updateDisplayedMeetings()
+            self.view.setNeedsLayout()
         }
     }
     
@@ -525,7 +539,7 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
             }
         }
         self._checkingAll = false
-        self.updateDisplayedMeetings()
+        self.view.setNeedsLayout()
     }
     
     /* ################################################################## */
@@ -555,7 +569,7 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
             if let indexAsEnum = BMLTiOSLibSearchCriteria.WeekdayIndex(rawValue: inWeekdayIndex) {
                 self.selectedWeekdays[indexAsEnum] = newSelectionState
                 if !self._checkingAll { // We don't update if we are in the middle of changing all the checkboxes.
-                    self.updateDisplayedMeetings()
+                    self.view.setNeedsLayout()
                 }
             }
         }
@@ -907,7 +921,7 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
             pickerView.selectRow(0, inComponent: 0, animated: true)
         }
         
-        self.updateDisplayedMeetings()
+        self.view.setNeedsLayout()
     }
 }
 

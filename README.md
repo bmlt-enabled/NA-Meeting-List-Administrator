@@ -23,7 +23,12 @@ The NA Meeting List Administrator app is [GPL V3](https://opensource.org/license
 
 CHANGELIST
 ----------
-***Version 1.0.0.2004* ** *- TBD*
+***Version 1.0.0.2005* ** *- March 8, 2017*
+
+- Fixed a bug, where it was possible to cause the app to lock up if you quickly switch to Deleted while current is loading.
+- I now make sure we disconnect after ten seconds away from the foreground.
+
+***Version 1.0.0.2004* ** *- March 8, 2017*
 
 - Tweaked the parameters for the URI text entry, so the proper keyboard shows up, and no correction is performed.
 - Make sure the header of an edited meeting (NavBar) is the correct color to match the published status.

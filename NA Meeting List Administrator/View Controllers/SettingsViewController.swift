@@ -47,10 +47,6 @@ class SettingsViewController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let navController = self.navigationController {
-            navController.isNavigationBarHidden = false
-        }
-        
         var appName = ""
         var appVersion = ""
         
@@ -91,11 +87,11 @@ class SettingsViewController : UIViewController {
      
      - parameter animated: True, if the appearance is animated.
      */
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         if let navController = self.navigationController {
             navController.isNavigationBarHidden = false
         }
-        super.viewWillAppear(animated)
     }
     
     /* ################################################################## */
@@ -108,6 +104,7 @@ class SettingsViewController : UIViewController {
         if !self.buttonURI.isEmpty {
             let openLink = NSURL(string : self.buttonURI)
             UIApplication.shared.open(openLink as! URL, options: [:], completionHandler: nil)
+            self.view.setNeedsLayout()
         }
     }
   
@@ -151,8 +148,6 @@ class SettingsViewController : UIViewController {
         AppStaticPrefs.prefs.deleteSavedLoginsAndURLs()
         self.clearAllLoginsButton.isEnabled = false
         // We need to do this, because the initial view controller may close its navigation bar, which is also ours.
-        if let navController = self.navigationController {
-            navController.isNavigationBarHidden = false
-        }
+        self.view.setNeedsLayout()
     }
 }

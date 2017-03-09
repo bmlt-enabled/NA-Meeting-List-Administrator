@@ -360,6 +360,18 @@ class AppStaticPrefs {
     
     /* ################################################################## */
     /**
+     Currently hardcoded at ten seconds.
+     
+     - returns the number of seconds we wait before forcefully logging out.
+     */
+    var timeoutInterval: TimeInterval {
+        get {
+            return 10.0
+        }
+    }
+    
+    /* ################################################################## */
+    /**
      Saves or returns the last successful login.
      
      - returns the last successful login, for quick restoration later.

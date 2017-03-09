@@ -38,7 +38,7 @@
         <!--List Meetings-->
         <scene sceneID="Atl-49-uMn">
             <objects>
-                <viewController id="w5k-wt-KU4" userLabel="List Meetings" customClass="ListEditableMeetingsViewController" customModule="NA_Meeting_List_Administrator" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="w5k-wt-KU4" userLabel="List Meetings" customClass="ListEditableMeetingsViewController" customModule="NA_Meeting_List_Administrator" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jiB-76-cT8"/>
                         <viewControllerLayoutGuide type="bottom" id="qjw-Pg-mBu"/>
@@ -238,6 +238,7 @@
                         <outlet property="backButton" destination="QoR-7R-xnk" id="cYY-rE-c2s"/>
                         <outlet property="busyAnimationView" destination="CYQ-I8-Ytf" id="KFH-M9-aan"/>
                         <outlet property="meetingListTableView" destination="Itu-Ng-B3d" id="iFg-TT-2IF"/>
+                        <outlet property="myNavBar" destination="imF-iu-7Pc" id="6mY-sk-6Yx"/>
                         <outlet property="townBoroughPickerView" destination="3VS-JC-wjl" id="52E-cf-Oye"/>
                         <outlet property="weekdaySwitchesContainerView" destination="WiI-pa-W7F" id="1vf-Yl-hAh"/>
                         <outlet property="whereAmINowButton" destination="VhF-F3-wYi" id="lnJ-MU-F3p"/>
@@ -1483,6 +1484,7 @@
         <scene sceneID="4Vp-tc-l3t">
             <objects>
                 <tabBarController id="ZWf-NR-jVg" userLabel="Editor Tab Controller" customClass="EditorTabBarController" customModule="NA_Meeting_List_Administrator" customModuleProvider="target" sceneMemberID="viewController">
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="ZJP-ag-jUZ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
