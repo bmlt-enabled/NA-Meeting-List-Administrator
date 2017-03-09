@@ -23,6 +23,10 @@ The NA Meeting List Administrator app is [GPL V3](https://opensource.org/license
 
 CHANGELIST
 ----------
+***Version 1.0.0.2007* ** *- March 9, 2017*
+
+- Fixed a crash when restoring deleted meetings.
+
 ***Version 1.0.0.2006* ** *- March 9, 2017*
 
 - Fixed a crash that could happen if a meeting had an empty history.

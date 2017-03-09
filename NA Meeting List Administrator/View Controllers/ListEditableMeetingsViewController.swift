@@ -360,6 +360,7 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
                         break
                     }
                 }
+                
                 if nil != meetingObject {
                     self.scrollToExposeMeeting(meetingObject)
                     self.editSingleMeeting(meetingObject)
@@ -412,10 +413,11 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
      */
     func scrollToExposeMeeting(_ meetingObject: BMLTiOSLibEditableMeetingNode) {
         var index: Int = 0
-        
+        self.updateDisplayedMeetings()  // We need to make sure that we've reprocessed and sorted our meetings before scrolling.
         for meeting in self.currentMeetingList {
-            if meeting.id == meetingObject.id {
-                self.meetingListTableView.scrollToRow(at: IndexPath(row: index, section: 0), at: UITableViewScrollPosition.middle, animated: true)
+            if meeting == meetingObject {
+                let indexPath = IndexPath(row: index, section: 0)
+                self.meetingListTableView.scrollToRow(at: indexPath, at: UITableViewScrollPosition.middle, animated: false)
                 break
             }
             index += 1
