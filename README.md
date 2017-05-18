@@ -23,6 +23,10 @@ The NA Meeting List Administrator app is [GPL V3](https://opensource.org/license
 
 CHANGELIST
 ----------
+***Version 1.0.1.1000* ** *- TBD*
+
+- Slight update for latest Xcode.
+
 ***Version 1.0.0.3000* ** *- March 14, 2017*
 
 - First App Store release.

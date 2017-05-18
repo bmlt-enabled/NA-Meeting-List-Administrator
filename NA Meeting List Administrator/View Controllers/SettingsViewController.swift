@@ -103,7 +103,7 @@ class SettingsViewController : UIViewController {
     @IBAction func beanieButtonHit(_ sender: Any) {
         if !self.buttonURI.isEmpty {
             let openLink = NSURL(string : self.buttonURI)
-            UIApplication.shared.open(openLink as! URL, options: [:], completionHandler: nil)
+            UIApplication.shared.open(openLink! as URL, options: [:], completionHandler: nil)
             self.view.setNeedsLayout()
         }
     }
