@@ -1398,7 +1398,7 @@ class FormatsEditorTableViewCell: MeetingEditorViewCell, UITableViewDataSource, 
      
      - parameter inCheckbox: The checkbox that was hit.
      */
-    func formatCheckboxActuated(_ inCheckbox: ThreeStateCheckbox) {
+    @objc func formatCheckboxActuated(_ inCheckbox: ThreeStateCheckbox) {
         if let formatObject = inCheckbox.extraData as? BMLTiOSLibFormatNode {
             if inCheckbox.selectionState == .Selected {
                 self.meetingObject.addFormat(formatObject)

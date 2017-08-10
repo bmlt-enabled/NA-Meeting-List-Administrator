@@ -50,7 +50,7 @@ class SelectServiceBodiesViewController : UIViewController, UITableViewDataSourc
      
      - parameter sender: The AnnotatedSwitch object that Igor used.
      */
-    func checkboxChanged(_ sender: AnnotatedSwitch) {
+    @objc func checkboxChanged(_ sender: AnnotatedSwitch) {
         if let serviceBodyObject = sender.attachedServiceBodyObject {
             self.changeSBSelection(inServiceBodyObject: serviceBodyObject, inSelection: sender.isOn)
         }

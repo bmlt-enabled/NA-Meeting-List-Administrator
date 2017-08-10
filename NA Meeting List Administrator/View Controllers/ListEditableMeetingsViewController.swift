@@ -1055,7 +1055,7 @@ class WeekdaySwitchContainerView : UIView {
      
      - parameter inCheckbox: The ThreeStateCheckbox object that called this.
      */
-    func checkboxSelectionChanged(_ inCheckbox: ThreeStateCheckbox) {
+    @objc func checkboxSelectionChanged(_ inCheckbox: ThreeStateCheckbox) {
         self.owner.weekdaySelectionChanged(inWeekdayIndex: self.weekdayIndex, newSelectionState: inCheckbox.selectionState)
     }
 }
