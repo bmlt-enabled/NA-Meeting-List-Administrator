@@ -619,7 +619,7 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
      Callback to handle found locations.
      
      - parameter manager: The Location Manager object that had the event.
-     - parameter didUpdateLocations: an array of updated locations.
+     - parameter locations: an array of updated locations.
      */
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         self._locationManager.stopUpdatingLocation()
@@ -627,11 +627,15 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
         self._locationManager = nil
         self._locationFailedOnce = false
         if 0 < locations.count {
-            let coordinate = locations[0].coordinate
-            DispatchQueue.main.async(execute: {
-                self._whereAmIInProgress = true
-                self._startWhereAmISearch(coordinate)
-            })
+            for location in locations {
+                if 2 > location.timestamp.timeIntervalSinceNow {
+                    let coordinate = location.coordinate
+                    DispatchQueue.main.async(execute: {
+                        self._whereAmIInProgress = true
+                        self._startWhereAmISearch(coordinate)
+                    })
+                }
+            }
         } else {
             MainAppDelegate.displayAlert("LOCATION-ERROR-HEADER", inMessage: "LOCATION-ERROR-MESSAGE", presentedBy: self)
         }

@@ -465,9 +465,12 @@ class MeetingEditorBaseViewController : EditorViewControllerBaseClass, UITableVi
         self._locationManager.stopUpdatingLocation()
         self._locationManager = nil
         if 0 < locations.count {
-            let newLocation = locations[0]
-            self._geocoder = CLGeocoder()
-            self._geocoder.reverseGeocodeLocation(newLocation, completionHandler: self.reverseGecodeCompletionHandler )
+            for location in locations {
+                if 2 > location.timestamp.timeIntervalSinceNow {
+                    self._geocoder = CLGeocoder()
+                    self._geocoder.reverseGeocodeLocation(location, completionHandler: self.reverseGecodeCompletionHandler )
+                }
+            }
         }
     }
 }
