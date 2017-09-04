@@ -23,10 +23,11 @@ The NA Meeting List Administrator app is [GPL V3](https://opensource.org/license
 
 CHANGELIST
 ----------
-***Version 1.1.0.1000* ** *- August 27, 2017*
+***Version 1.1.0.1000* ** *- TBD*
 - The location lookup is more accurate.
 - Added some basic fixes to make the app more responsive.
 - Compiled for iOS 11.
+- Fixed an issue where TouchID failures can crash the app ("Bad Touch").
 
 - Slight update for latest Xcode.
 

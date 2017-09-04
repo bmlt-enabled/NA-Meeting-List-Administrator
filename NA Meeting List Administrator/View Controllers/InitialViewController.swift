@@ -357,7 +357,14 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate 
     func touchIDCallback(_ inSuccess: Bool, inError: Error?) {
         DispatchQueue.main.async(execute: {
             if(!inSuccess) {
-                if LAError.Code.userCancel.rawValue != (inError! as NSError).code {   // We ignore user canceled error.
+                let userCancel = LAError.Code.userCancel
+                let userCancelRaw = userCancel.rawValue
+                var errorCode = userCancelRaw   // We always err on the side of caution.
+                if let errorAsNSError = inError as NSError? {
+                    errorCode = errorAsNSError.code
+                }
+                
+                if userCancelRaw != errorCode {   // We ignore user canceled error.
                     if LAError.Code.userFallback.rawValue == (inError! as NSError).code {   // Fallback means that we will use the password, so we nuke the stored password.
                         let _ = AppStaticPrefs.prefs.updateUserForRootURI(self.enterURLTextItem.text!, inUser: self.loginIDTextField.text!)
                         self.touchIDButton.isHidden = true
