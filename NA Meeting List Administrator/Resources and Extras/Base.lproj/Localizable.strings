@@ -176,7 +176,7 @@
 "FORGET-STORED-LOGINS-CANCEL-BUTTON"                                                            =   "Cancel";
 "LOCAL-MAGSHARE-BLURB-LABEL"                                                                    =   "Another Fine MAGSHARE Project";
 "LOCAL-MAGSHARE-URI-LABEL"                                                                      =   "Find Out More at https://bmlt.magshare.net";
-"LOCAL-MAGSHARE-URI"                                                                            =   "https://bmlt.magshare.net/";
+"LOCAL-MAGSHARE-URI"                                                                            =   "https://bmlt.magshare.net/nameetinglistadministrator";
 
 "VERSION-LABEL-FORMAT"                                                                          =   "Version %@";
 
