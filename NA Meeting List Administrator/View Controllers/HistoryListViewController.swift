@@ -95,7 +95,6 @@ class HistoryListViewController : EditorViewControllerBaseClass, UITableViewData
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         self.tableView.reloadData()
-        self.noHistoryLabel.isHidden = !((nil == self.meetingObject.changes) || self.meetingObject.changes.isEmpty)
     }
     
     /* ################################################################## */
@@ -131,7 +130,9 @@ class HistoryListViewController : EditorViewControllerBaseClass, UITableViewData
      - returns the number of rows to display.
      */
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (nil != self.meetingObject.changes) ? self.meetingObject.changes.count : 0
+        let ret = (nil != self.meetingObject.changes) ? self.meetingObject.changes.count : 0
+        self.noHistoryLabel.isHidden = !self.animationCoverView.isHidden || (0 < ret)
+        return ret
     }
     
     /* ################################################################## */
