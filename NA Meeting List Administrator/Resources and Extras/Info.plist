@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>BMLTButtonURL</key>
-	<string>https://bmlt.magshare.net</string>
+	<string>https://bmlt.magshare.net/nameetinglistadministrator</string>
 	<key>BMLTDefaultRootServerURI</key>
 	<string></string>
 	<key>CFBundleDevelopmentRegion</key>
