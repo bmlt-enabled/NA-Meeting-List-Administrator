@@ -23,6 +23,10 @@ The NA Meeting List Administrator app is [GPL V3](https://opensource.org/license
 
 CHANGELIST
 ----------
+***Version 1.1.1.2000* ** *- TBD*
+
+- Added code to the meeting editor to avoid it resetting the map every time you move the marker.
+
 ***Version 1.1.0.3000* ** *- September 19, 2017*
 
 - Release of 1.1.0
