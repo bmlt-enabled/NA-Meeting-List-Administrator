@@ -280,7 +280,7 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate 
         let authenticationContext = LAContext()
         let userName = self.loginIDTextField.text!
         let reason = String(format: NSLocalizedString("LOCAL-TOUCHID-REASON-FORMAT", comment: ""), userName)
-        authenticationContext.evaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason, reply: self.touchIDCallback )
+        authenticationContext.evaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason, reply: self.biometricCallback )
     }
     
     /* ################################################################## */
@@ -349,12 +349,12 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate 
     
     /* ################################################################## */
     /**
-     This is the callback from the TouchID login attempt.
+     This is the callback from the TouchID/FaceID login attempt.
      
-     - parameter inSuccess: If true, then the TouchID was successful.
+     - parameter inSuccess: If true, then the ID attempt was successful.
      - parameter inError: Any error that may have occurred.
      */
-    func touchIDCallback(_ inSuccess: Bool, inError: Error?) {
+    func biometricCallback(_ inSuccess: Bool, inError: Error?) {
         DispatchQueue.main.async(execute: {
             if(!inSuccess) {
                 let userCancel = LAError.Code.userCancel
@@ -496,6 +496,15 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate 
     func showOrHideTouchIDButton() {
         let showTouchIDButton = AppStaticPrefs.prefs.userHasStoredPasswordRootURI(self.enterURLTextItem.text!, inUser: self.loginIDTextField.text!)
         
+        let authenticationContext = LAContext()
+        
+        if #available(iOS 11.0, *) {
+            if authenticationContext.biometryType == .typeFaceID {
+                touchIDButton.setImage(UIImage(named:"FaceIDLogo"), for: UIControlState.normal)
+                touchIDButton.setImage(UIImage(named:"FaceIDLogo-Highlight"), for: UIControlState.highlighted)
+            }
+        }
+
         self.touchIDButton.isHidden = !showTouchIDButton
     }
     

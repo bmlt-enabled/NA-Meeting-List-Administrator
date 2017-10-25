@@ -285,7 +285,7 @@ class AppStaticPrefs {
             var error: NSError? = nil
             
             let authenticationContext = LAContext()
-            
+
             ret = authenticationContext.canEvaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, error: &error)
             
             if(nil != error) {  // Very basic. Any problems, no can do.

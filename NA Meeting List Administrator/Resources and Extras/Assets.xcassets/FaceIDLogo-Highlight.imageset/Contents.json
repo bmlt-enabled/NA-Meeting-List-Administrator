@@ -5,17 +5,17 @@
   },
   "images" : [
     {
-      "filename" : "TouchIDLogo~universal@1x.png",
+      "filename" : "FaceIDLogo-Highlight~universal@1x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "TouchIDLogo~universal@2x.png",
+      "filename" : "FaceIDLogo-Highlight~universal@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "TouchIDLogo~universal@3x.png",
+      "filename" : "FaceIDLogo-Highlight~universal@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
