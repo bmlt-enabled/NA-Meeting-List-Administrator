@@ -497,11 +497,15 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate 
         let showTouchIDButton = AppStaticPrefs.prefs.userHasStoredPasswordRootURI(self.enterURLTextItem.text!, inUser: self.loginIDTextField.text!)
         
         let authenticationContext = LAContext()
-        
+        var error: NSError? = nil
+
         if #available(iOS 11.0, *) {
-            if authenticationContext.biometryType == .typeFaceID {
-                touchIDButton.setImage(UIImage(named:"FaceIDLogo"), for: UIControlState.normal)
-                touchIDButton.setImage(UIImage(named:"FaceIDLogo-Highlight"), for: UIControlState.highlighted)
+            if authenticationContext.canEvaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, error: &error) {
+                let bioType = authenticationContext.biometryType
+                if bioType == .typeFaceID {
+                    touchIDButton.setImage(UIImage(named:"FaceIDLogo"), for: UIControlState.normal)
+                    touchIDButton.setImage(UIImage(named:"FaceIDLogo-Highlight"), for: UIControlState.highlighted)
+                }
             }
         }
 
