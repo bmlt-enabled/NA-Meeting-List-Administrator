@@ -23,7 +23,11 @@ The NA Meeting List Administrator app is [GPL V3](https://opensource.org/license
 
 CHANGELIST
 ----------
-***Version 1.1.1.2000* ** *- TBD*
+***Version 1.1.1.2001* ** *- October 26, 2017*
+
+- Added support for detecting FaceID in iPhone X.
+
+***Version 1.1.1.2000* ** *- October 18, 2017*
 
 - Added code to the meeting editor to avoid it resetting the map every time you move the marker.
 
