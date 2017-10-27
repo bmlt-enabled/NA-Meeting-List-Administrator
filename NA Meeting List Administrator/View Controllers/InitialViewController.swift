@@ -58,6 +58,8 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate 
     private var _editorTabBarController: EditorTabBarController! = nil
     /** This is the URL we will be accessing. */
     private var _url: String = ""
+    /** This will be the string we use to describe the biometric type. */
+    private var _bioType = "TOUCH-ID-STRING".localizedVariant
     
     /* ################################################################## */
     // MARK: Instance IB Properties
@@ -355,46 +357,62 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate 
      - parameter inError: Any error that may have occurred.
      */
     func biometricCallback(_ inSuccess: Bool, inError: Error?) {
-        DispatchQueue.main.async(execute: {
-            if(!inSuccess) {
-                let userCancel = LAError.Code.userCancel
-                let userCancelRaw = userCancel.rawValue
-                var errorCode = userCancelRaw   // We always err on the side of caution.
-                if let errorAsNSError = inError as NSError? {
-                    errorCode = errorAsNSError.code
-                }
+        if(!inSuccess) {
+            let userCancelRaw = LAError.Code.userCancel.rawValue
+            let systemCancelRaw = LAError.Code.systemCancel.rawValue
+            var errorCode = userCancelRaw   // We always err on the side of caution.
+            if let errorAsNSError = inError as NSError? {
+                #if DEBUG
+                    print(errorAsNSError)
+                #endif
                 
-                if userCancelRaw != errorCode {   // We ignore user canceled error.
-                    if LAError.Code.userFallback.rawValue == (inError! as NSError).code {   // Fallback means that we will use the password, so we nuke the stored password.
-                        let _ = AppStaticPrefs.prefs.updateUserForRootURI(self.enterURLTextItem.text!, inUser: self.loginIDTextField.text!)
-                        self.touchIDButton.isHidden = true
-                        // Wow. This is one hell of a kludge, but it works.
-                        // There's a "feature" in iOS, where the TouchID callback is triggered out of sync with the main queue (slightly before the next run cycle, I guess).
-                        // If we immediately set the field as first responder in this callback, then it gets selected, but the keyboard doesn't come up.
-                        // This 'orrible, 'orrible hack tells iOS to select the field after the handler for this TouchID has had time to wrap up.
-                        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + DispatchTimeInterval.milliseconds(10)) { self.passwordTextField.becomeFirstResponder() }
-                    } else {
-                        var description: String! = nil
-                        if let temp = inError?.localizedDescription {
-                            description = temp
-                        }
-                        
-                        if (nil == description) || (description?.isEmpty)! {
-                            description = "UNABLE-TO-LOGIN-ERROR"
-                        }
-                        
-                        MainAppDelegate.displayAlert("UNABLE-TO-LOGIN-ERROR-TITLE", inMessage: description!)
+                errorCode = errorAsNSError.code
+            }
+            
+            if (userCancelRaw != errorCode) && (systemCancelRaw != errorCode) {   // We ignore user/system canceled error.
+                if LAError.Code.userFallback.rawValue == (inError! as NSError).code {   // Fallback means that we will use the password, so we nuke the stored password.
+                    let _ = AppStaticPrefs.prefs.updateUserForRootURI(self.enterURLTextItem.text!, inUser: self.loginIDTextField.text!)
+                    self.touchIDButton.isHidden = true
+                    // Wow. This is one hell of a kludge, but it works.
+                    // There's a "feature" in iOS, where the TouchID callback is triggered out of sync with the main queue (slightly before the next run cycle, I guess).
+                    // If we immediately set the field as first responder in this callback, then it gets selected, but the keyboard doesn't come up.
+                    // This 'orrible, 'orrible hack tells iOS to select the field after the handler for this TouchID has had time to wrap up.
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + DispatchTimeInterval.milliseconds(10)) { self.passwordTextField.becomeFirstResponder() }
+                } else {
+                    var header: String = "UNABLE-TO-LOGIN-ERROR-TITLE-FORMAT".localizedVariant
+                    var description: String! = nil
+                    
+                    if let temp = inError?.localizedDescription {
+                        description = temp
                     }
+                    
+                    if (nil == description) || (description?.isEmpty)! {
+                        description = "UNABLE-TO-LOGIN-ERROR-FORMAT".localizedVariant
+                    }
+                    
+                    header = String(format: header, self._bioType)
+                    description = String(format: description, self._bioType)
+
+                    MainAppDelegate.displayAlert(header, inMessage: description!)
                 }
-            } else {
+            }
+        } else {
+            DispatchQueue.main.async {
                 self.passwordTextField.text = AppStaticPrefs.prefs.getStoredPasswordForUser(self.enterURLTextItem.text!, inUser: self.loginIDTextField.text!)
+
                 if !(self.passwordTextField.text?.isEmpty)! {
                     self.loginButtonHit(self.loginButton)
                 } else {
-                    MainAppDelegate.displayAlert("UNABLE-TO-LOGIN-ERROR-TITLE", inMessage: "UNABLE-TO-LOGIN-ERROR")
+                    var header: String = "UNABLE-TO-LOGIN-ERROR-TITLE-FORMAT".localizedVariant
+                    var description = "UNABLE-TO-LOGIN-ERROR-FORMAT".localizedVariant
+                    
+                    header = String(format: header, self._bioType)
+                    description = String(format: description, self._bioType)
+
+                    MainAppDelegate.displayAlert(header, inMessage: description)
                 }
             }
-        })
+        }
     }
 
     /* ################################################################## */
@@ -503,6 +521,7 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate 
             if authenticationContext.canEvaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, error: &error) {
                 let bioType = authenticationContext.biometryType
                 if bioType == .typeFaceID {
+                    self._bioType = "FACE-ID-STRING".localizedVariant
                     touchIDButton.setImage(UIImage(named:"FaceIDLogo"), for: UIControlState.normal)
                     touchIDButton.setImage(UIImage(named:"FaceIDLogo-Highlight"), for: UIControlState.highlighted)
                 }

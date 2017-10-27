@@ -104,7 +104,9 @@ class MainAppDelegate: UIResponder, UIApplicationDelegate, BMLTiOSLibDelegate {
             
             alertController.addAction(okAction)
             
-            presentedBy?.present(alertController, animated: true, completion: nil)
+            DispatchQueue.main.async {
+                presentedBy?.present(alertController, animated: true, completion: nil)
+            }
         }
     }
     

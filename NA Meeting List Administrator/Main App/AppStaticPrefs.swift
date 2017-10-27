@@ -33,6 +33,14 @@ import BMLTiOSLib
 extension String {
     /* ################################################################## */
     /**
+     This makes it easy to use localized strings.
+     */
+    var localizedVariant: String {
+        return NSLocalizedString(self, comment: "")
+    }
+
+    /* ################################################################## */
+    /**
      This tests a string to see if a given substring is present at the start.
      
      - parameter inSubstring: The substring to test.

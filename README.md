@@ -23,6 +23,11 @@ The NA Meeting List Administrator app is [GPL V3](https://opensource.org/license
 
 CHANGELIST
 ----------
+***Version 1.1.1.2002* ** *- October 27, 2017*
+
+- Tweaked the colors on the TouchID and FaceID buttons.
+- Tweaked the display text on the error messages for biometric fail.
+
 ***Version 1.1.1.2001* ** *- October 26, 2017*
 
 - Added support for detecting FaceID in iPhone X.

@@ -42,8 +42,10 @@
 "BAD-URI-ERROR-TEXT"                                                                            =   "The URL entered does not point to a valid Root Server.";
 "The operation couldn’t be completed. (BMLTiOSLibErrorDomains-Permission-Error error 201000.)"  =   "The login ID or password was not recognized by the server.";
 "LOCAL-TOUCHID-REASON-FORMAT"                                                                   =   "Automatically log \"%@\" into the server.";
-"UNABLE-TO-LOGIN-ERROR-TITLE"                                                                   =   "Biometric ID Error";
-"UNABLE-TO-LOGIN-ERROR"                                                                         =   "Biometric ID was not able to log into the server.";
+"TOUCH-ID-STRING"                                                                               =   "Touch";
+"FACE-ID-STRING"                                                                                =   "Face";
+"UNABLE-TO-LOGIN-ERROR-TITLE-FORMAT"                                                            =   "%@ ID Error";
+"UNABLE-TO-LOGIN-ERROR-FORMAT"                                                                  =   "%@ ID was not able to log into the server.";
 "SERVICE-BODY-BUTTON"                                                                           =   "Service Bodies";
 "EDITOR-BUTTON"                                                                                 =   "Edit";
 "MIDNIGHT"                                                                                      =   "Midnight";
@@ -58,6 +60,10 @@
 "MEETINGS-TAB-BAR-NAME"                                                                         =   "Current Meetings";
 "DELETED-MEETINGS-TAB-BAR-NAME"                                                                 =   "Deleted Meetings";
 
+"DELETE-HEADER-1"                                                                               =   "Are You Sure?";
+"DELETE-HEADER-2"                                                                               =   "Nuke From Orbit.";
+"DELETE-HEADER-3"                                                                               =   "Belay That Order!";
+"DELETE-HEADER-4"                                                                               =   "Do you want to lose the changes you made to this meeting?";
 "DELETE-HEADER"                                                                                 =   "Do You Want to Delete This Meeting?";
 "DELETE-MESSAGE-FORMAT"                                                                         =   "The Meeting \"%@\" will be deleted. Are you sure that you want to delete it?";
 "DELETE-OK-BUTTON"                                                                              =   "Delete This Meeting";
