@@ -10,7 +10,6 @@
 		77140E901E37D3E1008BBB12 /* FXKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 77140E8F1E37D3E1008BBB12 /* FXKeychain.m */; };
 		77159BDA1E68B0E6002239C4 /* HistoryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77159BD91E68B0E6002239C4 /* HistoryListViewController.swift */; };
 		7746B14A1E59FA5800030B66 /* MapMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7746B1491E59FA5800030B66 /* MapMarker.swift */; };
-		77587B1B1F3C6CFE00FFB098 /* BMLTiOSLib.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 77A099B61E379DAB0066F6A2 /* BMLTiOSLib.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		777178141E454AB30027F8E4 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777178131E454AB30027F8E4 /* SettingsViewController.swift */; };
 		777178181E454C0D0027F8E4 /* SelectServiceBodiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777178171E454C0D0027F8E4 /* SelectServiceBodiesViewController.swift */; };
 		77758E6A1E631EC3009904B8 /* CreateSingleMeetingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77758E691E631EC3009904B8 /* CreateSingleMeetingViewController.swift */; };
@@ -25,10 +24,11 @@
 		779BE3BF1E37D5FA00350D11 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 779BE3B81E37D5FA00350D11 /* Main.storyboard */; };
 		77B31A7E1E49369D0047F655 /* ThreeStateCheckbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B31A7D1E49369D0047F655 /* ThreeStateCheckbox.swift */; };
 		77B50A681E381E31004019B8 /* AppStaticPrefs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B50A671E381E31004019B8 /* AppStaticPrefs.swift */; };
-		77B53DCC1F3C6BA1001DF2E2 /* BMLTiOSLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77A099B61E379DAB0066F6A2 /* BMLTiOSLib.framework */; };
 		77B7D1221E3AA0A80031FF6B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 77B7D1201E3AA0A80031FF6B /* Localizable.strings */; };
 		77D92ED71E4B50CC009F02B2 /* MeetingEditorBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D92ED61E4B50CC009F02B2 /* MeetingEditorBaseViewController.swift */; };
 		77D92EDB1E4B5146009F02B2 /* EditSingleMeetingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D92EDA1E4B5146009F02B2 /* EditSingleMeetingViewController.swift */; };
+		77F5E7431FA4DC1300F962FD /* BMLTiOSLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77A099B61E379DAB0066F6A2 /* BMLTiOSLib.framework */; };
+		77F5E7441FA4DC1300F962FD /* BMLTiOSLib.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 77A099B61E379DAB0066F6A2 /* BMLTiOSLib.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,17 +53,32 @@
 			remoteGlobalIDString = 77368DD11DF846B20066C78E;
 			remoteInfo = "BMLTiOSLib  Framework Tester";
 		};
+		77B1FC511FA4AF6400A1BFD1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 77A099AF1E379DAB0066F6A2 /* BMLTiOSLib.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 77368DDA1DF849350066C78E;
+			remoteInfo = BMLTiOSLib;
+		};
+		77F5E7451FA4DC1300F962FD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 77A099AF1E379DAB0066F6A2 /* BMLTiOSLib.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 77368DDA1DF849350066C78E;
+			remoteInfo = BMLTiOSLib;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		77587B1A1F3C6CF100FFB098 /* CopyFiles */ = {
+		77F5E7471FA4DC1300F962FD /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				77587B1B1F3C6CFE00FFB098 /* BMLTiOSLib.framework in CopyFiles */,
+				77F5E7441FA4DC1300F962FD /* BMLTiOSLib.framework in Embed Frameworks */,
 			);
+			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -106,7 +121,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				77B53DCC1F3C6BA1001DF2E2 /* BMLTiOSLib.framework in Frameworks */,
+				77F5E7431FA4DC1300F962FD /* BMLTiOSLib.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -153,6 +168,13 @@
 			name = FXKeychain;
 			sourceTree = "<group>";
 		};
+		772872F91FA3D40000ECADFC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		77A099B01E379DAB0066F6A2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -196,6 +218,7 @@
 				770E5E941E3795E000CBE834 /* Resources */,
 				77B5410F1E42609E00A0A880 /* Extras */,
 				77DC3EA71E378B6300BF24B7 /* Products */,
+				772872F91FA3D40000ECADFC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -229,11 +252,13 @@
 				77DC3EA21E378B6100BF24B7 /* Sources */,
 				77DC3EA31E378B6100BF24B7 /* Frameworks */,
 				77DC3EA41E378B6100BF24B7 /* Resources */,
-				77587B1A1F3C6CF100FFB098 /* CopyFiles */,
+				77F5E7471FA4DC1300F962FD /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				77B1FC521FA4AF6400A1BFD1 /* PBXTargetDependency */,
+				77F5E7461FA4DC1300F962FD /* PBXTargetDependency */,
 			);
 			name = "NA Meeting List Administrator";
 			productName = "NA Meeting List Administrator";
@@ -255,7 +280,10 @@
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Keychain = {
-								enabled = 1;
+								enabled = 0;
+							};
+							com.apple.Maps.iOS = {
+								enabled = 0;
 							};
 						};
 					};
@@ -348,6 +376,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		77B1FC521FA4AF6400A1BFD1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BMLTiOSLib;
+			targetProxy = 77B1FC511FA4AF6400A1BFD1 /* PBXContainerItemProxy */;
+		};
+		77F5E7461FA4DC1300F962FD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BMLTiOSLib;
+			targetProxy = 77F5E7451FA4DC1300F962FD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		779BE3B41E37D5FA00350D11 /* Default-568h@2x.png */ = {
@@ -506,8 +547,11 @@
 		77DC3EB91E378B6300BF24B7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "NA Meeting List Administrator/Resources and Extras/NA Meeting List Administrator.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P53V4JS928;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_WARN_SHADOW = YES;
@@ -515,6 +559,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "net.magshare.bmlt.NA-Meeting-List-Administrator";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "${PROJECT_DIR}/${TARGET_NAME}/Resources and Extras/${TARGET_NAME}-Bridging-Header.h";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
@@ -526,8 +571,11 @@
 		77DC3EBA1E378B6300BF24B7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "NA Meeting List Administrator/Resources and Extras/NA Meeting List Administrator.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = P53V4JS928;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_WARN_SHADOW = YES;
@@ -535,6 +583,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "net.magshare.bmlt.NA-Meeting-List-Administrator";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_INSTALL_OBJC_HEADER = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "${PROJECT_DIR}/${TARGET_NAME}/Resources and Extras/${TARGET_NAME}-Bridging-Header.h";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
