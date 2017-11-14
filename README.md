@@ -23,6 +23,12 @@ The NA Meeting List Administrator app is [GPL V3](https://opensource.org/license
 
 CHANGELIST
 ----------
+***Version 1.2.0.2000* ** *- TBD*
+
+- Refactored the project to use the new CocoaPods-structured BMLTiOSLib. This is a big change, so I'm bumping the version, and restarting the beta-testing.
+- Added the "Extra Info" field to the address section. The fact it was missing was a bug on my part.
+- The comments field in the editor now has a white background. The clear background caused user confusion.
+
 ***Version 1.1.1.2002* ** *- October 27, 2017*
 
 - Tweaked the colors on the TouchID and FaceID buttons.
