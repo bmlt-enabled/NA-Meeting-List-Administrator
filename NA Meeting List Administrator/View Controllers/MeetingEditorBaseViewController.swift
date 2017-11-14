@@ -68,7 +68,7 @@ class MeetingEditorBaseViewController : EditorViewControllerBaseClass, UITableVi
                                                          "editor-row-3": 60,
                                                          "editor-row-4": 100,
                                                          "editor-row-5": 100,
-                                                         "editor-row-6": 619,
+                                                         "editor-row-6": 693,
                                                          "editor-row-7": 0,
                                                          "editor-row-8": 210,
                                                          "editor-row-9": 100,
@@ -983,6 +983,17 @@ class AddressEditorTableViewCell: MeetingEditorViewCell {
     }
     
     /* ################################################################## */
+    /**
+     Respond to text changing in the text field.
+     
+     - parameter sender: The IB object that initiated this change.
+     */
+    @IBAction func extraInfoTextChanged(_ sender: UITextField) {
+        self.meetingObject.locationInfo = sender.text!
+        self.owner.updateEditorDisplay(self)
+    }
+
+    /* ################################################################## */
     // MARK: Overridden Base Class Methods
     /* ################################################################## */
     /**
@@ -1023,6 +1034,10 @@ class AddressEditorTableViewCell: MeetingEditorViewCell {
         self.nationLabel.text = NSLocalizedString(self.nationLabel.text!, comment: "")
         self.nationTextField.placeholder = NSLocalizedString(self.nationTextField.placeholder!, comment: "")
         self.nationTextField.text = self.meetingObject.locationNation
+        
+        self.extraInfoLabel.text = NSLocalizedString(self.extraInfoLabel.text!, comment: "")
+        self.extraInfoTextField.placeholder = NSLocalizedString(self.extraInfoTextField.placeholder!, comment: "")
+        self.extraInfoTextField.text = self.meetingObject.locationInfo
     }
 }
 

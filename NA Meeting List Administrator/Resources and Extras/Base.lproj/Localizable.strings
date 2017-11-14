@@ -114,6 +114,9 @@
 "NATION-LABEL"                                                                                  =   "Nation:";
 "NATION-PLACEHOLDER"                                                                            =   "Enter A Nation (Use Abbreviation)";
 
+"LOCATION-INFO-LABEL"                                                                           =   "Extra Info:";
+"LOCATION-INFO-PLACEHOLDER"                                                                     =   "Enter Extra Location Info";
+
 "LONGITUDE-LABEL"                                                                               =   "Longitude:";
 "LONGITUDE-PLACEHOLDER"                                                                         =   "Enter The Meeting Location Longitude.";
 
