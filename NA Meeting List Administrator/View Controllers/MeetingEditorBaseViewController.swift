@@ -149,6 +149,7 @@ class MeetingEditorBaseViewController : EditorViewControllerBaseClass, UITableVi
             self._locationManager = nil
         }
     }
+    
     /* ################################################################## */
     /**
      Called as the view is about to appear.
@@ -193,6 +194,8 @@ class MeetingEditorBaseViewController : EditorViewControllerBaseClass, UITableVi
                     (self.view as! EditorViewBaseClass).bottomColor = self.unpublishedBottomColor
                 }
                 
+                self.view.setNeedsLayout()
+
                 self.navigationController?.navigationBar.barTintColor = (self.view as! EditorViewBaseClass).topColor
                 self.tabBarController?.tabBar.barTintColor = (self.view as! EditorViewBaseClass).bottomColor
                 
