@@ -150,7 +150,7 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
     private func _sortThroughWhereAmI(_ inMeetings: [BMLTiOSLibMeetingNode]) {
         self._whereAmIInProgress = false
         // After we fetch all the results, we then sort through them, and remove ones that have already passed today (We leave tomorrow alone).
-        var finalResult: BMLTiOSLibMeetingNode! = nil
+        var finalResult: BMLTiOSLibEditableMeetingNode! = nil
         let calendar = NSCalendar.current
         let today = calendar.component(.weekday, from: Date())
         let hour = calendar.component(.hour, from: Date())
@@ -160,15 +160,17 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
         for meeting in inMeetings {
             let startTimeInMinutes = (meeting.startTime.minute! + (meeting.startTime.hour! * 60)) - AppStaticPrefs.prefs.gracePeriodInMinutes
             let endTimeInMinutes = startTimeInMinutes + meeting.durationInMinutes + AppStaticPrefs.prefs.gracePeriodInMinutes
-            if (meeting.weekdayIndex == today) && (nowInMinutes >= startTimeInMinutes) && (nowInMinutes <= endTimeInMinutes) {
-                finalResult = meeting
-                break
+            if let meetingIsEditable = meeting as? BMLTiOSLibEditableMeetingNode {
+                if (meeting.weekdayIndex == today) && (nowInMinutes >= startTimeInMinutes) && (nowInMinutes <= endTimeInMinutes) {
+                    finalResult = meetingIsEditable
+                    break
+                }
             }
         }
         
         if nil != finalResult { // We got ourselves a meeting.
             self.searchDone = false // Make sure we update again to refresh the meeting list.
-            self.scrollToExposeMeeting(finalResult as! BMLTiOSLibEditableMeetingNode)
+            self.scrollToExposeMeeting(finalResult)
             self.editSingleMeeting(finalResult)
         } else { // We ain't got ourselves a meeting.
             MainAppDelegate.displayAlert("NO-MEETING-HEADER", inMessage: "NO-MEETING-MESSAGE", presentedBy: self)

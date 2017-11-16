@@ -23,6 +23,10 @@ The NA Meeting List Administrator app is [GPL V3](https://opensource.org/license
 
 CHANGELIST
 ----------
+***Version 1.2.0.2001* ** *- November 16, 2017*
+
+- Fixed a crash when a meeting is found for "What Meeting am I at?"
+
 ***Version 1.2.0.2000* ** *- November 15, 2017*
 
 - Refactored the project to use the new CocoaPods-structured BMLTiOSLib. This is a big change, so I'm bumping the version, and restarting the beta-testing.
