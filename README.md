@@ -23,6 +23,14 @@ The NA Meeting List Administrator app is [GPL V3](https://opensource.org/license
 
 CHANGELIST
 ----------
+***Version 1.2.1.3000* ** *- November 23, 2017*
+
+- Fixed a crash when a bad URI is provided. This is going straight to the App Store. It was a VERY safe fix.
+
+***Version 1.2.0.3000* ** *- November 18, 2017*
+
+ - App Store Release.
+ 
 ***Version 1.2.0.2001* ** *- November 16, 2017*
 
 - Fixed a crash when a meeting is found for "What Meeting am I at?"
