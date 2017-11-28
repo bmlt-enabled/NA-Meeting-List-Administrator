@@ -23,6 +23,10 @@ The NA Meeting List Administrator app is [GPL V3](https://opensource.org/license
 
 CHANGELIST
 ----------
+***Version 1.2.2.2000* ** *- TBD*
+
+- The map was still resetting its span when the user finishes dragging the marker. That should no longer happen.
+
 ***Version 1.2.1.3000* ** *- November 23, 2017*
 
 - Fixed a crash when a bad URI is provided. This is going straight to the App Store. It was a VERY safe fix.

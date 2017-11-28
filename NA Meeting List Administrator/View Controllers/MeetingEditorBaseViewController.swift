@@ -225,7 +225,6 @@ class MeetingEditorBaseViewController : EditorViewControllerBaseClass, UITableVi
     func updateCoordinates(_ inCoords: CLLocationCoordinate2D) {
         if nil != self._longLatInstance {
             self._longLatInstance.coordinate = inCoords
-            self.updateEditorDisplay()
         }
     }
     
@@ -1179,10 +1178,8 @@ class MapTableViewCell: MeetingEditorViewCell, MKMapViewDelegate {
         case .none:
             if .dragging == oldState {  // If this is a drag ending, we extract the new coordinates, and change the meeting object.
                 self.meetingObject.locationCoords = view.annotation?.coordinate
-                let span = self.mapView.region.span
-                let newRegion: MKCoordinateRegion = MKCoordinateRegion(center: self.meetingObject.locationCoords, span: span)
-                self.mapView.setRegion(newRegion, animated: true)
-                self.owner.updateCoordinates((view.annotation?.coordinate)!)
+                self.mapView.setCenter(self.meetingObject.locationCoords, animated: true)
+                self.owner.updateCoordinates(self.meetingObject.locationCoords)
             }
             
         default:
