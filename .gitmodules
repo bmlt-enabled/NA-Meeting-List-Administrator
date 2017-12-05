@@ -1,6 +1,3 @@
 [submodule "FXKeychain"]
 	path = FXKeychain
 	url = https://github.com/nicklockwood/FXKeychain.git
-[submodule "BMLTiOSLib"]
-	path = BMLTiOSLib
-	url = git@github.com:LittleGreenViper/BMLTiOSLib.git

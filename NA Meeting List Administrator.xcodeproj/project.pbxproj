@@ -7,17 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		32CA98F6869280F0A9C844DF /* Pods_NA_Meeting_List_Administrator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49C408E1F55DABBC21670142 /* Pods_NA_Meeting_List_Administrator.framework */; };
 		77140E901E37D3E1008BBB12 /* FXKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 77140E8F1E37D3E1008BBB12 /* FXKeychain.m */; };
 		77159BDA1E68B0E6002239C4 /* HistoryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77159BD91E68B0E6002239C4 /* HistoryListViewController.swift */; };
 		7746B14A1E59FA5800030B66 /* MapMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7746B1491E59FA5800030B66 /* MapMarker.swift */; };
 		777178141E454AB30027F8E4 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777178131E454AB30027F8E4 /* SettingsViewController.swift */; };
 		777178181E454C0D0027F8E4 /* SelectServiceBodiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777178171E454C0D0027F8E4 /* SelectServiceBodiesViewController.swift */; };
 		77758E6A1E631EC3009904B8 /* CreateSingleMeetingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77758E691E631EC3009904B8 /* CreateSingleMeetingViewController.swift */; };
-		777F22FB1FBB8274007B5277 /* BMLTiOSLibCommunicationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777F22F81FBB8274007B5277 /* BMLTiOSLibCommunicationHandler.swift */; };
-		777F22FC1FBB8274007B5277 /* BMLTCommunicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777F22F91FBB8274007B5277 /* BMLTCommunicator.swift */; };
-		777F22FD1FBB8274007B5277 /* BMLTiOSLib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777F22FA1FBB8274007B5277 /* BMLTiOSLib.swift */; };
-		777F23011FBB833E007B5277 /* BMLTiOSLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 777F22EB1FBB8232007B5277 /* BMLTiOSLib.framework */; };
-		777F23021FBB8346007B5277 /* BMLTiOSLib.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 777F22EB1FBB8232007B5277 /* BMLTiOSLib.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7784D3DC1E454D0300953CA0 /* ListEditableMeetingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7784D3DB1E454D0300953CA0 /* ListEditableMeetingsViewController.swift */; };
 		7784D3E01E454D4900953CA0 /* EditorTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7784D3DF1E454D4900953CA0 /* EditorTabBarController.swift */; };
 		779462241E60C77900EC133D /* DeletedMeetingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779462231E60C77900EC133D /* DeletedMeetingsViewController.swift */; };
@@ -34,31 +30,8 @@
 		77D92EDB1E4B5146009F02B2 /* EditSingleMeetingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D92EDA1E4B5146009F02B2 /* EditSingleMeetingViewController.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		777F22F01FBB8232007B5277 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 77DC3E9E1E378B6100BF24B7 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 777F22EA1FBB8232007B5277;
-			remoteInfo = BMLTiOSLib;
-		};
-/* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		77F5E7471FA4DC1300F962FD /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				777F23021FBB8346007B5277 /* BMLTiOSLib.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
+		49C408E1F55DABBC21670142 /* Pods_NA_Meeting_List_Administrator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NA_Meeting_List_Administrator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		770E5E931E37937400CBE834 /* LICENSE.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		77140E8E1E37D3E1008BBB12 /* FXKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FXKeychain.h; path = FXKeychain/FXKeychain/FXKeychain.h; sourceTree = SOURCE_ROOT; };
 		77140E8F1E37D3E1008BBB12 /* FXKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FXKeychain.m; path = FXKeychain/FXKeychain/FXKeychain.m; sourceTree = SOURCE_ROOT; };
@@ -67,12 +40,6 @@
 		777178131E454AB30027F8E4 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsViewController.swift; path = "View Controllers/SettingsViewController.swift"; sourceTree = "<group>"; };
 		777178171E454C0D0027F8E4 /* SelectServiceBodiesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectServiceBodiesViewController.swift; path = "View Controllers/SelectServiceBodiesViewController.swift"; sourceTree = "<group>"; };
 		77758E691E631EC3009904B8 /* CreateSingleMeetingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateSingleMeetingViewController.swift; path = "View Controllers/CreateSingleMeetingViewController.swift"; sourceTree = "<group>"; };
-		777F22EB1FBB8232007B5277 /* BMLTiOSLib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BMLTiOSLib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		777F22ED1FBB8232007B5277 /* BMLTiOSLib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BMLTiOSLib.h; sourceTree = "<group>"; };
-		777F22EE1FBB8232007B5277 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		777F22F81FBB8274007B5277 /* BMLTiOSLibCommunicationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BMLTiOSLibCommunicationHandler.swift; path = BMLTiOSLib/Classes/BMLTiOSLibCommunicationHandler.swift; sourceTree = "<group>"; };
-		777F22F91FBB8274007B5277 /* BMLTCommunicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BMLTCommunicator.swift; path = BMLTiOSLib/Classes/BMLTCommunicator.swift; sourceTree = "<group>"; };
-		777F22FA1FBB8274007B5277 /* BMLTiOSLib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BMLTiOSLib.swift; path = BMLTiOSLib/Classes/BMLTiOSLib.swift; sourceTree = "<group>"; };
 		7784D3DB1E454D0300953CA0 /* ListEditableMeetingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListEditableMeetingsViewController.swift; path = "View Controllers/ListEditableMeetingsViewController.swift"; sourceTree = "<group>"; };
 		7784D3DF1E454D4900953CA0 /* EditorTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditorTabBarController.swift; path = "View Controllers/EditorTabBarController.swift"; sourceTree = "<group>"; };
 		779462231E60C77900EC133D /* DeletedMeetingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DeletedMeetingsViewController.swift; path = "View Controllers/DeletedMeetingsViewController.swift"; sourceTree = "<group>"; };
@@ -94,6 +61,8 @@
 		77D92EDA1E4B5146009F02B2 /* EditSingleMeetingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditSingleMeetingViewController.swift; path = "View Controllers/EditSingleMeetingViewController.swift"; sourceTree = "<group>"; };
 		77DC3EA61E378B6300BF24B7 /* NA Meeting List Administrator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NA Meeting List Administrator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		77DC3EBB1E378C4F00BF24B7 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		E9AB63B48A811FFBDF66DDCA /* Pods-NA Meeting List Administrator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NA Meeting List Administrator.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NA Meeting List Administrator/Pods-NA Meeting List Administrator.debug.xcconfig"; sourceTree = "<group>"; };
+		F8D92508646D82EB06D35A16 /* Pods-NA Meeting List Administrator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NA Meeting List Administrator.release.xcconfig"; path = "Pods/Target Support Files/Pods-NA Meeting List Administrator/Pods-NA Meeting List Administrator.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,13 +70,22 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				777F23011FBB833E007B5277 /* BMLTiOSLib.framework in Frameworks */,
+				32CA98F6869280F0A9C844DF /* Pods_NA_Meeting_List_Administrator.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0937A7DAF1CFB55EB9B999B0 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E9AB63B48A811FFBDF66DDCA /* Pods-NA Meeting List Administrator.debug.xcconfig */,
+				F8D92508646D82EB06D35A16 /* Pods-NA Meeting List Administrator.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		770E5E941E3795E000CBE834 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -148,21 +126,10 @@
 			name = FXKeychain;
 			sourceTree = "<group>";
 		};
-		777F22EC1FBB8232007B5277 /* BMLTiOSLib */ = {
-			isa = PBXGroup;
-			children = (
-				777F22F91FBB8274007B5277 /* BMLTCommunicator.swift */,
-				777F22FA1FBB8274007B5277 /* BMLTiOSLib.swift */,
-				777F22F81FBB8274007B5277 /* BMLTiOSLibCommunicationHandler.swift */,
-				777F22ED1FBB8232007B5277 /* BMLTiOSLib.h */,
-				777F22EE1FBB8232007B5277 /* Info.plist */,
-			);
-			path = BMLTiOSLib;
-			sourceTree = "<group>";
-		};
 		777F22FE1FBB830F007B5277 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				49C408E1F55DABBC21670142 /* Pods_NA_Meeting_List_Administrator.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -198,9 +165,9 @@
 				770E5E951E3795F800CBE834 /* View Controllers */,
 				770E5E941E3795E000CBE834 /* Resources */,
 				77B5410F1E42609E00A0A880 /* Extras */,
-				777F22EC1FBB8232007B5277 /* BMLTiOSLib */,
 				77DC3EA71E378B6300BF24B7 /* Products */,
 				777F22FE1FBB830F007B5277 /* Frameworks */,
+				0937A7DAF1CFB55EB9B999B0 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -208,7 +175,6 @@
 			isa = PBXGroup;
 			children = (
 				77DC3EA61E378B6300BF24B7 /* NA Meeting List Administrator.app */,
-				777F22EB1FBB8232007B5277 /* BMLTiOSLib.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -228,34 +194,20 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		777F22EA1FBB8232007B5277 /* BMLTiOSLib */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 777F22F41FBB8232007B5277 /* Build configuration list for PBXNativeTarget "BMLTiOSLib" */;
-			buildPhases = (
-				777F22E61FBB8232007B5277 /* Sources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = BMLTiOSLib;
-			productName = BMLTiOSLib;
-			productReference = 777F22EB1FBB8232007B5277 /* BMLTiOSLib.framework */;
-			productType = "com.apple.product-type.framework";
-		};
 		77DC3EA51E378B6100BF24B7 /* NA Meeting List Administrator */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 77DC3EB81E378B6300BF24B7 /* Build configuration list for PBXNativeTarget "NA Meeting List Administrator" */;
 			buildPhases = (
+				FF18EE1AE911C8C795CB97AB /* [CP] Check Pods Manifest.lock */,
 				77DC3EA21E378B6100BF24B7 /* Sources */,
 				77DC3EA31E378B6100BF24B7 /* Frameworks */,
 				77DC3EA41E378B6100BF24B7 /* Resources */,
-				77F5E7471FA4DC1300F962FD /* Embed Frameworks */,
+				0F4A1EF87C1F428A7281E7C7 /* [CP] Embed Pods Frameworks */,
+				FB3965A99CBCC4CAF5FFD498 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				777F22F11FBB8232007B5277 /* PBXTargetDependency */,
 			);
 			name = "NA Meeting List Administrator";
 			productName = "NA Meeting List Administrator";
@@ -272,11 +224,6 @@
 				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = MAGSHARE;
 				TargetAttributes = {
-					777F22EA1FBB8232007B5277 = {
-						CreatedOnToolsVersion = 9.1;
-						LastSwiftMigration = 0910;
-						ProvisioningStyle = Automatic;
-					};
 					77DC3EA51E378B6100BF24B7 = {
 						CreatedOnToolsVersion = 8.2.1;
 						ProvisioningStyle = Automatic;
@@ -304,7 +251,6 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				777F22EA1FBB8232007B5277 /* BMLTiOSLib */,
 				77DC3EA51E378B6100BF24B7 /* NA Meeting List Administrator */,
 			);
 		};
@@ -325,17 +271,61 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXSourcesBuildPhase section */
-		777F22E61FBB8232007B5277 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
+/* Begin PBXShellScriptBuildPhase section */
+		0F4A1EF87C1F428A7281E7C7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				777F22FB1FBB8274007B5277 /* BMLTiOSLibCommunicationHandler.swift in Sources */,
-				777F22FC1FBB8274007B5277 /* BMLTCommunicator.swift in Sources */,
-				777F22FD1FBB8274007B5277 /* BMLTiOSLib.swift in Sources */,
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-NA Meeting List Administrator/Pods-NA Meeting List Administrator-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/BMLTiOSLib/BMLTiOSLib.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BMLTiOSLib.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NA Meeting List Administrator/Pods-NA Meeting List Administrator-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
+		FB3965A99CBCC4CAF5FFD498 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NA Meeting List Administrator/Pods-NA Meeting List Administrator-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FF18EE1AE911C8C795CB97AB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-NA Meeting List Administrator-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
 		77DC3EA21E378B6100BF24B7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -359,14 +349,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		777F22F11FBB8232007B5277 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 777F22EA1FBB8232007B5277 /* BMLTiOSLib */;
-			targetProxy = 777F22F01FBB8232007B5277 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		779BE3B41E37D5FA00350D11 /* Default-568h@2x.png */ = {
@@ -407,69 +389,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		777F22F51FBB8232007B5277 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = P53V4JS928;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = BMLTiOSLib/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = net.magshare.bmlt.BMLTiOSLib;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		777F22F61FBB8232007B5277 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = P53V4JS928;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = BMLTiOSLib/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = net.magshare.bmlt.BMLTiOSLib;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
 		77DC3EB61E378B6300BF24B7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -587,8 +506,8 @@
 		};
 		77DC3EB91E378B6300BF24B7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E9AB63B48A811FFBDF66DDCA /* Pods-NA Meeting List Administrator.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -611,8 +530,8 @@
 		};
 		77DC3EBA1E378B6300BF24B7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F8D92508646D82EB06D35A16 /* Pods-NA Meeting List Administrator.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -636,15 +555,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		777F22F41FBB8232007B5277 /* Build configuration list for PBXNativeTarget "BMLTiOSLib" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				777F22F51FBB8232007B5277 /* Debug */,
-				777F22F61FBB8232007B5277 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		77DC3EA11E378B6100BF24B7 /* Build configuration list for PBXProject "NA Meeting List Administrator" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
