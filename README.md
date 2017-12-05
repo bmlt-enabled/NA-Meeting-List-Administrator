@@ -23,7 +23,15 @@ The NA Meeting List Administrator app is [GPL V3](https://opensource.org/license
 
 CHANGELIST
 ----------
-***Version 1.2.2.2000* ** *- TBD*
+***Version 1.2.2.3002* ** *- December 5, 2017*
+
+- Tweaked for Xcode 3.2.
+
+***Version 1.2.2.3001* ** *- December 2, 2017*
+
+- This has minor format changes to fix a slight misalignment of the State and Nation text fields in the editor and new meeting screens.
+
+***Version 1.2.2.3000* ** *- November 30, 2017*
 
 - The map was still resetting its span when the user finishes dragging the marker. That should no longer happen.
 

@@ -520,7 +520,7 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate 
         if #available(iOS 11.0, *) {
             if authenticationContext.canEvaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, error: &error) {
                 let bioType = authenticationContext.biometryType
-                if bioType == .typeFaceID {
+                if bioType == .faceID {
                     self._bioType = "FACE-ID-STRING".localizedVariant
                     touchIDButton.setImage(UIImage(named:"FaceIDLogo"), for: UIControlState.normal)
                     touchIDButton.setImage(UIImage(named:"FaceIDLogo-Highlight"), for: UIControlState.highlighted)
