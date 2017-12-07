@@ -23,6 +23,10 @@ The NA Meeting List Administrator app is [GPL V3](https://opensource.org/license
 
 CHANGELIST
 ----------
+***Version 1.2.3.2001* ** *- December 7, 2017*
+
+- Apple's site wasn't updated to accept the new binaries, which forced me to wait a couple of days, and try again. This release has no change from .2000.
+
 ***Version 1.2.3.2000* ** *- December 5, 2017*
 
 - I decided to go "full pod" on this, and installed the CocoaPod completely (as opposed to simply including the submodule and building the files directly).
