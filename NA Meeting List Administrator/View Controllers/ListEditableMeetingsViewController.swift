@@ -188,7 +188,6 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
             }
             
             if nil != finalResult { // We got ourselves a meeting.
-                self.searchDone = false // Make sure we update again to refresh the meeting list.
                 self.scrollToExposeMeeting(finalResult)
                 self.editSingleMeeting(finalResult)
             } else { // We ain't got ourselves a meeting.
@@ -575,10 +574,7 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
      */
     func editSingleMeeting(_ inMeetingObject: BMLTiOSLibMeetingNode!) {
         if nil != inMeetingObject {
-            self.searchDone = true
-            DispatchQueue.main.async {
-                self.performSegue(withIdentifier: self._editSingleMeetingSegueID, sender: inMeetingObject)
-            }
+            self.performSegue(withIdentifier: self._editSingleMeetingSegueID, sender: inMeetingObject)
         }
     }
     

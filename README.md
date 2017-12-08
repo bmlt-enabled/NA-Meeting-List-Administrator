@@ -5,13 +5,27 @@ NA Meeting List Administrator is an iOS app for [the BMLT](https://bmlt.magshare
 
 This app is designed for BMLT Meeting List Administrators to execute routine meeting list administrative tasks on their iPhone or iPad.
 
+[Complete instructions are available on this Web page.](https://bmlt.magshare.net/satellites/bmlt-ios-apps/nameetinglistadministrator/)
+
 REQUIREMENTS
 ============
 The app requires that the iPhone or iPad have an active, persistent Internet connection.
+
 In order to use the "What Meeting Am I At?" functionality, the app will require a GPS signal, and permission to determine your location.
+
 The app itself requires iOS 10.0 or above, and administrative access to at leat one [BMLT Root Server](https://bmlt.magshare.net/installing-a-new-root-server/) Version 2.8.12 or above.
-It also requires the Root Server to be running SSL (HTTPS).
-The user must have at least one login to the Root Server that can administer meetings (Service Body Administrator level). Observers and Server Administrators cannot log in. Observers do not have sufficient privileges to use the app, and we exclude the Server Administrator for security reasons (also, it is improper to use the Server Administrator account for routine meeting list administration).
+
+It also requires the Root Server to be running SSL (HTTPS), and that the Root Server have [Semantic Administration](https://bmlt.magshare.net/semantic/semantic-administration/) enabled.
+
+If any of the above conditions are not met, the Root Server URL will be declared "invalid," and the app will refuse to connect to the Server.
+
+Once connected, the user must have a valid login to that Server. If using a modern iPhone or iPad (with Touch ID or Face ID), then biometric login will be available.
+
+The user must have at least one Service Body Administrator login to the Root Server with rights to edit meetings.
+
+Observers and Server Administrators cannot log in. Observers do not have sufficient privileges to use the app, and we exclude the Server Administrator for security reasons (also, it is improper to use the Server Administrator account for routine meeting list administration).
+
+Each login is limited to only those meetings/Service bodies for which they have editor rights. Meetings for which they don't have edit rights will not be accessible to, or displayed in, the app.
 
 LICENSE
 =======
@@ -19,6 +33,11 @@ The NA Meeting List Administrator app is [GPL V3](https://opensource.org/license
 
 CHANGELIST
 ----------
+***Version 1.2.3.2003* ** *- TBD*
+
+- Work to make the editor a bit more efficient.
+- Spruced up this README.
+
 ***Version 1.2.3.2002* ** *- December 8, 2017*
 
 - It looks like I may have figured out what was causing the occasional hangs after editing. We'll see...
