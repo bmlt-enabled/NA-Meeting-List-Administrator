@@ -313,9 +313,22 @@ class MainAppDelegate: UIResponder, UIApplicationDelegate, BMLTiOSLibDelegate {
      - parameter newMeetingAdded: Meeting object.
      */
     func bmltLibInstance(_ inLibInstance: BMLTiOSLib, newMeetingAdded: BMLTiOSLibEditableMeetingNode) {
-        self.initialViewController.updateNewMeeting(inMeetingObject: newMeetingAdded)
+        self.initialViewController.updateEdit(newMeetingAdded)
     }
     
+    /* ################################################################## */
+    /**
+     Called when a meeting has been edited.
+     
+     - parameter inLibInstance: the BMLTiOSLib instance.
+     - parameter adminMeetingChangeComplete: If successful, this will be the changes made to the meeting. nil, if failed.
+     */
+    func bmltLibInstance(_ inLibInstance: BMLTiOSLib, adminMeetingChangeComplete: BMLTiOSLibChangedMeeting!) {
+        if nil != adminMeetingChangeComplete {
+            self.initialViewController.updateEdit(nil)
+        }
+    }
+
     /* ################################################################## */
     /**
      Called when a meeting has been rolled back to a previous version.

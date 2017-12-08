@@ -3,10 +3,6 @@ DESCRIPTION
 
 NA Meeting List Administrator is an iOS app for [the BMLT](https://bmlt.magshare.net) that is an administrative expression of [the BMLTiOSLib Communication Framework](https://bmlt.magshare.net/specific-topics/bmltioslib/).
 
-It is very similar to [the BMLTAdmin iOS app](https://bmlt.magshare.net/satellites/ios-app/the-bmltadmin-app/). It has a few different behaviors (mostly as a nod to usability), but "under the hood," it is very different from the BMLTAdmin app.
-
-This app has been designed to eventually supercede the BMLTAdmin app. Since it requires HTTPS and Root Server 2.8.12 or above, it is being delivered as a separate app, and not as a new version of BMLTAdmin.
-
 This app is designed for BMLT Meeting List Administrators to execute routine meeting list administrative tasks on their iPhone or iPad.
 
 REQUIREMENTS
@@ -23,6 +19,10 @@ The NA Meeting List Administrator app is [GPL V3](https://opensource.org/license
 
 CHANGELIST
 ----------
+***Version 1.2.3.2002* ** *- December 8, 2017*
+
+- It looks like I may have figured out what was causing the occasional hangs after editing. We'll see...
+
 ***Version 1.2.3.2001* ** *- December 7, 2017*
 
 - Apple's site wasn't updated to accept the new binaries, which forced me to wait a couple of days, and try again. This release has no change from .2000.

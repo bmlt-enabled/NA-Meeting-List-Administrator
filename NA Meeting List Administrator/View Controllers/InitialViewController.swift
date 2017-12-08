@@ -636,6 +636,16 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate 
     
     /* ################################################################## */
     /**
+     This is called when a meeting edit or add is complete.
+     
+     - parameter inMeeting: The meeting that was edited or added. nil, if we want a general update.
+     */
+    func updateEdit(_ inMeeting: BMLTiOSLibMeetingNode!) {
+        self._editorTabBarController.updateEdit(inMeeting)
+    }
+
+    /* ################################################################## */
+    /**
      This is called when a change fetch is complete.
      */
     func updateChangeFetch() {

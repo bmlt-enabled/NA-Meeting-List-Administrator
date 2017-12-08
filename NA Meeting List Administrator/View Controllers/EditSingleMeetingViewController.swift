@@ -196,7 +196,6 @@ class EditSingleMeetingViewController : MeetingEditorBaseViewController {
      */
     func saveOKCallback(_ inAction: UIAlertAction) {
         self.meetingObject.saveChanges()
-        self.ownerController.searchDone = false
         let _ = self.navigationController?.popViewController(animated: true)
     }
     

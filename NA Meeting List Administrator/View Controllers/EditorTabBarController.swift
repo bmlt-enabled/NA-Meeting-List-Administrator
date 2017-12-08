@@ -108,6 +108,18 @@ class EditorTabBarController : UITabBarController, UITabBarControllerDelegate {
     
     /* ################################################################## */
     /**
+     This is called when a meeting edit or add is complete.
+     
+     - parameter inMeeting: The meeting that was edited or added. nil, if we want a general update.
+     */
+    func updateEdit(_ inMeeting: BMLTiOSLibMeetingNode!) {
+        if let listViewController = self.viewControllers?[TabIndexes.ListTab.rawValue] as? ListEditableMeetingsViewController {
+            listViewController.doSearch()
+        }
+    }
+
+    /* ################################################################## */
+    /**
      This is called after we successfully delete a meeting.
      We use this as a trigger to tell the deleted meetings tab it needs a reload.
      */
