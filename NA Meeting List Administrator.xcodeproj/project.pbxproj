@@ -32,7 +32,6 @@
 
 /* Begin PBXFileReference section */
 		49C408E1F55DABBC21670142 /* Pods_NA_Meeting_List_Administrator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NA_Meeting_List_Administrator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		770E5E931E37937400CBE834 /* LICENSE.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		77140E8E1E37D3E1008BBB12 /* FXKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FXKeychain.h; path = FXKeychain/FXKeychain/FXKeychain.h; sourceTree = SOURCE_ROOT; };
 		77140E8F1E37D3E1008BBB12 /* FXKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FXKeychain.m; path = FXKeychain/FXKeychain/FXKeychain.m; sourceTree = SOURCE_ROOT; };
 		77159BD91E68B0E6002239C4 /* HistoryListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HistoryListViewController.swift; path = "View Controllers/HistoryListViewController.swift"; sourceTree = "<group>"; };
@@ -60,7 +59,6 @@
 		77D92ED61E4B50CC009F02B2 /* MeetingEditorBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MeetingEditorBaseViewController.swift; path = "View Controllers/MeetingEditorBaseViewController.swift"; sourceTree = "<group>"; };
 		77D92EDA1E4B5146009F02B2 /* EditSingleMeetingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditSingleMeetingViewController.swift; path = "View Controllers/EditSingleMeetingViewController.swift"; sourceTree = "<group>"; };
 		77DC3EA61E378B6300BF24B7 /* NA Meeting List Administrator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NA Meeting List Administrator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		77DC3EBB1E378C4F00BF24B7 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		E9AB63B48A811FFBDF66DDCA /* Pods-NA Meeting List Administrator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NA Meeting List Administrator.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NA Meeting List Administrator/Pods-NA Meeting List Administrator.debug.xcconfig"; sourceTree = "<group>"; };
 		F8D92508646D82EB06D35A16 /* Pods-NA Meeting List Administrator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NA Meeting List Administrator.release.xcconfig"; path = "Pods/Target Support Files/Pods-NA Meeting List Administrator/Pods-NA Meeting List Administrator.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -159,8 +157,6 @@
 		77DC3E9D1E378B6100BF24B7 = {
 			isa = PBXGroup;
 			children = (
-				77DC3EBB1E378C4F00BF24B7 /* README.md */,
-				770E5E931E37937400CBE834 /* LICENSE.txt */,
 				77DC3EA81E378B6300BF24B7 /* Main App */,
 				770E5E951E3795F800CBE834 /* View Controllers */,
 				770E5E941E3795E000CBE834 /* Resources */,
