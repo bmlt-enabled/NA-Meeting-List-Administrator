@@ -21,6 +21,4 @@
 #ifndef BMLTAdmin_BMLTAdmin_Bridging_Header_h
 #define BMLTAdmin_BMLTAdmin_Bridging_Header_h
 
-#import "FXKeychain.h"
-
 #endif

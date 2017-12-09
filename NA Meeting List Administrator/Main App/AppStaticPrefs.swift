@@ -23,6 +23,7 @@ import Foundation
 import LocalAuthentication
 import Security
 import BMLTiOSLib
+import FXKeychain
 
 /* ###################################################################################################################################### */
 // MARK: - Class Extensions -

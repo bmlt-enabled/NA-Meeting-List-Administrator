@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		32CA98F6869280F0A9C844DF /* Pods_NA_Meeting_List_Administrator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49C408E1F55DABBC21670142 /* Pods_NA_Meeting_List_Administrator.framework */; };
-		77140E901E37D3E1008BBB12 /* FXKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 77140E8F1E37D3E1008BBB12 /* FXKeychain.m */; };
 		77159BDA1E68B0E6002239C4 /* HistoryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77159BD91E68B0E6002239C4 /* HistoryListViewController.swift */; };
 		7746B14A1E59FA5800030B66 /* MapMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7746B1491E59FA5800030B66 /* MapMarker.swift */; };
 		777178141E454AB30027F8E4 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 777178131E454AB30027F8E4 /* SettingsViewController.swift */; };
@@ -32,8 +31,6 @@
 
 /* Begin PBXFileReference section */
 		49C408E1F55DABBC21670142 /* Pods_NA_Meeting_List_Administrator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NA_Meeting_List_Administrator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		77140E8E1E37D3E1008BBB12 /* FXKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FXKeychain.h; path = FXKeychain/FXKeychain/FXKeychain.h; sourceTree = SOURCE_ROOT; };
-		77140E8F1E37D3E1008BBB12 /* FXKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FXKeychain.m; path = FXKeychain/FXKeychain/FXKeychain.m; sourceTree = SOURCE_ROOT; };
 		77159BD91E68B0E6002239C4 /* HistoryListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HistoryListViewController.swift; path = "View Controllers/HistoryListViewController.swift"; sourceTree = "<group>"; };
 		7746B1491E59FA5800030B66 /* MapMarker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapMarker.swift; path = "Main App/MapMarker.swift"; sourceTree = "<group>"; };
 		777178131E454AB30027F8E4 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsViewController.swift; path = "View Controllers/SettingsViewController.swift"; sourceTree = "<group>"; };
@@ -115,15 +112,6 @@
 			path = "NA Meeting List Administrator";
 			sourceTree = "<group>";
 		};
-		77140E911E37D3E6008BBB12 /* FXKeychain */ = {
-			isa = PBXGroup;
-			children = (
-				77140E8E1E37D3E1008BBB12 /* FXKeychain.h */,
-				77140E8F1E37D3E1008BBB12 /* FXKeychain.m */,
-			);
-			name = FXKeychain;
-			sourceTree = "<group>";
-		};
 		777F22FE1FBB830F007B5277 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -139,7 +127,6 @@
 				77B5410E1E42605700A0A880 /* NA Meeting List Administrator.entitlements */,
 				779BE3BA1E37D5FA00350D11 /* Info.plist */,
 				779BE3BB1E37D5FA00350D11 /* NA Meeting List Administrator-Bridging-Header.h */,
-				77140E911E37D3E6008BBB12 /* FXKeychain */,
 			);
 			name = Extras;
 			path = "NA Meeting List Administrator";
@@ -276,10 +263,12 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-NA Meeting List Administrator/Pods-NA Meeting List Administrator-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/BMLTiOSLib/BMLTiOSLib.framework",
+				"${BUILT_PRODUCTS_DIR}/FXKeychain/FXKeychain.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BMLTiOSLib.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FXKeychain.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -332,7 +321,6 @@
 				77B31A7E1E49369D0047F655 /* ThreeStateCheckbox.swift in Sources */,
 				7784D3DC1E454D0300953CA0 /* ListEditableMeetingsViewController.swift in Sources */,
 				779BE3B11E37D5B500350D11 /* MainAppDelegate.swift in Sources */,
-				77140E901E37D3E1008BBB12 /* FXKeychain.m in Sources */,
 				779462241E60C77900EC133D /* DeletedMeetingsViewController.swift in Sources */,
 				777178141E454AB30027F8E4 /* SettingsViewController.swift in Sources */,
 				7784D3E01E454D4900953CA0 /* EditorTabBarController.swift in Sources */,
