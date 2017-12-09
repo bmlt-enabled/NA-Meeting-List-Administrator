@@ -33,10 +33,11 @@ The NA Meeting List Administrator app is [GPL V3](https://opensource.org/license
 
 CHANGELIST
 ----------
-***Version 1.2.3.2003* ** *- TBD*
+***Version 1.2.3.2003* ** *- December 9, 2017*
 
 - Work to make the editor a bit more efficient.
 - Spruced up this README.
+- First submit for review.
 
 ***Version 1.2.3.2002* ** *- December 8, 2017*
 
