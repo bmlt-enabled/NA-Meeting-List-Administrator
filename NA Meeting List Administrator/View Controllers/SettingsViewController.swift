@@ -24,7 +24,7 @@ import UIKit
 /* ###################################################################################################################################### */
 /**
  */
-class SettingsViewController : UIViewController {
+class SettingsViewController: UIViewController {
     /* ################################################################## */
     // MARK: IB Properties
     /* ################################################################## */
@@ -72,7 +72,7 @@ class SettingsViewController : UIViewController {
         
         self.appNameLabel.text = appName
         
-        self.versionLabel.text = String(format:NSLocalizedString("VERSION-LABEL-FORMAT", comment: ""), appVersion)
+        self.versionLabel.text = String(format: NSLocalizedString("VERSION-LABEL-FORMAT", comment: ""), appVersion)
         
         self.blurbHeaderLabel.text = NSLocalizedString(self.blurbHeaderLabel.text!, comment: "")
         
@@ -102,7 +102,7 @@ class SettingsViewController : UIViewController {
      */
     @IBAction func beanieButtonHit(_ sender: Any) {
         if !self.buttonURI.isEmpty {
-            let openLink = NSURL(string : self.buttonURI)
+            let openLink = NSURL(string: self.buttonURI)
             UIApplication.shared.open(openLink! as URL, options: [:], completionHandler: nil)
             self.view.setNeedsLayout()
         }

@@ -27,7 +27,7 @@ import BMLTiOSLib
 /**
  This is the subclass for the editor (as opposed to the new meeting creator).
  */
-class CreateSingleMeetingViewController : MeetingEditorBaseViewController {
+class CreateSingleMeetingViewController: MeetingEditorBaseViewController {
     /** This is the bar button item for canceling editing. */
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     
@@ -46,16 +46,16 @@ class CreateSingleMeetingViewController : MeetingEditorBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let serviceBodyID: Int = AppStaticPrefs.prefs.selectedServiceBodies[0].id
-        let initialValues: [String:String] = ["published":"0",
-                                              "id_bigint":"0",
-                                              "worldid_mixed":"",
-                                              "meeting_name":NSLocalizedString("BMLTiOSLib-Default-Meeting-Name", comment: ""),
-                                              "weekday_tinyint":"1",
+        let initialValues: [String: String] = ["published": "0",
+                                              "id_bigint": "0",
+                                              "worldid_mixed": "",
+                                              "meeting_name": NSLocalizedString("BMLTiOSLib-Default-Meeting-Name", comment: ""),
+                                              "weekday_tinyint": "1",
                                               "service_body_bigint": String(serviceBodyID),
-                                              "start_time":"20:30:00",
-                                              "duration_time":"1:00:00",
-                                              "longitude":String(MainAppDelegate.connectionObject.defaultLocation.longitude),
-                                              "latitude":String(MainAppDelegate.connectionObject.defaultLocation.latitude)
+                                              "start_time": "20:30:00",
+                                              "duration_time": "1:00:00",
+                                              "longitude": String(MainAppDelegate.connectionObject.defaultLocation.longitude),
+                                              "latitude": String(MainAppDelegate.connectionObject.defaultLocation.latitude)
                                               ]
         self.meetingObject = BMLTiOSLibEditableMeetingNode(initialValues, inHandler: MainAppDelegate.connectionObject)
         self.meetingObject.name = NSLocalizedString(self.meetingObject.name, comment: "")
@@ -111,7 +111,7 @@ class CreateSingleMeetingViewController : MeetingEditorBaseViewController {
      */
     @IBAction func cancelButtonTouched(_ sender: UIBarButtonItem) {
         self.meetingObject.restoreToOriginal()
-        let _ = self.navigationController?.popViewController(animated: true)
+        _ = self.navigationController?.popViewController(animated: true)
     }
     
     /* ################################################################## */
@@ -134,7 +134,7 @@ class CreateSingleMeetingViewController : MeetingEditorBaseViewController {
      */
     func saveOKCallback(_ inAction: UIAlertAction) {
         self.meetingObject.saveChanges()
-        let _ = self.navigationController?.popViewController(animated: true)
+        _ = self.navigationController?.popViewController(animated: true)
     }
     
     /* ################################################################## */
@@ -145,14 +145,14 @@ class CreateSingleMeetingViewController : MeetingEditorBaseViewController {
      */
     func saveOKCopyCallback(_ inAction: UIAlertAction) {
         MainAppDelegate.connectionObject.saveMeetingAsCopy(self.meetingObject)
-        let _ = self.navigationController?.popViewController(animated: true)
+        _ = self.navigationController?.popViewController(animated: true)
     }
     
     /* ################################################################## */
     /**
      - parameter inEditor: The list view controller.
      */
-    func callMeWhenYoureDone(_ inEditor : ListEditableMeetingsViewController, _ meetingObject: BMLTiOSLibEditableMeetingNode?) -> Bool {
+    func callMeWhenYoureDone(_ inEditor: ListEditableMeetingsViewController, _ meetingObject: BMLTiOSLibEditableMeetingNode?) -> Bool {
         self.meetingObject = meetingObject
         self.animationCover.isHidden = true
         self.updateEditorDisplay()

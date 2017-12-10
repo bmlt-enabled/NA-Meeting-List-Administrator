@@ -26,7 +26,7 @@ import BMLTiOSLib
 /* ###################################################################################################################################### */
 /**
  */
-class SelectServiceBodiesViewController : UIViewController, UITableViewDataSource {
+class SelectServiceBodiesViewController: UIViewController, UITableViewDataSource {
     @IBOutlet weak var serviceBodyTableView: UITableView!
     
     /* ################################################################## */
@@ -196,6 +196,5 @@ class ServiceBodyTableCellView: UITableViewCell {
  */
 class AnnotatedSwitch: UISwitch {
     /** We use this to associate any extra data we want with the instance. */
-    var attachedServiceBodyObject: BMLTiOSLibHierarchicalServiceBodyNode? = nil
+    var attachedServiceBodyObject: BMLTiOSLibHierarchicalServiceBodyNode?
 }
-

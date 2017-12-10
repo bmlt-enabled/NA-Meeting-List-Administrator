@@ -27,7 +27,7 @@ import BMLTiOSLib
 /**
  This is the subclass for the editor (as opposed to the new meeting creator).
  */
-class EditSingleMeetingViewController : MeetingEditorBaseViewController {
+class EditSingleMeetingViewController: MeetingEditorBaseViewController {
     /** This is the bar button item for canceling editing. */
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     
@@ -170,7 +170,7 @@ class EditSingleMeetingViewController : MeetingEditorBaseViewController {
             self.present(alertController, animated: true, completion: nil)
         } else {
             self.updateEditorDisplay()
-            let _ = self.navigationController?.popViewController(animated: true)
+            _ = self.navigationController?.popViewController(animated: true)
         }
     }
     
@@ -185,7 +185,7 @@ class EditSingleMeetingViewController : MeetingEditorBaseViewController {
     func cancelOKCallback(_ inAction: UIAlertAction) {
         self.meetingObject.restoreToOriginal()
         self.updateEditorDisplay()
-        let _ = self.navigationController?.popViewController(animated: true)
+        _ = self.navigationController?.popViewController(animated: true)
     }
     
     /* ################################################################## */
@@ -196,7 +196,7 @@ class EditSingleMeetingViewController : MeetingEditorBaseViewController {
      */
     func saveOKCallback(_ inAction: UIAlertAction) {
         self.meetingObject.saveChanges()
-        let _ = self.navigationController?.popViewController(animated: true)
+        _ = self.navigationController?.popViewController(animated: true)
     }
     
     /* ################################################################## */
@@ -208,6 +208,6 @@ class EditSingleMeetingViewController : MeetingEditorBaseViewController {
     func saveOKCopyCallback(_ inAction: UIAlertAction) {
         MainAppDelegate.connectionObject.saveMeetingAsCopy(self.meetingObject)
         self.ownerController.searchDone = false
-        let _ = self.navigationController?.popViewController(animated: true)
+        _ = self.navigationController?.popViewController(animated: true)
     }
 }

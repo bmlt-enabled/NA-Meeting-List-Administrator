@@ -31,7 +31,7 @@ import BMLTiOSLib
 /**
  This handles the marker annotation.
  */
-class MapAnnotation : NSObject, MKAnnotation, NSCoding {
+class MapAnnotation: NSObject, MKAnnotation, NSCoding {
     let sCoordinateObjectKey: String = "MapAnnotation_Coordinate"
     let sMeetingsObjectKey: String = "MapAnnotation_Meetings"
 
@@ -59,10 +59,12 @@ class MapAnnotation : NSObject, MKAnnotation, NSCoding {
      - parameter aDecoder: The coder that will contain the coordinates.
      */
     @objc required init?(coder aDecoder: NSCoder) {
-        self.locations = aDecoder.decodeObject(forKey: self.sMeetingsObjectKey) as! [BMLTiOSLibMeetingNode]
-        if let tempCoordinate = aDecoder.decodeObject(forKey: self.sCoordinateObjectKey) as! [NSNumber]! {
-            self.coordinate.longitude = tempCoordinate[0].doubleValue
-            self.coordinate.latitude = tempCoordinate[1].doubleValue
+        if let locations = aDecoder.decodeObject(forKey: self.sMeetingsObjectKey) as? [BMLTiOSLibMeetingNode] {
+            self.locations = locations
+            if let tempCoordinate = aDecoder.decodeObject(forKey: self.sCoordinateObjectKey) as? [NSNumber]! {
+                self.coordinate.longitude = tempCoordinate[0].doubleValue
+                self.coordinate.latitude = tempCoordinate[1].doubleValue
+            }
         }
     }
     
@@ -88,7 +90,7 @@ class MapAnnotation : NSObject, MKAnnotation, NSCoding {
 /**
  This handles our map marker.
  */
-class MapMarker : MKAnnotationView {
+class MapMarker: MKAnnotationView {
     /* ################################################################## */
     // MARK: - Constant Properties -
     /* ################################################################## */
@@ -125,9 +127,7 @@ class MapMarker : MKAnnotationView {
      This gives us a shortcut to the annotation prpoerty.
      */
     var coordinate: CLLocationCoordinate2D {
-        get {
-            return (self.annotation?.coordinate)!
-        }
+        return (self.annotation?.coordinate)!
     }
     
     /* ################################################################## */
@@ -135,9 +135,11 @@ class MapMarker : MKAnnotationView {
      This gives us a shortcut to the annotation property.
      */
     var locations: [BMLTiOSLibMeetingNode] {
-        get {
-            return ((self.annotation as! MapAnnotation).locations)
+        if let locations = (self.annotation as? MapAnnotation)?.locations {
+            return locations
         }
+        
+        return []
     }
     
     /* ################################################################## */
@@ -145,21 +147,19 @@ class MapMarker : MKAnnotationView {
      Loads our array of animation frames from the resource file.
      */
     var animationFrames: [UIImage] {
-        get {
-            // First time through, we load up on our animation frames.
-            if self._animationFrames.isEmpty && self.isDraggable {
-                let baseNameFormat = "DragMarker/Frame%02d"
-                var index = 1
-                while let image = UIImage(named: String(format: baseNameFormat, index)) {
-                    self._animationFrames.append(image)
-                    index += 1
-                }
-                
-                self._currentFrame = 0
+        // First time through, we load up on our animation frames.
+        if self._animationFrames.isEmpty && self.isDraggable {
+            let baseNameFormat = "DragMarker/Frame%02d"
+            var index = 1
+            while let image = UIImage(named: String(format: baseNameFormat, index)) {
+                self._animationFrames.append(image)
+                index += 1
             }
             
-            return self._animationFrames
+            self._currentFrame = 0
         }
+        
+        return self._animationFrames
     }
     
     /* ################################################################## */
@@ -171,7 +171,7 @@ class MapMarker : MKAnnotationView {
      - parameter annotation: The annotation that represents this instance.
      - parameter draggable: If true, then this will be draggable (ignored if the annotation has more than one meeting).
      */
-    init(annotation: MKAnnotation?, draggable : Bool, reuseID: String?) {
+    init(annotation: MKAnnotation?, draggable: Bool, reuseID: String?) {
         super.init(annotation: annotation, reuseIdentifier: reuseID)
         self.isDraggable = draggable
         _ = self.animationFrames    // This pre-loads our animation, if necessary.
@@ -194,7 +194,7 @@ class MapMarker : MKAnnotationView {
     func selectImage(_ inAnimated: Bool) -> UIImage! {
         var image: UIImage! = nil
         if self.isDraggable {
-            if (self.dragState == MKAnnotationViewDragState.dragging) {
+            if self.dragState == MKAnnotationViewDragState.dragging {
                 if inAnimated {
                     image = self._animationFrames[self._currentFrame]
                     self._currentFrame += 1
@@ -222,8 +222,8 @@ class MapMarker : MKAnnotationView {
      */
     func startTimer() {
         if #available(iOS 10.0, *) {
-            self._animationTimer = Timer.scheduledTimer(withTimeInterval: 0.05, repeats: false, block: {
-                (_: Timer) in DispatchQueue.main.async(execute: { self.setNeedsDisplay() })
+            self._animationTimer = Timer.scheduledTimer(withTimeInterval: 0.05, repeats: false, block: { (_: Timer) in
+                DispatchQueue.main.async(execute: { self.setNeedsDisplay() })
             })
         }
     }
@@ -296,7 +296,7 @@ class MapMarker : MKAnnotationView {
      */
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        self.annotation = aDecoder.decodeObject(forKey: self.sAnnotationObjectKey) as! MapAnnotation
+        self.annotation = aDecoder.decodeObject(forKey: self.sAnnotationObjectKey) as? MapAnnotation
     }
     
     /* ################################################################## */

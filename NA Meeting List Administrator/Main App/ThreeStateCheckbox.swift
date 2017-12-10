@@ -28,7 +28,7 @@ import BMLTiOSLib
 */
 class ThreeStateCheckbox: UIButton {
     /** This will hold any extra data we want to associate with the checkbox. */
-    var extraData: AnyObject? = nil
+    var extraData: AnyObject?
     /** If this is true, then we can only have on and off. If false, then we have 3 states. Default is false. */
     var binaryState: Bool = false
     

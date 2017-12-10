@@ -22,7 +22,6 @@ import UIKit
 import BMLTiOSLib
 import MapKit
 
-
 /* ###################################################################################################################################### */
 // MARK: - This view extension allows us to fetch the first responder -
 /* ###################################################################################################################################### */
@@ -31,19 +30,17 @@ import MapKit
  */
 extension UIView {
     var currentFirstResponder: UIResponder? {
-        get {
-            if self.isFirstResponder {
-                return self
-            }
-            
-            for view in self.subviews {
-                if let responder = view.currentFirstResponder {
-                    return responder
-                }
-            }
-            
-            return nil
+        if self.isFirstResponder {
+            return self
         }
+        
+        for view in self.subviews {
+            if let responder = view.currentFirstResponder {
+                return responder
+            }
+        }
+        
+        return nil
     }
 }
 
@@ -53,7 +50,7 @@ extension UIView {
 /**
  This class describes the basic functionality for a full meeting editor.
  */
-class MeetingEditorBaseViewController : EditorViewControllerBaseClass, UITableViewDataSource, UITableViewDelegate, MKMapViewDelegate, CLLocationManagerDelegate {
+class MeetingEditorBaseViewController: EditorViewControllerBaseClass, UITableViewDataSource, UITableViewDelegate, MKMapViewDelegate, CLLocationManagerDelegate {
     /** The height of the published cell if we only have one Service body. */
     private let _publishedSingleServiceBody: CGFloat    = 37
     /** The height of the Published cell if we can select Service bodies. */
@@ -62,7 +59,7 @@ class MeetingEditorBaseViewController : EditorViewControllerBaseClass, UITableVi
     private let _reuseIDBase = "editor-row-"
     
     /** This is a table of heights for our table rows. */
-    private var _internalRowHeights: [String:CGFloat] = ["editor-row-0": 0,
+    private var _internalRowHeights: [String: CGFloat] = ["editor-row-0": 0,
                                                          "editor-row-1": 60,
                                                          "editor-row-2": 60,
                                                          "editor-row-3": 60,
@@ -118,8 +115,8 @@ class MeetingEditorBaseViewController : EditorViewControllerBaseClass, UITableVi
      */
     override func viewDidLoad() {
         super.viewDidLoad()
-        self._publishedTopColor = (self.view as! EditorViewBaseClass).topColor
-        self._publishedBottomColor = (self.view as! EditorViewBaseClass).bottomColor
+        self._publishedTopColor = (self.view as? EditorViewBaseClass)?.topColor
+        self._publishedBottomColor = (self.view as? EditorViewBaseClass)?.bottomColor
         self.tableView.rowHeight = UITableViewAutomaticDimension
     }
     
@@ -187,17 +184,17 @@ class MeetingEditorBaseViewController : EditorViewControllerBaseClass, UITableVi
         DispatchQueue.main.async(execute: {
             if (nil == inChangedCell) || (self.publishedItems == inChangedCell) {
                 if self.meetingObject.published {
-                    (self.view as! EditorViewBaseClass).topColor = self._publishedTopColor
-                    (self.view as! EditorViewBaseClass).bottomColor = self._publishedBottomColor
+                    (self.view as? EditorViewBaseClass)?.topColor = self._publishedTopColor
+                    (self.view as? EditorViewBaseClass)?.bottomColor = self._publishedBottomColor
                 } else {
-                    (self.view as! EditorViewBaseClass).topColor = self.unpublishedTopColor
-                    (self.view as! EditorViewBaseClass).bottomColor = self.unpublishedBottomColor
+                    (self.view as? EditorViewBaseClass)?.topColor = self.unpublishedTopColor
+                    (self.view as? EditorViewBaseClass)?.bottomColor = self.unpublishedBottomColor
                 }
                 
                 self.view.setNeedsLayout()
 
-                self.navigationController?.navigationBar.barTintColor = (self.view as! EditorViewBaseClass).topColor
-                self.tabBarController?.tabBar.barTintColor = (self.view as! EditorViewBaseClass).bottomColor
+                self.navigationController?.navigationBar.barTintColor = (self.view as? EditorViewBaseClass)?.topColor
+                self.tabBarController?.tabBar.barTintColor = (self.view as? EditorViewBaseClass)?.bottomColor
                 
                 if self.publishedItems == inChangedCell {
                     self.tableView.superview?.setNeedsLayout()
@@ -377,22 +374,22 @@ class MeetingEditorBaseViewController : EditorViewControllerBaseClass, UITableVi
             // These are special sections that we hang onto.
             if "editor-row-0" == reuseID {
                 // This is the first cell of the table.
-                self.publishedItems = returnableCell as! PublishedEditorTableViewCell
+                self.publishedItems = returnableCell as? PublishedEditorTableViewCell
             } else {
                 if "editor-row-6" == reuseID {
                     // This contains all the address fields.
-                    self._addressInstance = returnableCell as! AddressEditorTableViewCell
+                    self._addressInstance = returnableCell as? AddressEditorTableViewCell
                 } else {
                     if "editor-row-7" == reuseID {
                         // This contains the map editor.
-                        self._mapInstance = returnableCell as! MapTableViewCell
+                        self._mapInstance = returnableCell as? MapTableViewCell
                     } else {
                         if "editor-row-8" == reuseID {
                             // This contains the longitude and latitude editor.
-                            self._longLatInstance = returnableCell as! LongLatTableViewCell
+                            self._longLatInstance = returnableCell as? LongLatTableViewCell
                         } else {
                             if "editor-row-10" == reuseID {
-                                self._formatContainerView = returnableCell as! FormatsEditorTableViewCell
+                                self._formatContainerView = returnableCell as? FormatsEditorTableViewCell
                             }
                         }
                     }
@@ -420,7 +417,7 @@ class MeetingEditorBaseViewController : EditorViewControllerBaseClass, UITableVi
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let reuseID = self._reuseIDBase + String(indexPath.row)
         
-        switch(reuseID) {   // This allows us to set dynamic heights.
+        switch reuseID {   // This allows us to set dynamic heights.
         case "editor-row-0":    // If we are editing more than one Service body, then we can switch between them.
             if 1 < AppStaticPrefs.prefs.selectedServiceBodies.count {
                 return self._publishedMultiServiceBody
@@ -469,11 +466,9 @@ class MeetingEditorBaseViewController : EditorViewControllerBaseClass, UITableVi
         self._locationManager.stopUpdatingLocation()
         self._locationManager = nil
         if 0 < locations.count {
-            for location in locations {
-                if 2 > location.timestamp.timeIntervalSinceNow {
-                    self._geocoder = CLGeocoder()
-                    self._geocoder.reverseGeocodeLocation(location, completionHandler: self.reverseGecodeCompletionHandler )
-                }
+            for location in locations where 2 > location.timestamp.timeIntervalSinceNow {
+                self._geocoder = CLGeocoder()
+                self._geocoder.reverseGeocodeLocation(location, completionHandler: self.reverseGecodeCompletionHandler )
             }
         }
     }
@@ -508,7 +503,7 @@ class MeetingEditorViewCell: UITableViewCell {
     /**
      This is designed to be overloaded. This is called when the meetingObject property is set, and gives us a chance to set up our object.
      */
-    func meetingObjectUpdated(){}
+    func meetingObjectUpdated() {}
 }
 
 /* ###################################################################################################################################### */
@@ -582,7 +577,7 @@ class PublishedEditorTableViewCell: MeetingEditorViewCell, UIPickerViewDelegate,
         frame.size.height = size.height
         frame.origin = CGPoint.zero
         
-        let ret:UIView = UIView(frame: frame)
+        let ret: UIView = UIView(frame: frame)
         
         ret.backgroundColor = UIColor.clear
         
@@ -1114,13 +1109,11 @@ class MapTableViewCell: MeetingEditorViewCell, MKMapViewDelegate {
         // Set the marker up.
         self.mapView.addAnnotation(self._meetingMarker)
         
-        // Now, zoom the map to just around the marker.
-        let currentRegion = self.mapView.region
-        
         var span: MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: self._mapSizeInDegrees, longitudeDelta: 0)
         
         if !inSetZoom {
-            span = currentRegion.span
+            // Now, zoom the map to just around the marker.
+            span = self.mapView.region.span
         }
         
         let newRegion: MKCoordinateRegion = MKCoordinateRegion(center: self.meetingObject.locationCoords, span: span)
@@ -1155,7 +1148,7 @@ class MapTableViewCell: MeetingEditorViewCell, MKMapViewDelegate {
             var myAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseID)
             
             if nil == myAnnotationView {
-                myAnnotationView = MapMarker(annotation: annotation as! MapAnnotation, draggable: true, reuseID: reuseID)
+                myAnnotationView = MapMarker(annotation: annotation as? MapAnnotation, draggable: true, reuseID: reuseID)
             }
             
             return myAnnotationView
@@ -1375,15 +1368,13 @@ class FormatsEditorTableViewCell: MeetingEditorViewCell, UITableViewDataSource, 
      Return the height of the table
      */
     var tableHeight: CGFloat {
-        get {
-            let numFormats = MainAppDelegate.connectionObject.allPossibleFormats.count
-            if nil != self.superview {
-                let formatsPerRow = Int(self.superview!.bounds.size.width / type(of: self).sFormatCheckboxContainerWidth)
-                return CGFloat(Int(numFormats + (formatsPerRow - 1)) / formatsPerRow) * type(of: self).sFormatCheckboxContainerHeight
-            }
-            
-            return 0
+        let numFormats = MainAppDelegate.connectionObject.allPossibleFormats.count
+        if nil != self.superview {
+            let formatsPerRow = Int(self.superview!.bounds.size.width / type(of: self).sFormatCheckboxContainerWidth)
+            return CGFloat(Int(numFormats + (formatsPerRow - 1)) / formatsPerRow) * type(of: self).sFormatCheckboxContainerHeight
         }
+        
+        return 0
     }
     
     /* ################################################################## */
@@ -1391,9 +1382,7 @@ class FormatsEditorTableViewCell: MeetingEditorViewCell, UITableViewDataSource, 
      Retun the height of the entire cell
      */
     var cellHeight: CGFloat {
-        get {
-            return self.tableHeight + type(of: self).sLabelHeight
-        }
+        return self.tableHeight + type(of: self).sLabelHeight
     }
     
     /* ################################################################## */
@@ -1506,4 +1495,3 @@ class FormatsEditorTableViewCell: MeetingEditorViewCell, UITableViewDataSource, 
         return ret
     }
 }
-

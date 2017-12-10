@@ -182,6 +182,7 @@
 			buildConfigurationList = 77DC3EB81E378B6300BF24B7 /* Build configuration list for PBXNativeTarget "NA Meeting List Administrator" */;
 			buildPhases = (
 				FF18EE1AE911C8C795CB97AB /* [CP] Check Pods Manifest.lock */,
+				77F1C3491FDD78C8006C93F7 /* SwiftLint */,
 				77DC3EA21E378B6100BF24B7 /* Sources */,
 				77DC3EA31E378B6100BF24B7 /* Frameworks */,
 				77DC3EA41E378B6100BF24B7 /* Resources */,
@@ -274,6 +275,20 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-NA Meeting List Administrator/Pods-NA Meeting List Administrator-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		77F1C3491FDD78C8006C93F7 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PROJECT_DIR}/Pods/SwiftLint/swiftlint\"\n";
 		};
 		FB3965A99CBCC4CAF5FFD498 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;

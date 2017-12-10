@@ -40,8 +40,8 @@ class MainAppDelegate: UIResponder, UIApplicationDelegate, BMLTiOSLibDelegate {
     /**
      This is a quick way to get this object instance (it's a SINGLETON), cast as the correct class.
      */
-    static var appDelegateObject: MainAppDelegate {
-        get { return UIApplication.shared.delegate as! MainAppDelegate }
+    static var appDelegateObject: MainAppDelegate! {
+        return UIApplication.shared.delegate as? MainAppDelegate
     }
     
     /* ################################################################## */
@@ -49,7 +49,7 @@ class MainAppDelegate: UIResponder, UIApplicationDelegate, BMLTiOSLibDelegate {
      This will return nil, unless we have a completed connecteion, in which case it will return the valid connected library.
      */
     static var connectionObject: BMLTiOSLib! {
-        get { return self.appDelegateObject.validConnection ? self._libraryObject : nil }
+        return self.appDelegateObject.validConnection ? self._libraryObject : nil
     }
     
     /* ################################################################## */
@@ -94,7 +94,9 @@ class MainAppDelegate: UIResponder, UIApplicationDelegate, BMLTiOSLibDelegate {
         var presentedBy = inPresentingViewController
         
         if nil == presentedBy {
-            presentedBy = (self.appDelegateObject.window?.rootViewController as! UINavigationController).topViewController
+            if let tempPresentedBy = (self.appDelegateObject.window?.rootViewController as? UINavigationController)?.topViewController {
+                presentedBy = tempPresentedBy
+            }
         }
         
         if nil != presentedBy {
@@ -274,7 +276,7 @@ class MainAppDelegate: UIResponder, UIApplicationDelegate, BMLTiOSLibDelegate {
      */
     func bmltLibInstance(_ inLibInstance: BMLTiOSLib, loginChangedTo: Bool) {
         if loginChangedTo && (1 > type(of: self)._libraryObject.serviceBodiesICanEdit.count) {  // We have to be able to edit at least one Service body for this to work.
-            let _ = type(of: self)._libraryObject.adminLogout()
+            _ = type(of: self)._libraryObject.adminLogout()
         }
         
         self.initialViewController.finishedLoggingIn()
@@ -362,4 +364,3 @@ class MainAppDelegate: UIResponder, UIApplicationDelegate, BMLTiOSLibDelegate {
         self.initialViewController.updateDeletedResponse(changeListResults: deletedChangeListResults)
     }
 }
-

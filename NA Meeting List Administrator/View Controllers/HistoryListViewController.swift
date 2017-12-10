@@ -27,13 +27,13 @@ import BMLTiOSLib
 /**
  This class controls the list of history items for a meeting, with some allowing rollback.
  */
-class HistoryListViewController : EditorViewControllerBaseClass, UITableViewDataSource, UITableViewDelegate {
+class HistoryListViewController: EditorViewControllerBaseClass, UITableViewDataSource, UITableViewDelegate {
     /** The reuse ID for the history prototype. */
     private let _reuseID = "history-item"
     /** The segue ID for the manually-triggered "More Details" viewer. */
     private let _detailSegueID = "more-info-segue"
     /** This contains a list of changelists, associated with more info buttons. */
-    private var _moreDetailHistoryItems: [UIButton:BMLTiOSLibChangeNode] = [:]
+    private var _moreDetailHistoryItems: [UIButton: BMLTiOSLibChangeNode] = [:]
     /** This is the table view that displays all the history items. */
     @IBOutlet weak var tableView: UITableView!
     /** This is the "busy" animation. */
@@ -183,7 +183,7 @@ class HistoryListViewController : EditorViewControllerBaseClass, UITableViewData
 /**
  This class controls one history list row.
  */
-class HistoryListTableViewCell : UITableViewCell {
+class HistoryListTableViewCell: UITableViewCell {
     var owner: HistoryListViewController! = nil
     var changeObject: BMLTiOSLibChangeNode! = nil
     
@@ -211,7 +211,7 @@ class HistoryListTableViewCell : UITableViewCell {
 /**
  This class controls the display of a detailed history of the one event.
  */
-class HistoryDetailViewController : EditorViewControllerBaseClass {
+class HistoryDetailViewController: EditorViewControllerBaseClass {
     /** This is our change object. */
     var changeObject: BMLTiOSLibChangeNode! = nil
     /** This contains our details. */

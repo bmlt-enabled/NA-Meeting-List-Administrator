@@ -83,27 +83,26 @@ extension String {
      
      - returns: a String, with the parameter list.
      */
-    static func queryStringFromParameters(_ parameters: Dictionary<String,String>) -> String? {
-        if (parameters.count == 0)
-        {
+    static func queryStringFromParameters(_ parameters: [String: String]) -> String? {
+        if parameters.isEmpty {
             return nil
         }
-        var queryString : String? = nil
+        
+        var queryString: String? = nil
         for (key, value) in parameters {
             if let encodedKey = key.URLEncodedString() {
                 if let encodedValue = value.URLEncodedString() {
-                    if queryString == nil
-                    {
+                    if queryString == nil {
                         queryString = "?"
-                    }
-                    else
-                    {
+                    } else {
                         queryString! += "&"
                     }
+                    
                     queryString! += encodedKey + "=" + encodedValue
                 }
             }
         }
+        
         return queryString
     }
     
@@ -129,7 +128,6 @@ extension String {
      */
     func cleanURI(sslRequired: Bool) -> String! {
         var ret: String! = self.URLEncodedString()
-        
         
         // Very kludgy way of checking for an HTTPS URI.
         let wasHTTP: Bool = ret.lowercased().beginsWith("http://")
@@ -205,7 +203,7 @@ class AppStaticPrefs {
     // MARK: Private Initializer
     /* ################################################################## */
     /** We do this to prevent the class from being instantiated in a different context than our controlled one. */
-    private init(){/* Sergeant Schultz says: "I do nut'ing. Nut-ING!" */}
+    private init() {/* Sergeant Schultz says: "I do nut'ing. Nut-ING!" */}
 
     /* ################################################################## */
     // MARK: Private Instance Methods
@@ -242,13 +240,11 @@ class AppStaticPrefs {
      - returns the current prefs object.
      */
     static var prefs: AppStaticPrefs {
-        get {
-            if nil == self._sSingletonPrefs {
-                self._sSingletonPrefs = AppStaticPrefs()
-            }
-            
-            return self._sSingletonPrefs
+        if nil == self._sSingletonPrefs {
+            self._sSingletonPrefs = AppStaticPrefs()
         }
+        
+        return self._sSingletonPrefs
     }
     
     /* ################################################################## */
@@ -258,18 +254,16 @@ class AppStaticPrefs {
      - returns: True, if the device is set for Ante Meridian (AM/PM) time.
      */
     static var using12hClockFormat: Bool {
-        get {
-            let formatter = DateFormatter()
-            formatter.locale = Locale.current
-            formatter.dateStyle = .none
-            formatter.timeStyle = .short
-            
-            let dateString = formatter.string(from: Date())
-            let amRange = dateString.range(of: formatter.amSymbol)
-            let pmRange = dateString.range(of: formatter.pmSymbol)
-            
-            return !(pmRange == nil && amRange == nil)
-        }
+        let formatter = DateFormatter()
+        formatter.locale = Locale.current
+        formatter.dateStyle = .none
+        formatter.timeStyle = .short
+        
+        let dateString = formatter.string(from: Date())
+        let amRange = dateString.range(of: formatter.amSymbol)
+        let pmRange = dateString.range(of: formatter.pmSymbol)
+        
+        return !(pmRange == nil && amRange == nil)
     }
     
     /* ################################################################## */
@@ -277,9 +271,7 @@ class AppStaticPrefs {
      - returns: An integer, with the 1-based index of the first day of the week.
      */
     static var firstWeekdayIndex: Int {
-        get {
-            return Calendar.current.firstWeekday
-        }
+        return Calendar.current.firstWeekday
     }
     
     /* ################################################################## */
@@ -289,20 +281,18 @@ class AppStaticPrefs {
      - returns: true, if the device supports TouchID.
      */
     static var supportsTouchID: Bool {
-        get {
-            var ret: Bool = false
-            var error: NSError? = nil
-            
-            let authenticationContext = LAContext()
+        var ret: Bool = false
+        var error: NSError? = nil
+        
+        let authenticationContext = LAContext()
 
-            ret = authenticationContext.canEvaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, error: &error)
-            
-            if(nil != error) {  // Very basic. Any problems, no can do.
-                ret = false
-            }
-            
-            return ret
+        ret = authenticationContext.canEvaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, error: &error)
+        
+        if nil != error {  // Very basic. Any problems, no can do.
+            ret = false
         }
+        
+        return ret
     }
 
     /* ################################################################## */
@@ -345,26 +335,24 @@ class AppStaticPrefs {
      - returns: the selected Root Server URI, as a String.
      */
     var rootURI: String {
-        get {
-            var ret: String = ""
-            
-            if self._loadPrefs() {
-                ret = self.lastLogin.url    // First thing we try is the URL used the last time.
-            }
-            
-            if ret.isEmpty {
-                // Get the default URI, if all else fails.
-                if let plistPath = Bundle.main.path(forResource: "Info", ofType: "plist") {
-                    if let plistDictionary = NSDictionary(contentsOfFile: plistPath) as? [String: Any] {
-                        if let uri = plistDictionary[type(of: self).PrefsKeys.DefaultRootServerURIPlistKey.rawValue] as? NSString {
-                            ret = !(uri as String).isEmpty ? (uri as String).cleanURI() : ""
-                        }
+        var ret: String = ""
+        
+        if self._loadPrefs() {
+            ret = self.lastLogin.url    // First thing we try is the URL used the last time.
+        }
+        
+        if ret.isEmpty {
+            // Get the default URI, if all else fails.
+            if let plistPath = Bundle.main.path(forResource: "Info", ofType: "plist") {
+                if let plistDictionary = NSDictionary(contentsOfFile: plistPath) as? [String: Any] {
+                    if let uri = plistDictionary[type(of: self).PrefsKeys.DefaultRootServerURIPlistKey.rawValue] as? NSString {
+                        ret = !(uri as String).isEmpty ? (uri as String).cleanURI() : ""
                     }
                 }
             }
-            
-            return ret
         }
+        
+        return ret
     }
     
     /* ################################################################## */
@@ -374,9 +362,7 @@ class AppStaticPrefs {
      - returns the number of seconds we wait before forcefully logging out.
      */
     var timeoutInterval: TimeInterval {
-        get {
-            return 10.0
-        }
+        return 10.0
     }
     
     /* ################################################################## */
@@ -417,15 +403,13 @@ class AppStaticPrefs {
      - returns all the Service bodies available.
      */
     var allEditableServiceBodies: [BMLTiOSLibHierarchicalServiceBodyNode] {
-        get {
-            var ret: [BMLTiOSLibHierarchicalServiceBodyNode] = []
-            
-            if (nil != MainAppDelegate.connectionObject) && MainAppDelegate.connectionObject.isConnected && MainAppDelegate.connectionObject.isAdminLoggedIn {
-                ret = MainAppDelegate.connectionObject.serviceBodiesICanEdit
-            }
-            
-            return ret
+        var ret: [BMLTiOSLibHierarchicalServiceBodyNode] = []
+        
+        if (nil != MainAppDelegate.connectionObject) && MainAppDelegate.connectionObject.isConnected && MainAppDelegate.connectionObject.isAdminLoggedIn {
+            ret = MainAppDelegate.connectionObject.serviceBodiesICanEdit
         }
+        
+        return ret
     }
     
     /* ################################################################## */
@@ -435,37 +419,35 @@ class AppStaticPrefs {
      We associate the selections with a URL/login pair (the last successful one), so this can change from login to login.
      */
     var selectedServiceBodies: [BMLTiOSLibHierarchicalServiceBodyNode] {
-        get {
-            var ret: [BMLTiOSLibHierarchicalServiceBodyNode] = []
-            let loginSet = self.lastLogin
-            let key = loginSet.url.cleanURI() + "-" + loginSet.loginID
-            
-            if self._loadPrefs() {
-                if 1 == self.allEditableServiceBodies.count {   // If we only have one body, then it is always selected, and can't be deselected.
-                    ret = [self.allEditableServiceBodies[0]]
-                } else {
-                    var newDictionary: [String:[Int]] = [:]
+        var ret: [BMLTiOSLibHierarchicalServiceBodyNode] = []
+        let loginSet = self.lastLogin
+        let key = loginSet.url.cleanURI() + "-" + loginSet.loginID
+        
+        if self._loadPrefs() {
+            if 1 == self.allEditableServiceBodies.count {   // If we only have one body, then it is always selected, and can't be deselected.
+                ret = [self.allEditableServiceBodies[0]]
+            } else {
+                var newDictionary: [String: [Int]] = [:]
+                
+                if self._loadPrefs() {
+                    if let temp = self._loadedPrefs.object(forKey: PrefsKeys.SelectedServiceBodies.rawValue) as? [String: [Int]] {
+                        newDictionary = temp
+                    }
                     
-                    if self._loadPrefs() {
-                        if let temp = self._loadedPrefs.object(forKey: PrefsKeys.SelectedServiceBodies.rawValue) as? [String:[Int]] {
-                            newDictionary = temp
-                        }
-                        
-                        let oldArray: [Int] = (nil != newDictionary[key]) ? newDictionary[key]! as [Int] : []
-                        
-                        if 0 < oldArray.count {
-                            for sb in self.allEditableServiceBodies {
-                                if oldArray.contains(sb.id) {
-                                    ret.append(sb)
-                                }
+                    let oldArray: [Int] = (nil != newDictionary[key]) ? newDictionary[key]! as [Int] : []
+                    
+                    if 0 < oldArray.count {
+                        for sb in self.allEditableServiceBodies {
+                            if oldArray.contains(sb.id) {
+                                ret.append(sb)
                             }
                         }
                     }
                 }
             }
-
-            return ret
         }
+
+        return ret
     }
     
     /* ################################################################## */
@@ -473,9 +455,7 @@ class AppStaticPrefs {
      - returns: the "grace period" we give meetings ("slop" for the "Where Am I?" search).
      */
     var gracePeriodInMinutes: Int {
-        get {
-            return self._defaultGracePeriodInMinutes
-        }
+        return self._defaultGracePeriodInMinutes
     }
     
     /* ################################################################## */
@@ -483,14 +463,13 @@ class AppStaticPrefs {
      - returns true, if we currently have stored logins.
      */
     var hasStoredLogins: Bool {
-        get {
-            if self._loadPrefs() {
-                if let temp = self._loadedPrefs.object(forKey: PrefsKeys.RootServerLoginDictionaryKey.rawValue) as? [String:[String]] {
-                    return !temp.isEmpty
-                }
+        if self._loadPrefs() {
+            if let temp = self._loadedPrefs.object(forKey: PrefsKeys.RootServerLoginDictionaryKey.rawValue) as? [String: [String]] {
+                return !temp.isEmpty
             }
-            return false
         }
+        
+        return false
     }
     
     /* ################################################################## */
@@ -507,7 +486,7 @@ class AppStaticPrefs {
         var ret: [String]! = nil
         
         if self._loadPrefs() {
-            if let temp = self._loadedPrefs.object(forKey: PrefsKeys.RootServerLoginDictionaryKey.rawValue) as? [String:[String]] {
+            if let temp = self._loadedPrefs.object(forKey: PrefsKeys.RootServerLoginDictionaryKey.rawValue) as? [String: [String]] {
                 ret = temp[inRooutURI.cleanURI()]
             }
         }
@@ -531,7 +510,7 @@ class AppStaticPrefs {
         if self._loadPrefs() {
             if type(of: self).supportsTouchID {
                 // All of this crap is to remove the keys we have stored in the keychain.
-                if let temp = self._loadedPrefs.object(forKey: PrefsKeys.RootServerLoginDictionaryKey.rawValue) as? [String:[String]] {
+                if let temp = self._loadedPrefs.object(forKey: PrefsKeys.RootServerLoginDictionaryKey.rawValue) as? [String: [String]] {
                     let keys = temp.keys
                     for key in keys {
                         if let users = temp[key] {
@@ -567,10 +546,10 @@ class AppStaticPrefs {
             let loginSet = self.lastLogin
             let key = loginSet.url.cleanURI() + "-" + loginSet.loginID
             
-            var newDictionary: [String:[Int]] = [:]
+            var newDictionary: [String: [Int]] = [:]
             
             if self._loadPrefs() {
-                if let temp = self._loadedPrefs.object(forKey: PrefsKeys.SelectedServiceBodies.rawValue) as? [String:[Int]] {
+                if let temp = self._loadedPrefs.object(forKey: PrefsKeys.SelectedServiceBodies.rawValue) as? [String: [Int]] {
                     newDictionary = temp
                 }
 
@@ -595,10 +574,8 @@ class AppStaticPrefs {
                         }
                     } else {
                         // We simply copy over the state of all the other
-                        for sbID in oldArray {
-                            if sbID != inputID {
-                                newArray.append(sbID)
-                            }
+                        for sbID in oldArray where sbID != inputID {
+                            newArray.append(sbID)
                         }
                     }
                 }
@@ -627,10 +604,8 @@ class AppStaticPrefs {
      - returns: True, if the Service body object is currently selected. If we only have one editable Service body, then it is always selected.
      */
     func serviceBodyIsSelected(_ serviceBodyObject: BMLTiOSLibHierarchicalServiceBodyNode) -> Bool {
-        for sb in self.selectedServiceBodies {
-            if sb.id == serviceBodyObject.id {
-                return true
-            }
+        for sb in self.selectedServiceBodies where sb.id == serviceBodyObject.id {
+            return true
         }
         return false
     }
@@ -653,22 +628,20 @@ class AppStaticPrefs {
         
         if self._loadPrefs() {
             // In this first step, we add the user to our list for that URI, if necessary.
-            var loginDictionary: [String:[String]] = [:]
+            var loginDictionary: [String: [String]] = [:]
             var needToUpdate: Bool = true
             var urlUsers: [String] = []
             
-            if let temp = self._loadedPrefs.object(forKey: PrefsKeys.RootServerLoginDictionaryKey.rawValue) as? [String:[String]] {
+            if let temp = self._loadedPrefs.object(forKey: PrefsKeys.RootServerLoginDictionaryKey.rawValue) as? [String: [String]] {
                 loginDictionary = temp
             }
             
             // We may not need to add the user (Maybe we're just changing the stored password).
             if var users = loginDictionary[inRooutURI] {
                 urlUsers = users
-                for i in 0..<users.count {
-                    if users[i] == inUser {
-                        needToUpdate = false    // If we already know about this login, we don't need to update.
-                        break
-                    }
+                for i in 0..<users.count where users[i] == inUser {
+                    needToUpdate = false    // If we already know about this login, we don't need to update.
+                    break
                 }
             }
             
@@ -706,34 +679,32 @@ class AppStaticPrefs {
      */
     func removeUserForRootURI(_ inRooutURI: String, inUser: String! = nil) {
         if self._loadPrefs() {
-            var loginDictionary: [String:[String]] = [:]
+            var loginDictionary: [String: [String]] = [:]
             var urlUsers: [String] = []
             
             if (nil != inUser) && !inUser.isEmpty {
-                let _ = self.updateUserForRootURI(inRooutURI, inUser: inUser)   // Clear any stored password, first.
+                _ = self.updateUserForRootURI(inRooutURI, inUser: inUser)   // Clear any stored password, first.
                 
-                if let temp = self._loadedPrefs.object(forKey: PrefsKeys.RootServerLoginDictionaryKey.rawValue) as? [String:[String]] {
+                if let temp = self._loadedPrefs.object(forKey: PrefsKeys.RootServerLoginDictionaryKey.rawValue) as? [String: [String]] {
                     loginDictionary = temp
                 }
                 
                 // We remove the user if we find them.
                 if var users = loginDictionary[inRooutURI] {
-                    for i in 0..<users.count {
-                        if users[i] == inUser {
-                            users.remove(at: i)
-                            break
-                        }
+                    for i in 0..<users.count where users[i] == inUser {
+                        users.remove(at: i)
+                        break
                     }
                     urlUsers = users
                 }
             } else {
                 // If there was no user specified, then we are to remove all users from this URI.
-                if let temp = self._loadedPrefs.object(forKey: PrefsKeys.RootServerLoginDictionaryKey.rawValue) as? [String:[String]] {
+                if let temp = self._loadedPrefs.object(forKey: PrefsKeys.RootServerLoginDictionaryKey.rawValue) as? [String: [String]] {
                     loginDictionary = temp
                     // If we have a dictionary, then we'll be removing all stored passwords for that URI.
                     if var users = loginDictionary[inRooutURI] {
                         for i in 0..<users.count {
-                            let _ = self.updateUserForRootURI(inRooutURI, inUser: users[i])
+                            _ = self.updateUserForRootURI(inRooutURI, inUser: users[i])
                         }
                     }
                 }
@@ -763,13 +734,11 @@ class AppStaticPrefs {
         var ret: Bool = false
         
         if self._loadPrefs() {
-            if let temp = self._loadedPrefs.object(forKey: PrefsKeys.RootServerLoginDictionaryKey.rawValue) as? [String:[String]] {
+            if let temp = self._loadedPrefs.object(forKey: PrefsKeys.RootServerLoginDictionaryKey.rawValue) as? [String: [String]] {
                 if var users = temp[inRooutURI] {
-                    for i in 0..<users.count {
-                        if users[i] == inUser {
-                            ret = true
-                            break
-                        }
+                    for i in 0..<users.count where users[i] == inUser {
+                        ret = true
+                        break
                     }
                 }
             }
@@ -794,13 +763,11 @@ class AppStaticPrefs {
         
         if type(of: self).supportsTouchID && (nil != self._keychainWrapper) { // No TouchID, no stored password.
             if self._loadPrefs() {
-                if let temp = self._loadedPrefs.object(forKey: PrefsKeys.RootServerLoginDictionaryKey.rawValue) as? [String:[String]] {
+                if let temp = self._loadedPrefs.object(forKey: PrefsKeys.RootServerLoginDictionaryKey.rawValue) as? [String: [String]] {
                     if var users = temp[inRooutURI] {
-                        for i in 0..<users.count {
-                            if users[i] == inUser {
-                                ret = (nil != self._keychainWrapper.object(forKey: key))
-                                break
-                            }
+                        for i in 0..<users.count where users[i] == inUser {
+                            ret = (nil != self._keychainWrapper.object(forKey: key))
+                            break
                         }
                     }
                 }
@@ -824,8 +791,8 @@ class AppStaticPrefs {
         
         if type(of: self).supportsTouchID { // No TouchID, no stored password.
             if nil != self._keychainWrapper {
-                if let passwordFetched = self._keychainWrapper.object(forKey: inRooutURI.cleanURI() + "-" + inUser) {
-                    ret = (passwordFetched as! String)
+                if let passwordFetched = (self._keychainWrapper.object(forKey: inRooutURI.cleanURI() + "-" + inUser)) as? String {
+                    ret = passwordFetched
                 }
             }
         }

@@ -28,7 +28,7 @@ import MapKit
 /**
  This class controls the list of editable meetings that is the first editor screen to be shown.
  */
-class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITableViewDataSource, UITableViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource, CLLocationManagerDelegate {
+class ListEditableMeetingsViewController: EditorViewControllerBaseClass, UITableViewDataSource, UITableViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource, CLLocationManagerDelegate {
     /* ################################################################## */
     // MARK: Enums
     /* ################################################################## */
@@ -100,7 +100,7 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
     // MARK: Internal Instance Properties
     /* ################################################################## */
     /** This carries the state of the selected/unselected weekday checkboxes. */
-    var selectedWeekdays: BMLTiOSLibSearchCriteria.SelectableWeekdayDictionary = [.Sunday:.Selected,.Monday:.Selected,.Tuesday:.Selected,.Wednesday:.Selected,.Thursday:.Selected,.Friday:.Selected,.Saturday:.Selected]
+    var selectedWeekdays: BMLTiOSLibSearchCriteria.SelectableWeekdayDictionary = [.Sunday: .Selected, .Monday: .Selected, .Tuesday: .Selected, .Wednesday: .Selected, .Thursday: .Selected, .Friday: .Selected, .Saturday: .Selected]
     /** This contains all the meetings currently displayed */
     var currentMeetingList: [BMLTiOSLibMeetingNode] = []
     /** This is set to ask the view to scroll to expose a meeting object. */
@@ -208,7 +208,7 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
             self._locationManager.delegate = nil
             self._locationManager = nil
         }
-        let _ = self.navigationController?.popViewController(animated: true)
+        _ = self.navigationController?.popViewController(animated: true)
     }
     
     /* ################################################################## */
@@ -343,7 +343,7 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
      
      - parameter inMeetingObjects: An array of meeting objects.
      */
-    func updateSearch(inMeetingObjects:[BMLTiOSLibMeetingNode]) {
+    func updateSearch(inMeetingObjects: [BMLTiOSLibMeetingNode]) {
         DispatchQueue.main.async {  // Belt and suspenders...
             self._hideBusyAnimation()
             self.tabBarController?.tabBar.isHidden = false
@@ -375,11 +375,9 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
                 // If we provide an ID, then we need to scroll to expose that ID, and then open the editor for it.
                 if nil != self.showMeTheMoneyID {
                     var meetingObject: BMLTiOSLibEditableMeetingNode! = nil
-                    for meeting in self.currentMeetingList {
-                        if meeting.id == self.showMeTheMoneyID {
-                            meetingObject = meeting as! BMLTiOSLibEditableMeetingNode
-                            break
-                        }
+                    for meeting in self.currentMeetingList where meeting.id == self.showMeTheMoneyID {
+                        meetingObject = meeting as? BMLTiOSLibEditableMeetingNode
+                        break
                     }
                     
                     if nil != meetingObject {
@@ -553,7 +551,7 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
     /**
      This changes all of the checkboxes to match the "All" checkbox state.
      */
-    func allChangedTo(inState : BMLTiOSLibSearchCriteria.SelectionState) {
+    func allChangedTo(inState: BMLTiOSLibSearchCriteria.SelectionState) {
         self._checkingAll = true
         for subView in self.weekdaySwitchesContainerView.subviews {
             if let castView = subView as? WeekdaySwitchContainerView {
@@ -652,14 +650,12 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
             self._locationManager = nil
             self._locationFailedOnce = false
             if 0 < locations.count {
-                for location in locations {
-                    if 2 > location.timestamp.timeIntervalSinceNow {
-                        let coordinate = location.coordinate
-                        DispatchQueue.main.async(execute: {
-                            self._whereAmIInProgress = true
-                            self._startWhereAmISearch(coordinate)
-                        })
-                    }
+                for location in locations where 2 > location.timestamp.timeIntervalSinceNow {
+                    let coordinate = location.coordinate
+                    DispatchQueue.main.async(execute: {
+                        self._whereAmIInProgress = true
+                        self._startWhereAmISearch(coordinate)
+                    })
                 }
             } else {
                 MainAppDelegate.displayAlert("LOCATION-ERROR-HEADER", inMessage: "LOCATION-ERROR-MESSAGE", presentedBy: self)
@@ -679,7 +675,7 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
      :param: targetContentOffset We can use this to send an offset to the scroller (ignored).
      */
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        if ( (velocity.y < 0) && (scrollView.contentOffset.y < self.sScrollToReloadThreshold) ) {
+        if (velocity.y < 0) && (scrollView.contentOffset.y < self.sScrollToReloadThreshold) {
             self.doSearch()
         }
     }
@@ -754,10 +750,7 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
                             }
                         }
                         
-                        let weekday = AppStaticPrefs.weekdayNameFromWeekdayNumber(meetingObject.weekdayIndex)
-                        let localizedFormat = NSLocalizedString("MEETING-TIME-FORMAT", comment: "")
-                        let formats = meetingObject.formatsAsCSVList.isEmpty ? "" : " (" + meetingObject.formatsAsCSVList + ")"
-                        ret.meetingTimeAndPlaceLabel.text = String(format: localizedFormat, weekday, time) + formats
+                        ret.meetingTimeAndPlaceLabel.text = String(format: NSLocalizedString("MEETING-TIME-FORMAT", comment: ""), AppStaticPrefs.weekdayNameFromWeekdayNumber(meetingObject.weekdayIndex), time) + (meetingObject.formatsAsCSVList.isEmpty ? "" : " (" + meetingObject.formatsAsCSVList + ")")
                     }
                 }
             }
@@ -807,7 +800,7 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
      - parameter forRowAt: The indexpath of the row to be deleted.
      */
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if (editingStyle == UITableViewCellEditingStyle.delete) {
+        if editingStyle == UITableViewCellEditingStyle.delete {
             let meetingObject = self.currentMeetingList[indexPath.row]
 
             let alertController = UIAlertController(title: NSLocalizedString("DELETE-HEADER", comment: ""), message: String(format: NSLocalizedString("DELETE-MESSAGE-FORMAT", comment: ""), meetingObject.name), preferredStyle: .alert)
@@ -917,7 +910,7 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
             }
         }
         
-        let ret:UIView = UIView(frame: frame)
+        let ret: UIView = UIView(frame: frame)
         
         ret.backgroundColor = UIColor.clear
         
@@ -963,7 +956,7 @@ class ListEditableMeetingsViewController : EditorViewControllerBaseClass, UITabl
 /**
  This is a simple class that allows us to access the template items.
  */
-class MeetingTableViewCell : UITableViewCell {
+class MeetingTableViewCell: UITableViewCell {
     /** The top label */
     @IBOutlet weak var meetingTimeAndPlaceLabel: UILabel!
     /** The middle (italic) label */
@@ -977,7 +970,7 @@ class MeetingTableViewCell : UITableViewCell {
 /* ###################################################################################################################################### */
 /**
  */
-class WeekdaySwitchContainerView : UIView {
+class WeekdaySwitchContainerView: UIView {
     /** This is the weekday index (1-based) */
     var weekdayIndex: Int!
     /** This is the list selection view controller that "owns" this instance */
@@ -1004,9 +997,8 @@ class WeekdaySwitchContainerView : UIView {
         self.isUserInteractionEnabled = true
         if let testImage = UIImage(named: "checkbox-clear") {
             var checkboxFrame: CGRect = CGRect.zero
-            checkboxFrame.size = testImage.size
-            checkboxFrame.size.width = min(checkboxFrame.size.width, checkboxFrame.size.height)
-            checkboxFrame.size.height = min(checkboxFrame.size.width, checkboxFrame.size.height)
+            checkboxFrame.size.width = min(testImage.size.width, testImage.size.height)
+            checkboxFrame.size.height = min(testImage.size.width, testImage.size.height)
             
             checkboxFrame.origin.x = (frame.size.width - checkboxFrame.size.width) / 2  // Center the switch at the top of the view.
             

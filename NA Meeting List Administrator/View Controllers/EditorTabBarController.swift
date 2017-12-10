@@ -26,7 +26,7 @@ import BMLTiOSLib
 /* ###################################################################################################################################### */
 /**
  */
-class EditorTabBarController : UITabBarController, UITabBarControllerDelegate {
+class EditorTabBarController: UITabBarController, UITabBarControllerDelegate {
     enum TabIndexes: Int {
         case ListTab = 0, DeletedTab
     }
@@ -69,7 +69,7 @@ class EditorTabBarController : UITabBarController, UITabBarControllerDelegate {
      
      - parameter inMeetingObjects: An array of meeting objects.
      */
-    func updateSearch(inMeetingObjects:[BMLTiOSLibMeetingNode]) {
+    func updateSearch(inMeetingObjects: [BMLTiOSLibMeetingNode]) {
         if let listViewController = self.viewControllers?[TabIndexes.ListTab.rawValue] as? ListEditableMeetingsViewController {
             listViewController.updateSearch(inMeetingObjects: inMeetingObjects)
         }
@@ -137,7 +137,9 @@ class EditorTabBarController : UITabBarController, UITabBarControllerDelegate {
      */
     func updateNewMeetingAdded(_ inNewMeeting: BMLTiOSLibMeetingNode) {
         if let listViewController = self.viewControllers?[TabIndexes.ListTab.rawValue] as? ListEditableMeetingsViewController {
-            listViewController.updateNewMeeting(inMeetingObject: inNewMeeting as! BMLTiOSLibEditableMeetingNode)
+            if let newMeeting = inNewMeeting as? BMLTiOSLibEditableMeetingNode {
+                listViewController.updateNewMeeting(inMeetingObject: newMeeting)
+            }
         }
     }
     
@@ -175,10 +177,10 @@ class EditorTabBarController : UITabBarController, UITabBarControllerDelegate {
 /* ###################################################################################################################################### */
 /**
  */
-class EditorViewControllerBaseClass : UIViewController {
+class EditorViewControllerBaseClass: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
-        let topColor = (self.view as! EditorViewBaseClass).topColor
-        let bottomColor = (self.view as! EditorViewBaseClass).bottomColor
+        let topColor = (self.view as? EditorViewBaseClass)?.topColor
+        let bottomColor = (self.view as? EditorViewBaseClass)?.bottomColor
         
         self.navigationController?.navigationBar.barTintColor = topColor
         self.tabBarController?.tabBar.barTintColor = bottomColor
@@ -193,7 +195,7 @@ class EditorViewControllerBaseClass : UIViewController {
 /**
  I cribbed the basics of this from here: https://www.hackingwithswift.com/read/37/4/adding-a-cagradientlayer-with-ibdesignable-and-ibinspectable
  */
-class EditorViewBaseClass : UIView {
+class EditorViewBaseClass: UIView {
     @IBInspectable var topColor: UIColor = UIColor.white
     @IBInspectable var bottomColor: UIColor = UIColor.black
     
@@ -212,7 +214,7 @@ class EditorViewBaseClass : UIView {
      Called when the class is to lay out its subviews.
      */
     override func layoutSubviews() {
-        (layer as! CAGradientLayer).colors = [topColor.cgColor, bottomColor.cgColor]
+        (layer as? CAGradientLayer)?.colors = [topColor.cgColor, bottomColor.cgColor]
         super.layoutSubviews()
     }
 }

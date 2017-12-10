@@ -27,9 +27,9 @@ import BMLTiOSLib
 /**
  This class controls the list of deleted meetings that can be restored.
  */
-class DeletedMeetingsViewController : EditorViewControllerBaseClass, UITableViewDataSource, UITableViewDelegate {
+class DeletedMeetingsViewController: EditorViewControllerBaseClass, UITableViewDataSource, UITableViewDelegate {
     /** This is the table cell ID */
-    let sPrototypeID:String = "one-deletion-row"
+    let sPrototypeID: String = "one-deletion-row"
     /** This is used to determine if we have dragged the scroll enough to rate a reload. */
     let sScrollToReloadThreshold: CGFloat = -80
     
@@ -61,7 +61,7 @@ class DeletedMeetingsViewController : EditorViewControllerBaseClass, UITableView
      - parameter sender: The bar button item that called this.
      */
     @IBAction func backButtonHit(_ sender: UIBarButtonItem) {
-        let _ = self.navigationController?.popViewController(animated: true)
+        _ = self.navigationController?.popViewController(animated: true)
     }
 
     /* ################################################################## */
@@ -202,7 +202,7 @@ class DeletedMeetingsViewController : EditorViewControllerBaseClass, UITableView
      :param: targetContentOffset We can use this to send an offset to the scroller (ignored).
      */
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        if ( (velocity.y < 0) && (scrollView.contentOffset.y < self.sScrollToReloadThreshold) ) {
+        if (velocity.y < 0) && (scrollView.contentOffset.y < self.sScrollToReloadThreshold) {
             self.getDeletedMeetings()
         }
     }

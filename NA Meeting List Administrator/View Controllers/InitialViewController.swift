@@ -173,7 +173,7 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate 
      */
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if type(of: segue.destination) == EditorTabBarController.self {
-            self._editorTabBarController = segue.destination as! EditorTabBarController
+            self._editorTabBarController = segue.destination as? EditorTabBarController
         }
     }
     
@@ -357,7 +357,7 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate 
      - parameter inError: Any error that may have occurred.
      */
     func biometricCallback(_ inSuccess: Bool, inError: Error?) {
-        if(!inSuccess) {
+        if !inSuccess {
             let userCancelRaw = LAError.Code.userCancel.rawValue
             let systemCancelRaw = LAError.Code.systemCancel.rawValue
             var errorCode = userCancelRaw   // We always err on the side of caution.
@@ -371,7 +371,7 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate 
             
             if (userCancelRaw != errorCode) && (systemCancelRaw != errorCode) {   // We ignore user/system canceled error.
                 if LAError.Code.userFallback.rawValue == (inError! as NSError).code {   // Fallback means that we will use the password, so we nuke the stored password.
-                    let _ = AppStaticPrefs.prefs.updateUserForRootURI(self.enterURLTextItem.text!, inUser: self.loginIDTextField.text!)
+                    _ = AppStaticPrefs.prefs.updateUserForRootURI(self.enterURLTextItem.text!, inUser: self.loginIDTextField.text!)
                     self.touchIDButton.isHidden = true
                     // Wow. This is one hell of a kludge, but it works.
                     // There's a "feature" in iOS, where the TouchID callback is triggered out of sync with the main queue (slightly before the next run cycle, I guess).
@@ -478,7 +478,7 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate 
         self.setLoginStatusUI()
         
         // The first time we log in with a user, and we have multiple Service bodies, we allow them to choose their Service bodies first.
-        if firstTime && MainAppDelegate.connectionObject.isAdminLoggedIn && (1 < AppStaticPrefs.prefs.allEditableServiceBodies.count){
+        if firstTime && MainAppDelegate.connectionObject.isAdminLoggedIn && (1 < AppStaticPrefs.prefs.allEditableServiceBodies.count) {
             self.selectYourClowns(self.serviceBodyBarButton)
         } else {    // Otherwise, we just go straight to the editor; whether or not we are at the first go.
             if MainAppDelegate.connectionObject.isAdminLoggedIn {
@@ -522,8 +522,8 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate 
                 let bioType = authenticationContext.biometryType
                 if bioType == .faceID {
                     self._bioType = "FACE-ID-STRING".localizedVariant
-                    touchIDButton.setImage(UIImage(named:"FaceIDLogo"), for: UIControlState.normal)
-                    touchIDButton.setImage(UIImage(named:"FaceIDLogo-Highlight"), for: UIControlState.highlighted)
+                    touchIDButton.setImage(UIImage(named: "FaceIDLogo"), for: UIControlState.normal)
+                    touchIDButton.setImage(UIImage(named: "FaceIDLogo-Highlight"), for: UIControlState.highlighted)
                 }
             }
         }
@@ -590,7 +590,7 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate 
      
      - parameter inMeetingObjects: An array of meeting objects.
      */
-    func updateSearch(inMeetingObjects:[BMLTiOSLibMeetingNode]) {
+    func updateSearch(inMeetingObjects: [BMLTiOSLibMeetingNode]) {
         self._editorTabBarController.updateSearch(inMeetingObjects: inMeetingObjects)   // We pass this on to our Tab controller, who will take it from there.
     }
     
@@ -695,4 +695,3 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate 
         return true
     }
 }
-
