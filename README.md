@@ -37,6 +37,7 @@ CHANGELIST
 
 - Moved FXKeychain to a Cocoapod.
 - Added the SwiftLINT Cocoapod.
+- Updated the LICENSE.txt file to reflect the new pods reality.
 
 ***Version 1.2.3.3000* ** *- December 9, 2017*
 

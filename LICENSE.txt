@@ -1,10 +1,6 @@
-NOTE: This license only applies to the BMLT files.
-It does not apply to these libraries that are included:
-
-    FXKeychain:         https://github.com/nicklockwood/FXKeychain
-    Apple Reachability: https://developer.apple.com/library/ios/samplecode/Reachability
-
-These have far more permissive licenses than the GPL.
+NOTE: This license only applies to the NA Meeting List Administrator files.
+It does not apply to thelibraries in the "Pods" directory, which
+each have their own license.
 
                     GNU GENERAL PUBLIC LICENSE
                        Version 3, 29 June 2007
