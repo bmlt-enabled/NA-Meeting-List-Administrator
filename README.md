@@ -33,11 +33,12 @@ The NA Meeting List Administrator app is [GPL V3](https://opensource.org/license
 
 CHANGELIST
 ----------
-***Version 1.2.4.2000* ** *- TBD*
+***Version 1.2.4.2000* ** *- December 12, 2017*
 
 - Moved FXKeychain to a Cocoapod.
-- Added the SwiftLINT Cocoapod.
-- Many fixes to satisfy SwiftLINT.
+- Added the SwiftLint Cocoapod.
+- Updated the BMLTiOSLib to use the new SwiftLint-approved version.
+- Many fixes to satisfy SwiftLint.
 - Updated the LICENSE.txt file to reflect the new pods reality.
 
 ***Version 1.2.3.3000* ** *- December 9, 2017*
