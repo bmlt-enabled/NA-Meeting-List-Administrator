@@ -33,6 +33,10 @@ The NA Meeting List Administrator app is [GPL V3](https://opensource.org/license
 
 CHANGELIST
 ----------
+***Version 1.2.4.2001* ** *- December 13, 2017*
+
+- Simply updated to the latest BMLTiOSLib.
+
 ***Version 1.2.4.2000* ** *- December 12, 2017*
 
 - Moved FXKeychain to a Cocoapod.
