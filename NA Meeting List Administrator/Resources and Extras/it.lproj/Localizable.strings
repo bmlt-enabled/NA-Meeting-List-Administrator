@@ -1,0 +1,198 @@
+/*
+ Localizable.strings
+ NA Meeting List Administrator
+ 
+ Created by MAGSHARE.
+ 
+ Copyright 2017 MAGSHARE
+ 
+ This is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+ 
+ NA Meeting List Administrator is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with this code.  If not, see <http://www.gnu.org/licenses/>.
+ */
+/** The Location Description String. */
+"LOCAL-LOCATION-FLAG"                       =   "Questa app ha bisogno di sapere dove sei per poter trovare la riunione o l'indirizzo in cui ti trovi.";   /**< This is the message shown by the location permissions alert. */
+"ERR-STRING-SHORT"                                                                              =   "ERRORE";
+
+"CONNECT-TITLE"                                                                                 =   "CONNETTI";
+"SERVICE-BODY-SELECTION-TITLE"                                                                  =   "Scegli la struttura di servizio";
+"NAMeetingListAdministrator-OKButtonText"                                                       =   "OK";
+"NAMeetingListAdministrator-ErrorAlertTitle"                                                    =   "ERRORE!";
+"ENTER-URI-LABEL"                                                                               =   "Connetti al server";
+"ENTER-URI-PLACEHOLDER"                                                                         =   "Inserisci l'indirizzo del server";
+"CONNECT-BUTTON"                                                                                =   "CONNETTI";
+"DISCONNECT-BUTTON"                                                                             =   "DISCONNETTI";
+"LOGIN-LABEL"                                                                                   =   "Accesso all'amministrazione";
+"LOGIN-ID-LABEL"                                                                                =   "ID di accesso:";
+"LOGIN-ID-PLACEHOLDER"                                                                          =   "Inserisci un ID di accesso";
+"PASSWORD-LABEL"                                                                                =   "Password:";
+"PASSWORD-PLACEHOLDER"                                                                          =   "Inserisci la password";
+"LOGIN-BUTTON"                                                                                  =   "LOGIN";
+"LOGOUT-BUTTON"                                                                                 =   "LOGOUT";
+"ADMIN-UNAVAILABLE-TEXT"                                                                        =   "Questo server non permette l'amministrazione da questa app.";
+"BAD-URI-ERROR-TEXT"                                                                            =   "L'indirizzo inserito non punta a un Root server valido.";
+"The operation couldn’t be completed. (BMLTiOSLibErrorDomains-Permission-Error error 201000.)"  =   "ID di accesso o password non riconosciuti dal server.";
+"LOCAL-TOUCHID-REASON-FORMAT"                                                                   =   "Accedi automaticamente \"%@\" al server.";
+"TOUCH-ID-STRING"                                                                               =   "Tocca";
+"FACE-ID-STRING"                                                                                =   "Guarda"; /* Face*/
+"UNABLE-TO-LOGIN-ERROR-TITLE-FORMAT"                                                            =   "%@  errore di ID";
+"UNABLE-TO-LOGIN-ERROR-FORMAT"                                                                  =   "%@ ID non può accedere al server.";
+"SERVICE-BODY-BUTTON"                                                                           =   "Strutture di servizio";
+"EDITOR-BUTTON"                                                                                 =   "Modifica";
+"MIDNIGHT"                                                                                      =   "Mezzanotte";
+"NOON"                                                                                          =   "Mezzogiorno";
+"MEETING-TIME-FORMAT"                                                                           =   "%@, %@";
+"ALL-DAYS"                                                                                      =   "Tutti";
+"LOCAL-SEARCH-PICKER-NONE"                                                                      =   "Tutte le città e le frazioni";
+"CONNECT-BACK-TITLE"                                                                            =   "Indietro";
+"MEETING-ID-FORMAT"                                                                             =   "ID della riunione %d";
+"NEW-MEETING-TITLE"                                                                             =   "Nuova riunione";
+
+"MEETINGS-TAB-BAR-NAME"                                                                         =   "Riunioni correnti";
+"DELETED-MEETINGS-TAB-BAR-NAME"                                                                 =   "Riunioni cancellate";
+
+"DELETE-HEADER-1"                                                                               =   "Sei sicuro?";
+"DELETE-HEADER-2"                                                                               =   "Nuke da Orbit.";
+"DELETE-HEADER-3"                                                                               =   "Richiesta ignorata!"; /*Belay That Order*/
+"DELETE-HEADER-4"                                                                               =   "Vuoi perdere le modifiche fatte a questa riunione?";
+"DELETE-HEADER"                                                                                 =   "Vuoi cancellare questa riunione?";
+"DELETE-MESSAGE-FORMAT"                                                                         =   "La riunione \"%@\" sarà cancellata. Sei sicuro di volerla cancellare?";
+"DELETE-OK-BUTTON"                                                                              =   "Cancella questa riunione";
+"DELETE-CANCEL-BUTTON"                                                                          =   "Annulla";
+
+"SAVE-BUTTON"                                                                                   =   "Salva";
+"SAVE-BUTTON-DUPLICATE"                                                                         =   "Duplica";
+"CANCEL-BUTTON"                                                                                 =   "Annulla";
+
+"PUBLISHED-LABEL"                                                                               =   "Riunione pubblicata";
+"SERVICE-BODY-LABEL"                                                                            =   "Struttura di servizio della riunione:";
+
+"WORLD-ID-LABEL"                                                                                =   "ID mondiale:";
+"WORLD-ID-PLACEHOLDER"                                                                          =   "Inserisci un codice dei Servizi mondiali";
+
+"MEETING-NAME-LABEL"                                                                            =   "Nome della riunione:";
+"MEETING-NAME-PLACEHOLDER"                                                                      =   "Inserisci un nome per la riunione";
+
+"WEEKDAY-LABEL"                                                                                 =   "Giorno della settimana:";
+
+"START-TIME-LABEL"                                                                              =   "Orario di inizio:";
+
+"DURATION-LABEL"                                                                                =   "Durata:";
+
+"LOCATION-NAME-LABEL"                                                                           =   "Nome della località:";
+"LOCATION-NAME-PLACEHOLDER"                                                                     =   "Inserisci un nome di località";
+
+"STREET-ADDRESS-LABEL"                                                                          =   "Indirizzo:";
+"STREET-ADDRESS-PLACEHOLDER"                                                                    =   "Inserisci un indirizzo";
+
+"NEIGHBORHOOD-LABEL"                                                                            =   "Circondario:";
+"NEIGHBORHOOD-PLACEHOLDER"                                                                      =   "Inserisci un circondario";
+
+"BOROUGH-LABEL"                                                                                 =   "Frazione o distretto cittadino:";
+"BOROUGH-PLACEHOLDER"                                                                           =   "Inserisci una frazione o un distretto";
+
+"TOWN-LABEL"                                                                                    =   "Città:";
+"TOWN-PLACEHOLDER"                                                                              =   "Inserisci una città";
+
+"COUNTY-LABEL"                                                                                  =   "Provincia:";
+"COUNTY-PLACEHOLDER"                                                                            =   "Inserisci una provincia";
+
+"STATE-LABEL"                                                                                   =   "Regione:";
+"STATE-NAG-LABEL"                                                                               =   "(Usa sempre un'abbreviazione)";
+
+"ZIP-LABEL"                                                                                     =   "Codice di avviamento postale (CAP):";
+
+"NATION-LABEL"                                                                                  =   "Nazione:";
+"NATION-PLACEHOLDER"                                                                            =   "Inserisci una nazione (Usa un'abbreviazione)";
+
+"LOCATION-INFO-LABEL"                                                                           =   "Informazioni extra:";
+"LOCATION-INFO-PLACEHOLDER"                                                                     =   "Inserisci informazioni extra sul luogo";
+
+"LONGITUDE-LABEL"                                                                               =   "Longitudine:";
+"LONGITUDE-PLACEHOLDER"                                                                         =   "Inserisci la longitudine del luogo della riunione.";
+
+"LATITUDE-LABEL"                                                                                =   "Latitudine:";
+"LATITUDE-PLACEHOLDER"                                                                          =   "Inserisci la latitudine del luogo della riunione.";
+
+"LONG-LAT-SET-FROM-ADDRESS-BUTTON"                                                              =   "Imposta la mappa per incrociare l'indirizzo";
+"LONG-LAT-SET-FROM-MAP-BUTTON"                                                                  =   "Imposta l'indirizzo dalla mappa";
+
+"LOCAL-EDIT-LOCATION-FAIL-TITLE"                                                                =   "Errore di localizzazione";
+"LOCAL-EDIT-LOCATION-FAILURE-MESSAGE"                                                           =   "Impossibile determinare il luogo sulla base dell'indirizzo.";
+"LOCAL-EDIT-REVERSE-GEOCODE-FAILURE-MESSAGE"                                                    =   "Impossibile determinare l'indirizzo sulla base del luogo.";
+
+"MAP-TYPE-NORMAL"                                                                               =   "Standard";
+"MAP-TYPE-HYBRID"                                                                               =   "Ibrido";
+"MAP-TYPE-SATELLITE"                                                                            =   "Satellite";
+
+"COMMENTS-LABEL"                                                                                =   "Commenti:";
+
+"FORMATS-LABEL"                                                                                 =   "Formati:";
+
+"HISTORY-ERASER-BUTTON"                                                                         =   "Visualizza la cronologia delle modifiche alla riunione";
+"HISTORY-ERASER-TITLE"                                                                          =   "Cronologia delle modifiche alla riunione";
+
+"SAVE-AS-OR-COPY"                                                                               =   "Salva le modifiche alla riunione";
+"SAVE-AS-OR-COPY-MESSAGE"                                                                       =   "Questa riunione è stata modificata.\nVuoi salvare queste modifiche?";
+
+"SAVE-AS-COPY"                                                                                  =   "Salva questa riunione come copia";
+"SAVE-AS-COPY-MESSAGE"                                                                          =   "Vuoi duplicare questa riunione?";
+
+"SAVE-COPY-BUTTON"                                                                              =   "Salva una copia di questa riunione";
+"SAVE-CHANGES-BUTTON"                                                                           =   "Salva modifiche";
+"SAVE-CANCEL-BUTTON"                                                                            =   "Annulla";
+
+"SAVE-NEW-TITLE"                                                                                =   "Crea una nuova riunione";
+"SAVE-NEW-MESSAGE"                                                                              =   "Se tocchi \"Crea una nuova riunione\", essa sarà creata come nuova riunione.";
+"SAVE-NEW-BUTTON"                                                                               =   "Crea una nuova riunione";
+
+"CANCEL-HEADER"                                                                                 =   "Questa riunione è stata modificata.";
+"CANCEL-MESSAGE"                                                                                =   "Se tocchi \"Perdi modifiche\", le modifiche fatte a questa riunione andranno perdute e la riunione tornerà al suo stato originario.\nSe tocchi \"Annulla\", sarai reindirizzato all'editor della riunione.";
+"CANCEL-LOSE-CHANGES-BUTTON"                                                                    =   "Perdi modifiche";
+"CANCEL-CANCEL-BUTTON"                                                                          =   "Annulla";
+
+"BMLTiOSLib-Default-Meeting-Name"                                                               =   "Riunione NA";
+
+"DELETED-NAME-FORMAT"                                                                           =   "%@ (%d)";
+
+"DELETED-ALERT-HEADER"                                                                          =   "Ripristino di una riunione cancellata";
+"DELETED-ALERT-FORMAT"                                                                          =   "Se tocchi \"Ripristina riunione\", la riunione \"%@\" sarà ripristinata.\nEssa comparirà come riunione non pubblicata e sarai reindirizzato all'editor.\nSe tocchi \"Annulla\", non succederà niente.";
+"DELETED-RESTORE-BUTTON"                                                                        =   "Ripristina riunione";
+"DELETED-CANCEL-BUTTON"                                                                         =   "Annulla";
+
+"DELETED-LOADING-HEADER"                                                                        =   "Caricamento riunioni cancellate";
+"DELETED-LOADING-SUBTEXT"                                                                       =   "Questa operazione può richiedere molto tempo.";
+
+"NO-HISTORY-LABEL"                                                                              =   "Nessuna cronologia";
+
+"REVERT-BUTTON"                                                                                 =   "Ripristina";
+
+"CLEAR-ALL-SAVED-LOGINS"                                                                        =   "Rimuovi tutti gli accessi e gli indirizzi internet salvati";
+
+"FORGET-STORED-LOGINS-HEADER"                                                                   =   "Sei sicuro?";
+"FORGET-STORED-LOGINS-MESSAGE"                                                                  =   "Se tocchi \"Dimentica gli accessi memorizzati\", tutti gli indirizzi internet e gli accessi saranno cancellati.";
+"FORGET-STORED-LOGINS-MESSAGE-SUFFIX"                                                           =   "\nSarai anche disconnesso dalla sessione corrente.";
+"FORGET-STORED-LOGINS-OK-BUTTON"                                                                =   "Dimentica gli accessi memorizzati";
+"FORGET-STORED-LOGINS-CANCEL-BUTTON"                                                            =   "Annulla";
+"LOCAL-MAGSHARE-BLURB-LABEL"                                                                    =   "Un altro bel progetto MAGSHARE";
+"LOCAL-MAGSHARE-URI-LABEL"                                                                      =   "Scopri di più a https://bmlt.magshare.net";
+"LOCAL-MAGSHARE-URI"                                                                            =   "https://bmlt.magshare.net/nameetinglistadministrator";
+
+"VERSION-LABEL-FORMAT"                                                                          =   "Versione %@";
+
+"WHAT-MEETING-AM-I-AT-NOW"                                                                      =   "A quale riunione sono adesso?";
+
+"LOCATION-ERROR-HEADER"                                                                         =   "Errore di localizzazione";
+"LOCATION-ERROR-MESSAGE"                                                                        =   "Impossibile determinare la tua attuale localizzazione.";
+"NO-MEETING-HEADER"                                                                             =   "Nessuna riunione trovata";
+"NO-MEETING-MESSAGE"                                                                            =   "Nessuna riunione corrisponde alla località e all'orario che hai attualmente indicato.";
+
