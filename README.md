@@ -33,6 +33,10 @@ The NA Meeting List Administrator app is [GPL V3](https://opensource.org/license
 
 CHANGELIST
 ----------
+***Version 1.2.4.2004* ** *- January 7, 2018*
+
+- Added the basic Swedish localization.
+
 ***Version 1.2.4.2003* ** *- January 7, 2018*
 
 - Fixed an issue, exposed by the Italian translation, where weeks not beginning on Sunday caused a crash.

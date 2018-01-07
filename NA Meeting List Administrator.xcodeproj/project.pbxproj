@@ -32,6 +32,7 @@
 /* Begin PBXFileReference section */
 		49C408E1F55DABBC21670142 /* Pods_NA_Meeting_List_Administrator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NA_Meeting_List_Administrator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		77159BD91E68B0E6002239C4 /* HistoryListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HistoryListViewController.swift; path = "View Controllers/HistoryListViewController.swift"; sourceTree = "<group>"; };
+		7733FE642002A257008B6E5F /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = "Resources and Extras/sv.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		7746B1491E59FA5800030B66 /* MapMarker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapMarker.swift; path = "Main App/MapMarker.swift"; sourceTree = "<group>"; };
 		777178131E454AB30027F8E4 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsViewController.swift; path = "View Controllers/SettingsViewController.swift"; sourceTree = "<group>"; };
 		777178171E454C0D0027F8E4 /* SelectServiceBodiesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectServiceBodiesViewController.swift; path = "View Controllers/SelectServiceBodiesViewController.swift"; sourceTree = "<group>"; };
@@ -231,6 +232,7 @@
 				en,
 				Base,
 				it,
+				sv,
 			);
 			mainGroup = 77DC3E9D1E378B6100BF24B7;
 			productRefGroup = 77DC3EA71E378B6300BF24B7 /* Products */;
@@ -386,6 +388,7 @@
 			children = (
 				77B7D1211E3AA0A80031FF6B /* Base */,
 				77A097E4200034E600769CEB /* it */,
+				7733FE642002A257008B6E5F /* sv */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

@@ -1,0 +1,198 @@
+/*
+ Localizable.strings
+ NA Meeting List Administrator
+ 
+ Created by MAGSHARE.
+ 
+ Copyright 2017 MAGSHARE
+ 
+ This is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+ 
+ NA Meeting List Administrator is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with this code.  If not, see <http://www.gnu.org/licenses/>.
+ */
+/** The Location Description String. */
+"LOCAL-LOCATION-FLAG"                       =   "This app needs to know where you are in order to find the meeting you are at, or to find the address you are at.";   /**< This is the message shown by the location permissions alert. */
+"ERR-STRING-SHORT"                                                                              =   "FEL";
+
+"CONNECT-TITLE"                                                                                 =   "ANSLUT";
+"SERVICE-BODY-SELECTION-TITLE"                                                                  =   "Välj Serviceenhet";
+"NAMeetingListAdministrator-OKButtonText"                                                       =   "OK";
+"NAMeetingListAdministrator-ErrorAlertTitle"                                                    =   "FEL!";
+"ENTER-URI-LABEL"                                                                               =   "Anslut till Server";
+"ENTER-URI-PLACEHOLDER"                                                                         =   "Ange Server URL";
+"CONNECT-BUTTON"                                                                                =   "ANSLUT";
+"DISCONNECT-BUTTON"                                                                             =   "KOPPLA FRÅN";
+"LOGIN-LABEL"                                                                                   =   "Administratör inloggning";
+"LOGIN-ID-LABEL"                                                                                =   "Login ID:";
+"LOGIN-ID-PLACEHOLDER"                                                                          =   "Ange Login ID";
+"PASSWORD-LABEL"                                                                                =   "Lösenord:";
+"PASSWORD-PLACEHOLDER"                                                                          =   "Ange ditt lösenord";
+"LOGIN-BUTTON"                                                                                  =   "LOGGA IN";
+"LOGOUT-BUTTON"                                                                                 =   "LOGGA UT";
+"ADMIN-UNAVAILABLE-TEXT"                                                                        =   "Denna server tillåter inte administration via denna app.";
+"BAD-URI-ERROR-TEXT"                                                                            =   "Adressen du angett pekar inte till en uppdaterad Root Server.";
+"The operation couldn’t be completed. (BMLTiOSLibErrorDomains-Permission-Error error 201000.)"  =   "Servern kunde inte känna igen ditt användarnamn eller lösenord.";
+"LOCAL-TOUCHID-REASON-FORMAT"                                                                   =   "Logga in automatiskt \"%@\" till denna server.";
+"TOUCH-ID-STRING"                                                                               =   "Tryck";
+"FACE-ID-STRING"                                                                                =   "Ansikte";
+"UNABLE-TO-LOGIN-ERROR-TITLE-FORMAT"                                                            =   "%@ ID Fel";
+"UNABLE-TO-LOGIN-ERROR-FORMAT"                                                                  =   "%@ ID kunde inte logga in till servern";
+"SERVICE-BODY-BUTTON"                                                                           =   "Serviceenheter";
+"EDITOR-BUTTON"                                                                                 =   "Redigera";
+"MIDNIGHT"                                                                                      =   "Midnatt";
+"NOON"                                                                                          =   "Middag";
+"MEETING-TIME-FORMAT"                                                                           =   "%@, %@";
+"ALL-DAYS"                                                                                      =   "Alla";
+"LOCAL-SEARCH-PICKER-NONE"                                                                      =   "Alla städer";
+"CONNECT-BACK-TITLE"                                                                            =   "Tillbaka";
+"MEETING-ID-FORMAT"                                                                             =   "Mötets ID %d";
+"NEW-MEETING-TITLE"                                                                             =   "Nytt möte";
+
+"MEETINGS-TAB-BAR-NAME"                                                                         =   "Aktiva möten";
+"DELETED-MEETINGS-TAB-BAR-NAME"                                                                 =   "Raderade möten";
+
+"DELETE-HEADER-1"                                                                               =   "Är du säker?";
+"DELETE-HEADER-2"                                                                               =   "Bomba dom.";
+"DELETE-HEADER-3"                                                                               =   "Befäst ordern!";
+"DELETE-HEADER-4"                                                                               =   "Vill du förlora ändringarna du gjort för detta möte?";
+"DELETE-HEADER"                                                                                 =   "Vill du radera detta möte?";
+"DELETE-MESSAGE-FORMAT"                                                                         =   "Mötet \"%@\" kommer raderas. Är du söäker på att du vill ta bort det?";
+"DELETE-OK-BUTTON"                                                                              =   "Radera mötet";
+"DELETE-CANCEL-BUTTON"                                                                          =   "Avbryt";
+
+"SAVE-BUTTON"                                                                                   =   "Spara";
+"SAVE-BUTTON-DUPLICATE"                                                                         =   "Kopiera";
+"CANCEL-BUTTON"                                                                                 =   "Avbryt";
+
+"PUBLISHED-LABEL"                                                                               =   "Mötet är publicerat";
+"SERVICE-BODY-LABEL"                                                                            =   "Mötets servicenhet:";
+
+"WORLD-ID-LABEL"                                                                                =   "Världs ID:";
+"WORLD-ID-PLACEHOLDER"                                                                          =   "Ange NAWS kod för serviceenhet";
+
+"MEETING-NAME-LABEL"                                                                            =   "Mötets namn:";
+"MEETING-NAME-PLACEHOLDER"                                                                      =   "Ange ett namn för mötet";
+
+"WEEKDAY-LABEL"                                                                                 =   "Veckodag:";
+
+"START-TIME-LABEL"                                                                              =   "Starttid:";
+
+"DURATION-LABEL"                                                                                =   "Längd:";
+
+"LOCATION-NAME-LABEL"                                                                           =   "Platsnamn:";
+"LOCATION-NAME-PLACEHOLDER"                                                                     =   "Ange ett namn för platsen";
+
+"STREET-ADDRESS-LABEL"                                                                          =   "Gatuadress:";
+"STREET-ADDRESS-PLACEHOLDER"                                                                    =   "Ange gatuadress";
+
+"NEIGHBORHOOD-LABEL"                                                                            =   "n/a:";
+"NEIGHBORHOOD-PLACEHOLDER"                                                                      =   "n/a";
+
+"BOROUGH-LABEL"                                                                                 =   "n/a:";
+"BOROUGH-PLACEHOLDER"                                                                           =   "n/a";
+
+"TOWN-LABEL"                                                                                    =   "Stad:";
+"TOWN-PLACEHOLDER"                                                                              =   "Ange en stad";
+
+"COUNTY-LABEL"                                                                                  =   "n/a:";
+"COUNTY-PLACEHOLDER"                                                                            =   "n/a";
+
+"STATE-LABEL"                                                                                   =   "Län:";
+"STATE-NAG-LABEL"                                                                               =   "(n/a)";
+
+"ZIP-LABEL"                                                                                     =   "Postnummer:";
+
+"NATION-LABEL"                                                                                  =   "Land:";
+"NATION-PLACEHOLDER"                                                                            =   "Ange land (n/a)";
+
+"LOCATION-INFO-LABEL"                                                                           =   "Mer information:";
+"LOCATION-INFO-PLACEHOLDER"                                                                     =   "Ange ytterligare information";
+
+"LONGITUDE-LABEL"                                                                               =   "Longitud:";
+"LONGITUDE-PLACEHOLDER"                                                                         =   "Ange Longitud för mötets plats.";
+
+"LATITUDE-LABEL"                                                                                =   "Latitud:";
+"LATITUDE-PLACEHOLDER"                                                                          =   "Ange Latitud för mötets plats.";
+
+"LONG-LAT-SET-FROM-ADDRESS-BUTTON"                                                              =   "Sätt kartnål för adressen";
+"LONG-LAT-SET-FROM-MAP-BUTTON"                                                                  =   "Sätt adressen från kartnålen";
+
+"LOCAL-EDIT-LOCATION-FAIL-TITLE"                                                                =   "Platsfel";
+"LOCAL-EDIT-LOCATION-FAILURE-MESSAGE"                                                           =   "Kunde inte ange en plats för adressen.";
+"LOCAL-EDIT-REVERSE-GEOCODE-FAILURE-MESSAGE"                                                    =   "Kunde inte ange en adress för platsen.";
+
+"MAP-TYPE-NORMAL"                                                                               =   "Standard";
+"MAP-TYPE-HYBRID"                                                                               =   "Hybrid";
+"MAP-TYPE-SATELLITE"                                                                            =   "Satellit";
+
+"COMMENTS-LABEL"                                                                                =   "Kommentarer:";
+
+"FORMATS-LABEL"                                                                                 =   "Mötesformat:";
+
+"HISTORY-ERASER-BUTTON"                                                                         =   "Visa ändringshistorik";
+"HISTORY-ERASER-TITLE"                                                                          =   "Ändringshistorik";
+
+"SAVE-AS-OR-COPY"                                                                               =   "Spara mötesändringar";
+"SAVE-AS-OR-COPY-MESSAGE"                                                                       =   "Ändringar har gjorts för mötet.\nVill du spara ändringarna?";
+
+"SAVE-AS-COPY"                                                                                  =   "Spara en kopia på detta möte";
+"SAVE-AS-COPY-MESSAGE"                                                                          =   "Vill du kopiera detta möte?";
+
+"SAVE-COPY-BUTTON"                                                                              =   "Spara en kopia på detta möte";
+"SAVE-CHANGES-BUTTON"                                                                           =   "Spara ändringar";
+"SAVE-CANCEL-BUTTON"                                                                            =   "Avbryt";
+
+"SAVE-NEW-TITLE"                                                                                =   "Skapa detta nya mötet";
+"SAVE-NEW-MESSAGE"                                                                              =   "Om du trycker \"Create New Meeting\", kommer detta skapas som ett nytt möte.";
+"SAVE-NEW-BUTTON"                                                                               =   "Skapa nytt möte";
+
+"CANCEL-HEADER"                                                                                 =   "Ändringar har gjorts för mötet.";
+"CANCEL-MESSAGE"                                                                                =   "Om du trycker \"Lose Changes\", kommer ändringarna du gjort att förloras, och mötet återställs till ursprungliga uppgifter.\nOm du trycker \"Cancel\", kommer du tillbaks till mötesadministration.";
+"CANCEL-LOSE-CHANGES-BUTTON"                                                                    =   "Förkasta ändringar";
+"CANCEL-CANCEL-BUTTON"                                                                          =   "Avbryt";
+
+"BMLTiOSLib-Default-Meeting-Name"                                                               =   "NA Möte";
+
+"DELETED-NAME-FORMAT"                                                                           =   "%@ (%d)";
+
+"DELETED-ALERT-HEADER"                                                                          =   "Återskapa raderat möte";
+"DELETED-ALERT-FORMAT"                                                                          =   "Om du tryckerh \"Restore Meeting\", kommer mötet \"%@\" magiskt återskapas.\nDet kommer visas som ett opublicerat möte, och mötesredigeringen öppnas.\nOm du trycker \"Cancel\", händer ingenting.";
+"DELETED-RESTORE-BUTTON"                                                                        =   "Återskapa möte";
+"DELETED-CANCEL-BUTTON"                                                                         =   "Avbryt";
+
+"DELETED-LOADING-HEADER"                                                                        =   "Hämtar raderade möten";
+"DELETED-LOADING-SUBTEXT"                                                                       =   "Detta kanske tar en stund.";
+
+"NO-HISTORY-LABEL"                                                                              =   "Ingen historik";
+
+"REVERT-BUTTON"                                                                                 =   "Backa";
+
+"CLEAR-ALL-SAVED-LOGINS"                                                                        =   "Ta bort alla sparade URL'er och inloggningar";
+
+"FORGET-STORED-LOGINS-HEADER"                                                                   =   "Är du säker?";
+"FORGET-STORED-LOGINS-MESSAGE"                                                                  =   "Om dy trycker \"Forget Stored Logins\", kommer alla adresser och inloggningar raderas.";
+"FORGET-STORED-LOGINS-MESSAGE-SUFFIX"                                                           =   "\nDu kommer också loggas ut från pågående session.";
+"FORGET-STORED-LOGINS-OK-BUTTON"                                                                =   "Glöm bort sparade inloggningar";
+"FORGET-STORED-LOGINS-CANCEL-BUTTON"                                                            =   "Avbryt";
+"LOCAL-MAGSHARE-BLURB-LABEL"                                                                    =   "Ännu ett lyckat MAGSHARE projekt";
+"LOCAL-MAGSHARE-URI-LABEL"                                                                      =   "Mer information https://bmlt.magshare.net";
+"LOCAL-MAGSHARE-URI"                                                                            =   "https://bmlt.magshare.net/nameetinglistadministrator";
+
+"VERSION-LABEL-FORMAT"                                                                          =   "Version %@";
+
+"WHAT-MEETING-AM-I-AT-NOW"                                                                      =   "Vilket möte är jag på nu?";
+
+"LOCATION-ERROR-HEADER"                                                                         =   "Platsfel";
+"LOCATION-ERROR-MESSAGE"                                                                        =   "Kan inte fastställa nuvarande plats.";
+"NO-MEETING-HEADER"                                                                             =   "Hittade inget möte";
+"NO-MEETING-MESSAGE"                                                                            =   "Hittade inget möte som mostvarar din plats och tid.";
+
