@@ -33,6 +33,10 @@ The NA Meeting List Administrator app is [GPL V3](https://opensource.org/license
 
 CHANGELIST
 ----------
+***Version 1.2.4.2005* ** *- January 7, 2018*
+
+- There were several issues that the non-Sunday day of week caused. These have been addressed, with the exception of one: The sort still keys on Sunday. That will be fixed in the next release.
+
 ***Version 1.2.4.2004* ** *- January 7, 2018*
 
 - Added the basic Swedish localization.

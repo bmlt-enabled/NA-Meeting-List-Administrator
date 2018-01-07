@@ -473,9 +473,13 @@ class ListEditableMeetingsViewController: EditorViewControllerBaseClass, UITable
     
         let row = self.townBoroughPickerView.selectedRow(inComponent: 0) - 2
         let townString: String = (0 <= row) ? self._townsAndBoroughs[row] : ""
-        
+
         for meeting in MainAppDelegate.appDelegateObject.meetingObjects {
-            let weekdayIndex = meeting.weekdayIndex
+            var weekdayIndex = (meeting.weekdayIndex - AppStaticPrefs.firstWeekdayIndex) + 1
+            if 1 > weekdayIndex {
+                weekdayIndex += 7
+            }
+
             for weekdaySelection in self.selectedWeekdays {
                 if (weekdaySelection.value == .Selected) && (weekdaySelection.key.rawValue == weekdayIndex) {
                     if !townString.isEmpty {
@@ -706,11 +710,8 @@ class ListEditableMeetingsViewController: EditorViewControllerBaseClass, UITable
         if let ret = tableView.dequeueReusableCell(withIdentifier: self._meetingPrototypeReuseID) as? MeetingTableViewCell {
             // We alternate with slightly darker cells. */
             if let meetingObject = self.currentMeetingList[indexPath.row] as? BMLTiOSLibEditableMeetingNode {
-                if meetingObject.published {
-                    ret.backgroundColor = (0 == (indexPath.row % 2)) ? UIColor.clear : UIColor.init(white: 0, alpha: 0.1)
-                } else {
-                    ret.backgroundColor = (0 == (indexPath.row % 2)) ? self.unpublishedRowColorEven : self.unpublishedRowColorOdd
-                }
+                ret.backgroundColor = meetingObject.published ? ((0 == (indexPath.row % 2)) ? UIColor.clear : UIColor.init(white: 0, alpha: 0.1)) : ((0 == (indexPath.row % 2)) ? self.unpublishedRowColorEven : self.unpublishedRowColorOdd)
+                
                 ret.meetingInfoLabel.text = meetingObject.name
                 ret.addressLabel.text = meetingObject.basicAddress
                 if var hour = meetingObject.startTimeAndDay.hour {
@@ -740,8 +741,7 @@ class ListEditableMeetingsViewController: EditorViewControllerBaseClass, UITable
                                         amPm = formatter.pmSymbol
                                     } else {
                                         if 12 == hour {
-                                            amPm = formatter.pmSymbol
-                                        }
+                                            amPm = formatter.pmSymbol }
                                     }
                                     time = String(format: "%d:%02d %@", hour, minute, amPm!)
                                 } else {
@@ -750,7 +750,12 @@ class ListEditableMeetingsViewController: EditorViewControllerBaseClass, UITable
                             }
                         }
                         
-                        ret.meetingTimeAndPlaceLabel.text = String(format: NSLocalizedString("MEETING-TIME-FORMAT", comment: ""), AppStaticPrefs.weekdayNameFromWeekdayNumber(meetingObject.weekdayIndex), time) + (meetingObject.formatsAsCSVList.isEmpty ? "" : " (" + meetingObject.formatsAsCSVList + ")")
+                        var weekdayIndex = (meetingObject.weekdayIndex - AppStaticPrefs.firstWeekdayIndex) + 1
+                        if 1 > weekdayIndex {
+                            weekdayIndex += 7
+                        }
+                        
+                        ret.meetingTimeAndPlaceLabel.text = String(format: NSLocalizedString("MEETING-TIME-FORMAT", comment: ""), AppStaticPrefs.weekdayNameFromWeekdayNumber(weekdayIndex), time) + (meetingObject.formatsAsCSVList.isEmpty ? "" : " (" + meetingObject.formatsAsCSVList + ")")
                     }
                 }
             }

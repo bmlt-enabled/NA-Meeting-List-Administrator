@@ -730,7 +730,12 @@ class WeekdayEditorTableViewCell: MeetingEditorViewCell {
      - parameter sender: The IB object that initiated this change.
      */
     @IBAction func weekdayChanged(_ sender: UISegmentedControl) {
-        self.meetingObject.weekdayIndex = sender.selectedSegmentIndex + 1
+        var weekdayIndex = sender.selectedSegmentIndex + AppStaticPrefs.firstWeekdayIndex
+        if 6 < weekdayIndex {
+            weekdayIndex -= 7
+        }
+
+        self.meetingObject.weekdayIndex = weekdayIndex
         self.owner.updateEditorDisplay(self)
         self.owner.closeKeyboard()
     }
@@ -747,7 +752,13 @@ class WeekdayEditorTableViewCell: MeetingEditorViewCell {
             let weekdayName = AppStaticPrefs.weekdayNameFromWeekdayNumber(i + 1, isShort: true)
             self.weekdaySegmentedView.setTitle(weekdayName, forSegmentAt: i)
         }
-        self.weekdaySegmentedView.selectedSegmentIndex = self.meetingObject.weekdayIndex - 1
+        
+        var weekdayIndex = self.meetingObject.weekdayIndex - AppStaticPrefs.firstWeekdayIndex
+        if 0 > weekdayIndex {
+            weekdayIndex += 7
+        }
+        
+        self.weekdaySegmentedView.selectedSegmentIndex = weekdayIndex
     }
 }
 
