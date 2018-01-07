@@ -33,6 +33,10 @@ The NA Meeting List Administrator app is [GPL V3](https://opensource.org/license
 
 CHANGELIST
 ----------
+***Version 1.2.4.2006* ** *- January 7, 2018*
+
+- This fixes the final issue with weeks that start on non-Sunday.
+
 ***Version 1.2.4.2005* ** *- January 7, 2018*
 
 - There were several issues that the non-Sunday day of week caused. These have been addressed, with the exception of one: The sort still keys on Sunday. That will be fixed in the next release.
