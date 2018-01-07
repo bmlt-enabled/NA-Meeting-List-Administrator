@@ -314,7 +314,10 @@ class AppStaticPrefs {
             let weekdaySymbols = isShort ? calendar.shortWeekdaySymbols : calendar.weekdaySymbols
             let firstWeekday = self.firstWeekdayIndex - 1
             let weekdayIndex = weekdayNumber - 1
-            let index = weekdayIndex + firstWeekday
+            var index = weekdayIndex + firstWeekday
+            if 6 < index {
+                index -= 7
+            }
             return weekdaySymbols[index]
         } else {
             return NSLocalizedString("ERR-STRING-SHORT", comment: "")
