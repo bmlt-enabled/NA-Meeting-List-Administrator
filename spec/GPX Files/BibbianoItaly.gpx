@@ -5,11 +5,11 @@
   xmlns="http://www.topografix.com/GPX/1/0"
   xsi:schemaLocation="http://www.topografix.com/GPX/1/0 http://www.topografix.com/GPX/1/0/gpx.xsd">
 <time>2012-04-22T17:32:54Z</time>
-<bounds minlat="40.8734615" minlon="-73.4147696" maxlat="40.8734615" maxlon="-73.4147696"/>
-<wpt lat="40.8734615" lon="-73.4147696">
+<bounds minlat="44.6641641" minlon="10.4735892" maxlat="44.6641641" maxlon="10.4735892"/>
+<wpt lat="44.6641641" lon="10.4735892">
   <ele>0.000000</ele>
-  <name>Huntington, NY</name>
-  <cmt>Huntington, NY</cmt>
-  <desc>Huntington, NY</desc>
+  <name>Bibbiano, Italy</name>
+  <cmt>Bibbiano, Italy</cmt>
+  <desc>Bibbiano, Italy</desc>
 </wpt>
 </gpx>

@@ -33,6 +33,10 @@ The NA Meeting List Administrator app is [GPL V3](https://opensource.org/license
 
 CHANGELIST
 ----------
+***Version 1.2.4.2007* ** *- TBD*
+
+- Added Italian location files for testing.
+
 ***Version 1.2.4.2006* ** *- January 7, 2018*
 
 - This fixes the final issue with weeks that start on non-Sunday.

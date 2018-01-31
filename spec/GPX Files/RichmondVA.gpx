@@ -5,11 +5,14 @@
   xmlns="http://www.topografix.com/GPX/1/0"
   xsi:schemaLocation="http://www.topografix.com/GPX/1/0 http://www.topografix.com/GPX/1/0/gpx.xsd">
 <time>2012-04-22T17:32:54Z</time>
-<bounds minlat="40.8734615" minlon="-73.4147696" maxlat="40.8734615" maxlon="-73.4147696"/>
-<wpt lat="40.8734615" lon="-73.4147696">
+<bounds minlat="37.5407"
+        maxlat="37.5407"
+        minlon="-77.4360"
+        maxlon="-77.4360"/>
+<wpt lat="37.5407" lon="-77.4360">
   <ele>0.000000</ele>
-  <name>Huntington, NY</name>
-  <cmt>Huntington, NY</cmt>
-  <desc>Huntington, NY</desc>
+  <name>Richmond, VA</name>
+  <cmt>Richmond, VA</cmt>
+  <desc>Richmond, VA</desc>
 </wpt>
 </gpx>

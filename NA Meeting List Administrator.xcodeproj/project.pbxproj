@@ -39,6 +39,14 @@
 		77758E691E631EC3009904B8 /* CreateSingleMeetingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateSingleMeetingViewController.swift; path = "View Controllers/CreateSingleMeetingViewController.swift"; sourceTree = "<group>"; };
 		7784D3DB1E454D0300953CA0 /* ListEditableMeetingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListEditableMeetingsViewController.swift; path = "View Controllers/ListEditableMeetingsViewController.swift"; sourceTree = "<group>"; };
 		7784D3DF1E454D4900953CA0 /* EditorTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditorTabBarController.swift; path = "View Controllers/EditorTabBarController.swift"; sourceTree = "<group>"; };
+		7792A0EF2021DCF300DF0F88 /* RichmondVA.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = RichmondVA.gpx; path = "spec/GPX Files/RichmondVA.gpx"; sourceTree = SOURCE_ROOT; };
+		7792A0F02021DCF300DF0F88 /* BibbianoItaly.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = BibbianoItaly.gpx; path = "spec/GPX Files/BibbianoItaly.gpx"; sourceTree = SOURCE_ROOT; };
+		7792A0F12021DCF300DF0F88 /* Rome.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = Rome.gpx; path = "spec/GPX Files/Rome.gpx"; sourceTree = SOURCE_ROOT; };
+		7792A0F22021DCF300DF0F88 /* NorthportNY.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = NorthportNY.gpx; path = "spec/GPX Files/NorthportNY.gpx"; sourceTree = SOURCE_ROOT; };
+		7792A0F32021DCF300DF0F88 /* Dublin.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = Dublin.gpx; path = "spec/GPX Files/Dublin.gpx"; sourceTree = SOURCE_ROOT; };
+		7792A0F42021DCF300DF0F88 /* SanDiegoCA.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = SanDiegoCA.gpx; path = "spec/GPX Files/SanDiegoCA.gpx"; sourceTree = SOURCE_ROOT; };
+		7792A0F52021DCF300DF0F88 /* TampaFL.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = TampaFL.gpx; path = "spec/GPX Files/TampaFL.gpx"; sourceTree = SOURCE_ROOT; };
+		7792A0F62021DCF300DF0F88 /* HuntingtonNY.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = HuntingtonNY.gpx; path = "spec/GPX Files/HuntingtonNY.gpx"; sourceTree = SOURCE_ROOT; };
 		779462231E60C77900EC133D /* DeletedMeetingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DeletedMeetingsViewController.swift; path = "View Controllers/DeletedMeetingsViewController.swift"; sourceTree = "<group>"; };
 		779BE3AE1E37D5A600350D11 /* InitialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InitialViewController.swift; path = "View Controllers/InitialViewController.swift"; sourceTree = "<group>"; };
 		779BE3B01E37D5B500350D11 /* MainAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainAppDelegate.swift; path = "Main App/MainAppDelegate.swift"; sourceTree = "<group>"; };
@@ -53,8 +61,6 @@
 		77B50A671E381E31004019B8 /* AppStaticPrefs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppStaticPrefs.swift; path = "Main App/AppStaticPrefs.swift"; sourceTree = "<group>"; };
 		77B5410E1E42605700A0A880 /* NA Meeting List Administrator.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = "NA Meeting List Administrator.entitlements"; path = "Resources and Extras/NA Meeting List Administrator.entitlements"; sourceTree = "<group>"; };
 		77B7D1211E3AA0A80031FF6B /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = "Resources and Extras/Base.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		77CF6B891E6CEA07005F2ECB /* HuntingtonNY.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = HuntingtonNY.gpx; path = "spec/GPX Files/HuntingtonNY.gpx"; sourceTree = SOURCE_ROOT; };
-		77CF6B8A1E6CEA07005F2ECB /* TampaFL.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = TampaFL.gpx; path = "spec/GPX Files/TampaFL.gpx"; sourceTree = SOURCE_ROOT; };
 		77D92ED61E4B50CC009F02B2 /* MeetingEditorBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MeetingEditorBaseViewController.swift; path = "View Controllers/MeetingEditorBaseViewController.swift"; sourceTree = "<group>"; };
 		77D92EDA1E4B5146009F02B2 /* EditSingleMeetingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditSingleMeetingViewController.swift; path = "View Controllers/EditSingleMeetingViewController.swift"; sourceTree = "<group>"; };
 		77DC3EA61E378B6300BF24B7 /* NA Meeting List Administrator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NA Meeting List Administrator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -137,8 +143,14 @@
 		77CF6B8D1E6CEA0E005F2ECB /* GPX Files */ = {
 			isa = PBXGroup;
 			children = (
-				77CF6B891E6CEA07005F2ECB /* HuntingtonNY.gpx */,
-				77CF6B8A1E6CEA07005F2ECB /* TampaFL.gpx */,
+				7792A0F02021DCF300DF0F88 /* BibbianoItaly.gpx */,
+				7792A0F32021DCF300DF0F88 /* Dublin.gpx */,
+				7792A0F62021DCF300DF0F88 /* HuntingtonNY.gpx */,
+				7792A0F22021DCF300DF0F88 /* NorthportNY.gpx */,
+				7792A0EF2021DCF300DF0F88 /* RichmondVA.gpx */,
+				7792A0F12021DCF300DF0F88 /* Rome.gpx */,
+				7792A0F42021DCF300DF0F88 /* SanDiegoCA.gpx */,
+				7792A0F52021DCF300DF0F88 /* TampaFL.gpx */,
 			);
 			name = "GPX Files";
 			sourceTree = "<group>";
