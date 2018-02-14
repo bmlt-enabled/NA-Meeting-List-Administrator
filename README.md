@@ -33,6 +33,10 @@ The NA Meeting List Administrator app is [GPL V3](https://opensource.org/license
 
 CHANGELIST
 ----------
+***Version 1.3.0.2000* ** *- TBD*
+
+- Apple suddenly changed course on displaying Touch ID/Face ID icons. I now have to remove them, so that means that we now immediately go into Touch/Face ID.
+
 ***Version 1.2.4.3000* ** *- February 12, 2018*
 
 - Added Italian location files for testing.

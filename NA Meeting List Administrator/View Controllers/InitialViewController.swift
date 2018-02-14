@@ -36,7 +36,7 @@ import BMLTiOSLib
  
  Once the user has sucessfully connected, they are presented with a login screen that may include a TouchID button.
  */
-class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate {
+class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     /* ################################################################## */
     // MARK: Private Instance Constant Properties
     /* ################################################################## */
@@ -46,6 +46,8 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate 
     private let _showServiceBodySelectorSegueID = "select-service-bodies"
     /** This is the segue that brings in the Settings screen. */
     private let _showSettingsSegueID = "show-settings-screen"
+    /** This is the height of the UIPickerView. */
+    private let _pickerViewRowHeight: CGFloat = 30
     
     /* ################################################################## */
     // MARK: Private Instance Properties
@@ -54,6 +56,10 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate 
     private var _loggingIn: Bool = false
     /** This is set to true while we are in the process of connecting. */
     private var _connecting: Bool = false
+    /** This is the last login user ID */
+    private var _userID: String = ""
+    /** This is the last login password */
+    private var _password: String = ""
     /** This is the Tab Bar Controller for the editors (it will be nil if we are not in the editor). */
     private var _editorTabBarController: EditorTabBarController! = nil
     /** This is the URL we will be accessing. */
@@ -66,20 +72,6 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate 
     /* ################################################################## */
     /** The mask view with the spinning throbber. */
     @IBOutlet weak var animationMask: UIView!
-    /** This contains the various login items. */
-    @IBOutlet weak var loginItemsContainer: UIView!
-    /** This is the overall label. */
-    @IBOutlet weak var loginItemsLabel: UILabel!
-    /** This is the label for the login ID text entry. */
-    @IBOutlet weak var loginIDLabel: UILabel!
-    /** This is the text field where the user enters their login ID. */
-    @IBOutlet weak var loginIDTextField: UITextField!
-    /** This is the label for the password text field. */
-    @IBOutlet weak var passwordLabel: UILabel!
-    /** This is the text field where users enter the password. */
-    @IBOutlet weak var passwordTextField: UITextField!
-    /** This is the login button. */
-    @IBOutlet weak var loginButton: UIButton!
     /** This is the logout button. */
     @IBOutlet weak var logoutButton: UIButton!
     /** This is displayed if administration is not available. */
@@ -96,12 +88,26 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate 
     @IBOutlet weak var settingsButton: UIButton!
     /** This is the "DISCONNECT" button that shows up when we are connected. */
     @IBOutlet weak var disconnectButton: UIButton!
-    /** This is the TouchID "thumbprint" button. */
-    @IBOutlet weak var touchIDButton: UIButton!
     /** This is the bar button that brings in the Service Body Selector screen. */
     @IBOutlet weak var serviceBodyBarButton: UIBarButtonItem!
     /** This is the bar button item that brings in the main Editor screen. */
     @IBOutlet weak var editorBarButton: UIBarButtonItem!
+    /** This is the Picker View that is displayed if we have preset logins available. */
+    @IBOutlet weak var presetLoginsPickerView: UIPickerView!
+    /** This is the container view for the preset login items. */
+    @IBOutlet weak var presetLoginsContainerView: UIView!
+    /** This is the internal container view for the preselected logins (Manual Entry). */
+    @IBOutlet weak var loginItemsSelectorContainerView: UIView!
+    /** This is the ID label for the manual entry. */
+    @IBOutlet weak var manualEntryIDLabel: UILabel!
+    /** This is the ID Entry Text Field */
+    @IBOutlet weak var manualEntryIDTextField: UITextField!
+    /** This is the label for the manual entry password. */
+    @IBOutlet weak var manualEntryPasswordLabel: UILabel!
+    /** This is the text field for the manual entry password. */
+    @IBOutlet weak var manualEntryPasswordTextField: UITextField!
+    /** This is the button used to initiate a mnaual login. */
+    @IBOutlet weak var manualEntryLoginButton: UIButton!
     
     /* ################################################################## */
     // MARK: Overridden Instance Methods
@@ -115,20 +121,19 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate 
         // Set all of the various localized text items.
         // Each item has the key set as its text, so we replace with the localized version.
         self.navigationItem.backBarButtonItem?.title = NSLocalizedString((self.navigationItem.backBarButtonItem?.title!)!, comment: "")
-        self.loginItemsLabel.text = NSLocalizedString(self.loginItemsLabel.text!, comment: "")
-        self.loginIDLabel.text = NSLocalizedString(self.loginIDLabel.text!, comment: "")
-        self.loginIDTextField.placeholder = NSLocalizedString(self.loginIDTextField.placeholder!, comment: "")
-        self.passwordLabel.text = NSLocalizedString(self.passwordLabel.text!, comment: "")
-        self.passwordTextField.placeholder = NSLocalizedString(self.passwordTextField.placeholder!, comment: "")
-        self.loginButton.setTitle(NSLocalizedString(self.loginButton.title(for: UIControlState.normal)!, comment: ""), for: UIControlState.normal)
         self.logoutButton.setTitle(NSLocalizedString(self.logoutButton.title(for: UIControlState.normal)!, comment: ""), for: UIControlState.normal)
-        self.adminUnavailableLabel.text = NSLocalizedString(self.adminUnavailableLabel.text!, comment: "")
-        self.enterURLItemsLabel.text = NSLocalizedString(self.enterURLItemsLabel.text!, comment: "")
-        self.enterURLTextItem.placeholder = NSLocalizedString(self.enterURLTextItem.placeholder!, comment: "")
+        self.adminUnavailableLabel.text = self.adminUnavailableLabel.text!.localizedVariant
+        self.enterURLItemsLabel.text = self.enterURLItemsLabel.text!.localizedVariant
+        self.enterURLTextItem.placeholder = self.enterURLTextItem.placeholder!.localizedVariant
         self.connectButton.setTitle(NSLocalizedString(self.connectButton.title(for: UIControlState.normal)!, comment: ""), for: UIControlState.normal)
         self.disconnectButton.setTitle(NSLocalizedString(self.disconnectButton.title(for: UIControlState.normal)!, comment: ""), for: UIControlState.normal)
-        self.serviceBodyBarButton.title = NSLocalizedString(self.serviceBodyBarButton.title!, comment: "")
-        self.editorBarButton.title = NSLocalizedString(self.editorBarButton.title!, comment: "")
+        self.serviceBodyBarButton.title = self.serviceBodyBarButton.title!.localizedVariant
+        self.editorBarButton.title = self.editorBarButton.title!.localizedVariant
+        self.manualEntryIDLabel.text = self.manualEntryIDLabel.text!.localizedVariant
+        self.manualEntryIDTextField.placeholder = self.manualEntryIDTextField.placeholder!.localizedVariant
+        self.manualEntryPasswordLabel.text = self.manualEntryPasswordLabel.text!.localizedVariant
+        self.manualEntryPasswordTextField.placeholder = self.manualEntryPasswordTextField.placeholder!.localizedVariant
+        self.manualEntryLoginButton.setTitle(NSLocalizedString(self.manualEntryLoginButton.title(for: UIControlState.normal)!, comment: ""), for: UIControlState.normal)
 
         var url = AppStaticPrefs.prefs.rootURI
         
@@ -158,7 +163,7 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate 
         }
         self._editorTabBarController = nil // We will always be setting this to nil when we first appear. Makes it easier to track.
         self._loggingIn = false
-        self.passwordTextField.text = "" // We start off with no password (security).
+        self.manualEntryPasswordTextField.text = "" // We start off with no password (security).
         self.enableOrDisableTheEditButton()
         self.showOrHideConnectButton()
         super.viewWillAppear(animated)
@@ -187,7 +192,6 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate 
      */
     @IBAction func loginTextChanged(_ sender: UITextField) {
         self.showOrHideLoginButton()
-        self.showOrHideTouchIDButton()
     }
     
     /* ################################################################## */
@@ -246,10 +250,28 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate 
     @IBAction func loginButtonHit(_ sender: UIButton) {
         self.closeKeyboard()
         if (nil != MainAppDelegate.connectionObject) && MainAppDelegate.connectionStatus && MainAppDelegate.connectionObject.isAdminAvailable {
-            if MainAppDelegate.connectionObject.adminLogin(loginID: self.loginIDTextField.text!, password: self.passwordTextField.text!) {
-                self.animationMask.isHidden = false
-                self._loggingIn = true
-                self.setLoginStatusUI()
+            let row = self.presetLoginsPickerView.selectedRow(inComponent: 0)
+            let goBio = (0 < row)
+            
+            if goBio {
+                let authenticationContext = LAContext()
+                let storedLogins = AppStaticPrefs.prefs.getStoredLogins(for: self.enterURLTextItem.text!)
+                self._userID = storedLogins[row - 1]
+                if !self._userID.isEmpty {
+                    self._password = ""
+                    let reason = String(format: "LOCAL-TOUCHID-REASON-FORMAT".localizedVariant, self._userID)
+                    authenticationContext.evaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason, reply: self.biometricCallback )
+                }
+            } else {
+                self._userID = self.manualEntryIDTextField.text!
+                self._password = self.manualEntryPasswordTextField.text!
+                if !self._userID.isEmpty && !self._password.isEmpty {
+                    if MainAppDelegate.connectionObject.adminLogin(loginID: self._userID, password: self._password) {
+                        self.animationMask.isHidden = false
+                        self._loggingIn = true
+                        self.setLoginStatusUI()
+                    }
+                }
             }
         }
     }
@@ -269,20 +291,6 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate 
                 self.setLoginStatusUI()
             }
         }
-    }
-    
-    /* ################################################################## */
-    /**
-     Called when the TouchID button is hit.
-     
-     - parameter sender: The IB item that called this.
-     */
-    @IBAction func touchIDButtonHit(_ sender: UIButton) {
-        self.closeKeyboard()
-        let authenticationContext = LAContext()
-        let userName = self.loginIDTextField.text!
-        let reason = String(format: NSLocalizedString("LOCAL-TOUCHID-REASON-FORMAT", comment: ""), userName)
-        authenticationContext.evaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason, reply: self.biometricCallback )
     }
     
     /* ################################################################## */
@@ -344,8 +352,8 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate 
      Closes any open keyboard.
      */
     func closeKeyboard() {
-        self.loginIDTextField.resignFirstResponder()
-        self.passwordTextField.resignFirstResponder()
+        self.manualEntryIDTextField.resignFirstResponder()
+        self.manualEntryPasswordTextField.resignFirstResponder()
         self.enterURLTextItem.resignFirstResponder()
     }
     
@@ -360,6 +368,8 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate 
         if !inSuccess {
             let userCancelRaw = LAError.Code.userCancel.rawValue
             let systemCancelRaw = LAError.Code.systemCancel.rawValue
+            let userPasswordRaw = LAError.Code.userFallback.rawValue
+            print(userPasswordRaw)
             var errorCode = userCancelRaw   // We always err on the side of caution.
             if let errorAsNSError = inError as NSError? {
                 #if DEBUG
@@ -371,13 +381,25 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate 
             
             if (userCancelRaw != errorCode) && (systemCancelRaw != errorCode) {   // We ignore user/system canceled error.
                 if LAError.Code.userFallback.rawValue == (inError! as NSError).code {   // Fallback means that we will use the password, so we nuke the stored password.
-                    _ = AppStaticPrefs.prefs.updateUserForRootURI(self.enterURLTextItem.text!, inUser: self.loginIDTextField.text!)
-                    self.touchIDButton.isHidden = true
                     // Wow. This is one hell of a kludge, but it works.
                     // There's a "feature" in iOS, where the TouchID callback is triggered out of sync with the main queue (slightly before the next run cycle, I guess).
                     // If we immediately set the field as first responder in this callback, then it gets selected, but the keyboard doesn't come up.
                     // This 'orrible, 'orrible hack tells iOS to select the field after the handler for this TouchID has had time to wrap up.
-                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + DispatchTimeInterval.milliseconds(10)) { self.passwordTextField.becomeFirstResponder() }
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + DispatchTimeInterval.milliseconds(10)) {
+                        var login_text = ""
+                        let storedLogins = AppStaticPrefs.prefs.getStoredLogins(for: self.enterURLTextItem.text!)
+                        let row = self.presetLoginsPickerView.selectedRow(inComponent: 0)
+                        if 0 < row {
+                            login_text = storedLogins[row - 1]
+                        }
+                        _ = AppStaticPrefs.prefs.updateUserForRootURI(self.enterURLTextItem.text!, inUser: login_text)
+                        self.presetLoginsPickerView.selectRow(0, inComponent: 0, animated: true)
+                        self.manualEntryIDTextField.text = login_text
+                        self.manualEntryPasswordTextField.text = ""
+                        self.manualEntryLoginButton.isEnabled = false
+                        self.loginItemsSelectorContainerView.isHidden = false
+                        self.manualEntryPasswordTextField.becomeFirstResponder()
+                    }
                 } else {
                     var header: String = "UNABLE-TO-LOGIN-ERROR-TITLE-FORMAT".localizedVariant
                     var description: String! = nil
@@ -398,10 +420,19 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate 
             }
         } else {
             DispatchQueue.main.async {
-                self.passwordTextField.text = AppStaticPrefs.prefs.getStoredPasswordForUser(self.enterURLTextItem.text!, inUser: self.loginIDTextField.text!)
+                let storedLogins = AppStaticPrefs.prefs.getStoredLogins(for: self.enterURLTextItem.text!)
+                let row = self.presetLoginsPickerView.selectedRow(inComponent: 0)
+                var loginID = ""
+                var password = ""
+                loginID = storedLogins[row - 1]
+                password = AppStaticPrefs.prefs.getStoredPasswordForUser(self.enterURLTextItem.text!, inUser: loginID)
 
-                if !(self.passwordTextField.text?.isEmpty)! {
-                    self.loginButtonHit(self.loginButton)
+                if !loginID.isEmpty && !password.isEmpty {
+                    if MainAppDelegate.connectionObject.adminLogin(loginID: loginID, password: password) {
+                        self.animationMask.isHidden = false
+                        self._loggingIn = true
+                        self.setLoginStatusUI()
+                    }
                 } else {
                     var header: String = "UNABLE-TO-LOGIN-ERROR-TITLE-FORMAT".localizedVariant
                     var description = "UNABLE-TO-LOGIN-ERROR-FORMAT".localizedVariant
@@ -421,8 +452,8 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate 
      */
     func startConnection() {
         self.closeKeyboard()
-        self.loginIDTextField.text = ""
-        self.passwordTextField.text = ""
+        self.manualEntryIDTextField.text = ""
+        self.manualEntryPasswordTextField.text = ""
         self.animationMask.isHidden = false
         self._loggingIn = false
         self._connecting = true
@@ -437,14 +468,14 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate 
         self.animationMask.isHidden = true
         
         // Belt and suspenders. Let's be sure.
-        self.loginIDTextField.text = ""
-        self.passwordTextField.text = ""
+        self.manualEntryIDTextField.text = ""
+        self.manualEntryPasswordTextField.text = ""
 
         if self._connecting && (nil != MainAppDelegate.connectionObject) && MainAppDelegate.connectionStatus {
             let lastLogin = AppStaticPrefs.prefs.lastLogin
             
             if !lastLogin.url.isEmpty && !lastLogin.loginID.isEmpty && (lastLogin.url == self.enterURLTextItem.text) {
-                self.loginIDTextField.text = lastLogin.loginID
+                self.manualEntryIDTextField.text = lastLogin.loginID
             }
         }
 
@@ -462,8 +493,8 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate 
         
         // If we are successfully logged in, then we save the login and (maybe) the password.
         if (nil != MainAppDelegate.connectionObject) && MainAppDelegate.connectionStatus && MainAppDelegate.connectionObject.isAdminLoggedIn {
-            firstTime = AppStaticPrefs.prefs.updateUserForRootURI(self.enterURLTextItem.text!, inUser: self.loginIDTextField.text!, inPassword: self.passwordTextField.text)
-            AppStaticPrefs.prefs.lastLogin = (url: self.enterURLTextItem.text!, loginID: self.loginIDTextField.text!)
+            firstTime = AppStaticPrefs.prefs.updateUserForRootURI(self.enterURLTextItem.text!, inUser: self._userID, inPassword: self._password)
+            AppStaticPrefs.prefs.lastLogin = (url: self.enterURLTextItem.text!, loginID: self.manualEntryIDTextField.text!)
             
             if firstTime {  // If this was the first time we logged in, then we set all our Service bodies to selected.
                 AppStaticPrefs.prefs.setServiceBodySelection(serviceBodyObject: nil, selected: true)
@@ -471,7 +502,7 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate 
             AppStaticPrefs.prefs.savePrefs()
         }
         
-        self.passwordTextField.text = ""
+        self.manualEntryPasswordTextField.text = ""
         self.animationMask.isHidden = true
         self._loggingIn = false
         self._connecting = false
@@ -492,11 +523,13 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate 
      This function will either show (enable) or hide (disable) the login button (and maybe the TouchID button).
      */
     func showOrHideLoginButton() {
-        let loginIDFieldIsEmpty = self.loginIDTextField.text?.isEmpty
-        let passwordFieldIsEmpty = self.passwordTextField.text?.isEmpty
-        let hideLoginButton = loginIDFieldIsEmpty! || passwordFieldIsEmpty!
+        let row = self.presetLoginsPickerView.selectedRow(inComponent: 0)
+        let loginFieldEmpty = self.manualEntryIDTextField.text?.isEmpty
+        let passwordFieldEmpty = self.manualEntryPasswordTextField.text?.isEmpty
+
+        let hideLoginButton = loginFieldEmpty! || passwordFieldEmpty!
         
-        self.loginButton.isEnabled = !hideLoginButton
+        self.manualEntryLoginButton.isEnabled = !hideLoginButton || (0 < row)
     }
     
     /* ################################################################## */
@@ -505,30 +538,6 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate 
      */
     func enableOrDisableTheEditButton() {
         self.editorBarButton.isEnabled = 0 < AppStaticPrefs.prefs.selectedServiceBodies.count
-    }
-    
-    /* ################################################################## */
-    /**
-     This function will either show or hide the TouchID button.
-     */
-    func showOrHideTouchIDButton() {
-        let showTouchIDButton = AppStaticPrefs.prefs.userHasStoredPasswordRootURI(self.enterURLTextItem.text!, inUser: self.loginIDTextField.text!)
-        
-        let authenticationContext = LAContext()
-        var error: NSError? = nil
-
-        if #available(iOS 11.0, *) {
-            if authenticationContext.canEvaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, error: &error) {
-                let bioType = authenticationContext.biometryType
-                if bioType == .faceID {
-                    self._bioType = "FACE-ID-STRING".localizedVariant
-                    touchIDButton.setImage(UIImage(named: "FaceIDLogo"), for: UIControlState.normal)
-                    touchIDButton.setImage(UIImage(named: "FaceIDLogo-Highlight"), for: UIControlState.highlighted)
-                }
-            }
-        }
-
-        self.touchIDButton.isHidden = !showTouchIDButton
     }
     
     /* ################################################################## */
@@ -552,10 +561,12 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate 
         // If we are not currently attempting a connection, and are currently connected.
         if !self._connecting && (nil != MainAppDelegate.connectionObject) && MainAppDelegate.connectionStatus {
             self.urlEntryItemsContainerView.isHidden = true
+            self.presetLoginsContainerView.isHidden = false
+            // We load up any previously stored logins (Touch/Face ID).
             if MainAppDelegate.connectionObject.isAdminLoggedIn {   // If we are logged in as an admin.
+                self.presetLoginsContainerView.isHidden = true
                 self.logoutButton.isHidden = false
                 self.adminUnavailableLabel.isHidden = true
-                self.loginItemsContainer.isHidden = true
                 if let navController = self.navigationController {
                     navController.isNavigationBarHidden = false
                 }
@@ -563,24 +574,47 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate 
                 self.serviceBodyBarButton.isEnabled = (1 < MainAppDelegate.connectionObject.serviceBodiesICanEdit.count)
             } else {
                 self.logoutButton.isHidden = true
-                
+                let storedLogins = AppStaticPrefs.prefs.getStoredLogins(for: self.enterURLTextItem.text!)
+                self.presetLoginsPickerView.reloadAllComponents()   // This displays them all.
+
                 if MainAppDelegate.connectionObject.isAdminAvailable {
                     self.adminUnavailableLabel.isHidden = true
-                    self.loginItemsContainer.isHidden = false
+
+                    // If we have Touch/Face ID available, AND we have previously stored logins, then we present those as alternatives in the picker.
+                    if AppStaticPrefs.supportsTouchID && !storedLogins.isEmpty {
+                        self.presetLoginsContainerView.isHidden = false
+                        let lastLogin = AppStaticPrefs.prefs.lastLogin
+                        
+                        // Here, we scroll to the last one selected.
+                        if !lastLogin.url.isEmpty && !lastLogin.loginID.isEmpty && (lastLogin.url == self.enterURLTextItem.text) {
+                            var index = 1
+                            
+                            for login in storedLogins {
+                                if lastLogin.loginID == login {
+                                    self.presetLoginsPickerView.selectRow(index, inComponent: 0, animated: true)
+                                    self.pickerView(self.presetLoginsPickerView, didSelectRow: index, inComponent: 0)
+                                    break
+                                }
+                                
+                                index += 1
+                            }
+                        }
+                    } else {
+                        self.presetLoginsPickerView.selectRow(0, inComponent: 0, animated: true)
+                        self.pickerView(self.presetLoginsPickerView, didSelectRow: 0, inComponent: 0)
+                    }
                 } else {
-                    self.loginItemsContainer.isHidden = true
                     self.adminUnavailableLabel.isHidden = false
                 }
             }
         } else {
-            self.loginItemsContainer.isHidden = true
             self.urlEntryItemsContainerView.isHidden = false
             self.adminUnavailableLabel.isHidden = true
+            self.presetLoginsContainerView.isHidden = true
         }
         
         self.showOrHideConnectButton()
         self.showOrHideLoginButton()
-        self.showOrHideTouchIDButton()
         self.enableOrDisableTheEditButton()
     }
     
@@ -593,7 +627,7 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate 
     func updateSearch(inMeetingObjects: [BMLTiOSLibMeetingNode]) {
         self._editorTabBarController.updateSearch(inMeetingObjects: inMeetingObjects)   // We pass this on to our Tab controller, who will take it from there.
     }
-    
+
     /* ################################################################## */
     /**
      This is called when a new meeting has been added.
@@ -672,26 +706,128 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate 
      */
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-        if self.enterURLTextItem == textField {
+        if (self.enterURLTextItem == textField) && !(textField.text?.isEmpty)! {
             self.connectButtonHit(self.connectButton)   // Simple connect for this one.
         } else {
             // We have to have both fields filled before we can log in, so if they aren't both filled, we go to the empty one next.
-            if self.loginIDTextField == textField {
-                if !(self.passwordTextField.text?.isEmpty)! {   // If the password field is empty, we go to that.
-                    self.loginButtonHit(self.loginButton)
-                } else {    // If not, we try the login.
-                    self.passwordTextField.becomeFirstResponder()
+            if self.manualEntryIDTextField == textField {
+                // If the password field has a value, and we have a value, then let's try logging in.
+                if !(textField.text?.isEmpty)! && !(self.manualEntryPasswordTextField.text?.isEmpty)! {
+                    self.loginButtonHit(self.manualEntryLoginButton)
+                } else {
+                    self.manualEntryPasswordTextField.becomeFirstResponder()
                 }
             } else {
-                if self.passwordTextField == textField {
-                    if !(self.loginIDTextField.text?.isEmpty)! {    // If the login field is empty, we go to that.
-                        self.loginButtonHit(self.loginButton)
-                    } else {    // Otherwise, let's try logging in.
-                        self.loginIDTextField.becomeFirstResponder()
+                if self.manualEntryPasswordTextField == textField {
+                    // If the ID field has a value, and we have a value, then let's try logging in.
+                    if !(textField.text?.isEmpty)! && !(self.manualEntryIDTextField.text?.isEmpty)! {
+                        self.loginButtonHit(self.manualEntryLoginButton)
+                    } else {
+                        self.manualEntryIDTextField.becomeFirstResponder()
                     }
                 }
             }
         }
         return true
     }
+    
+    /* ################################################################## */
+    // MARK: UIPickerViewDelegate Methods
+    /* ################################################################## */
+    /**
+     Get the number of components in the picker (always 1).
+     
+     - parameter in: The UIPickerView object.
+     
+     - returns: The number of comonents (always 1).
+     */
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    /* ################################################################## */
+    /**
+     Get the height of the rows in the picker.
+     
+     - parameter _: The UIPickerView object.
+     - parameter rowHeightForComponent: The 0-based index of the component.
+     
+     - returns: The height of the rows for the given component.
+     */
+    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
+        return self._pickerViewRowHeight
+    }
+    
+    /* ################################################################## */
+    /**
+     Get a new view object for the given row.
+     
+     - parameter _: The UIPickerView object.
+     - parameter viewForRow: The 0-based row index.
+     - parameter component: The 0-based index of the component.
+     - parameter reusing: If there is a view to be reused, it is provided here.
+     
+     - returns: A new view object for the given row.
+     */
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        var viewBounds = pickerView.bounds
+        viewBounds.size.height = self.pickerView(pickerView, rowHeightForComponent: component)
+        let label = UILabel(frame: viewBounds)
+        label.backgroundColor = UIColor.clear
+        label.textAlignment = .center
+        label.textColor = self.enterURLItemsLabel.textColor
+        let storedLogins = AppStaticPrefs.prefs.getStoredLogins(for: self.enterURLTextItem.text!)
+
+        if 0 == row {
+            label.text = "MANUAL-LOGIN".localizedVariant
+        } else {
+            label.text = storedLogins[row - 1]
+        }
+        return label
+    }
+    
+    /* ################################################################## */
+    /**
+     Called when a row is selected.
+     
+     - parameter _: The UIPickerView object.
+     - parameter didSelectRow: The 0-based row index.
+     - parameter inComponent: The 0-based index of the component.
+     */
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        self.closeKeyboard()
+        if 0 == row {
+            self.manualEntryIDTextField.text! = ""
+            self.manualEntryPasswordTextField.text! = ""
+            self.loginItemsSelectorContainerView.isHidden = false
+            self.manualEntryIDTextField.becomeFirstResponder()
+        } else {
+            self.loginItemsSelectorContainerView.isHidden = true
+        }
+        
+        self.showOrHideLoginButton()
+    }
+    
+    /* ################################################################## */
+    // MARK: UIPickerViewDataSource Methods
+    /* ################################################################## */
+    /**
+     Get how many rows the picker will display.
+     
+     - parameter _: The UIPickerView object.
+     - parameter numberOfRowsInComponent: The 0-based index of the component.
+     
+     - returns: The number of rows to be displayed.
+     */
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        var ret: Int = 1
+        
+        if nil != MainAppDelegate.connectionObject {
+            let storedLogins = AppStaticPrefs.prefs.getStoredLogins(for: self.enterURLTextItem.text!)
+            ret += storedLogins.count
+        }
+        
+        return ret
+    }
+    
 }

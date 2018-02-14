@@ -38,6 +38,7 @@
 "PASSWORD-PLACEHOLDER"                                                                          =   "Inserisci la password";
 "LOGIN-BUTTON"                                                                                  =   "LOGIN";
 "LOGOUT-BUTTON"                                                                                 =   "LOGOUT";
+"MANUAL-LOGIN"                                                                                  =   "Manual Login";
 "ADMIN-UNAVAILABLE-TEXT"                                                                        =   "Questo server non permette l'amministrazione da questa app.";
 "BAD-URI-ERROR-TEXT"                                                                            =   "L'indirizzo inserito non punta a un Root server valido.";
 "The operation couldn’t be completed. (BMLTiOSLibErrorDomains-Permission-Error error 201000.)"  =   "ID di accesso o password non riconosciuti dal server.";

@@ -38,6 +38,7 @@
 "PASSWORD-PLACEHOLDER"                                                                          =   "Ange ditt lösenord";
 "LOGIN-BUTTON"                                                                                  =   "LOGGA IN";
 "LOGOUT-BUTTON"                                                                                 =   "LOGGA UT";
+"MANUAL-LOGIN"                                                                                  =   "Manual Login";
 "ADMIN-UNAVAILABLE-TEXT"                                                                        =   "Denna server tillåter inte administration via denna app.";
 "BAD-URI-ERROR-TEXT"                                                                            =   "Adressen du angett pekar inte till en uppdaterad Root Server.";
 "The operation couldn’t be completed. (BMLTiOSLibErrorDomains-Permission-Error error 201000.)"  =   "Servern kunde inte känna igen ditt användarnamn eller lösenord.";

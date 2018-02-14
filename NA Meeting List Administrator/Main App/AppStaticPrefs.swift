@@ -466,15 +466,31 @@ class AppStaticPrefs {
      - returns true, if we currently have stored logins.
      */
     var hasStoredLogins: Bool {
-        if self._loadPrefs() {
+        return 0 < self.numStoredLogins
+    }
+    
+    /* ################################################################## */
+    /**
+     - returns the total number of stored logins for all servers.
+     */
+    var numStoredLogins: Int {
+        return self.storedLogins.count
+    }
+    
+    /* ################################################################## */
+    /**
+     - returns the stored logins.
+     */
+    var storedLogins: [String: [String]] {
+        if self._loadPrefs() && type(of: self).supportsTouchID {    // Only valid for biometrics.
             if let temp = self._loadedPrefs.object(forKey: PrefsKeys.RootServerLoginDictionaryKey.rawValue) as? [String: [String]] {
-                return !temp.isEmpty
+                return temp
             }
         }
         
-        return false
+        return [:]
     }
-    
+
     /* ################################################################## */
     // MARK: Instance Methods
     /* ################################################################## */
@@ -497,6 +513,26 @@ class AppStaticPrefs {
         return ret
     }
     
+    /* ################################################################## */
+    /**
+     This method returns the stored logins (if any) for a given server. An empty Array is returned, if there are none.
+     
+     - parameter for: The Root Server URL to check
+     
+     - returns the stored logins for a given server. Empty Array if no logins.
+     */
+    func getStoredLogins(for server: String) -> [String] {
+        let myLogins = self.storedLogins
+        
+        if !myLogins.isEmpty {
+            if let myLoginsForThisServer = self.storedLogins[server] {
+                return myLoginsForThisServer
+            }
+        }
+        
+        return []
+    }
+
     /* ################################################################## */
     /**
      This method simply saves the main preferences Dictionary into the standard user defaults.
