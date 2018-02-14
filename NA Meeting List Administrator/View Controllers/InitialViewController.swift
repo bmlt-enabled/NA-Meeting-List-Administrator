@@ -392,7 +392,7 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate,
                         if 0 < row {
                             login_text = storedLogins[row - 1]
                         }
-                        _ = AppStaticPrefs.prefs.updateUserForRootURI(self.enterURLTextItem.text!, inUser: login_text)
+
                         self.presetLoginsPickerView.selectRow(0, inComponent: 0, animated: true)
                         self.manualEntryIDTextField.text = login_text
                         self.manualEntryPasswordTextField.text = ""
