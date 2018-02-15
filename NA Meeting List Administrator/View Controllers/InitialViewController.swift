@@ -35,6 +35,11 @@ import BMLTiOSLib
  This View Controller starts off with a URL text entry, and a simple connect button.
  
  Once the user has sucessfully connected, they are presented with a login screen that may include a TouchID button.
+ 
+ This class is a big fat, stateful mess. Because the UX is best served by simply changing the state of a single screen, as opposed to switching
+ in and out of screens, I work by showing and hiding batches of controls.
+ 
+ Yeah, it's messy. Sorry.
  */
 class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     /* ################################################################## */
@@ -66,6 +71,21 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate,
     private var _url: String = ""
     /** This will be the string we use to describe the biometric type. */
     private var _bioType = "TOUCH-ID-STRING".localizedVariant
+    
+    /** This filters for logins that have valid stored passwords. */
+    private var _validSavedLogins: [String] {
+        let storedLogins = AppStaticPrefs.prefs.getStoredLogins(for: self._url)
+        
+        var ret: [String] = []
+        
+        for login in storedLogins {
+            if AppStaticPrefs.prefs.userHasStoredPasswordRootURI(self._url, inUser: login) {
+                ret.append(login)
+            }
+        }
+        
+        return ret.sorted()
+    }
     
     /* ################################################################## */
     // MARK: Instance IB Properties
@@ -255,7 +275,7 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate,
             
             if goBio {
                 let authenticationContext = LAContext()
-                let storedLogins = AppStaticPrefs.prefs.getStoredLogins(for: self.enterURLTextItem.text!)
+                let storedLogins = self._validSavedLogins
                 self._userID = storedLogins[row - 1]
                 if !self._userID.isEmpty {
                     self._password = ""
@@ -387,7 +407,7 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate,
                     // This 'orrible, 'orrible hack tells iOS to select the field after the handler for this TouchID has had time to wrap up.
                     DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + DispatchTimeInterval.milliseconds(10)) {
                         var login_text = ""
-                        let storedLogins = AppStaticPrefs.prefs.getStoredLogins(for: self.enterURLTextItem.text!)
+                        let storedLogins = self._validSavedLogins
                         let row = self.presetLoginsPickerView.selectedRow(inComponent: 0)
                         if 0 < row {
                             login_text = storedLogins[row - 1]
@@ -420,15 +440,13 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate,
             }
         } else {
             DispatchQueue.main.async {
-                let storedLogins = AppStaticPrefs.prefs.getStoredLogins(for: self.enterURLTextItem.text!)
+                let storedLogins = self._validSavedLogins
                 let row = self.presetLoginsPickerView.selectedRow(inComponent: 0)
-                var loginID = ""
-                var password = ""
-                loginID = storedLogins[row - 1]
-                password = AppStaticPrefs.prefs.getStoredPasswordForUser(self.enterURLTextItem.text!, inUser: loginID)
+                self._userID = storedLogins[row - 1]
+                self._password = AppStaticPrefs.prefs.getStoredPasswordForUser(self._url, inUser: self._userID )
 
-                if !loginID.isEmpty && !password.isEmpty {
-                    if MainAppDelegate.connectionObject.adminLogin(loginID: loginID, password: password) {
+                if !self._userID.isEmpty && !self._password.isEmpty {
+                    if MainAppDelegate.connectionObject.adminLogin(loginID: self._userID, password: self._password) {
                         self.animationMask.isHidden = false
                         self._loggingIn = true
                         self.setLoginStatusUI()
@@ -574,7 +592,7 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate,
                 self.serviceBodyBarButton.isEnabled = (1 < MainAppDelegate.connectionObject.serviceBodiesICanEdit.count)
             } else {
                 self.logoutButton.isHidden = true
-                let storedLogins = AppStaticPrefs.prefs.getStoredLogins(for: self.enterURLTextItem.text!)
+                let storedLogins = self._validSavedLogins
                 self.presetLoginsPickerView.reloadAllComponents()   // This displays them all.
 
                 if MainAppDelegate.connectionObject.isAdminAvailable {
@@ -776,7 +794,7 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate,
         label.backgroundColor = UIColor.clear
         label.textAlignment = .center
         label.textColor = self.enterURLItemsLabel.textColor
-        let storedLogins = AppStaticPrefs.prefs.getStoredLogins(for: self.enterURLTextItem.text!)
+        let storedLogins = self._validSavedLogins
 
         if 0 == row {
             label.text = "MANUAL-LOGIN".localizedVariant
@@ -823,7 +841,7 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate,
         var ret: Int = 1
         
         if nil != MainAppDelegate.connectionObject {
-            let storedLogins = AppStaticPrefs.prefs.getStoredLogins(for: self.enterURLTextItem.text!)
+            let storedLogins = self._validSavedLogins
             ret += storedLogins.count
         }
         

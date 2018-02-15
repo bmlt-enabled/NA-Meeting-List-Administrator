@@ -23,7 +23,7 @@ import Foundation
 import LocalAuthentication
 import Security
 import BMLTiOSLib
-import FXKeychain
+import KeychainSwift
 
 /* ###################################################################################################################################### */
 // MARK: - Class Extensions -
@@ -328,7 +328,7 @@ class AppStaticPrefs {
     // MARK: Instance Properties
     /* ################################################################## */
     /** This is a keychain simplifier. */
-    private let _keychainWrapper: FXKeychain! = FXKeychain.default()
+    private let _swiftKeychainWrapper: KeychainSwift! = KeychainSwift()
 
     /* ################################################################## */
     // MARK: Instance Calculated Properties
@@ -555,7 +555,7 @@ class AppStaticPrefs {
                         if let users = temp[key] {
                             for user in users {
                                 let keychainKey = key.cleanURI() + "-" + user
-                                self._keychainWrapper.removeObject(forKey: keychainKey)
+                                self._swiftKeychainWrapper.delete(keychainKey)
                             }
                         }
                     }
@@ -676,7 +676,7 @@ class AppStaticPrefs {
             }
             
             // We may not need to add the user (Maybe we're just changing the stored password).
-            if var users = loginDictionary[inRooutURI] {
+            if var users = loginDictionary[inRooutURI.cleanURI()] {
                 urlUsers = users
                 for i in 0..<users.count where users[i] == inUser {
                     needToUpdate = false    // If we already know about this login, we don't need to update.
@@ -686,7 +686,7 @@ class AppStaticPrefs {
             
             if needToUpdate {
                 urlUsers.append(inUser)
-                loginDictionary[inRooutURI] = urlUsers
+                loginDictionary[inRooutURI.cleanURI()] = urlUsers
                 ret = true  // If we need to update, then this was the first login.
                 
                 self._loadedPrefs.setObject(loginDictionary, forKey: PrefsKeys.RootServerLoginDictionaryKey.rawValue as NSString)
@@ -698,11 +698,11 @@ class AppStaticPrefs {
             
             let key = inRooutURI.cleanURI() + "-" + inUser   // This will be our unique key for the password.
 
-            self._keychainWrapper.removeObject(forKey: key)  // We start by clearing the deck, then re-add, if necessary.
-
+            self._swiftKeychainWrapper.delete(key)
+            
             // We only store the password if we support TouchID, and we aren't deleting it.
             if type(of: self).supportsTouchID && (nil != inPassword) && !inPassword.isEmpty {
-                self._keychainWrapper.setObject(inPassword, forKey: key) // Store the password in our keychain.
+                self._swiftKeychainWrapper.set(inPassword, forKey: key)
             }
         }
         
@@ -722,14 +722,14 @@ class AppStaticPrefs {
             var urlUsers: [String] = []
             
             if (nil != inUser) && !inUser.isEmpty {
-                _ = self.updateUserForRootURI(inRooutURI, inUser: inUser)   // Clear any stored password, first.
+                _ = self.updateUserForRootURI(inRooutURI.cleanURI(), inUser: inUser)   // Clear any stored password, first.
                 
                 if let temp = self._loadedPrefs.object(forKey: PrefsKeys.RootServerLoginDictionaryKey.rawValue) as? [String: [String]] {
                     loginDictionary = temp
                 }
                 
                 // We remove the user if we find them.
-                if var users = loginDictionary[inRooutURI] {
+                if var users = loginDictionary[inRooutURI.cleanURI()] {
                     for i in 0..<users.count where users[i] == inUser {
                         users.remove(at: i)
                         break
@@ -741,9 +741,9 @@ class AppStaticPrefs {
                 if let temp = self._loadedPrefs.object(forKey: PrefsKeys.RootServerLoginDictionaryKey.rawValue) as? [String: [String]] {
                     loginDictionary = temp
                     // If we have a dictionary, then we'll be removing all stored passwords for that URI.
-                    if var users = loginDictionary[inRooutURI] {
+                    if var users = loginDictionary[inRooutURI.cleanURI()] {
                         for i in 0..<users.count {
-                            _ = self.updateUserForRootURI(inRooutURI, inUser: users[i])
+                            _ = self.updateUserForRootURI(inRooutURI.cleanURI(), inUser: users[i])
                         }
                     }
                 }
@@ -751,9 +751,9 @@ class AppStaticPrefs {
             
             // If this was the last user, we delete the whole URI.
             if urlUsers.isEmpty {
-                loginDictionary.removeValue(forKey: inRooutURI)
+                loginDictionary.removeValue(forKey: inRooutURI.cleanURI())
             } else {
-                loginDictionary[inRooutURI] = urlUsers
+                loginDictionary[inRooutURI.cleanURI()] = urlUsers
             }
             
             self._loadedPrefs.setObject(loginDictionary, forKey: PrefsKeys.RootServerLoginDictionaryKey.rawValue as NSString)
@@ -774,7 +774,7 @@ class AppStaticPrefs {
         
         if self._loadPrefs() {
             if let temp = self._loadedPrefs.object(forKey: PrefsKeys.RootServerLoginDictionaryKey.rawValue) as? [String: [String]] {
-                if var users = temp[inRooutURI] {
+                if var users = temp[inRooutURI.cleanURI()] {
                     for i in 0..<users.count where users[i] == inUser {
                         ret = true
                         break
@@ -800,12 +800,12 @@ class AppStaticPrefs {
         
         let key = inRooutURI.cleanURI() + "-" + inUser   // This will be our unique key for the password.
         
-        if type(of: self).supportsTouchID && (nil != self._keychainWrapper) { // No TouchID, no stored password.
+        if type(of: self).supportsTouchID { // No TouchID, no stored password.
             if self._loadPrefs() {
                 if let temp = self._loadedPrefs.object(forKey: PrefsKeys.RootServerLoginDictionaryKey.rawValue) as? [String: [String]] {
-                    if var users = temp[inRooutURI] {
+                    if var users = temp[inRooutURI.cleanURI()] {
                         for i in 0..<users.count where users[i] == inUser {
-                            ret = (nil != self._keychainWrapper.object(forKey: key))
+                            ret = (nil != self._swiftKeychainWrapper.get(key))
                             break
                         }
                     }
@@ -829,9 +829,10 @@ class AppStaticPrefs {
         var ret: String = ""
         
         if type(of: self).supportsTouchID { // No TouchID, no stored password.
-            if nil != self._keychainWrapper {
-                if let passwordFetched = (self._keychainWrapper.object(forKey: inRooutURI.cleanURI() + "-" + inUser)) as? String {
-                    ret = passwordFetched
+            if nil != self._swiftKeychainWrapper {
+                let key = inRooutURI.cleanURI() + "-" + inUser
+                if let temp = self._swiftKeychainWrapper.get(key) {
+                    ret = temp
                 }
             }
         }

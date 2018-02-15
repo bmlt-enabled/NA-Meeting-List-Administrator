@@ -33,7 +33,16 @@ The NA Meeting List Administrator app is [GPL V3](https://opensource.org/license
 
 CHANGELIST
 ----------
-***Version 1.3.0.2000* ** *- TBD*
+***Version 1.3.0.2002* ** *- February 15, 2018*
+
+- I changed the keychain access library, as FXKeychain is no longer supported.
+- I fixed a bug, where stored IDs were being nuked.
+
+***Version 1.3.0.2001* ** *- February 14, 2018*
+
+- Fixed a couple of bugs in the new saved login system.
+
+***Version 1.3.0.2000* ** *- February 14, 2018*
 
 - Apple suddenly changed course on displaying Touch ID/Face ID icons. I now have to remove them, so that means that we now immediately go into Touch/Face ID.
 
