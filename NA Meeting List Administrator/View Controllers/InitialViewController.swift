@@ -497,6 +497,31 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate,
             }
         }
 
+        // If we have Touch/Face ID available, AND we have previously stored logins, then we present those as alternatives in the picker.
+        let storedLogins = self._validSavedLogins
+        if AppStaticPrefs.supportsTouchID && !storedLogins.isEmpty {
+            self.presetLoginsContainerView.isHidden = false
+            let lastLogin = AppStaticPrefs.prefs.lastLogin
+            
+            // Here, we scroll to the last one selected.
+            if !lastLogin.url.isEmpty && !lastLogin.loginID.isEmpty && (lastLogin.url == self.enterURLTextItem.text) {
+                var index = 1
+                
+                for login in storedLogins {
+                    if lastLogin.loginID == login {
+                        self.presetLoginsPickerView.selectRow(index, inComponent: 0, animated: true)
+                        self.pickerView(self.presetLoginsPickerView, didSelectRow: index, inComponent: 0)
+                        break
+                    }
+                    
+                    index += 1
+                }
+            }
+        } else {
+            self.presetLoginsPickerView.selectRow(0, inComponent: 0, animated: true)
+            self.pickerView(self.presetLoginsPickerView, didSelectRow: 0, inComponent: 0)
+        }
+
         self._loggingIn = false
         self._connecting = false
         self.setLoginStatusUI()
@@ -592,35 +617,10 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate,
                 self.serviceBodyBarButton.isEnabled = (1 < MainAppDelegate.connectionObject.serviceBodiesICanEdit.count)
             } else {
                 self.logoutButton.isHidden = true
-                let storedLogins = self._validSavedLogins
                 self.presetLoginsPickerView.reloadAllComponents()   // This displays them all.
 
                 if MainAppDelegate.connectionObject.isAdminAvailable {
                     self.adminUnavailableLabel.isHidden = true
-
-                    // If we have Touch/Face ID available, AND we have previously stored logins, then we present those as alternatives in the picker.
-                    if AppStaticPrefs.supportsTouchID && !storedLogins.isEmpty {
-                        self.presetLoginsContainerView.isHidden = false
-                        let lastLogin = AppStaticPrefs.prefs.lastLogin
-                        
-                        // Here, we scroll to the last one selected.
-                        if !lastLogin.url.isEmpty && !lastLogin.loginID.isEmpty && (lastLogin.url == self.enterURLTextItem.text) {
-                            var index = 1
-                            
-                            for login in storedLogins {
-                                if lastLogin.loginID == login {
-                                    self.presetLoginsPickerView.selectRow(index, inComponent: 0, animated: true)
-                                    self.pickerView(self.presetLoginsPickerView, didSelectRow: index, inComponent: 0)
-                                    break
-                                }
-                                
-                                index += 1
-                            }
-                        }
-                    } else {
-                        self.presetLoginsPickerView.selectRow(0, inComponent: 0, animated: true)
-                        self.pickerView(self.presetLoginsPickerView, didSelectRow: 0, inComponent: 0)
-                    }
                 } else {
                     self.adminUnavailableLabel.isHidden = false
                 }
@@ -797,7 +797,7 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate,
         let storedLogins = self._validSavedLogins
 
         if 0 == row {
-            label.text = "MANUAL-LOGIN".localizedVariant
+            label.text = ((0 < storedLogins.count) ? "MANUAL-LOGIN" : "LOGIN-BUTTON").localizedVariant
         } else {
             label.text = storedLogins[row - 1]
         }

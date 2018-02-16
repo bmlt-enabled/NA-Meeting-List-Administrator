@@ -700,8 +700,8 @@ class AppStaticPrefs {
 
             self._swiftKeychainWrapper.delete(key)
             
-            // We only store the password if we support TouchID, and we aren't deleting it.
-            if type(of: self).supportsTouchID && (nil != inPassword) && !inPassword.isEmpty {
+            // We only store the password if we have one.
+            if (nil != inPassword) && !inPassword.isEmpty {
                 self._swiftKeychainWrapper.set(inPassword, forKey: key)
             }
         }

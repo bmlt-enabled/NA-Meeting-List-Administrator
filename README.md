@@ -33,6 +33,13 @@ The NA Meeting List Administrator app is [GPL V3](https://opensource.org/license
 
 CHANGELIST
 ----------
+***Version 1.3.0.2003* ** *- February 16, 2018*
+
+- Addressed an issue, where the keyboard would pop up when returning to the "LOG OUT" screen after a manual login.
+- Stop the "flash" of the picker reverting to an old value, just before login.
+- Made the "MANUAL LOG IN" string simply "LOG IN" when Touch ID/Face ID isn't supported, or we don't have stored logins for the server.
+- Now store logins, even if Touch/Face ID isn't available, as it helps when phones are upgraded, or the user decides to enable Face ID after the fact.
+
 ***Version 1.3.0.2002* ** *- February 15, 2018*
 
 - I changed the keychain access library, as FXKeychain is no longer supported.

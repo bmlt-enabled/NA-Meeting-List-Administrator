@@ -38,6 +38,7 @@
 "PASSWORD-PLACEHOLDER"                                                                          =   "Enter Your Password";
 "LOGIN-BUTTON"                                                                                  =   "LOG IN";
 "LOGOUT-BUTTON"                                                                                 =   "LOG OUT";
+"LOGIN"                                                                                         =   "Login";
 "MANUAL-LOGIN"                                                                                  =   "Manual Login";
 "ADMIN-UNAVAILABLE-TEXT"                                                                        =   "This server does not allow administration by this app.";
 "BAD-URI-ERROR-TEXT"                                                                            =   "The URL entered does not point to a valid Root Server.";
