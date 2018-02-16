@@ -24,7 +24,7 @@ function_body_length:
 - 70 # error
 
 type_body_length:
-- 400 # warning
+- 450 # warning
 - 500 # error
 
 line_length:

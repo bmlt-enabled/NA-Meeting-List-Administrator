@@ -33,6 +33,11 @@ The NA Meeting List Administrator app is [GPL V3](https://opensource.org/license
 
 CHANGELIST
 ----------
+***Version 1.3.0.2006* ** *- TBD*
+
+- I fixed an issue where the keyboard would appear inappropriately when disconnecting.
+- Tweaked .swiftlint.yml slightly.
+ 
 ***Version 1.3.0.2005* ** *- February 16, 2018*
 
 - Tweaked the README a bit.

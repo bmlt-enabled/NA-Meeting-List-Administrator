@@ -527,8 +527,10 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate,
         self._connecting = false
         
         self.setLoginStatusUI()
-        self.presetLoginsPickerView.selectRow(selectedPickerRow, inComponent: 0, animated: false)
-        self.pickerView(self.presetLoginsPickerView, didSelectRow: selectedPickerRow, inComponent: 0)
+        if !self.presetLoginsContainerView.isHidden {   // We only do this if the picker is visible.
+            self.presetLoginsPickerView.selectRow(selectedPickerRow, inComponent: 0, animated: false)
+            self.pickerView(self.presetLoginsPickerView, didSelectRow: selectedPickerRow, inComponent: 0)
+        }
     }
     
     /* ################################################################## */
