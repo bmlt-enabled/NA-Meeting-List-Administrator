@@ -2184,12 +2184,12 @@
                         <barButtonItem key="backBarButtonItem" title="CONNECT-TITLE" id="1Gl-oB-ldT"/>
                         <barButtonItem key="leftBarButtonItem" title="SERVICE-BODY-BUTTON" id="MQs-P7-JhK">
                             <connections>
-                                <action selector="selectYourClowns:" destination="BYZ-38-t0r" id="Ruo-ek-rHd"/>
+                                <action selector="segueToServiceBodiesScreen:" destination="BYZ-38-t0r" id="fzB-3Y-HbQ"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="EDITOR-BUTTON" id="Ct0-4R-213">
                             <connections>
-                                <action selector="sendInTheClowns:" destination="BYZ-38-t0r" id="KHU-N5-UnG"/>
+                                <action selector="segueToEditorScreen:" destination="BYZ-38-t0r" id="YoK-26-ckq"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

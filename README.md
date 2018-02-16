@@ -3,7 +3,7 @@ DESCRIPTION
 
 NA Meeting List Administrator is an iOS app for [the BMLT](https://bmlt.magshare.net) that is an administrative expression of [the BMLTiOSLib Communication Framework](https://bmlt.magshare.net/specific-topics/bmltioslib/).
 
-This app is designed for BMLT Meeting List Administrators to execute routine meeting list administrative tasks on their iPhone or iPad.
+This app is designed to allow [BMLT Meeting List Administrators](https://bmlt.magshare.net/specific-topics/bmlt-roles/) to perform routine meeting list administrative tasks on their iPhone or iPad.
 
 [Complete instructions are available on this Web page.](https://bmlt.magshare.net/satellites/bmlt-ios-apps/nameetinglistadministrator/)
 
@@ -21,7 +21,7 @@ If any of the above conditions are not met, the Root Server URL will be declared
 
 Once connected, the user must have a valid login to that Server. If using a modern iPhone or iPad (with Touch ID or Face ID), then biometric login will be available.
 
-The user must have at least one Service Body Administrator login to the Root Server with rights to edit meetings.
+The user must have at least one Service Body Administrator login to the Root Server with rights to edit meetings. Even a Service Body Admin will not be allowed to log in, if they are not authorized to edit meetings.
 
 Observers and Server Administrators cannot log in. Observers do not have sufficient privileges to use the app, and we exclude the Server Administrator for security reasons (also, it is improper to use the Server Administrator account for routine meeting list administration).
 
@@ -33,6 +33,13 @@ The NA Meeting List Administrator app is [GPL V3](https://opensource.org/license
 
 CHANGELIST
 ----------
+***Version 1.3.0.2005* ** *- February 16, 2018*
+
+- Tweaked the README a bit.
+- It was possible for stored logins to be displayed if there was no Touch/Face ID. This has been fixed.
+- Fixed a couple of rather nasty bugs, where the two buttons at the top of the connected screen crashed. This was caused by my "code cleanup."
+- Added a filter to make sure that only editable meetings are listed.
+
 ***Version 1.3.0.2004* ** *- February 16, 2018*
 
 - Fixed an issue where, sometimes, the manual login items were not being properly displayed when returning to the login screen, and it was set to "MANUAL LOGIN".

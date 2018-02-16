@@ -546,6 +546,7 @@ class AppStaticPrefs {
      This method is called to delete the saved URLs and logins (but not other saved prefs).
      */
     func deleteSavedLoginsAndURLs() {
+        self._swiftKeychainWrapper.synchronizable = true
         if self._loadPrefs() {
             if type(of: self).supportsTouchID {
                 // All of this crap is to remove the keys we have stored in the keychain.
@@ -665,6 +666,8 @@ class AppStaticPrefs {
     func updateUserForRootURI(_ inRooutURI: String, inUser: String, inPassword: String! = nil) -> Bool {
         var ret: Bool = false
         
+        self._swiftKeychainWrapper.synchronizable = true
+
         if self._loadPrefs() {
             // In this first step, we add the user to our list for that URI, if necessary.
             var loginDictionary: [String: [String]] = [:]
@@ -800,6 +803,8 @@ class AppStaticPrefs {
         
         let key = inRooutURI.cleanURI() + "-" + inUser   // This will be our unique key for the password.
         
+        self._swiftKeychainWrapper.synchronizable = true
+
         if type(of: self).supportsTouchID { // No TouchID, no stored password.
             if self._loadPrefs() {
                 if let temp = self._loadedPrefs.object(forKey: PrefsKeys.RootServerLoginDictionaryKey.rawValue) as? [String: [String]] {
@@ -828,6 +833,8 @@ class AppStaticPrefs {
     func getStoredPasswordForUser(_ inRooutURI: String, inUser: String) -> String {
         var ret: String = ""
         
+        self._swiftKeychainWrapper.synchronizable = true
+
         if type(of: self).supportsTouchID { // No TouchID, no stored password.
             if nil != self._swiftKeychainWrapper {
                 let key = inRooutURI.cleanURI() + "-" + inUser

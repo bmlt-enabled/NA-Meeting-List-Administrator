@@ -290,7 +290,20 @@ class MainAppDelegate: UIResponder, UIApplicationDelegate, BMLTiOSLibDelegate {
      - parameter meetingSearchResults: An array of meeting objects.
      */
     func bmltLibInstance(_ inLibInstance: BMLTiOSLib, meetingSearchResults: [BMLTiOSLibMeetingNode]) {
-        self._fullArrayOfMeetingObjects = meetingSearchResults
+        var searchResultsArray: [BMLTiOSLibEditableMeetingNode] = []
+        
+        // This makes sure that we only get editable objects (ones we can change).
+        for meeting in meetingSearchResults {
+            if let editableMeeting = meeting as? BMLTiOSLibEditableMeetingNode {
+                searchResultsArray.append(editableMeeting)
+            } else {
+                #if DEBUG
+                    print("ERROR! Non-Editable Meeting Object: \(meeting)")
+                #endif
+            }
+        }
+        
+        self._fullArrayOfMeetingObjects = searchResultsArray
         self.initialViewController.updateSearch(inMeetingObjects: self.meetingObjects)
     }
     

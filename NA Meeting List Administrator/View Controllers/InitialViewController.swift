@@ -74,13 +74,15 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate,
     
     /** This filters for logins that have valid stored passwords. */
     private var _validSavedLogins: [String] {
-        let storedLogins = AppStaticPrefs.prefs.getStoredLogins(for: self._url)
-        
         var ret: [String] = []
         
-        for login in storedLogins {
-            if AppStaticPrefs.prefs.userHasStoredPasswordRootURI(self._url, inUser: login) {
-                ret.append(login)
+        if AppStaticPrefs.supportsTouchID { // Only have stored logins available if Touch/Face ID is enabled.
+            let storedLogins = AppStaticPrefs.prefs.getStoredLogins(for: self._url)
+            
+            for login in storedLogins {
+                if AppStaticPrefs.prefs.userHasStoredPasswordRootURI(self._url, inUser: login) {
+                    ret.append(login)
+                }
             }
         }
         

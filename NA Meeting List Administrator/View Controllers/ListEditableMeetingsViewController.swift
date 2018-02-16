@@ -317,12 +317,18 @@ class ListEditableMeetingsViewController: EditorViewControllerBaseClass, UITable
         self.tabBarController?.tabBar.isHidden = true
         MainAppDelegate.connectionObject.searchCriteria.clearAll()
         // First, get the IDs of the Service bodies we'll be checking.
-        let sbArray = AppStaticPrefs.prefs.selectedServiceBodies
         let count = MainAppDelegate.connectionObject.searchCriteria.serviceBodies.count
-        
+        let sbIDArray: [Int] = AppStaticPrefs.prefs.selectedServiceBodies.map { $0.id }
+        #if DEBUG
+            print("Search Criteria IDs: \(sbIDArray)")
+        #endif
+
         for i in 0..<count {
-            let sb = MainAppDelegate.connectionObject.searchCriteria.serviceBodies[i].item
-            if sbArray.contains(sb) {
+            let sb = MainAppDelegate.connectionObject.searchCriteria.serviceBodies[i].item.id
+            if sbIDArray.contains(sb) {
+                #if DEBUG
+                    print("Search Criteria Service Body Selected: \(MainAppDelegate.connectionObject.searchCriteria.serviceBodies[i].item)")
+                #endif
                 MainAppDelegate.connectionObject.searchCriteria.serviceBodies[i].selection = .Selected
             }
         }
@@ -334,6 +340,9 @@ class ListEditableMeetingsViewController: EditorViewControllerBaseClass, UITable
         MainAppDelegate.connectionObject.searchCriteria.publishedStatus = .Both
         self._showBusyAnimation()
         self.allChangedTo(inState: BMLTiOSLibSearchCriteria.SelectionState.Selected)
+        #if DEBUG
+            print("Search Criteria Service Bodies: \(MainAppDelegate.connectionObject.searchCriteria.serviceBodies)")
+        #endif
         MainAppDelegate.connectionObject.searchCriteria.performMeetingSearch(.MeetingsOnly)
     }
     
@@ -707,10 +716,23 @@ class ListEditableMeetingsViewController: EditorViewControllerBaseClass, UITable
      - returns a nice, shiny cell (or sets the state of a reused one).
      */
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let ret = tableView.dequeueReusableCell(withIdentifier: self._meetingPrototypeReuseID) as? MeetingTableViewCell {
-            // We alternate with slightly darker cells. */
-            if let meetingObject = self.currentMeetingList[indexPath.row] as? BMLTiOSLibEditableMeetingNode {
-                ret.backgroundColor = meetingObject.published ? ((0 == (indexPath.row % 2)) ? UIColor.clear : UIColor.init(white: 0, alpha: 0.1)) : ((0 == (indexPath.row % 2)) ? self.unpublishedRowColorEven : self.unpublishedRowColorOdd)
+        let baseMeetingObject = self.currentMeetingList[indexPath.row]
+        if let meetingObject = baseMeetingObject as? BMLTiOSLibEditableMeetingNode {
+            if let ret = tableView.dequeueReusableCell(withIdentifier: self._meetingPrototypeReuseID) as? MeetingTableViewCell {
+                // We alternate with slightly darker cells. */
+                if meetingObject.published {
+                    if 0 == (indexPath.row % 2) {
+                        ret.backgroundColor = UIColor.clear
+                    } else {
+                        ret.backgroundColor = UIColor.init(white: 0, alpha: 0.1)
+                    }
+                } else {
+                    if 0 == (indexPath.row % 2) {
+                        ret.backgroundColor = self.unpublishedRowColorEven
+                    } else {
+                        ret.backgroundColor = self.unpublishedRowColorOdd
+                    }
+                }
                 
                 ret.meetingInfoLabel.text = meetingObject.name
                 ret.addressLabel.text = meetingObject.basicAddress
@@ -758,12 +780,15 @@ class ListEditableMeetingsViewController: EditorViewControllerBaseClass, UITable
                         ret.meetingTimeAndPlaceLabel.text = String(format: NSLocalizedString("MEETING-TIME-FORMAT", comment: ""), AppStaticPrefs.weekdayNameFromWeekdayNumber(weekdayIndex), time) + (meetingObject.formatsAsCSVList.isEmpty ? "" : " (" + meetingObject.formatsAsCSVList + ")")
                     }
                 }
-            }
-            
-            return ret
-        } else {
-            return UITableViewCell()
+                
+                return ret
+           }
         }
+        #if DEBUG
+            print("ERROR! Bad Meeting Object: \(baseMeetingObject)")
+        #endif
+        
+        return UITableViewCell()
     }
     
     /* ################################################################## */
