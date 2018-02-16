@@ -33,6 +33,11 @@ The NA Meeting List Administrator app is [GPL V3](https://opensource.org/license
 
 CHANGELIST
 ----------
+***Version 1.3.0.2004* ** *- February 16, 2018*
+
+- Fixed an issue where, sometimes, the manual login items were not being properly displayed when returning to the login screen, and it was set to "MANUAL LOGIN".
+- Fixed an issue where the MANUAL LOGIN was selected upon startup, when it should have been a stored login.
+
 ***Version 1.3.0.2003* ** *- February 16, 2018*
 
 - Addressed an issue, where the keyboard would pop up when returning to the "LOG OUT" screen after a manual login.

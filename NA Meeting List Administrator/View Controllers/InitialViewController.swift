@@ -34,7 +34,7 @@ import BMLTiOSLib
  
  This View Controller starts off with a URL text entry, and a simple connect button.
  
- Once the user has sucessfully connected, they are presented with a login screen that may include a TouchID button.
+ Once the user has sucessfully connected, they are presented with a login screen.
  
  This class is a big fat, stateful mess. Because the UX is best served by simply changing the state of a single screen, as opposed to switching
  in and out of screens, I work by showing and hiding batches of controls.
@@ -270,6 +270,7 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate,
     @IBAction func loginButtonHit(_ sender: UIButton) {
         self.closeKeyboard()
         if (nil != MainAppDelegate.connectionObject) && MainAppDelegate.connectionStatus && MainAppDelegate.connectionObject.isAdminAvailable {
+            // Any row greater than 0, means a stored login that will require a biometric approval (no Login ID or Password field).
             let row = self.presetLoginsPickerView.selectedRow(inComponent: 0)
             let goBio = (0 < row)
             
@@ -282,7 +283,7 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate,
                     let reason = String(format: "LOCAL-TOUCHID-REASON-FORMAT".localizedVariant, self._userID)
                     authenticationContext.evaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason, reply: self.biometricCallback )
                 }
-            } else {
+            } else {    // Manual login always has the Login ID and Password field.
                 self._userID = self.manualEntryIDTextField.text!
                 self._password = self.manualEntryPasswordTextField.text!
                 if !self._userID.isEmpty && !self._password.isEmpty {
@@ -315,7 +316,7 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate,
     
     /* ################################################################## */
     /**
-     Called when the Settings button is hit.
+     Called when the Settings (Gear) button is hit.
      
      - parameter sender: The IB item that called this.
      */
@@ -341,7 +342,7 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate,
      
      - parameter sender: The IB item that called this. This is ignored.
      */
-    @IBAction func sendInTheClowns(_ sender: UIBarButtonItem) {
+    @IBAction func segueToEditorScreen(_ sender: UIBarButtonItem) {
         self.performSegue(withIdentifier: self._showEditorSegueID, sender: nil)
     }
     
@@ -351,7 +352,7 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate,
      
      - parameter sender: The IB item that called this. This is ignored.
      */
-    @IBAction func selectYourClowns(_ sender: UIBarButtonItem) {
+    @IBAction func segueToServiceBodiesScreen(_ sender: UIBarButtonItem) {
         self.performSegue(withIdentifier: self._showServiceBodySelectorSegueID, sender: nil)
     }
     
@@ -379,7 +380,7 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate,
     
     /* ################################################################## */
     /**
-     This is the callback from the TouchID/FaceID login attempt.
+     This is the callback from the Touch/Face ID login attempt.
      
      - parameter inSuccess: If true, then the ID attempt was successful.
      - parameter inError: Any error that may have occurred.
@@ -438,7 +439,7 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate,
                     MainAppDelegate.displayAlert(header, inMessage: description!)
                 }
             }
-        } else {
+        } else {    // If the ID was successful, then we simply try and log in.
             DispatchQueue.main.async {
                 let storedLogins = self._validSavedLogins
                 let row = self.presetLoginsPickerView.selectedRow(inComponent: 0)
@@ -451,7 +452,7 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate,
                         self._loggingIn = true
                         self.setLoginStatusUI()
                     }
-                } else {
+                } else {    // This shouldn't happen, but if there was no stored password, this comes up.
                     var header: String = "UNABLE-TO-LOGIN-ERROR-TITLE-FORMAT".localizedVariant
                     var description = "UNABLE-TO-LOGIN-ERROR-FORMAT".localizedVariant
                     
@@ -497,6 +498,8 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate,
             }
         }
 
+        var selectedPickerRow = 0
+        
         // If we have Touch/Face ID available, AND we have previously stored logins, then we present those as alternatives in the picker.
         let storedLogins = self._validSavedLogins
         if AppStaticPrefs.supportsTouchID && !storedLogins.isEmpty {
@@ -509,22 +512,21 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate,
                 
                 for login in storedLogins {
                     if lastLogin.loginID == login {
-                        self.presetLoginsPickerView.selectRow(index, inComponent: 0, animated: true)
-                        self.pickerView(self.presetLoginsPickerView, didSelectRow: index, inComponent: 0)
+                        selectedPickerRow = index
                         break
                     }
                     
                     index += 1
                 }
             }
-        } else {
-            self.presetLoginsPickerView.selectRow(0, inComponent: 0, animated: true)
-            self.pickerView(self.presetLoginsPickerView, didSelectRow: 0, inComponent: 0)
         }
 
         self._loggingIn = false
         self._connecting = false
+        
         self.setLoginStatusUI()
+        self.presetLoginsPickerView.selectRow(selectedPickerRow, inComponent: 0, animated: false)
+        self.pickerView(self.presetLoginsPickerView, didSelectRow: selectedPickerRow, inComponent: 0)
     }
     
     /* ################################################################## */
@@ -542,7 +544,9 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate,
             if firstTime {  // If this was the first time we logged in, then we set all our Service bodies to selected.
                 AppStaticPrefs.prefs.setServiceBodySelection(serviceBodyObject: nil, selected: true)
             }
+            
             AppStaticPrefs.prefs.savePrefs()
+            self.manualEntryIDTextField.text = ""   // Clear the login.
         }
         
         self.manualEntryPasswordTextField.text = ""
@@ -553,17 +557,17 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate,
         
         // The first time we log in with a user, and we have multiple Service bodies, we allow them to choose their Service bodies first.
         if firstTime && MainAppDelegate.connectionObject.isAdminLoggedIn && (1 < AppStaticPrefs.prefs.allEditableServiceBodies.count) {
-            self.selectYourClowns(self.serviceBodyBarButton)
+            self.segueToServiceBodiesScreen(self.serviceBodyBarButton)
         } else {    // Otherwise, we just go straight to the editor; whether or not we are at the first go.
             if MainAppDelegate.connectionObject.isAdminLoggedIn {
-                self.sendInTheClowns(self.editorBarButton)
+                self.segueToEditorScreen(self.editorBarButton)
             }
         }
     }
     
     /* ################################################################## */
     /**
-     This function will either show (enable) or hide (disable) the login button (and maybe the TouchID button).
+     This function will either show (enable) or hide (disable) the login button.
      */
     func showOrHideLoginButton() {
         let row = self.presetLoginsPickerView.selectedRow(inComponent: 0)
