@@ -33,10 +33,13 @@ The NA Meeting List Administrator app is [GPL V3](https://opensource.org/license
 
 CHANGELIST
 ----------
-***Version 1.3.0.2006* ** *- TBD*
+***Version 1.3.0.2006* ** *- February 17, 2018*
 
 - I fixed an issue where the keyboard would appear inappropriately when disconnecting.
 - Tweaked .swiftlint.yml slightly.
+- Fixed a bug, where the last login was not being saved correctly. This manifested in the Service body selection not being separated, and the last login not being properly selected in the picker.
+- Made the stored login picker larger for better usability.
+- Made the service body search specification a bit more efficient (under the hood).
  
 ***Version 1.3.0.2005* ** *- February 16, 2018*
 

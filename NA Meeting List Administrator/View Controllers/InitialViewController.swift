@@ -494,7 +494,7 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate,
 
         if self._connecting && (nil != MainAppDelegate.connectionObject) && MainAppDelegate.connectionStatus {
             let lastLogin = AppStaticPrefs.prefs.lastLogin
-            
+            AppStaticPrefs.prefs.savePrefs()
             if !lastLogin.url.isEmpty && !lastLogin.loginID.isEmpty && (lastLogin.url == self.enterURLTextItem.text) {
                 self.manualEntryIDTextField.text = lastLogin.loginID
             }
@@ -543,7 +543,7 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate,
         // If we are successfully logged in, then we save the login and (maybe) the password.
         if (nil != MainAppDelegate.connectionObject) && MainAppDelegate.connectionStatus && MainAppDelegate.connectionObject.isAdminLoggedIn {
             firstTime = AppStaticPrefs.prefs.updateUserForRootURI(self.enterURLTextItem.text!, inUser: self._userID, inPassword: self._password)
-            AppStaticPrefs.prefs.lastLogin = (url: self.enterURLTextItem.text!, loginID: self.manualEntryIDTextField.text!)
+            AppStaticPrefs.prefs.lastLogin = (url: self.enterURLTextItem.text!, loginID: self._userID)
             
             if firstTime {  // If this was the first time we logged in, then we set all our Service bodies to selected.
                 AppStaticPrefs.prefs.setServiceBodySelection(serviceBodyObject: nil, selected: true)

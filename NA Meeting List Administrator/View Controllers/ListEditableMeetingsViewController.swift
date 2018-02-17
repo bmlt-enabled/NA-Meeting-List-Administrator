@@ -317,19 +317,32 @@ class ListEditableMeetingsViewController: EditorViewControllerBaseClass, UITable
         self.tabBarController?.tabBar.isHidden = true
         MainAppDelegate.connectionObject.searchCriteria.clearAll()
         // First, get the IDs of the Service bodies we'll be checking.
-        let count = MainAppDelegate.connectionObject.searchCriteria.serviceBodies.count
         let sbIDArray: [Int] = AppStaticPrefs.prefs.selectedServiceBodies.map { $0.id }
         #if DEBUG
             print("Search Criteria IDs: \(sbIDArray)")
         #endif
 
-        for i in 0..<count {
-            let sb = MainAppDelegate.connectionObject.searchCriteria.serviceBodies[i].item.id
-            if sbIDArray.contains(sb) {
-                #if DEBUG
-                    print("Search Criteria Service Body Selected: \(MainAppDelegate.connectionObject.searchCriteria.serviceBodies[i].item)")
-                #endif
-                MainAppDelegate.connectionObject.searchCriteria.serviceBodies[i].selection = .Selected
+        var serviceBodyList: [BMLTiOSLibHierarchicalServiceBodyNode] = []
+        
+        for sb in MainAppDelegate.connectionObject.searchCriteria.serviceBodies {
+            if sb.item.iCanEdit && (.Selected == sb.selection) {
+                serviceBodyList.append(sb.item)
+            }
+        }
+        
+        // If we didn't have a specific Service body selected, then we assume that all of them are in the mix.
+        if serviceBodyList.isEmpty {
+            serviceBodyList = MainAppDelegate.connectionObject.serviceBodiesICanEdit
+        }
+
+        for sb in serviceBodyList {
+            if sbIDArray.contains(sb.id) {
+                for i in 0..<MainAppDelegate.connectionObject.searchCriteria.serviceBodies.count where sb.id == MainAppDelegate.connectionObject.searchCriteria.serviceBodies[i].item.id {
+                    #if DEBUG
+                        print("Search Criteria Service Body Selected: \(MainAppDelegate.connectionObject.searchCriteria.serviceBodies[i].item)")
+                    #endif
+                    MainAppDelegate.connectionObject.searchCriteria.serviceBodies[i].selection = .Selected
+                }
             }
         }
         
