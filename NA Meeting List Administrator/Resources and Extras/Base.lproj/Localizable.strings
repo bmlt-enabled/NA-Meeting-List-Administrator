@@ -38,6 +38,7 @@
 "PASSWORD-PLACEHOLDER"                                                                          =   "Enter Your Password";
 "LOGIN-BUTTON"                                                                                  =   "LOG IN";
 "LOGOUT-BUTTON"                                                                                 =   "LOG OUT";
+"LOGIN-STATUS-FORMAT"                                                                           =   "Logged in as %@";
 "LOGIN"                                                                                         =   "Login";
 "MANUAL-LOGIN"                                                                                  =   "Manual Login";
 "ADMIN-UNAVAILABLE-TEXT"                                                                        =   "This server does not allow administration by this app.";

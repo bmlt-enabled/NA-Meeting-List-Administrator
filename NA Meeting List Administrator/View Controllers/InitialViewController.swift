@@ -130,6 +130,10 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate,
     @IBOutlet weak var manualEntryPasswordTextField: UITextField!
     /** This is the button used to initiate a mnaual login. */
     @IBOutlet weak var manualEntryLoginButton: UIButton!
+    /** This is the main container for the "Logged in as" text. */
+    @IBOutlet weak var loggedInTextContainerView: UIView!
+    /** This is the label with our "Logged in as" text. */
+    @IBOutlet weak var loggedInTextLabel: UILabel!
     
     /* ################################################################## */
     // MARK: Overridden Instance Methods
@@ -179,7 +183,6 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate,
      - parameter animated: True, if the appearance is animated.
      */
     override func viewWillAppear(_ animated: Bool) {
-        self.closeKeyboard()
         if let navController = self.navigationController {
             navController.isNavigationBarHidden = !((nil != MainAppDelegate.connectionObject) && MainAppDelegate.connectionObject.isAdminLoggedIn)
         }
@@ -188,6 +191,7 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate,
         self.manualEntryPasswordTextField.text = "" // We start off with no password (security).
         self.enableOrDisableTheEditButton()
         self.showOrHideConnectButton()
+        self.closeKeyboard()
         super.viewWillAppear(animated)
     }
     
@@ -609,6 +613,7 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate,
             navController.isNavigationBarHidden = true
         }
         
+        self.loggedInTextContainerView.isHidden = true
         // If we are not currently attempting a connection, and are currently connected.
         if !self._connecting && (nil != MainAppDelegate.connectionObject) && MainAppDelegate.connectionStatus {
             self.urlEntryItemsContainerView.isHidden = true
@@ -620,6 +625,14 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate,
                 self.adminUnavailableLabel.isHidden = true
                 if let navController = self.navigationController {
                     navController.isNavigationBarHidden = false
+                }
+                
+                let storedLogins = self._validSavedLogins
+
+                // We only display the "logged in as" message when we have a choice of stored logins.
+                if 1 < storedLogins.count {
+                    self.loggedInTextContainerView.isHidden = false
+                    self.loggedInTextLabel.text = String(format: "LOGIN-STATUS-FORMAT".localizedVariant, AppStaticPrefs.prefs.lastLogin.loginID)
                 }
                 
                 self.serviceBodyBarButton.isEnabled = (1 < MainAppDelegate.connectionObject.serviceBodiesICanEdit.count)

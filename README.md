@@ -33,6 +33,10 @@ The NA Meeting List Administrator app is [GPL V3](https://opensource.org/license
 
 CHANGELIST
 ----------
+***Version 1.3.0.2007* ** *- February 18, 2018*
+
+- Added a "Logged In As" message for users that have multiple stored logins.
+
 ***Version 1.3.0.2006* ** *- February 17, 2018*
 
 - I fixed an issue where the keyboard would appear inappropriately when disconnecting.
