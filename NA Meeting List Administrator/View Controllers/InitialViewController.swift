@@ -197,6 +197,17 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate,
     
     /* ################################################################## */
     /**
+     We use this to make sure our keyboard is closed before we move on.
+     
+     - parameter animated: True, if the disappearance is animated.
+     */
+    override func viewWillDisappear(_ animated: Bool) {
+        self.closeKeyboard()
+        super.viewDidDisappear(animated)
+    }
+    
+    /* ################################################################## */
+    /**
      This allows us to track the editor tab controller object.
      
      - parameter for: The segue object being called.

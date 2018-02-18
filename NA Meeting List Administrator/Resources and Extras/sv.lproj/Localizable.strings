@@ -38,7 +38,7 @@
 "PASSWORD-PLACEHOLDER"                                                                          =   "Ange ditt lösenord";
 "LOGIN-BUTTON"                                                                                  =   "LOGGA IN";
 "LOGOUT-BUTTON"                                                                                 =   "LOGGA UT";
-"LOGIN-STATUS-FORMAT"                                                                           =   "Inloggad som %@";
+"LOGIN-STATUS-FORMAT"                                                                           =   "Inloggad som \"%@\"";
 "LOGIN"                                                                                         =   "Inloggning";
 "MANUAL-LOGIN"                                                                                  =   "Manuell Inloggning";
 "ADMIN-UNAVAILABLE-TEXT"                                                                        =   "Denna server tillåter inte administration via denna app.";

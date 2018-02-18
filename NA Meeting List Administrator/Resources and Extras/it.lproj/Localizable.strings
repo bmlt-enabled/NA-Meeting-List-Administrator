@@ -38,7 +38,7 @@
 "PASSWORD-PLACEHOLDER"                                                                          =   "Inserisci la password";
 "LOGIN-BUTTON"                                                                                  =   "LOGIN";
 "LOGOUT-BUTTON"                                                                                 =   "LOGOUT";
-"LOGIN-STATUS-FORMAT"                                                                           =   "Registrato come %@";
+"LOGIN-STATUS-FORMAT"                                                                           =   "Registrato come \"%@\"";
 "LOGIN"                                                                                         =   "Login";
 "MANUAL-LOGIN"                                                                                  =   "Login Manuale";
 "ADMIN-UNAVAILABLE-TEXT"                                                                        =   "Questo server non permette l'amministrazione da questa app.";
