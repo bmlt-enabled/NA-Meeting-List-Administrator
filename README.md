@@ -33,6 +33,10 @@ The NA Meeting List Administrator app is [GPL V3](https://opensource.org/license
 
 CHANGELIST
 ----------
+***Version 1.3.1.2000* ** *- TBD*
+
+- Added code to scroll the table up when the keyboard shows.
+
 ***Version 1.3.0.3000* ** *- February 18, 2018*
 
 - No changes -released to App Store.

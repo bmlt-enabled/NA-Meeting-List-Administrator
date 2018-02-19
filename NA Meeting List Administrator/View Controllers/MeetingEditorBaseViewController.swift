@@ -94,6 +94,9 @@ class MeetingEditorBaseViewController: EditorViewControllerBaseClass, UITableVie
     /** This will reference our formats container. */
     private var _formatContainerView: FormatsEditorTableViewCell! = nil
     
+    /** This tracks the state of the keyboard */
+    private var _keyboardShown: Bool = false
+    
     /** This will reference the top item in the window (the "Published" handler). */
     var publishedItems: PublishedEditorTableViewCell! = nil
     
@@ -118,6 +121,10 @@ class MeetingEditorBaseViewController: EditorViewControllerBaseClass, UITableVie
         self._publishedTopColor = (self.view as? EditorViewBaseClass)?.topColor
         self._publishedBottomColor = (self.view as? EditorViewBaseClass)?.bottomColor
         self.tableView.rowHeight = UITableViewAutomaticDimension
+        self._keyboardShown = false
+        // We use these to get notified when the keyboard will appear and disappear.
+        NotificationCenter.default.addObserver(self, selector: #selector(MeetingEditorBaseViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(MeetingEditorBaseViewController.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
     /* ################################################################## */
@@ -164,6 +171,17 @@ class MeetingEditorBaseViewController: EditorViewControllerBaseClass, UITableVie
     // MARK: IB Methods
     /* ################################################################## */
     /**
+     De-Initializer.
+     */
+    deinit {
+        // Make sure that we don't get any notifications, as they will crash.
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    /* ################################################################## */
+    // MARK: IB Methods
+    /* ################################################################## */
+    /**
      Called when the main view is tapped (closes any open keyboards).
      
      - parameter sender: The IB item that called this.
@@ -174,6 +192,35 @@ class MeetingEditorBaseViewController: EditorViewControllerBaseClass, UITableVie
     
     /* ################################################################## */
     // MARK: Instance Methods
+    /* ################################################################## */
+    /**
+     This is a callback for when the keyboard will appear. It makes sure that we have room to diplay whatever we're editing.
+     
+     This is pretty primitive. We simply scroll the table up, and rely on it to scroll back down, if we went too far.
+     
+     - parameter: The notification object
+     */
+    @objc func keyboardWillShow(_ inNotification: NSNotification) {
+        if !self._keyboardShown {   // Only if it's not already up.
+            self._keyboardShown = true
+            if let keyboardFrame: NSValue = inNotification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue {
+                var offset = self.tableView.contentOffset
+                offset.y += keyboardFrame.cgRectValue.size.height
+                self.tableView.setContentOffset(offset, animated: false)
+            }
+        }
+    }
+    
+    /* ################################################################## */
+    /**
+     This is a callback for when the keyboard will disappear.
+     
+     - parameter: The notification object (ignored)
+     */
+    @objc func keyboardWillHide(_: NSNotification) {
+        self._keyboardShown = false
+    }
+
     /* ################################################################## */
     /**
      Called when something changes in the various controls.
@@ -342,7 +389,7 @@ class MeetingEditorBaseViewController: EditorViewControllerBaseClass, UITableVie
             }
         })
     }
-   
+
     /* ################################################################## */
     // MARK: UITableViewDataSource Methods
     /* ################################################################## */
