@@ -31,8 +31,12 @@ LICENSE
 =======
 The NA Meeting List Administrator app is [GPL V3](https://opensource.org/licenses/GPL-3.0); However, the [BMLTiOSLib](https://bmlt.magshare.net/specific-topics/bmltioslib/) uses [the MIT License](https://opensource.org/licenses/MIT).
 
+TODO
+====
+The editor/new meeting screen needs to be refactored. Currently, they are indicated in the IB file as huge, unwieldy views. They need to be broken into multiple individual IB files, and stitched together at runtime.
+
 CHANGELIST
-----------
+==========
 ***Version 1.3.1.2000* ** *- TBD*
 
 - Added code to scroll the table up when the keyboard shows.
