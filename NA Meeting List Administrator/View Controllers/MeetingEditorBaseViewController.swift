@@ -210,14 +210,16 @@ class MeetingEditorBaseViewController: EditorViewControllerBaseClass, UITableVie
             if let keyboardFrame: NSValue = inNotification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue {
                 if let window = self.view.window {
                     if let currentResponder = window.currentFirstResponder as? UIView {
-                        self._keyboardOffset = keyboardFrame.cgRectValue.size.height
-                        let ypos = window.convert(currentResponder.frame, from: currentResponder.superview).origin.y
+                        let convertedFrame = window.convert(currentResponder.frame, from: currentResponder.superview)
+                        let ypos = convertedFrame.origin.y + convertedFrame.size.height
                         let kpos = window.bounds.size.height - keyboardFrame.cgRectValue.origin.y
-                        let offset = ypos - kpos
-                        if 0.0 < offset {
-                            self._keyboardOffset = offset
+                        let newOffset = ypos - kpos
+                        if 0.0 < newOffset {
+                            self._keyboardOffset = newOffset
+                            var newKeyboardOffset = self.tableView.contentOffset
+                            newKeyboardOffset.y += newOffset
                             self.tableView.contentSize.height += self._keyboardOffset
-                            self.tableView.setContentOffset(CGPoint(x: 0, y: self.tableView.contentOffset.y + self._keyboardOffset), animated: true)
+                            self.tableView.setContentOffset(newKeyboardOffset, animated: true)
                         }
                     }
                 }
@@ -234,12 +236,14 @@ class MeetingEditorBaseViewController: EditorViewControllerBaseClass, UITableVie
      - parameter: The notification object (ignored)
      */
     @objc func keyboardWillHide(_: NSNotification) {
-        if 0.0 < self._keyboardOffset {   // Only if it's already up.
-            self.tableView.contentSize.height -= self._keyboardOffset
-            self.tableView.setContentOffset(CGPoint(x: 0, y: self.tableView.contentOffset.y - self._keyboardOffset), animated: true)
-        }
-        
+        let oldOffset = self._keyboardOffset
         self._keyboardOffset = 0.0
+        if 0.0 < oldOffset {   // Only if it's already up.
+            var newKeyboardOffset = self.tableView.contentOffset
+            newKeyboardOffset.y -= oldOffset
+            self.tableView.contentSize.height -= oldOffset
+            self.tableView.setContentOffset(newKeyboardOffset, animated: true)
+        }
     }
 
     /* ################################################################## */
