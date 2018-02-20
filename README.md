@@ -37,9 +37,9 @@ The editor/new meeting screen needs to be refactored. Currently, they are indica
 
 CHANGELIST
 ==========
-***Version 1.3.1.2000* ** *- TBD*
+***Version 1.3.1.2000* ** *- February 20, 2018*
 
-- Added code to scroll the table up when the keyboard shows.
+- Added code to make sure that the edit item is always available when the keyboard pops up.
 
 ***Version 1.3.0.3000* ** *- February 18, 2018*
 

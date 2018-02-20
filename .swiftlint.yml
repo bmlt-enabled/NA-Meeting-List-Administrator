@@ -16,7 +16,7 @@ excluded:
 - Project/R.generated.swift
 
 file_length:
-- 1510 # warning
+- 1600 # warning
 - 3000 # error
 
 function_body_length:

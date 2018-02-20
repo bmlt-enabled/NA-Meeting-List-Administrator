@@ -97,6 +97,9 @@ class MeetingEditorBaseViewController: EditorViewControllerBaseClass, UITableVie
     /** This tracks the state of the keyboard */
     private var _keyboardShown: Bool = false
     
+    /** This tracks the state of the keyboard */
+    private var _keyboardOffset: CGFloat = 0.0
+    
     /** This will reference the top item in the window (the "Published" handler). */
     var publishedItems: PublishedEditorTableViewCell! = nil
     
@@ -121,7 +124,7 @@ class MeetingEditorBaseViewController: EditorViewControllerBaseClass, UITableVie
         self._publishedTopColor = (self.view as? EditorViewBaseClass)?.topColor
         self._publishedBottomColor = (self.view as? EditorViewBaseClass)?.bottomColor
         self.tableView.rowHeight = UITableViewAutomaticDimension
-        self._keyboardShown = false
+        self._keyboardOffset = 0.0
         // We use these to get notified when the keyboard will appear and disappear.
         NotificationCenter.default.addObserver(self, selector: #selector(MeetingEditorBaseViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(MeetingEditorBaseViewController.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
@@ -196,17 +199,28 @@ class MeetingEditorBaseViewController: EditorViewControllerBaseClass, UITableVie
     /**
      This is a callback for when the keyboard will appear. It makes sure that we have room to diplay whatever we're editing.
      
-     This is pretty primitive. We simply scroll the table up, and rely on it to scroll back down, if we went too far.
+     We will adjust the screen to show the text item above the keyboard.
+     
+     If the text item is below the keyboard, we temporarily enlarge the content size for the table, and scroll down, then reset it when we're done.
      
      - parameter: The notification object
      */
     @objc func keyboardWillShow(_ inNotification: NSNotification) {
-        if !self._keyboardShown {   // Only if it's not already up.
-            self._keyboardShown = true
+        if 0.0 == self._keyboardOffset {   // Only if it's not already up.
             if let keyboardFrame: NSValue = inNotification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue {
-                var offset = self.tableView.contentOffset
-                offset.y += keyboardFrame.cgRectValue.size.height
-                self.tableView.setContentOffset(offset, animated: false)
+                if let window = self.view.window {
+                    if let currentResponder = window.currentFirstResponder as? UIView {
+                        self._keyboardOffset = keyboardFrame.cgRectValue.size.height
+                        let ypos = window.convert(currentResponder.frame, from: currentResponder.superview).origin.y
+                        let kpos = window.bounds.size.height - keyboardFrame.cgRectValue.origin.y
+                        let offset = ypos - kpos
+                        if 0.0 < offset {
+                            self._keyboardOffset = offset
+                            self.tableView.contentSize.height += self._keyboardOffset
+                            self.tableView.setContentOffset(CGPoint(x: 0, y: self.tableView.contentOffset.y + self._keyboardOffset), animated: true)
+                        }
+                    }
+                }
             }
         }
     }
@@ -215,10 +229,17 @@ class MeetingEditorBaseViewController: EditorViewControllerBaseClass, UITableVie
     /**
      This is a callback for when the keyboard will disappear.
      
+     We use this to unwind any scroll and content size changes.
+     
      - parameter: The notification object (ignored)
      */
     @objc func keyboardWillHide(_: NSNotification) {
-        self._keyboardShown = false
+        if 0.0 < self._keyboardOffset {   // Only if it's already up.
+            self.tableView.contentSize.height -= self._keyboardOffset
+            self.tableView.setContentOffset(CGPoint(x: 0, y: self.tableView.contentOffset.y - self._keyboardOffset), animated: true)
+        }
+        
+        self._keyboardOffset = 0.0
     }
 
     /* ################################################################## */
