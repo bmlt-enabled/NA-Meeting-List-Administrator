@@ -212,7 +212,7 @@ class MeetingEditorBaseViewController: EditorViewControllerBaseClass, UITableVie
                     if let currentResponder = window.currentFirstResponder as? UIView {
                         let convertedFrame = window.convert(currentResponder.frame, from: currentResponder.superview)
                         let ypos = convertedFrame.origin.y + convertedFrame.size.height
-                        let kpos = window.bounds.size.height - keyboardFrame.cgRectValue.origin.y
+                        let kpos = window.bounds.size.height - keyboardFrame.cgRectValue.size.height
                         let newOffset = ypos - kpos
                         if 0.0 < newOffset {
                             self._keyboardOffset = newOffset

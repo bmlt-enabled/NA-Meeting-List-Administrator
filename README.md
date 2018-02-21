@@ -37,6 +37,10 @@ The editor/new meeting screen needs to be refactored. Currently, they are indica
 
 CHANGELIST
 ==========
+***Version 1.3.1.2002* ** *- February 21, 2018*
+
+- The keyboard size calculation wasn't quite right. This has been fixed.
+
 ***Version 1.3.1.2001* ** *- February 20, 2018*
 
 - There was a coding error in the new code (the offset was being set when it shouldn't). That should be fixed now.
