@@ -37,6 +37,11 @@ The editor/new meeting screen needs to be refactored. Currently, they are indica
 
 CHANGELIST
 ==========
+***Version 1.3.1.2003* ** *- February 21, 2018*
+
+- I switched off the animation for the "keyboard nudge." It caused an annoying little "hiccup."
+- The "Where Am I" button should be hidden if there are no location manager services enabled.
+
 ***Version 1.3.1.2002* ** *- February 21, 2018*
 
 - The keyboard size calculation wasn't quite right. This has been fixed.

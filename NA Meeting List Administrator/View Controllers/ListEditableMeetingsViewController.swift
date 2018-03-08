@@ -231,7 +231,12 @@ class ListEditableMeetingsViewController: EditorViewControllerBaseClass, UITable
         super.viewDidLoad()
         self.tabBarController?.tabBar.isHidden = true
         self.backButton.title = NSLocalizedString(self.backButton.title!, comment: "")
-        self.whereAmINowButton.setTitle(NSLocalizedString(self.whereAmINowButton.title(for: UIControlState.normal)!, comment: ""), for: UIControlState.normal)
+        if CLLocationManager.locationServicesEnabled() {
+            self.whereAmINowButton.isHidden = false
+            self.whereAmINowButton.setTitle(NSLocalizedString(self.whereAmINowButton.title(for: UIControlState.normal)!, comment: ""), for: UIControlState.normal)
+        } else {
+            self.whereAmINowButton.isHidden = true
+        }
         self.setUpWeekdayViews()
     }
     

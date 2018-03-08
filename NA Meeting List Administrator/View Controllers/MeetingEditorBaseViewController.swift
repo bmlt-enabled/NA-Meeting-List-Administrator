@@ -219,7 +219,7 @@ class MeetingEditorBaseViewController: EditorViewControllerBaseClass, UITableVie
                             var newKeyboardOffset = self.tableView.contentOffset
                             newKeyboardOffset.y += newOffset
                             self.tableView.contentSize.height += self._keyboardOffset
-                            self.tableView.setContentOffset(newKeyboardOffset, animated: true)
+                            self.tableView.setContentOffset(newKeyboardOffset, animated: false)
                         }
                     }
                 }
