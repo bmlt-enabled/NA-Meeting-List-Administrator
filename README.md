@@ -37,6 +37,16 @@ The editor/new meeting screen needs to be refactored. Currently, they are indica
 
 CHANGELIST
 ==========
+***Version 1.3.1.3000* ** *- April 3, 2018*
+
+- No changes. Release to App Store.
+
+***Version 1.3.1.2006* ** *- April 2, 2018*
+
+- Added an "invisible" parameter to the server calls, so that TOMATO will know that its being called by BMLTiOSLib apps.
+- Updated to Xcode 9.3/Swift 4.1
+- Bumped the version to 2006 to maintain with the other two apps.
+
 ***Version 1.3.1.2003* ** *- February 21, 2018*
 
 - I switched off the animation for the "keyboard nudge." It caused an annoying little "hiccup."

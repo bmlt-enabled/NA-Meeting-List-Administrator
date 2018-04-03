@@ -61,7 +61,7 @@ class MapAnnotation: NSObject, MKAnnotation, NSCoding {
     @objc required init?(coder aDecoder: NSCoder) {
         if let locations = aDecoder.decodeObject(forKey: self.sMeetingsObjectKey) as? [BMLTiOSLibMeetingNode] {
             self.locations = locations
-            if let tempCoordinate = aDecoder.decodeObject(forKey: self.sCoordinateObjectKey) as? [NSNumber]! {
+            if let tempCoordinate = aDecoder.decodeObject(forKey: self.sCoordinateObjectKey) as? [NSNumber] {
                 self.coordinate.longitude = tempCoordinate[0].doubleValue
                 self.coordinate.latitude = tempCoordinate[1].doubleValue
             }
