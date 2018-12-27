@@ -20,7 +20,7 @@
  along with this code.  If not, see <http://www.gnu.org/licenses/>.
  */
 /** The Location Description String. */
-"LOCAL-LOCATION-FLAG"                       =   "This app needs to know where you are in order to find the meeting you are at, or to find the address you are at.";   /**< This is the message shown by the location permissions alert. */
+"LOCAL-LOCATION-FLAG"                       =   "Denne app brug for at vide, hvor du er, for at finde det møde, du er til, eller for at finde den adresse, du er på";   /**< This is the message shown by the location permissions alert. */
 "ERR-STRING-SHORT"                                                                              =   "Fejl";
 
 "CONNECT-TITLE"                                                                                 =   "OPRET FORBINDELSE";

@@ -27,6 +27,7 @@
 		77B7D1221E3AA0A80031FF6B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 77B7D1201E3AA0A80031FF6B /* Localizable.strings */; };
 		77D92ED71E4B50CC009F02B2 /* MeetingEditorBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D92ED61E4B50CC009F02B2 /* MeetingEditorBaseViewController.swift */; };
 		77D92EDB1E4B5146009F02B2 /* EditSingleMeetingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D92EDA1E4B5146009F02B2 /* EditSingleMeetingViewController.swift */; };
+		D492E55A21D53BFE0085DA47 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D492E55421D538EC0085DA47 /* InfoPlist.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,7 +55,6 @@
 		779BE3B51E37D5FA00350D11 /* Base */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Base; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		779BE3B71E37D5FA00350D11 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		779BE3B91E37D5FA00350D11 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Main.storyboard; sourceTree = "<group>"; };
-		779BE3BA1E37D5FA00350D11 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = "Resources and Extras/Info.plist"; sourceTree = "<group>"; };
 		779BE3BB1E37D5FA00350D11 /* NA Meeting List Administrator-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NA Meeting List Administrator-Bridging-Header.h"; path = "Resources and Extras/NA Meeting List Administrator-Bridging-Header.h"; sourceTree = "<group>"; };
 		77A097E4200034E600769CEB /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = "Resources and Extras/it.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		77B31A7D1E49369D0047F655 /* ThreeStateCheckbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ThreeStateCheckbox.swift; path = "Main App/ThreeStateCheckbox.swift"; sourceTree = "<group>"; };
@@ -65,6 +65,11 @@
 		77D92EDA1E4B5146009F02B2 /* EditSingleMeetingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditSingleMeetingViewController.swift; path = "View Controllers/EditSingleMeetingViewController.swift"; sourceTree = "<group>"; };
 		77DC3EA61E378B6300BF24B7 /* NA Meeting List Administrator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NA Meeting List Administrator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D492E54E21D5332C0085DA47 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = "Resources and Extras/da.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		D492E55521D538EE0085DA47 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D492E55621D538EE0085DA47 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D492E55721D538EF0085DA47 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D492E55821D539AF0085DA47 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D492E55921D53A4C0085DA47 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = "Resources and Extras/Info.plist"; sourceTree = "<group>"; };
 		E9AB63B48A811FFBDF66DDCA /* Pods-NA Meeting List Administrator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NA Meeting List Administrator.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NA Meeting List Administrator/Pods-NA Meeting List Administrator.debug.xcconfig"; sourceTree = "<group>"; };
 		F8D92508646D82EB06D35A16 /* Pods-NA Meeting List Administrator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NA Meeting List Administrator.release.xcconfig"; path = "Pods/Target Support Files/Pods-NA Meeting List Administrator/Pods-NA Meeting List Administrator.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -96,6 +101,7 @@
 				779BE3B81E37D5FA00350D11 /* Main.storyboard */,
 				77B7D1201E3AA0A80031FF6B /* Localizable.strings */,
 				779BE3B21E37D5FA00350D11 /* Assets.xcassets */,
+				D492E55921D53A4C0085DA47 /* Info.plist */,
 				779BE3B61E37D5FA00350D11 /* LaunchScreen.storyboard */,
 				779BE3B41E37D5FA00350D11 /* Default-568h@2x.png */,
 			);
@@ -134,7 +140,7 @@
 			children = (
 				77CF6B8D1E6CEA0E005F2ECB /* GPX Files */,
 				77B5410E1E42605700A0A880 /* NA Meeting List Administrator.entitlements */,
-				779BE3BA1E37D5FA00350D11 /* Info.plist */,
+				D492E55421D538EC0085DA47 /* InfoPlist.strings */,
 				779BE3BB1E37D5FA00350D11 /* NA Meeting List Administrator-Bridging-Header.h */,
 			);
 			name = Extras;
@@ -265,6 +271,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				77B7D1221E3AA0A80031FF6B /* Localizable.strings in Resources */,
+				D492E55A21D53BFE0085DA47 /* InfoPlist.strings in Resources */,
 				779BE3BE1E37D5FA00350D11 /* LaunchScreen.storyboard in Resources */,
 				779BE3BC1E37D5FA00350D11 /* Assets.xcassets in Resources */,
 				779BE3BD1E37D5FA00350D11 /* Default-568h@2x.png in Resources */,
@@ -407,6 +414,18 @@
 				D492E54E21D5332C0085DA47 /* da */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		D492E55421D538EC0085DA47 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D492E55521D538EE0085DA47 /* it */,
+				D492E55621D538EE0085DA47 /* sv */,
+				D492E55721D538EF0085DA47 /* da */,
+				D492E55821D539AF0085DA47 /* en */,
+			);
+			name = InfoPlist.strings;
+			path = "Resources and Extras";
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

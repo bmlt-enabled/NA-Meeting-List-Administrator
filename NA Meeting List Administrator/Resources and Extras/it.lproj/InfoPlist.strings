@@ -1,0 +1,8 @@
+/* 
+  InfoPlist.strings
+  NA Meeting List Administrator
+
+  Created by Chris Marshall on 12/27/18.
+  Copyright © 2018 MAGSHARE. All rights reserved.
+*/
+"NSLocationWhenInUseUsageDescription" = "Questa app ha bisogno di sapere dove sei per poter trovare la riunione o l'indirizzo in cui ti trovi.";
