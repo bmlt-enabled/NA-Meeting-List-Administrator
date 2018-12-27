@@ -149,7 +149,7 @@ class HistoryListViewController: EditorViewControllerBaseClass, UITableViewDataS
             let changeObject = self.meetingObject.changes[indexPath.row]
             let descriptionText = changeObject.description
             ret.textView.text = descriptionText
-            ret.revertButton.setTitle(NSLocalizedString(ret.revertButton.title(for: UIControlState.normal)!, comment: ""), for: UIControlState.normal)
+            ret.revertButton.setTitle(NSLocalizedString(ret.revertButton.title(for: UIControl.State.normal)!, comment: ""), for: UIControl.State.normal)
             ret.revertButton.isHidden = (nil == changeObject.beforeObject)
             self._moreDetailHistoryItems[ret.moreInfoButton] = changeObject
             ret.owner = self

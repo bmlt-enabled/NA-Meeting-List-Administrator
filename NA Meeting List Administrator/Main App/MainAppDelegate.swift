@@ -102,7 +102,7 @@ class MainAppDelegate: UIResponder, UIApplicationDelegate, BMLTiOSLibDelegate {
         if nil != presentedBy {
             let alertController = UIAlertController(title: NSLocalizedString(inTitle, comment: ""), message: NSLocalizedString(inMessage, comment: ""), preferredStyle: .alert)
             
-            let okAction = UIAlertAction(title: NSLocalizedString("NAMeetingListAdministrator-OKButtonText", comment: ""), style: UIAlertActionStyle.cancel, handler: nil)
+            let okAction = UIAlertAction(title: NSLocalizedString("NAMeetingListAdministrator-OKButtonText", comment: ""), style: UIAlertAction.Style.cancel, handler: nil)
             
             alertController.addAction(okAction)
             
@@ -165,7 +165,7 @@ class MainAppDelegate: UIResponder, UIApplicationDelegate, BMLTiOSLibDelegate {
      
      - returns true (all the time). This tells the app to go ahead and launch.
      */
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         return true
     }
     

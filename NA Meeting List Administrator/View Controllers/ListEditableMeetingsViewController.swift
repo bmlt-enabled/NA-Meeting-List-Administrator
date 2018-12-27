@@ -233,7 +233,7 @@ class ListEditableMeetingsViewController: EditorViewControllerBaseClass, UITable
         self.backButton.title = NSLocalizedString(self.backButton.title!, comment: "")
         if CLLocationManager.locationServicesEnabled() {
             self.whereAmINowButton.isHidden = false
-            self.whereAmINowButton.setTitle(NSLocalizedString(self.whereAmINowButton.title(for: UIControlState.normal)!, comment: ""), for: UIControlState.normal)
+            self.whereAmINowButton.setTitle(NSLocalizedString(self.whereAmINowButton.title(for: UIControl.State.normal)!, comment: ""), for: UIControl.State.normal)
         } else {
             self.whereAmINowButton.isHidden = true
         }
@@ -464,7 +464,7 @@ class ListEditableMeetingsViewController: EditorViewControllerBaseClass, UITable
         for meeting in self.currentMeetingList {
             if meeting == meetingObject {
                 let indexPath = IndexPath(row: index, section: 0)
-                self.meetingListTableView.scrollToRow(at: indexPath, at: UITableViewScrollPosition.middle, animated: false)
+                self.meetingListTableView.scrollToRow(at: indexPath, at: UITableView.ScrollPosition.middle, animated: false)
                 break
             }
             index += 1
@@ -847,17 +847,17 @@ class ListEditableMeetingsViewController: EditorViewControllerBaseClass, UITable
      - parameter commit: The action to perform.
      - parameter forRowAt: The indexpath of the row to be deleted.
      */
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == UITableViewCellEditingStyle.delete {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == UITableViewCell.EditingStyle.delete {
             let meetingObject = self.currentMeetingList[indexPath.row]
 
             let alertController = UIAlertController(title: NSLocalizedString("DELETE-HEADER", comment: ""), message: String(format: NSLocalizedString("DELETE-MESSAGE-FORMAT", comment: ""), meetingObject.name), preferredStyle: .alert)
             
-            let deleteAction = UIAlertAction(title: NSLocalizedString("DELETE-OK-BUTTON", comment: ""), style: UIAlertActionStyle.destructive, handler: {(_: UIAlertAction) in self.doADirtyDeedCheap(tableView, forRowAt: indexPath)})
+            let deleteAction = UIAlertAction(title: NSLocalizedString("DELETE-OK-BUTTON", comment: ""), style: UIAlertAction.Style.destructive, handler: {(_: UIAlertAction) in self.doADirtyDeedCheap(tableView, forRowAt: indexPath)})
             
             alertController.addAction(deleteAction)
             
-            let cancelAction = UIAlertAction(title: NSLocalizedString("DELETE-CANCEL-BUTTON", comment: ""), style: UIAlertActionStyle.default, handler: {(_: UIAlertAction) in self.dontDoADirtyDeedCheap(tableView)})
+            let cancelAction = UIAlertAction(title: NSLocalizedString("DELETE-CANCEL-BUTTON", comment: ""), style: UIAlertAction.Style.default, handler: {(_: UIAlertAction) in self.dontDoADirtyDeedCheap(tableView)})
             
             alertController.addAction(cancelAction)
             
@@ -1079,7 +1079,7 @@ class WeekdaySwitchContainerView: UIView {
                 self.selectionSwitchControl.selectionState = selectionState!
             }
             
-            self.selectionSwitchControl.addTarget(self, action: #selector(WeekdaySwitchContainerView.checkboxSelectionChanged(_:)), for: UIControlEvents.valueChanged)
+            self.selectionSwitchControl.addTarget(self, action: #selector(WeekdaySwitchContainerView.checkboxSelectionChanged(_:)), for: UIControl.Event.valueChanged)
             
             var labelFrame: CGRect = CGRect.zero
             labelFrame.size.width = frame.size.width

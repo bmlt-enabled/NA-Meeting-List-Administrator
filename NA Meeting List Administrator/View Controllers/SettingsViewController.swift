@@ -76,7 +76,7 @@ class SettingsViewController: UIViewController {
         
         self.blurbHeaderLabel.text = NSLocalizedString(self.blurbHeaderLabel.text!, comment: "")
         
-        self.clearAllLoginsButton.setTitle(NSLocalizedString(self.clearAllLoginsButton.title(for: UIControlState.normal)!, comment: ""), for: UIControlState.normal)
+        self.clearAllLoginsButton.setTitle(NSLocalizedString(self.clearAllLoginsButton.title(for: UIControl.State.normal)!, comment: ""), for: UIControl.State.normal)
         
         self.clearAllLoginsButton.isEnabled = AppStaticPrefs.prefs.hasStoredLogins
     }
@@ -103,7 +103,7 @@ class SettingsViewController: UIViewController {
     @IBAction func beanieButtonHit(_ sender: Any) {
         if !self.buttonURI.isEmpty {
             let openLink = NSURL(string: self.buttonURI)
-            UIApplication.shared.open(openLink! as URL, options: [:], completionHandler: nil)
+            UIApplication.shared.open(openLink! as URL, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
             self.view.setNeedsLayout()
         }
     }
@@ -123,11 +123,11 @@ class SettingsViewController: UIViewController {
         
         let alertController = UIAlertController(title: NSLocalizedString("FORGET-STORED-LOGINS-HEADER", comment: ""), message: message, preferredStyle: .alert)
         
-        let saveCopyAction = UIAlertAction(title: NSLocalizedString("FORGET-STORED-LOGINS-OK-BUTTON", comment: ""), style: UIAlertActionStyle.destructive, handler: self.terminateWithExtremePrejudice)
+        let saveCopyAction = UIAlertAction(title: NSLocalizedString("FORGET-STORED-LOGINS-OK-BUTTON", comment: ""), style: UIAlertAction.Style.destructive, handler: self.terminateWithExtremePrejudice)
         
         alertController.addAction(saveCopyAction)
         
-        let cancelAction = UIAlertAction(title: NSLocalizedString("FORGET-STORED-LOGINS-CANCEL-BUTTON", comment: ""), style: UIAlertActionStyle.cancel, handler: nil)
+        let cancelAction = UIAlertAction(title: NSLocalizedString("FORGET-STORED-LOGINS-CANCEL-BUTTON", comment: ""), style: UIAlertAction.Style.cancel, handler: nil)
         
         alertController.addAction(cancelAction)
         
@@ -150,4 +150,9 @@ class SettingsViewController: UIViewController {
         // We need to do this, because the initial view controller may close its navigation bar, which is also ours.
         self.view.setNeedsLayout()
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+private func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
 }

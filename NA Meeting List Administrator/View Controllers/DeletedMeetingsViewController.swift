@@ -161,11 +161,11 @@ class DeletedMeetingsViewController: EditorViewControllerBaseClass, UITableViewD
         if let meetingObject = self._deletedMeetingChanges[inRow].beforeObject as? BMLTiOSLibEditableMeetingNode {
             let alertController = UIAlertController(title: NSLocalizedString("DELETED-ALERT-HEADER", comment: ""), message: String(format: NSLocalizedString("DELETED-ALERT-FORMAT", comment: ""), meetingObject.name), preferredStyle: .alert)
             
-            let deleteAction = UIAlertAction(title: NSLocalizedString("DELETED-RESTORE-BUTTON", comment: ""), style: UIAlertActionStyle.destructive, handler: {(_: UIAlertAction) in self.restoreMeeting(inMeeting: meetingObject, row: inRow)})
+            let deleteAction = UIAlertAction(title: NSLocalizedString("DELETED-RESTORE-BUTTON", comment: ""), style: UIAlertAction.Style.destructive, handler: {(_: UIAlertAction) in self.restoreMeeting(inMeeting: meetingObject, row: inRow)})
             
             alertController.addAction(deleteAction)
             
-            let cancelAction = UIAlertAction(title: NSLocalizedString("DELETED-CANCEL-BUTTON", comment: ""), style: UIAlertActionStyle.default, handler: nil)
+            let cancelAction = UIAlertAction(title: NSLocalizedString("DELETED-CANCEL-BUTTON", comment: ""), style: UIAlertAction.Style.default, handler: nil)
             
             alertController.addAction(cancelAction)
             

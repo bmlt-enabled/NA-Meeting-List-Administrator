@@ -1,0 +1,200 @@
+/*
+ Localizable.strings
+ NA Meeting List Administrator
+ 
+ Created by MAGSHARE.
+ 
+ Copyright 2017 MAGSHARE
+ 
+ This is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+ 
+ NA Meeting List Administrator is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with this code.  If not, see <http://www.gnu.org/licenses/>.
+ */
+/** The Location Description String. */
+"LOCAL-LOCATION-FLAG"                       =   "This app needs to know where you are in order to find the meeting you are at, or to find the address you are at.";   /**< This is the message shown by the location permissions alert. */
+"ERR-STRING-SHORT"                                                                              =   "Fejl";
+
+"CONNECT-TITLE"                                                                                 =   "OPRET FORBINDELSE";
+"SERVICE-BODY-SELECTION-TITLE"                                                                  =   "Vælg Service enheder";
+"NAMeetingListAdministrator-OKButtonText"                                                       =   "OK";
+"NAMeetingListAdministrator-ErrorAlertTitle"                                                    =   "Fejl!";
+"ENTER-URI-LABEL"                                                                               =   "Opret forbindelse til serveren";
+"ENTER-URI-PLACEHOLDER"                                                                         =   "Indsæt Server URL";
+"CONNECT-BUTTON"                                                                                =   "OPRET FORBINDELSE";
+"DISCONNECT-BUTTON"                                                                             =   "AFBRYD FORBINDELSE";
+"LOGIN-LABEL"                                                                                   =   "Administration Log Ind";
+"LOGIN-ID-LABEL"                                                                                =   "Login ID:";
+"LOGIN-ID-PLACEHOLDER"                                                                          =   "Indsæt et Login ID";
+"PASSWORD-LABEL"                                                                                =   "Adgangskode:";
+"PASSWORD-PLACEHOLDER"                                                                          =   "Indsæt din adgangskode";
+"LOGIN-BUTTON"                                                                                  =   "LOG IND";
+"LOGOUT-BUTTON"                                                                                 =   "LOG UD";
+"LOGIN-STATUS-FORMAT"                                                                           =   "Logged ind som \"%@\"";
+"LOGIN"                                                                                         =   "Login";
+"MANUAL-LOGIN"                                                                                  =   "Manual Login";
+"ADMIN-UNAVAILABLE-TEXT"                                                                        =   "Denne server tillader ikke administration af denne app.";
+"BAD-URI-ERROR-TEXT"                                                                            =   "Den indtastede URL peger ikke på en gyldig Root Server.";
+"The operation couldn’t be completed. (BMLTiOSLibErrorDomains-Permission-Error error 201000.)"  =   "Login-id eller adgangskode blev ikke genkendt af serveren.";
+"LOCAL-TOUCHID-REASON-FORMAT"                                                                   =   "Log automatisk \"%@\" på serveren.";
+"TOUCH-ID-STRING"                                                                               =   "Berøre";
+"FACE-ID-STRING"                                                                                =   "Ansigt";
+"UNABLE-TO-LOGIN-ERROR-TITLE-FORMAT"                                                            =   "%@ ID Fejl";
+"UNABLE-TO-LOGIN-ERROR-FORMAT"                                                                  =   "%@ ID kunne ikke logge ind på serveren.";
+"SERVICE-BODY-BUTTON"                                                                           =   "Service Enheder";
+"EDITOR-BUTTON"                                                                                 =   "Redigere";
+"MIDNIGHT"                                                                                      =   "Midnat";
+"NOON"                                                                                          =   "Middag";
+"MEETING-TIME-FORMAT"                                                                           =   "%@, %@";
+"ALL-DAYS"                                                                                      =   "Alle";
+"LOCAL-SEARCH-PICKER-NONE"                                                                      =   "Alle byer og forstæder";
+"CONNECT-BACK-TITLE"                                                                            =   "Tilbage";
+"MEETING-ID-FORMAT"                                                                             =   "Møde ID %d";
+"NEW-MEETING-TITLE"                                                                             =   "Nyt Møde";
+
+"MEETINGS-TAB-BAR-NAME"                                                                         =   "Nuværende møder";
+"DELETED-MEETINGS-TAB-BAR-NAME"                                                                 =   "Slettet Møder";
+
+"DELETE-HEADER-1"                                                                               =   "Er du sikker?";
+"DELETE-HEADER-2"                                                                               =   "Nuke From Orbit.";
+"DELETE-HEADER-3"                                                                               =   "Sikre denne handling!";
+"DELETE-HEADER-4"                                                                               =   "Ønsker du at miste de ændringer, du har foretaget på dette møde?";
+"DELETE-HEADER"                                                                                 =   "Vil du slette dette møde?";
+"DELETE-MESSAGE-FORMAT"                                                                         =   "Mødet \"% @ \" slettes. Er du sikker på, at du vil slette det?";
+"DELETE-OK-BUTTON"                                                                              =   "Slet dette møde";
+"DELETE-CANCEL-BUTTON"                                                                          =   "Annullerer ";
+
+"SAVE-BUTTON"                                                                                   =   "Gem";
+"SAVE-BUTTON-DUPLICATE"                                                                         =   "Kopier";
+"CANCEL-BUTTON"                                                                                 =   "Annullerer";
+
+"PUBLISHED-LABEL"                                                                               =   "Mødet er udgivet";
+"SERVICE-BODY-LABEL"                                                                            =   "Møde Service Enhed:";
+
+"WORLD-ID-LABEL"                                                                                =   "Verdens ID:";
+"WORLD-ID-PLACEHOLDER"                                                                          =   "Indsæt en NAWS Komite kode";
+
+"MEETING-NAME-LABEL"                                                                            =   "Møde Navn:";
+"MEETING-NAME-PLACEHOLDER"                                                                      =   "Indsæt navnet på mødet";
+
+"WEEKDAY-LABEL"                                                                                 =   "Ugedag:";
+
+"START-TIME-LABEL"                                                                              =   "Start Tid:";
+
+"DURATION-LABEL"                                                                                =   "Varighed:";
+
+"LOCATION-NAME-LABEL"                                                                           =   "Navn på sted:";
+"LOCATION-NAME-PLACEHOLDER"                                                                     =   "Indtast et stednavn";
+
+"STREET-ADDRESS-LABEL"                                                                          =   "Vejnavn:";
+"STREET-ADDRESS-PLACEHOLDER"                                                                    =   "Indsæt et Vejnavn";
+
+"NEIGHBORHOOD-LABEL"                                                                            =   "nabolag:";
+"NEIGHBORHOOD-PLACEHOLDER"                                                                      =   "Indsæt et nabolag";
+
+"BOROUGH-LABEL"                                                                                 =   "Forstad eller Bydel:";
+"BOROUGH-PLACEHOLDER"                                                                           =   "Indsælt en forstad eller bydel";
+
+"TOWN-LABEL"                                                                                    =   "By eller storby:";
+"TOWN-PLACEHOLDER"                                                                              =   "Indsæt en by eller storby";
+
+"COUNTY-LABEL"                                                                                  =   "Land:";
+"COUNTY-PLACEHOLDER"                                                                            =   "Indsæt et land";
+
+"STATE-LABEL"                                                                                   =   "Område/stat eller Provins:";
+"STATE-NAG-LABEL"                                                                               =   "(Brug altid forkortelse)";
+
+"ZIP-LABEL"                                                                                     =   "Post (Zip) kode:";
+
+"NATION-LABEL"                                                                                  =   "Nation:";
+"NATION-PLACEHOLDER"                                                                            =   "Indsæt en nation (brug forkortelse)";
+
+"LOCATION-INFO-LABEL"                                                                           =   "Ekstra Info:";
+"LOCATION-INFO-PLACEHOLDER"                                                                     =   "Indtast ekstra Placerings info";
+
+"LONGITUDE-LABEL"                                                                               =   "Længdegrad:";
+"LONGITUDE-PLACEHOLDER"                                                                         =   "Indsæt længdegrad for mødets Placering.";
+
+"LATITUDE-LABEL"                                                                                =   "Højdegrad:";
+"LATITUDE-PLACEHOLDER"                                                                          =   "Indsæt Højdegrad for mædets Placering.";
+
+"LONG-LAT-SET-FROM-ADDRESS-BUTTON"                                                              =   "Indstil kort for at matche adressen";
+"LONG-LAT-SET-FROM-MAP-BUTTON"                                                                  =   "Angiv adresse fra kort";
+
+"LOCAL-EDIT-LOCATION-FAIL-TITLE"                                                                =   "Placeringsfejl";
+"LOCAL-EDIT-LOCATION-FAILURE-MESSAGE"                                                           =   "Kan ikke bestemme en placering fra adressen.";
+"LOCAL-EDIT-REVERSE-GEOCODE-FAILURE-MESSAGE"                                                    =   "Kunne ikke bestemme en adresse fra din placering.";
+
+"MAP-TYPE-NORMAL"                                                                               =   "Standard";
+"MAP-TYPE-HYBRID"                                                                               =   "Hybrid";
+"MAP-TYPE-SATELLITE"                                                                            =   "Satellit";
+
+"COMMENTS-LABEL"                                                                                =   "Kommentar:";
+
+"FORMATS-LABEL"                                                                                 =   "Struktur:";
+
+"HISTORY-ERASER-BUTTON"                                                                         =   "Se mødeændringshistorik";
+"HISTORY-ERASER-TITLE"                                                                          =   "Møde ændrings Historie";
+
+"SAVE-AS-OR-COPY"                                                                               =   "Gem mødeændringer";
+"SAVE-AS-OR-COPY-MESSAGE"                                                                       =   "Der er foretaget ændringer til dette møde.\nVil du gemme disse ændringer?";
+
+"SAVE-AS-COPY"                                                                                  =   "Gem møde som en kopi";
+"SAVE-AS-COPY-MESSAGE"                                                                          =   "Vil du duplikere dette møde?";
+
+"SAVE-COPY-BUTTON"                                                                              =   "Gem en kopi af dette møde";
+"SAVE-CHANGES-BUTTON"                                                                           =   "Gem Ændringer";
+"SAVE-CANCEL-BUTTON"                                                                            =   "Annullerer";
+
+"SAVE-NEW-TITLE"                                                                                =   "Opret dette nye møde";
+"SAVE-NEW-MESSAGE"                                                                              =   "Hvis du rører \"Opret nyt møde\", oprettes dette møde som et nyt møde.";
+"SAVE-NEW-BUTTON"                                                                               =   "Opret nyt møde";
+
+"CANCEL-HEADER"                                                                                 =   "Ændringer er blevet foretaget på dette møde.";
+"CANCEL-MESSAGE"                                                                                =   "Hvis du rører ved \"fortryd ændringer\", vil de ændringer, du har foretaget til dette møde, blive kasseret, og mødet vender tilbage til dets oprindelige tilstand.\nHvis du trykker på \"Annuller\", bliver du returneret til mødet redaktør.";
+"CANCEL-LOSE-CHANGES-BUTTON"                                                                    =   "Fortryd ændringer";
+"CANCEL-CANCEL-BUTTON"                                                                          =   "Annullerer";
+
+"BMLTiOSLib-Default-Meeting-Name"                                                               =   "NA Møde";
+
+"DELETED-NAME-FORMAT"                                                                           =   "%@ (%d)";
+
+"DELETED-ALERT-HEADER"                                                                          =   "Gendannelse af et slettet møde";
+"DELETED-ALERT-FORMAT"                                                                          =   "Hvis du trykker på \"Gendan møde\", bliver mødet \"% @\" genoprettet.\nDet vises som et upubliceret møde, og du vil blive taget til editoren.\nHvis du trykker på \"Cancel\" , intet vil ske.";
+"DELETED-RESTORE-BUTTON"                                                                        =   "Gendan møde";
+"DELETED-CANCEL-BUTTON"                                                                         =   "Annullerer";
+
+"DELETED-LOADING-HEADER"                                                                        =   "Indlæser slettede møder";
+"DELETED-LOADING-SUBTEXT"                                                                       =   "Det kan tage lang tid.";
+
+"NO-HISTORY-LABEL"                                                                              =   "Ingen historie";
+
+"REVERT-BUTTON"                                                                                 =   "Vende tilbage";
+
+"CLEAR-ALL-SAVED-LOGINS"                                                                        =   "Fjern alle gemte logins og URLs";
+
+"FORGET-STORED-LOGINS-HEADER"                                                                   =   "Er du sikker?";
+"FORGET-STORED-LOGINS-MESSAGE"                                                                  =   "Hvis du rører \"Glem gemte logins\", slettes alle de gemte URLs og logins.";
+"FORGET-STORED-LOGINS-MESSAGE-SUFFIX"                                                           =   "\nDu vil også blive logget ud af din nuværende session.";
+"FORGET-STORED-LOGINS-OK-BUTTON"                                                                =   "Glem gemte logins";
+"FORGET-STORED-LOGINS-CANCEL-BUTTON"                                                            =   "Annullerer";
+"LOCAL-MAGSHARE-BLURB-LABEL"                                                                    =   "Et andet fint MAGSHARE-projekt";
+"LOCAL-MAGSHARE-URI-LABEL"                                                                      =   "Find ud af mere på https://bmlt.magshare.net";
+"LOCAL-MAGSHARE-URI"                                                                            =   "https://bmlt.magshare.net/nameetinglistadministrator";
+
+"VERSION-LABEL-FORMAT"                                                                          =   "Version %@";
+
+"WHAT-MEETING-AM-I-AT-NOW"                                                                      =   "Hvilket møde er jeg til nu?";
+
+"LOCATION-ERROR-HEADER"                                                                         =   "Placeringsfejl";
+"LOCATION-ERROR-MESSAGE"                                                                        =   "Kan ikke bestemme din nuværende placering.";
+"NO-MEETING-HEADER"                                                                             =   "Ingen møde fundet";
+"NO-MEETING-MESSAGE"                                                                            =   "Der blev ikke fundet noget møde der matcher din nuværende placering og tid.";

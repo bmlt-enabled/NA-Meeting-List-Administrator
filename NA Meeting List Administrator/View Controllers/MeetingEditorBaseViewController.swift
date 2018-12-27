@@ -123,11 +123,11 @@ class MeetingEditorBaseViewController: EditorViewControllerBaseClass, UITableVie
         super.viewDidLoad()
         self._publishedTopColor = (self.view as? EditorViewBaseClass)?.topColor
         self._publishedBottomColor = (self.view as? EditorViewBaseClass)?.bottomColor
-        self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.rowHeight = UITableView.automaticDimension
         self._keyboardOffset = 0.0
         // We use these to get notified when the keyboard will appear and disappear.
-        NotificationCenter.default.addObserver(self, selector: #selector(MeetingEditorBaseViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(MeetingEditorBaseViewController.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(MeetingEditorBaseViewController.keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(MeetingEditorBaseViewController.keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     /* ################################################################## */
@@ -207,7 +207,7 @@ class MeetingEditorBaseViewController: EditorViewControllerBaseClass, UITableVie
      */
     @objc func keyboardWillShow(_ inNotification: NSNotification) {
         if 0.0 == self._keyboardOffset {   // Only if it's not already up.
-            if let keyboardFrame: NSValue = inNotification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue {
+            if let keyboardFrame: NSValue = inNotification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
                 if let window = self.view.window {
                     if let currentResponder = window.currentFirstResponder as? UIView {
                         let convertedFrame = window.convert(currentResponder.frame, from: currentResponder.superview)
@@ -1249,7 +1249,7 @@ class MapTableViewCell: MeetingEditorViewCell, MKMapViewDelegate {
      - parameter didChange: The new state of the marker.
      - parameter fromOldState: The previous state of the marker.
      */
-    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, didChange newState: MKAnnotationViewDragState, fromOldState oldState: MKAnnotationViewDragState) {
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, didChange newState: MKAnnotationView.DragState, fromOldState oldState: MKAnnotationView.DragState) {
         switch newState {
         case .none:
             if .dragging == oldState {  // If this is a drag ending, we extract the new coordinates, and change the meeting object.
@@ -1383,8 +1383,8 @@ class LongLatTableViewCell: MeetingEditorViewCell {
         self.latitudeLabel.text = NSLocalizedString(self.latitudeLabel.text!, comment: "")
         self.latitudeTextField.placeholder = NSLocalizedString(self.latitudeTextField.placeholder!, comment: "")
         self.latitudeTextField.text = String(self.meetingObject.locationCoords.latitude)
-        self.setFromAddressButton.setTitle(NSLocalizedString(self.setFromAddressButton.title(for: UIControlState.normal)!, comment: ""), for: UIControlState.normal)
-        self.setFromMapButton.setTitle(NSLocalizedString(self.setFromMapButton.title(for: UIControlState.normal)!, comment: ""), for: UIControlState.normal)
+        self.setFromAddressButton.setTitle(NSLocalizedString(self.setFromAddressButton.title(for: UIControl.State.normal)!, comment: ""), for: UIControl.State.normal)
+        self.setFromMapButton.setTitle(NSLocalizedString(self.setFromMapButton.title(for: UIControl.State.normal)!, comment: ""), for: UIControl.State.normal)
         self.animationMaskView.isHidden = true
     }
 }
@@ -1476,7 +1476,7 @@ class FormatsEditorTableViewCell: MeetingEditorViewCell, UITableViewDataSource, 
      */
     override func meetingObjectUpdated() {
         self.formatNameLabel.text = NSLocalizedString(self.formatNameLabel.text!, comment: "")
-        self.formatDisplayTableView.rowHeight = UITableViewAutomaticDimension
+        self.formatDisplayTableView.rowHeight = UITableView.automaticDimension
         self.formatDisplayTableView.reloadData()
     }
     
@@ -1563,7 +1563,7 @@ class FormatsEditorTableViewCell: MeetingEditorViewCell, UITableViewDataSource, 
             checkBoxObject.binaryState = true
             checkBoxObject.extraData = formatObject
             checkBoxObject.selectionState = self.meetingObject.formats.contains(formatObject) ? .Selected : .Clear
-            checkBoxObject.addTarget(self, action: #selector(FormatsEditorTableViewCell.formatCheckboxActuated), for: UIControlEvents.valueChanged)
+            checkBoxObject.addTarget(self, action: #selector(FormatsEditorTableViewCell.formatCheckboxActuated), for: UIControl.Event.valueChanged)
             formatSubCell.addSubview(checkBoxObject)
             let labelFrame = CGRect(x: checkBoxFrame.origin.x + checkBoxFrame.size.width + type(of: self).sFormatCheckboxIndent, y: 0, width: frame.size.width - checkBoxFrame.origin.x + checkBoxFrame.size.width + type(of: self).sFormatCheckboxIndent, height: type(of: self).sFormatCheckboxContainerHeight)
             let labelObject = UILabel(frame: labelFrame)

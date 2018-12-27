@@ -147,19 +147,19 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate,
         // Set all of the various localized text items.
         // Each item has the key set as its text, so we replace with the localized version.
         self.navigationItem.backBarButtonItem?.title = NSLocalizedString((self.navigationItem.backBarButtonItem?.title!)!, comment: "")
-        self.logoutButton.setTitle(NSLocalizedString(self.logoutButton.title(for: UIControlState.normal)!, comment: ""), for: UIControlState.normal)
+        self.logoutButton.setTitle(NSLocalizedString(self.logoutButton.title(for: UIControl.State.normal)!, comment: ""), for: UIControl.State.normal)
         self.adminUnavailableLabel.text = self.adminUnavailableLabel.text!.localizedVariant
         self.enterURLItemsLabel.text = self.enterURLItemsLabel.text!.localizedVariant
         self.enterURLTextItem.placeholder = self.enterURLTextItem.placeholder!.localizedVariant
-        self.connectButton.setTitle(NSLocalizedString(self.connectButton.title(for: UIControlState.normal)!, comment: ""), for: UIControlState.normal)
-        self.disconnectButton.setTitle(NSLocalizedString(self.disconnectButton.title(for: UIControlState.normal)!, comment: ""), for: UIControlState.normal)
+        self.connectButton.setTitle(NSLocalizedString(self.connectButton.title(for: UIControl.State.normal)!, comment: ""), for: UIControl.State.normal)
+        self.disconnectButton.setTitle(NSLocalizedString(self.disconnectButton.title(for: UIControl.State.normal)!, comment: ""), for: UIControl.State.normal)
         self.serviceBodyBarButton.title = self.serviceBodyBarButton.title!.localizedVariant
         self.editorBarButton.title = self.editorBarButton.title!.localizedVariant
         self.manualEntryIDLabel.text = self.manualEntryIDLabel.text!.localizedVariant
         self.manualEntryIDTextField.placeholder = self.manualEntryIDTextField.placeholder!.localizedVariant
         self.manualEntryPasswordLabel.text = self.manualEntryPasswordLabel.text!.localizedVariant
         self.manualEntryPasswordTextField.placeholder = self.manualEntryPasswordTextField.placeholder!.localizedVariant
-        self.manualEntryLoginButton.setTitle(NSLocalizedString(self.manualEntryLoginButton.title(for: UIControlState.normal)!, comment: ""), for: UIControlState.normal)
+        self.manualEntryLoginButton.setTitle(NSLocalizedString(self.manualEntryLoginButton.title(for: UIControl.State.normal)!, comment: ""), for: UIControl.State.normal)
 
         var url = AppStaticPrefs.prefs.rootURI
         

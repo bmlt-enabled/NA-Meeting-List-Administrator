@@ -92,11 +92,11 @@ class CreateSingleMeetingViewController: MeetingEditorBaseViewController {
     @IBAction func saveButtonTouched(_ sender: UIBarButtonItem) {
         let alertController = UIAlertController(title: NSLocalizedString("SAVE-NEW-TITLE", comment: ""), message: NSLocalizedString("SAVE-NEW-MESSAGE", comment: ""), preferredStyle: .alert)
         
-        let saveAction = UIAlertAction(title: NSLocalizedString("SAVE-NEW-BUTTON", comment: ""), style: UIAlertActionStyle.destructive, handler: self.saveOKCallback)
+        let saveAction = UIAlertAction(title: NSLocalizedString("SAVE-NEW-BUTTON", comment: ""), style: UIAlertAction.Style.destructive, handler: self.saveOKCallback)
         
         alertController.addAction(saveAction)
         
-        let cancelAction = UIAlertAction(title: NSLocalizedString("SAVE-CANCEL-BUTTON", comment: ""), style: UIAlertActionStyle.cancel, handler: nil)
+        let cancelAction = UIAlertAction(title: NSLocalizedString("SAVE-CANCEL-BUTTON", comment: ""), style: UIAlertAction.Style.cancel, handler: nil)
         
         alertController.addAction(cancelAction)
         

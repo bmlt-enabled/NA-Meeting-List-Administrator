@@ -58,7 +58,7 @@ class EditSingleMeetingViewController: MeetingEditorBaseViewController {
         
         self.cancelButton.title = NSLocalizedString(self.cancelButton.title!, comment: "")
         self.saveButton.title = NSLocalizedString(self.saveButton.title!, comment: "")
-        self.historyEraserButton.setTitle(NSLocalizedString(self.historyEraserButton.title(for: UIControlState.normal)!, comment: ""), for: UIControlState.normal)
+        self.historyEraserButton.setTitle(NSLocalizedString(self.historyEraserButton.title(for: UIControl.State.normal)!, comment: ""), for: UIControl.State.normal)
     }
     
     /* ################################################################## */
@@ -121,15 +121,15 @@ class EditSingleMeetingViewController: MeetingEditorBaseViewController {
         if self.meetingObject.isDirty {
             let alertController = UIAlertController(title: NSLocalizedString("SAVE-AS-OR-COPY", comment: ""), message: NSLocalizedString("SAVE-AS-OR-COPY-MESSAGE", comment: ""), preferredStyle: .alert)
             
-            let saveAction = UIAlertAction(title: NSLocalizedString("SAVE-CHANGES-BUTTON", comment: ""), style: UIAlertActionStyle.destructive, handler: self.saveOKCallback)
+            let saveAction = UIAlertAction(title: NSLocalizedString("SAVE-CHANGES-BUTTON", comment: ""), style: UIAlertAction.Style.destructive, handler: self.saveOKCallback)
             
             alertController.addAction(saveAction)
             
-            let saveCopyAction = UIAlertAction(title: NSLocalizedString("SAVE-COPY-BUTTON", comment: ""), style: UIAlertActionStyle.default, handler: self.saveOKCopyCallback)
+            let saveCopyAction = UIAlertAction(title: NSLocalizedString("SAVE-COPY-BUTTON", comment: ""), style: UIAlertAction.Style.default, handler: self.saveOKCopyCallback)
             
             alertController.addAction(saveCopyAction)
             
-            let cancelAction = UIAlertAction(title: NSLocalizedString("SAVE-CANCEL-BUTTON", comment: ""), style: UIAlertActionStyle.cancel, handler: nil)
+            let cancelAction = UIAlertAction(title: NSLocalizedString("SAVE-CANCEL-BUTTON", comment: ""), style: UIAlertAction.Style.cancel, handler: nil)
             
             alertController.addAction(cancelAction)
             
@@ -137,11 +137,11 @@ class EditSingleMeetingViewController: MeetingEditorBaseViewController {
         } else {
             let alertController = UIAlertController(title: NSLocalizedString("SAVE-AS-COPY", comment: ""), message: NSLocalizedString("SAVE-AS-COPY-MESSAGE", comment: ""), preferredStyle: .alert)
             
-            let saveCopyAction = UIAlertAction(title: NSLocalizedString("SAVE-COPY-BUTTON", comment: ""), style: UIAlertActionStyle.default, handler: self.saveOKCopyCallback)
+            let saveCopyAction = UIAlertAction(title: NSLocalizedString("SAVE-COPY-BUTTON", comment: ""), style: UIAlertAction.Style.default, handler: self.saveOKCopyCallback)
             
             alertController.addAction(saveCopyAction)
             
-            let cancelAction = UIAlertAction(title: NSLocalizedString("SAVE-CANCEL-BUTTON", comment: ""), style: UIAlertActionStyle.cancel, handler: nil)
+            let cancelAction = UIAlertAction(title: NSLocalizedString("SAVE-CANCEL-BUTTON", comment: ""), style: UIAlertAction.Style.cancel, handler: nil)
             
             alertController.addAction(cancelAction)
             
@@ -159,11 +159,11 @@ class EditSingleMeetingViewController: MeetingEditorBaseViewController {
         if self.meetingObject.isDirty {
             let alertController = UIAlertController(title: NSLocalizedString("CANCEL-HEADER", comment: ""), message: NSLocalizedString("CANCEL-MESSAGE", comment: ""), preferredStyle: .alert)
             
-            let deleteAction = UIAlertAction(title: NSLocalizedString("CANCEL-LOSE-CHANGES-BUTTON", comment: ""), style: UIAlertActionStyle.destructive, handler: self.cancelOKCallback)
+            let deleteAction = UIAlertAction(title: NSLocalizedString("CANCEL-LOSE-CHANGES-BUTTON", comment: ""), style: UIAlertAction.Style.destructive, handler: self.cancelOKCallback)
             
             alertController.addAction(deleteAction)
             
-            let cancelAction = UIAlertAction(title: NSLocalizedString("CANCEL-CANCEL-BUTTON", comment: ""), style: UIAlertActionStyle.cancel, handler: nil)
+            let cancelAction = UIAlertAction(title: NSLocalizedString("CANCEL-CANCEL-BUTTON", comment: ""), style: UIAlertAction.Style.cancel, handler: nil)
             
             alertController.addAction(cancelAction)
             

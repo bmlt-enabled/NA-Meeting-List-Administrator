@@ -107,9 +107,9 @@ class SelectServiceBodiesViewController: UIViewController, UITableViewDataSource
         }
         
         if nil != cell {
-            cell!.serviceBodyCheckbox.removeTarget(self, action: #selector(SelectServiceBodiesViewController.checkboxChanged(_:)), for: UIControlEvents.valueChanged)   // Make sure we don't send out any callbacks when we set the selection.
+            cell!.serviceBodyCheckbox.removeTarget(self, action: #selector(SelectServiceBodiesViewController.checkboxChanged(_:)), for: UIControl.Event.valueChanged)   // Make sure we don't send out any callbacks when we set the selection.
             cell!.serviceBodyCheckbox.isOn = AppStaticPrefs.prefs.serviceBodyIsSelected(serviceBodyObject)
-            cell!.serviceBodyCheckbox.addTarget(self, action: #selector(SelectServiceBodiesViewController.checkboxChanged(_:)), for: UIControlEvents.valueChanged)
+            cell!.serviceBodyCheckbox.addTarget(self, action: #selector(SelectServiceBodiesViewController.checkboxChanged(_:)), for: UIControl.Event.valueChanged)
             return cell
         }
         
@@ -143,7 +143,7 @@ class ServiceBodyTableCellView: UITableViewCell {
      - parameter serviceBodyObject: The Service body object to be associated with this cell view
      */
     init(frame: CGRect, inTextColor: UIColor, serviceBodyObject: BMLTiOSLibHierarchicalServiceBodyNode!) {
-        super.init(style: UITableViewCellStyle.default, reuseIdentifier: String(serviceBodyObject.id))
+        super.init(style: UITableViewCell.CellStyle.default, reuseIdentifier: String(serviceBodyObject.id))
 
         self.serviceBodyObject = serviceBodyObject
         
