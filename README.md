@@ -37,7 +37,11 @@ The editor/new meeting screen needs to be refactored. Currently, they are indica
 
 CHANGELIST
 ==========
-***Version 1.3.2.2000* ** *- December 27, 2018*
+***Version 1.3.2.2002* ** *- (TBD)*
+- Simplified the Info string localization.
+- Added the Italian localization for Face ID.
+
+***Version 1.3.2.2001* ** *- December 27, 2018*
 
 - Added Danish traslation
 - Converted to newest Xcode and Swift 4.2

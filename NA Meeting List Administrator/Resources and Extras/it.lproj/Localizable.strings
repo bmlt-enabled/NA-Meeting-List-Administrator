@@ -19,8 +19,6 @@
  You should have received a copy of the GNU General Public License
  along with this code.  If not, see <http://www.gnu.org/licenses/>.
  */
-/** The Location Description String. */
-"LOCAL-LOCATION-FLAG"                       =   "Questa app ha bisogno di sapere dove sei per poter trovare la riunione o l'indirizzo in cui ti trovi.";   /**< This is the message shown by the location permissions alert. */
 "ERR-STRING-SHORT"                                                                              =   "ERRORE";
 
 "CONNECT-TITLE"                                                                                 =   "CONNETTI";

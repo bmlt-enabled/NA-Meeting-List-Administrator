@@ -96,6 +96,7 @@
 		770E5E941E3795E000CBE834 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D492E55421D538EC0085DA47 /* InfoPlist.strings */,
 				779BE3B81E37D5FA00350D11 /* Main.storyboard */,
 				77B7D1201E3AA0A80031FF6B /* Localizable.strings */,
 				779BE3B21E37D5FA00350D11 /* Assets.xcassets */,
@@ -138,7 +139,6 @@
 			children = (
 				77CF6B8D1E6CEA0E005F2ECB /* GPX Files */,
 				77B5410E1E42605700A0A880 /* NA Meeting List Administrator.entitlements */,
-				D492E55421D538EC0085DA47 /* InfoPlist.strings */,
 				779BE3BB1E37D5FA00350D11 /* NA Meeting List Administrator-Bridging-Header.h */,
 			);
 			name = Extras;
