@@ -66,9 +66,7 @@
 		77DC3EA61E378B6300BF24B7 /* NA Meeting List Administrator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NA Meeting List Administrator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D492E54E21D5332C0085DA47 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = "Resources and Extras/da.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		D492E55521D538EE0085DA47 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		D492E55621D538EE0085DA47 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D492E55721D538EF0085DA47 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		D492E55821D539AF0085DA47 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D492E55921D53A4C0085DA47 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = "Resources and Extras/Info.plist"; sourceTree = "<group>"; };
 		E9AB63B48A811FFBDF66DDCA /* Pods-NA Meeting List Administrator.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NA Meeting List Administrator.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NA Meeting List Administrator/Pods-NA Meeting List Administrator.debug.xcconfig"; sourceTree = "<group>"; };
 		F8D92508646D82EB06D35A16 /* Pods-NA Meeting List Administrator.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NA Meeting List Administrator.release.xcconfig"; path = "Pods/Target Support Files/Pods-NA Meeting List Administrator/Pods-NA Meeting List Administrator.release.xcconfig"; sourceTree = "<group>"; };
@@ -420,9 +418,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				D492E55521D538EE0085DA47 /* it */,
-				D492E55621D538EE0085DA47 /* sv */,
 				D492E55721D538EF0085DA47 /* da */,
-				D492E55821D539AF0085DA47 /* en */,
 			);
 			name = InfoPlist.strings;
 			path = "Resources and Extras";

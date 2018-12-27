@@ -41,6 +41,7 @@ CHANGELIST
 
 - Added Danish traslation
 - Converted to newest Xcode and Swift 4.2
+- Added support for the new Face ID description string.
 
 ***Version 1.3.1.3000* ** *- April 3, 2018*
 

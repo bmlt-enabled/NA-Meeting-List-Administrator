@@ -20,3 +20,4 @@
  along with this code.  If not, see <http://www.gnu.org/licenses/>.
  */
 "NSLocationWhenInUseUsageDescription" = "Denne app brug for at vide, hvor du er, for at finde det møde, du er til, eller for at finde den adresse, du er på.";
+"NSFaceIDUsageDescription" = "Denne app kræver, at du bruger Face ID til at låse op for de gemte adgangskoder for at logge ind.";

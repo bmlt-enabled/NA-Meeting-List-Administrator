@@ -20,3 +20,4 @@
  along with this code.  If not, see <http://www.gnu.org/licenses/>.
  */
 "NSLocationWhenInUseUsageDescription" = "Questa app ha bisogno di sapere dove sei per poter trovare la riunione o l'indirizzo in cui ti trovi.";
+"NSFaceIDUsageDescription" = "This app requires that you use FaceID to unlock the stored passwords to log in.";
