@@ -38,8 +38,10 @@ The editor/new meeting screen needs to be refactored. Currently, they are indica
 CHANGELIST
 ==========
 ***Version 1.3.2.2002* ** *- (TBD)*
+
 - Simplified the Info string localization.
 - Added the Italian localization for Face ID.
+- Added a fixed version of BMLTiOSLib that addresses a bug in setting duration.
 
 ***Version 1.3.2.2001* ** *- December 27, 2018*
 
