@@ -37,6 +37,10 @@ The editor/new meeting screen needs to be refactored. Currently, they are indica
 
 CHANGELIST
 ==========
+***Version 1.3.2.3000* ** *- January 10, 2019*
+
+- No changes. App Store release.
+
 ***Version 1.3.2.2004* ** *- December 28, 2018*
 
 - Added new BMLTiOSLib, with date fix.
