@@ -37,6 +37,10 @@ The editor/new meeting screen needs to be refactored. Currently, they are indica
 
 CHANGELIST
 ==========
+***Version 1.3.3.1000* ** *- TBD*
+
+- Updated to Swift 5.
+
 ***Version 1.3.2.3000* ** *- January 10, 2019*
 
 - No changes. App Store release.
