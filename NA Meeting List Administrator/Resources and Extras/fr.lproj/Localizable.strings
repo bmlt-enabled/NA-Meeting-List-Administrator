@@ -22,178 +22,178 @@
 /** The Location Description String. */
 "ERR-STRING-SHORT"                                                                              =   "ERR";
 
-"CONNECT-TITLE"                                                                                 =   "CONNECT";
-"SERVICE-BODY-SELECTION-TITLE"                                                                  =   "Select Service Bodies";
+"CONNECT-TITLE"                                                                                 =   "Connexion";
+"SERVICE-BODY-SELECTION-TITLE"                                                                  =   "Sélectionner un organisme de service";
 "NAMeetingListAdministrator-OKButtonText"                                                       =   "OK";
-"NAMeetingListAdministrator-ErrorAlertTitle"                                                    =   "ERROR!";
-"ENTER-URI-LABEL"                                                                               =   "Connect to the Server";
-"ENTER-URI-PLACEHOLDER"                                                                         =   "Enter Server URL";
-"CONNECT-BUTTON"                                                                                =   "CONNECT";
-"DISCONNECT-BUTTON"                                                                             =   "DISCONNECT";
-"LOGIN-LABEL"                                                                                   =   "Administration Log In";
-"LOGIN-ID-LABEL"                                                                                =   "Login ID:";
-"LOGIN-ID-PLACEHOLDER"                                                                          =   "Enter A Login ID";
-"PASSWORD-LABEL"                                                                                =   "Password:";
-"PASSWORD-PLACEHOLDER"                                                                          =   "Enter Your Password";
-"LOGIN-BUTTON"                                                                                  =   "LOG IN";
-"LOGOUT-BUTTON"                                                                                 =   "LOG OUT";
-"LOGIN-STATUS-FORMAT"                                                                           =   "Logged in as \"%@\"";
-"LOGIN"                                                                                         =   "Login";
-"MANUAL-LOGIN"                                                                                  =   "Manual Login";
-"ADMIN-UNAVAILABLE-TEXT"                                                                        =   "This server does not allow administration by this app.";
-"BAD-URI-ERROR-TEXT"                                                                            =   "The URL entered does not point to a valid Root Server.";
-"The operation couldn’t be completed. (BMLTiOSLibErrorDomains-Permission-Error error 201000.)"  =   "The login ID or password was not recognized by the server.";
-"LOCAL-TOUCHID-REASON-FORMAT"                                                                   =   "Automatically log \"%@\" into the server.";
-"TOUCH-ID-STRING"                                                                               =   "Touch";
+"NAMeetingListAdministrator-ErrorAlertTitle"                                                    =   "ERREUR!";
+"ENTER-URI-LABEL"                                                                               =   "Se connecter au serveur";
+"ENTER-URI-PLACEHOLDER"                                                                         =   "Entrer l'URL du serveur";
+"CONNECT-BUTTON"                                                                                =   "Se brancher";
+"DISCONNECT-BUTTON"                                                                             =   "Se débrancher";
+"LOGIN-LABEL"                                                                                   =   "Connexion administrateur";
+"LOGIN-ID-LABEL"                                                                                =   "Identifiant de connexion:";
+"LOGIN-ID-PLACEHOLDER"                                                                          =   "Entrer votre Login ID";
+"PASSWORD-LABEL"                                                                                =   "Mot de passe:";
+"PASSWORD-PLACEHOLDER"                                                                          =   "Tapez votre mot de passe";
+"LOGIN-BUTTON"                                                                                  =   "S'IDENTIFIER";
+"LOGOUT-BUTTON"                                                                                 =   "SE DÉCONNECTER";
+"LOGIN-STATUS-FORMAT"                                                                           =   "Connecté en tant que \"%@\"";
+"LOGIN"                                                                                         =   "S'identifier";
+"MANUAL-LOGIN"                                                                                  =   "Connexion manuelle";
+"ADMIN-UNAVAILABLE-TEXT"                                                                        =   "Ce serveur ne permet pas l'administration par cette application.";
+"BAD-URI-ERROR-TEXT"                                                                            =   "L'URL entrée ne pointe pas vers un serveur racine valide.";
+"The operation couldn’t be completed. (BMLTiOSLibErrorDomains-Permission-Error error 201000.)"  =   "L'identifiant de connexion ou le mot de passe n'a pas été reconnu par le serveur.";
+"LOCAL-TOUCHID-REASON-FORMAT"                                                                   =   "Se connecter automatiquement \"%@\" au serveur.";
+"TOUCH-ID-STRING"                                                                               =   "Toucher";
 "FACE-ID-STRING"                                                                                =   "Face";
-"UNABLE-TO-LOGIN-ERROR-TITLE-FORMAT"                                                            =   "%@ ID Error";
-"UNABLE-TO-LOGIN-ERROR-FORMAT"                                                                  =   "%@ ID was not able to log into the server.";
-"SERVICE-BODY-BUTTON"                                                                           =   "Service Bodies";
-"EDITOR-BUTTON"                                                                                 =   "Edit";
-"MIDNIGHT"                                                                                      =   "Midnight";
-"NOON"                                                                                          =   "Noon";
+"UNABLE-TO-LOGIN-ERROR-TITLE-FORMAT"                                                            =   "%@ Erreur d'identification";
+"UNABLE-TO-LOGIN-ERROR-FORMAT"                                                                  =   "%@ Votre ID n'a pas pu se connecter au serveur.";
+"SERVICE-BODY-BUTTON"                                                                           =   "Organisme de service";
+"EDITOR-BUTTON"                                                                                 =   "modifier";
+"MIDNIGHT"                                                                                      =   "Minuit";
+"NOON"                                                                                          =   "Midi";
 "MEETING-TIME-FORMAT"                                                                           =   "%@, %@";
-"ALL-DAYS"                                                                                      =   "All";
-"LOCAL-SEARCH-PICKER-NONE"                                                                      =   "All Towns and Boroughs";
-"CONNECT-BACK-TITLE"                                                                            =   "Back";
-"MEETING-ID-FORMAT"                                                                             =   "Meeting ID %d";
-"NEW-MEETING-TITLE"                                                                             =   "New Meeting";
+"ALL-DAYS"                                                                                      =   "Tout";
+"LOCAL-SEARCH-PICKER-NONE"                                                                      =   "Toutes les villes et arrondissements";
+"CONNECT-BACK-TITLE"                                                                            =   "Retour";
+"MEETING-ID-FORMAT"                                                                             =   "ID de réunion %d";
+"NEW-MEETING-TITLE"                                                                             =   "Nouvelle réunion";
 
-"MEETINGS-TAB-BAR-NAME"                                                                         =   "Current Meetings";
-"DELETED-MEETINGS-TAB-BAR-NAME"                                                                 =   "Deleted Meetings";
+"MEETINGS-TAB-BAR-NAME"                                                                         =   "Présente réunion";
+"DELETED-MEETINGS-TAB-BAR-NAME"                                                                 =   "Réunion supprimée";
 
-"DELETE-HEADER-1"                                                                               =   "Are You Sure?";
-"DELETE-HEADER-2"                                                                               =   "Nuke From Orbit.";
-"DELETE-HEADER-3"                                                                               =   "Belay That Order!";
-"DELETE-HEADER-4"                                                                               =   "Do you want to lose the changes you made to this meeting?";
-"DELETE-HEADER"                                                                                 =   "Do You Want to Delete This Meeting?";
-"DELETE-MESSAGE-FORMAT"                                                                         =   "The Meeting \"%@\" will be deleted. Are you sure that you want to delete it?";
-"DELETE-OK-BUTTON"                                                                              =   "Delete This Meeting";
-"DELETE-CANCEL-BUTTON"                                                                          =   "Cancel";
+"DELETE-HEADER-1"                                                                               =   "Êtes-vous sûr?";
+"DELETE-HEADER-2"                                                                               =   "Nuke d'Orbit.";
+"DELETE-HEADER-3"                                                                               =   "Assurer cet ordre!";
+"DELETE-HEADER-4"                                                                               =   "Voulez-vous perdre les modifications que vous avez apportées à cette réunion?";
+"DELETE-HEADER"                                                                                 =   "Voulez-vous supprimer cette réunion?";
+"DELETE-MESSAGE-FORMAT"                                                                         =   "La réunion \"%@\" sera supprimé. Êtes-vous sûr de vouloir le supprimer?";
+"DELETE-OK-BUTTON"                                                                              =   "Supprimer cette réunion";
+"DELETE-CANCEL-BUTTON"                                                                          =   "Annuler";
 
-"SAVE-BUTTON"                                                                                   =   "Save";
-"SAVE-BUTTON-DUPLICATE"                                                                         =   "Duplicate";
-"CANCEL-BUTTON"                                                                                 =   "Cancel";
+"SAVE-BUTTON"                                                                                   =   "Sauvegarder";
+"SAVE-BUTTON-DUPLICATE"                                                                         =   "Dupliquer";
+"CANCEL-BUTTON"                                                                                 =   "Annuler";
 
-"PUBLISHED-LABEL"                                                                               =   "Meeting Is Published";
-"SERVICE-BODY-LABEL"                                                                            =   "Meeting Service Body:";
+"PUBLISHED-LABEL"                                                                               =   "La réunion est publiée";
+"SERVICE-BODY-LABEL"                                                                            =   "Organisme de service de la réunion:";
 
 "WORLD-ID-LABEL"                                                                                =   "World ID:";
-"WORLD-ID-PLACEHOLDER"                                                                          =   "Enter A NAWS Committee Code";
+"WORLD-ID-PLACEHOLDER"                                                                          =   "Entrer un code de comité des SMNA";
 
-"MEETING-NAME-LABEL"                                                                            =   "Meeting Name:";
-"MEETING-NAME-PLACEHOLDER"                                                                      =   "Enter A Meeting Name";
+"MEETING-NAME-LABEL"                                                                            =   "Nom de la réunion:";
+"MEETING-NAME-PLACEHOLDER"                                                                      =   "Entrez un nom de réunion";
 
-"WEEKDAY-LABEL"                                                                                 =   "Weekday:";
+"WEEKDAY-LABEL"                                                                                 =   "Jour de la semaine:";
 
-"START-TIME-LABEL"                                                                              =   "Start Time:";
+"START-TIME-LABEL"                                                                              =   "Heure de début:";
 
-"DURATION-LABEL"                                                                                =   "Duration:";
+"DURATION-LABEL"                                                                                =   "Durée:";
 
-"LOCATION-NAME-LABEL"                                                                           =   "Location Name:";
-"LOCATION-NAME-PLACEHOLDER"                                                                     =   "Enter A Location Name";
+"LOCATION-NAME-LABEL"                                                                           =   "Nom de la localisation:";
+"LOCATION-NAME-PLACEHOLDER"                                                                     =   "Entrez un nom de lieu";
 
-"STREET-ADDRESS-LABEL"                                                                          =   "Street Address:";
-"STREET-ADDRESS-PLACEHOLDER"                                                                    =   "Enter A Street Address";
+"STREET-ADDRESS-LABEL"                                                                          =   "Adresse";
+"STREET-ADDRESS-PLACEHOLDER"                                                                    =   "Entrez une adresse";
 
-"NEIGHBORHOOD-LABEL"                                                                            =   "Neighborhood:";
-"NEIGHBORHOOD-PLACEHOLDER"                                                                      =   "Enter A Neighborhood";
+"NEIGHBORHOOD-LABEL"                                                                            =   "Quartier:";
+"NEIGHBORHOOD-PLACEHOLDER"                                                                      =   "Entrez un quartier";
 
-"BOROUGH-LABEL"                                                                                 =   "Borough or City Ward:";
-"BOROUGH-PLACEHOLDER"                                                                           =   "Enter A Borough or Ward";
+"BOROUGH-LABEL"                                                                                 =   "Arrondissement ou quartier:";
+"BOROUGH-PLACEHOLDER"                                                                           =   "Entrer dans un arrondissement";
 
-"TOWN-LABEL"                                                                                    =   "Town or City:";
-"TOWN-PLACEHOLDER"                                                                              =   "Enter A Town or City";
+"TOWN-LABEL"                                                                                    =   "Ville ou une municipalité:";
+"TOWN-PLACEHOLDER"                                                                              =   "Entrez une ville ou une municipalité";
 
-"COUNTY-LABEL"                                                                                  =   "County:";
+"COUNTY-LABEL"                                                                                  =   "Région:";
 "COUNTY-PLACEHOLDER"                                                                            =   "Enter A County";
 
-"STATE-LABEL"                                                                                   =   "State or Province:";
-"STATE-NAG-LABEL"                                                                               =   "(Always Use Abbreviation)";
+"STATE-LABEL"                                                                                   =   "Province:";
+"STATE-NAG-LABEL"                                                                               =   "(Toujours utiliser l'abréviation)";
 
-"ZIP-LABEL"                                                                                     =   "Postal (Zip) Code:";
+"ZIP-LABEL"                                                                                     =   "Code postal:";
 
-"NATION-LABEL"                                                                                  =   "Nation:";
-"NATION-PLACEHOLDER"                                                                            =   "Enter A Nation (Use Abbreviation)";
+"NATION-LABEL"                                                                                  =   "Pays:";
+"NATION-PLACEHOLDER"                                                                            =   "Entrez un pays (Utilisez une abréviation)";
 
-"LOCATION-INFO-LABEL"                                                                           =   "Extra Info:";
-"LOCATION-INFO-PLACEHOLDER"                                                                     =   "Enter Extra Location Info";
+"LOCATION-INFO-LABEL"                                                                           =   "Informations supplémentaires:";
+"LOCATION-INFO-PLACEHOLDER"                                                                     =   "Entrer des infos de lieu supplémentaires";
 
 "LONGITUDE-LABEL"                                                                               =   "Longitude:";
-"LONGITUDE-PLACEHOLDER"                                                                         =   "Enter The Meeting Location Longitude.";
+"LONGITUDE-PLACEHOLDER"                                                                         =   "Entrez la longitude du lieu de la réunion.";
 
 "LATITUDE-LABEL"                                                                                =   "Latitude:";
-"LATITUDE-PLACEHOLDER"                                                                          =   "Enter The Meeting Location Latitude.";
+"LATITUDE-PLACEHOLDER"                                                                          =   "Entrez la latitude du lieu de la réunion.";
 
-"LONG-LAT-SET-FROM-ADDRESS-BUTTON"                                                              =   "Set Map to Match Address";
-"LONG-LAT-SET-FROM-MAP-BUTTON"                                                                  =   "Set Address From Map";
+"LONG-LAT-SET-FROM-ADDRESS-BUTTON"                                                              =   "Définir la carte pour correspondre à l'adresse";
+"LONG-LAT-SET-FROM-MAP-BUTTON"                                                                  =   "Définir l'adresse de la carte";
 
-"LOCAL-EDIT-LOCATION-FAIL-TITLE"                                                                =   "Location Error";
-"LOCAL-EDIT-LOCATION-FAILURE-MESSAGE"                                                           =   "Unable to determine a location from the address.";
-"LOCAL-EDIT-REVERSE-GEOCODE-FAILURE-MESSAGE"                                                    =   "Unable to determine an address from your location.";
+"LOCAL-EDIT-LOCATION-FAIL-TITLE"                                                                =   "Erreur de localisation";
+"LOCAL-EDIT-LOCATION-FAILURE-MESSAGE"                                                           =   "Impossible de déterminer un emplacement à partir de l'adresse.";
+"LOCAL-EDIT-REVERSE-GEOCODE-FAILURE-MESSAGE"                                                    =   "Impossible de déterminer une adresse à partir de votre emplacement.";
 
 "MAP-TYPE-NORMAL"                                                                               =   "Standard";
-"MAP-TYPE-HYBRID"                                                                               =   "Hybrid";
+"MAP-TYPE-HYBRID"                                                                               =   "Hybride";
 "MAP-TYPE-SATELLITE"                                                                            =   "Satellite";
 
-"COMMENTS-LABEL"                                                                                =   "Comments:";
+"COMMENTS-LABEL"                                                                                =   "commentaires:";
 
 "FORMATS-LABEL"                                                                                 =   "Formats:";
 
-"HISTORY-ERASER-BUTTON"                                                                         =   "View Meeting Change History";
-"HISTORY-ERASER-TITLE"                                                                          =   "Meeting Change History";
+"HISTORY-ERASER-BUTTON"                                                                         =   "Afficher l'historique des modifications de la réunion";
+"HISTORY-ERASER-TITLE"                                                                          =   "Historique des changements de réunion";
 
-"SAVE-AS-OR-COPY"                                                                               =   "Save Meeting Changes";
-"SAVE-AS-OR-COPY-MESSAGE"                                                                       =   "Changes have been made to this meeting.\nDo you want to save these changes?";
+"SAVE-AS-OR-COPY"                                                                               =   "Enregistrer les modifications de la réunion";
+"SAVE-AS-OR-COPY-MESSAGE"                                                                       =   "Des modifications ont été apportées à cette réunion.\nVoulez-vous enregistrer ces modifications?";
 
-"SAVE-AS-COPY"                                                                                  =   "Save Meeting As A Copy";
-"SAVE-AS-COPY-MESSAGE"                                                                          =   "Do you want to duplicate this meeting?";
+"SAVE-AS-COPY"                                                                                  =   "Enregistrer la réunion en tant que copie";
+"SAVE-AS-COPY-MESSAGE"                                                                          =   "Voulez-vous dupliquer cette réunion?";
 
-"SAVE-COPY-BUTTON"                                                                              =   "Save A Copy of This Meeting";
-"SAVE-CHANGES-BUTTON"                                                                           =   "Save Changes";
-"SAVE-CANCEL-BUTTON"                                                                            =   "Cancel";
+"SAVE-COPY-BUTTON"                                                                              =   "Enregistrer une copie de cette réunion";
+"SAVE-CHANGES-BUTTON"                                                                           =   "Sauvegarder les modifications";
+"SAVE-CANCEL-BUTTON"                                                                            =   "Annuler";
 
-"SAVE-NEW-TITLE"                                                                                =   "Create This New Meeting";
-"SAVE-NEW-MESSAGE"                                                                              =   "If you touch \"Create New Meeting\", this meeting will be created as a new meeting.";
-"SAVE-NEW-BUTTON"                                                                               =   "Create New Meeting";
+"SAVE-NEW-TITLE"                                                                                =   "Créer cette nouvelle réunion";
+"SAVE-NEW-MESSAGE"                                                                              =   "Si vous touchez \"Créer une nouvelle réunion\", cette réunion sera créée en tant que nouvelle réunion.";
+"SAVE-NEW-BUTTON"                                                                               =   "Créer une nouvelle réunion";
 
-"CANCEL-HEADER"                                                                                 =   "Changes Have Been Made to This Meeting.";
-"CANCEL-MESSAGE"                                                                                =   "If you touch \"Lose Changes\", the changes that you made to this meeting will be discarded, and the meeting will revert to its original state.\nIf you touch \"Cancel\", then you will be returned to the meeting editor.";
-"CANCEL-LOSE-CHANGES-BUTTON"                                                                    =   "Lose Changes";
-"CANCEL-CANCEL-BUTTON"                                                                          =   "Cancel";
+"CANCEL-HEADER"                                                                                 =   "Des modifications ont été apportées à cette réunion.";
+"CANCEL-MESSAGE"                                                                                =   "Si vous touchez \"Perdre des changements\", les modifications que vous avez apportées à cette réunion seront ignorées et la réunion reviendra à son état d'origine.\nIf tu touches \"Annuler\", alors vous serez renvoyé à l'éditeur de réunion.";
+"CANCEL-LOSE-CHANGES-BUTTON"                                                                    =   "Perdre des changements";
+"CANCEL-CANCEL-BUTTON"                                                                          =   "Annuler";
 
-"BMLTiOSLib-Default-Meeting-Name"                                                               =   "NA Meeting";
+"BMLTiOSLib-Default-Meeting-Name"                                                               =   "Réunion NA";
 
 "DELETED-NAME-FORMAT"                                                                           =   "%@ (%d)";
 
-"DELETED-ALERT-HEADER"                                                                          =   "Restoring A Deleted Meeting";
-"DELETED-ALERT-FORMAT"                                                                          =   "If you touch \"Restore Meeting\", the meeting \"%@\" will be restored.\nIt will show up as an unpublished meeting, and you will be taken to its editor.\nIf you touch \"Cancel\", nothing will happen.";
-"DELETED-RESTORE-BUTTON"                                                                        =   "Restore Meeting";
-"DELETED-CANCEL-BUTTON"                                                                         =   "Cancel";
+"DELETED-ALERT-HEADER"                                                                          =   "Restaurer une réunion supprimée";
+"DELETED-ALERT-FORMAT"                                                                          =   "Si vous touchez \"Restaurer la réunion\", la réunion \"%@\" sera restaurée.\nIt apparaîtra comme une réunion non publiée, et vous serez dirigé vers son éditeur.\nSi vous touchez \"Annuler\", rien ne va se passer.";
+"DELETED-RESTORE-BUTTON"                                                                        =   "Restaurer la réunion";
+"DELETED-CANCEL-BUTTON"                                                                         =   "Annuler";
 
-"DELETED-LOADING-HEADER"                                                                        =   "Loading Deleted Meetings";
-"DELETED-LOADING-SUBTEXT"                                                                       =   "This may take a long time.";
+"DELETED-LOADING-HEADER"                                                                        =   "Chargement des réunions supprimées";
+"DELETED-LOADING-SUBTEXT"                                                                       =   "Cela peut prendre beaucoup de temps.";
 
-"NO-HISTORY-LABEL"                                                                              =   "No History";
+"NO-HISTORY-LABEL"                                                                              =   "Pas d'historique";
 
-"REVERT-BUTTON"                                                                                 =   "Revert";
+"REVERT-BUTTON"                                                                                 =   "Restaurer";
 
-"CLEAR-ALL-SAVED-LOGINS"                                                                        =   "Remove All Saved Logins and URLs";
+"CLEAR-ALL-SAVED-LOGINS"                                                                        =   "Supprimer toutes les connexions et les URL enregistrées";
 
-"FORGET-STORED-LOGINS-HEADER"                                                                   =   "Are You Sure?";
-"FORGET-STORED-LOGINS-MESSAGE"                                                                  =   "If you touch \"Forget Stored Logins\", all of the stored URLs and logins will be deleted.";
-"FORGET-STORED-LOGINS-MESSAGE-SUFFIX"                                                           =   "\nYou will also be logged out of your current session.";
-"FORGET-STORED-LOGINS-OK-BUTTON"                                                                =   "Forget Stored Logins";
-"FORGET-STORED-LOGINS-CANCEL-BUTTON"                                                            =   "Cancel";
-"LOCAL-MAGSHARE-BLURB-LABEL"                                                                    =   "Another Fine MAGSHARE Project";
-"LOCAL-MAGSHARE-URI-LABEL"                                                                      =   "Find Out More at https://bmlt.magshare.net";
+"FORGET-STORED-LOGINS-HEADER"                                                                   =   "Êtes-vous sûr?";
+"FORGET-STORED-LOGINS-MESSAGE"                                                                  =   "Si vous touchez \"Oublier les connexions stockées\", toutes les URL et connexions enregistrées seront supprimées.";
+"FORGET-STORED-LOGINS-MESSAGE-SUFFIX"                                                           =   "\nVous serez également déconnecté de votre session en cours.";
+"FORGET-STORED-LOGINS-OK-BUTTON"                                                                =   "Oublier les connexions stockées";
+"FORGET-STORED-LOGINS-CANCEL-BUTTON"                                                            =   "Annuler";
+"LOCAL-MAGSHARE-BLURB-LABEL"                                                                    =   "Un autre projet MAGSHARE";
+"LOCAL-MAGSHARE-URI-LABEL"                                                                      =   "En savoir plus sur https://bmlt.magshare.net";
 "LOCAL-MAGSHARE-URI"                                                                            =   "https://bmlt.app/nameetinglistadministrator";
 
 "VERSION-LABEL-FORMAT"                                                                          =   "Version %@";
 
-"WHAT-MEETING-AM-I-AT-NOW"                                                                      =   "What Meeting Am I At Now?";
+"WHAT-MEETING-AM-I-AT-NOW"                                                                      =   "À quelle réunion suis-je maintenant?";
 
-"LOCATION-ERROR-HEADER"                                                                         =   "Location Error";
-"LOCATION-ERROR-MESSAGE"                                                                        =   "Unable to determine your current location.";
-"NO-MEETING-HEADER"                                                                             =   "No Meeting Found";
-"NO-MEETING-MESSAGE"                                                                            =   "No meeting found that matches your current location and time.";
+"LOCATION-ERROR-HEADER"                                                                         =   "Erreur de localisation";
+"LOCATION-ERROR-MESSAGE"                                                                        =   "Impossible de déterminer votre position actuelle.";
+"NO-MEETING-HEADER"                                                                             =   "Aucune réunion trouvée";
+"NO-MEETING-MESSAGE"                                                                            =   "Aucune réunion ne correspond à votre heure et lieu actuels.";
