@@ -32,10 +32,14 @@ import BMLTiOSLib
  This handles the marker annotation.
  */
 class MapAnnotation: NSObject, MKAnnotation, NSCoding {
+    /// The Dictionary key for the coordinate object.
     let sCoordinateObjectKey: String = "MapAnnotation_Coordinate"
+    /// The Dictionary key for the associated meetings.
     let sMeetingsObjectKey: String = "MapAnnotation_Meetings"
 
+    /// The coordinate for this annotation.
     @objc var coordinate: CLLocationCoordinate2D = kCLLocationCoordinate2DInvalid
+    /// The meetings associated with this annotation.
     var locations: [BMLTiOSLibMeetingNode] = []
     
     /* ################################################################## */
@@ -94,15 +98,21 @@ class MapMarker: MKAnnotationView {
     /* ################################################################## */
     // MARK: - Constant Properties -
     /* ################################################################## */
+    /// The Dictionary key for the annotation object.
     let sAnnotationObjectKey: String = "MapMarker_Annotation"
+    /// The offset Y
     let sRegularAnnotationOffsetUp: CGFloat     = 0; /**< This is how many display units to shift the annotation view up. */
+    /// The offset X
     let sRegularAnnotationOffsetRight: CGFloat  = 0;  /**< This is how many display units to shift the annotation view right. */
 
     /* ################################################################## */
     // MARK: - Private Properties -
     /* ################################################################## */
+    /// The current frame index of the animating marker.
     private var _currentFrame: Int = 0
+    /// The timer for each animation step.
     private var _animationTimer: Timer! = nil
+    /// The images to be used as annotation frames.
     private var _animationFrames: [UIImage] = []
     
     /* ################################################################## */

@@ -27,6 +27,7 @@ import BMLTiOSLib
 /**
  */
 class SelectServiceBodiesViewController: UIViewController, UITableViewDataSource {
+    /// The table view that lists the Service bodies.
     @IBOutlet weak var serviceBodyTableView: UITableView!
     
     /* ################################################################## */
@@ -123,11 +124,16 @@ class SelectServiceBodiesViewController: UIViewController, UITableViewDataSource
 /**
  */
 class ServiceBodyTableCellView: UITableViewCell {
+    /// The indent to use for "contained" Service bodies
     static let indentSizeInDisplayUnits: CGFloat = 16
+    /// The padding between the checkbow (switch) and the label
     static let checkboxPaddingInDisplayUnits: CGFloat = 4
     
+    /// The Service body object associated with this table cell
     var serviceBodyObject: BMLTiOSLibHierarchicalServiceBodyNode!
+    /// The switch that selects/deselects the Service body
     var serviceBodyCheckbox: AnnotatedSwitch!
+    /// The label with the Service body name
     var serviceBodyNameLabel: UILabel!
     
     /* ################################################################## */

@@ -34,7 +34,7 @@ class ThreeStateCheckbox: UIButton {
     
     /** This holds the actual state condition. This should not be accessed outside the class. */
     internal var _selectionState: BMLTiOSLibSearchCriteria.SelectionState = BMLTiOSLibSearchCriteria.SelectionState.Clear
-    /* This is a functional interface to ensure that the control gets redrawn when the state changes. */
+    /** This is a functional interface to ensure that the control gets redrawn when the state changes. */
     var selectionState: BMLTiOSLibSearchCriteria.SelectionState {
         get {
             return self._selectionState

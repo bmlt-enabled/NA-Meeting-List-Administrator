@@ -27,8 +27,12 @@ import BMLTiOSLib
 /**
  */
 class EditorTabBarController: UITabBarController, UITabBarControllerDelegate {
+    /// The indexes for our two tabs.
     enum TabIndexes: Int {
-        case ListTab = 0, DeletedTab
+        /// The list view tab
+        case ListTab = 0
+        /// The deleted meetings tab
+        case DeletedTab
     }
     
     /* ################################################################## */
@@ -54,6 +58,7 @@ class EditorTabBarController: UITabBarController, UITabBarControllerDelegate {
     // MARK: Instance Methods
     /* ################################################################## */
     /**
+     Called to select a specific meeting for editing.
      */
     func select(thisMeetingID inID: Int) {
         if let listViewController = self.viewControllers?[TabIndexes.ListTab.rawValue] as? ListEditableMeetingsViewController {
@@ -178,6 +183,12 @@ class EditorTabBarController: UITabBarController, UITabBarControllerDelegate {
 /**
  */
 class EditorViewControllerBaseClass: UIViewController {
+    /* ################################################################## */
+    /**
+     This is called just before we appear. We use it to set up the gradients and the bar color.
+     
+     - parameter animated: True, if the appearance is to be animated.
+     */
     override func viewWillAppear(_ animated: Bool) {
         let topColor = (self.view as? EditorViewBaseClass)?.topColor
         let bottomColor = (self.view as? EditorViewBaseClass)?.bottomColor
@@ -196,7 +207,9 @@ class EditorViewControllerBaseClass: UIViewController {
  I cribbed the basics of this from here: https://www.hackingwithswift.com/read/37/4/adding-a-cagradientlayer-with-ibdesignable-and-ibinspectable
  */
 class EditorViewBaseClass: UIView {
+    /// The top color of our background gradient.
     @IBInspectable var topColor: UIColor = UIColor.white
+    /// The bottom color of our background gradient.
     @IBInspectable var bottomColor: UIColor = UIColor.black
     
     /* ################################################################## */

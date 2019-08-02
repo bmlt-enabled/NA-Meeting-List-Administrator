@@ -37,9 +37,15 @@ The editor/new meeting screen needs to be refactored. Currently, they are indica
 
 CHANGELIST
 ==========
-***Version 1.3.3.1000* ** *- TBD*
+***Version 1.4.0.1000* ** *- TBD*
 
-- Updated to Swift 5.
+- Switched the BMLTiOSLib to use Carthage.
+- Updated to latest Swift and Xcode versions.
+- The project now requires iOS 11.
+- Updated to the latest version of Swift.
+- Improved the appearance of the launch screen.
+- Improved the behavior of the layout on X-phones.
+- Improved documentation for 100% Jazzy docs.
 
 ***Version 1.3.2.3000* ** *- January 10, 2019*
 

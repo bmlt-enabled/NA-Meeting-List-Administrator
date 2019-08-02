@@ -184,11 +184,15 @@ class HistoryListViewController: EditorViewControllerBaseClass, UITableViewDataS
  This class controls one history list row.
  */
 class HistoryListTableViewCell: UITableViewCell {
+    /// This is the controller that "owns" this instance.
     var owner: HistoryListViewController! = nil
+    /// This is the associated change node.
     var changeObject: BMLTiOSLibChangeNode! = nil
-    
+    /// This is the text view that displays the change.
     @IBOutlet weak var textView: UITextView!
+    /// This is a button to find out more about this change.
     @IBOutlet weak var moreInfoButton: UIButton!
+    /// This button triggers a roolback/revert operation.
     @IBOutlet weak var revertButton: UIButton!
     
     /* ################################################################## */

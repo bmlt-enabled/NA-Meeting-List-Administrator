@@ -13,6 +13,7 @@ opt_in_rules:
 
 excluded:
 - Pods
+- Carthage
 - Project/R.generated.swift
 
 file_length:

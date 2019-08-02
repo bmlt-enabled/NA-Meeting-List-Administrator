@@ -1,0 +1,2883 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>ListEditableMeetingsViewController Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+
+    <a name="//apple_ref/swift/Class/ListEditableMeetingsViewController" class="dashAnchor"></a>
+
+    <a title="ListEditableMeetingsViewController Class Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="../index.html">
+           Docs
+        </a>
+         (100% documented)
+      </p>
+    
+      <p class="header-col--secondary">
+        <form role="search" action="../search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
+      </p>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="https://github.com/bmlt-enabled/NA-Meeting-List-Administrator">
+            <img class="header-icon" src="../img/gh.png"/>
+            View on GitHub
+          </a>
+        </p>
+    
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="../index.html"> Reference</a>
+      <img class="carat" src="../img/carat.png" />
+      ListEditableMeetingsViewController Class Reference
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/AddressEditorTableViewCell.html">AddressEditorTableViewCell</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/AnnotatedSwitch.html">AnnotatedSwitch</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/AppStaticPrefs.html">AppStaticPrefs</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/AppStaticPrefs/PrefsKeys.html">– PrefsKeys</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/CreateSingleMeetingViewController.html">CreateSingleMeetingViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/DeletedMeetingsViewController.html">DeletedMeetingsViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/DeletedRowTableCellView.html">DeletedRowTableCellView</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/DurationEditorTableViewCell.html">DurationEditorTableViewCell</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/EditSingleMeetingViewController.html">EditSingleMeetingViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/EditorTabBarController.html">EditorTabBarController</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/EditorTabBarController/TabIndexes.html">– TabIndexes</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/EditorViewBaseClass.html">EditorViewBaseClass</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/EditorViewControllerBaseClass.html">EditorViewControllerBaseClass</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/FormatsEditorTableViewCell.html">FormatsEditorTableViewCell</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/HistoryDetailViewController.html">HistoryDetailViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/HistoryListTableViewCell.html">HistoryListTableViewCell</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/HistoryListViewController.html">HistoryListViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/InitialViewController.html">InitialViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/ListEditableMeetingsViewController.html">ListEditableMeetingsViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/ListEditableMeetingsViewController/SortKey.html">– SortKey</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/LongLatTableViewCell.html">LongLatTableViewCell</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/MainAppDelegate.html">MainAppDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/MapAnnotation.html">MapAnnotation</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/MapMarker.html">MapMarker</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/MapTableViewCell.html">MapTableViewCell</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/MapTableViewCell/MapTypeValues.html">– MapTypeValues</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/MeetingCommentsEditorTableViewCell.html">MeetingCommentsEditorTableViewCell</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/MeetingEditorBaseViewController.html">MeetingEditorBaseViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/MeetingEditorViewCell.html">MeetingEditorViewCell</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/MeetingNameEditorTableViewCell.html">MeetingNameEditorTableViewCell</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/MeetingTableViewCell.html">MeetingTableViewCell</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PublishedEditorTableViewCell.html">PublishedEditorTableViewCell</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/SelectServiceBodiesViewController.html">SelectServiceBodiesViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/ServiceBodyTableCellView.html">ServiceBodyTableCellView</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/SettingsViewController.html">SettingsViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/StartTimeEditorTableViewCell.html">StartTimeEditorTableViewCell</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/ThreeStateCheckbox.html">ThreeStateCheckbox</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/WeekdayEditorTableViewCell.html">WeekdayEditorTableViewCell</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/WeekdaySwitchContainerView.html">WeekdaySwitchContainerView</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/WorldIDEditorTableViewCell.html">WorldIDEditorTableViewCell</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/String.html">String</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/UIView.html">UIView</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content">
+            <h1>ListEditableMeetingsViewController</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">class</span> <span class="kt">ListEditableMeetingsViewController</span> <span class="p">:</span> <span class="kt"><a href="../Classes/EditorViewControllerBaseClass.html">EditorViewControllerBaseClass</a></span><span class="p">,</span> <span class="kt">UITableViewDataSource</span><span class="p">,</span> <span class="kt">UITableViewDelegate</span><span class="p">,</span> <span class="kt">UIPickerViewDelegate</span><span class="p">,</span> <span class="kt">UIPickerViewDataSource</span><span class="p">,</span> <span class="kt">CLLocationManagerDelegate</span></code></pre>
+
+                </div>
+              </div>
+            <p>This class controls the list of editable meetings that is the first editor screen to be shown.</p>
+
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-content">
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Enums"></a>
+                <a name="//apple_ref/swift/Section/Enums" class="dashAnchor"></a>
+                <a href="#/Enums">
+                  <h3 class="section-name">Enums</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:29NA_Meeting_List_Administrator0C30EditableMeetingsViewControllerC7SortKeyO"></a>
+                    <a name="//apple_ref/swift/Enum/SortKey" class="dashAnchor"></a>
+                    <a class="token" href="#/s:29NA_Meeting_List_Administrator0C30EditableMeetingsViewControllerC7SortKeyO">SortKey</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This is the enum used for the meeting sort.</p>
+
+                        <a href="../Classes/ListEditableMeetingsViewController/SortKey.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">enum</span> <span class="kt">SortKey</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:29NA_Meeting_List_Administrator0C30EditableMeetingsViewControllerC24sScrollToReloadThreshold12CoreGraphics7CGFloatVvp"></a>
+                    <a name="//apple_ref/swift/Property/sScrollToReloadThreshold" class="dashAnchor"></a>
+                    <a class="token" href="#/s:29NA_Meeting_List_Administrator0C30EditableMeetingsViewControllerC24sScrollToReloadThreshold12CoreGraphics7CGFloatVvp">sScrollToReloadThreshold</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This is used to determine if we have dragged the scroll enough to rate a reload.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">let</span> <span class="nv">sScrollToReloadThreshold</span><span class="p">:</span> <span class="kt">CGFloat</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Private%20Constant%20Instance%20Properties"></a>
+                <a name="//apple_ref/swift/Section/Private Constant Instance Properties" class="dashAnchor"></a>
+                <a href="#/Private%20Constant%20Instance%20Properties">
+                  <h3 class="section-name">Private Constant Instance Properties</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:29NA_Meeting_List_Administrator0C30EditableMeetingsViewControllerC24_meetingPrototypeReuseID33_89A4EED41DEC2C894076B6696DC99CA0LLSSvp"></a>
+                    <a name="//apple_ref/swift/Property/_meetingPrototypeReuseID" class="dashAnchor"></a>
+                    <a class="token" href="#/s:29NA_Meeting_List_Administrator0C30EditableMeetingsViewControllerC24_meetingPrototypeReuseID33_89A4EED41DEC2C894076B6696DC99CA0LLSSvp">_meetingPrototypeReuseID</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This is the table prototype ID for the standard meeting display</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">private</span> <span class="k">let</span> <span class="nv">_meetingPrototypeReuseID</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:29NA_Meeting_List_Administrator0C30EditableMeetingsViewControllerC011_editSingleB7SegueID33_89A4EED41DEC2C894076B6696DC99CA0LLSSvp"></a>
+                    <a name="//apple_ref/swift/Property/_editSingleMeetingSegueID" class="dashAnchor"></a>
+                    <a class="token" href="#/s:29NA_Meeting_List_Administrator0C30EditableMeetingsViewControllerC011_editSingleB7SegueID33_89A4EED41DEC2C894076B6696DC99CA0LLSSvp">_editSingleMeetingSegueID</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This is the segue ID for bringing in a meeting to edit.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">private</span> <span class="k">let</span> <span class="nv">_editSingleMeetingSegueID</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:29NA_Meeting_List_Administrator0C30EditableMeetingsViewControllerC16_locationManager33_89A4EED41DEC2C894076B6696DC99CA0LLSo010CLLocationJ0CSgvp"></a>
+                    <a name="//apple_ref/swift/Property/_locationManager" class="dashAnchor"></a>
+                    <a class="token" href="#/s:29NA_Meeting_List_Administrator0C30EditableMeetingsViewControllerC16_locationManager33_89A4EED41DEC2C894076B6696DC99CA0LLSo010CLLocationJ0CSgvp">_locationManager</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This will hold our location manager.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">private</span> <span class="k">var</span> <span class="nv">_locationManager</span><span class="p">:</span> <span class="kt">CLLocationManager</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Private%20Instance%20Properties"></a>
+                <a name="//apple_ref/swift/Section/Private Instance Properties" class="dashAnchor"></a>
+                <a href="#/Private%20Instance%20Properties">
+                  <h3 class="section-name">Private Instance Properties</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:29NA_Meeting_List_Administrator0C30EditableMeetingsViewControllerC17_townsAndBoroughs33_89A4EED41DEC2C894076B6696DC99CA0LLSaySSGvp"></a>
+                    <a name="//apple_ref/swift/Property/_townsAndBoroughs" class="dashAnchor"></a>
+                    <a class="token" href="#/s:29NA_Meeting_List_Administrator0C30EditableMeetingsViewControllerC17_townsAndBoroughs33_89A4EED41DEC2C894076B6696DC99CA0LLSaySSGvp">_townsAndBoroughs</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This contains the towns extracted from the meetings.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">private</span> <span class="k">var</span> <span class="nv">_townsAndBoroughs</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:29NA_Meeting_List_Administrator0C30EditableMeetingsViewControllerC12_resultsSort33_89A4EED41DEC2C894076B6696DC99CA0LLAC0J3KeyOvp"></a>
+                    <a name="//apple_ref/swift/Property/_resultsSort" class="dashAnchor"></a>
+                    <a class="token" href="#/s:29NA_Meeting_List_Administrator0C30EditableMeetingsViewControllerC12_resultsSort33_89A4EED41DEC2C894076B6696DC99CA0LLAC0J3KeyOvp">_resultsSort</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This is the sort key. It is either day/time (default), or town.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">private</span> <span class="k">var</span> <span class="nv">_resultsSort</span><span class="p">:</span> <span class="kt">ListEditableMeetingsViewController</span><span class="o">.</span><span class="kt"><a href="../Classes/ListEditableMeetingsViewController/SortKey.html">SortKey</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:29NA_Meeting_List_Administrator0C30EditableMeetingsViewControllerC12_checkingAll33_89A4EED41DEC2C894076B6696DC99CA0LLSbvp"></a>
+                    <a name="//apple_ref/swift/Property/_checkingAll" class="dashAnchor"></a>
+                    <a class="token" href="#/s:29NA_Meeting_List_Administrator0C30EditableMeetingsViewControllerC12_checkingAll33_89A4EED41DEC2C894076B6696DC99CA0LLSbvp">_checkingAll</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This is a semaphore we use to reduce update overhead when checking the <q>All</q> weekday checkbox.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">private</span> <span class="k">var</span> <span class="nv">_checkingAll</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:29NA_Meeting_List_Administrator0C30EditableMeetingsViewControllerC19_locationFailedOnce33_89A4EED41DEC2C894076B6696DC99CA0LLSbvp"></a>
+                    <a name="//apple_ref/swift/Property/_locationFailedOnce" class="dashAnchor"></a>
+                    <a class="token" href="#/s:29NA_Meeting_List_Administrator0C30EditableMeetingsViewControllerC19_locationFailedOnce33_89A4EED41DEC2C894076B6696DC99CA0LLSbvp">_locationFailedOnce</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>We can do two tries to determine location. This is set to true after the first one.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">private</span> <span class="k">var</span> <span class="nv">_locationFailedOnce</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:29NA_Meeting_List_Administrator0C30EditableMeetingsViewControllerC19_whereAmIInProgress33_89A4EED41DEC2C894076B6696DC99CA0LLSbvp"></a>
+                    <a name="//apple_ref/swift/Property/_whereAmIInProgress" class="dashAnchor"></a>
+                    <a class="token" href="#/s:29NA_Meeting_List_Administrator0C30EditableMeetingsViewControllerC19_whereAmIInProgress33_89A4EED41DEC2C894076B6696DC99CA0LLSbvp">_whereAmIInProgress</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This is a semaphore we set to tell the view controller that we are looking up our current location.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">private</span> <span class="k">var</span> <span class="nv">_whereAmIInProgress</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:29NA_Meeting_List_Administrator0C30EditableMeetingsViewControllerC19_searchCenterCoords33_89A4EED41DEC2C894076B6696DC99CA0LLSo22CLLocationCoordinate2DVvp"></a>
+                    <a name="//apple_ref/swift/Property/_searchCenterCoords" class="dashAnchor"></a>
+                    <a class="token" href="#/s:29NA_Meeting_List_Administrator0C30EditableMeetingsViewControllerC19_searchCenterCoords33_89A4EED41DEC2C894076B6696DC99CA0LLSo22CLLocationCoordinate2DVvp">_searchCenterCoords</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This contains the coordinates we found when we geolocated.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">private</span> <span class="k">var</span> <span class="nv">_searchCenterCoords</span><span class="p">:</span> <span class="kt">CLLocationCoordinate2D</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:29NA_Meeting_List_Administrator0C30EditableMeetingsViewControllerC23_weekdayCheckboxObjects33_89A4EED41DEC2C894076B6696DC99CA0LLSayAA010ThreeStateJ0CGvp"></a>
+                    <a name="//apple_ref/swift/Property/_weekdayCheckboxObjects" class="dashAnchor"></a>
+                    <a class="token" href="#/s:29NA_Meeting_List_Administrator0C30EditableMeetingsViewControllerC23_weekdayCheckboxObjects33_89A4EED41DEC2C894076B6696DC99CA0LLSayAA010ThreeStateJ0CGvp">_weekdayCheckboxObjects</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This contains our weekday checkbox objects.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">private</span> <span class="k">var</span> <span class="nv">_weekdayCheckboxObjects</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Classes/ThreeStateCheckbox.html">ThreeStateCheckbox</a></span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Internal%20IB%20Instance%20Properties"></a>
+                <a name="//apple_ref/swift/Section/Internal IB Instance Properties" class="dashAnchor"></a>
+                <a href="#/Internal%20IB%20Instance%20Properties">
+                  <h3 class="section-name">Internal IB Instance Properties</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@NA_Meeting_List_Administrator@objc(cs)ListEditableMeetingsViewController(py)unpublishedRowColorEven"></a>
+                    <a name="//apple_ref/swift/Property/unpublishedRowColorEven" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@NA_Meeting_List_Administrator@objc(cs)ListEditableMeetingsViewController(py)unpublishedRowColorEven">unpublishedRowColorEven</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>If the meeting is unpublished, we have a different color background.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@IBInspectable</span>
+<span class="k">var</span> <span class="nv">unpublishedRowColorEven</span><span class="p">:</span> <span class="kt">UIColor</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@NA_Meeting_List_Administrator@objc(cs)ListEditableMeetingsViewController(py)unpublishedRowColorOdd"></a>
+                    <a name="//apple_ref/swift/Property/unpublishedRowColorOdd" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@NA_Meeting_List_Administrator@objc(cs)ListEditableMeetingsViewController(py)unpublishedRowColorOdd">unpublishedRowColorOdd</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The background color for odd rows.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@IBInspectable</span>
+<span class="k">var</span> <span class="nv">unpublishedRowColorOdd</span><span class="p">:</span> <span class="kt">UIColor</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@NA_Meeting_List_Administrator@objc(cs)ListEditableMeetingsViewController(py)busyAnimationView"></a>
+                    <a name="//apple_ref/swift/Property/busyAnimationView" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@NA_Meeting_List_Administrator@objc(cs)ListEditableMeetingsViewController(py)busyAnimationView">busyAnimationView</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This covers the screen with a busy throbber when we are searching</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@IBOutlet</span>
+<span class="k">weak</span> <span class="k">var</span> <span class="nv">busyAnimationView</span><span class="p">:</span> <span class="kt">UIView</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@NA_Meeting_List_Administrator@objc(cs)ListEditableMeetingsViewController(py)weekdaySwitchesContainerView"></a>
+                    <a name="//apple_ref/swift/Property/weekdaySwitchesContainerView" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@NA_Meeting_List_Administrator@objc(cs)ListEditableMeetingsViewController(py)weekdaySwitchesContainerView">weekdaySwitchesContainerView</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This has 8 checkboxes, which allows the user to select certain weekdays.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@IBOutlet</span>
+<span class="k">weak</span> <span class="k">var</span> <span class="nv">weekdaySwitchesContainerView</span><span class="p">:</span> <span class="kt">UIView</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@NA_Meeting_List_Administrator@objc(cs)ListEditableMeetingsViewController(py)meetingListTableView"></a>
+                    <a name="//apple_ref/swift/Property/meetingListTableView" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@NA_Meeting_List_Administrator@objc(cs)ListEditableMeetingsViewController(py)meetingListTableView">meetingListTableView</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This displays the meetings</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@IBOutlet</span>
+<span class="k">weak</span> <span class="k">var</span> <span class="nv">meetingListTableView</span><span class="p">:</span> <span class="kt">UITableView</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@NA_Meeting_List_Administrator@objc(cs)ListEditableMeetingsViewController(py)townBoroughPickerView"></a>
+                    <a name="//apple_ref/swift/Property/townBoroughPickerView" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@NA_Meeting_List_Administrator@objc(cs)ListEditableMeetingsViewController(py)townBoroughPickerView">townBoroughPickerView</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This is a picker view that displays all the towns.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@IBOutlet</span>
+<span class="k">weak</span> <span class="k">var</span> <span class="nv">townBoroughPickerView</span><span class="p">:</span> <span class="kt">UIPickerView</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@NA_Meeting_List_Administrator@objc(cs)ListEditableMeetingsViewController(py)addNewMeetingButton"></a>
+                    <a name="//apple_ref/swift/Property/addNewMeetingButton" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@NA_Meeting_List_Administrator@objc(cs)ListEditableMeetingsViewController(py)addNewMeetingButton">addNewMeetingButton</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This is the navbar item that allows you to create a new meeting.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@IBOutlet</span>
+<span class="k">weak</span> <span class="k">var</span> <span class="nv">addNewMeetingButton</span><span class="p">:</span> <span class="kt">UIBarButtonItem</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@NA_Meeting_List_Administrator@objc(cs)ListEditableMeetingsViewController(py)backButton"></a>
+                    <a name="//apple_ref/swift/Property/backButton" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@NA_Meeting_List_Administrator@objc(cs)ListEditableMeetingsViewController(py)backButton">backButton</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This is the navbar button that acts as a back button.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@IBOutlet</span>
+<span class="k">weak</span> <span class="k">var</span> <span class="nv">backButton</span><span class="p">:</span> <span class="kt">UIBarButtonItem</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@NA_Meeting_List_Administrator@objc(cs)ListEditableMeetingsViewController(py)whereAmINowButton"></a>
+                    <a name="//apple_ref/swift/Property/whereAmINowButton" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@NA_Meeting_List_Administrator@objc(cs)ListEditableMeetingsViewController(py)whereAmINowButton">whereAmINowButton</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This is the <q>What Meeting Am I At Now?</q> button.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@IBOutlet</span>
+<span class="k">weak</span> <span class="k">var</span> <span class="nv">whereAmINowButton</span><span class="p">:</span> <span class="kt">UIButton</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@NA_Meeting_List_Administrator@objc(cs)ListEditableMeetingsViewController(py)myNavBar"></a>
+                    <a name="//apple_ref/swift/Property/myNavBar" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@NA_Meeting_List_Administrator@objc(cs)ListEditableMeetingsViewController(py)myNavBar">myNavBar</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This is the navigation bar, shown at the top.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@IBOutlet</span>
+<span class="k">weak</span> <span class="k">var</span> <span class="nv">myNavBar</span><span class="p">:</span> <span class="kt">UINavigationBar</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Internal%20Instance%20Properties"></a>
+                <a name="//apple_ref/swift/Section/Internal Instance Properties" class="dashAnchor"></a>
+                <a href="#/Internal%20Instance%20Properties">
+                  <h3 class="section-name">Internal Instance Properties</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:29NA_Meeting_List_Administrator0C30EditableMeetingsViewControllerC16selectedWeekdaysSDy10BMLTiOSLib0kL14SearchCriteriaC12WeekdayIndexOAG14SelectionStateOGvp"></a>
+                    <a name="//apple_ref/swift/Property/selectedWeekdays" class="dashAnchor"></a>
+                    <a class="token" href="#/s:29NA_Meeting_List_Administrator0C30EditableMeetingsViewControllerC16selectedWeekdaysSDy10BMLTiOSLib0kL14SearchCriteriaC12WeekdayIndexOAG14SelectionStateOGvp">selectedWeekdays</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This carries the state of the selected/unselected weekday checkboxes.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">selectedWeekdays</span><span class="p">:</span> <span class="kt">BMLTiOSLibSearchCriteria</span><span class="o">.</span><span class="kt">SelectableWeekdayDictionary</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:29NA_Meeting_List_Administrator0C30EditableMeetingsViewControllerC07currentbC0Say10BMLTiOSLib0jkB4NodeCGvp"></a>
+                    <a name="//apple_ref/swift/Property/currentMeetingList" class="dashAnchor"></a>
+                    <a class="token" href="#/s:29NA_Meeting_List_Administrator0C30EditableMeetingsViewControllerC07currentbC0Say10BMLTiOSLib0jkB4NodeCGvp">currentMeetingList</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This contains all the meetings currently displayed</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">currentMeetingList</span><span class="p">:</span> <span class="p">[</span><span class="kt">BMLTiOSLibMeetingNode</span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:29NA_Meeting_List_Administrator0C30EditableMeetingsViewControllerC16showMeTheMoneyIDSiSgvp"></a>
+                    <a name="//apple_ref/swift/Property/showMeTheMoneyID" class="dashAnchor"></a>
+                    <a class="token" href="#/s:29NA_Meeting_List_Administrator0C30EditableMeetingsViewControllerC16showMeTheMoneyIDSiSgvp">showMeTheMoneyID</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This is set to ask the view to scroll to expose a meeting object.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">showMeTheMoneyID</span><span class="p">:</span> <span class="kt">Int</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:29NA_Meeting_List_Administrator0C30EditableMeetingsViewControllerC10searchDoneSbvp"></a>
+                    <a name="//apple_ref/swift/Property/searchDone" class="dashAnchor"></a>
+                    <a class="token" href="#/s:29NA_Meeting_List_Administrator0C30EditableMeetingsViewControllerC10searchDoneSbvp">searchDone</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This is a semaphore that we use to prevent too many searches.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">searchDone</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Private%20Instance%20Methods"></a>
+                <a name="//apple_ref/swift/Section/Private Instance Methods" class="dashAnchor"></a>
+                <a href="#/Private%20Instance%20Methods">
+                  <h3 class="section-name">Private Instance Methods</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:29NA_Meeting_List_Administrator0C30EditableMeetingsViewControllerC20_startWhereAmISearch33_89A4EED41DEC2C894076B6696DC99CA0LLyySo22CLLocationCoordinate2DVF"></a>
+                    <a name="//apple_ref/swift/Method/_startWhereAmISearch(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:29NA_Meeting_List_Administrator0C30EditableMeetingsViewControllerC20_startWhereAmISearch33_89A4EED41DEC2C894076B6696DC99CA0LLyySo22CLLocationCoordinate2DVF">_startWhereAmISearch(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Handles a found location. This starts the process of finding meetings that start today, after our current time.
+We add tomorrow, as well, looping the week if we are at the end.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">private</span> <span class="kd">func</span> <span class="nf">_startWhereAmISearch</span><span class="p">(</span><span class="n">_</span> <span class="nv">coordinate</span><span class="p">:</span> <span class="kt">CLLocationCoordinate2D</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>coordinate</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The coordinate of the user&rsquo;s location.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:29NA_Meeting_List_Administrator0C30EditableMeetingsViewControllerC18_showBusyAnimation33_89A4EED41DEC2C894076B6696DC99CA0LLyyF"></a>
+                    <a name="//apple_ref/swift/Method/_showBusyAnimation()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:29NA_Meeting_List_Administrator0C30EditableMeetingsViewControllerC18_showBusyAnimation33_89A4EED41DEC2C894076B6696DC99CA0LLyyF">_showBusyAnimation()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Displays the busy animation when updating..</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">private</span> <span class="kd">func</span> <span class="nf">_showBusyAnimation</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:29NA_Meeting_List_Administrator0C30EditableMeetingsViewControllerC18_hideBusyAnimation33_89A4EED41DEC2C894076B6696DC99CA0LLyyF"></a>
+                    <a name="//apple_ref/swift/Method/_hideBusyAnimation()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:29NA_Meeting_List_Administrator0C30EditableMeetingsViewControllerC18_hideBusyAnimation33_89A4EED41DEC2C894076B6696DC99CA0LLyyF">_hideBusyAnimation()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Displays the busy animation when updating..</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">private</span> <span class="kd">func</span> <span class="nf">_hideBusyAnimation</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:29NA_Meeting_List_Administrator0C30EditableMeetingsViewControllerC20_sortThroughWhereAmI33_89A4EED41DEC2C894076B6696DC99CA0LLyySay10BMLTiOSLib0tuB4NodeCGF"></a>
+                    <a name="//apple_ref/swift/Method/_sortThroughWhereAmI(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:29NA_Meeting_List_Administrator0C30EditableMeetingsViewControllerC20_sortThroughWhereAmI33_89A4EED41DEC2C894076B6696DC99CA0LLyySay10BMLTiOSLib0tuB4NodeCGF">_sortThroughWhereAmI(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Called to sort through the meetings we found in our search, and see if any of them are our meeting.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">private</span> <span class="kd">func</span> <span class="nf">_sortThroughWhereAmI</span><span class="p">(</span><span class="n">_</span> <span class="nv">inMeetings</span><span class="p">:</span> <span class="p">[</span><span class="kt">BMLTiOSLibMeetingNode</span><span class="p">])</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>inMeetings</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The found meetings.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/IB%20Methods"></a>
+                <a name="//apple_ref/swift/Section/IB Methods" class="dashAnchor"></a>
+                <a href="#/IB%20Methods">
+                  <h3 class="section-name">IB Methods</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@NA_Meeting_List_Administrator@objc(cs)ListEditableMeetingsViewController(im)backButtonHit:"></a>
+                    <a name="//apple_ref/swift/Method/backButtonHit(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@NA_Meeting_List_Administrator@objc(cs)ListEditableMeetingsViewController(im)backButtonHit:">backButtonHit(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@IBAction</span>
+<span class="kd">func</span> <span class="nf">backButtonHit</span><span class="p">(</span><span class="n">_</span> <span class="nv">sender</span><span class="p">:</span> <span class="kt">UIBarButtonItem</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>sender</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The bar button item that called this.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@NA_Meeting_List_Administrator@objc(cs)ListEditableMeetingsViewController(im)whereAmIHit:"></a>
+                    <a name="//apple_ref/swift/Method/whereAmIHit(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@NA_Meeting_List_Administrator@objc(cs)ListEditableMeetingsViewController(im)whereAmIHit:">whereAmIHit(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@IBAction</span>
+<span class="kd">func</span> <span class="nf">whereAmIHit</span><span class="p">(</span><span class="n">_</span> <span class="nv">sender</span><span class="p">:</span> <span class="kt">Any</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>sender</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The button item that called this.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Overridden%20Base%20Class%20Methods"></a>
+                <a name="//apple_ref/swift/Section/Overridden Base Class Methods" class="dashAnchor"></a>
+                <a href="#/Overridden%20Base%20Class%20Methods">
+                  <h3 class="section-name">Overridden Base Class Methods</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@NA_Meeting_List_Administrator@objc(cs)ListEditableMeetingsViewController(im)viewDidLoad"></a>
+                    <a name="//apple_ref/swift/Method/viewDidLoad()" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@NA_Meeting_List_Administrator@objc(cs)ListEditableMeetingsViewController(im)viewDidLoad">viewDidLoad()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Called just after the view set up its subviews.
+We take this opportunity to create or update the weekday switches.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">override</span> <span class="kd">func</span> <span class="nf">viewDidLoad</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@NA_Meeting_List_Administrator@objc(cs)ListEditableMeetingsViewController(im)viewDidLayoutSubviews"></a>
+                    <a name="//apple_ref/swift/Method/viewDidLayoutSubviews()" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@NA_Meeting_List_Administrator@objc(cs)ListEditableMeetingsViewController(im)viewDidLayoutSubviews">viewDidLayoutSubviews()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Called just after the view did its layout.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">override</span> <span class="kd">func</span> <span class="nf">viewDidLayoutSubviews</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@NA_Meeting_List_Administrator@objc(cs)ListEditableMeetingsViewController(im)viewWillAppear:"></a>
+                    <a name="//apple_ref/swift/Method/viewWillAppear(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@NA_Meeting_List_Administrator@objc(cs)ListEditableMeetingsViewController(im)viewWillAppear:">viewWillAppear(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">override</span> <span class="kd">func</span> <span class="nf">viewWillAppear</span><span class="p">(</span><span class="n">_</span> <span class="nv">animated</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>animated</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>True, if the appearance is animated (ignored).</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@NA_Meeting_List_Administrator@objc(cs)ListEditableMeetingsViewController(im)viewWillDisappear:"></a>
+                    <a name="//apple_ref/swift/Method/viewWillDisappear(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@NA_Meeting_List_Administrator@objc(cs)ListEditableMeetingsViewController(im)viewWillDisappear:">viewWillDisappear(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">override</span> <span class="kd">func</span> <span class="nf">viewWillDisappear</span><span class="p">(</span><span class="n">_</span> <span class="nv">animated</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>animated</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>True, if the appearance is animated (ignored).</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@NA_Meeting_List_Administrator@objc(cs)ListEditableMeetingsViewController(im)viewDidAppear:"></a>
+                    <a name="//apple_ref/swift/Method/viewDidAppear(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@NA_Meeting_List_Administrator@objc(cs)ListEditableMeetingsViewController(im)viewDidAppear:">viewDidAppear(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Trigger a search upon appearance.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">override</span> <span class="kd">func</span> <span class="nf">viewDidAppear</span><span class="p">(</span><span class="n">_</span> <span class="nv">animated</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>animated</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>True, if the appearance is animated (ignored).</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@NA_Meeting_List_Administrator@objc(cs)ListEditableMeetingsViewController(im)prepareForSegue:sender:"></a>
+                    <a name="//apple_ref/swift/Method/prepare(for:sender:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@NA_Meeting_List_Administrator@objc(cs)ListEditableMeetingsViewController(im)prepareForSegue:sender:">prepare(for:sender:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Reference the selected meeting before bringing in the editor.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">override</span> <span class="kd">func</span> <span class="nf">prepare</span><span class="p">(</span><span class="k">for</span> <span class="nv">segue</span><span class="p">:</span> <span class="kt">UIStoryboardSegue</span><span class="p">,</span> <span class="nv">sender</span><span class="p">:</span> <span class="kt">Any</span><span class="p">?)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>for</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The segue object</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>sender</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Attached data (We attached the meeting object).</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Instance%20Methods"></a>
+                <a name="//apple_ref/swift/Section/Instance Methods" class="dashAnchor"></a>
+                <a href="#/Instance%20Methods">
+                  <h3 class="section-name">Instance Methods</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:29NA_Meeting_List_Administrator0C30EditableMeetingsViewControllerC8doSearchyyF"></a>
+                    <a name="//apple_ref/swift/Method/doSearch()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:29NA_Meeting_List_Administrator0C30EditableMeetingsViewControllerC8doSearchyyF">doSearch()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Trigger a search.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">doSearch</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:29NA_Meeting_List_Administrator0C30EditableMeetingsViewControllerC12updateSearch02inB7ObjectsySay10BMLTiOSLib0mnB4NodeCG_tF"></a>
+                    <a name="//apple_ref/swift/Method/updateSearch(inMeetingObjects:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:29NA_Meeting_List_Administrator0C30EditableMeetingsViewControllerC12updateSearch02inB7ObjectsySay10BMLTiOSLib0mnB4NodeCG_tF">updateSearch(inMeetingObjects:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This is called when the search updates.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">updateSearch</span><span class="p">(</span><span class="nv">inMeetingObjects</span><span class="p">:</span> <span class="p">[</span><span class="kt">BMLTiOSLibMeetingNode</span><span class="p">])</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>inMeetingObjects</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>An array of meeting objects.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:29NA_Meeting_List_Administrator0C30EditableMeetingsViewControllerC09updateNewB002inB6Objecty10BMLTiOSLib0mneB4NodeC_tF"></a>
+                    <a name="//apple_ref/swift/Method/updateNewMeeting(inMeetingObject:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:29NA_Meeting_List_Administrator0C30EditableMeetingsViewControllerC09updateNewB002inB6Objecty10BMLTiOSLib0mneB4NodeC_tF">updateNewMeeting(inMeetingObject:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This is called when a new meeting has been added.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">updateNewMeeting</span><span class="p">(</span><span class="nv">inMeetingObject</span><span class="p">:</span> <span class="kt">BMLTiOSLibEditableMeetingNode</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>inMeetingObject</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The new meeting object.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:29NA_Meeting_List_Administrator0C30EditableMeetingsViewControllerC14updateRollbackyy10BMLTiOSLib0klB4NodeCF"></a>
+                    <a name="//apple_ref/swift/Method/updateRollback(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:29NA_Meeting_List_Administrator0C30EditableMeetingsViewControllerC14updateRollbackyy10BMLTiOSLib0klB4NodeCF">updateRollback(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This is called when a meeting rollback is complete.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">updateRollback</span><span class="p">(</span><span class="n">_</span> <span class="nv">inMeeting</span><span class="p">:</span> <span class="kt">BMLTiOSLibMeetingNode</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>inMeeting</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The meeting that was updated.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:29NA_Meeting_List_Administrator0C30EditableMeetingsViewControllerC17updateChangeFetchyyF"></a>
+                    <a name="//apple_ref/swift/Method/updateChangeFetch()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:29NA_Meeting_List_Administrator0C30EditableMeetingsViewControllerC17updateChangeFetchyyF">updateChangeFetch()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This is called when a change fetch is complete.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">updateChangeFetch</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:29NA_Meeting_List_Administrator0C30EditableMeetingsViewControllerC014scrollToExposeB0yy10BMLTiOSLib0lmeB4NodeCF"></a>
+                    <a name="//apple_ref/swift/Method/scrollToExposeMeeting(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:29NA_Meeting_List_Administrator0C30EditableMeetingsViewControllerC014scrollToExposeB0yy10BMLTiOSLib0lmeB4NodeCF">scrollToExposeMeeting(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Scrolls the table to expose the given meeting object.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">scrollToExposeMeeting</span><span class="p">(</span><span class="n">_</span> <span class="nv">meetingObject</span><span class="p">:</span> <span class="kt">BMLTiOSLibEditableMeetingNode</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>meetingObject</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The meeting object we want to see.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:29NA_Meeting_List_Administrator0C30EditableMeetingsViewControllerC04sortF0yyF"></a>
+                    <a name="//apple_ref/swift/Method/sortMeetings()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:29NA_Meeting_List_Administrator0C30EditableMeetingsViewControllerC04sortF0yyF">sortMeetings()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This sorts the meeting list by the weekday, then the start time.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">sortMeetings</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:29NA_Meeting_List_Administrator0C30EditableMeetingsViewControllerC015updateDisplayedF0yyF"></a>
+                    <a name="//apple_ref/swift/Method/updateDisplayedMeetings()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:29NA_Meeting_List_Administrator0C30EditableMeetingsViewControllerC015updateDisplayedF0yyF">updateDisplayedMeetings()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This sorts through the available meetings, and filters out the ones we want, according to the weekday checkboxes and the selected town.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">updateDisplayedMeetings</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:29NA_Meeting_List_Administrator0C30EditableMeetingsViewControllerC17setUpWeekdayViewsyyF"></a>
+                    <a name="//apple_ref/swift/Method/setUpWeekdayViews()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:29NA_Meeting_List_Administrator0C30EditableMeetingsViewControllerC17setUpWeekdayViewsyyF">setUpWeekdayViews()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>We call this to set up our weekday selectors.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">setUpWeekdayViews</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:29NA_Meeting_List_Administrator0C30EditableMeetingsViewControllerC12allChangedTo7inStatey10BMLTiOSLib0nO14SearchCriteriaC09SelectionM0O_tF"></a>
+                    <a name="//apple_ref/swift/Method/allChangedTo(inState:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:29NA_Meeting_List_Administrator0C30EditableMeetingsViewControllerC12allChangedTo7inStatey10BMLTiOSLib0nO14SearchCriteriaC09SelectionM0O_tF">allChangedTo(inState:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This changes all of the checkboxes to match the <q>All</q> checkbox state.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">allChangedTo</span><span class="p">(</span><span class="nv">inState</span><span class="p">:</span> <span class="kt">BMLTiOSLibSearchCriteria</span><span class="o">.</span><span class="kt">SelectionState</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:29NA_Meeting_List_Administrator0C30EditableMeetingsViewControllerC010editSingleB0yy10BMLTiOSLib0klB4NodeCSgF"></a>
+                    <a name="//apple_ref/swift/Method/editSingleMeeting(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:29NA_Meeting_List_Administrator0C30EditableMeetingsViewControllerC010editSingleB0yy10BMLTiOSLib0klB4NodeCSgF">editSingleMeeting(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Called to initiate editing of a meeting.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">editSingleMeeting</span><span class="p">(</span><span class="n">_</span> <span class="nv">inMeetingObject</span><span class="p">:</span> <span class="kt">BMLTiOSLibMeetingNode</span><span class="o">!</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>inMeetingObject</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The meeting to be edited.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:29NA_Meeting_List_Administrator0C30EditableMeetingsViewControllerC23weekdaySelectionChanged14inWeekdayIndex03newJ5StateySi_10BMLTiOSLib0qR14SearchCriteriaC0jP0OtF"></a>
+                    <a name="//apple_ref/swift/Method/weekdaySelectionChanged(inWeekdayIndex:newSelectionState:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:29NA_Meeting_List_Administrator0C30EditableMeetingsViewControllerC23weekdaySelectionChanged14inWeekdayIndex03newJ5StateySi_10BMLTiOSLib0qR14SearchCriteriaC0jP0OtF">weekdaySelectionChanged(inWeekdayIndex:newSelectionState:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This is called when one of the weekday checkboxes is changed.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">weekdaySelectionChanged</span><span class="p">(</span><span class="nv">inWeekdayIndex</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">newSelectionState</span><span class="p">:</span> <span class="kt">BMLTiOSLibSearchCriteria</span><span class="o">.</span><span class="kt">SelectionState</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>inWeekdayIndex</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>1-based index of the weekday represented by the checkbox.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>newSelectionState</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The new state for selection.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:29NA_Meeting_List_Administrator0C30EditableMeetingsViewControllerC017startLookingForMyB0yyF"></a>
+                    <a name="//apple_ref/swift/Method/startLookingForMyMeeting()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:29NA_Meeting_List_Administrator0C30EditableMeetingsViewControllerC017startLookingForMyB0yyF">startLookingForMyMeeting()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Called to tell the app to start searching for where we are.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">startLookingForMyMeeting</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Internal%20CLLocationManagerDelegate%20Methods"></a>
+                <a name="//apple_ref/swift/Section/Internal CLLocationManagerDelegate Methods" class="dashAnchor"></a>
+                <a href="#/Internal%20CLLocationManagerDelegate%20Methods">
+                  <h3 class="section-name">Internal CLLocationManagerDelegate Methods</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@NA_Meeting_List_Administrator@objc(cs)ListEditableMeetingsViewController(im)locationManager:didFailWithError:"></a>
+                    <a name="//apple_ref/swift/Method/locationManager(_:didFailWithError:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@NA_Meeting_List_Administrator@objc(cs)ListEditableMeetingsViewController(im)locationManager:didFailWithError:">locationManager(_:didFailWithError:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This is called if the location manager suffers a failure.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">locationManager</span><span class="p">(</span><span class="n">_</span> <span class="nv">manager</span><span class="p">:</span> <span class="kt">CLLocationManager</span><span class="p">,</span> <span class="n">didFailWithError</span> <span class="nv">error</span><span class="p">:</span> <span class="kt">Error</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>manager</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The Location Manager object that had the error.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>didFailWithError</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The error in question.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@NA_Meeting_List_Administrator@objc(cs)ListEditableMeetingsViewController(im)locationManager:didUpdateLocations:"></a>
+                    <a name="//apple_ref/swift/Method/locationManager(_:didUpdateLocations:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@NA_Meeting_List_Administrator@objc(cs)ListEditableMeetingsViewController(im)locationManager:didUpdateLocations:">locationManager(_:didUpdateLocations:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Callback to handle found locations.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">locationManager</span><span class="p">(</span><span class="n">_</span> <span class="nv">manager</span><span class="p">:</span> <span class="kt">CLLocationManager</span><span class="p">,</span> <span class="n">didUpdateLocations</span> <span class="nv">locations</span><span class="p">:</span> <span class="p">[</span><span class="kt">CLLocation</span><span class="p">])</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>manager</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The Location Manager object that had the event.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>locations</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>an array of updated locations.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/UIScrollViewDelegate%20Protocol%20Methods"></a>
+                <a name="//apple_ref/swift/Section/UIScrollViewDelegate Protocol Methods" class="dashAnchor"></a>
+                <a href="#/UIScrollViewDelegate%20Protocol%20Methods">
+                  <h3 class="section-name">UIScrollViewDelegate Protocol Methods</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@NA_Meeting_List_Administrator@objc(cs)ListEditableMeetingsViewController(im)scrollViewWillEndDragging:withVelocity:targetContentOffset:"></a>
+                    <a name="//apple_ref/swift/Method/scrollViewWillEndDragging(_:withVelocity:targetContentOffset:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@NA_Meeting_List_Administrator@objc(cs)ListEditableMeetingsViewController(im)scrollViewWillEndDragging:withVelocity:targetContentOffset:">scrollViewWillEndDragging(_:withVelocity:targetContentOffset:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This is called when the scroll view has ended dragging.
+We use this to trigger a reload, if the scroll was pulled beyond its limit by a certain number of display units.</p>
+
+<p>:param: scrollView The text view that experienced the change.
+:param: velocity The velocity of the scroll at the time of this call.
+:param: targetContentOffset We can use this to send an offset to the scroller (ignored).</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">scrollViewWillEndDragging</span><span class="p">(</span><span class="n">_</span> <span class="nv">scrollView</span><span class="p">:</span> <span class="kt">UIScrollView</span><span class="p">,</span> <span class="n">withVelocity</span> <span class="nv">velocity</span><span class="p">:</span> <span class="kt">CGPoint</span><span class="p">,</span> <span class="nv">targetContentOffset</span><span class="p">:</span> <span class="kt">UnsafeMutablePointer</span><span class="o">&lt;</span><span class="kt">CGPoint</span><span class="o">&gt;</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/UITableViewDataSource%20Methods"></a>
+                <a name="//apple_ref/swift/Section/UITableViewDataSource Methods" class="dashAnchor"></a>
+                <a href="#/UITableViewDataSource%20Methods">
+                  <h3 class="section-name">UITableViewDataSource Methods</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@NA_Meeting_List_Administrator@objc(cs)ListEditableMeetingsViewController(im)tableView:numberOfRowsInSection:"></a>
+                    <a name="//apple_ref/swift/Method/tableView(_:numberOfRowsInSection:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@NA_Meeting_List_Administrator@objc(cs)ListEditableMeetingsViewController(im)tableView:numberOfRowsInSection:">tableView(_:numberOfRowsInSection:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">tableView</span><span class="p">(</span><span class="n">_</span> <span class="nv">tableView</span><span class="p">:</span> <span class="kt">UITableView</span><span class="p">,</span> <span class="n">numberOfRowsInSection</span> <span class="nv">section</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>tableView</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The UITableView object requesting the view</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>numberOfRowsInSection</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The section index (0-based).</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@NA_Meeting_List_Administrator@objc(cs)ListEditableMeetingsViewController(im)tableView:cellForRowAtIndexPath:"></a>
+                    <a name="//apple_ref/swift/Method/tableView(_:cellForRowAt:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@NA_Meeting_List_Administrator@objc(cs)ListEditableMeetingsViewController(im)tableView:cellForRowAtIndexPath:">tableView(_:cellForRowAt:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This is the routine that creates a new table row for the Meeting indicated by the index.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">tableView</span><span class="p">(</span><span class="n">_</span> <span class="nv">tableView</span><span class="p">:</span> <span class="kt">UITableView</span><span class="p">,</span> <span class="n">cellForRowAt</span> <span class="nv">indexPath</span><span class="p">:</span> <span class="kt">IndexPath</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UITableViewCell</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>tableView</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The UITableView object requesting the view</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>cellForRowAt</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The IndexPath of the requested cell.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/UITableViewDelegate%20Methods"></a>
+                <a name="//apple_ref/swift/Section/UITableViewDelegate Methods" class="dashAnchor"></a>
+                <a href="#/UITableViewDelegate%20Methods">
+                  <h3 class="section-name">UITableViewDelegate Methods</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@NA_Meeting_List_Administrator@objc(cs)ListEditableMeetingsViewController(im)tableView:willSelectRowAtIndexPath:"></a>
+                    <a name="//apple_ref/swift/Method/tableView(_:willSelectRowAt:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@NA_Meeting_List_Administrator@objc(cs)ListEditableMeetingsViewController(im)tableView:willSelectRowAtIndexPath:">tableView(_:willSelectRowAt:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Called before a row is selected.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">tableView</span><span class="p">(</span><span class="n">_</span> <span class="nv">tableView</span><span class="p">:</span> <span class="kt">UITableView</span><span class="p">,</span> <span class="n">willSelectRowAt</span> <span class="nv">indexPath</span><span class="p">:</span> <span class="kt">IndexPath</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">IndexPath</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>tableView</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The table view being checked</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>willSelectRowAt</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The indexpath of the row being selected.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>nil (don&rsquo;t let selection happen).</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@NA_Meeting_List_Administrator@objc(cs)ListEditableMeetingsViewController(im)tableView:canEditRowAtIndexPath:"></a>
+                    <a name="//apple_ref/swift/Method/tableView(_:canEditRowAt:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@NA_Meeting_List_Administrator@objc(cs)ListEditableMeetingsViewController(im)tableView:canEditRowAtIndexPath:">tableView(_:canEditRowAt:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Indicate that a row can be edited (for left-swipe delete).</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">tableView</span><span class="p">(</span><span class="n">_</span> <span class="nv">tableView</span><span class="p">:</span> <span class="kt">UITableView</span><span class="p">,</span> <span class="n">canEditRowAt</span> <span class="nv">indexPath</span><span class="p">:</span> <span class="kt">IndexPath</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>tableView</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The table view being checked</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>canEditRowAt</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The indexpath of the row to be checked.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>true, always.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@NA_Meeting_List_Administrator@objc(cs)ListEditableMeetingsViewController(im)tableView:commitEditingStyle:forRowAtIndexPath:"></a>
+                    <a name="//apple_ref/swift/Method/tableView(_:commit:forRowAt:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@NA_Meeting_List_Administrator@objc(cs)ListEditableMeetingsViewController(im)tableView:commitEditingStyle:forRowAtIndexPath:">tableView(_:commit:forRowAt:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Called to do a delete action.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">tableView</span><span class="p">(</span><span class="n">_</span> <span class="nv">tableView</span><span class="p">:</span> <span class="kt">UITableView</span><span class="p">,</span> <span class="n">commit</span> <span class="nv">editingStyle</span><span class="p">:</span> <span class="kt">UITableViewCell</span><span class="o">.</span><span class="kt">EditingStyle</span><span class="p">,</span> <span class="n">forRowAt</span> <span class="nv">indexPath</span><span class="p">:</span> <span class="kt">IndexPath</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>tableView</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The table view being checked</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>commit</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The action to perform.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>forRowAt</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The indexpath of the row to be deleted.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:29NA_Meeting_List_Administrator0C30EditableMeetingsViewControllerC17doADirtyDeedCheap_8forRowAtySo07UITableG0C_10Foundation9IndexPathVtF"></a>
+                    <a name="//apple_ref/swift/Method/doADirtyDeedCheap(_:forRowAt:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:29NA_Meeting_List_Administrator0C30EditableMeetingsViewControllerC17doADirtyDeedCheap_8forRowAtySo07UITableG0C_10Foundation9IndexPathVtF">doADirtyDeedCheap(_:forRowAt:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Called to do a delete action.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">doADirtyDeedCheap</span><span class="p">(</span><span class="n">_</span> <span class="nv">tableView</span><span class="p">:</span> <span class="kt">UITableView</span><span class="p">,</span> <span class="n">forRowAt</span> <span class="nv">indexPath</span><span class="p">:</span> <span class="kt">IndexPath</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>tableView</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The table view being checked</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>forRowAt</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The indexpath of the row to be deleted.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:29NA_Meeting_List_Administrator0C30EditableMeetingsViewControllerC21dontDoADirtyDeedCheapyySo07UITableG0CF"></a>
+                    <a name="//apple_ref/swift/Method/dontDoADirtyDeedCheap(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:29NA_Meeting_List_Administrator0C30EditableMeetingsViewControllerC21dontDoADirtyDeedCheapyySo07UITableG0CF">dontDoADirtyDeedCheap(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Called to cancel a delete action.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">dontDoADirtyDeedCheap</span><span class="p">(</span><span class="n">_</span> <span class="nv">tableView</span><span class="p">:</span> <span class="kt">UITableView</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>tableView</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The table view being checked</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/UIPickerViewDataSource%20Methods"></a>
+                <a name="//apple_ref/swift/Section/UIPickerViewDataSource Methods" class="dashAnchor"></a>
+                <a href="#/UIPickerViewDataSource%20Methods">
+                  <h3 class="section-name">UIPickerViewDataSource Methods</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@NA_Meeting_List_Administrator@objc(cs)ListEditableMeetingsViewController(im)numberOfComponentsInPickerView:"></a>
+                    <a name="//apple_ref/swift/Method/numberOfComponents(in:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@NA_Meeting_List_Administrator@objc(cs)ListEditableMeetingsViewController(im)numberOfComponentsInPickerView:">numberOfComponents(in:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>We only have 1 component.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">numberOfComponents</span><span class="p">(</span><span class="k">in</span> <span class="nv">pickerView</span><span class="p">:</span> <span class="kt">UIPickerView</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>pickerView</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The UIPickerView being checked</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>1</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@NA_Meeting_List_Administrator@objc(cs)ListEditableMeetingsViewController(im)pickerView:numberOfRowsInComponent:"></a>
+                    <a name="//apple_ref/swift/Method/pickerView(_:numberOfRowsInComponent:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@NA_Meeting_List_Administrator@objc(cs)ListEditableMeetingsViewController(im)pickerView:numberOfRowsInComponent:">pickerView(_:numberOfRowsInComponent:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>We will always have 2 more than the number of towns, as we have the first and second rows.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">pickerView</span><span class="p">(</span><span class="n">_</span> <span class="nv">pickerView</span><span class="p">:</span> <span class="kt">UIPickerView</span><span class="p">,</span> <span class="n">numberOfRowsInComponent</span> <span class="nv">component</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>pickerView</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The UIPickerView being checked</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Either 0, or the number of towns to be displayed, plus 2.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/UIPickerViewDelegate%20Methods"></a>
+                <a name="//apple_ref/swift/Section/UIPickerViewDelegate Methods" class="dashAnchor"></a>
+                <a href="#/UIPickerViewDelegate%20Methods">
+                  <h3 class="section-name">UIPickerViewDelegate Methods</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@NA_Meeting_List_Administrator@objc(cs)ListEditableMeetingsViewController(im)pickerView:viewForRow:forComponent:reusingView:"></a>
+                    <a name="//apple_ref/swift/Method/pickerView(_:viewForRow:forComponent:reusing:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@NA_Meeting_List_Administrator@objc(cs)ListEditableMeetingsViewController(im)pickerView:viewForRow:forComponent:reusingView:">pickerView(_:viewForRow:forComponent:reusing:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This returns the name for the given row.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">pickerView</span><span class="p">(</span><span class="n">_</span> <span class="nv">pickerView</span><span class="p">:</span> <span class="kt">UIPickerView</span><span class="p">,</span> <span class="n">viewForRow</span> <span class="nv">row</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="n">forComponent</span> <span class="nv">component</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="n">reusing</span> <span class="nv">view</span><span class="p">:</span> <span class="kt">UIView</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">UIView</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>pickerView</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The UIPickerView being checked</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>row</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The row being checked</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>forComponent</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The component (always 0)</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>reusing</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>If the view is being reused, it is passed in here.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>a view, containing a label with the string for the row.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@NA_Meeting_List_Administrator@objc(cs)ListEditableMeetingsViewController(im)pickerView:didSelectRow:inComponent:"></a>
+                    <a name="//apple_ref/swift/Method/pickerView(_:didSelectRow:inComponent:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@NA_Meeting_List_Administrator@objc(cs)ListEditableMeetingsViewController(im)pickerView:didSelectRow:inComponent:">pickerView(_:didSelectRow:inComponent:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This is called when the user finishes selecting a row.
+We use this to add the selected town to the filter.</p>
+
+<p>If it is one of the top 2 rows, we select the first row, and ignore it.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">pickerView</span><span class="p">(</span><span class="n">_</span> <span class="nv">pickerView</span><span class="p">:</span> <span class="kt">UIPickerView</span><span class="p">,</span> <span class="n">didSelectRow</span> <span class="nv">row</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="n">inComponent</span> <span class="nv">component</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>pickerView</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The UIPickerView being checked</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>row</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The row being checked</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>component</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The component (always 0)</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+      </article>
+    </div>
+    <section class="footer">
+      <p>&copy; 2019 <a class="link" href="https://bmlt.app" target="_blank" rel="external">BMLT-Enabled</a>. All rights reserved. (Last updated: 2019-08-02)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+    </section>
+  </body>
+</div>
+</html>

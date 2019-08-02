@@ -28,8 +28,11 @@ class SettingsViewController: UIViewController {
     /* ################################################################## */
     // MARK: IB Properties
     /* ################################################################## */
+    /// The "Clear All Saved Logins" button
     @IBOutlet weak var clearAllLoginsButton: UIButton!
+    /// The header for the corporate blurb.
     @IBOutlet weak var blurbHeaderLabel: UILabel!
+    /// The label with the app name
     @IBOutlet weak var appNameLabel: UILabel!
     /** This displays the version. */
     @IBOutlet weak var versionLabel: UILabel!
@@ -103,7 +106,7 @@ class SettingsViewController: UIViewController {
     @IBAction func beanieButtonHit(_ sender: Any) {
         if !self.buttonURI.isEmpty {
             let openLink = NSURL(string: self.buttonURI)
-            UIApplication.shared.open(openLink! as URL, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
+            UIApplication.shared.open(openLink! as URL, options: [:], completionHandler: nil)
             self.view.setNeedsLayout()
         }
     }
@@ -150,9 +153,4 @@ class SettingsViewController: UIViewController {
         // We need to do this, because the initial view controller may close its navigation bar, which is also ours.
         self.view.setNeedsLayout()
     }
-}
-
-// Helper function inserted by Swift 4.2 migrator.
-private func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
-	return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
 }

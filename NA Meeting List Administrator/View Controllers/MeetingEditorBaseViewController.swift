@@ -29,6 +29,9 @@ import MapKit
  This class describes the basic functionality for a full meeting editor.
  */
 extension UIView {
+    /**
+     - returns: The actual Responder, if this view (or a subview) is the current first responder (recursive check). Nil, if no first responders.
+     */
     var currentFirstResponder: UIResponder? {
         if self.isFirstResponder {
             return self
@@ -73,7 +76,9 @@ class MeetingEditorBaseViewController: EditorViewControllerBaseClass, UITableVie
     ]
     
     /** These store the original (unpublished) colors for the background gradient. */
+    /// The gradient top color for a published meeting.
     private var _publishedTopColor: UIColor! = nil
+    /// The gradient bottom color for a published meeting.
     private var _publishedBottomColor: UIColor! = nil
     
     /** This holds our geocoder object when we are looking up addresses. */
@@ -110,7 +115,9 @@ class MeetingEditorBaseViewController: EditorViewControllerBaseClass, UITableVie
     @IBOutlet var tableView: UITableView!
     
     /** If the meeting is unpublished, we have a different color background gradient. */
+    /// The gradient top color for an unpublished meeting.
     @IBInspectable var unpublishedTopColor: UIColor!
+    /// The gradient bottom color for an unpublished meeting.
     @IBInspectable var unpublishedBottomColor: UIColor!
     
     /* ################################################################## */
@@ -586,10 +593,15 @@ class MeetingEditorViewCell: UITableViewCell {
  */
 class PublishedEditorTableViewCell: MeetingEditorViewCell, UIPickerViewDelegate, UIPickerViewDataSource {
     /** This is the meeting name section. */
+    /// This is the container for the "published" switch.
     @IBOutlet weak var publishedContainerView: UIView!
+    /// The label for the published switch
     @IBOutlet weak var publishedLabel: UILabel!
+    /// The published switch
     @IBOutlet weak var publishedSwitch: UISwitch!
+    /// The label for the Service body picker
     @IBOutlet weak var serviceBodyPickerLabel: UILabel!
+    /// The Service body picker view.
     @IBOutlet weak var serviceBodyPickerView: UIPickerView!
     
     /* ################################################################## */
@@ -716,7 +728,9 @@ class PublishedEditorTableViewCell: MeetingEditorViewCell, UIPickerViewDelegate,
  */
 class WorldIDEditorTableViewCell: MeetingEditorViewCell {
     /** This is the meeting name section. */
+    /// The label for the world ID text entry
     @IBOutlet weak var worldIDLabel: UILabel!
+    /// The world ID text entry
     @IBOutlet weak var worldIDTextField: UITextField!
     
     /* ################################################################## */
@@ -753,7 +767,9 @@ class WorldIDEditorTableViewCell: MeetingEditorViewCell {
  */
 class MeetingNameEditorTableViewCell: MeetingEditorViewCell {
     /** This is the meeting name section. */
+    /// The label for the meeting name text entry
     @IBOutlet weak var meetingNameLabel: UILabel!
+    /// The meeting name text entry
     @IBOutlet weak var meetingNameTextField: UITextField!
     
     /* ################################################################## */
@@ -789,8 +805,10 @@ class MeetingNameEditorTableViewCell: MeetingEditorViewCell {
  This is the table view class for the name editor prototype.
  */
 class WeekdayEditorTableViewCell: MeetingEditorViewCell {
-    /** This is the meeting name section. */
+    /** This is the weekday section. */
+    /// The label for the weekday selection segnmented control
     @IBOutlet weak var weekdayLabel: UILabel!
+    /// The weekday section segmented control
     @IBOutlet weak var weekdaySegmentedView: UISegmentedControl!
     
     /* ################################################################## */
@@ -841,8 +859,10 @@ class WeekdayEditorTableViewCell: MeetingEditorViewCell {
  This is the table view class for the name editor prototype.
  */
 class StartTimeEditorTableViewCell: MeetingEditorViewCell {
-    /** This is the meeting name section. */
+    /** This is the start time section. */
+    /// The label for the start time time picker
     @IBOutlet weak var startTimeLabel: UILabel!
+    /// The start time picker
     @IBOutlet weak var startTimeDatePicker: UIDatePicker!
     
     /* ################################################################## */
@@ -886,8 +906,10 @@ class StartTimeEditorTableViewCell: MeetingEditorViewCell {
  This is the table view class for the name editor prototype.
  */
 class DurationEditorTableViewCell: MeetingEditorViewCell {
-    /** This is the meeting name section. */
+    /** This is the duration section. */
+    /// The label for the duration time picker
     @IBOutlet weak var durationLabel: UILabel!
+    /// The duration time picker
     @IBOutlet weak var durationDatePicker: UIDatePicker!
     
     /* ################################################################## */
@@ -930,35 +952,56 @@ class DurationEditorTableViewCell: MeetingEditorViewCell {
  This is the table view class for the address entry section (several components).
  */
 class AddressEditorTableViewCell: MeetingEditorViewCell {
+    /// The label for the venue name text entry
     @IBOutlet weak var venueNameLabel: UILabel!
+    /// The vanue name text entry
     @IBOutlet weak var venueNameTextField: UITextField!
     
+    /// The label for the street address text entry
     @IBOutlet weak var streetAddressLabel: UILabel!
+    /// The text entry for the street address
     @IBOutlet weak var streetAddressTextField: UITextField!
     
+    /// The label for the neighborhood text entry
     @IBOutlet weak var neighborhoodLabel: UILabel!
+    /// The neighborhood text entry
     @IBOutlet weak var neighborhoodTextField: UITextField!
     
+    /// The label for the borough text entry
     @IBOutlet weak var boroughLabel: UILabel!
+    /// The borough text entry
     @IBOutlet weak var boroughTextField: UITextField!
     
+    /// The label for the town text entry
     @IBOutlet weak var townLabel: UILabel!
+    /// The town text entry
     @IBOutlet weak var townTextField: UITextField!
     
+    /// The label for the county text entry
     @IBOutlet weak var countyLabel: UILabel!
+    /// The county text entry
     @IBOutlet weak var countyTextField: UITextField!
     
+    /// The label for the state text entry
     @IBOutlet weak var stateLabel: UILabel!
+    /// The state text entry
     @IBOutlet weak var stateTextField: UITextField!
+    /// The label that asks to use abbreviations
     @IBOutlet weak var stateNagLabel: UILabel!
     
+    /// The label for the zip code
     @IBOutlet weak var zipLabel: UILabel!
+    /// The text field to enter the zip code
     @IBOutlet weak var zipTextField: UITextField!
     
+    /// The label for the nation text field
     @IBOutlet weak var nationLabel: UILabel!
+    /// The nation text field
     @IBOutlet weak var nationTextField: UITextField!
     
+    /// The label for the additional address info text field
     @IBOutlet weak var extraInfoLabel: UILabel!
+    /// The text entry for the additional location information
     @IBOutlet weak var extraInfoTextField: UITextField!
     
     /* ################################################################## */
@@ -1128,16 +1171,24 @@ class AddressEditorTableViewCell: MeetingEditorViewCell {
  This is the table view class for the map editor prototype.
  */
 class MapTableViewCell: MeetingEditorViewCell, MKMapViewDelegate {
+    /// These are the three types of map:
     enum MapTypeValues: Int {
+        /// Normal street map
         case Normal = 0
+        /// Annotated satellite view
         case Hybrid
+        /// Pure satellite view
         case Satellite
     }
+    
+    /// Initial map size
     private let _mapSizeInDegrees = 0.125
     
+    /// The map view instance
     @IBOutlet weak var mapView: MKMapView!
+    /// The segmented switch for selecting the map type
     @IBOutlet weak var mapTypeSegmentedView: UISegmentedControl!
-    
+    /// The marker for the meeting
     private var _meetingMarker: MapAnnotation! = nil
     
     /* ################################################################## */
@@ -1295,12 +1346,19 @@ class MapTableViewCell: MeetingEditorViewCell, MKMapViewDelegate {
  This is the table view class for the logitude and Latitude editor prototype.
  */
 class LongLatTableViewCell: MeetingEditorViewCell {
+    /// The label for the longitude text entry
     @IBOutlet weak var longitudeLabel: UILabel!
+    /// The longitude text entry
     @IBOutlet weak var longitudeTextField: UITextField!
+    /// The label for the latitude text entry
     @IBOutlet weak var latitudeLabel: UILabel!
+    /// The latitude text entry
     @IBOutlet weak var latitudeTextField: UITextField!
+    /// The button to set the map from the address location
     @IBOutlet weak var setFromAddressButton: UIButton!
+    /// The button to set the address from the map
     @IBOutlet weak var setFromMapButton: UIButton!
+    /// The mask for the busy animation
     @IBOutlet weak var animationMaskView: UIView!
     
     /* ################################################################## */
@@ -1438,12 +1496,18 @@ class MeetingCommentsEditorTableViewCell: MeetingEditorViewCell, UITextViewDeleg
  This is the table view class for the name editor prototype.
  */
 class FormatsEditorTableViewCell: MeetingEditorViewCell, UITableViewDataSource, UITableViewDelegate {
+    /// The height of a format label
     static let sLabelHeight: CGFloat                    = 44
+    /// The indent for a checkbox from the checkbox
     static let sFormatCheckboxIndent: CGFloat           = 2
+    /// The height of a single format container
     static let sFormatCheckboxContainerHeight: CGFloat  = 44
+    /// The width of a format container
     static let sFormatCheckboxContainerWidth: CGFloat   = 80
 
+    /// The format name label
     @IBOutlet weak var formatNameLabel: UILabel!
+    /// The table view that shows the formats.
     @IBOutlet weak var formatDisplayTableView: UITableView!
     
     /* ################################################################## */

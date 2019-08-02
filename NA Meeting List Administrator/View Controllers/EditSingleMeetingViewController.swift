@@ -34,9 +34,13 @@ class EditSingleMeetingViewController: MeetingEditorBaseViewController {
     /** This is the bar button item for saving changes. */
     @IBOutlet weak var saveButton: UIBarButtonItem!
 
+    /** The mask for the animation. */
     @IBOutlet weak var animationCover: UIView!
+    
+    /** The button that nukes the changes */
     @IBOutlet weak var historyEraserButton: UIButton!
     
+    /** The list controller that "owns" this instance. */
     var ownerController: ListEditableMeetingsViewController! = nil
     
     /* ################################################################## */

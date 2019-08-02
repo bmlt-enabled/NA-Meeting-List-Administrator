@@ -1,0 +1,1564 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>MeetingEditorBaseViewController Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+
+    <a name="//apple_ref/swift/Class/MeetingEditorBaseViewController" class="dashAnchor"></a>
+
+    <a title="MeetingEditorBaseViewController Class Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="../index.html">
+           Docs
+        </a>
+         (100% documented)
+      </p>
+    
+      <p class="header-col--secondary">
+        <form role="search" action="../search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
+      </p>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="https://github.com/bmlt-enabled/NA-Meeting-List-Administrator">
+            <img class="header-icon" src="../img/gh.png"/>
+            View on GitHub
+          </a>
+        </p>
+    
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="../index.html"> Reference</a>
+      <img class="carat" src="../img/carat.png" />
+      MeetingEditorBaseViewController Class Reference
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/AddressEditorTableViewCell.html">AddressEditorTableViewCell</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/AnnotatedSwitch.html">AnnotatedSwitch</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/AppStaticPrefs.html">AppStaticPrefs</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/AppStaticPrefs/PrefsKeys.html">– PrefsKeys</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/CreateSingleMeetingViewController.html">CreateSingleMeetingViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/DeletedMeetingsViewController.html">DeletedMeetingsViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/DeletedRowTableCellView.html">DeletedRowTableCellView</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/DurationEditorTableViewCell.html">DurationEditorTableViewCell</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/EditSingleMeetingViewController.html">EditSingleMeetingViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/EditorTabBarController.html">EditorTabBarController</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/EditorTabBarController/TabIndexes.html">– TabIndexes</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/EditorViewBaseClass.html">EditorViewBaseClass</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/EditorViewControllerBaseClass.html">EditorViewControllerBaseClass</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/FormatsEditorTableViewCell.html">FormatsEditorTableViewCell</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/HistoryDetailViewController.html">HistoryDetailViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/HistoryListTableViewCell.html">HistoryListTableViewCell</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/HistoryListViewController.html">HistoryListViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/InitialViewController.html">InitialViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/ListEditableMeetingsViewController.html">ListEditableMeetingsViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/ListEditableMeetingsViewController/SortKey.html">– SortKey</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/LongLatTableViewCell.html">LongLatTableViewCell</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/MainAppDelegate.html">MainAppDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/MapAnnotation.html">MapAnnotation</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/MapMarker.html">MapMarker</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/MapTableViewCell.html">MapTableViewCell</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/MapTableViewCell/MapTypeValues.html">– MapTypeValues</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/MeetingCommentsEditorTableViewCell.html">MeetingCommentsEditorTableViewCell</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/MeetingEditorBaseViewController.html">MeetingEditorBaseViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/MeetingEditorViewCell.html">MeetingEditorViewCell</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/MeetingNameEditorTableViewCell.html">MeetingNameEditorTableViewCell</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/MeetingTableViewCell.html">MeetingTableViewCell</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/PublishedEditorTableViewCell.html">PublishedEditorTableViewCell</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/SelectServiceBodiesViewController.html">SelectServiceBodiesViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/ServiceBodyTableCellView.html">ServiceBodyTableCellView</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/SettingsViewController.html">SettingsViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/StartTimeEditorTableViewCell.html">StartTimeEditorTableViewCell</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/ThreeStateCheckbox.html">ThreeStateCheckbox</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/WeekdayEditorTableViewCell.html">WeekdayEditorTableViewCell</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/WeekdaySwitchContainerView.html">WeekdaySwitchContainerView</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/WorldIDEditorTableViewCell.html">WorldIDEditorTableViewCell</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/String.html">String</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/UIView.html">UIView</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content">
+            <h1>MeetingEditorBaseViewController</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">class</span> <span class="kt">MeetingEditorBaseViewController</span> <span class="p">:</span> <span class="kt"><a href="../Classes/EditorViewControllerBaseClass.html">EditorViewControllerBaseClass</a></span><span class="p">,</span> <span class="kt">UITableViewDataSource</span><span class="p">,</span> <span class="kt">UITableViewDelegate</span><span class="p">,</span> <span class="kt">MKMapViewDelegate</span><span class="p">,</span> <span class="kt">CLLocationManagerDelegate</span></code></pre>
+
+                </div>
+              </div>
+            <p>This class describes the basic functionality for a full meeting editor.</p>
+
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-content">
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:29NA_Meeting_List_Administrator0B24EditorBaseViewControllerC27_publishedSingleServiceBody33_B00EB6B51176825B7D2775D7C6BE04CELL12CoreGraphics7CGFloatVvp"></a>
+                    <a name="//apple_ref/swift/Property/_publishedSingleServiceBody" class="dashAnchor"></a>
+                    <a class="token" href="#/s:29NA_Meeting_List_Administrator0B24EditorBaseViewControllerC27_publishedSingleServiceBody33_B00EB6B51176825B7D2775D7C6BE04CELL12CoreGraphics7CGFloatVvp">_publishedSingleServiceBody</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The height of the published cell if we only have one Service body.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">private</span> <span class="k">let</span> <span class="nv">_publishedSingleServiceBody</span><span class="p">:</span> <span class="kt">CGFloat</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:29NA_Meeting_List_Administrator0B24EditorBaseViewControllerC26_publishedMultiServiceBody33_B00EB6B51176825B7D2775D7C6BE04CELL12CoreGraphics7CGFloatVvp"></a>
+                    <a name="//apple_ref/swift/Property/_publishedMultiServiceBody" class="dashAnchor"></a>
+                    <a class="token" href="#/s:29NA_Meeting_List_Administrator0B24EditorBaseViewControllerC26_publishedMultiServiceBody33_B00EB6B51176825B7D2775D7C6BE04CELL12CoreGraphics7CGFloatVvp">_publishedMultiServiceBody</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The height of the Published cell if we can select Service bodies.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">private</span> <span class="k">let</span> <span class="nv">_publishedMultiServiceBody</span><span class="p">:</span> <span class="kt">CGFloat</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:29NA_Meeting_List_Administrator0B24EditorBaseViewControllerC12_reuseIDBase33_B00EB6B51176825B7D2775D7C6BE04CELLSSvp"></a>
+                    <a name="//apple_ref/swift/Property/_reuseIDBase" class="dashAnchor"></a>
+                    <a class="token" href="#/s:29NA_Meeting_List_Administrator0B24EditorBaseViewControllerC12_reuseIDBase33_B00EB6B51176825B7D2775D7C6BE04CELLSSvp">_reuseIDBase</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>We use this as a common prefix for our reuse IDs, and the index as the suffix.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">private</span> <span class="k">let</span> <span class="nv">_reuseIDBase</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:29NA_Meeting_List_Administrator0B24EditorBaseViewControllerC19_internalRowHeights33_B00EB6B51176825B7D2775D7C6BE04CELLSDySS12CoreGraphics7CGFloatVGvp"></a>
+                    <a name="//apple_ref/swift/Property/_internalRowHeights" class="dashAnchor"></a>
+                    <a class="token" href="#/s:29NA_Meeting_List_Administrator0B24EditorBaseViewControllerC19_internalRowHeights33_B00EB6B51176825B7D2775D7C6BE04CELLSDySS12CoreGraphics7CGFloatVGvp">_internalRowHeights</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This is a table of heights for our table rows.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">private</span> <span class="k">var</span> <span class="nv">_internalRowHeights</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">CGFloat</span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:29NA_Meeting_List_Administrator0B24EditorBaseViewControllerC18_publishedTopColor33_B00EB6B51176825B7D2775D7C6BE04CELLSo7UIColorCSgvp"></a>
+                    <a name="//apple_ref/swift/Property/_publishedTopColor" class="dashAnchor"></a>
+                    <a class="token" href="#/s:29NA_Meeting_List_Administrator0B24EditorBaseViewControllerC18_publishedTopColor33_B00EB6B51176825B7D2775D7C6BE04CELLSo7UIColorCSgvp">_publishedTopColor</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>These store the original (unpublished) colors for the background gradient.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">private</span> <span class="k">var</span> <span class="nv">_publishedTopColor</span><span class="p">:</span> <span class="kt">UIColor</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:29NA_Meeting_List_Administrator0B24EditorBaseViewControllerC21_publishedBottomColor33_B00EB6B51176825B7D2775D7C6BE04CELLSo7UIColorCSgvp"></a>
+                    <a name="//apple_ref/swift/Property/_publishedBottomColor" class="dashAnchor"></a>
+                    <a class="token" href="#/s:29NA_Meeting_List_Administrator0B24EditorBaseViewControllerC21_publishedBottomColor33_B00EB6B51176825B7D2775D7C6BE04CELLSo7UIColorCSgvp">_publishedBottomColor</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The gradient bottom color for a published meeting.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">private</span> <span class="k">var</span> <span class="nv">_publishedBottomColor</span><span class="p">:</span> <span class="kt">UIColor</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:29NA_Meeting_List_Administrator0B24EditorBaseViewControllerC9_geocoder33_B00EB6B51176825B7D2775D7C6BE04CELLSo10CLGeocoderCSgvp"></a>
+                    <a name="//apple_ref/swift/Property/_geocoder" class="dashAnchor"></a>
+                    <a class="token" href="#/s:29NA_Meeting_List_Administrator0B24EditorBaseViewControllerC9_geocoder33_B00EB6B51176825B7D2775D7C6BE04CELLSo10CLGeocoderCSgvp">_geocoder</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This holds our geocoder object when we are looking up addresses.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">private</span> <span class="k">var</span> <span class="nv">_geocoder</span><span class="p">:</span> <span class="kt">CLGeocoder</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:29NA_Meeting_List_Administrator0B24EditorBaseViewControllerC16_locationManager33_B00EB6B51176825B7D2775D7C6BE04CELLSo010CLLocationJ0CSgvp"></a>
+                    <a name="//apple_ref/swift/Property/_locationManager" class="dashAnchor"></a>
+                    <a class="token" href="#/s:29NA_Meeting_List_Administrator0B24EditorBaseViewControllerC16_locationManager33_B00EB6B51176825B7D2775D7C6BE04CELLSo010CLLocationJ0CSgvp">_locationManager</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This will hold our location manager.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">private</span> <span class="k">var</span> <span class="nv">_locationManager</span><span class="p">:</span> <span class="kt">CLLocationManager</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:29NA_Meeting_List_Administrator0B24EditorBaseViewControllerC16_addressInstance33_B00EB6B51176825B7D2775D7C6BE04CELLAA07Addresse5TableG4CellCSgvp"></a>
+                    <a name="//apple_ref/swift/Property/_addressInstance" class="dashAnchor"></a>
+                    <a class="token" href="#/s:29NA_Meeting_List_Administrator0B24EditorBaseViewControllerC16_addressInstance33_B00EB6B51176825B7D2775D7C6BE04CELLAA07Addresse5TableG4CellCSgvp">_addressInstance</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This will hold our address section (for geocoding and reverse geocoding).</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">private</span> <span class="k">var</span> <span class="nv">_addressInstance</span><span class="p">:</span> <span class="kt"><a href="../Classes/AddressEditorTableViewCell.html">AddressEditorTableViewCell</a></span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:29NA_Meeting_List_Administrator0B24EditorBaseViewControllerC16_longLatInstance33_B00EB6B51176825B7D2775D7C6BE04CELLAA04Longj5TableG4CellCSgvp"></a>
+                    <a name="//apple_ref/swift/Property/_longLatInstance" class="dashAnchor"></a>
+                    <a class="token" href="#/s:29NA_Meeting_List_Administrator0B24EditorBaseViewControllerC16_longLatInstance33_B00EB6B51176825B7D2775D7C6BE04CELLAA04Longj5TableG4CellCSgvp">_longLatInstance</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This will hold our long/lat section (for geocoding and reverse geocoding).</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">private</span> <span class="k">var</span> <span class="nv">_longLatInstance</span><span class="p">:</span> <span class="kt"><a href="../Classes/LongLatTableViewCell.html">LongLatTableViewCell</a></span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:29NA_Meeting_List_Administrator0B24EditorBaseViewControllerC12_mapInstance33_B00EB6B51176825B7D2775D7C6BE04CELLAA08MapTableG4CellCSgvp"></a>
+                    <a name="//apple_ref/swift/Property/_mapInstance" class="dashAnchor"></a>
+                    <a class="token" href="#/s:29NA_Meeting_List_Administrator0B24EditorBaseViewControllerC12_mapInstance33_B00EB6B51176825B7D2775D7C6BE04CELLAA08MapTableG4CellCSgvp">_mapInstance</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This will hold our map section (for geocoding and reverse geocoding).</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">private</span> <span class="k">var</span> <span class="nv">_mapInstance</span><span class="p">:</span> <span class="kt"><a href="../Classes/MapTableViewCell.html">MapTableViewCell</a></span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:29NA_Meeting_List_Administrator0B24EditorBaseViewControllerC016_formatContainerG033_B00EB6B51176825B7D2775D7C6BE04CELLAA07Formatse5TableG4CellCSgvp"></a>
+                    <a name="//apple_ref/swift/Property/_formatContainerView" class="dashAnchor"></a>
+                    <a class="token" href="#/s:29NA_Meeting_List_Administrator0B24EditorBaseViewControllerC016_formatContainerG033_B00EB6B51176825B7D2775D7C6BE04CELLAA07Formatse5TableG4CellCSgvp">_formatContainerView</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This will reference our formats container.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">private</span> <span class="k">var</span> <span class="nv">_formatContainerView</span><span class="p">:</span> <span class="kt"><a href="../Classes/FormatsEditorTableViewCell.html">FormatsEditorTableViewCell</a></span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:29NA_Meeting_List_Administrator0B24EditorBaseViewControllerC14_keyboardShown33_B00EB6B51176825B7D2775D7C6BE04CELLSbvp"></a>
+                    <a name="//apple_ref/swift/Property/_keyboardShown" class="dashAnchor"></a>
+                    <a class="token" href="#/s:29NA_Meeting_List_Administrator0B24EditorBaseViewControllerC14_keyboardShown33_B00EB6B51176825B7D2775D7C6BE04CELLSbvp">_keyboardShown</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This tracks the state of the keyboard</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">private</span> <span class="k">var</span> <span class="nv">_keyboardShown</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:29NA_Meeting_List_Administrator0B24EditorBaseViewControllerC15_keyboardOffset33_B00EB6B51176825B7D2775D7C6BE04CELL12CoreGraphics7CGFloatVvp"></a>
+                    <a name="//apple_ref/swift/Property/_keyboardOffset" class="dashAnchor"></a>
+                    <a class="token" href="#/s:29NA_Meeting_List_Administrator0B24EditorBaseViewControllerC15_keyboardOffset33_B00EB6B51176825B7D2775D7C6BE04CELL12CoreGraphics7CGFloatVvp">_keyboardOffset</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This tracks the state of the keyboard</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">private</span> <span class="k">var</span> <span class="nv">_keyboardOffset</span><span class="p">:</span> <span class="kt">CGFloat</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:29NA_Meeting_List_Administrator0B24EditorBaseViewControllerC14publishedItemsAA09Publishede5TableG4CellCSgvp"></a>
+                    <a name="//apple_ref/swift/Property/publishedItems" class="dashAnchor"></a>
+                    <a class="token" href="#/s:29NA_Meeting_List_Administrator0B24EditorBaseViewControllerC14publishedItemsAA09Publishede5TableG4CellCSgvp">publishedItems</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This will reference the top item in the window (the <q>Published</q> handler).</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">publishedItems</span><span class="p">:</span> <span class="kt"><a href="../Classes/PublishedEditorTableViewCell.html">PublishedEditorTableViewCell</a></span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:29NA_Meeting_List_Administrator0B24EditorBaseViewControllerC13meetingObject10BMLTiOSLib0kl8EditableB4NodeCSgvp"></a>
+                    <a name="//apple_ref/swift/Property/meetingObject" class="dashAnchor"></a>
+                    <a class="token" href="#/s:29NA_Meeting_List_Administrator0B24EditorBaseViewControllerC13meetingObject10BMLTiOSLib0kl8EditableB4NodeCSgvp">meetingObject</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This is the meeting object for this instance.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">meetingObject</span><span class="p">:</span> <span class="kt">BMLTiOSLibEditableMeetingNode</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@NA_Meeting_List_Administrator@objc(cs)MeetingEditorBaseViewController(py)tableView"></a>
+                    <a name="//apple_ref/swift/Property/tableView" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@NA_Meeting_List_Administrator@objc(cs)MeetingEditorBaseViewController(py)tableView">tableView</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This is the structural table view</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@IBOutlet</span>
+<span class="k">var</span> <span class="nv">tableView</span><span class="p">:</span> <span class="kt">UITableView</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@NA_Meeting_List_Administrator@objc(cs)MeetingEditorBaseViewController(py)unpublishedTopColor"></a>
+                    <a name="//apple_ref/swift/Property/unpublishedTopColor" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@NA_Meeting_List_Administrator@objc(cs)MeetingEditorBaseViewController(py)unpublishedTopColor">unpublishedTopColor</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>If the meeting is unpublished, we have a different color background gradient.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@IBInspectable</span>
+<span class="k">var</span> <span class="nv">unpublishedTopColor</span><span class="p">:</span> <span class="kt">UIColor</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@NA_Meeting_List_Administrator@objc(cs)MeetingEditorBaseViewController(py)unpublishedBottomColor"></a>
+                    <a name="//apple_ref/swift/Property/unpublishedBottomColor" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@NA_Meeting_List_Administrator@objc(cs)MeetingEditorBaseViewController(py)unpublishedBottomColor">unpublishedBottomColor</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The gradient bottom color for an unpublished meeting.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@IBInspectable</span>
+<span class="k">var</span> <span class="nv">unpublishedBottomColor</span><span class="p">:</span> <span class="kt">UIColor</span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Overridden%20Base%20Class%20Methods"></a>
+                <a name="//apple_ref/swift/Section/Overridden Base Class Methods" class="dashAnchor"></a>
+                <a href="#/Overridden%20Base%20Class%20Methods">
+                  <h3 class="section-name">Overridden Base Class Methods</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@NA_Meeting_List_Administrator@objc(cs)MeetingEditorBaseViewController(im)viewDidLoad"></a>
+                    <a name="//apple_ref/swift/Method/viewDidLoad()" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@NA_Meeting_List_Administrator@objc(cs)MeetingEditorBaseViewController(im)viewDidLoad">viewDidLoad()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>We take this opportunity to save our published colors.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">override</span> <span class="kd">func</span> <span class="nf">viewDidLoad</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@NA_Meeting_List_Administrator@objc(cs)MeetingEditorBaseViewController(im)viewDidLayoutSubviews"></a>
+                    <a name="//apple_ref/swift/Method/viewDidLayoutSubviews()" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@NA_Meeting_List_Administrator@objc(cs)MeetingEditorBaseViewController(im)viewDidLayoutSubviews">viewDidLayoutSubviews()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>We take this opportunity to save our published colors.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">override</span> <span class="kd">func</span> <span class="nf">viewDidLayoutSubviews</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@NA_Meeting_List_Administrator@objc(cs)MeetingEditorBaseViewController(im)viewWillAppear:"></a>
+                    <a name="//apple_ref/swift/Method/viewWillAppear(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@NA_Meeting_List_Administrator@objc(cs)MeetingEditorBaseViewController(im)viewWillAppear:">viewWillAppear(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Called as the view is about to appear.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">override</span> <span class="kd">func</span> <span class="nf">viewWillAppear</span><span class="p">(</span><span class="n">_</span> <span class="nv">animated</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>animated</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>True, if the appearance is animated.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@NA_Meeting_List_Administrator@objc(cs)MeetingEditorBaseViewController(im)viewWillDisappear:"></a>
+                    <a name="//apple_ref/swift/Method/viewWillDisappear(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@NA_Meeting_List_Administrator@objc(cs)MeetingEditorBaseViewController(im)viewWillDisappear:">viewWillDisappear(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Called as the view is about to appear.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">override</span> <span class="kd">func</span> <span class="nf">viewWillDisappear</span><span class="p">(</span><span class="n">_</span> <span class="nv">animated</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>animated</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>True, if the appearance is animated.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/IB%20Methods"></a>
+                <a name="//apple_ref/swift/Section/IB Methods" class="dashAnchor"></a>
+                <a href="#/IB%20Methods">
+                  <h3 class="section-name">IB Methods</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@NA_Meeting_List_Administrator@objc(cs)MeetingEditorBaseViewController(im)dealloc"></a>
+                    <a name="//apple_ref/swift/Method/deinit" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@NA_Meeting_List_Administrator@objc(cs)MeetingEditorBaseViewController(im)dealloc">deinit</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>De-Initializer.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">deinit</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/IB%20Methods2"></a>
+                <a name="//apple_ref/swift/Section/IB Methods" class="dashAnchor"></a>
+                <a href="#/IB%20Methods2">
+                  <h3 class="section-name">IB Methods</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@NA_Meeting_List_Administrator@objc(cs)MeetingEditorBaseViewController(im)tapInBackground:"></a>
+                    <a name="//apple_ref/swift/Method/tapInBackground(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@NA_Meeting_List_Administrator@objc(cs)MeetingEditorBaseViewController(im)tapInBackground:">tapInBackground(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Called when the main view is tapped (closes any open keyboards).</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@IBAction</span>
+<span class="kd">func</span> <span class="nf">tapInBackground</span><span class="p">(</span><span class="n">_</span> <span class="nv">sender</span><span class="p">:</span> <span class="kt">UITapGestureRecognizer</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>sender</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The IB item that called this.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Instance%20Methods"></a>
+                <a name="//apple_ref/swift/Section/Instance Methods" class="dashAnchor"></a>
+                <a href="#/Instance%20Methods">
+                  <h3 class="section-name">Instance Methods</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@NA_Meeting_List_Administrator@objc(cs)MeetingEditorBaseViewController(im)keyboardWillShow:"></a>
+                    <a name="//apple_ref/swift/Method/keyboardWillShow(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@NA_Meeting_List_Administrator@objc(cs)MeetingEditorBaseViewController(im)keyboardWillShow:">keyboardWillShow(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This is a callback for when the keyboard will appear. It makes sure that we have room to diplay whatever we&rsquo;re editing.</p>
+
+<p>We will adjust the screen to show the text item above the keyboard.</p>
+
+<p>If the text item is below the keyboard, we temporarily enlarge the content size for the table, and scroll down, then reset it when we&rsquo;re done.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">func</span> <span class="nf">keyboardWillShow</span><span class="p">(</span><span class="n">_</span> <span class="nv">inNotification</span><span class="p">:</span> <span class="kt">NSNotification</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@NA_Meeting_List_Administrator@objc(cs)MeetingEditorBaseViewController(im)keyboardWillHide:"></a>
+                    <a name="//apple_ref/swift/Method/keyboardWillHide(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@NA_Meeting_List_Administrator@objc(cs)MeetingEditorBaseViewController(im)keyboardWillHide:">keyboardWillHide(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This is a callback for when the keyboard will disappear.</p>
+
+<p>We use this to unwind any scroll and content size changes.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">func</span> <span class="nf">keyboardWillHide</span><span class="p">(</span><span class="nv">_</span><span class="p">:</span> <span class="kt">NSNotification</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:29NA_Meeting_List_Administrator0B24EditorBaseViewControllerC06updateE7DisplayyyAA0beG4CellCSgF"></a>
+                    <a name="//apple_ref/swift/Method/updateEditorDisplay(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:29NA_Meeting_List_Administrator0B24EditorBaseViewControllerC06updateE7DisplayyyAA0beG4CellCSgF">updateEditorDisplay(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Called when something changes in the various controls.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">updateEditorDisplay</span><span class="p">(</span><span class="n">_</span> <span class="nv">inChangedCell</span><span class="p">:</span> <span class="kt"><a href="../Classes/MeetingEditorViewCell.html">MeetingEditorViewCell</a></span><span class="o">!</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>inChangedCell</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The table cell object that experienced the change. If nil, then no meeting cell was changed. nil is default.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:29NA_Meeting_List_Administrator0B24EditorBaseViewControllerC13closeKeyboardyyF"></a>
+                    <a name="//apple_ref/swift/Method/closeKeyboard()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:29NA_Meeting_List_Administrator0B24EditorBaseViewControllerC13closeKeyboardyyF">closeKeyboard()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Closes any open keyboards.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">closeKeyboard</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:29NA_Meeting_List_Administrator0B24EditorBaseViewControllerC17updateCoordinatesyySo22CLLocationCoordinate2DVF"></a>
+                    <a name="//apple_ref/swift/Method/updateCoordinates(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:29NA_Meeting_List_Administrator0B24EditorBaseViewControllerC17updateCoordinatesyySo22CLLocationCoordinate2DVF">updateCoordinates(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Updates the coordinates in our Long/Lat editor</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">updateCoordinates</span><span class="p">(</span><span class="n">_</span> <span class="nv">inCoords</span><span class="p">:</span> <span class="kt">CLLocationCoordinate2D</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>inCoords</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The coordinates to set the text items to.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:29NA_Meeting_List_Administrator0B24EditorBaseViewControllerC18lookUpAddressForMeyyF"></a>
+                    <a name="//apple_ref/swift/Method/lookUpAddressForMe()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:29NA_Meeting_List_Administrator0B24EditorBaseViewControllerC18lookUpAddressForMeyyF">lookUpAddressForMe()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This starts a geocode, based on the current address in the address editor.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">lookUpAddressForMe</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:29NA_Meeting_List_Administrator0B24EditorBaseViewControllerC23gecodeCompletionHandler_5errorySaySo11CLPlacemarkCGSg_s5Error_pSgtF"></a>
+                    <a name="//apple_ref/swift/Method/gecodeCompletionHandler(_:error:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:29NA_Meeting_List_Administrator0B24EditorBaseViewControllerC23gecodeCompletionHandler_5errorySaySo11CLPlacemarkCGSg_s5Error_pSgtF">gecodeCompletionHandler(_:error:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Called after the address geocode is done.</p>
+
+<p>:param: placeMarks
+:param: error</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">gecodeCompletionHandler</span><span class="p">(</span><span class="n">_</span> <span class="nv">placeMarks</span><span class="p">:</span> <span class="p">[</span><span class="kt">CLPlacemark</span><span class="p">]?,</span> <span class="nv">error</span><span class="p">:</span> <span class="kt">Error</span><span class="p">?)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:29NA_Meeting_List_Administrator0B24EditorBaseViewControllerC22lookUpCoordinatesForMeyyF"></a>
+                    <a name="//apple_ref/swift/Method/lookUpCoordinatesForMe()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:29NA_Meeting_List_Administrator0B24EditorBaseViewControllerC22lookUpCoordinatesForMeyyF">lookUpCoordinatesForMe()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This starts a reverse geocode, based on the coordinates in the map/long/lat editor.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">lookUpCoordinatesForMe</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:29NA_Meeting_List_Administrator0B24EditorBaseViewControllerC30reverseGecodeCompletionHandler_5errorySaySo11CLPlacemarkCGSg_s5Error_pSgtF"></a>
+                    <a name="//apple_ref/swift/Method/reverseGecodeCompletionHandler(_:error:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:29NA_Meeting_List_Administrator0B24EditorBaseViewControllerC30reverseGecodeCompletionHandler_5errorySaySo11CLPlacemarkCGSg_s5Error_pSgtF">reverseGecodeCompletionHandler(_:error:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Called after the long/lat is reverse geocoded.</p>
+
+<p>:param: placeMarks
+:param: error</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">reverseGecodeCompletionHandler</span><span class="p">(</span><span class="n">_</span> <span class="nv">placeMarks</span><span class="p">:</span> <span class="p">[</span><span class="kt">CLPlacemark</span><span class="p">]?,</span> <span class="nv">error</span><span class="p">:</span> <span class="kt">Error</span><span class="p">?)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/UITableViewDataSource%20Methods"></a>
+                <a name="//apple_ref/swift/Section/UITableViewDataSource Methods" class="dashAnchor"></a>
+                <a href="#/UITableViewDataSource%20Methods">
+                  <h3 class="section-name">UITableViewDataSource Methods</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@NA_Meeting_List_Administrator@objc(cs)MeetingEditorBaseViewController(im)tableView:numberOfRowsInSection:"></a>
+                    <a name="//apple_ref/swift/Method/tableView(_:numberOfRowsInSection:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@NA_Meeting_List_Administrator@objc(cs)MeetingEditorBaseViewController(im)tableView:numberOfRowsInSection:">tableView(_:numberOfRowsInSection:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">tableView</span><span class="p">(</span><span class="n">_</span> <span class="nv">tableView</span><span class="p">:</span> <span class="kt">UITableView</span><span class="p">,</span> <span class="n">numberOfRowsInSection</span> <span class="nv">section</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>tableView</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The UITableView object requesting the view</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>numberOfRowsInSection</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The section index (0-based).</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@NA_Meeting_List_Administrator@objc(cs)MeetingEditorBaseViewController(im)tableView:cellForRowAtIndexPath:"></a>
+                    <a name="//apple_ref/swift/Method/tableView(_:cellForRowAt:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@NA_Meeting_List_Administrator@objc(cs)MeetingEditorBaseViewController(im)tableView:cellForRowAtIndexPath:">tableView(_:cellForRowAt:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This is the routine that creates a new table row for the Meeting indicated by the index.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">tableView</span><span class="p">(</span><span class="n">_</span> <span class="nv">tableView</span><span class="p">:</span> <span class="kt">UITableView</span><span class="p">,</span> <span class="n">cellForRowAt</span> <span class="nv">indexPath</span><span class="p">:</span> <span class="kt">IndexPath</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UITableViewCell</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>tableView</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The UITableView object requesting the view</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>cellForRowAt</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The IndexPath of the requested cell.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/UITableViewDelegate%20Methods"></a>
+                <a name="//apple_ref/swift/Section/UITableViewDelegate Methods" class="dashAnchor"></a>
+                <a href="#/UITableViewDelegate%20Methods">
+                  <h3 class="section-name">UITableViewDelegate Methods</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@NA_Meeting_List_Administrator@objc(cs)MeetingEditorBaseViewController(im)tableView:heightForRowAtIndexPath:"></a>
+                    <a name="//apple_ref/swift/Method/tableView(_:heightForRowAt:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@NA_Meeting_List_Administrator@objc(cs)MeetingEditorBaseViewController(im)tableView:heightForRowAtIndexPath:">tableView(_:heightForRowAt:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">tableView</span><span class="p">(</span><span class="n">_</span> <span class="nv">tableView</span><span class="p">:</span> <span class="kt">UITableView</span><span class="p">,</span> <span class="n">heightForRowAt</span> <span class="nv">indexPath</span><span class="p">:</span> <span class="kt">IndexPath</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">CGFloat</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>tableView</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The UITableView object requesting the view</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>heightForRowAt</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The IndexPath of the requested cell.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/CLLocationManagerDelegate%20Methods"></a>
+                <a name="//apple_ref/swift/Section/CLLocationManagerDelegate Methods" class="dashAnchor"></a>
+                <a href="#/CLLocationManagerDelegate%20Methods">
+                  <h3 class="section-name">CLLocationManagerDelegate Methods</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@NA_Meeting_List_Administrator@objc(cs)MeetingEditorBaseViewController(im)locationManager:didFailWithError:"></a>
+                    <a name="//apple_ref/swift/Method/locationManager(_:didFailWithError:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@NA_Meeting_List_Administrator@objc(cs)MeetingEditorBaseViewController(im)locationManager:didFailWithError:">locationManager(_:didFailWithError:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Called if there was a failure with the location manager.</p>
+
+<p>:param: manager The Location Manager object that had the error.
+:param: error The error in question.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">locationManager</span><span class="p">(</span><span class="n">_</span> <span class="nv">manager</span><span class="p">:</span> <span class="kt">CLLocationManager</span><span class="p">,</span> <span class="n">didFailWithError</span> <span class="nv">error</span><span class="p">:</span> <span class="kt">Error</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@NA_Meeting_List_Administrator@objc(cs)MeetingEditorBaseViewController(im)locationManager:didUpdateLocations:"></a>
+                    <a name="//apple_ref/swift/Method/locationManager(_:didUpdateLocations:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@NA_Meeting_List_Administrator@objc(cs)MeetingEditorBaseViewController(im)locationManager:didUpdateLocations:">locationManager(_:didUpdateLocations:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Called when the location manager updates the locations.</p>
+
+<p>:param: manager The Location Manager object that had the event.
+:param: locations an array of updated locations.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">locationManager</span><span class="p">(</span><span class="n">_</span> <span class="nv">manager</span><span class="p">:</span> <span class="kt">CLLocationManager</span><span class="p">,</span> <span class="n">didUpdateLocations</span> <span class="nv">locations</span><span class="p">:</span> <span class="p">[</span><span class="kt">CLLocation</span><span class="p">])</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+      </article>
+    </div>
+    <section class="footer">
+      <p>&copy; 2019 <a class="link" href="https://bmlt.app" target="_blank" rel="external">BMLT-Enabled</a>. All rights reserved. (Last updated: 2019-08-02)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+    </section>
+  </body>
+</div>
+</html>

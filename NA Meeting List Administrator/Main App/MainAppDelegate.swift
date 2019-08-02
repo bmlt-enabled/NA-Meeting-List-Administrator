@@ -21,10 +21,13 @@
 import UIKit
 import BMLTiOSLib
 
-@UIApplicationMain
 /* ###################################################################################################################################### */
 // MARK: - Main App Delegate Class -
 /* ###################################################################################################################################### */
+/**
+ The main application delegate class for the app.
+ */
+@UIApplicationMain
 class MainAppDelegate: UIResponder, UIApplicationDelegate, BMLTiOSLibDelegate {
     /* ################################################################## */
     // MARK: Private Properties
