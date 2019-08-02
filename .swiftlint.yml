@@ -14,24 +14,23 @@ opt_in_rules:
 excluded:
 - Pods
 - Carthage
-- Project/R.generated.swift
 
 file_length:
-- 1600 # warning
-- 3000 # error
+- 1649 # warning
+- 1650 # error
 
 function_body_length:
-- 55 # warning
-- 70 # error
+- 54 # warning
+- 55 # error
 
 type_body_length:
-- 450 # warning
-- 500 # error
+- 449 # warning
+- 450 # error
 
 line_length:
-- 400 # warning
-- 500 # error
+- 399 # warning
+- 400 # error
 
 cyclomatic_complexity:
 - 13 # warning
-- 15 # error
+- 14 # error
