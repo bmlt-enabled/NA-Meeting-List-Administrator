@@ -2,10 +2,10 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:LICENSE.txt">
+      location = "group:Podfile">
    </FileRef>
    <FileRef
-      location = "group:Podfile">
+      location = "group:LICENSE">
    </FileRef>
    <FileRef
       location = "group:README.md">

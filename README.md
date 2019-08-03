@@ -46,6 +46,7 @@ CHANGELIST
 - Improved the appearance of the launch screen.
 - Improved the behavior of the layout on X-phones.
 - Improved documentation for 100% Jazzy docs.
+- Switched to MIT License.
 
 ***Version 1.3.2.3000* ** *- January 10, 2019*
 
