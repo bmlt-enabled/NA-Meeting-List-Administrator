@@ -26,12 +26,120 @@
 		77B7D1221E3AA0A80031FF6B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 77B7D1201E3AA0A80031FF6B /* Localizable.strings */; };
 		77D92ED71E4B50CC009F02B2 /* MeetingEditorBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D92ED61E4B50CC009F02B2 /* MeetingEditorBaseViewController.swift */; };
 		77D92EDB1E4B5146009F02B2 /* EditSingleMeetingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D92EDA1E4B5146009F02B2 /* EditSingleMeetingViewController.swift */; };
-		D4021D5A22F46EAE0031340C /* BMLTiOSLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4021D5822F46EAE0031340C /* BMLTiOSLib.framework */; };
-		D4021D5B22F46EAE0031340C /* KeychainSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4021D5922F46EAE0031340C /* KeychainSwift.framework */; };
-		D4021D5C22F46EEA0031340C /* BMLTiOSLib.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D4021D5822F46EAE0031340C /* BMLTiOSLib.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		D4021D5D22F46EF10031340C /* KeychainSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D4021D5922F46EAE0031340C /* KeychainSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D43EB9252311B34200787D46 /* BMLTiOSLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D43EB9002311B31E00787D46 /* BMLTiOSLib.framework */; };
+		D43EB9262311B34200787D46 /* BMLTiOSLib.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D43EB9002311B31E00787D46 /* BMLTiOSLib.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D43EB9292311B34200787D46 /* KeychainSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D43EB9122311B31E00787D46 /* KeychainSwift.framework */; };
+		D43EB92A2311B34200787D46 /* KeychainSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D43EB9122311B31E00787D46 /* KeychainSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D492E55A21D53BFE0085DA47 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D492E55421D538EC0085DA47 /* InfoPlist.strings */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D43EB8FF2311B31E00787D46 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D43EB8F92311B31D00787D46 /* BMLTiOSLib.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 77DBD7981FDEAEEB008F110F;
+			remoteInfo = BMLTiOSLib;
+		};
+		D43EB9012311B31E00787D46 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D43EB8F92311B31D00787D46 /* BMLTiOSLib.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 77DBD7AE1FDEB010008F110F;
+			remoteInfo = "BMLTiOSLib Test Harness";
+		};
+		D43EB9032311B31E00787D46 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D43EB8F92311B31D00787D46 /* BMLTiOSLib.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 772570CD1FDF12C400297473;
+			remoteInfo = "BMLTiOSLib Test Harness (Direct)";
+		};
+		D43EB9112311B31E00787D46 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D43EB9052311B31E00787D46 /* KeychainSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 7ED6C96C1B1C118F00FE8090;
+			remoteInfo = KeychainSwift;
+		};
+		D43EB9132311B31E00787D46 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D43EB9052311B31E00787D46 /* KeychainSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 232B4C7A1BC29950001F2B7A;
+			remoteInfo = "KeychainSwift-macOS";
+		};
+		D43EB9152311B31E00787D46 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D43EB9052311B31E00787D46 /* KeychainSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 232B4C8A1BC29984001F2B7A;
+			remoteInfo = "KeychainSwift-watchOS";
+		};
+		D43EB9172311B31E00787D46 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D43EB9052311B31E00787D46 /* KeychainSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 23E785601BDA410C00B7564A;
+			remoteInfo = "KeychainSwift-tvOS";
+		};
+		D43EB9192311B31E00787D46 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D43EB9052311B31E00787D46 /* KeychainSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 7ED6C9771B1C118F00FE8090;
+			remoteInfo = KeychainSwiftTests;
+		};
+		D43EB91B2311B31E00787D46 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D43EB9052311B31E00787D46 /* KeychainSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 7ED6C99D1B1C133500FE8090;
+			remoteInfo = Demo;
+		};
+		D43EB91D2311B31E00787D46 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D43EB9052311B31E00787D46 /* KeychainSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 7E3A6B601D3F62C2007C5B1F;
+			remoteInfo = "macOS Tests";
+		};
+		D43EB91F2311B31E00787D46 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D43EB9052311B31E00787D46 /* KeychainSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 7E3A6B7B1D3F6779007C5B1F;
+			remoteInfo = "macOS Demo";
+		};
+		D43EB9212311B32900787D46 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D43EB8F92311B31D00787D46 /* BMLTiOSLib.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 77DBD7971FDEAEEB008F110F;
+			remoteInfo = BMLTiOSLib;
+		};
+		D43EB9232311B32900787D46 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D43EB9052311B31E00787D46 /* KeychainSwift.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 7ED6C96B1B1C118F00FE8090;
+			remoteInfo = KeychainSwift;
+		};
+		D43EB9272311B34200787D46 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D43EB8F92311B31D00787D46 /* BMLTiOSLib.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 77DBD7971FDEAEEB008F110F;
+			remoteInfo = BMLTiOSLib;
+		};
+		D43EB92B2311B34200787D46 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D43EB9052311B31E00787D46 /* KeychainSwift.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 7ED6C96B1B1C118F00FE8090;
+			remoteInfo = KeychainSwift;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		D4021D4A22F46E0F0031340C /* Embed Frameworks */ = {
@@ -40,8 +148,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				D4021D5D22F46EF10031340C /* KeychainSwift.framework in Embed Frameworks */,
-				D4021D5C22F46EEA0031340C /* BMLTiOSLib.framework in Embed Frameworks */,
+				D43EB92A2311B34200787D46 /* KeychainSwift.framework in Embed Frameworks */,
+				D43EB9262311B34200787D46 /* BMLTiOSLib.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -83,6 +191,8 @@
 		77DC3EA61E378B6300BF24B7 /* NA Meeting List Administrator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NA Meeting List Administrator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4021D5822F46EAE0031340C /* BMLTiOSLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BMLTiOSLib.framework; path = Carthage/Build/iOS/BMLTiOSLib.framework; sourceTree = "<group>"; };
 		D4021D5922F46EAE0031340C /* KeychainSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KeychainSwift.framework; path = Carthage/Build/iOS/KeychainSwift.framework; sourceTree = "<group>"; };
+		D43EB8F92311B31D00787D46 /* BMLTiOSLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BMLTiOSLib.xcodeproj; path = Carthage/Checkouts/BMLTiOSLib/BMLTiOSLib.xcodeproj; sourceTree = "<group>"; };
+		D43EB9052311B31E00787D46 /* KeychainSwift.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = KeychainSwift.xcodeproj; path = "Carthage/Checkouts/keychain-swift/KeychainSwift.xcodeproj"; sourceTree = "<group>"; };
 		D469298F22F47D7300FAE9AD /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
 		D492E54E21D5332C0085DA47 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = "Resources and Extras/da.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		D492E55521D538EE0085DA47 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -98,8 +208,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D4021D5B22F46EAE0031340C /* KeychainSwift.framework in Frameworks */,
-				D4021D5A22F46EAE0031340C /* BMLTiOSLib.framework in Frameworks */,
+				D43EB9292311B34200787D46 /* KeychainSwift.framework in Frameworks */,
+				D43EB9252311B34200787D46 /* BMLTiOSLib.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -168,6 +278,8 @@
 		77DC3E9D1E378B6100BF24B7 = {
 			isa = PBXGroup;
 			children = (
+				D43EB8F92311B31D00787D46 /* BMLTiOSLib.xcodeproj */,
+				D43EB9052311B31E00787D46 /* KeychainSwift.xcodeproj */,
 				D469298F22F47D7300FAE9AD /* .swiftlint.yml */,
 				77DC3EA81E378B6300BF24B7 /* Main App */,
 				770E5E951E3795F800CBE834 /* View Controllers */,
@@ -207,6 +319,31 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		D43EB8FA2311B31D00787D46 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D43EB9002311B31E00787D46 /* BMLTiOSLib.framework */,
+				D43EB9022311B31E00787D46 /* BMLTiOSLib Test Harness.app */,
+				D43EB9042311B31E00787D46 /* BMLTiOSLib Test Harness (Direct).app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D43EB9062311B31E00787D46 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D43EB9122311B31E00787D46 /* KeychainSwift.framework */,
+				D43EB9142311B31E00787D46 /* KeychainSwift.framework */,
+				D43EB9162311B31E00787D46 /* KeychainSwift.framework */,
+				D43EB9182311B31E00787D46 /* KeychainSwift.framework */,
+				D43EB91A2311B31E00787D46 /* KeychainSwiftTests.xctest */,
+				D43EB91C2311B31E00787D46 /* Keychain Swift.app */,
+				D43EB91E2311B31E00787D46 /* macOS Tests.xctest */,
+				D43EB9202311B31E00787D46 /* macOS Demo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -223,6 +360,10 @@
 			buildRules = (
 			);
 			dependencies = (
+				D43EB9222311B32900787D46 /* PBXTargetDependency */,
+				D43EB9242311B32900787D46 /* PBXTargetDependency */,
+				D43EB9282311B34200787D46 /* PBXTargetDependency */,
+				D43EB92C2311B34200787D46 /* PBXTargetDependency */,
 			);
 			name = "NA Meeting List Administrator";
 			productName = "NA Meeting List Administrator";
@@ -269,12 +410,102 @@
 			mainGroup = 77DC3E9D1E378B6100BF24B7;
 			productRefGroup = 77DC3EA71E378B6300BF24B7 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = D43EB8FA2311B31D00787D46 /* Products */;
+					ProjectRef = D43EB8F92311B31D00787D46 /* BMLTiOSLib.xcodeproj */;
+				},
+				{
+					ProductGroup = D43EB9062311B31E00787D46 /* Products */;
+					ProjectRef = D43EB9052311B31E00787D46 /* KeychainSwift.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				77DC3EA51E378B6100BF24B7 /* NA Meeting List Administrator */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		D43EB9002311B31E00787D46 /* BMLTiOSLib.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = BMLTiOSLib.framework;
+			remoteRef = D43EB8FF2311B31E00787D46 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D43EB9022311B31E00787D46 /* BMLTiOSLib Test Harness.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "BMLTiOSLib Test Harness.app";
+			remoteRef = D43EB9012311B31E00787D46 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D43EB9042311B31E00787D46 /* BMLTiOSLib Test Harness (Direct).app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "BMLTiOSLib Test Harness (Direct).app";
+			remoteRef = D43EB9032311B31E00787D46 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D43EB9122311B31E00787D46 /* KeychainSwift.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = KeychainSwift.framework;
+			remoteRef = D43EB9112311B31E00787D46 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D43EB9142311B31E00787D46 /* KeychainSwift.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = KeychainSwift.framework;
+			remoteRef = D43EB9132311B31E00787D46 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D43EB9162311B31E00787D46 /* KeychainSwift.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = KeychainSwift.framework;
+			remoteRef = D43EB9152311B31E00787D46 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D43EB9182311B31E00787D46 /* KeychainSwift.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = KeychainSwift.framework;
+			remoteRef = D43EB9172311B31E00787D46 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D43EB91A2311B31E00787D46 /* KeychainSwiftTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = KeychainSwiftTests.xctest;
+			remoteRef = D43EB9192311B31E00787D46 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D43EB91C2311B31E00787D46 /* Keychain Swift.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "Keychain Swift.app";
+			remoteRef = D43EB91B2311B31E00787D46 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D43EB91E2311B31E00787D46 /* macOS Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "macOS Tests.xctest";
+			remoteRef = D43EB91D2311B31E00787D46 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		D43EB9202311B31E00787D46 /* macOS Demo.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "macOS Demo.app";
+			remoteRef = D43EB91F2311B31E00787D46 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		77DC3EA41E378B6100BF24B7 /* Resources */ = {
@@ -305,7 +536,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PROJECT_DIR}/Pods/SwiftLint/swiftlint\"\n";
+			shellScript = "if test -f \"${PROJECT_DIR}/Pods/SwiftLint/swiftlint\"; then\n    \"${PROJECT_DIR}/Pods/SwiftLint/swiftlint\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -332,6 +563,29 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D43EB9222311B32900787D46 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BMLTiOSLib;
+			targetProxy = D43EB9212311B32900787D46 /* PBXContainerItemProxy */;
+		};
+		D43EB9242311B32900787D46 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = KeychainSwift;
+			targetProxy = D43EB9232311B32900787D46 /* PBXContainerItemProxy */;
+		};
+		D43EB9282311B34200787D46 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = BMLTiOSLib;
+			targetProxy = D43EB9272311B34200787D46 /* PBXContainerItemProxy */;
+		};
+		D43EB92C2311B34200787D46 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = KeychainSwift;
+			targetProxy = D43EB92B2311B34200787D46 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		779BE3B41E37D5FA00350D11 /* Default-568h@2x.png */ = {
@@ -511,6 +765,7 @@
 		77DC3EB91E378B6300BF24B7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -540,6 +795,7 @@
 		77DC3EBA1E378B6300BF24B7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
