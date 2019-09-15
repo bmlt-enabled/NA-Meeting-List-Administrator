@@ -26,10 +26,10 @@
 		77B7D1221E3AA0A80031FF6B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 77B7D1201E3AA0A80031FF6B /* Localizable.strings */; };
 		77D92ED71E4B50CC009F02B2 /* MeetingEditorBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D92ED61E4B50CC009F02B2 /* MeetingEditorBaseViewController.swift */; };
 		77D92EDB1E4B5146009F02B2 /* EditSingleMeetingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D92EDA1E4B5146009F02B2 /* EditSingleMeetingViewController.swift */; };
-		D43EB9252311B34200787D46 /* BMLTiOSLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D43EB9002311B31E00787D46 /* BMLTiOSLib.framework */; };
-		D43EB9262311B34200787D46 /* BMLTiOSLib.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D43EB9002311B31E00787D46 /* BMLTiOSLib.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		D43EB9292311B34200787D46 /* KeychainSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D43EB9122311B31E00787D46 /* KeychainSwift.framework */; };
-		D43EB92A2311B34200787D46 /* KeychainSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D43EB9122311B31E00787D46 /* KeychainSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D44C05EF232EC9DF000D25EE /* BMLTiOSLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D43EB9002311B31E00787D46 /* BMLTiOSLib.framework */; };
+		D44C05F0232EC9DF000D25EE /* BMLTiOSLib.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D43EB9002311B31E00787D46 /* BMLTiOSLib.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D44C05F1232EC9FD000D25EE /* KeychainSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D43EB9122311B31E00787D46 /* KeychainSwift.framework */; };
+		D44C05F2232EC9FD000D25EE /* KeychainSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D43EB9122311B31E00787D46 /* KeychainSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D492E55A21D53BFE0085DA47 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D492E55421D538EC0085DA47 /* InfoPlist.strings */; };
 /* End PBXBuildFile section */
 
@@ -111,33 +111,12 @@
 			remoteGlobalIDString = 7E3A6B7B1D3F6779007C5B1F;
 			remoteInfo = "macOS Demo";
 		};
-		D43EB9212311B32900787D46 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D43EB8F92311B31D00787D46 /* BMLTiOSLib.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 77DBD7971FDEAEEB008F110F;
-			remoteInfo = BMLTiOSLib;
-		};
-		D43EB9232311B32900787D46 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D43EB9052311B31E00787D46 /* KeychainSwift.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 7ED6C96B1B1C118F00FE8090;
-			remoteInfo = KeychainSwift;
-		};
 		D43EB9272311B34200787D46 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D43EB8F92311B31D00787D46 /* BMLTiOSLib.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 77DBD7971FDEAEEB008F110F;
 			remoteInfo = BMLTiOSLib;
-		};
-		D43EB92B2311B34200787D46 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D43EB9052311B31E00787D46 /* KeychainSwift.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 7ED6C96B1B1C118F00FE8090;
-			remoteInfo = KeychainSwift;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -148,8 +127,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				D43EB92A2311B34200787D46 /* KeychainSwift.framework in Embed Frameworks */,
-				D43EB9262311B34200787D46 /* BMLTiOSLib.framework in Embed Frameworks */,
+				D44C05F2232EC9FD000D25EE /* KeychainSwift.framework in Embed Frameworks */,
+				D44C05F0232EC9DF000D25EE /* BMLTiOSLib.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -208,8 +187,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D43EB9292311B34200787D46 /* KeychainSwift.framework in Frameworks */,
-				D43EB9252311B34200787D46 /* BMLTiOSLib.framework in Frameworks */,
+				D44C05F1232EC9FD000D25EE /* KeychainSwift.framework in Frameworks */,
+				D44C05EF232EC9DF000D25EE /* BMLTiOSLib.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -360,10 +339,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				D43EB9222311B32900787D46 /* PBXTargetDependency */,
-				D43EB9242311B32900787D46 /* PBXTargetDependency */,
 				D43EB9282311B34200787D46 /* PBXTargetDependency */,
-				D43EB92C2311B34200787D46 /* PBXTargetDependency */,
 			);
 			name = "NA Meeting List Administrator";
 			productName = "NA Meeting List Administrator";
@@ -565,25 +541,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		D43EB9222311B32900787D46 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = BMLTiOSLib;
-			targetProxy = D43EB9212311B32900787D46 /* PBXContainerItemProxy */;
-		};
-		D43EB9242311B32900787D46 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = KeychainSwift;
-			targetProxy = D43EB9232311B32900787D46 /* PBXContainerItemProxy */;
-		};
 		D43EB9282311B34200787D46 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = BMLTiOSLib;
 			targetProxy = D43EB9272311B34200787D46 /* PBXContainerItemProxy */;
-		};
-		D43EB92C2311B34200787D46 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = KeychainSwift;
-			targetProxy = D43EB92B2311B34200787D46 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -770,6 +731,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3000;
 				DEVELOPMENT_TEAM = P53V4JS928;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -800,6 +762,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3000;
 				DEVELOPMENT_TEAM = P53V4JS928;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

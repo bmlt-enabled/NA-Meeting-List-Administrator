@@ -686,7 +686,7 @@ class AppStaticPrefs {
             }
             
             // We may not need to add the user (Maybe we're just changing the stored password).
-            if var users = loginDictionary[inRooutURI.cleanURI()] {
+            if let users = loginDictionary[inRooutURI.cleanURI()] {
                 urlUsers = users
                 for i in 0..<users.count where users[i] == inUser {
                     needToUpdate = false    // If we already know about this login, we don't need to update.
@@ -751,7 +751,7 @@ class AppStaticPrefs {
                 if let temp = self._loadedPrefs.object(forKey: PrefsKeys.RootServerLoginDictionaryKey.rawValue) as? [String: [String]] {
                     loginDictionary = temp
                     // If we have a dictionary, then we'll be removing all stored passwords for that URI.
-                    if var users = loginDictionary[inRooutURI.cleanURI()] {
+                    if let users = loginDictionary[inRooutURI.cleanURI()] {
                         for i in 0..<users.count {
                             _ = self.updateUserForRootURI(inRooutURI.cleanURI(), inUser: users[i])
                         }
@@ -784,7 +784,7 @@ class AppStaticPrefs {
         
         if self._loadPrefs() {
             if let temp = self._loadedPrefs.object(forKey: PrefsKeys.RootServerLoginDictionaryKey.rawValue) as? [String: [String]] {
-                if var users = temp[inRooutURI.cleanURI()] {
+                if let users = temp[inRooutURI.cleanURI()] {
                     for i in 0..<users.count where users[i] == inUser {
                         ret = true
                         break
@@ -815,7 +815,7 @@ class AppStaticPrefs {
         if type(of: self).supportsTouchID { // No TouchID, no stored password.
             if self._loadPrefs() {
                 if let temp = self._loadedPrefs.object(forKey: PrefsKeys.RootServerLoginDictionaryKey.rawValue) as? [String: [String]] {
-                    if var users = temp[inRooutURI.cleanURI()] {
+                    if let users = temp[inRooutURI.cleanURI()] {
                         for i in 0..<users.count where users[i] == inUser {
                             ret = (nil != self._swiftKeychainWrapper.get(key))
                             break
