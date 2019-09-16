@@ -37,6 +37,14 @@ The editor/new meeting screen needs to be refactored. Currently, they are indica
 
 CHANGELIST
 ==========
+***Version 1.4.0.3001* ** *- September 16, 2019*
+
+- No changes. Apple wanted me to re-release, using the latest RC of Xcode.
+
+***Version 1.4.0.3000* ** *- September 15, 2019*
+
+- App Store release.
+
 ***Version 1.4.0.2000* ** *- August 24, 2019*
 
 - Switched the BMLTiOSLib to use Carthage.
