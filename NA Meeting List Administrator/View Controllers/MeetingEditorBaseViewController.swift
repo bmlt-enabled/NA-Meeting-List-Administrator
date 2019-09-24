@@ -1478,6 +1478,7 @@ class MeetingCommentsEditorTableViewCell: MeetingEditorViewCell, UITextViewDeleg
     override func meetingObjectUpdated() {
         self.commentsNameLabel.text = NSLocalizedString(self.commentsNameLabel.text!, comment: "")
         self.commentsTextView.text = self.meetingObject.comments
+        self.commentsTextView.backgroundColor = UIColor.white
     }
     
     /* ################################################################## */

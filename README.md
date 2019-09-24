@@ -37,6 +37,10 @@ The editor/new meeting screen needs to be refactored. Currently, they are indica
 
 CHANGELIST
 ==========
+***Version 1.4.1.3000* ** *- September 24, 2019*
+
+- Cosmetic/Usability fix for dark mode, in iOS13.
+
 ***Version 1.4.0.3001* ** *- September 16, 2019*
 
 - No changes. Apple wanted me to re-release, using the latest RC of Xcode.

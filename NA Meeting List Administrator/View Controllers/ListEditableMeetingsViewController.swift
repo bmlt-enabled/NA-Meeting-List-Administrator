@@ -204,6 +204,7 @@ class ListEditableMeetingsViewController: EditorViewControllerBaseClass, UITable
                 self.editSingleMeeting(finalResult)
             } else { // We ain't got ourselves a meeting.
                 MainAppDelegate.displayAlert("NO-MEETING-HEADER", inMessage: "NO-MEETING-MESSAGE", presentedBy: self)
+                self._hideBusyAnimation()
             }
         }
     }
@@ -672,6 +673,7 @@ class ListEditableMeetingsViewController: EditorViewControllerBaseClass, UITable
                 self._locationManager = nil
                 self._locationFailedOnce = false
                 MainAppDelegate.displayAlert("LOCATION-ERROR-HEADER", inMessage: "LOCATION-ERROR-MESSAGE", presentedBy: self)
+                self._hideBusyAnimation()
             } else {    // Love me two times, I'm goin' away...
                 self._locationFailedOnce = true
                 self.startLookingForMyMeeting()
@@ -702,6 +704,7 @@ class ListEditableMeetingsViewController: EditorViewControllerBaseClass, UITable
                 }
             } else {
                 MainAppDelegate.displayAlert("LOCATION-ERROR-HEADER", inMessage: "LOCATION-ERROR-MESSAGE", presentedBy: self)
+                self._hideBusyAnimation()
             }
         }
     }
