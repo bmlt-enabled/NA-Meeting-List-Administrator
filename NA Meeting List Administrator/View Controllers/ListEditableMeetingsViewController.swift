@@ -511,58 +511,61 @@ class ListEditableMeetingsViewController: EditorViewControllerBaseClass, UITable
     func updateDisplayedMeetings() {
         self.currentMeetingList = []
     
-        let row = self.townBoroughPickerView.selectedRow(inComponent: 0) - 2
-        let townString: String = (0 <= row) ? self._townsAndBoroughs[row] : ""
+        if 0 < self._townsAndBoroughs.count {
+            let row = self.townBoroughPickerView.selectedRow(inComponent: 0) - 2
+            let townString: String = (0 <= row) ? self._townsAndBoroughs[row] : ""
 
-        for meeting in MainAppDelegate.appDelegateObject.meetingObjects {
-            var weekdayIndex = (meeting.weekdayIndex - AppStaticPrefs.firstWeekdayIndex) + 1
-            if 1 > weekdayIndex {
-                weekdayIndex += 7
-            }
+            for meeting in MainAppDelegate.appDelegateObject.meetingObjects {
+                var weekdayIndex = (meeting.weekdayIndex - AppStaticPrefs.firstWeekdayIndex) + 1
+                if 1 > weekdayIndex {
+                    weekdayIndex += 7
+                }
 
-            for weekdaySelection in self.selectedWeekdays {
-                if (weekdaySelection.value == .Selected) && (weekdaySelection.key.rawValue == weekdayIndex) {
-                    if !townString.isEmpty {
-                        if (meeting.locationBorough == townString) || (meeting.locationTown == townString) {
+                for weekdaySelection in self.selectedWeekdays {
+                    if (weekdaySelection.value == .Selected) && (weekdaySelection.key.rawValue == weekdayIndex) {
+                        if !townString.isEmpty {
+                            if (meeting.locationBorough == townString) || (meeting.locationTown == townString) {
+                                self.currentMeetingList.append(meeting)
+                                break
+                            }
+                        } else {
                             self.currentMeetingList.append(meeting)
                             break
                         }
-                    } else {
-                        self.currentMeetingList.append(meeting)
-                        break
                     }
                 }
             }
-        }
-        
-        // We do this, because we want the "All" checkbox to be set/cleared if all the rest of the checkboxes are the same value.
-        if 8 == self._weekdayCheckboxObjects.count {
-            let allCheckBox = self._weekdayCheckboxObjects[0]
             
-            var allState: BMLTiOSLibSearchCriteria.SelectionState = .Deselected
-            var different: Bool = false
-            
-            // Look to see if there's a difference of opinion amongst the various days.
-            for i in 1..<8 {
-                let checkBox = self._weekdayCheckboxObjects[i]
+            // We do this, because we want the "All" checkbox to be set/cleared if all the rest of the checkboxes are the same value.
+            if 8 == self._weekdayCheckboxObjects.count {
+                let allCheckBox = self._weekdayCheckboxObjects[0]
                 
-                if allState != .Deselected {
-                    if allState != checkBox.selectionState {
-                        different = true
-                        break
+                var allState: BMLTiOSLibSearchCriteria.SelectionState = .Deselected
+                var different: Bool = false
+                
+                // Look to see if there's a difference of opinion amongst the various days.
+                for i in 1..<8 {
+                    let checkBox = self._weekdayCheckboxObjects[i]
+                    
+                    if allState != .Deselected {
+                        if allState != checkBox.selectionState {
+                            different = true
+                            break
+                        }
+                    } else {
+                        allState = checkBox.selectionState
                     }
-                } else {
-                    allState = checkBox.selectionState
+                }
+                
+                // If they all agree on a state, then we set the "All" checkbox to that state.
+                if (allState != .Deselected) && !different {
+                    allCheckBox.selectionState = allState
                 }
             }
             
-            // If they all agree on a state, then we set the "All" checkbox to that state.
-            if (allState != .Deselected) && !different {
-                allCheckBox.selectionState = allState
-            }
+            self.sortMeetings()
         }
         
-        self.sortMeetings()
         self.meetingListTableView.reloadData()
         self.townBoroughPickerView.reloadAllComponents()
     }

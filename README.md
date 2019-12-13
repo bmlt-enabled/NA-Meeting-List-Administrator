@@ -37,6 +37,10 @@ The editor/new meeting screen needs to be refactored. Currently, they are indica
 
 CHANGELIST
 ==========
+***Version 1.4.2.2000* ** *- December 13, 2019*
+
+- Fixed a bug, in which the app could crash after committing a meeting change.
+
 ***Version 1.4.1.3000* ** *- September 24, 2019*
 
 - Cosmetic/Usability fix for dark mode, in iOS13.
