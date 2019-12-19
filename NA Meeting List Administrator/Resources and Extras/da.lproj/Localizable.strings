@@ -50,17 +50,17 @@
 "UNABLE-TO-LOGIN-ERROR-FORMAT"                                                                  =   "%@ ID kunne ikke logge ind på serveren.";
 "SERVICE-BODY-BUTTON"                                                                           =   "Service Enheder";
 "EDITOR-BUTTON"                                                                                 =   "Redigere";
-"MIDNIGHT"                                                                                      =   "Midnat";
-"NOON"                                                                                          =   "Middag";
+"MIDNIGHT"                                                                                      =   "midnat";
+"NOON"                                                                                          =   "middag";
 "MEETING-TIME-FORMAT"                                                                           =   "%@, %@";
-"ALL-DAYS"                                                                                      =   "Alle";
-"LOCAL-SEARCH-PICKER-NONE"                                                                      =   "Alle byer og forstæder";
+"ALL-DAYS"                                                                                      =   "alle";
+"LOCAL-SEARCH-PICKER-NONE"                                                                      =   "alle byer og distrikter";
 "CONNECT-BACK-TITLE"                                                                            =   "Tilbage";
 "MEETING-ID-FORMAT"                                                                             =   "Møde ID %d";
 "NEW-MEETING-TITLE"                                                                             =   "Nyt Møde";
 
-"MEETINGS-TAB-BAR-NAME"                                                                         =   "Nuværende møder";
-"DELETED-MEETINGS-TAB-BAR-NAME"                                                                 =   "Slettet Møder";
+"MEETINGS-TAB-BAR-NAME"                                                                         =   "aktuelle møder";
+"DELETED-MEETINGS-TAB-BAR-NAME"                                                                 =   "slettet Møder";
 
 "DELETE-HEADER-1"                                                                               =   "Er du sikker?";
 "DELETE-HEADER-2"                                                                               =   "Nuke From Orbit.";

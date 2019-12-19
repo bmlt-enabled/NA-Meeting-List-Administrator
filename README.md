@@ -37,6 +37,10 @@ The editor/new meeting screen needs to be refactored. Currently, they are indica
 
 CHANGELIST
 ==========
+***Version 1.4.2.2001* ** *- December 19, 2019*
+
+- Danish translation issues fixed.
+
 ***Version 1.4.2.2000* ** *- December 13, 2019*
 
 - Fixed a bug, in which the app could crash after committing a meeting change.
