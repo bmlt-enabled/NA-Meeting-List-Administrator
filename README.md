@@ -37,6 +37,10 @@ The editor/new meeting screen needs to be refactored. Currently, they are indica
 
 CHANGELIST
 ==========
+***Version 1.4.2.2002* ** *- December 24, 2019*
+
+- More localization fixes.
+
 ***Version 1.4.2.2001* ** *- December 19, 2019*
 
 - Danish translation issues fixed.
