@@ -5,10 +5,8 @@ cd "${MY_SCRIPT_PATH}"
 rm -drf docs
 jazzy   --github_url https://github.com/bmlt-enabled/NA-Meeting-List-Administrator\
         --readme ./README.md\
-        --theme fullwidth\
-        --author BMLT-Enabled\
-        --author_url https://bmlt.app\
+        --title NA\ Meeting\ List\ Administrator\ Documentation \
         --min-acl private\
-        --exclude */Carthage
+        --exclude */Carthage, */Pods
 cp icon.png docs/icon.png
 cd "${CWD}"

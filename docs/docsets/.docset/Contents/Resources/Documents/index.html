@@ -20,9 +20,9 @@
     <header class="header">
       <p class="header-col header-col--primary">
         <a class="header-link" href="index.html">
-           Docs
+          NA Meeting List Administrator Documentation
         </a>
-         (100% documented)
+        
       </p>
     
       <p class="header-col--secondary">
@@ -190,9 +190,10 @@
       <article class="main-content">
 
         <section class="section">
-          <div class="section-content">
+          <div class="section-content top-matter">
             
-            <h1 id='description' class='heading'>DESCRIPTION</h1>
+            <p><img src="icon.png" alt="icon"></p>
+<h1 id='na-meeting-list-administrator' class='heading'>NA MEETING LIST ADMINISTRATOR</h1>
 
 <p>NA Meeting List Administrator is an iOS app for <a href="https://bmlt.magshare.net">the BMLT</a> that is an administrative expression of <a href="https://bmlt.magshare.net/specific-topics/bmltioslib/">the BMLTiOSLib Communication Framework</a>.</p>
 
@@ -203,13 +204,13 @@
 
 <p>The app requires that the iPhone or iPad have an active, persistent Internet connection.</p>
 
-<p>In order to use the <q>What Meeting Am I At?</q> functionality, the app will require a GPS signal, and permission to determine your location.</p>
+<p>In order to use the &ldquo;What Meeting Am I At?&rdquo; functionality, the app will require a GPS signal, and permission to determine your location.</p>
 
 <p>The app itself requires iOS 10.0 or above, and administrative access to at leat one <a href="https://bmlt.magshare.net/installing-a-new-root-server/">BMLT Root Server</a> Version 2.8.12 or above.</p>
 
 <p>It also requires the Root Server to be running SSL (HTTPS), and that the Root Server have <a href="https://bmlt.magshare.net/semantic/semantic-administration/">Semantic Administration</a> enabled.</p>
 
-<p>If any of the above conditions are not met, the Root Server URL will be declared <q>invalid,</q> and the app will refuse to connect to the Server.</p>
+<p>If any of the above conditions are not met, the Root Server URL will be declared &ldquo;invalid,&rdquo; and the app will refuse to connect to the Server.</p>
 
 <p>Once connected, the user must have a valid login to that Server. If using a modern iPhone or iPad (with Touch ID or Face ID), then biometric login will be available.</p>
 
@@ -220,13 +221,55 @@
 <p>Each login is limited to only those meetings/Service bodies for which they have editor rights. Meetings for which they don&rsquo;t have edit rights will not be accessible to, or displayed in, the app.</p>
 <h1 id='license' class='heading'>LICENSE</h1>
 
-<p>The NA Meeting List Administrator app is <a href="https://opensource.org/licenses/GPL-3.0">GPL V3</a>; However, the <a href="https://bmlt.magshare.net/specific-topics/bmltioslib/">BMLTiOSLib</a> uses <a href="https://opensource.org/licenses/MIT">the MIT License</a>.</p>
+<p>The NA Meeting List Administrator app uses <a href="https://opensource.org/licenses/MIT">the MIT License</a>.</p>
 <h1 id='todo' class='heading'>TODO</h1>
 
 <p>The editor/new meeting screen needs to be refactored. Currently, they are indicated in the IB file as huge, unwieldy views. They need to be broken into multiple individual IB files, and stitched together at runtime.</p>
 <h1 id='changelist' class='heading'>CHANGELIST</h1>
 
-<p>**<em>Version 1.4.0.1000</em> ** <em>- TBD</em></p>
+<p>**<em>Version 1.4.2.3000</em> ** <em>- December 28, 2019</em></p>
+
+<ul>
+<li>No changes. App Store release.</li>
+</ul>
+
+<p>**<em>Version 1.4.2.2002</em> ** <em>- December 24, 2019</em></p>
+
+<ul>
+<li>More localization fixes.</li>
+</ul>
+
+<p>**<em>Version 1.4.2.2001</em> ** <em>- December 19, 2019</em></p>
+
+<ul>
+<li>Danish translation issues fixed.</li>
+</ul>
+
+<p>**<em>Version 1.4.2.2000</em> ** <em>- December 13, 2019</em></p>
+
+<ul>
+<li>Fixed a bug, in which the app could crash after committing a meeting change.</li>
+</ul>
+
+<p>**<em>Version 1.4.1.3000</em> ** <em>- September 24, 2019</em></p>
+
+<ul>
+<li>Cosmetic/Usability fix for dark mode, in iOS13.</li>
+</ul>
+
+<p>**<em>Version 1.4.0.3001</em> ** <em>- September 16, 2019</em></p>
+
+<ul>
+<li>No changes. Apple wanted me to re-release, using the latest RC of Xcode.</li>
+</ul>
+
+<p>**<em>Version 1.4.0.3000</em> ** <em>- September 15, 2019</em></p>
+
+<ul>
+<li>App Store release.</li>
+</ul>
+
+<p>**<em>Version 1.4.0.2000</em> ** <em>- August 24, 2019</em></p>
 
 <ul>
 <li>Switched the BMLTiOSLib to use Carthage.</li>
@@ -236,6 +279,7 @@
 <li>Improved the appearance of the launch screen.</li>
 <li>Improved the behavior of the layout on X-phones.</li>
 <li>Improved documentation for 100% Jazzy docs.</li>
+<li>Switched to MIT License.</li>
 </ul>
 
 <p>**<em>Version 1.3.2.3000</em> ** <em>- January 10, 2019</em></p>
@@ -275,7 +319,7 @@
 <p>**<em>Version 1.3.1.2006</em> ** <em>- April 2, 2018</em></p>
 
 <ul>
-<li>Added an <q>invisible</q> parameter to the server calls, so that TOMATO will know that its being called by BMLTiOSLib apps.</li>
+<li>Added an &ldquo;invisible&rdquo; parameter to the server calls, so that TOMATO will know that its being called by BMLTiOSLib apps.</li>
 <li>Updated to Xcode 9.3/Swift 4.1</li>
 <li>Bumped the version to 2006 to maintain with the other two apps.</li>
 </ul>
@@ -283,8 +327,8 @@
 <p>**<em>Version 1.3.1.2003</em> ** <em>- February 21, 2018</em></p>
 
 <ul>
-<li>I switched off the animation for the <q>keyboard nudge.</q> It caused an annoying little <q>hiccup.</q></li>
-<li>The <q>Where Am I</q> button should be hidden if there are no location manager services enabled.</li>
+<li>I switched off the animation for the &ldquo;keyboard nudge.&rdquo; It caused an annoying little &ldquo;hiccup.&rdquo;</li>
+<li>The &ldquo;Where Am I&rdquo; button should be hidden if there are no location manager services enabled.</li>
 </ul>
 
 <p>**<em>Version 1.3.1.2002</em> ** <em>- February 21, 2018</em></p>
@@ -314,7 +358,7 @@
 <p>**<em>Version 1.3.0.2007</em> ** <em>- February 18, 2018</em></p>
 
 <ul>
-<li>Added a <q>Logged In As</q> message for users that have multiple stored logins.</li>
+<li>Added a &ldquo;Logged In As&rdquo; message for users that have multiple stored logins.</li>
 </ul>
 
 <p>**<em>Version 1.3.0.2006</em> ** <em>- February 17, 2018</em></p>
@@ -332,23 +376,23 @@
 <ul>
 <li>Tweaked the README a bit.</li>
 <li>It was possible for stored logins to be displayed if there was no Touch/Face ID. This has been fixed.</li>
-<li>Fixed a couple of rather nasty bugs, where the two buttons at the top of the connected screen crashed. This was caused by my <q>code cleanup.</q></li>
+<li>Fixed a couple of rather nasty bugs, where the two buttons at the top of the connected screen crashed. This was caused by my &ldquo;code cleanup.&rdquo;</li>
 <li>Added a filter to make sure that only editable meetings are listed.</li>
 </ul>
 
 <p>**<em>Version 1.3.0.2004</em> ** <em>- February 16, 2018</em></p>
 
 <ul>
-<li>Fixed an issue where, sometimes, the manual login items were not being properly displayed when returning to the login screen, and it was set to <q>MANUAL LOGIN</q>.</li>
+<li>Fixed an issue where, sometimes, the manual login items were not being properly displayed when returning to the login screen, and it was set to &ldquo;MANUAL LOGIN&rdquo;.</li>
 <li>Fixed an issue where the MANUAL LOGIN was selected upon startup, when it should have been a stored login.</li>
 </ul>
 
 <p>**<em>Version 1.3.0.2003</em> ** <em>- February 16, 2018</em></p>
 
 <ul>
-<li>Addressed an issue, where the keyboard would pop up when returning to the <q>LOG OUT</q> screen after a manual login.</li>
-<li>Stop the <q>flash</q> of the picker reverting to an old value, just before login.</li>
-<li>Made the <q>MANUAL LOG IN</q> string simply <q>LOG IN</q> when Touch ID/Face ID isn&rsquo;t supported, or we don&rsquo;t have stored logins for the server.</li>
+<li>Addressed an issue, where the keyboard would pop up when returning to the &ldquo;LOG OUT&rdquo; screen after a manual login.</li>
+<li>Stop the &ldquo;flash&rdquo; of the picker reverting to an old value, just before login.</li>
+<li>Made the &ldquo;MANUAL LOG IN&rdquo; string simply &ldquo;LOG IN&rdquo; when Touch ID/Face ID isn&rsquo;t supported, or we don&rsquo;t have stored logins for the server.</li>
 <li>Now store logins, even if Touch/Face ID isn&rsquo;t available, as it helps when phones are upgraded, or the user decides to enable Face ID after the fact.</li>
 </ul>
 
@@ -447,7 +491,7 @@
 <p>**<em>Version 1.2.3.2000</em> ** <em>- December 5, 2017</em></p>
 
 <ul>
-<li>I decided to go <q>full pod</q> on this, and installed the CocoaPod completely (as opposed to simply including the submodule and building the files directly).</li>
+<li>I decided to go &ldquo;full pod&rdquo; on this, and installed the CocoaPod completely (as opposed to simply including the submodule and building the files directly).</li>
 </ul>
 
 <p>**<em>Version 1.2.2.3002</em> ** <em>- December 5, 2017</em></p>
@@ -484,14 +528,14 @@
 <p>**<em>Version 1.2.0.2001</em> ** <em>- November 16, 2017</em></p>
 
 <ul>
-<li>Fixed a crash when a meeting is found for <q>What Meeting am I at?</q></li>
+<li>Fixed a crash when a meeting is found for &ldquo;What Meeting am I at?&rdquo;</li>
 </ul>
 
 <p>**<em>Version 1.2.0.2000</em> ** <em>- November 15, 2017</em></p>
 
 <ul>
 <li>Refactored the project to use the new CocoaPods-structured BMLTiOSLib. This is a big change, so I&rsquo;m bumping the version, and restarting the beta-testing.</li>
-<li>Added the <q>Extra Info</q> field to the address section. The fact it was missing was a bug on my part.</li>
+<li>Added the &ldquo;Extra Info&rdquo; field to the address section. The fact it was missing was a bug on my part.</li>
 <li>The comments field in the editor now has a white background. The clear background caused user confusion.</li>
 <li>Fixed an issue where the background color for unpublished meetings was not alwas being set properly.</li>
 </ul>
@@ -527,7 +571,7 @@
 <li>The location lookup is more accurate.</li>
 <li>Added some basic fixes to make the app more responsive.</li>
 <li>Compiled for iOS 11.</li>
-<li>Fixed an issue where TouchID failures can crash the app (<q>Bad Touch</q>).</li>
+<li>Fixed an issue where TouchID failures can crash the app (&ldquo;Bad Touch&rdquo;).</li>
 <li>Slight update for latest Xcode.</li>
 <li>Added a pointer to the documentation page on the BMLT site.</li>
 <li>First beta test.</li>
@@ -586,7 +630,7 @@
 <ul>
 <li>Fixed a case-sensitivity issue with the asset catalog. This resulted in the checkmarks not displaying correctly.</li>
 <li>Made sure that the various checkboxes are perfectly round.</li>
-<li>Simplified the way the initial URI is stored. This will help prevent <q>crosstalk.</q></li>
+<li>Simplified the way the initial URI is stored. This will help prevent &ldquo;crosstalk.&rdquo;</li>
 <li>Widened the Weekday section of the list a bit.</li>
 <li>Added a couple of separator lines in the list and meeting editor views to make it clear where the scrollable region begins.</li>
 <li>The History list needed alternating background colors.</li>
@@ -606,8 +650,8 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2019 <a class="link" href="https://bmlt.app" target="_blank" rel="external">BMLT-Enabled</a>. All rights reserved. (Last updated: 2019-08-02)</p>
-      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+      <p>© 2019 <a class="link" href="https://bmlt.app" target="_blank" rel="external">BMLT-Enabled</a> under <a class="link" href="https://opensource.org/licenses/MIT" target="_blank" rel="external">open source license</a>.</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.0</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
 </div>

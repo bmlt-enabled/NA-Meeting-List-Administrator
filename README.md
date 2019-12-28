@@ -1,5 +1,7 @@
-DESCRIPTION
-===========
+![icon](icon.png)
+
+NA MEETING LIST ADMINISTRATOR
+=
 
 NA Meeting List Administrator is an iOS app for [the BMLT](https://bmlt.magshare.net) that is an administrative expression of [the BMLTiOSLib Communication Framework](https://bmlt.magshare.net/specific-topics/bmltioslib/).
 
@@ -8,7 +10,7 @@ This app is designed to allow [BMLT Meeting List Administrators](https://bmlt.ma
 [Complete instructions are available on this Web page.](https://bmlt.magshare.net/satellites/bmlt-ios-apps/nameetinglistadministrator/)
 
 REQUIREMENTS
-============
+=
 The app requires that the iPhone or iPad have an active, persistent Internet connection.
 
 In order to use the "What Meeting Am I At?" functionality, the app will require a GPS signal, and permission to determine your location.
@@ -28,15 +30,19 @@ Observers and Server Administrators cannot log in. Observers do not have suffici
 Each login is limited to only those meetings/Service bodies for which they have editor rights. Meetings for which they don't have edit rights will not be accessible to, or displayed in, the app.
 
 LICENSE
-=======
-The NA Meeting List Administrator app is [GPL V3](https://opensource.org/licenses/GPL-3.0); However, the [BMLTiOSLib](https://bmlt.magshare.net/specific-topics/bmltioslib/) uses [the MIT License](https://opensource.org/licenses/MIT).
+=
+The NA Meeting List Administrator app uses [the MIT License](https://opensource.org/licenses/MIT).
 
 TODO
-====
+=
 The editor/new meeting screen needs to be refactored. Currently, they are indicated in the IB file as huge, unwieldy views. They need to be broken into multiple individual IB files, and stitched together at runtime.
 
 CHANGELIST
-==========
+=
+***Version 1.4.2.3000* ** *- December 28, 2019*
+
+- No changes. App Store release.
+
 ***Version 1.4.2.2002* ** *- December 24, 2019*
 
 - More localization fixes.

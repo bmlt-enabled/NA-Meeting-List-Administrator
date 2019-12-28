@@ -2,16 +2,19 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:Podfile">
+      location = "group:README.md">
    </FileRef>
    <FileRef
       location = "group:LICENSE">
    </FileRef>
    <FileRef
-      location = "group:README.md">
+      location = "group:.swiftlint.yml">
    </FileRef>
    <FileRef
-      location = "group:.swiftlint.yml">
+      location = "group:.jazzy.yaml">
+   </FileRef>
+   <FileRef
+      location = "group:jazzy.sh">
    </FileRef>
    <FileRef
       location = "group:NA Meeting List Administrator.xcodeproj">
