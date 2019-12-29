@@ -39,6 +39,11 @@ The editor/new meeting screen needs to be refactored. Currently, they are indica
 
 CHANGELIST
 =
+***Version 1.4.2.3001* ** *- December 28, 2019*
+
+- Bumped the version number.
+- Minor URI fix in the localization file to point to the new URI.
+
 ***Version 1.4.2.3000* ** *- December 28, 2019*
 
 - No changes. App Store release.
