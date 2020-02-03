@@ -85,7 +85,7 @@ class DeletedMeetingsViewController: EditorViewControllerBaseClass, UITableViewD
         super.viewDidLoad()
         self.backButton.title = NSLocalizedString(self.backButton.title!, comment: "")
         self.deletedWaitHeader.text = NSLocalizedString(self.deletedWaitHeader.text!, comment: "")
-        self.deletedWaitMessage.text = NSLocalizedString(self.deletedWaitMessage.text!, comment: "")
+//        self.deletedWaitMessage.text = NSLocalizedString(self.deletedWaitMessage.text!, comment: "")
     }
     
     /* ################################################################## */
@@ -139,7 +139,9 @@ class DeletedMeetingsViewController: EditorViewControllerBaseClass, UITableViewD
         for sb in AppStaticPrefs.prefs.selectedServiceBodies {
             ids.append(sb.id)
         }
-        MainAppDelegate.connectionObject.getDeletedMeetingChanges(serviceBodyIDs: ids)
+        
+        let fromDate = Date(timeIntervalSinceNow: (-60 * 60 * 24 * 90))  // 90 days' worth of deletions.
+        MainAppDelegate.connectionObject.getDeletedMeetingChanges(fromDate: fromDate, toDate: nil, serviceBodyIDs: ids)
     }
     
     /* ################################################################## */
