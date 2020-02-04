@@ -39,6 +39,10 @@ The editor/new meeting screen needs to be refactored. Currently, they are indica
 
 CHANGELIST
 =
+***Version 1.4.3.3000* ** *- February 4, 2020*
+
+- No change. App store release.
+
 ***Version 1.4.3.2000* ** *- February 3, 2020*
 
 - Limit the deleted meetings to just the last 90 days (prevents server overflow).

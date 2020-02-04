@@ -85,7 +85,6 @@ class DeletedMeetingsViewController: EditorViewControllerBaseClass, UITableViewD
         super.viewDidLoad()
         self.backButton.title = NSLocalizedString(self.backButton.title!, comment: "")
         self.deletedWaitHeader.text = NSLocalizedString(self.deletedWaitHeader.text!, comment: "")
-//        self.deletedWaitMessage.text = NSLocalizedString(self.deletedWaitMessage.text!, comment: "")
     }
     
     /* ################################################################## */
