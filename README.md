@@ -39,6 +39,10 @@ The editor/new meeting screen needs to be refactored. Currently, they are indica
 
 CHANGELIST
 =
+***Version 1.4.4.2000* ** *- February 9, 2020*
+
+- Fixes a small bug, where invalid servers might not be reported as such.
+
 ***Version 1.4.3.3000* ** *- February 4, 2020*
 
 - No change. App store release.

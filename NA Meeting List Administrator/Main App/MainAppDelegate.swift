@@ -247,6 +247,12 @@ class MainAppDelegate: UIResponder, UIApplicationDelegate, BMLTiOSLibDelegate {
      - parameter serverIsValid: If this is true, then the connection is valid (and complete). If false, the library object is about to become invalid.
      */
     func bmltLibInstance(_ inLibInstance: BMLTiOSLib, serverIsValid: Bool) {
+        if  !self.validConnection,
+            !serverIsValid {
+            self.initialViewController.finishedConnecting() // Kill any connection in progress.
+            type(of: self).displayAlert("NAMeetingListAdministrator-ErrorAlertTitle", inMessage: "BAD-URI-ERROR-TEXT")
+        }
+        
         self.validConnection = serverIsValid
         
         if !self.validConnection {
