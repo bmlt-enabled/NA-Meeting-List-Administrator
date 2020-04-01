@@ -78,11 +78,11 @@ class MeetingEditorBaseViewController: EditorViewControllerBaseClass, UITableVie
                                                          "editor-row-3": 60,
                                                          "editor-row-4": 100,
                                                          "editor-row-5": 100,
-                                                         "editor-row-6": 693,
+                                                         "editor-row-6": 753,
                                                          "editor-row-7": 0,
                                                          "editor-row-8": 210,
                                                          "editor-row-9": 100,
-                                                         "editor-row-10": 200
+                                                         "editor-row-10": 300
     ]
     
     /** These store the original (unpublished) colors for the background gradient. */
@@ -1014,6 +1014,11 @@ class AddressEditorTableViewCell: MeetingEditorViewCell {
     /// The text entry for the additional location information
     @IBOutlet weak var extraInfoTextField: UITextField!
     
+    /// The label for the virtual URL text field
+    @IBOutlet weak var virtualMeetingLabel: UILabel!
+    /// The text entry for the virtual meeting URL
+    @IBOutlet weak var virtualMeetingTextField: UITextField!
+
     /* ################################################################## */
     // MARK: IB Methods
     /* ################################################################## */
@@ -1125,6 +1130,17 @@ class AddressEditorTableViewCell: MeetingEditorViewCell {
         self.meetingObject.locationInfo = sender.text!
         self.owner.updateEditorDisplay(self)
     }
+    
+    /* ################################################################## */
+    /**
+     Respond to text changing in the text field.
+     
+     - parameter sender: The IB object that initiated this change.
+     */
+    @IBAction func virtualURITextChanged(_ sender: UITextField) {
+        self.meetingObject.virtualMeetingURI = sender.text!
+        self.owner.updateEditorDisplay(self)
+    }
 
     /* ################################################################## */
     // MARK: Overridden Base Class Methods
@@ -1171,6 +1187,10 @@ class AddressEditorTableViewCell: MeetingEditorViewCell {
         self.extraInfoLabel.text = NSLocalizedString(self.extraInfoLabel.text!, comment: "")
         self.extraInfoTextField.placeholder = NSLocalizedString(self.extraInfoTextField.placeholder!, comment: "")
         self.extraInfoTextField.text = self.meetingObject.locationInfo
+        
+        self.virtualMeetingLabel.text = NSLocalizedString(self.virtualMeetingLabel.text!, comment: "")
+        self.virtualMeetingTextField.placeholder = NSLocalizedString(self.virtualMeetingTextField.placeholder!, comment: "")
+        self.virtualMeetingTextField.text = self.meetingObject.virtualMeetingURI
     }
 }
 
@@ -1526,13 +1546,10 @@ class FormatsEditorTableViewCell: MeetingEditorViewCell, UITableViewDataSource, 
      Return the height of the table
      */
     var tableHeight: CGFloat {
-        let numFormats = MainAppDelegate.connectionObject.allPossibleFormats.count
-        if nil != self.superview {
-            let formatsPerRow = Int(self.superview!.bounds.size.width / type(of: self).sFormatCheckboxContainerWidth)
-            return CGFloat(Int(numFormats + (formatsPerRow - 1)) / formatsPerRow) * type(of: self).sFormatCheckboxContainerHeight
-        }
-        
-        return 0
+        let numRows = CGFloat(tableView(self.formatDisplayTableView, numberOfRowsInSection: 0))
+        let tableHeight = numRows * type(of: self).sFormatCheckboxContainerHeight
+
+        return tableHeight
     }
     
     /* ################################################################## */
@@ -1599,8 +1616,8 @@ class FormatsEditorTableViewCell: MeetingEditorViewCell, UITableViewDataSource, 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let numFormats = MainAppDelegate.connectionObject.allPossibleFormats.count
         let formatsPerRow = Int(tableView.bounds.size.width / type(of: self).sFormatCheckboxContainerWidth)
-        
-        return Int((numFormats + (formatsPerRow - 1)) / formatsPerRow)
+        let numRows = Int((numFormats + (formatsPerRow - 1)) / formatsPerRow) + 1
+        return numRows
     }
     
     /* ################################################################## */
@@ -1620,34 +1637,37 @@ class FormatsEditorTableViewCell: MeetingEditorViewCell, UITableViewDataSource, 
         let endingIndex = min(startingIndex + formatsPerRow, startingIndex + (numFormats - startingIndex))
         
         let ret: UITableViewCell = UITableViewCell()
-        ret.frame = CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: type(of: self).sFormatCheckboxContainerHeight)
         ret.backgroundColor = UIColor.clear
-        
-        var indent: CGFloat = 0
-        
-        for i in startingIndex..<endingIndex {
-            let formatObject = MainAppDelegate.connectionObject.allPossibleFormats[i]
-            let frame = CGRect(x: indent, y: 0, width: type(of: self).sFormatCheckboxContainerWidth, height: type(of: self).sFormatCheckboxContainerHeight)
-            let formatSubCell = UIView(frame: frame)
-            formatSubCell.backgroundColor = UIColor.clear
-            var checkBoxFrame = CGRect(x: type(of: self).sFormatCheckboxIndent, y: type(of: self).sFormatCheckboxIndent, width: type(of: self).sFormatCheckboxContainerHeight - (type(of: self).sFormatCheckboxIndent * 2), height: type(of: self).sFormatCheckboxContainerHeight - (type(of: self).sFormatCheckboxIndent * 2))
-            // Just to make sure we're square.
-            checkBoxFrame.size.width = min(checkBoxFrame.size.width, checkBoxFrame.size.height)
-            checkBoxFrame.size.height = min(checkBoxFrame.size.width, checkBoxFrame.size.height)
-            let checkBoxObject = ThreeStateCheckbox(frame: checkBoxFrame)
-            checkBoxObject.binaryState = true
-            checkBoxObject.extraData = formatObject
-            checkBoxObject.selectionState = self.meetingObject.formats.contains(formatObject) ? .Selected : .Clear
-            checkBoxObject.addTarget(self, action: #selector(FormatsEditorTableViewCell.formatCheckboxActuated), for: UIControl.Event.valueChanged)
-            formatSubCell.addSubview(checkBoxObject)
-            let labelFrame = CGRect(x: checkBoxFrame.origin.x + checkBoxFrame.size.width + type(of: self).sFormatCheckboxIndent, y: 0, width: frame.size.width - checkBoxFrame.origin.x + checkBoxFrame.size.width + type(of: self).sFormatCheckboxIndent, height: type(of: self).sFormatCheckboxContainerHeight)
-            let labelObject = UILabel(frame: labelFrame)
-            labelObject.backgroundColor = UIColor.clear
-            labelObject.textColor = tableView.tintColor
-            labelObject.text = formatObject.key
-            formatSubCell.addSubview(labelObject)
-            indent += type(of: self).sFormatCheckboxContainerWidth
-            ret.addSubview(formatSubCell)
+
+        if startingIndex < endingIndex {
+            ret.frame = CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: type(of: self).sFormatCheckboxContainerHeight)
+            
+            var indent: CGFloat = 0
+            
+            for i in startingIndex..<endingIndex {
+                let formatObject = MainAppDelegate.connectionObject.allPossibleFormats[i]
+                let frame = CGRect(x: indent, y: 0, width: type(of: self).sFormatCheckboxContainerWidth, height: type(of: self).sFormatCheckboxContainerHeight)
+                let formatSubCell = UIView(frame: frame)
+                formatSubCell.backgroundColor = UIColor.clear
+                var checkBoxFrame = CGRect(x: type(of: self).sFormatCheckboxIndent, y: type(of: self).sFormatCheckboxIndent, width: type(of: self).sFormatCheckboxContainerHeight - (type(of: self).sFormatCheckboxIndent * 2), height: type(of: self).sFormatCheckboxContainerHeight - (type(of: self).sFormatCheckboxIndent * 2))
+                // Just to make sure we're square.
+                checkBoxFrame.size.width = min(checkBoxFrame.size.width, checkBoxFrame.size.height)
+                checkBoxFrame.size.height = min(checkBoxFrame.size.width, checkBoxFrame.size.height)
+                let checkBoxObject = ThreeStateCheckbox(frame: checkBoxFrame)
+                checkBoxObject.binaryState = true
+                checkBoxObject.extraData = formatObject
+                checkBoxObject.selectionState = self.meetingObject.formats.contains(formatObject) ? .Selected : .Clear
+                checkBoxObject.addTarget(self, action: #selector(FormatsEditorTableViewCell.formatCheckboxActuated), for: UIControl.Event.valueChanged)
+                formatSubCell.addSubview(checkBoxObject)
+                let labelFrame = CGRect(x: checkBoxFrame.origin.x + checkBoxFrame.size.width + type(of: self).sFormatCheckboxIndent, y: 0, width: frame.size.width - checkBoxFrame.origin.x + checkBoxFrame.size.width + type(of: self).sFormatCheckboxIndent, height: type(of: self).sFormatCheckboxContainerHeight)
+                let labelObject = UILabel(frame: labelFrame)
+                labelObject.backgroundColor = UIColor.clear
+                labelObject.textColor = tableView.tintColor
+                labelObject.text = formatObject.key
+                formatSubCell.addSubview(labelObject)
+                indent += type(of: self).sFormatCheckboxContainerWidth
+                ret.addSubview(formatSubCell)
+            }
         }
         
         return ret

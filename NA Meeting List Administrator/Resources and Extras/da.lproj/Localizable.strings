@@ -119,6 +119,9 @@
 "LOCATION-INFO-LABEL"                                                                           =   "Ekstra Info:";
 "LOCATION-INFO-PLACEHOLDER"                                                                     =   "Indtast ekstra Placerings info";
 
+"VIRTUAL-MEETING-LABEL"                                                                         =   "Virtual Meeting URL:";
+"VIRTUAL-MEETING-PLACEHOLDER"                                                                   =   "Enter A URL";
+
 "LONGITUDE-LABEL"                                                                               =   "Længdegrad:";
 "LONGITUDE-PLACEHOLDER"                                                                         =   "Indsæt længdegrad for mødets Placering.";
 

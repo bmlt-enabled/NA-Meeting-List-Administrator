@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Xmv-pv-Odk">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Xmv-pv-Odk">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -598,11 +598,11 @@
                                             <outlet property="durationLabel" destination="j7r-CJ-ohc" id="BAf-vv-glq"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="editor-row-6" rowHeight="693" id="sLE-EG-x4O" userLabel="Address" customClass="AddressEditorTableViewCell" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="563" width="320" height="693"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="editor-row-6" rowHeight="764" id="sLE-EG-x4O" userLabel="Address" customClass="AddressEditorTableViewCell" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="563" width="320" height="764"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sLE-EG-x4O" id="hr9-om-ynX">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="693"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="764"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LOCATION-NAME-LABEL" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HZf-ir-fyH">
@@ -881,10 +881,35 @@
                                                         <action selector="extraInfoTextChanged:" destination="sLE-EG-x4O" eventType="editingChanged" id="Shq-s8-eN4"/>
                                                     </connections>
                                                 </textField>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="VIRTUAL-MEETING-PLACEHOLDER" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Vcn-2V-ikL" userLabel="Virtual Meeting Text Field">
+                                                    <rect key="frame" x="16" y="726" width="288" height="30"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="kir-aU-iaf"/>
+                                                    </constraints>
+                                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="virtualURITextChanged:" destination="sLE-EG-x4O" eventType="editingChanged" id="KVX-im-zy0"/>
+                                                        <outlet property="delegate" destination="sLE-EG-x4O" id="4IX-ls-Hbk"/>
+                                                    </connections>
+                                                </textField>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VIRTUAL-MEETING-LABEL" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9vS-W1-3ZA">
+                                                    <rect key="frame" x="16" y="697" width="288" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="gCh-5n-5OW"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstItem="Idv-fA-1pn" firstAttribute="top" secondItem="AaT-Qb-Fbk" secondAttribute="bottom" constant="8" id="2yn-rP-izw"/>
+                                                <constraint firstItem="Vcn-2V-ikL" firstAttribute="trailing" secondItem="hr9-om-ynX" secondAttribute="trailingMargin" id="3UU-Wq-lIH"/>
                                                 <constraint firstItem="Dku-4e-O0v" firstAttribute="trailing" secondItem="hr9-om-ynX" secondAttribute="trailingMargin" id="3Xf-qI-kCQ"/>
                                                 <constraint firstItem="mns-A4-j2N" firstAttribute="trailing" secondItem="hr9-om-ynX" secondAttribute="trailingMargin" id="9SP-A1-4Tq"/>
                                                 <constraint firstItem="8XV-SV-B1v" firstAttribute="top" secondItem="HZf-ir-fyH" secondAttribute="bottom" constant="8" id="AAc-5p-jg6"/>
@@ -895,13 +920,16 @@
                                                 <constraint firstItem="HZf-ir-fyH" firstAttribute="top" secondItem="hr9-om-ynX" secondAttribute="topMargin" id="Eft-uq-e3P"/>
                                                 <constraint firstItem="Bw7-TJ-Vrb" firstAttribute="top" secondItem="NPk-6l-qEb" secondAttribute="bottom" constant="8" id="FFi-n4-vvY"/>
                                                 <constraint firstItem="rDA-h6-U1Q" firstAttribute="trailing" secondItem="hr9-om-ynX" secondAttribute="trailingMargin" id="Ft5-Fv-BYY"/>
+                                                <constraint firstItem="9vS-W1-3ZA" firstAttribute="leading" secondItem="hr9-om-ynX" secondAttribute="leadingMargin" id="G2R-tX-nvQ"/>
                                                 <constraint firstItem="ww5-Hz-3Zn" firstAttribute="trailing" secondItem="hr9-om-ynX" secondAttribute="trailingMargin" id="H7E-Pg-IHB"/>
                                                 <constraint firstItem="AaT-Qb-Fbk" firstAttribute="top" secondItem="Dku-4e-O0v" secondAttribute="bottom" constant="8" id="IGM-QV-571"/>
                                                 <constraint firstItem="gRe-cz-62l" firstAttribute="trailing" secondItem="hr9-om-ynX" secondAttribute="trailingMargin" id="IHo-cS-0CO"/>
                                                 <constraint firstAttribute="leadingMargin" secondItem="8XV-SV-B1v" secondAttribute="leading" id="J35-JS-sus"/>
                                                 <constraint firstItem="mns-A4-j2N" firstAttribute="top" secondItem="I8E-Dc-mZq" secondAttribute="bottom" constant="8" id="JhH-mV-eq4"/>
+                                                <constraint firstItem="Vcn-2V-ikL" firstAttribute="leading" secondItem="hr9-om-ynX" secondAttribute="leadingMargin" id="LWy-Aj-9gI"/>
                                                 <constraint firstItem="gRe-cz-62l" firstAttribute="top" secondItem="Bw7-TJ-Vrb" secondAttribute="bottom" constant="8" id="MYF-qP-1OB"/>
                                                 <constraint firstItem="Dku-4e-O0v" firstAttribute="top" secondItem="Jym-rV-NyK" secondAttribute="bottom" constant="8" id="MiL-eM-Ufl"/>
+                                                <constraint firstItem="Vcn-2V-ikL" firstAttribute="top" secondItem="9vS-W1-3ZA" secondAttribute="bottom" constant="8" id="PiR-gA-QF3"/>
                                                 <constraint firstItem="Bw7-TJ-Vrb" firstAttribute="trailing" secondItem="hr9-om-ynX" secondAttribute="trailingMargin" id="QWt-tu-Wac"/>
                                                 <constraint firstItem="ww5-Hz-3Zn" firstAttribute="top" secondItem="dAl-cq-HU3" secondAttribute="bottom" constant="8" id="RWL-tx-I81"/>
                                                 <constraint firstItem="NPk-6l-qEb" firstAttribute="leading" secondItem="hr9-om-ynX" secondAttribute="leadingMargin" id="Rse-Ar-QVn"/>
@@ -915,6 +943,7 @@
                                                 <constraint firstAttribute="trailingMargin" secondItem="AaT-Qb-Fbk" secondAttribute="trailing" id="a2s-cw-tV8"/>
                                                 <constraint firstItem="AaT-Qb-Fbk" firstAttribute="leading" secondItem="hr9-om-ynX" secondAttribute="leadingMargin" id="boc-LK-eJr"/>
                                                 <constraint firstItem="1KY-T3-EJ9" firstAttribute="leading" secondItem="hr9-om-ynX" secondAttribute="leadingMargin" id="dWQ-y2-3Bo"/>
+                                                <constraint firstItem="9vS-W1-3ZA" firstAttribute="top" secondItem="1KY-T3-EJ9" secondAttribute="bottom" constant="8" id="dWf-Bf-5Ef"/>
                                                 <constraint firstItem="HZf-ir-fyH" firstAttribute="leading" secondItem="hr9-om-ynX" secondAttribute="leadingMargin" id="dbh-Ph-Vhk"/>
                                                 <constraint firstItem="I8E-Dc-mZq" firstAttribute="leading" secondItem="hr9-om-ynX" secondAttribute="leadingMargin" id="dvB-4b-8Lf"/>
                                                 <constraint firstItem="YgZ-As-VWr" firstAttribute="leading" secondItem="hr9-om-ynX" secondAttribute="leadingMargin" id="fYE-8o-YlR"/>
@@ -933,6 +962,7 @@
                                                 <constraint firstItem="dAl-cq-HU3" firstAttribute="top" secondItem="mns-A4-j2N" secondAttribute="bottom" constant="8" id="tak-jN-aaj"/>
                                                 <constraint firstItem="I8E-Dc-mZq" firstAttribute="top" secondItem="rDA-h6-U1Q" secondAttribute="bottom" constant="8" id="uID-3h-j4q"/>
                                                 <constraint firstItem="rhl-pA-sks" firstAttribute="leading" secondItem="hr9-om-ynX" secondAttribute="leadingMargin" id="ubc-NH-pEI"/>
+                                                <constraint firstItem="9vS-W1-3ZA" firstAttribute="trailing" secondItem="hr9-om-ynX" secondAttribute="trailingMargin" id="wRd-pa-D8B"/>
                                                 <constraint firstItem="rhl-pA-sks" firstAttribute="top" secondItem="ww5-Hz-3Zn" secondAttribute="bottom" constant="8" id="we9-VP-wvo"/>
                                                 <constraint firstItem="8XV-SV-B1v" firstAttribute="leading" secondItem="hr9-om-ynX" secondAttribute="leadingMargin" id="xxv-Ur-Seq"/>
                                                 <constraint firstItem="ww5-Hz-3Zn" firstAttribute="leading" secondItem="hr9-om-ynX" secondAttribute="leadingMargin" id="z7K-KW-WDP"/>
@@ -961,12 +991,14 @@
                                             <outlet property="townTextField" destination="Bw7-TJ-Vrb" id="Mqx-aF-dcg"/>
                                             <outlet property="venueNameLabel" destination="HZf-ir-fyH" id="QDf-MV-Fov"/>
                                             <outlet property="venueNameTextField" destination="8XV-SV-B1v" id="zMk-80-qqd"/>
+                                            <outlet property="virtualMeetingLabel" destination="9vS-W1-3ZA" id="1rK-Pu-ueu"/>
+                                            <outlet property="virtualMeetingTextField" destination="Vcn-2V-ikL" id="CVR-WF-GaG"/>
                                             <outlet property="zipLabel" destination="Z0t-iH-f3S" id="qxQ-IO-mUF"/>
                                             <outlet property="zipTextField" destination="ivq-xr-3Wn" id="Vyu-JM-Ywd"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="editor-row-7" rowHeight="320" id="6N9-1o-df9" userLabel="Map" customClass="MapTableViewCell" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="1256" width="320" height="320"/>
+                                        <rect key="frame" x="0.0" y="1327" width="320" height="320"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6N9-1o-df9" id="jiA-gh-gim">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
@@ -1014,7 +1046,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="editor-row-8" rowHeight="210" id="7A0-39-1cK" userLabel="Longitude and Latitude" customClass="LongLatTableViewCell" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="1576" width="320" height="210"/>
+                                        <rect key="frame" x="0.0" y="1647" width="320" height="210"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7A0-39-1cK" id="hiz-yk-QFo">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="210"/>
@@ -1150,7 +1182,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="editor-row-9" rowHeight="100" id="2pj-LT-NSr" userLabel="Comments" customClass="MeetingCommentsEditorTableViewCell" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="1786" width="320" height="100"/>
+                                        <rect key="frame" x="0.0" y="1857" width="320" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2pj-LT-NSr" id="ivO-xH-nNx">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
@@ -1196,7 +1228,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="editor-row-10" rowHeight="300" id="KfE-Hu-h7V" userLabel="Formats" customClass="FormatsEditorTableViewCell" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="1886" width="320" height="300"/>
+                                        <rect key="frame" x="0.0" y="1957" width="320" height="300"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KfE-Hu-h7V" id="PqB-sL-yMB">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="300"/>
@@ -1215,8 +1247,8 @@
                                                     <rect key="frame" x="12" y="37" width="296" height="259"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <connections>
-                                                        <outlet property="dataSource" destination="KfE-Hu-h7V" id="SoU-IW-oyN"/>
-                                                        <outlet property="delegate" destination="KfE-Hu-h7V" id="O0P-Tr-oaJ"/>
+                                                        <outlet property="dataSource" destination="KfE-Hu-h7V" id="4le-XX-DUY"/>
+                                                        <outlet property="delegate" destination="KfE-Hu-h7V" id="zs3-LM-t5c"/>
                                                     </connections>
                                                 </tableView>
                                             </subviews>
@@ -1338,7 +1370,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2557.5" y="-1399.6478873239437"/>
+            <point key="canvasLocation" x="2556.521739130435" y="-1400.2232142857142"/>
         </scene>
         <!--HISTORY-ERASER-TITLE-->
         <scene sceneID="iTe-1h-6gv">
@@ -2589,11 +2621,11 @@
                                             <outlet property="durationLabel" destination="IFU-G2-ykw" id="MJa-te-7Qq"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="editor-row-6" rowHeight="693" id="KH3-Os-9Po" userLabel="Address" customClass="AddressEditorTableViewCell" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="563" width="320" height="693"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="editor-row-6" rowHeight="766" id="KH3-Os-9Po" userLabel="Address" customClass="AddressEditorTableViewCell" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="563" width="320" height="766"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KH3-Os-9Po" id="MAH-tY-5eH">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="693"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="766"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LOCATION-NAME-LABEL" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4oW-zL-puY">
@@ -2835,6 +2867,20 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="NATION-PLACEHOLDER" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="lpO-AS-Vne">
+                                                    <rect key="frame" x="16" y="592" width="288" height="30"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="2AF-Q4-jSC"/>
+                                                    </constraints>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="nationTextChanged:" destination="KH3-Os-9Po" eventType="editingChanged" id="v0W-9d-RpG"/>
+                                                    </connections>
+                                                </textField>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LOCATION-INFO-LABEL" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A4c-H2-dlb">
                                                     <rect key="frame" x="16" y="630" width="288" height="21"/>
                                                     <constraints>
@@ -2858,18 +2904,28 @@
                                                         <action selector="extraInfoTextChanged:" destination="KH3-Os-9Po" eventType="editingChanged" id="M9P-Ws-C2e"/>
                                                     </connections>
                                                 </textField>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="NATION-PLACEHOLDER" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="lpO-AS-Vne">
-                                                    <rect key="frame" x="16" y="592" width="288" height="30"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VIRTUAL-MEETING-LABEL" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k5i-JD-Y2I">
+                                                    <rect key="frame" x="16" y="697" width="288" height="21"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="30" id="2AF-Q4-jSC"/>
+                                                        <constraint firstAttribute="height" constant="21" id="SXc-xE-44a"/>
                                                     </constraints>
-                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="VIRTUAL-MEETING-PLACEHOLDER" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="VbQ-hB-OT2" userLabel="Virtual Meeting Text Field">
+                                                    <rect key="frame" x="16" y="726" width="288" height="30"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="sfv-1x-69P"/>
+                                                    </constraints>
+                                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
-                                                        <action selector="nationTextChanged:" destination="KH3-Os-9Po" eventType="editingChanged" id="v0W-9d-RpG"/>
+                                                        <action selector="extraInfoTextChanged:" destination="KH3-Os-9Po" eventType="editingChanged" id="baO-MJ-Y7M"/>
+                                                        <outlet property="delegate" destination="KH3-Os-9Po" id="h8i-x0-f54"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
@@ -2883,6 +2939,7 @@
                                                 <constraint firstItem="r1d-CL-czU" firstAttribute="top" secondItem="4oW-zL-puY" secondAttribute="bottom" constant="8" id="33E-6D-dY9"/>
                                                 <constraint firstItem="P8Q-Tw-n2E" firstAttribute="leading" secondItem="MAH-tY-5eH" secondAttribute="leadingMargin" id="4HG-Fc-H4k"/>
                                                 <constraint firstItem="8n0-8a-A3C" firstAttribute="trailing" secondItem="MAH-tY-5eH" secondAttribute="trailingMargin" id="5ky-zX-hrr"/>
+                                                <constraint firstItem="k5i-JD-Y2I" firstAttribute="leading" secondItem="MAH-tY-5eH" secondAttribute="leadingMargin" id="5qz-WD-ICN"/>
                                                 <constraint firstItem="6se-wW-bUX" firstAttribute="trailing" secondItem="MAH-tY-5eH" secondAttribute="trailingMargin" id="7dX-vy-liC"/>
                                                 <constraint firstItem="P8Q-Tw-n2E" firstAttribute="trailing" secondItem="MAH-tY-5eH" secondAttribute="trailingMargin" id="9AF-2Q-CCL"/>
                                                 <constraint firstItem="LaT-2O-0DL" firstAttribute="leading" secondItem="MAH-tY-5eH" secondAttribute="leadingMargin" id="9qb-sK-PiQ"/>
@@ -2902,7 +2959,9 @@
                                                 <constraint firstAttribute="leadingMargin" secondItem="r1d-CL-czU" secondAttribute="leading" id="SZO-E9-C8B"/>
                                                 <constraint firstItem="bJG-dB-eqx" firstAttribute="centerX" secondItem="MAH-tY-5eH" secondAttribute="centerX" id="Udv-d8-3RU"/>
                                                 <constraint firstItem="Gfb-xw-bPP" firstAttribute="leading" secondItem="MAH-tY-5eH" secondAttribute="leadingMargin" id="VSn-dA-E48"/>
+                                                <constraint firstItem="k5i-JD-Y2I" firstAttribute="top" secondItem="uPE-ny-dFG" secondAttribute="bottom" constant="8" id="VZg-Fh-JiG"/>
                                                 <constraint firstItem="aDv-YO-IVx" firstAttribute="leading" secondItem="MAH-tY-5eH" secondAttribute="leadingMargin" id="WYm-ay-OrW"/>
+                                                <constraint firstItem="VbQ-hB-OT2" firstAttribute="leading" secondItem="MAH-tY-5eH" secondAttribute="leadingMargin" id="YBV-En-kgi"/>
                                                 <constraint firstItem="bJG-dB-eqx" firstAttribute="top" secondItem="rqq-G8-hoQ" secondAttribute="bottom" constant="8" id="YGD-QL-bSY"/>
                                                 <constraint firstItem="336-Hx-Bbn" firstAttribute="leading" secondItem="MAH-tY-5eH" secondAttribute="leadingMargin" id="YfS-wq-DU5"/>
                                                 <constraint firstItem="uPE-ny-dFG" firstAttribute="leading" secondItem="MAH-tY-5eH" secondAttribute="leadingMargin" id="ZEB-q2-0lW"/>
@@ -2910,6 +2969,7 @@
                                                 <constraint firstItem="4oW-zL-puY" firstAttribute="trailing" secondItem="MAH-tY-5eH" secondAttribute="trailingMargin" id="aBU-CG-cOc"/>
                                                 <constraint firstItem="A4c-H2-dlb" firstAttribute="trailing" secondItem="MAH-tY-5eH" secondAttribute="trailingMargin" id="aVi-Qf-mUh"/>
                                                 <constraint firstItem="aDv-YO-IVx" firstAttribute="trailing" secondItem="MAH-tY-5eH" secondAttribute="trailingMargin" id="bIB-jQ-y18"/>
+                                                <constraint firstItem="VbQ-hB-OT2" firstAttribute="top" secondItem="k5i-JD-Y2I" secondAttribute="bottom" constant="8" id="cG5-on-c2O"/>
                                                 <constraint firstItem="6WN-fn-ItV" firstAttribute="top" secondItem="336-Hx-Bbn" secondAttribute="bottom" constant="8" id="cy3-kI-4hM"/>
                                                 <constraint firstItem="P8Q-Tw-n2E" firstAttribute="top" secondItem="ISL-qn-7oY" secondAttribute="bottom" constant="8" id="d5K-bM-IkS"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="uPE-ny-dFG" secondAttribute="trailing" id="f2a-dB-Jze"/>
@@ -2920,11 +2980,13 @@
                                                 <constraint firstItem="aDv-YO-IVx" firstAttribute="top" secondItem="bJG-dB-eqx" secondAttribute="bottom" constant="8" id="kds-v7-m3F"/>
                                                 <constraint firstItem="Ooo-kO-MeQ" firstAttribute="top" secondItem="3Ag-em-Jcs" secondAttribute="bottom" constant="8" id="ljy-Cn-snI"/>
                                                 <constraint firstItem="6se-wW-bUX" firstAttribute="leading" secondItem="MAH-tY-5eH" secondAttribute="leadingMargin" id="maA-cq-Udd"/>
+                                                <constraint firstItem="VbQ-hB-OT2" firstAttribute="trailing" secondItem="MAH-tY-5eH" secondAttribute="trailingMargin" id="mx4-Ig-4O1"/>
                                                 <constraint firstItem="uPE-ny-dFG" firstAttribute="top" secondItem="A4c-H2-dlb" secondAttribute="bottom" constant="8" id="nvu-R4-CIz"/>
                                                 <constraint firstItem="lpO-AS-Vne" firstAttribute="top" secondItem="aDv-YO-IVx" secondAttribute="bottom" constant="8" id="oU8-91-Rj6"/>
                                                 <constraint firstItem="336-Hx-Bbn" firstAttribute="top" secondItem="Gfb-xw-bPP" secondAttribute="bottom" constant="8" id="rCO-D4-nrW"/>
                                                 <constraint firstItem="A4c-H2-dlb" firstAttribute="leading" secondItem="MAH-tY-5eH" secondAttribute="leadingMargin" id="s3C-ki-VwT"/>
                                                 <constraint firstItem="6WN-fn-ItV" firstAttribute="leading" secondItem="MAH-tY-5eH" secondAttribute="leadingMargin" id="smX-s0-Zfn"/>
+                                                <constraint firstItem="k5i-JD-Y2I" firstAttribute="trailing" secondItem="MAH-tY-5eH" secondAttribute="trailingMargin" id="vg7-1D-jiJ"/>
                                                 <constraint firstItem="r1d-CL-czU" firstAttribute="trailing" secondItem="MAH-tY-5eH" secondAttribute="trailingMargin" id="xzU-ft-E8z"/>
                                                 <constraint firstItem="ISL-qn-7oY" firstAttribute="trailing" secondItem="MAH-tY-5eH" secondAttribute="trailingMargin" id="ytR-TE-wTz"/>
                                                 <constraint firstItem="336-Hx-Bbn" firstAttribute="trailing" secondItem="MAH-tY-5eH" secondAttribute="trailingMargin" id="z3e-kb-4UU"/>
@@ -2950,14 +3012,15 @@
                                             <outlet property="streetAddressTextField" destination="P8Q-Tw-n2E" id="i8e-8G-cbc"/>
                                             <outlet property="townLabel" destination="6se-wW-bUX" id="Izq-Xd-qgo"/>
                                             <outlet property="townTextField" destination="8n0-8a-A3C" id="eae-1P-4tu"/>
-                                            <outlet property="venueNameLabel" destination="4oW-zL-puY" id="RbP-Up-9Ed"/>
                                             <outlet property="venueNameTextField" destination="r1d-CL-czU" id="dsR-PS-afK"/>
+                                            <outlet property="virtualMeetingLabel" destination="k5i-JD-Y2I" id="Uel-nz-CCC"/>
+                                            <outlet property="virtualMeetingTextField" destination="VbQ-hB-OT2" id="P2L-bo-qhM"/>
                                             <outlet property="zipLabel" destination="z6K-La-GLj" id="wom-yf-pBa"/>
                                             <outlet property="zipTextField" destination="Bwc-OW-1KP" id="rNm-Us-eof"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="editor-row-7" rowHeight="320" id="mn9-uh-e6f" userLabel="Map" customClass="MapTableViewCell" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="1256" width="320" height="320"/>
+                                        <rect key="frame" x="0.0" y="1329" width="320" height="320"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mn9-uh-e6f" id="Y7d-L2-8j8">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
@@ -3005,7 +3068,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="editor-row-8" rowHeight="210" id="nAC-Xy-NTF" userLabel="Longitude and Latitude" customClass="LongLatTableViewCell" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="1576" width="320" height="210"/>
+                                        <rect key="frame" x="0.0" y="1649" width="320" height="210"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nAC-Xy-NTF" id="TlI-38-sQ2">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="210"/>
@@ -3141,7 +3204,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="editor-row-9" rowHeight="100" id="WT7-es-dqK" userLabel="Comments" customClass="MeetingCommentsEditorTableViewCell" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="1786" width="320" height="100"/>
+                                        <rect key="frame" x="0.0" y="1859" width="320" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WT7-es-dqK" id="rgS-Eb-IYA">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
@@ -3187,7 +3250,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="editor-row-10" rowHeight="300" id="uki-fD-DXe" userLabel="Formats" customClass="FormatsEditorTableViewCell" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="1886" width="320" height="300"/>
+                                        <rect key="frame" x="0.0" y="1959" width="320" height="300"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uki-fD-DXe" id="cyG-IL-J77">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="300"/>
@@ -3207,8 +3270,8 @@
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <sections/>
                                                     <connections>
-                                                        <outlet property="dataSource" destination="uki-fD-DXe" id="uc9-Sh-Tws"/>
-                                                        <outlet property="delegate" destination="uki-fD-DXe" id="ab9-wa-CC4"/>
+                                                        <outlet property="dataSource" destination="uki-fD-DXe" id="iIC-F9-iMF"/>
+                                                        <outlet property="delegate" destination="uki-fD-DXe" id="fn1-e1-qe3"/>
                                                     </connections>
                                                 </tableView>
                                             </subviews>
@@ -3323,7 +3386,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2557.5" y="916.90140845070425"/>
+            <point key="canvasLocation" x="2556.521739130435" y="916.74107142857133"/>
         </scene>
     </scenes>
     <resources>
