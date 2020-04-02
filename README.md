@@ -39,6 +39,15 @@ The editor/new meeting screen needs to be refactored. Currently, they are indica
 
 CHANGELIST
 =
+***Version 1.4.4.2003* ** *- April 2, 2020*
+
+- Added Danish translations for the new Virtual Meeting URL text entry.
+
+***Version 1.4.4.2002* ** *- April 1, 2020*
+
+- Added support for the new Virtual Meeting URL field.
+- Fixed a bug, where the formats could be "cut off."
+
 ***Version 1.4.4.2000* ** *- February 9, 2020*
 
 - Fixes a small bug, where invalid servers might not be reported as such.
