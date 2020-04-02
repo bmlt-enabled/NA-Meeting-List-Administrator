@@ -122,6 +122,9 @@
 "VIRTUAL-MEETING-LABEL"                                                                         =   "Virtual Meeting URL:";
 "VIRTUAL-MEETING-PLACEHOLDER"                                                                   =   "Enter A URL";
 
+"MEETING-PHONE-NUMBER-LABEL"                                                                    =   "Phone Meeting Number:";
+"MEETING-PHONE-NUMBER-PLACEHOLDER"                                                              =   "Enter A Phone Number";
+
 "LONGITUDE-LABEL"                                                                               =   "Longitude:";
 "LONGITUDE-PLACEHOLDER"                                                                         =   "Enter The Meeting Location Longitude.";
 

@@ -39,9 +39,10 @@ The editor/new meeting screen needs to be refactored. Currently, they are indica
 
 CHANGELIST
 =
-***Version 1.4.4.2003* ** *- April 2, 2020*
+***Version 1.4.4.2004* ** *- April 2, 2020*
 
 - Added Danish translations for the new Virtual Meeting URL text entry.
+- Added support for the phone meeting number text entry.
 
 ***Version 1.4.4.2002* ** *- April 1, 2020*
 

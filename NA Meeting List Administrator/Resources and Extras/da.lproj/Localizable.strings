@@ -122,6 +122,9 @@
 "VIRTUAL-MEETING-LABEL"                                                                         =   "Virtual Møde URL:";
 "VIRTUAL-MEETING-PLACEHOLDER"                                                                   =   "Indsær en URL";
 
+"MEETING-PHONE-NUMBER-LABEL"                                                                    =   "Phone Meeting Number:";
+"MEETING-PHONE-NUMBER-PLACEHOLDER"                                                              =   "Enter A Phone Number";
+
 "LONGITUDE-LABEL"                                                                               =   "Længdegrad:";
 "LONGITUDE-PLACEHOLDER"                                                                         =   "Indsæt længdegrad for mødets Placering.";
 

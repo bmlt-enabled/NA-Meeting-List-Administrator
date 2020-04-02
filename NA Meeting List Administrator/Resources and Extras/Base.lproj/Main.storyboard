@@ -243,10 +243,10 @@
             </objects>
             <point key="canvasLocation" x="1741.875" y="122.53521126760563"/>
         </scene>
-        <!--MEETING-ID-FORMAT-->
+        <!--Meeting Editor-->
         <scene sceneID="lTA-iq-h3x">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="m2u-A7-bWE" customClass="EditSingleMeetingViewController" customModule="NA_Meeting_List_Administrator" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Meeting Editor" hidesBottomBarWhenPushed="YES" id="m2u-A7-bWE" customClass="EditSingleMeetingViewController" customModule="NA_Meeting_List_Administrator" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tAG-NX-Teg" customClass="EditorViewBaseClass" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="2000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -598,11 +598,11 @@
                                             <outlet property="durationLabel" destination="j7r-CJ-ohc" id="BAf-vv-glq"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="editor-row-6" rowHeight="764" id="sLE-EG-x4O" userLabel="Address" customClass="AddressEditorTableViewCell" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="563" width="320" height="764"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="editor-row-6" rowHeight="829" id="sLE-EG-x4O" userLabel="Address" customClass="AddressEditorTableViewCell" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="563" width="320" height="829"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sLE-EG-x4O" id="hr9-om-ynX">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="764"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="829"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LOCATION-NAME-LABEL" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HZf-ir-fyH">
@@ -905,6 +905,30 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MEETING-PHONE-NUMBER-LABEL" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OPO-vf-EOq">
+                                                    <rect key="frame" x="16" y="764" width="288" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="1d6-xx-Bfm"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="MEETING-PHONE-NUMBER-PLACEHOLDER" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="SfY-OJ-P6w" userLabel="Meeting PhoneNumber Text Field">
+                                                    <rect key="frame" x="16" y="793" width="288" height="30"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="ixw-9L-bIh"/>
+                                                    </constraints>
+                                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="meetingPhoneNumberTextChanged:" destination="sLE-EG-x4O" eventType="editingChanged" id="fF4-ds-B6P"/>
+                                                        <outlet property="delegate" destination="sLE-EG-x4O" id="3aX-G3-H8C"/>
+                                                    </connections>
+                                                </textField>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
@@ -926,6 +950,7 @@
                                                 <constraint firstItem="gRe-cz-62l" firstAttribute="trailing" secondItem="hr9-om-ynX" secondAttribute="trailingMargin" id="IHo-cS-0CO"/>
                                                 <constraint firstAttribute="leadingMargin" secondItem="8XV-SV-B1v" secondAttribute="leading" id="J35-JS-sus"/>
                                                 <constraint firstItem="mns-A4-j2N" firstAttribute="top" secondItem="I8E-Dc-mZq" secondAttribute="bottom" constant="8" id="JhH-mV-eq4"/>
+                                                <constraint firstItem="SfY-OJ-P6w" firstAttribute="top" secondItem="OPO-vf-EOq" secondAttribute="bottom" constant="8" id="LGx-X4-gqK"/>
                                                 <constraint firstItem="Vcn-2V-ikL" firstAttribute="leading" secondItem="hr9-om-ynX" secondAttribute="leadingMargin" id="LWy-Aj-9gI"/>
                                                 <constraint firstItem="gRe-cz-62l" firstAttribute="top" secondItem="Bw7-TJ-Vrb" secondAttribute="bottom" constant="8" id="MYF-qP-1OB"/>
                                                 <constraint firstItem="Dku-4e-O0v" firstAttribute="top" secondItem="Jym-rV-NyK" secondAttribute="bottom" constant="8" id="MiL-eM-Ufl"/>
@@ -942,6 +967,7 @@
                                                 <constraint firstItem="NPk-6l-qEb" firstAttribute="trailing" secondItem="hr9-om-ynX" secondAttribute="trailingMargin" id="Yk6-AM-sy6"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="AaT-Qb-Fbk" secondAttribute="trailing" id="a2s-cw-tV8"/>
                                                 <constraint firstItem="AaT-Qb-Fbk" firstAttribute="leading" secondItem="hr9-om-ynX" secondAttribute="leadingMargin" id="boc-LK-eJr"/>
+                                                <constraint firstItem="SfY-OJ-P6w" firstAttribute="trailing" secondItem="hr9-om-ynX" secondAttribute="trailingMargin" id="cp8-xo-WpC"/>
                                                 <constraint firstItem="1KY-T3-EJ9" firstAttribute="leading" secondItem="hr9-om-ynX" secondAttribute="leadingMargin" id="dWQ-y2-3Bo"/>
                                                 <constraint firstItem="9vS-W1-3ZA" firstAttribute="top" secondItem="1KY-T3-EJ9" secondAttribute="bottom" constant="8" id="dWf-Bf-5Ef"/>
                                                 <constraint firstItem="HZf-ir-fyH" firstAttribute="leading" secondItem="hr9-om-ynX" secondAttribute="leadingMargin" id="dbh-Ph-Vhk"/>
@@ -950,9 +976,12 @@
                                                 <constraint firstItem="rDA-h6-U1Q" firstAttribute="top" secondItem="8XV-SV-B1v" secondAttribute="bottom" constant="8" id="fc8-DZ-hyJ"/>
                                                 <constraint firstItem="rhl-pA-sks" firstAttribute="trailing" secondItem="hr9-om-ynX" secondAttribute="trailingMargin" id="gOQ-Cj-ofj"/>
                                                 <constraint firstItem="1KY-T3-EJ9" firstAttribute="top" secondItem="Idv-fA-1pn" secondAttribute="bottom" constant="8" id="gi9-eh-ai4"/>
+                                                <constraint firstItem="OPO-vf-EOq" firstAttribute="trailing" secondItem="hr9-om-ynX" secondAttribute="trailingMargin" id="gzh-0z-pfh"/>
                                                 <constraint firstItem="NPk-6l-qEb" firstAttribute="top" secondItem="rhl-pA-sks" secondAttribute="bottom" constant="8" id="hkg-J3-WHZ"/>
+                                                <constraint firstItem="OPO-vf-EOq" firstAttribute="leading" secondItem="hr9-om-ynX" secondAttribute="leadingMargin" id="inc-3k-IwC"/>
                                                 <constraint firstItem="HZf-ir-fyH" firstAttribute="trailing" secondItem="hr9-om-ynX" secondAttribute="trailingMargin" id="ipu-2e-FnO"/>
                                                 <constraint firstItem="Idv-fA-1pn" firstAttribute="leading" secondItem="hr9-om-ynX" secondAttribute="leadingMargin" id="jHD-LO-uFD"/>
+                                                <constraint firstItem="OPO-vf-EOq" firstAttribute="top" secondItem="Vcn-2V-ikL" secondAttribute="bottom" constant="8" id="jbL-iD-I1f"/>
                                                 <constraint firstItem="YgZ-As-VWr" firstAttribute="trailing" secondItem="hr9-om-ynX" secondAttribute="trailingMargin" id="k9i-8s-vvI"/>
                                                 <constraint firstItem="rDA-h6-U1Q" firstAttribute="leading" secondItem="hr9-om-ynX" secondAttribute="leadingMargin" id="mTP-LM-rQs"/>
                                                 <constraint firstItem="oz5-c7-JZI" firstAttribute="top" secondItem="YgZ-As-VWr" secondAttribute="bottom" constant="8" id="o2w-6y-4HO"/>
@@ -964,6 +993,7 @@
                                                 <constraint firstItem="rhl-pA-sks" firstAttribute="leading" secondItem="hr9-om-ynX" secondAttribute="leadingMargin" id="ubc-NH-pEI"/>
                                                 <constraint firstItem="9vS-W1-3ZA" firstAttribute="trailing" secondItem="hr9-om-ynX" secondAttribute="trailingMargin" id="wRd-pa-D8B"/>
                                                 <constraint firstItem="rhl-pA-sks" firstAttribute="top" secondItem="ww5-Hz-3Zn" secondAttribute="bottom" constant="8" id="we9-VP-wvo"/>
+                                                <constraint firstItem="SfY-OJ-P6w" firstAttribute="leading" secondItem="hr9-om-ynX" secondAttribute="leadingMargin" id="xon-3h-Acj"/>
                                                 <constraint firstItem="8XV-SV-B1v" firstAttribute="leading" secondItem="hr9-om-ynX" secondAttribute="leadingMargin" id="xxv-Ur-Seq"/>
                                                 <constraint firstItem="ww5-Hz-3Zn" firstAttribute="leading" secondItem="hr9-om-ynX" secondAttribute="leadingMargin" id="z7K-KW-WDP"/>
                                                 <constraint firstItem="Idv-fA-1pn" firstAttribute="trailing" secondItem="hr9-om-ynX" secondAttribute="trailingMargin" id="zTc-1D-uuv"/>
@@ -978,6 +1008,8 @@
                                             <outlet property="countyTextField" destination="YgZ-As-VWr" id="Aoy-bR-EgG"/>
                                             <outlet property="extraInfoLabel" destination="Idv-fA-1pn" id="GYm-0U-cHi"/>
                                             <outlet property="extraInfoTextField" destination="1KY-T3-EJ9" id="k7F-tx-1bT"/>
+                                            <outlet property="meetingPhoneNumberLabel" destination="OPO-vf-EOq" id="pex-T0-0ri"/>
+                                            <outlet property="meetingPhoneNumberTextField" destination="SfY-OJ-P6w" id="uvL-o2-x7l"/>
                                             <outlet property="nationLabel" destination="Dku-4e-O0v" id="Wld-Z4-rxR"/>
                                             <outlet property="nationTextField" destination="AaT-Qb-Fbk" id="5iJ-FS-kKf"/>
                                             <outlet property="neighborhoodLabel" destination="mns-A4-j2N" id="R2B-xE-oHL"/>
@@ -998,7 +1030,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="editor-row-7" rowHeight="320" id="6N9-1o-df9" userLabel="Map" customClass="MapTableViewCell" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="1327" width="320" height="320"/>
+                                        <rect key="frame" x="0.0" y="1392" width="320" height="320"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6N9-1o-df9" id="jiA-gh-gim">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
@@ -1046,7 +1078,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="editor-row-8" rowHeight="210" id="7A0-39-1cK" userLabel="Longitude and Latitude" customClass="LongLatTableViewCell" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="1647" width="320" height="210"/>
+                                        <rect key="frame" x="0.0" y="1712" width="320" height="210"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7A0-39-1cK" id="hiz-yk-QFo">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="210"/>
@@ -1182,7 +1214,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="editor-row-9" rowHeight="100" id="2pj-LT-NSr" userLabel="Comments" customClass="MeetingCommentsEditorTableViewCell" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="1857" width="320" height="100"/>
+                                        <rect key="frame" x="0.0" y="1922" width="320" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2pj-LT-NSr" id="ivO-xH-nNx">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
@@ -1228,7 +1260,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="editor-row-10" rowHeight="300" id="KfE-Hu-h7V" userLabel="Formats" customClass="FormatsEditorTableViewCell" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="1957" width="320" height="300"/>
+                                        <rect key="frame" x="0.0" y="2022" width="320" height="300"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KfE-Hu-h7V" id="PqB-sL-yMB">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="300"/>
@@ -2621,11 +2653,11 @@
                                             <outlet property="durationLabel" destination="IFU-G2-ykw" id="MJa-te-7Qq"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="editor-row-6" rowHeight="766" id="KH3-Os-9Po" userLabel="Address" customClass="AddressEditorTableViewCell" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="563" width="320" height="766"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="editor-row-6" rowHeight="1267" id="KH3-Os-9Po" userLabel="Address" customClass="AddressEditorTableViewCell" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="563" width="320" height="1267"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KH3-Os-9Po" id="MAH-tY-5eH">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="766"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="1267"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LOCATION-NAME-LABEL" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4oW-zL-puY">
@@ -2924,8 +2956,32 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
-                                                        <action selector="extraInfoTextChanged:" destination="KH3-Os-9Po" eventType="editingChanged" id="baO-MJ-Y7M"/>
+                                                        <action selector="virtualURITextChanged:" destination="KH3-Os-9Po" eventType="editingChanged" id="aIa-Sz-R81"/>
                                                         <outlet property="delegate" destination="KH3-Os-9Po" id="h8i-x0-f54"/>
+                                                    </connections>
+                                                </textField>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MEETING-PHONE-NUMBER-LABEL" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jCd-1c-kfc">
+                                                    <rect key="frame" x="16" y="764" width="288" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="8Nc-sU-XzJ"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="MEETING-PHONE-NUMBER-PLACEHOLDER" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="IhK-uX-wTx" userLabel="Meeting Phone Number Text Field">
+                                                    <rect key="frame" x="16" y="793" width="288" height="30"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="Yo9-Yx-aeH"/>
+                                                    </constraints>
+                                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="meetingPhoneNumberTextChanged:" destination="KH3-Os-9Po" eventType="editingChanged" id="5Er-6r-ZgB"/>
+                                                        <outlet property="delegate" destination="KH3-Os-9Po" id="IDI-Cq-Cjr"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
@@ -2935,11 +2991,14 @@
                                                 <constraint firstItem="Gfb-xw-bPP" firstAttribute="top" secondItem="P8Q-Tw-n2E" secondAttribute="bottom" constant="8" id="0Rm-RF-hgI"/>
                                                 <constraint firstItem="Gfb-xw-bPP" firstAttribute="trailing" secondItem="MAH-tY-5eH" secondAttribute="trailingMargin" id="0bd-Ph-aGv"/>
                                                 <constraint firstItem="ISL-qn-7oY" firstAttribute="top" secondItem="r1d-CL-czU" secondAttribute="bottom" constant="8" id="1J0-vp-fbT"/>
+                                                <constraint firstItem="IhK-uX-wTx" firstAttribute="trailing" secondItem="MAH-tY-5eH" secondAttribute="trailingMargin" id="1az-On-lYs"/>
                                                 <constraint firstItem="lpO-AS-Vne" firstAttribute="leading" secondItem="MAH-tY-5eH" secondAttribute="leadingMargin" id="1u3-oO-BRb"/>
                                                 <constraint firstItem="r1d-CL-czU" firstAttribute="top" secondItem="4oW-zL-puY" secondAttribute="bottom" constant="8" id="33E-6D-dY9"/>
+                                                <constraint firstItem="jCd-1c-kfc" firstAttribute="top" secondItem="VbQ-hB-OT2" secondAttribute="bottom" constant="8" id="4GG-j5-EaO"/>
                                                 <constraint firstItem="P8Q-Tw-n2E" firstAttribute="leading" secondItem="MAH-tY-5eH" secondAttribute="leadingMargin" id="4HG-Fc-H4k"/>
                                                 <constraint firstItem="8n0-8a-A3C" firstAttribute="trailing" secondItem="MAH-tY-5eH" secondAttribute="trailingMargin" id="5ky-zX-hrr"/>
                                                 <constraint firstItem="k5i-JD-Y2I" firstAttribute="leading" secondItem="MAH-tY-5eH" secondAttribute="leadingMargin" id="5qz-WD-ICN"/>
+                                                <constraint firstItem="jCd-1c-kfc" firstAttribute="leading" secondItem="MAH-tY-5eH" secondAttribute="leadingMargin" id="7DE-Wy-7xH"/>
                                                 <constraint firstItem="6se-wW-bUX" firstAttribute="trailing" secondItem="MAH-tY-5eH" secondAttribute="trailingMargin" id="7dX-vy-liC"/>
                                                 <constraint firstItem="P8Q-Tw-n2E" firstAttribute="trailing" secondItem="MAH-tY-5eH" secondAttribute="trailingMargin" id="9AF-2Q-CCL"/>
                                                 <constraint firstItem="LaT-2O-0DL" firstAttribute="leading" secondItem="MAH-tY-5eH" secondAttribute="leadingMargin" id="9qb-sK-PiQ"/>
@@ -2957,6 +3016,7 @@
                                                 <constraint firstItem="LaT-2O-0DL" firstAttribute="trailing" secondItem="MAH-tY-5eH" secondAttribute="trailingMargin" id="QPS-rt-svA"/>
                                                 <constraint firstItem="3Ag-em-Jcs" firstAttribute="trailing" secondItem="MAH-tY-5eH" secondAttribute="trailingMargin" id="QgE-OA-oBr"/>
                                                 <constraint firstAttribute="leadingMargin" secondItem="r1d-CL-czU" secondAttribute="leading" id="SZO-E9-C8B"/>
+                                                <constraint firstItem="jCd-1c-kfc" firstAttribute="trailing" secondItem="MAH-tY-5eH" secondAttribute="trailingMargin" id="Szc-ZB-Lzx"/>
                                                 <constraint firstItem="bJG-dB-eqx" firstAttribute="centerX" secondItem="MAH-tY-5eH" secondAttribute="centerX" id="Udv-d8-3RU"/>
                                                 <constraint firstItem="Gfb-xw-bPP" firstAttribute="leading" secondItem="MAH-tY-5eH" secondAttribute="leadingMargin" id="VSn-dA-E48"/>
                                                 <constraint firstItem="k5i-JD-Y2I" firstAttribute="top" secondItem="uPE-ny-dFG" secondAttribute="bottom" constant="8" id="VZg-Fh-JiG"/>
@@ -2976,6 +3036,7 @@
                                                 <constraint firstItem="6WN-fn-ItV" firstAttribute="trailing" secondItem="MAH-tY-5eH" secondAttribute="trailingMargin" id="fHM-rp-HhS"/>
                                                 <constraint firstItem="A4c-H2-dlb" firstAttribute="top" secondItem="lpO-AS-Vne" secondAttribute="bottom" constant="8" id="fXx-HA-ATY"/>
                                                 <constraint firstItem="Ooo-kO-MeQ" firstAttribute="trailing" secondItem="MAH-tY-5eH" secondAttribute="trailingMargin" id="hvL-Hy-EVe"/>
+                                                <constraint firstItem="IhK-uX-wTx" firstAttribute="top" secondItem="jCd-1c-kfc" secondAttribute="bottom" constant="8" id="imU-eN-anA"/>
                                                 <constraint firstItem="4oW-zL-puY" firstAttribute="leading" secondItem="MAH-tY-5eH" secondAttribute="leadingMargin" id="kRh-6y-6RP"/>
                                                 <constraint firstItem="aDv-YO-IVx" firstAttribute="top" secondItem="bJG-dB-eqx" secondAttribute="bottom" constant="8" id="kds-v7-m3F"/>
                                                 <constraint firstItem="Ooo-kO-MeQ" firstAttribute="top" secondItem="3Ag-em-Jcs" secondAttribute="bottom" constant="8" id="ljy-Cn-snI"/>
@@ -2984,6 +3045,7 @@
                                                 <constraint firstItem="uPE-ny-dFG" firstAttribute="top" secondItem="A4c-H2-dlb" secondAttribute="bottom" constant="8" id="nvu-R4-CIz"/>
                                                 <constraint firstItem="lpO-AS-Vne" firstAttribute="top" secondItem="aDv-YO-IVx" secondAttribute="bottom" constant="8" id="oU8-91-Rj6"/>
                                                 <constraint firstItem="336-Hx-Bbn" firstAttribute="top" secondItem="Gfb-xw-bPP" secondAttribute="bottom" constant="8" id="rCO-D4-nrW"/>
+                                                <constraint firstItem="IhK-uX-wTx" firstAttribute="leading" secondItem="MAH-tY-5eH" secondAttribute="leadingMargin" id="rDr-iC-ezM"/>
                                                 <constraint firstItem="A4c-H2-dlb" firstAttribute="leading" secondItem="MAH-tY-5eH" secondAttribute="leadingMargin" id="s3C-ki-VwT"/>
                                                 <constraint firstItem="6WN-fn-ItV" firstAttribute="leading" secondItem="MAH-tY-5eH" secondAttribute="leadingMargin" id="smX-s0-Zfn"/>
                                                 <constraint firstItem="k5i-JD-Y2I" firstAttribute="trailing" secondItem="MAH-tY-5eH" secondAttribute="trailingMargin" id="vg7-1D-jiJ"/>
@@ -3001,6 +3063,8 @@
                                             <outlet property="countyTextField" destination="Ooo-kO-MeQ" id="KHg-xp-eDx"/>
                                             <outlet property="extraInfoLabel" destination="A4c-H2-dlb" id="9DX-Nl-Zky"/>
                                             <outlet property="extraInfoTextField" destination="uPE-ny-dFG" id="zbA-Bm-Ome"/>
+                                            <outlet property="meetingPhoneNumberLabel" destination="jCd-1c-kfc" id="aZC-lc-Sym"/>
+                                            <outlet property="meetingPhoneNumberTextField" destination="IhK-uX-wTx" id="869-PP-cLx"/>
                                             <outlet property="nationLabel" destination="aDv-YO-IVx" id="N2a-Pf-Wxf"/>
                                             <outlet property="nationTextField" destination="lpO-AS-Vne" id="BoL-rm-MeM"/>
                                             <outlet property="neighborhoodLabel" destination="Gfb-xw-bPP" id="zHZ-eU-DMd"/>
@@ -3012,6 +3076,7 @@
                                             <outlet property="streetAddressTextField" destination="P8Q-Tw-n2E" id="i8e-8G-cbc"/>
                                             <outlet property="townLabel" destination="6se-wW-bUX" id="Izq-Xd-qgo"/>
                                             <outlet property="townTextField" destination="8n0-8a-A3C" id="eae-1P-4tu"/>
+                                            <outlet property="venueNameLabel" destination="4oW-zL-puY" id="00T-GO-7Qk"/>
                                             <outlet property="venueNameTextField" destination="r1d-CL-czU" id="dsR-PS-afK"/>
                                             <outlet property="virtualMeetingLabel" destination="k5i-JD-Y2I" id="Uel-nz-CCC"/>
                                             <outlet property="virtualMeetingTextField" destination="VbQ-hB-OT2" id="P2L-bo-qhM"/>
@@ -3020,7 +3085,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="editor-row-7" rowHeight="320" id="mn9-uh-e6f" userLabel="Map" customClass="MapTableViewCell" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="1329" width="320" height="320"/>
+                                        <rect key="frame" x="0.0" y="1830" width="320" height="320"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mn9-uh-e6f" id="Y7d-L2-8j8">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
@@ -3068,7 +3133,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="editor-row-8" rowHeight="210" id="nAC-Xy-NTF" userLabel="Longitude and Latitude" customClass="LongLatTableViewCell" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="1649" width="320" height="210"/>
+                                        <rect key="frame" x="0.0" y="2150" width="320" height="210"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nAC-Xy-NTF" id="TlI-38-sQ2">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="210"/>
@@ -3204,7 +3269,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="editor-row-9" rowHeight="100" id="WT7-es-dqK" userLabel="Comments" customClass="MeetingCommentsEditorTableViewCell" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="1859" width="320" height="100"/>
+                                        <rect key="frame" x="0.0" y="2360" width="320" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WT7-es-dqK" id="rgS-Eb-IYA">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
@@ -3250,7 +3315,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="editor-row-10" rowHeight="300" id="uki-fD-DXe" userLabel="Formats" customClass="FormatsEditorTableViewCell" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="1959" width="320" height="300"/>
+                                        <rect key="frame" x="0.0" y="2460" width="320" height="300"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uki-fD-DXe" id="cyG-IL-J77">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="300"/>

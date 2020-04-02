@@ -78,7 +78,7 @@ class MeetingEditorBaseViewController: EditorViewControllerBaseClass, UITableVie
                                                          "editor-row-3": 60,
                                                          "editor-row-4": 100,
                                                          "editor-row-5": 100,
-                                                         "editor-row-6": 753,
+                                                         "editor-row-6": 820,
                                                          "editor-row-7": 0,
                                                          "editor-row-8": 210,
                                                          "editor-row-9": 100,
@@ -1018,6 +1018,11 @@ class AddressEditorTableViewCell: MeetingEditorViewCell {
     @IBOutlet weak var virtualMeetingLabel: UILabel!
     /// The text entry for the virtual meeting URL
     @IBOutlet weak var virtualMeetingTextField: UITextField!
+    
+    /// The label for the meeting phone number text field
+    @IBOutlet weak var meetingPhoneNumberLabel: UILabel!
+    /// The text entry for the meeting phone number
+    @IBOutlet weak var meetingPhoneNumberTextField: UITextField!
 
     /* ################################################################## */
     // MARK: IB Methods
@@ -1141,6 +1146,17 @@ class AddressEditorTableViewCell: MeetingEditorViewCell {
         self.meetingObject.virtualMeetingURI = sender.text!
         self.owner.updateEditorDisplay(self)
     }
+    
+    /* ################################################################## */
+    /**
+     Respond to text changing in the text field.
+     
+     - parameter sender: The IB object that initiated this change.
+     */
+    @IBAction func meetingPhoneNumberTextChanged(_ sender: UITextField) {
+        self.meetingObject.meetingPhoneNumber = sender.text!
+        self.owner.updateEditorDisplay(self)
+    }
 
     /* ################################################################## */
     // MARK: Overridden Base Class Methods
@@ -1191,6 +1207,10 @@ class AddressEditorTableViewCell: MeetingEditorViewCell {
         self.virtualMeetingLabel.text = NSLocalizedString(self.virtualMeetingLabel.text!, comment: "")
         self.virtualMeetingTextField.placeholder = NSLocalizedString(self.virtualMeetingTextField.placeholder!, comment: "")
         self.virtualMeetingTextField.text = self.meetingObject.virtualMeetingURI
+        
+        self.meetingPhoneNumberLabel.text = NSLocalizedString(self.meetingPhoneNumberLabel.text!, comment: "")
+        self.meetingPhoneNumberTextField.placeholder = NSLocalizedString(self.meetingPhoneNumberTextField.placeholder!, comment: "")
+        self.meetingPhoneNumberTextField.text = self.meetingObject.meetingPhoneNumber
     }
 }
 
