@@ -39,6 +39,14 @@ The editor/new meeting screen needs to be refactored. Currently, they are indica
 
 CHANGELIST
 =
+***Version 1.4.4.3000* ** *- April 19, 2020*
+
+- No change. App Store release.
+
+***Version 1.4.4.2005* ** *- April 14, 2020*
+
+- Added Russian localization.
+
 ***Version 1.4.4.2004* ** *- April 2, 2020*
 
 - Added Danish translations for the new Virtual Meeting URL text entry.

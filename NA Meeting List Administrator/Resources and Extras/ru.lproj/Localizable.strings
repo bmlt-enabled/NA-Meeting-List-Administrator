@@ -1,0 +1,154 @@
+/*
+  Localizable.strings
+  NA Meeting List Administrator
+  Created by MAGSHARE.
+  Copyright 2017 MAGSHARE
+  This is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+  NA Meeting List Administrator is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+  You should have received a copy of the GNU General Public License
+  along with this code.  If not, see <http://www.gnu.org/licenses/>.
+*/
+/** The Location Description String. */
+"ERR-STRING-SHORT"                                                                              =   "Ошибка";
+"CONNECT-TITLE"                                                                                 =   "Подключение";
+"SERVICE-BODY-SELECTION-TITLE"                                                                  =   "Выберите орган обслуживания";
+"NAMeetingListAdministrator-OKButtonText"                                                       =   "OK";
+"NAMeetingListAdministrator-ErrorAlertTitle"                                                    =   "Ошибка!";
+"ENTER-URI-LABEL"                                                                               =   "Подключение к серверу";
+"ENTER-URI-PLACEHOLDER"                                                                         =   "Введите URl сервера";
+"CONNECT-BUTTON"                                                                                =   "Подключить";
+"DISCONNECT-BUTTON"                                                                             =   "Отключить";
+"LOGIN-LABEL"                                                                                   =   "Логин администратора";
+"LOGIN-ID-LABEL"                                                                                =   "Логин ID:";
+"LOGIN-ID-PLACEHOLDER"                                                                          =   "Введите ID логина";
+"PASSWORD-LABEL"                                                                                =   "Пароль:";
+"PASSWORD-PLACEHOLDER"                                                                          =   "Введите ваш пароль";
+"LOGIN-BUTTON"                                                                                  =   "Войти";
+"LOGOUT-BUTTON"                                                                                 =   "Выйти";
+"LOGIN-STATUS-FORMAT"                                                                           =   "Вошли как \"%@\"";
+"LOGIN"                                                                                         =   "Логин";
+"MANUAL-LOGIN"                                                                                  =   "Ручной вход";
+"ADMIN-UNAVAILABLE-TEXT"                                                                        =   "Этот сервер не позволяет администрирование этим приложением.";
+"BAD-URI-ERROR-TEXT"                                                                            =   "Введенный URL-адрес не указывает на действительный корневой сервер.";
+"The operation couldn’t be completed. (BMLTiOSLibErrorDomains-Permission-Error error 201000.)"  =   "Логин или пароль не были распознаны сервером.";
+"LOCAL-TOUCHID-REASON-FORMAT"                                                                   =   "Автоматически войти \"%@\" в сервер.";
+"TOUCH-ID-STRING"                                                                               =   "Touch";
+"FACE-ID-STRING"                                                                                =   "Face";
+"UNABLE-TO-LOGIN-ERROR-TITLE-FORMAT"                                                            =   "%@ ID Ошибка";
+"UNABLE-TO-LOGIN-ERROR-FORMAT"                                                                  =   "%@ ID не смог войти на сервер.";
+"SERVICE-BODY-BUTTON"                                                                           =   "Органы обслуживания";
+"EDITOR-BUTTON"                                                                                 =   "Редактировать";
+"MIDNIGHT"                                                                                      =   "Полноч";
+"NOON"                                                                                          =   "Полдень";
+"MEETING-TIME-FORMAT"                                                                           =   "%@, %@";
+"ALL-DAYS"                                                                                      =   "Все";
+"LOCAL-SEARCH-PICKER-NONE"                                                                      =   "Все города и районы";
+"CONNECT-BACK-TITLE"                                                                            =   "Назад";
+"MEETING-ID-FORMAT"                                                                             =   "ID Собраний %d";
+"NEW-MEETING-TITLE"                                                                             =   "Новое собрание";
+"MEETINGS-TAB-BAR-NAME"                                                                         =   "Текущие собрания";
+"DELETED-MEETINGS-TAB-BAR-NAME"                                                                 =   "Удаленные собрания";
+"DELETE-HEADER-1"                                                                               =   "Вы уверены?";
+"DELETE-HEADER-2"                                                                               =   "Ядерное оружие с орбиты.";
+"DELETE-HEADER-3"                                                                               =   "Отмени этот приказ!";
+"DELETE-HEADER-4"                                                                               =   "Хотите ли вы потерять изменения, внесенные вами в это собрание?";
+"DELETE-HEADER"                                                                                 =   "Ты хочешь удалить это собрание?";
+"DELETE-MESSAGE-FORMAT"                                                                         =   "Собрание \"%@\" будет удалено. Вы уверены, что хотите удалить его?";
+"DELETE-OK-BUTTON"                                                                              =   "Удалить это собрание";
+"DELETE-CANCEL-BUTTON"                                                                          =   "Отмена";
+"SAVE-BUTTON"                                                                                   =   "Сохранить";
+"SAVE-BUTTON-DUPLICATE"                                                                         =   "Дублировать";
+"CANCEL-BUTTON"                                                                                 =   "Отмена";
+"PUBLISHED-LABEL"                                                                               =   "Собрание опубликовано";
+"SERVICE-BODY-LABEL"                                                                            =   "Орган обслуживания собрания:";
+"WORLD-ID-LABEL"                                                                                =   "World ID:";
+"WORLD-ID-PLACEHOLDER"                                                                          =   "Введите NAWS код комитета";
+"MEETING-NAME-LABEL"                                                                            =   "Название собрания:";
+"MEETING-NAME-PLACEHOLDER"                                                                      =   "Введите название собрания";
+"WEEKDAY-LABEL"                                                                                 =   "Будни";
+"START-TIME-LABEL"                                                                              =   "Начало:";
+"DURATION-LABEL"                                                                                =   "Длительность:";
+"LOCATION-NAME-LABEL"                                                                           =   "Название местоположения:";
+"LOCATION-NAME-PLACEHOLDER"                                                                     =   "Введите название местоположения";
+"STREET-ADDRESS-LABEL"                                                                          =   "Улица:";
+"STREET-ADDRESS-PLACEHOLDER"                                                                    =   "Введите название улицы";
+"NEIGHBORHOOD-LABEL"                                                                            =   "Округ:";
+"NEIGHBORHOOD-PLACEHOLDER"                                                                      =   "Введите название округа";
+"BOROUGH-LABEL"                                                                                 =   "Район:";
+"BOROUGH-PLACEHOLDER"                                                                           =   "Введите город или район";
+"TOWN-LABEL"                                                                                    =   "Деревня или город:";
+"TOWN-PLACEHOLDER"                                                                              =   "Введите город или деревню (посёлок)";
+"COUNTY-LABEL"                                                                                  =   "Страна:";
+"COUNTY-PLACEHOLDER"                                                                            =   "Введите страну";
+"STATE-LABEL"                                                                                   =   "Штат или провинция:";
+"STATE-NAG-LABEL"                                                                               =   "Всегда абрбривиатура";
+"ZIP-LABEL"                                                                                     =   "Индекс";
+"NATION-LABEL"                                                                                  =   "Нация";
+"NATION-PLACEHOLDER"                                                                            =   "Аббривиатура нации";
+"LOCATION-INFO-LABEL"                                                                           =   "Дополнительная информация:";
+"LOCATION-INFO-PLACEHOLDER"                                                                     =   "Введите дополнительную информацию о местоположении";
+"VIRTUAL-MEETING-LABEL"                                                                         =   "Виртуальная URL собрания:";
+"VIRTUAL-MEETING-PLACEHOLDER"                                                                   =   "Введите URL";
+"MEETING-PHONE-NUMBER-LABEL"                                                                    =   "Номер телефона собрания:";
+"MEETING-PHONE-NUMBER-PLACEHOLDER"                                                              =   "Введите номер телефона";
+"LONGITUDE-LABEL"                                                                               =   "Долгота:";
+"LONGITUDE-PLACEHOLDER"                                                                         =   "Введите долготу собрания.";
+"LATITUDE-LABEL"                                                                                =   "Широта:";
+"LATITUDE-PLACEHOLDER"                                                                          =   "Введите широту собрания.";
+"LONG-LAT-SET-FROM-ADDRESS-BUTTON"                                                              =   "Установить карту в соответствии с адресом :";
+"LONG-LAT-SET-FROM-MAP-BUTTON"                                                                  =   "Установить адрес с карты";
+"LOCAL-EDIT-LOCATION-FAIL-TITLE"                                                                =   "Ошибка местоположения";
+"LOCAL-EDIT-LOCATION-FAILURE-MESSAGE"                                                           =   "Невозможно определить местоположение по адресу.";
+"LOCAL-EDIT-REVERSE-GEOCODE-FAILURE-MESSAGE"                                                    =   "Невозможно определить адрес из вашего местоположения.";
+"MAP-TYPE-NORMAL"                                                                               =   "Стандартная";
+"MAP-TYPE-HYBRID"                                                                               =   "Гибридная";
+"MAP-TYPE-SATELLITE"                                                                            =   "Спутниковая";
+"COMMENTS-LABEL"                                                                                =   "Комментарии:";
+"FORMATS-LABEL"                                                                                 =   "Форматы:";
+"HISTORY-ERASER-BUTTON"                                                                         =   "Просмотр истории изменений собрания";
+"HISTORY-ERASER-TITLE"                                                                          =   "История изменений собрания";
+"SAVE-AS-OR-COPY"                                                                               =   "Сохранить изменения собрания";
+"SAVE-AS-OR-COPY-MESSAGE"                                                                       =   "В это собрание были внесены изменения..\nDo вы хотите сохоранить их?";
+"SAVE-AS-COPY"                                                                                  =   "Сохранить встречу как копию";
+"SAVE-AS-COPY-MESSAGE"                                                                          =   "Хотите дублировать эту встречу?";
+"SAVE-COPY-BUTTON"                                                                              =   "Сохранить копию этой встречи";
+"SAVE-CHANGES-BUTTON"                                                                           =   "Сохранить изменения";
+"SAVE-CANCEL-BUTTON"                                                                            =   "Отмена";
+"SAVE-NEW-TITLE"                                                                                =   "Создать здесь новое собрание";
+"SAVE-NEW-MESSAGE"                                                                              =   "Если вы нажмёте \"Создать новое собрание\", это собрание будет создано как новое собрание.";
+"SAVE-NEW-BUTTON"                                                                               =   "Create New Meeting";
+"CANCEL-HEADER"                                                                                 =   "Изменения были внесены в эту встречу.";
+"CANCEL-MESSAGE"                                                                                =   "Если вы нажмёте \"Потерять изменения\", изменения, внесенные в это собрание, будут отменены, и собрание вернется в исходное состояние.\nIf если вы нажмёте \"Отмена\", тогда вы вернетесь к редактору собраний.";
+"CANCEL-LOSE-CHANGES-BUTTON"                                                                    =   "Потерять изменения";
+"CANCEL-CANCEL-BUTTON"                                                                          =   "Отмена";
+"BMLTiOSLib-Default-Meeting-Name"                                                               =   "Собрание NA";
+"DELETED-NAME-FORMAT"                                                                           =   "%@ (%d)";
+"DELETED-ALERT-HEADER"                                                                          =   "Восстановление удаленной встречи";
+"DELETED-ALERT-FORMAT"                                                                          =   "Если вы нажмёте \"Восстановить встречу\", собрание \"%@\" будет восстановлено.\nIt будет отображаться как неопубликованное собрание, и вы попадете в его редактор.\nесли вы нажмёте \"Отмена\", ничего не произойдёт.";
+"DELETED-RESTORE-BUTTON"                                                                        =   "Восстановить собрание";
+"DELETED-CANCEL-BUTTON"                                                                         =   "Отмена";
+"DELETED-LOADING-HEADER"                                                                        =   "Загрузить удалённые собрания";
+"DELETED-LOADING-SUBTEXT"                                                                       =   "Это может занять много времени.";
+"NO-HISTORY-LABEL"                                                                              =   "Нет истории";
+"REVERT-BUTTON"                                                                                 =   "Возвращается";
+"CLEAR-ALL-SAVED-LOGINS"                                                                        =   "Удалить ВСЕ Сохраненные Логины и URL";
+"FORGET-STORED-LOGINS-HEADER"                                                                   =   "Уверены?";
+"FORGET-STORED-LOGINS-MESSAGE"                                                                  =   "Если вы нажмёте \"Забудьте о сохраненных логинах\", все сохраненные URL и логины будут удалены.";
+"FORGET-STORED-LOGINS-MESSAGE-SUFFIX"                                                           =   "\nВы также выйдете из своей текущей сессии.";
+"FORGET-STORED-LOGINS-OK-BUTTON"                                                                =   "Забудьте о сохраненных логинах";
+"FORGET-STORED-LOGINS-CANCEL-BUTTON"                                                            =   "Отмена";
+"LOCAL-MAGSHARE-BLURB-LABEL"                                                                    =   "Еще один прекрасный проект MAGSHARE";
+"LOCAL-MAGSHARE-URI-LABEL"                                                                      =   "Узнайте больше на https://bmlt.app";
+"LOCAL-MAGSHARE-URI"                                                                            =   "https://bmlt.app/satellites/bmlt-ios-apps/nameetinglistadministrator/";
+"VERSION-LABEL-FORMAT"                                                                          =   "Версия %@";
+"WHAT-MEETING-AM-I-AT-NOW"                                                                      =   "На каком я сейчас собрании?";
+"LOCATION-ERROR-HEADER"                                                                         =   "Ошибка местоположения";
+"LOCATION-ERROR-MESSAGE"                                                                        =   "Невозможно определить ваше текущее местоположение.";
+"NO-MEETING-HEADER"                                                                             =   "Собрание не найдена";
+"NO-MEETING-MESSAGE"                                                                            =   "Встреча не найдена, которая соответствует вашему текущему местоположению и времени.";

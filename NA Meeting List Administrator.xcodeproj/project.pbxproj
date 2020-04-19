@@ -180,6 +180,8 @@
 		D4CD6B2C23B2D13100EA606A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D4CD6B2D23B2E39500EA606A /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = "Resources and Extras/fr.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		D4CD6B2E23B2E3A900EA606A /* Base */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Base; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		D4EF355A2445F56D008DD8A7 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D4EF355B2445F56D008DD8A7 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = "Resources and Extras/ru.lproj/Localizable.strings"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -381,6 +383,7 @@
 				da,
 				fr,
 				Base,
+				ru,
 			);
 			mainGroup = 77DC3E9D1E378B6100BF24B7;
 			productRefGroup = 77DC3EA71E378B6300BF24B7 /* Products */;
@@ -583,6 +586,7 @@
 				D492E54E21D5332C0085DA47 /* da */,
 				D4CD6B2123B2CF4E00EA606A /* en */,
 				D4CD6B2D23B2E39500EA606A /* fr */,
+				D4EF355B2445F56D008DD8A7 /* ru */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -595,6 +599,7 @@
 				D4AA174A2282180B002A9E07 /* sv */,
 				D4AA174B22821816002A9E07 /* fr */,
 				D4CD6B1923B2CF4D00EA606A /* en */,
+				D4EF355A2445F56D008DD8A7 /* ru */,
 			);
 			name = InfoPlist.strings;
 			path = "Resources and Extras";
@@ -731,7 +736,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2004;
+				CURRENT_PROJECT_VERSION = 3000;
 				DEVELOPMENT_TEAM = P53V4JS928;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -763,7 +768,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2004;
+				CURRENT_PROJECT_VERSION = 3000;
 				DEVELOPMENT_TEAM = P53V4JS928;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
