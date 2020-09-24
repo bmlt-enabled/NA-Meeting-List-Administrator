@@ -88,6 +88,7 @@ class MeetingEditorBaseViewController: EditorViewControllerBaseClass, UITableVie
     /** These store the original (unpublished) colors for the background gradient. */
     /// The gradient top color for a published meeting.
     private var _publishedTopColor: UIColor! = nil
+    
     /// The gradient bottom color for a published meeting.
     private var _publishedBottomColor: UIColor! = nil
     
@@ -214,7 +215,7 @@ class MeetingEditorBaseViewController: EditorViewControllerBaseClass, UITableVie
     // MARK: Instance Methods
     /* ################################################################## */
     /**
-     This is a callback for when the keyboard will appear. It makes sure that we have room to diplay whatever we're editing.
+     This is a callback for when the keyboard will appear. It makes sure that we have room to display whatever we're editing.
      
      We will adjust the screen to show the text item above the keyboard.
      
