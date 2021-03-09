@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Xmv-pv-Odk">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina6_1" orientation="portrait" appearance="dark"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -1634,13 +1633,14 @@
                                     <action selector="clearAllLogins:" destination="2kS-Gs-zp2" eventType="touchUpInside" id="Iiu-Vn-cYt"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5XS-xg-02B">
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5XS-xg-02B">
                                 <rect key="frame" x="118" y="278" width="84" height="84"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="84" id="Rhp-Fs-cuD"/>
                                     <constraint firstAttribute="width" secondItem="5XS-xg-02B" secondAttribute="height" multiplier="1:1" id="nFC-lq-QBZ"/>
                                 </constraints>
-                                <state key="normal" image="Beanie"/>
+                                <color key="tintColor" systemColor="labelColor"/>
+                                <state key="normal" image="CenterLogo"/>
                                 <connections>
                                     <action selector="beanieButtonHit:" destination="2kS-Gs-zp2" eventType="touchUpInside" id="qsl-Dm-pSF"/>
                                 </connections>
@@ -3460,13 +3460,16 @@
     </scenes>
     <resources>
         <image name="BackgroundGradient" width="10" height="3000"/>
-        <image name="Beanie" width="522.5" height="522.5"/>
+        <image name="CenterLogo" width="255" height="612"/>
         <image name="Deleted" width="25" height="25"/>
         <image name="List" width="25" height="25"/>
         <image name="Settings-Highlight" width="25" height="25"/>
         <image name="gearshape.fill" catalog="system" width="128" height="121"/>
         <systemColor name="groupTableViewBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="linkColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
