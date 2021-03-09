@@ -882,10 +882,8 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate,
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         var ret: Int = 1
         
-        if nil != MainAppDelegate.connectionObject {
-            let storedLogins = self._validSavedLogins
-            ret += storedLogins.count
-        }
+        let storedLogins = self._validSavedLogins
+        ret += storedLogins.count
         
         return ret
     }

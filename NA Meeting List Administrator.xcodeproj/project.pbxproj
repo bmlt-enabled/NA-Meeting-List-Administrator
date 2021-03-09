@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -18,7 +18,6 @@
 		779BE3AF1E37D5A600350D11 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779BE3AE1E37D5A600350D11 /* InitialViewController.swift */; };
 		779BE3B11E37D5B500350D11 /* MainAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 779BE3B01E37D5B500350D11 /* MainAppDelegate.swift */; };
 		779BE3BC1E37D5FA00350D11 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 779BE3B21E37D5FA00350D11 /* Assets.xcassets */; };
-		779BE3BD1E37D5FA00350D11 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 779BE3B41E37D5FA00350D11 /* Default-568h@2x.png */; };
 		779BE3BE1E37D5FA00350D11 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 779BE3B61E37D5FA00350D11 /* LaunchScreen.storyboard */; };
 		779BE3BF1E37D5FA00350D11 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 779BE3B81E37D5FA00350D11 /* Main.storyboard */; };
 		77B31A7E1E49369D0047F655 /* ThreeStateCheckbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B31A7D1E49369D0047F655 /* ThreeStateCheckbox.swift */; };
@@ -26,114 +25,10 @@
 		77B7D1221E3AA0A80031FF6B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 77B7D1201E3AA0A80031FF6B /* Localizable.strings */; };
 		77D92ED71E4B50CC009F02B2 /* MeetingEditorBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D92ED61E4B50CC009F02B2 /* MeetingEditorBaseViewController.swift */; };
 		77D92EDB1E4B5146009F02B2 /* EditSingleMeetingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D92EDA1E4B5146009F02B2 /* EditSingleMeetingViewController.swift */; };
-		D44C05EF232EC9DF000D25EE /* BMLTiOSLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D43EB9002311B31E00787D46 /* BMLTiOSLib.framework */; };
-		D44C05F0232EC9DF000D25EE /* BMLTiOSLib.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D43EB9002311B31E00787D46 /* BMLTiOSLib.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		D44C05F1232EC9FD000D25EE /* KeychainSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D43EB9122311B31E00787D46 /* KeychainSwift.framework */; };
-		D44C05F2232EC9FD000D25EE /* KeychainSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D43EB9122311B31E00787D46 /* KeychainSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D492E55A21D53BFE0085DA47 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D492E55421D538EC0085DA47 /* InfoPlist.strings */; };
+		D4F4798025F7A5DC000EA211 /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D4F4797F25F7A5DC000EA211 /* KeychainSwift */; };
+		D4F4798325F7A5F8000EA211 /* BMLTiOSLib in Frameworks */ = {isa = PBXBuildFile; productRef = D4F4798225F7A5F8000EA211 /* BMLTiOSLib */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		D43EB8FF2311B31E00787D46 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D43EB8F92311B31D00787D46 /* BMLTiOSLib.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 77DBD7981FDEAEEB008F110F;
-			remoteInfo = BMLTiOSLib;
-		};
-		D43EB9012311B31E00787D46 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D43EB8F92311B31D00787D46 /* BMLTiOSLib.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 77DBD7AE1FDEB010008F110F;
-			remoteInfo = "BMLTiOSLib Test Harness";
-		};
-		D43EB9032311B31E00787D46 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D43EB8F92311B31D00787D46 /* BMLTiOSLib.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 772570CD1FDF12C400297473;
-			remoteInfo = "BMLTiOSLib Test Harness (Direct)";
-		};
-		D43EB9112311B31E00787D46 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D43EB9052311B31E00787D46 /* KeychainSwift.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 7ED6C96C1B1C118F00FE8090;
-			remoteInfo = KeychainSwift;
-		};
-		D43EB9132311B31E00787D46 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D43EB9052311B31E00787D46 /* KeychainSwift.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 232B4C7A1BC29950001F2B7A;
-			remoteInfo = "KeychainSwift-macOS";
-		};
-		D43EB9152311B31E00787D46 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D43EB9052311B31E00787D46 /* KeychainSwift.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 232B4C8A1BC29984001F2B7A;
-			remoteInfo = "KeychainSwift-watchOS";
-		};
-		D43EB9172311B31E00787D46 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D43EB9052311B31E00787D46 /* KeychainSwift.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 23E785601BDA410C00B7564A;
-			remoteInfo = "KeychainSwift-tvOS";
-		};
-		D43EB9192311B31E00787D46 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D43EB9052311B31E00787D46 /* KeychainSwift.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 7ED6C9771B1C118F00FE8090;
-			remoteInfo = KeychainSwiftTests;
-		};
-		D43EB91B2311B31E00787D46 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D43EB9052311B31E00787D46 /* KeychainSwift.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 7ED6C99D1B1C133500FE8090;
-			remoteInfo = Demo;
-		};
-		D43EB91D2311B31E00787D46 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D43EB9052311B31E00787D46 /* KeychainSwift.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 7E3A6B601D3F62C2007C5B1F;
-			remoteInfo = "macOS Tests";
-		};
-		D43EB91F2311B31E00787D46 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D43EB9052311B31E00787D46 /* KeychainSwift.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 7E3A6B7B1D3F6779007C5B1F;
-			remoteInfo = "macOS Demo";
-		};
-		D43EB9272311B34200787D46 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D43EB8F92311B31D00787D46 /* BMLTiOSLib.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 77DBD7971FDEAEEB008F110F;
-			remoteInfo = BMLTiOSLib;
-		};
-/* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		D4021D4A22F46E0F0031340C /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				D44C05F2232EC9FD000D25EE /* KeychainSwift.framework in Embed Frameworks */,
-				D44C05F0232EC9DF000D25EE /* BMLTiOSLib.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		77159BD91E68B0E6002239C4 /* HistoryListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HistoryListViewController.swift; path = "View Controllers/HistoryListViewController.swift"; sourceTree = "<group>"; };
@@ -156,18 +51,12 @@
 		779BE3AE1E37D5A600350D11 /* InitialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InitialViewController.swift; path = "View Controllers/InitialViewController.swift"; sourceTree = "<group>"; };
 		779BE3B01E37D5B500350D11 /* MainAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainAppDelegate.swift; path = "Main App/MainAppDelegate.swift"; sourceTree = "<group>"; };
 		779BE3B21E37D5FA00350D11 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "Resources and Extras/Assets.xcassets"; sourceTree = "<group>"; };
-		779BE3BB1E37D5FA00350D11 /* NA Meeting List Administrator-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NA Meeting List Administrator-Bridging-Header.h"; path = "Resources and Extras/NA Meeting List Administrator-Bridging-Header.h"; sourceTree = "<group>"; };
 		77A097E4200034E600769CEB /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = "Resources and Extras/it.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		77B31A7D1E49369D0047F655 /* ThreeStateCheckbox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ThreeStateCheckbox.swift; path = "Main App/ThreeStateCheckbox.swift"; sourceTree = "<group>"; };
 		77B50A671E381E31004019B8 /* AppStaticPrefs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppStaticPrefs.swift; path = "Main App/AppStaticPrefs.swift"; sourceTree = "<group>"; };
-		77B5410E1E42605700A0A880 /* NA Meeting List Administrator.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = "NA Meeting List Administrator.entitlements"; path = "Resources and Extras/NA Meeting List Administrator.entitlements"; sourceTree = "<group>"; };
 		77D92ED61E4B50CC009F02B2 /* MeetingEditorBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MeetingEditorBaseViewController.swift; path = "View Controllers/MeetingEditorBaseViewController.swift"; sourceTree = "<group>"; };
 		77D92EDA1E4B5146009F02B2 /* EditSingleMeetingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditSingleMeetingViewController.swift; path = "View Controllers/EditSingleMeetingViewController.swift"; sourceTree = "<group>"; };
 		77DC3EA61E378B6300BF24B7 /* NA Meeting List Administrator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NA Meeting List Administrator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		D4021D5822F46EAE0031340C /* BMLTiOSLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BMLTiOSLib.framework; path = Carthage/Build/iOS/BMLTiOSLib.framework; sourceTree = "<group>"; };
-		D4021D5922F46EAE0031340C /* KeychainSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KeychainSwift.framework; path = Carthage/Build/iOS/KeychainSwift.framework; sourceTree = "<group>"; };
-		D43EB8F92311B31D00787D46 /* BMLTiOSLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BMLTiOSLib.xcodeproj; path = Carthage/Checkouts/BMLTiOSLib/BMLTiOSLib.xcodeproj; sourceTree = "<group>"; };
-		D43EB9052311B31E00787D46 /* KeychainSwift.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = KeychainSwift.xcodeproj; path = "Carthage/Checkouts/keychain-swift/KeychainSwift.xcodeproj"; sourceTree = "<group>"; };
 		D492E54E21D5332C0085DA47 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = "Resources and Extras/da.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		D492E55521D538EE0085DA47 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D492E55721D538EF0085DA47 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -179,7 +68,6 @@
 		D4CD6B2B23B2D13100EA606A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Main.storyboard; sourceTree = "<group>"; };
 		D4CD6B2C23B2D13100EA606A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D4CD6B2D23B2E39500EA606A /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = "Resources and Extras/fr.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		D4CD6B2E23B2E3A900EA606A /* Base */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Base; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		D4EF355A2445F56D008DD8A7 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D4EF355B2445F56D008DD8A7 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = "Resources and Extras/ru.lproj/Localizable.strings"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -189,8 +77,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D44C05F1232EC9FD000D25EE /* KeychainSwift.framework in Frameworks */,
-				D44C05EF232EC9DF000D25EE /* BMLTiOSLib.framework in Frameworks */,
+				D4F4798025F7A5DC000EA211 /* KeychainSwift in Frameworks */,
+				D4F4798325F7A5F8000EA211 /* BMLTiOSLib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -206,7 +94,6 @@
 				779BE3B21E37D5FA00350D11 /* Assets.xcassets */,
 				D492E55921D53A4C0085DA47 /* Info.plist */,
 				779BE3B61E37D5FA00350D11 /* LaunchScreen.storyboard */,
-				779BE3B41E37D5FA00350D11 /* Default-568h@2x.png */,
 			);
 			name = Resources;
 			path = "NA Meeting List Administrator";
@@ -234,8 +121,6 @@
 			isa = PBXGroup;
 			children = (
 				77CF6B8D1E6CEA0E005F2ECB /* GPX Files */,
-				77B5410E1E42605700A0A880 /* NA Meeting List Administrator.entitlements */,
-				779BE3BB1E37D5FA00350D11 /* NA Meeting List Administrator-Bridging-Header.h */,
 			);
 			name = Extras;
 			path = "NA Meeting List Administrator";
@@ -259,12 +144,9 @@
 		77DC3E9D1E378B6100BF24B7 = {
 			isa = PBXGroup;
 			children = (
-				D43EB8F92311B31D00787D46 /* BMLTiOSLib.xcodeproj */,
-				D43EB9052311B31E00787D46 /* KeychainSwift.xcodeproj */,
 				77DC3EA81E378B6300BF24B7 /* Main App */,
 				770E5E951E3795F800CBE834 /* View Controllers */,
 				770E5E941E3795E000CBE834 /* Resources */,
-				D4021D5122F46E5E0031340C /* Frameworks */,
 				77B5410F1E42609E00A0A880 /* Extras */,
 				77DC3EA71E378B6300BF24B7 /* Products */,
 			);
@@ -290,40 +172,6 @@
 			path = "NA Meeting List Administrator";
 			sourceTree = "<group>";
 		};
-		D4021D5122F46E5E0031340C /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				D4021D5822F46EAE0031340C /* BMLTiOSLib.framework */,
-				D4021D5922F46EAE0031340C /* KeychainSwift.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		D43EB8FA2311B31D00787D46 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				D43EB9002311B31E00787D46 /* BMLTiOSLib.framework */,
-				D43EB9022311B31E00787D46 /* BMLTiOSLib Test Harness.app */,
-				D43EB9042311B31E00787D46 /* BMLTiOSLib Test Harness (Direct).app */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		D43EB9062311B31E00787D46 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				D43EB9122311B31E00787D46 /* KeychainSwift.framework */,
-				D43EB9142311B31E00787D46 /* KeychainSwift.framework */,
-				D43EB9162311B31E00787D46 /* KeychainSwift.framework */,
-				D43EB9182311B31E00787D46 /* KeychainSwift.framework */,
-				D43EB91A2311B31E00787D46 /* KeychainSwiftTests.xctest */,
-				D43EB91C2311B31E00787D46 /* Keychain Swift.app */,
-				D43EB91E2311B31E00787D46 /* macOS Tests.xctest */,
-				D43EB9202311B31E00787D46 /* macOS Demo.app */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -335,14 +183,16 @@
 				77DC3EA21E378B6100BF24B7 /* Sources */,
 				77DC3EA31E378B6100BF24B7 /* Frameworks */,
 				77DC3EA41E378B6100BF24B7 /* Resources */,
-				D4021D4A22F46E0F0031340C /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				D43EB9282311B34200787D46 /* PBXTargetDependency */,
 			);
 			name = "NA Meeting List Administrator";
+			packageProductDependencies = (
+				D4F4797F25F7A5DC000EA211 /* KeychainSwift */,
+				D4F4798225F7A5F8000EA211 /* BMLTiOSLib */,
+			);
 			productName = "NA Meeting List Administrator";
 			productReference = 77DC3EA61E378B6300BF24B7 /* NA Meeting List Administrator.app */;
 			productType = "com.apple.product-type.application";
@@ -386,104 +236,18 @@
 				ru,
 			);
 			mainGroup = 77DC3E9D1E378B6100BF24B7;
+			packageReferences = (
+				D4F4797E25F7A5DC000EA211 /* XCRemoteSwiftPackageReference "keychain-swift" */,
+				D4F4798125F7A5F8000EA211 /* XCRemoteSwiftPackageReference "BMLTiOSLib" */,
+			);
 			productRefGroup = 77DC3EA71E378B6300BF24B7 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = D43EB8FA2311B31D00787D46 /* Products */;
-					ProjectRef = D43EB8F92311B31D00787D46 /* BMLTiOSLib.xcodeproj */;
-				},
-				{
-					ProductGroup = D43EB9062311B31E00787D46 /* Products */;
-					ProjectRef = D43EB9052311B31E00787D46 /* KeychainSwift.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				77DC3EA51E378B6100BF24B7 /* NA Meeting List Administrator */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		D43EB9002311B31E00787D46 /* BMLTiOSLib.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = BMLTiOSLib.framework;
-			remoteRef = D43EB8FF2311B31E00787D46 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		D43EB9022311B31E00787D46 /* BMLTiOSLib Test Harness.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = "BMLTiOSLib Test Harness.app";
-			remoteRef = D43EB9012311B31E00787D46 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		D43EB9042311B31E00787D46 /* BMLTiOSLib Test Harness (Direct).app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = "BMLTiOSLib Test Harness (Direct).app";
-			remoteRef = D43EB9032311B31E00787D46 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		D43EB9122311B31E00787D46 /* KeychainSwift.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = KeychainSwift.framework;
-			remoteRef = D43EB9112311B31E00787D46 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		D43EB9142311B31E00787D46 /* KeychainSwift.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = KeychainSwift.framework;
-			remoteRef = D43EB9132311B31E00787D46 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		D43EB9162311B31E00787D46 /* KeychainSwift.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = KeychainSwift.framework;
-			remoteRef = D43EB9152311B31E00787D46 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		D43EB9182311B31E00787D46 /* KeychainSwift.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = KeychainSwift.framework;
-			remoteRef = D43EB9172311B31E00787D46 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		D43EB91A2311B31E00787D46 /* KeychainSwiftTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = KeychainSwiftTests.xctest;
-			remoteRef = D43EB9192311B31E00787D46 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		D43EB91C2311B31E00787D46 /* Keychain Swift.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = "Keychain Swift.app";
-			remoteRef = D43EB91B2311B31E00787D46 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		D43EB91E2311B31E00787D46 /* macOS Tests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "macOS Tests.xctest";
-			remoteRef = D43EB91D2311B31E00787D46 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		D43EB9202311B31E00787D46 /* macOS Demo.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = "macOS Demo.app";
-			remoteRef = D43EB91F2311B31E00787D46 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		77DC3EA41E378B6100BF24B7 /* Resources */ = {
@@ -494,7 +258,6 @@
 				D492E55A21D53BFE0085DA47 /* InfoPlist.strings in Resources */,
 				779BE3BE1E37D5FA00350D11 /* LaunchScreen.storyboard in Resources */,
 				779BE3BC1E37D5FA00350D11 /* Assets.xcassets in Resources */,
-				779BE3BD1E37D5FA00350D11 /* Default-568h@2x.png in Resources */,
 				779BE3BF1E37D5FA00350D11 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -542,24 +305,7 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		D43EB9282311B34200787D46 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = BMLTiOSLib;
-			targetProxy = D43EB9272311B34200787D46 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin PBXVariantGroup section */
-		779BE3B41E37D5FA00350D11 /* Default-568h@2x.png */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D4CD6B2E23B2E3A900EA606A /* Base */,
-			);
-			name = "Default-568h@2x.png";
-			path = "Resources and Extras/Base.lproj";
-			sourceTree = "<group>";
-		};
 		779BE3B61E37D5FA00350D11 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -661,7 +407,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -719,7 +465,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -740,23 +486,22 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2000;
 				DEVELOPMENT_TEAM = P53V4JS928;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_WARN_SHADOW = YES;
 				INFOPLIST_FILE = "${PROJECT_DIR}/${TARGET_NAME}/Resources and Extras/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.5;
+				MARKETING_VERSION = 1.5.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "net.magshare.bmlt.NA-Meeting-List-Administrator";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_INSTALL_OBJC_HEADER = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "${PROJECT_DIR}/${TARGET_NAME}/Resources and Extras/${TARGET_NAME}-Bridging-Header.h";
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_PRECOMPILE_BRIDGING_HEADER = NO;
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
 				SWIFT_VERSION = 5.0;
 			};
@@ -772,23 +517,22 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2000;
 				DEVELOPMENT_TEAM = P53V4JS928;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				GCC_WARN_SHADOW = YES;
 				INFOPLIST_FILE = "${PROJECT_DIR}/${TARGET_NAME}/Resources and Extras/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.5;
+				MARKETING_VERSION = 1.5.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "net.magshare.bmlt.NA-Meeting-List-Administrator";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_INSTALL_OBJC_HEADER = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "${PROJECT_DIR}/${TARGET_NAME}/Resources and Extras/${TARGET_NAME}-Bridging-Header.h";
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_PRECOMPILE_BRIDGING_HEADER = NO;
 				SWIFT_TREAT_WARNINGS_AS_ERRORS = YES;
 				SWIFT_VERSION = 5.0;
 			};
@@ -816,6 +560,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D4F4797E25F7A5DC000EA211 /* XCRemoteSwiftPackageReference "keychain-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:evgenyneu/keychain-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 19.0.0;
+			};
+		};
+		D4F4798125F7A5F8000EA211 /* XCRemoteSwiftPackageReference "BMLTiOSLib" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:bmlt-enabled/BMLTiOSLib.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.22;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D4F4797F25F7A5DC000EA211 /* KeychainSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D4F4797E25F7A5DC000EA211 /* XCRemoteSwiftPackageReference "keychain-swift" */;
+			productName = KeychainSwift;
+		};
+		D4F4798225F7A5F8000EA211 /* BMLTiOSLib */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D4F4798125F7A5F8000EA211 /* XCRemoteSwiftPackageReference "BMLTiOSLib" */;
+			productName = BMLTiOSLib;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 77DC3E9E1E378B6100BF24B7 /* Project object */;
 }

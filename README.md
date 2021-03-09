@@ -39,6 +39,12 @@ The editor/new meeting screen needs to be refactored. Currently, they are indica
 
 CHANGELIST
 =
+***Version 1.5.0.2000* ** *- TBD*
+
+- Switched to use SPM for dependencies.
+- Updated the BMLTiOSLib and KeyChainSwift dependencies.
+- Changed graphic assets.
+
 ***Version 1.4.4.3000* ** *- April 19, 2020*
 
 - No change. App Store release.

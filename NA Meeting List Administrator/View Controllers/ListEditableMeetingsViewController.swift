@@ -1037,6 +1037,9 @@ class MeetingTableViewCell: UITableViewCell {
 /**
  */
 class WeekdaySwitchContainerView: UIView {
+    /** This is the padding around the checkboxes */
+    private let _paddingInDisplayUnits = CGFloat(4)
+    
     /** This is the weekday index (1-based) */
     var weekdayIndex: Int!
     /** This is the list selection view controller that "owns" this instance */
@@ -1061,58 +1064,57 @@ class WeekdaySwitchContainerView: UIView {
         self.weekdayIndex = weekdayIndex
         self.backgroundColor = UIColor.clear
         self.isUserInteractionEnabled = true
-        if let testImage = UIImage(named: "checkbox-clear") {
-            var checkboxFrame: CGRect = CGRect.zero
-            checkboxFrame.size.width = min(testImage.size.width, testImage.size.height)
-            checkboxFrame.size.height = min(testImage.size.width, testImage.size.height)
-            
-            checkboxFrame.origin.x = (frame.size.width - checkboxFrame.size.width) / 2  // Center the switch at the top of the view.
-            
-            self.selectionSwitchControl = ThreeStateCheckbox(frame: checkboxFrame)
-            self.selectionSwitchControl.binaryState = true
-            
-            if 0 < self.weekdayIndex {
-                if let indexAsEnum = BMLTiOSLibSearchCriteria.WeekdayIndex(rawValue: self.weekdayIndex) {
-                    if let weekdaySelection = owner.selectedWeekdays[indexAsEnum] {
-                        self.selectionSwitchControl.selectionState = weekdaySelection
-                    }
+        var checkboxFrame: CGRect = .zero
+        let square = min(frame.size.height, frame.size.width) - (2 * _paddingInDisplayUnits)
+        checkboxFrame.size.height = square
+        checkboxFrame.size.width = square
+
+        checkboxFrame.origin.x = (frame.size.width - checkboxFrame.size.width) / 2  // Center the switch at the top of the view.
+        
+        self.selectionSwitchControl = ThreeStateCheckbox(frame: checkboxFrame)
+        self.selectionSwitchControl.binaryState = true
+        
+        if 0 < self.weekdayIndex {
+            if let indexAsEnum = BMLTiOSLibSearchCriteria.WeekdayIndex(rawValue: self.weekdayIndex) {
+                if let weekdaySelection = owner.selectedWeekdays[indexAsEnum] {
+                    self.selectionSwitchControl.selectionState = weekdaySelection
                 }
-            } else {
-                var selectionState: BMLTiOSLibSearchCriteria.SelectionState! = nil
-                for weekday in owner.selectedWeekdays {
-                    if nil == selectionState {
-                        selectionState = weekday.value
-                    } else {
-                        if weekday.value != selectionState {
-                            selectionState = .Clear
-                            break
-                        }
-                    }
-                }
-                
+            }
+        } else {
+            var selectionState: BMLTiOSLibSearchCriteria.SelectionState! = nil
+            for weekday in owner.selectedWeekdays {
                 if nil == selectionState {
-                    selectionState = .Clear
+                    selectionState = weekday.value
+                } else {
+                    if weekday.value != selectionState {
+                        selectionState = .Clear
+                        break
+                    }
                 }
-                
-                self.selectionSwitchControl.selectionState = selectionState!
             }
             
-            self.selectionSwitchControl.addTarget(self, action: #selector(WeekdaySwitchContainerView.checkboxSelectionChanged(_:)), for: UIControl.Event.valueChanged)
+            if nil == selectionState {
+                selectionState = .Clear
+            }
             
-            var labelFrame: CGRect = CGRect.zero
-            labelFrame.size.width = frame.size.width
-            labelFrame.size.height = frame.size.height - checkboxFrame.size.height
-            labelFrame.origin.y = checkboxFrame.size.height
-            
-            self.weekdayNameLabel = UILabel(frame: labelFrame)
-            self.weekdayNameLabel.textColor = inOwner.view.tintColor
-            self.weekdayNameLabel.textAlignment = .center
-            self.weekdayNameLabel.font = UIFont.boldSystemFont(ofSize: 14)
-            self.weekdayNameLabel.text = (0 == weekdayIndex) ? NSLocalizedString("ALL-DAYS", comment: "") : AppStaticPrefs.weekdayNameFromWeekdayNumber(weekdayIndex, isShort: true)
-            
-            self.addSubview(self.selectionSwitchControl)
-            self.addSubview(self.weekdayNameLabel)
+            self.selectionSwitchControl.selectionState = selectionState!
         }
+        
+        self.selectionSwitchControl.addTarget(self, action: #selector(WeekdaySwitchContainerView.checkboxSelectionChanged(_:)), for: UIControl.Event.valueChanged)
+        
+        var labelFrame: CGRect = CGRect.zero
+        labelFrame.size.width = frame.size.width
+        labelFrame.size.height = frame.size.height - checkboxFrame.size.height
+        labelFrame.origin.y = checkboxFrame.size.height
+        
+        self.weekdayNameLabel = UILabel(frame: labelFrame)
+        self.weekdayNameLabel.textColor = inOwner.view.tintColor
+        self.weekdayNameLabel.textAlignment = .center
+        self.weekdayNameLabel.font = UIFont.boldSystemFont(ofSize: 14)
+        self.weekdayNameLabel.text = (0 == weekdayIndex) ? NSLocalizedString("ALL-DAYS", comment: "") : AppStaticPrefs.weekdayNameFromWeekdayNumber(weekdayIndex, isShort: true)
+        
+        self.addSubview(self.selectionSwitchControl)
+        self.addSubview(self.weekdayNameLabel)
     }
     
     /* ################################################################## */
