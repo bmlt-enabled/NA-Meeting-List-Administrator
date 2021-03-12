@@ -99,11 +99,11 @@ class ListEditableMeetingsViewController: EditorViewControllerBaseClass, UITable
     @IBOutlet weak var meetingListTableView: UITableView!
     /** This is a picker view that displays all the towns. */
     @IBOutlet weak var townBoroughPickerView: UIPickerView!
-    /** This is the navbar item that allows you to create a new meeting. */
-    @IBOutlet weak var addNewMeetingButton: UIBarButtonItem!
     /** This is the "What Meeting Am I At Now?" button. */
     @IBOutlet weak var whereAmINowButton: UIButton!
-    
+    /** The Navigation Bar, at the top. */
+    @IBOutlet weak var myNavBar: UINavigationBar!
+
     /* ################################################################## */
     // MARK: Internal Instance Properties
     /* ################################################################## */
@@ -224,6 +224,7 @@ class ListEditableMeetingsViewController: EditorViewControllerBaseClass, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tabBarController?.tabBar.isHidden = true
+        
         if CLLocationManager.locationServicesEnabled() {
             self.whereAmINowButton.isHidden = false
             self.whereAmINowButton.setTitle(NSLocalizedString(self.whereAmINowButton.title(for: UIControl.State.normal)!, comment: ""), for: UIControl.State.normal)
@@ -256,15 +257,27 @@ class ListEditableMeetingsViewController: EditorViewControllerBaseClass, UITable
         }
         super.viewWillDisappear(animated)
     }
+
+    /* ################################################################## */
+    /**
+     Trigger a search upon appearance.
+     
+     - parameter inAnimated: True, if the appearance is animated (ignored).
+     */
+    override func viewWillAppear(_ inAnimated: Bool) {
+        super.viewWillAppear(inAnimated)
+//        self.tabBarController?.navigationController?.navigationBar.isHidden = true
+    }
     
     /* ################################################################## */
     /**
      Trigger a search upon appearance.
      
-     - parameter animated: True, if the appearance is animated (ignored).
+     - parameter inAnimated: True, if the appearance is animated (ignored).
      */
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewDidAppear(_ inAnimated: Bool) {
+        super.viewDidAppear(inAnimated)
+
         if !self.searchDone {
             self.doSearch()
         }
@@ -289,7 +302,7 @@ class ListEditableMeetingsViewController: EditorViewControllerBaseClass, UITable
             }
         }
     }
-    
+
     /* ################################################################## */
     // MARK: Instance Methods
     /* ################################################################## */
@@ -341,7 +354,7 @@ class ListEditableMeetingsViewController: EditorViewControllerBaseClass, UITable
         #endif
         MainAppDelegate.connectionObject.searchCriteria.performMeetingSearch(.MeetingsOnly)
     }
-    
+
     /* ################################################################## */
     /**
      This is called when the search updates.

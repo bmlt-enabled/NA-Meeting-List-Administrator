@@ -82,12 +82,7 @@ class EditSingleMeetingViewController: MeetingEditorBaseViewController {
      - parameter animated: True, if the appearance is animated.
      */
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        if let navController = self.navigationController {
-            navController.isNavigationBarHidden = false
-        }
-        
+        super.viewWillAppear(animated)        
         self.updateEditorDisplay()
     }
     

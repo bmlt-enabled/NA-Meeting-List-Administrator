@@ -63,10 +63,7 @@ class HistoryListViewController: EditorViewControllerBaseClass, UITableViewDataS
      */
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if let navController = self.navigationController {
-            navController.isNavigationBarHidden = false
-            self.navigationItem.title = NSLocalizedString(self.navigationItem.title!, comment: "")
-        }
+        self.navigationItem.title = NSLocalizedString(self.navigationItem.title ?? "", comment: "")
         
         if nil == self.meetingObject.changes {
             self.animationCoverView.isHidden = false

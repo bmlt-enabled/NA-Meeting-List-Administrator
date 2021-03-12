@@ -44,7 +44,7 @@ class EditorTabBarController: UITabBarController, UITabBarControllerDelegate {
         /// The deleted meetings tab
         case DeletedTab
     }
-    
+
     /* ################################################################## */
     // MARK: Overridden Base Class Methods
     /* ################################################################## */
@@ -205,6 +205,7 @@ class EditorViewControllerBaseClass: UIViewController {
      - parameter animated: True, if the appearance is to be animated.
      */
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         if let topColor = (self.view as? EditorViewBaseClass)?.topColor,
            let bottomColor = (self.view as? EditorViewBaseClass)?.bottomColor {
             _oldTopColor = self.navigationController?.navigationBar.barTintColor
@@ -212,8 +213,6 @@ class EditorViewControllerBaseClass: UIViewController {
             self.navigationController?.navigationBar.barTintColor = topColor
             self.tabBarController?.tabBar.barTintColor = bottomColor
         }
-        
-        super.viewWillAppear(animated)
     }
 
     /* ################################################################## */

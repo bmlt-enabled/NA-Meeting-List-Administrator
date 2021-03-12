@@ -157,6 +157,7 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate,
         // Set all of the various localized text items.
         // Each item has the key set as its text, so we replace with the localized version.
         self.navigationItem.backBarButtonItem?.title = NSLocalizedString((self.navigationItem.backBarButtonItem?.title!)!, comment: "")
+        self.navigationItem.title = NSLocalizedString(self.navigationItem.title ?? "", comment: "")
         self.logoutButton.setTitle(NSLocalizedString(self.logoutButton.title(for: UIControl.State.normal)!, comment: ""), for: UIControl.State.normal)
         self.adminUnavailableLabel.text = self.adminUnavailableLabel.text!.localizedVariant
         self.enterURLItemsLabel.text = self.enterURLItemsLabel.text!.localizedVariant
@@ -193,16 +194,14 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate,
      - parameter animated: True, if the appearance is animated.
      */
     override func viewWillAppear(_ animated: Bool) {
-        if let navController = self.navigationController {
-            navController.isNavigationBarHidden = !((nil != MainAppDelegate.connectionObject) && MainAppDelegate.connectionObject.isAdminLoggedIn)
-        }
+        super.viewWillAppear(animated)
         self._editorTabBarController = nil // We will always be setting this to nil when we first appear. Makes it easier to track.
         self._loggingIn = false
         self.manualEntryPasswordTextField.text = "" // We start off with no password (security).
         self.enableOrDisableTheEditButton()
         self.showOrHideConnectButton()
         self.closeKeyboard()
-        super.viewWillAppear(animated)
+        self.showHideNavBar()
     }
     
     /* ################################################################## */
@@ -369,7 +368,7 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate,
      
      - parameter sender: The IB item that called this. This is ignored.
      */
-    @IBAction func segueToEditorScreen(_ sender: UIBarButtonItem) {
+    @IBAction func segueToEditorScreen(_: UIBarButtonItem! = nil) {
         self.performSegue(withIdentifier: self._showEditorSegueID, sender: nil)
     }
     
@@ -405,6 +404,16 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate,
         self.enterURLTextItem.resignFirstResponder()
     }
     
+    /* ################################################################## */
+    /**
+     Show or hide the navbar, depending on login status.
+     */
+    func showHideNavBar() {
+        let isLoggedIn = MainAppDelegate.connectionObject?.isAdminLoggedIn ?? false
+        self.serviceBodyBarButton?.tintColor = isLoggedIn ? self.view.tintColor : .clear
+        self.editorBarButton?.tintColor = isLoggedIn ? self.view.tintColor : .clear
+    }
+
     /* ################################################################## */
     /**
      This is the callback from the Touch/Face ID login attempt.
@@ -589,7 +598,7 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate,
             self.segueToServiceBodiesScreen(self.serviceBodyBarButton)
         } else {    // Otherwise, we just go straight to the editor; whether or not we are at the first go.
             if MainAppDelegate.connectionObject.isAdminLoggedIn {
-                self.segueToEditorScreen(self.editorBarButton)
+                self.segueToEditorScreen()
             }
         }
     }
@@ -605,7 +614,7 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate,
 
         let hideLoginButton = loginFieldEmpty! || passwordFieldEmpty!
         
-        self.manualEntryLoginButton.isEnabled = !hideLoginButton || (0 < row)
+        self.manualEntryLoginButton?.isEnabled = !hideLoginButton || (0 < row)
     }
     
     /* ################################################################## */
@@ -613,7 +622,7 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate,
      This function will enable or disable the Navbar Edit button, depending on whether or not we have any selected Service bodies.
      */
     func enableOrDisableTheEditButton() {
-        self.editorBarButton.isEnabled = 0 < AppStaticPrefs.prefs.selectedServiceBodies.count
+        self.editorBarButton?.isEnabled = 0 < AppStaticPrefs.prefs.selectedServiceBodies.count
     }
     
     /* ################################################################## */
@@ -621,8 +630,8 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate,
      This function will either show (enable) or hide (disable) the connect button.
      */
     func showOrHideConnectButton() {
-        self.connectButton.isEnabled = (nil == MainAppDelegate.connectionObject) && !(self.enterURLTextItem.text?.isEmpty)! && !MainAppDelegate.connectionStatus
-        self.disconnectButton.isEnabled = (nil != MainAppDelegate.connectionObject) && MainAppDelegate.connectionStatus
+        self.connectButton?.isEnabled = (nil == MainAppDelegate.connectionObject) && !(self.enterURLTextItem.text?.isEmpty)! && !MainAppDelegate.connectionStatus
+        self.disconnectButton?.isEnabled = (nil != MainAppDelegate.connectionObject) && MainAppDelegate.connectionStatus
     }
     
     /* ################################################################## */
@@ -630,10 +639,6 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate,
      This shows or hides items, depending on the login status.
      */
     func setLoginStatusUI() {
-        if let navController = self.navigationController {
-            navController.isNavigationBarHidden = true
-        }
-        
         self.loggedInTextContainerView.isHidden = true
         // If we are not currently attempting a connection, and are currently connected.
         if !self._connecting && (nil != MainAppDelegate.connectionObject) && MainAppDelegate.connectionStatus {
@@ -644,9 +649,6 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate,
                 self.presetLoginsContainerView.isHidden = true
                 self.logoutButton.isHidden = false
                 self.adminUnavailableLabel.isHidden = true
-                if let navController = self.navigationController {
-                    navController.isNavigationBarHidden = false
-                }
                 
                 let storedLogins = self._validSavedLogins
 
@@ -673,6 +675,7 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate,
             self.presetLoginsContainerView.isHidden = true
         }
         
+        self.showHideNavBar()
         self.showOrHideConnectButton()
         self.showOrHideLoginButton()
         self.enableOrDisableTheEditButton()
@@ -685,7 +688,7 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate,
      - parameter inMeetingObjects: An array of meeting objects.
      */
     func updateSearch(inMeetingObjects: [BMLTiOSLibMeetingNode]) {
-        self._editorTabBarController.updateSearch(inMeetingObjects: inMeetingObjects)   // We pass this on to our Tab controller, who will take it from there.
+        self._editorTabBarController?.updateSearch(inMeetingObjects: inMeetingObjects)   // We pass this on to our Tab controller, who will take it from there.
     }
 
     /* ################################################################## */
@@ -695,7 +698,7 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate,
      - parameter inMeetingObject: The new meeting object.
      */
     func updateNewMeeting(inMeetingObject: BMLTiOSLibEditableMeetingNode) {
-        self._editorTabBarController.updateNewMeetingAdded(inMeetingObject)   // We pass this on to our Tab controller, who will take it from there.
+        self._editorTabBarController?.updateNewMeetingAdded(inMeetingObject)   // We pass this on to our Tab controller, who will take it from there.
     }
     
     /* ################################################################## */
@@ -705,7 +708,7 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate,
      - parameter changeListResults: An array of change objects.
      */
     func updateChangeResponse(changeListResults: [BMLTiOSLibChangeNode]) {
-        self._editorTabBarController.updateChangeResponse(changeListResults: changeListResults)   // We pass this on to our Tab controller, who will take it from there.
+        self._editorTabBarController?.updateChangeResponse(changeListResults: changeListResults)   // We pass this on to our Tab controller, who will take it from there.
     }
     
     /* ################################################################## */
@@ -715,7 +718,7 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate,
      - parameter changeListResults: An array of change objects.
      */
     func updateDeletedResponse(changeListResults: [BMLTiOSLibChangeNode]) {
-        self._editorTabBarController.updateDeletedResponse(changeListResults: changeListResults)   // We pass this on to our Tab controller, who will take it from there.
+        self._editorTabBarController?.updateDeletedResponse(changeListResults: changeListResults)   // We pass this on to our Tab controller, who will take it from there.
     }
     
     /* ################################################################## */
@@ -725,7 +728,7 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate,
      - parameter inMeeting: The meeting that was updated.
      */
     func updateRollback(_ inMeeting: BMLTiOSLibMeetingNode) {
-        self._editorTabBarController.updateRollback(inMeeting)
+        self._editorTabBarController?.updateRollback(inMeeting)
     }
     
     /* ################################################################## */
@@ -735,7 +738,7 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate,
      - parameter inMeeting: The meeting that was edited or added. nil, if we want a general update.
      */
     func updateEdit(_ inMeeting: BMLTiOSLibMeetingNode!) {
-        self._editorTabBarController.updateEdit(inMeeting)
+        self._editorTabBarController?.updateEdit(inMeeting)
     }
 
     /* ################################################################## */
@@ -743,7 +746,7 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate,
      This is called when a change fetch is complete.
      */
     func updateChangeFetch() {
-        self._editorTabBarController.updateChangeFetch()
+        self._editorTabBarController?.updateChangeFetch()
     }
     
     /* ################################################################## */
@@ -752,7 +755,7 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate,
      We use this as a trigger to tell the deleted meetings tab it needs a reload.
      */
     func updateDeletedMeeting() {
-        self._editorTabBarController.updateDeletedMeeting()
+        self._editorTabBarController?.updateDeletedMeeting()
     }
     
     /* ################################################################## */

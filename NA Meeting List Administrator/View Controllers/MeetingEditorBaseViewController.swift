@@ -116,6 +116,11 @@ class MeetingEditorBaseViewController: EditorViewControllerBaseClass, UITableVie
     /** This tracks the state of the keyboard */
     private var _keyboardOffset: CGFloat = 0.0
     
+    /// This is the original navbar color.
+    private var _oldTopColor: UIColor?
+    /// This is the original tab bar color.
+    private var _oldBottomColor: UIColor?
+
     /** This will reference the top item in the window (the "Published" handler). */
     var publishedItems: PublishedEditorTableViewCell! = nil
     
@@ -165,6 +170,8 @@ class MeetingEditorBaseViewController: EditorViewControllerBaseClass, UITableVie
      */
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        _oldTopColor = self.navigationController?.navigationBar.barTintColor
+        _oldBottomColor = self.tabBarController?.tabBar.barTintColor
         if nil != self._formatContainerView {
             self.tableView.reloadData()
         }
@@ -179,9 +186,12 @@ class MeetingEditorBaseViewController: EditorViewControllerBaseClass, UITableVie
     /**
      Called as the view is about to appear.
      
-     - parameter animated: True, if the appearance is animated.
+     - parameter inAnimated: True, if the appearance is animated.
      */
-    override func viewWillDisappear(_ animated: Bool) {
+    override func viewWillDisappear(_ inAnimated: Bool) {
+        super.viewWillDisappear(inAnimated)
+        self.navigationController?.navigationBar.barTintColor = _oldTopColor
+        self.tabBarController?.tabBar.barTintColor = _oldBottomColor
         if nil != self._locationManager {
             self._locationManager.stopUpdatingLocation()
             self._locationManager = nil

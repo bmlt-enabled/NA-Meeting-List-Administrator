@@ -81,6 +81,7 @@ class CreateSingleMeetingViewController: MeetingEditorBaseViewController {
      */
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
         if let navController = self.navigationController {
             navController.isNavigationBarHidden = false
             if let title = self.navigationItem.title {

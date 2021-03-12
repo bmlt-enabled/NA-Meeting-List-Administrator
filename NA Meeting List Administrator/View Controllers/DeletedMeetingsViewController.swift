@@ -46,8 +46,6 @@ class DeletedMeetingsViewController: EditorViewControllerBaseClass, UITableViewD
     /** This has our list of deleted meetings (stored as changes). */
     private var _deletedMeetingChanges: [BMLTiOSLibChangeNode] = []
     
-    /** This is the navbar button that acts as a back button. */
-    @IBOutlet weak var backButton: UIBarButtonItem!
     /** This is our animated "busy cover." */
     @IBOutlet weak var animationMaskView: UIView!
     /** This is the table view that lists the deletions. */
@@ -56,24 +54,12 @@ class DeletedMeetingsViewController: EditorViewControllerBaseClass, UITableViewD
     @IBOutlet weak var deletedWaitHeader: UILabel!
     /** This is our "Hurry up and wait. " message. */
     @IBOutlet weak var deletedWaitMessage: UILabel!
-    /** This is the navigation bar at the top. */
-    @IBOutlet weak var myNavBar: UINavigationBar!
     
     /** This is a semaphore that we use to prevent too many searches. */
     var searchDone: Bool = false
     /** This references our tab controller (makes it easy to get at it). */
     var myBarTab: EditorTabBarController! = nil
     
-    /* ################################################################## */
-    // MARK: IB Methods
-    /* ################################################################## */
-    /**
-     - parameter sender: The bar button item that called this.
-     */
-    @IBAction func backButtonHit(_ sender: UIBarButtonItem) {
-        _ = self.navigationController?.popViewController(animated: true)
-    }
-
     /* ################################################################## */
     // MARK: Overloaded Base Class Methods
     /* ################################################################## */
@@ -83,7 +69,6 @@ class DeletedMeetingsViewController: EditorViewControllerBaseClass, UITableViewD
      */
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.backButton.title = NSLocalizedString(self.backButton.title!, comment: "")
         self.deletedWaitHeader.text = NSLocalizedString(self.deletedWaitHeader.text!, comment: "")
     }
     
@@ -96,10 +81,7 @@ class DeletedMeetingsViewController: EditorViewControllerBaseClass, UITableViewD
      */
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if let navController = self.navigationController {
-            navController.isNavigationBarHidden = true
-        }
-        
+
         if let tabBar = self.tabBarController?.tabBar {
             tabBar.tintColor = self.view.tintColor
         }
@@ -133,7 +115,6 @@ class DeletedMeetingsViewController: EditorViewControllerBaseClass, UITableViewD
         self.animationMaskView.isHidden = false
         self.tableView.isHidden = true
         self.tabBarController?.tabBar.isHidden = true
-        self.myNavBar.isHidden = true
         var ids: [Int] = []
         for sb in AppStaticPrefs.prefs.selectedServiceBodies {
             ids.append(sb.id)
@@ -154,7 +135,6 @@ class DeletedMeetingsViewController: EditorViewControllerBaseClass, UITableViewD
         self.animationMaskView.isHidden = true
         self.tableView.isHidden = false
         self.tabBarController?.tabBar.isHidden = false
-        self.myNavBar.isHidden = false
         self.searchDone = true
         self._deletedMeetingChanges = changeListResults
         self.view.setNeedsLayout()

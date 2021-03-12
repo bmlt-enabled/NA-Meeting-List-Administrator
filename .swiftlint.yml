@@ -3,6 +3,7 @@ disabled_rules:
 - nesting
 - function_parameter_count
 - trailing_whitespace
+- file_length
 
 opt_in_rules:
 - control_statement
@@ -14,10 +15,6 @@ opt_in_rules:
 excluded:
 - Pods
 - Carthage
-
-file_length:
-- 1699 # warning
-- 1700 # error
 
 function_body_length:
 - 54 # warning
