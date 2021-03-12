@@ -193,6 +193,11 @@ class EditorTabBarController: UITabBarController, UITabBarControllerDelegate {
 /**
  */
 class EditorViewControllerBaseClass: UIViewController {
+    /// This is the original navbar color.
+    private var _oldTopColor: UIColor?
+    /// This is the original tab bar color.
+    private var _oldBottomColor: UIColor?
+
     /* ################################################################## */
     /**
      This is called just before we appear. We use it to set up the gradients and the bar color.
@@ -200,13 +205,31 @@ class EditorViewControllerBaseClass: UIViewController {
      - parameter animated: True, if the appearance is to be animated.
      */
     override func viewWillAppear(_ animated: Bool) {
-        let topColor = (self.view as? EditorViewBaseClass)?.topColor
-        let bottomColor = (self.view as? EditorViewBaseClass)?.bottomColor
-        
-        self.navigationController?.navigationBar.barTintColor = topColor
-        self.tabBarController?.tabBar.barTintColor = bottomColor
+        if let topColor = (self.view as? EditorViewBaseClass)?.topColor,
+           let bottomColor = (self.view as? EditorViewBaseClass)?.bottomColor {
+            _oldTopColor = self.navigationController?.navigationBar.barTintColor
+            _oldBottomColor = self.tabBarController?.tabBar.barTintColor
+            self.navigationController?.navigationBar.barTintColor = topColor
+            self.tabBarController?.tabBar.barTintColor = bottomColor
+        }
         
         super.viewWillAppear(animated)
+    }
+
+    /* ################################################################## */
+    /**
+     This is called just before we appear. We use it to set up the gradients and the bar color.
+     
+     - parameter animated: True, if the appearance is to be animated.
+     */
+    override func viewWillDisappear(_ animated: Bool) {
+        if let topColor = _oldTopColor,
+           let bottomColor = _oldBottomColor {
+            self.navigationController?.navigationBar.barTintColor = topColor
+            self.tabBarController?.tabBar.barTintColor = bottomColor
+        }
+        
+        super.viewWillDisappear(animated)
     }
 }
 
@@ -218,9 +241,9 @@ class EditorViewControllerBaseClass: UIViewController {
  */
 class EditorViewBaseClass: UIView {
     /// The top color of our background gradient.
-    @IBInspectable var topColor: UIColor = UIColor.white
+    @IBInspectable var topColor: UIColor? = UIColor.white
     /// The bottom color of our background gradient.
-    @IBInspectable var bottomColor: UIColor = UIColor.black
+    @IBInspectable var bottomColor: UIColor? = UIColor.black
     
     /* ################################################################## */
     // MARK: Overridden Base Class Methods
@@ -237,7 +260,10 @@ class EditorViewBaseClass: UIView {
      Called when the class is to lay out its subviews.
      */
     override func layoutSubviews() {
-        (layer as? CAGradientLayer)?.colors = [topColor.cgColor, bottomColor.cgColor]
+        if let topColor = topColor,
+           let bottomColor = bottomColor {
+            (layer as? CAGradientLayer)?.colors = [topColor.cgColor, bottomColor.cgColor]
+        }
         super.layoutSubviews()
     }
 }

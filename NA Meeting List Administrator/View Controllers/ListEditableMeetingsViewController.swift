@@ -101,12 +101,8 @@ class ListEditableMeetingsViewController: EditorViewControllerBaseClass, UITable
     @IBOutlet weak var townBoroughPickerView: UIPickerView!
     /** This is the navbar item that allows you to create a new meeting. */
     @IBOutlet weak var addNewMeetingButton: UIBarButtonItem!
-    /** This is the navbar button that acts as a back button. */
-    @IBOutlet weak var backButton: UIBarButtonItem!
     /** This is the "What Meeting Am I At Now?" button. */
     @IBOutlet weak var whereAmINowButton: UIButton!
-    /** This is the navigation bar, shown at the top. */
-    @IBOutlet weak var myNavBar: UINavigationBar!
     
     /* ################################################################## */
     // MARK: Internal Instance Properties
@@ -210,21 +206,6 @@ class ListEditableMeetingsViewController: EditorViewControllerBaseClass, UITable
     }
     
     /* ################################################################## */
-    // MARK: IB Methods
-    /* ################################################################## */
-    /**
-     - parameter sender: The bar button item that called this.
-     */
-    @IBAction func backButtonHit(_ sender: UIBarButtonItem) {
-        if nil != self._locationManager {
-            self._locationManager.stopUpdatingLocation()
-            self._locationManager.delegate = nil
-            self._locationManager = nil
-        }
-        _ = self.navigationController?.popViewController(animated: true)
-    }
-    
-    /* ################################################################## */
     /**
      - parameter sender: The button item that called this.
      */
@@ -243,7 +224,6 @@ class ListEditableMeetingsViewController: EditorViewControllerBaseClass, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tabBarController?.tabBar.isHidden = true
-        self.backButton.title = NSLocalizedString(self.backButton.title!, comment: "")
         if CLLocationManager.locationServicesEnabled() {
             self.whereAmINowButton.isHidden = false
             self.whereAmINowButton.setTitle(NSLocalizedString(self.whereAmINowButton.title(for: UIControl.State.normal)!, comment: ""), for: UIControl.State.normal)
@@ -260,21 +240,6 @@ class ListEditableMeetingsViewController: EditorViewControllerBaseClass, UITable
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         self.updateDisplayedMeetings()
-    }
-    
-    /* ################################################################## */
-    /**
-     - parameter animated: True, if the appearance is animated (ignored).
-     */
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        if let navController = self.navigationController {
-            navController.isNavigationBarHidden = true
-        }
-        
-        if let tabBar = self.tabBarController?.tabBar {
-            tabBar.tintColor = self.view.tintColor
-        }
     }
     
     /* ################################################################## */

@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Xmv-pv-Odk">
-    <device id="retina6_1" orientation="portrait" appearance="dark"/>
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -18,7 +20,8 @@
                         <rect key="frame" x="0.0" y="44" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <color key="tintColor" red="0.0" green="0.0" blue="0.79866071429999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="tintColor" name="SelectionColor"/>
+                        <color key="barTintColor" name="NavBarColor"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" red="0.0" green="0.0" blue="0.79866071429999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </textAttributes>
@@ -35,36 +38,11 @@
         <scene sceneID="Atl-49-uMn">
             <objects>
                 <viewController hidesBottomBarWhenPushed="YES" id="w5k-wt-KU4" userLabel="List Meetings" customClass="ListEditableMeetingsViewController" customModule="NA_Meeting_List_Administrator" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Ngp-Vd-TOI" customClass="EditorViewBaseClass" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="640"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <view key="view" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ngp-Vd-TOI" customClass="EditorViewBaseClass" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="552"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="imF-iu-7Pc">
-                                <rect key="frame" x="0.0" y="44" width="320" height="44"/>
-                                <color key="backgroundColor" red="0.0" green="1" blue="0.1470982143" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="VMD-gn-OeH"/>
-                                </constraints>
-                                <color key="barTintColor" red="0.0" green="1" blue="0.14901960784313725" alpha="1" colorSpace="calibratedRGB"/>
-                                <items>
-                                    <navigationItem id="8nw-vS-rbJ">
-                                        <barButtonItem key="leftBarButtonItem" title="CONNECT-BACK-TITLE" id="QoR-7R-xnk">
-                                            <color key="tintColor" red="0.0" green="0.0" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <connections>
-                                                <action selector="backButtonHit:" destination="w5k-wt-KU4" id="78K-Cj-eZd"/>
-                                            </connections>
-                                        </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="EME-ln-lfk">
-                                            <connections>
-                                                <action selector="addNewMeetingHit:" destination="w5k-wt-KU4" id="dnK-xS-wNE"/>
-                                                <segue destination="nqe-fN-Jmf" kind="show" identifier="open-new-meeting-editor" id="VjT-y3-x76"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                             <view contentMode="scaleToFill" horizontalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="WiI-pa-W7F" userLabel="Weekday Switch Container View">
-                                <rect key="frame" x="4" y="92" width="312" height="60"/>
+                                <rect key="frame" x="4" y="0.0" width="312" height="60"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="312" id="4sZ-qv-GGH"/>
@@ -72,7 +50,7 @@
                                 </constraints>
                             </view>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3VS-JC-wjl">
-                                <rect key="frame" x="0.0" y="152" width="320" height="80"/>
+                                <rect key="frame" x="0.0" y="60" width="320" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="CIj-2c-Fwt"/>
                                 </constraints>
@@ -82,7 +60,7 @@
                                 </connections>
                             </pickerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VhF-F3-wYi">
-                                <rect key="frame" x="8" y="232" width="304" height="30"/>
+                                <rect key="frame" x="8" y="140" width="304" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="jwd-d6-YJl"/>
                                 </constraints>
@@ -92,14 +70,14 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zf7-jz-lhI" userLabel="Separator Line View">
-                                <rect key="frame" x="0.0" y="262" width="320" height="0.5"/>
+                                <rect key="frame" x="0.0" y="170" width="320" height="0.5"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="0.5" id="fyb-1S-ZKu"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Itu-Ng-B3d">
-                                <rect key="frame" x="0.0" y="262.5" width="320" height="328.5"/>
+                                <rect key="frame" x="0.0" y="170.5" width="320" height="332.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Meeting-Table-View-Prototype" id="McT-DJ-Epx" customClass="MeetingTableViewCell" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
@@ -159,10 +137,10 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CYQ-I8-Ytf">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="640"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="552"/>
                                 <subviews>
                                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Eis-cv-kRB">
-                                        <rect key="frame" x="141.5" y="301.5" width="37" height="37"/>
+                                        <rect key="frame" x="141.5" y="257.5" width="37" height="37"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="37" id="is4-nN-aKk"/>
                                             <constraint firstAttribute="width" secondItem="Eis-cv-kRB" secondAttribute="height" multiplier="1:1" id="qnO-zt-ith"/>
@@ -172,8 +150,8 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.036142560050000001" green="0.16316006350000001" blue="0.28024899590000002" alpha="0.5" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="Eis-cv-kRB" firstAttribute="centerY" secondItem="CYQ-I8-Ytf" secondAttribute="centerY" id="Ami-eM-qtO"/>
-                                    <constraint firstItem="Eis-cv-kRB" firstAttribute="centerX" secondItem="CYQ-I8-Ytf" secondAttribute="centerX" id="jOU-aD-1lC"/>
+                                    <constraint firstItem="Eis-cv-kRB" firstAttribute="centerX" secondItem="CYQ-I8-Ytf" secondAttribute="centerX" id="mNv-eq-mXN"/>
+                                    <constraint firstItem="Eis-cv-kRB" firstAttribute="centerY" secondItem="CYQ-I8-Ytf" secondAttribute="centerY" id="pD0-cu-9bU"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -181,57 +159,41 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <color key="tintColor" red="0.0" green="0.0" blue="0.79866071429999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="imF-iu-7Pc" firstAttribute="top" secondItem="bCc-di-MvB" secondAttribute="top" id="2Ag-DZ-SQ1"/>
                             <constraint firstItem="WiI-pa-W7F" firstAttribute="centerX" secondItem="bCc-di-MvB" secondAttribute="centerX" id="3Rh-my-WsY"/>
                             <constraint firstItem="Itu-Ng-B3d" firstAttribute="bottom" secondItem="bCc-di-MvB" secondAttribute="bottom" id="3ge-eO-qc9"/>
-                            <constraint firstItem="bCc-di-MvB" firstAttribute="trailing" secondItem="imF-iu-7Pc" secondAttribute="trailing" id="4Du-iw-7e8"/>
                             <constraint firstItem="VhF-F3-wYi" firstAttribute="leading" secondItem="bCc-di-MvB" secondAttribute="leading" constant="8" id="7Vr-Az-UbS"/>
                             <constraint firstItem="zf7-jz-lhI" firstAttribute="top" secondItem="VhF-F3-wYi" secondAttribute="bottom" id="9Xm-Fe-7a4"/>
+                            <constraint firstItem="WiI-pa-W7F" firstAttribute="top" secondItem="bCc-di-MvB" secondAttribute="top" id="BAq-9b-Dde"/>
                             <constraint firstItem="3VS-JC-wjl" firstAttribute="top" secondItem="WiI-pa-W7F" secondAttribute="bottom" id="GWN-5K-0dv"/>
-                            <constraint firstAttribute="bottom" secondItem="CYQ-I8-Ytf" secondAttribute="bottom" id="KQJ-Ts-QRH"/>
+                            <constraint firstAttribute="trailing" secondItem="CYQ-I8-Ytf" secondAttribute="trailing" id="K3h-oP-SPO"/>
                             <constraint firstItem="3VS-JC-wjl" firstAttribute="leading" secondItem="bCc-di-MvB" secondAttribute="leading" id="Lq0-0s-E1E"/>
                             <constraint firstItem="zf7-jz-lhI" firstAttribute="leading" secondItem="bCc-di-MvB" secondAttribute="leading" id="TzE-aO-uzx"/>
-                            <constraint firstItem="CYQ-I8-Ytf" firstAttribute="leading" secondItem="bCc-di-MvB" secondAttribute="leading" id="Ug2-Fc-uI7"/>
-                            <constraint firstItem="imF-iu-7Pc" firstAttribute="leading" secondItem="bCc-di-MvB" secondAttribute="leading" id="WgY-J3-1lG"/>
-                            <constraint firstItem="CYQ-I8-Ytf" firstAttribute="top" secondItem="Ngp-Vd-TOI" secondAttribute="top" id="ahU-Mb-4u5"/>
+                            <constraint firstItem="CYQ-I8-Ytf" firstAttribute="top" secondItem="Ngp-Vd-TOI" secondAttribute="top" id="cOl-Em-Lcg"/>
                             <constraint firstItem="Itu-Ng-B3d" firstAttribute="top" secondItem="zf7-jz-lhI" secondAttribute="bottom" id="d7L-7i-ea8"/>
-                            <constraint firstItem="WiI-pa-W7F" firstAttribute="top" secondItem="imF-iu-7Pc" secondAttribute="bottom" constant="4" id="dNL-Js-RoN"/>
                             <constraint firstItem="bCc-di-MvB" firstAttribute="trailing" secondItem="Itu-Ng-B3d" secondAttribute="trailing" id="dXb-N1-zeg"/>
-                            <constraint firstItem="bCc-di-MvB" firstAttribute="trailing" secondItem="CYQ-I8-Ytf" secondAttribute="trailing" id="eXX-YP-bNr"/>
                             <constraint firstItem="bCc-di-MvB" firstAttribute="trailing" secondItem="3VS-JC-wjl" secondAttribute="trailing" id="fuA-x6-4ef"/>
                             <constraint firstItem="VhF-F3-wYi" firstAttribute="top" secondItem="3VS-JC-wjl" secondAttribute="bottom" id="gox-YF-xge"/>
                             <constraint firstItem="Itu-Ng-B3d" firstAttribute="leading" secondItem="bCc-di-MvB" secondAttribute="leading" id="h3n-KX-Cpn"/>
                             <constraint firstItem="bCc-di-MvB" firstAttribute="trailing" secondItem="VhF-F3-wYi" secondAttribute="trailing" constant="8" id="ty2-q0-G8A"/>
                             <constraint firstItem="bCc-di-MvB" firstAttribute="trailing" secondItem="zf7-jz-lhI" secondAttribute="trailing" id="umF-1m-e1G"/>
+                            <constraint firstItem="CYQ-I8-Ytf" firstAttribute="leading" secondItem="Ngp-Vd-TOI" secondAttribute="leading" id="x2B-ll-xfN"/>
+                            <constraint firstAttribute="bottom" secondItem="CYQ-I8-Ytf" secondAttribute="bottom" id="ypI-lG-lMY"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="topColor">
-                                <color key="value" red="0.0" green="1" blue="0.14901960784313725" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="value" name="NavBarColor"/>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="color" keyPath="bottomColor">
-                                <color key="value" red="0.71593479199999999" green="0.93850808809999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="value" name="TabBarColor"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <tabBarItem key="tabBarItem" title="MEETINGS-TAB-BAR-NAME" image="List" id="qM6-Hh-PL4"/>
                     <toolbarItems/>
-                    <nil key="simulatedTopBarMetrics"/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="color" keyPath="unpublishedRowColorEven">
-                            <color key="value" red="1" green="0.61205357140000005" blue="0.37419084819999998" alpha="1" colorSpace="calibratedRGB"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="color" keyPath="unpublishedRowColorOdd">
-                            <color key="value" red="1" green="0.4299386161" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
                     <connections>
-                        <outlet property="addNewMeetingButton" destination="EME-ln-lfk" id="RV1-nD-vFH"/>
-                        <outlet property="backButton" destination="QoR-7R-xnk" id="cYY-rE-c2s"/>
                         <outlet property="busyAnimationView" destination="CYQ-I8-Ytf" id="KFH-M9-aan"/>
                         <outlet property="meetingListTableView" destination="Itu-Ng-B3d" id="iFg-TT-2IF"/>
-                        <outlet property="myNavBar" destination="imF-iu-7Pc" id="6mY-sk-6Yx"/>
                         <outlet property="townBoroughPickerView" destination="3VS-JC-wjl" id="52E-cf-Oye"/>
                         <outlet property="weekdaySwitchesContainerView" destination="WiI-pa-W7F" id="1vf-Yl-hAh"/>
                         <outlet property="whereAmINowButton" destination="VhF-F3-wYi" id="lnJ-MU-F3p"/>
@@ -240,18 +202,18 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P47-cy-4rj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1741.875" y="122.53521126760563"/>
+            <point key="canvasLocation" x="1740.5797101449277" y="121.875"/>
         </scene>
         <!--Meeting Editor-->
         <scene sceneID="lTA-iq-h3x">
             <objects>
                 <viewController title="Meeting Editor" hidesBottomBarWhenPushed="YES" id="m2u-A7-bWE" customClass="EditSingleMeetingViewController" customModule="NA_Meeting_List_Administrator" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tAG-NX-Teg" customClass="EditorViewBaseClass" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="2000"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="1912"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="73J-zm-pQ7">
-                                <rect key="frame" x="16" y="44" width="288" height="30"/>
+                                <rect key="frame" x="16" y="0.0" width="288" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Rey-QI-zav"/>
                                 </constraints>
@@ -261,14 +223,14 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p1z-QW-gS5" userLabel="Separator Line View">
-                                <rect key="frame" x="0.0" y="74" width="320" height="0.5"/>
+                                <rect key="frame" x="0.0" y="30" width="320" height="0.5"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="0.5" id="Aeh-2A-UXx"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hu8-sJ-cp5">
-                                <rect key="frame" x="0.0" y="74.5" width="320" height="1891.5"/>
+                                <rect key="frame" x="0.0" y="30.5" width="320" height="1847.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="editor-row-0" rowHeight="155" id="I7d-EO-pHQ" userLabel="Published" customClass="PublishedEditorTableViewCell" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
@@ -1317,10 +1279,10 @@
                                 </connections>
                             </tableView>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="64l-pk-tFP" userLabel="Animation View">
-                                <rect key="frame" x="0.0" y="44" width="320" height="1922"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="1878"/>
                                 <subviews>
                                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="M4K-1n-cW3">
-                                        <rect key="frame" x="141.5" y="942.5" width="37" height="37"/>
+                                        <rect key="frame" x="141.5" y="920.5" width="37" height="37"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="M4K-1n-cW3" secondAttribute="height" multiplier="1:1" id="mIJ-j0-aQd"/>
                                             <constraint firstAttribute="width" constant="37" id="nru-5q-DqT"/>
@@ -1598,7 +1560,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="0.99215686270000003" green="0.97647058819999999" blue="0.50588235290000005" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="barTintColor" red="0.99215686274509807" green="0.97647058823529409" blue="0.50588235294117645" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" name="TabBarColor"/>
                         <color key="selectedImageTintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
@@ -1882,7 +1844,9 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
-                    <tabBarItem key="tabBarItem" title="DELETED-MEETINGS-TAB-BAR-NAME" image="Deleted" id="h6s-pn-xQu"/>
+                    <tabBarItem key="tabBarItem" title="DELETED-MEETINGS-TAB-BAR-NAME" id="h6s-pn-xQu">
+                        <imageReference key="image" image="nosign" catalog="system" symbolScale="large"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <nil key="simulatedTopBarMetrics"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
@@ -2222,7 +2186,7 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="2RF-Cf-XsM"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <color key="tintColor" red="0.0" green="1" blue="0.14709821428571429" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" name="SelectionColor"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="QlB-zf-B7K" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="1Fu-tA-onb"/>
@@ -3461,10 +3425,19 @@
     <resources>
         <image name="BackgroundGradient" width="10" height="3000"/>
         <image name="CenterLogo" width="255" height="612"/>
-        <image name="Deleted" width="25" height="25"/>
         <image name="List" width="25" height="25"/>
         <image name="Settings-Highlight" width="25" height="25"/>
         <image name="gearshape.fill" catalog="system" width="128" height="121"/>
+        <image name="nosign" catalog="system" width="128" height="121"/>
+        <namedColor name="NavBarColor">
+            <color red="1" green="0.92599999904632568" blue="0.16899999976158142" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="SelectionColor">
+            <color red="0.0" green="0.48500001430511475" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="TabBarColor">
+            <color red="1" green="0.6940000057220459" blue="0.16899999976158142" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="groupTableViewBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
