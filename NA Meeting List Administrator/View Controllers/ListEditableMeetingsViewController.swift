@@ -99,7 +99,9 @@ class ListEditableMeetingsViewController: EditorViewControllerBaseClass, UITable
     @IBOutlet weak var townBoroughPickerView: UIPickerView!
     /** This is the "What Meeting Am I At Now?" button. */
     @IBOutlet weak var whereAmINowButton: UIButton!
-
+    /** This is the "plus" button, at the top. */
+    @IBOutlet weak var newMeetingButton: UIButton!
+    
     /* ################################################################## */
     // MARK: Internal Instance Properties
     /* ################################################################## */
@@ -157,6 +159,7 @@ class ListEditableMeetingsViewController: EditorViewControllerBaseClass, UITable
         self.weekdaySwitchesContainerView.isHidden = true
         self.townBoroughPickerView.isHidden = true
         self.whereAmINowButton.isHidden = true
+        self.newMeetingButton.isHidden = true
     }
     
     /* ################################################################## */
@@ -170,6 +173,7 @@ class ListEditableMeetingsViewController: EditorViewControllerBaseClass, UITable
         self.meetingListTableView.isHidden = false
         self.weekdaySwitchesContainerView.isHidden = false
         self.townBoroughPickerView.isHidden = false
+        self.newMeetingButton.isHidden = false
         self.whereAmINowButton.isHidden = CLLocationManager.locationServicesEnabled()
     }
 
@@ -237,6 +241,7 @@ class ListEditableMeetingsViewController: EditorViewControllerBaseClass, UITable
             self.whereAmINowButton.isHidden = true
         }
         self.setUpWeekdayViews()
+        self._showBusyAnimation()
     }
     
     /* ################################################################## */
