@@ -1,8 +1,6 @@
 //  EditorTabBarController.swift
 //  NA Meeting List Administrator
 //
-//  Created by MAGSHARE.
-//
 //  Created by BMLT-Enabled
 //
 //  https://bmlt.app/
@@ -58,7 +56,6 @@ class EditorTabBarController: UITabBarController, UITabBarControllerDelegate {
         
         if let deletedViewController = self.viewControllers?[TabIndexes.DeletedTab.rawValue] as? DeletedMeetingsViewController {
             deletedViewController.tabBarItem.title = NSLocalizedString(deletedViewController.tabBarItem.title!, comment: "")
-            deletedViewController.myBarTab = self
         }
         
         self.delegate = self
@@ -200,6 +197,16 @@ class EditorViewControllerBaseClass: UIViewController {
 
     /* ################################################################## */
     /**
+     This is called as the view is first loaded. We use this to get a snapshot of the navbar and/or tabbar colors.
+     */
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        _oldTopColor = self.navigationController?.navigationBar.barTintColor
+        _oldBottomColor = self.tabBarController?.tabBar.barTintColor
+    }
+    
+    /* ################################################################## */
+    /**
      This is called just before we appear. We use it to set up the gradients and the bar color.
      
      - parameter animated: True, if the appearance is to be animated.
@@ -208,8 +215,10 @@ class EditorViewControllerBaseClass: UIViewController {
         super.viewWillAppear(animated)
         if let topColor = (self.view as? EditorViewBaseClass)?.topColor,
            let bottomColor = (self.view as? EditorViewBaseClass)?.bottomColor {
-            _oldTopColor = self.navigationController?.navigationBar.barTintColor
-            _oldBottomColor = self.tabBarController?.tabBar.barTintColor
+            self.navigationController?.navigationBar.barTintColor = topColor
+            self.tabBarController?.tabBar.barTintColor = bottomColor
+        } else if let topColor = _oldTopColor,
+                  let bottomColor = _oldBottomColor {
             self.navigationController?.navigationBar.barTintColor = topColor
             self.tabBarController?.tabBar.barTintColor = bottomColor
         }
@@ -240,9 +249,9 @@ class EditorViewControllerBaseClass: UIViewController {
  */
 class EditorViewBaseClass: UIView {
     /// The top color of our background gradient.
-    @IBInspectable var topColor: UIColor? = UIColor.white
+    @IBInspectable var topColor: UIColor?
     /// The bottom color of our background gradient.
-    @IBInspectable var bottomColor: UIColor? = UIColor.black
+    @IBInspectable var bottomColor: UIColor?
     
     /* ################################################################## */
     // MARK: Overridden Base Class Methods

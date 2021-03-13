@@ -143,9 +143,9 @@
 "FORGET-STORED-LOGINS-MESSAGE-SUFFIX"                                                           =   "\nВы также выйдете из своей текущей сессии.";
 "FORGET-STORED-LOGINS-OK-BUTTON"                                                                =   "Забудьте о сохраненных логинах";
 "FORGET-STORED-LOGINS-CANCEL-BUTTON"                                                            =   "Отмена";
-"LOCAL-MAGSHARE-BLURB-LABEL"                                                                    =   "Еще один прекрасный проект MAGSHARE";
+"LOCAL-MAGSHARE-BLURB-LABEL"                                                                    =   "Еще один прекрасный проект BMLT-Enabled";
 "LOCAL-MAGSHARE-URI-LABEL"                                                                      =   "Узнайте больше на https://bmlt.app";
-"LOCAL-MAGSHARE-URI"                                                                            =   "https://bmlt.app/satellites/bmlt-ios-apps/nameetinglistadministrator/";
+"LOCAL-MAGSHARE-URI"                                                                            =   "https://bmlt.app/smartphone-apps/";
 "VERSION-LABEL-FORMAT"                                                                          =   "Версия %@";
 "WHAT-MEETING-AM-I-AT-NOW"                                                                      =   "На каком я сейчас собрании?";
 "LOCATION-ERROR-HEADER"                                                                         =   "Ошибка местоположения";

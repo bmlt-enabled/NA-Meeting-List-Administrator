@@ -191,9 +191,9 @@
 "FORGET-STORED-LOGINS-MESSAGE-SUFFIX"                                                           =   "\nDu kommer också loggas ut från pågående session.";
 "FORGET-STORED-LOGINS-OK-BUTTON"                                                                =   "Glöm bort sparade inloggningar";
 "FORGET-STORED-LOGINS-CANCEL-BUTTON"                                                            =   "Avbryt";
-"LOCAL-MAGSHARE-BLURB-LABEL"                                                                    =   "Ännu ett lyckat MAGSHARE projekt";
-"LOCAL-MAGSHARE-URI-LABEL"                                                                      =   "Mer information https://bmlt.magshare.net";
-"LOCAL-MAGSHARE-URI"                                                                            =   "https://bmlt.app/nameetinglistadministrator";
+"LOCAL-MAGSHARE-BLURB-LABEL"                                                                    =   "Ännu ett lyckat BMLT-Enabled projekt";
+"LOCAL-MAGSHARE-URI-LABEL"                                                                      =   "Mer information https://bmlt.app";
+"LOCAL-MAGSHARE-URI"                                                                            =   "https://bmlt.app/smartphone-apps/";
 
 "VERSION-LABEL-FORMAT"                                                                          =   "Version %@";
 

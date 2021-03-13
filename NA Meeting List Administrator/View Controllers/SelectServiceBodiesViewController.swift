@@ -1,8 +1,6 @@
 //  SelectServiceBodiesViewController.swift
 //  NA Meeting List Administrator
 //
-//  Created by MAGSHARE.
-//
 //  Created by BMLT-Enabled
 //
 //  https://bmlt.app/
@@ -36,7 +34,7 @@ import BMLTiOSLib
 /* ###################################################################################################################################### */
 /**
  */
-class SelectServiceBodiesViewController: UIViewController, UITableViewDataSource {
+class SelectServiceBodiesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     /// The table view that lists the Service bodies.
     @IBOutlet weak var serviceBodyTableView: UITableView!
     
@@ -117,14 +115,31 @@ class SelectServiceBodiesViewController: UIViewController, UITableViewDataSource
             cell = ServiceBodyTableCellView(frame: frame, inTextColor: self.view.tintColor, serviceBodyObject: serviceBodyObject)
         }
         
-        if nil != cell {
-            cell!.serviceBodyCheckbox.removeTarget(self, action: #selector(SelectServiceBodiesViewController.checkboxChanged(_:)), for: UIControl.Event.valueChanged)   // Make sure we don't send out any callbacks when we set the selection.
-            cell!.serviceBodyCheckbox.isOn = AppStaticPrefs.prefs.serviceBodyIsSelected(serviceBodyObject)
-            cell!.serviceBodyCheckbox.addTarget(self, action: #selector(SelectServiceBodiesViewController.checkboxChanged(_:)), for: UIControl.Event.valueChanged)
+        if let cell = cell {
+            cell.serviceBodyCheckbox.removeTarget(self, action: #selector(SelectServiceBodiesViewController.checkboxChanged(_:)), for: UIControl.Event.valueChanged)   // Make sure we don't send out any callbacks when we set the selection.
+            cell.serviceBodyCheckbox.isOn = AppStaticPrefs.prefs.serviceBodyIsSelected(serviceBodyObject)
+            cell.serviceBodyCheckbox.addTarget(self, action: #selector(SelectServiceBodiesViewController.checkboxChanged(_:)), for: UIControl.Event.valueChanged)
             return cell
         }
         
         return UITableViewCell()
+    }
+    
+    /* ################################################################## */
+    /**
+     This is the routine that toggles the value of the checkbox in the row.
+     
+     - parameter tableView: The UITableView object requesting the view
+     - parameter willSelectRowAt: The IndexPath of the requested cell.
+     
+     - returns nil (all the time).
+     */
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        if let cell = self.tableView(tableView, cellForRowAt: indexPath) as? ServiceBodyTableCellView {
+            cell.serviceBodyCheckbox.setOn(!cell.serviceBodyCheckbox.isOn, animated: true)
+            cell.serviceBodyCheckbox.sendActions(for: .valueChanged)
+        }
+        return nil
     }
 }
 

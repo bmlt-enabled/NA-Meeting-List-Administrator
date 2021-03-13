@@ -1,8 +1,6 @@
 //  ListEditableMeetingsViewController.swift
 //  NA Meeting List Administrator
 //
-//  Created by MAGSHARE.
-//
 //  Created by BMLT-Enabled
 //
 //  https://bmlt.app/
@@ -101,8 +99,6 @@ class ListEditableMeetingsViewController: EditorViewControllerBaseClass, UITable
     @IBOutlet weak var townBoroughPickerView: UIPickerView!
     /** This is the "What Meeting Am I At Now?" button. */
     @IBOutlet weak var whereAmINowButton: UIButton!
-    /** The Navigation Bar, at the top. */
-    @IBOutlet weak var myNavBar: UINavigationBar!
 
     /* ################################################################## */
     // MARK: Internal Instance Properties
@@ -151,20 +147,30 @@ class ListEditableMeetingsViewController: EditorViewControllerBaseClass, UITable
     
     /* ################################################################## */
     /**
-     Displays the busy animation when updating..
+     Displays the busy animation when updating.
      */
     private func _showBusyAnimation() {
+        self.navigationController?.isNavigationBarHidden = true
+        self.tabBarController?.tabBar.isHidden = true
         self.busyAnimationView.isHidden = false
         self.meetingListTableView.isHidden = true
+        self.weekdaySwitchesContainerView.isHidden = true
+        self.townBoroughPickerView.isHidden = true
+        self.whereAmINowButton.isHidden = true
     }
     
     /* ################################################################## */
     /**
-     Displays the busy animation when updating..
+     Displays the busy animation when updating.
      */
     private func _hideBusyAnimation() {
-        self.meetingListTableView.isHidden = false
         self.busyAnimationView.isHidden = true
+        self.navigationController?.isNavigationBarHidden = false
+        self.tabBarController?.tabBar.isHidden = false
+        self.meetingListTableView.isHidden = false
+        self.weekdaySwitchesContainerView.isHidden = false
+        self.townBoroughPickerView.isHidden = false
+        self.whereAmINowButton.isHidden = CLLocationManager.locationServicesEnabled()
     }
 
     /* ################################################################## */
@@ -223,7 +229,6 @@ class ListEditableMeetingsViewController: EditorViewControllerBaseClass, UITable
      */
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tabBarController?.tabBar.isHidden = true
         
         if CLLocationManager.locationServicesEnabled() {
             self.whereAmINowButton.isHidden = false
@@ -256,17 +261,6 @@ class ListEditableMeetingsViewController: EditorViewControllerBaseClass, UITable
             self._whereAmIInProgress = false
         }
         super.viewWillDisappear(animated)
-    }
-
-    /* ################################################################## */
-    /**
-     Trigger a search upon appearance.
-     
-     - parameter inAnimated: True, if the appearance is animated (ignored).
-     */
-    override func viewWillAppear(_ inAnimated: Bool) {
-        super.viewWillAppear(inAnimated)
-//        self.tabBarController?.navigationController?.navigationBar.isHidden = true
     }
     
     /* ################################################################## */
@@ -310,7 +304,6 @@ class ListEditableMeetingsViewController: EditorViewControllerBaseClass, UITable
      Trigger a search.
      */
     func doSearch() {
-        self.tabBarController?.tabBar.isHidden = true
         MainAppDelegate.connectionObject.searchCriteria.clearAll()
         // First, get the IDs of the Service bodies we'll be checking.
         let sbIDArray: [Int] = AppStaticPrefs.prefs.selectedServiceBodies.map { $0.id }
@@ -364,7 +357,6 @@ class ListEditableMeetingsViewController: EditorViewControllerBaseClass, UITable
     func updateSearch(inMeetingObjects: [BMLTiOSLibMeetingNode]) {
         DispatchQueue.main.async {  // Belt and suspenders...
             self._hideBusyAnimation()
-            self.tabBarController?.tabBar.isHidden = false
             if self._whereAmIInProgress {
                 self._sortThroughWhereAmI(inMeetingObjects)
                 self.doSearch()

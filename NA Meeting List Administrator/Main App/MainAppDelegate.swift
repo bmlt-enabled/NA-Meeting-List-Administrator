@@ -1,8 +1,6 @@
 //  MainAppDelegate.swift
 //  NA Meeting List Administrator
 //
-//  Created by MAGSHARE.
-//
 //  Created by BMLT-Enabled
 //
 //  https://bmlt.app/

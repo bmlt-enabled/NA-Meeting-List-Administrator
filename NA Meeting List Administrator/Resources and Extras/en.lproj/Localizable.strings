@@ -191,9 +191,9 @@
 "FORGET-STORED-LOGINS-MESSAGE-SUFFIX"                                                           =   "\nYou will also be logged out of your current session.";
 "FORGET-STORED-LOGINS-OK-BUTTON"                                                                =   "Forget Stored Logins";
 "FORGET-STORED-LOGINS-CANCEL-BUTTON"                                                            =   "Cancel";
-"LOCAL-MAGSHARE-BLURB-LABEL"                                                                    =   "Another Fine MAGSHARE Project";
+"LOCAL-MAGSHARE-BLURB-LABEL"                                                                    =   "Another Fine BMLT-Enabled Project";
 "LOCAL-MAGSHARE-URI-LABEL"                                                                      =   "Find Out More at https://bmlt.app";
-"LOCAL-MAGSHARE-URI"                                                                            =   "https://bmlt.app/satellites/bmlt-ios-apps/nameetinglistadministrator/";
+"LOCAL-MAGSHARE-URI"                                                                            =   "https://bmlt.app/smartphone-apps/";
 
 "VERSION-LABEL-FORMAT"                                                                          =   "Version %@";
 
