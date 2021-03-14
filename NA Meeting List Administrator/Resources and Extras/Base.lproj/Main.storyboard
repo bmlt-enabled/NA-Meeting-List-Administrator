@@ -1566,7 +1566,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" name="SelectionColor"/>
                         <color key="barTintColor" name="TabBarColor"/>
-                        <color key="selectedImageTintColor" systemColor="labelColor"/>
+                        <color key="selectedImageTintColor" name="SelectionColor"/>
                     </tabBar>
                     <connections>
                         <segue destination="w5k-wt-KU4" kind="relationship" relationship="viewControllers" id="0Zn-jP-lQ7"/>
@@ -1683,7 +1683,7 @@
         <!--DELETED-MEETINGS-TAB-BAR-NAME-->
         <scene sceneID="XBh-dK-PIz">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="bWe-vY-4fv" customClass="DeletedMeetingsViewController" customModule="NA_Meeting_List_Administrator" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController extendedLayoutIncludesOpaqueBars="YES" hidesBottomBarWhenPushed="YES" id="bWe-vY-4fv" customClass="DeletedMeetingsViewController" customModule="NA_Meeting_List_Administrator" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1e9-mM-tnz" customClass="EditorViewBaseClass" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="552"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1832,7 +1832,6 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
-                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <tabBarItem key="tabBarItem" title="DELETED-MEETINGS-TAB-BAR-NAME" id="h6s-pn-xQu">
                         <imageReference key="image" image="nosign" catalog="system" symbolScale="large"/>
                     </tabBarItem>
@@ -3442,10 +3441,10 @@
             <color red="0.0" green="0.87000000476837158" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="HistorySectionBottomColor">
-            <color red="0.322243332862854" green="0.34963858127593994" blue="0.40716129541397095" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.32199999690055847" green="0.34999999403953552" blue="0.40700000524520874" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="HistorySectionTopColor">
-            <color red="0.570445716381073" green="0.61184030771255493" blue="0.68349981307983398" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.56999999284744263" green="0.6119999885559082" blue="0.68300002813339233" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="NavBarColor">
             <color red="1" green="0.92599999904632568" blue="0.16899999976158142" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -3457,7 +3456,7 @@
             <color red="0.8619999885559082" green="0.5" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="SelectionColor">
-            <color red="0.0" green="0.35370063781738281" blue="0.87938815355300903" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.35400000214576721" blue="0.87900000810623169" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="TabBarColor">
             <color red="1" green="0.6940000057220459" blue="0.16899999976158142" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

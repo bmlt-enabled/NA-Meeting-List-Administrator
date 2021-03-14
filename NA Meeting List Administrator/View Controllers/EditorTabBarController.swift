@@ -30,6 +30,27 @@ import UIKit
 import BMLTiOSLib
 
 /* ###################################################################################################################################### */
+// MARK: - Protocol for Tabs -
+/* ###################################################################################################################################### */
+/// This protocol defines some methods to show and hide animation.
+protocol EditorTabBarControllerProtocol: class {
+    /// This is used to prevent reloads
+    var searchDone: Bool { get set }
+    
+    /* ################################################################## */
+    /**
+     Displays the busy animation when updating.
+     */
+    func showBusyAnimation()
+
+    /* ################################################################## */
+    /**
+     Displays the busy animation when updating.
+     */
+    func hideBusyAnimation()
+}
+
+/* ###################################################################################################################################### */
 // MARK: - This is the main tab controller for the various editor pages -
 /* ###################################################################################################################################### */
 /**
@@ -58,6 +79,9 @@ class EditorTabBarController: UITabBarController, UITabBarControllerDelegate {
             deletedViewController.tabBarItem.title = NSLocalizedString(deletedViewController.tabBarItem.title!, comment: "")
         }
         
+        self.tabBar.unselectedItemTintColor = self.tabBar.tintColor
+        self.tabBar.tintColor = .label
+
         self.delegate = self
     }
     
@@ -174,10 +198,9 @@ class EditorTabBarController: UITabBarController, UITabBarControllerDelegate {
      - parameter tabBarController: An array of meeting objects.
      */
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
-        if viewController.isKind(of: ListEditableMeetingsViewController.self) {
-            if let listViewController = self.viewControllers?[TabIndexes.ListTab.rawValue] as? ListEditableMeetingsViewController {
-                listViewController.searchDone = true    // We do this to prevent a new load being done just for a context switch.
-            }
+        if let listViewController = self.viewControllers?[TabIndexes.ListTab.rawValue] as? EditorTabBarControllerProtocol {
+            listViewController.searchDone = true    // We do this to prevent a new load being done just for a context switch.
+            listViewController.showBusyAnimation()
         }
         
         return true
@@ -188,23 +211,9 @@ class EditorTabBarController: UITabBarController, UITabBarControllerDelegate {
 // MARK: - This is a base class for the various editor view controllers. -
 /* ###################################################################################################################################### */
 /**
+ This simply sets the tab and nav bars to the proper colors for the screen.
  */
 class EditorViewControllerBaseClass: UIViewController {
-    /// This is the original navbar color.
-    private var _oldTopColor: UIColor?
-    /// This is the original tab bar color.
-    private var _oldBottomColor: UIColor?
-
-    /* ################################################################## */
-    /**
-     This is called as the view is first loaded. We use this to get a snapshot of the navbar and/or tabbar colors.
-     */
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        _oldTopColor = self.navigationController?.navigationBar.barTintColor
-        _oldBottomColor = self.tabBarController?.tabBar.barTintColor
-    }
-    
     /* ################################################################## */
     /**
      This is called just before we appear. We use it to set up the gradients and the bar color.
@@ -217,27 +226,7 @@ class EditorViewControllerBaseClass: UIViewController {
            let bottomColor = (self.view as? EditorViewBaseClass)?.bottomColor {
             self.navigationController?.navigationBar.barTintColor = topColor
             self.tabBarController?.tabBar.barTintColor = bottomColor
-        } else if let topColor = _oldTopColor,
-                  let bottomColor = _oldBottomColor {
-            self.navigationController?.navigationBar.barTintColor = topColor
-            self.tabBarController?.tabBar.barTintColor = bottomColor
         }
-    }
-
-    /* ################################################################## */
-    /**
-     This is called just before we appear. We use it to set up the gradients and the bar color.
-     
-     - parameter animated: True, if the appearance is to be animated.
-     */
-    override func viewWillDisappear(_ animated: Bool) {
-        if let topColor = _oldTopColor,
-           let bottomColor = _oldBottomColor {
-            self.navigationController?.navigationBar.barTintColor = topColor
-            self.tabBarController?.tabBar.barTintColor = bottomColor
-        }
-        
-        super.viewWillDisappear(animated)
     }
 }
 

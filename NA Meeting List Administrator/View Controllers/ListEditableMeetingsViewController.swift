@@ -36,7 +36,7 @@ import MapKit
 /**
  This class controls the list of editable meetings that is the first editor screen to be shown.
  */
-class ListEditableMeetingsViewController: EditorViewControllerBaseClass, UITableViewDataSource, UITableViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource, CLLocationManagerDelegate {
+class ListEditableMeetingsViewController: EditorViewControllerBaseClass, EditorTabBarControllerProtocol, UITableViewDataSource, UITableViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource, CLLocationManagerDelegate {
     /* ################################################################## */
     // MARK: Enums
     /* ################################################################## */
@@ -146,36 +146,6 @@ class ListEditableMeetingsViewController: EditorViewControllerBaseClass, UITable
             criteriaObject.performMeetingSearch(.MeetingsOnly)
         }
     }
-    
-    /* ################################################################## */
-    /**
-     Displays the busy animation when updating.
-     */
-    private func _showBusyAnimation() {
-        self.navigationController?.isNavigationBarHidden = true
-        self.tabBarController?.tabBar.isHidden = true
-        self.busyAnimationView.isHidden = false
-        self.meetingListTableView.isHidden = true
-        self.weekdaySwitchesContainerView.isHidden = true
-        self.townBoroughPickerView.isHidden = true
-        self.whereAmINowButton.isHidden = true
-        self.newMeetingButton.isHidden = true
-    }
-    
-    /* ################################################################## */
-    /**
-     Displays the busy animation when updating.
-     */
-    private func _hideBusyAnimation() {
-        self.busyAnimationView.isHidden = true
-        self.navigationController?.isNavigationBarHidden = false
-        self.tabBarController?.tabBar.isHidden = false
-        self.meetingListTableView.isHidden = false
-        self.weekdaySwitchesContainerView.isHidden = false
-        self.townBoroughPickerView.isHidden = false
-        self.newMeetingButton.isHidden = false
-        self.whereAmINowButton.isHidden = CLLocationManager.locationServicesEnabled()
-    }
 
     /* ################################################################## */
     /**
@@ -210,7 +180,7 @@ class ListEditableMeetingsViewController: EditorViewControllerBaseClass, UITable
                 self.editSingleMeeting(finalResult)
             } else { // We ain't got ourselves a meeting.
                 MainAppDelegate.displayAlert("NO-MEETING-HEADER", inMessage: "NO-MEETING-MESSAGE", presentedBy: self)
-                self._hideBusyAnimation()
+                self.hideBusyAnimation()
             }
         }
     }
@@ -224,6 +194,40 @@ class ListEditableMeetingsViewController: EditorViewControllerBaseClass, UITable
         self.startLookingForMyMeeting()
     }
     
+    /* ################################################################## */
+    // MARK: EditorTabBarControllerProtocol Conformance
+    /* ################################################################## */
+    /**
+     Displays the busy animation when updating.
+     */
+    func showBusyAnimation() {
+        if !self.searchDone {
+            self.navigationController?.isNavigationBarHidden = true
+            self.tabBarController?.tabBar.isHidden = true
+            self.busyAnimationView.isHidden = false
+            self.meetingListTableView.isHidden = true
+            self.weekdaySwitchesContainerView.isHidden = true
+            self.townBoroughPickerView.isHidden = true
+            self.whereAmINowButton.isHidden = true
+            self.newMeetingButton.isHidden = true
+        }
+    }
+    
+    /* ################################################################## */
+    /**
+     Hides the busy animation, after loading.
+     */
+    func hideBusyAnimation() {
+        self.busyAnimationView.isHidden = true
+        self.navigationController?.isNavigationBarHidden = false
+        self.tabBarController?.tabBar.isHidden = false
+        self.meetingListTableView.isHidden = false
+        self.weekdaySwitchesContainerView.isHidden = false
+        self.townBoroughPickerView.isHidden = false
+        self.newMeetingButton.isHidden = false
+        self.whereAmINowButton.isHidden = CLLocationManager.locationServicesEnabled()
+    }
+
     /* ################################################################## */
     // MARK: Overridden Base Class Methods
     /* ################################################################## */
@@ -241,7 +245,7 @@ class ListEditableMeetingsViewController: EditorViewControllerBaseClass, UITable
             self.whereAmINowButton.isHidden = true
         }
         self.setUpWeekdayViews()
-        self._showBusyAnimation()
+        self.showBusyAnimation()
     }
     
     /* ################################################################## */
@@ -279,6 +283,8 @@ class ListEditableMeetingsViewController: EditorViewControllerBaseClass, UITable
 
         if !self.searchDone {
             self.doSearch()
+        } else {
+            hideBusyAnimation()
         }
     }
     
@@ -345,7 +351,7 @@ class ListEditableMeetingsViewController: EditorViewControllerBaseClass, UITable
         self.townBoroughPickerView.reloadAllComponents()
         MainAppDelegate.appDelegateObject.meetingObjects = []
         MainAppDelegate.connectionObject.searchCriteria.publishedStatus = .Both
-        self._showBusyAnimation()
+        self.showBusyAnimation()
         self.allChangedTo(inState: BMLTiOSLibSearchCriteria.SelectionState.Selected)
         #if DEBUG
             print("Search Criteria Service Bodies: \(MainAppDelegate.connectionObject.searchCriteria.serviceBodies)")
@@ -361,7 +367,7 @@ class ListEditableMeetingsViewController: EditorViewControllerBaseClass, UITable
      */
     func updateSearch(inMeetingObjects: [BMLTiOSLibMeetingNode]) {
         DispatchQueue.main.async {  // Belt and suspenders...
-            self._hideBusyAnimation()
+            self.hideBusyAnimation()
             if self._whereAmIInProgress {
                 self._sortThroughWhereAmI(inMeetingObjects)
                 self.doSearch()
@@ -624,7 +630,7 @@ class ListEditableMeetingsViewController: EditorViewControllerBaseClass, UITable
      */
     func startLookingForMyMeeting() {
         DispatchQueue.main.async {
-            self._showBusyAnimation()
+            self.showBusyAnimation()
             self._locationManager = CLLocationManager()
             self._locationManager.requestWhenInUseAuthorization()
             self._locationManager.delegate = self
@@ -651,7 +657,7 @@ class ListEditableMeetingsViewController: EditorViewControllerBaseClass, UITable
                 self._locationManager = nil
                 self._locationFailedOnce = false
                 MainAppDelegate.displayAlert("LOCATION-ERROR-HEADER", inMessage: "LOCATION-ERROR-MESSAGE", presentedBy: self)
-                self._hideBusyAnimation()
+                self.hideBusyAnimation()
             } else {    // Love me two times, I'm goin' away...
                 self._locationFailedOnce = true
                 self.startLookingForMyMeeting()
@@ -682,7 +688,7 @@ class ListEditableMeetingsViewController: EditorViewControllerBaseClass, UITable
                 }
             } else {
                 MainAppDelegate.displayAlert("LOCATION-ERROR-HEADER", inMessage: "LOCATION-ERROR-MESSAGE", presentedBy: self)
-                self._hideBusyAnimation()
+                self.hideBusyAnimation()
             }
         }
     }

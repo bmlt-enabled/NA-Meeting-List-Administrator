@@ -35,7 +35,7 @@ import BMLTiOSLib
 /**
  This class controls the list of deleted meetings that can be restored.
  */
-class DeletedMeetingsViewController: EditorViewControllerBaseClass, UITableViewDataSource, UITableViewDelegate {
+class DeletedMeetingsViewController: EditorViewControllerBaseClass, EditorTabBarControllerProtocol, UITableViewDataSource, UITableViewDelegate {
     /** This is the table cell ID */
     let sPrototypeID: String = "one-deletion-row"
     /** This is used to determine if we have dragged the scroll enough to rate a reload. */
@@ -43,7 +43,7 @@ class DeletedMeetingsViewController: EditorViewControllerBaseClass, UITableViewD
     
     /** This has our list of deleted meetings (stored as changes). */
     private var _deletedMeetingChanges: [BMLTiOSLibChangeNode] = []
-    
+
     /** This is our animated "busy cover." */
     @IBOutlet weak var animationMaskView: UIView!
     /** This is the table view that lists the deletions. */
@@ -81,6 +81,7 @@ class DeletedMeetingsViewController: EditorViewControllerBaseClass, UITableViewD
         if !self.searchDone {
             self.getDeletedMeetings()
         } else {
+            hideBusyAnimation()
             self.view.setNeedsLayout()
         }
     }
@@ -97,12 +98,12 @@ class DeletedMeetingsViewController: EditorViewControllerBaseClass, UITableViewD
     }
     
     /* ################################################################## */
-    // MARK: Instance Methods
+    // MARK: EditorTabBarControllerProtocol Conformance
     /* ################################################################## */
     /**
      Displays the busy animation when updating.
      */
-    private func _showBusyAnimation() {
+    func showBusyAnimation() {
         self.animationMaskView.isHidden = false
         self.tableView.isHidden = true
         self.navigationController?.isNavigationBarHidden = true
@@ -111,9 +112,9 @@ class DeletedMeetingsViewController: EditorViewControllerBaseClass, UITableViewD
     
     /* ################################################################## */
     /**
-     Displays the busy animation when updating.
+     Hides the busy animation, after updating.
      */
-    private func _hideBusyAnimation() {
+    func hideBusyAnimation() {
         self.tableView.isHidden = false
         self.animationMaskView.isHidden = true
         self.navigationController?.isNavigationBarHidden = false
@@ -121,12 +122,14 @@ class DeletedMeetingsViewController: EditorViewControllerBaseClass, UITableViewD
     }
 
     /* ################################################################## */
+    // MARK: Instance Methods
+    /* ################################################################## */
     /**
      This searches for all of our deleted meetings.
      Only valid meetings that we can edit with the selected Service bodies are presented.
      */
     func getDeletedMeetings() {
-        _showBusyAnimation()
+        showBusyAnimation()
         var ids: [Int] = []
         for sb in AppStaticPrefs.prefs.selectedServiceBodies {
             ids.append(sb.id)
@@ -144,7 +147,7 @@ class DeletedMeetingsViewController: EditorViewControllerBaseClass, UITableViewD
      - parameter changeListResults: An array of change objects.
      */
     func updateDeletedResponse(changeListResults: [BMLTiOSLibChangeNode]) {
-        _hideBusyAnimation()
+        hideBusyAnimation()
         self.searchDone = true
         self._deletedMeetingChanges = changeListResults
         self.view.setNeedsLayout()
