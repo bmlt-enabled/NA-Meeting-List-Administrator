@@ -34,7 +34,11 @@ import BMLTiOSLib
 /* ###################################################################################################################################### */
 /// This protocol defines some methods to show and hide animation.
 protocol EditorTabBarControllerProtocol: class {
-    /// This is used to prevent reloads
+    /* ################################################################## */
+    /**
+     This should be set to true, to avoid the screen doing a reload when showBusyAnimation() is called.
+     Kludgy, yeah, I know. I hate semaphores.
+     */
     var searchDone: Bool { get set }
     
     /* ################################################################## */
@@ -45,7 +49,7 @@ protocol EditorTabBarControllerProtocol: class {
 
     /* ################################################################## */
     /**
-     Displays the busy animation when updating.
+     Hides the busy animation after updating.
      */
     func hideBusyAnimation()
 }
@@ -79,8 +83,8 @@ class EditorTabBarController: UITabBarController, UITabBarControllerDelegate {
             deletedViewController.tabBarItem.title = NSLocalizedString(deletedViewController.tabBarItem.title!, comment: "")
         }
         
-        self.tabBar.unselectedItemTintColor = self.tabBar.tintColor
-        self.tabBar.tintColor = .label
+        self.tabBar.unselectedItemTintColor = UIColor(named: "TabSelectionColor")
+        self.tabBar.tintColor = UIColor(named: "TabUnSelectionColor")
 
         self.delegate = self
     }
@@ -200,7 +204,7 @@ class EditorTabBarController: UITabBarController, UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         if let listViewController = self.viewControllers?[TabIndexes.ListTab.rawValue] as? EditorTabBarControllerProtocol {
             listViewController.searchDone = true    // We do this to prevent a new load being done just for a context switch.
-            listViewController.showBusyAnimation()
+            listViewController.showBusyAnimation()  // This allows the screen to put up a throbber before we get there.
         }
         
         return true

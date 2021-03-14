@@ -107,8 +107,9 @@ class DeletedMeetingsViewController: EditorViewControllerBaseClass, EditorTabBar
         self.animationMaskView.isHidden = false
         self.tableView.isHidden = true
         self.navigationController?.isNavigationBarHidden = true
-        if let otherViewController = self.tabBarController?.viewControllers?[0] as? ListEditableMeetingsViewController {
-         otherViewController.tabBarItem.isEnabled = false
+        // We disable the other tab item, while we are updating.
+        if let otherViewController = self.tabBarController?.viewControllers?[EditorTabBarController.TabIndexes.ListTab.rawValue] as? ListEditableMeetingsViewController {
+            otherViewController.tabBarItem.isEnabled = false
         }
     }
     
@@ -120,8 +121,8 @@ class DeletedMeetingsViewController: EditorViewControllerBaseClass, EditorTabBar
         self.tableView.isHidden = false
         self.animationMaskView.isHidden = true
         self.navigationController?.isNavigationBarHidden = false
-        if let otherViewController = self.tabBarController?.viewControllers?[0] as? ListEditableMeetingsViewController {
-         otherViewController.tabBarItem.isEnabled = true
+        if let otherViewController = self.tabBarController?.viewControllers?[EditorTabBarController.TabIndexes.ListTab.rawValue] as? ListEditableMeetingsViewController {
+            otherViewController.tabBarItem.isEnabled = true
         }
     }
 

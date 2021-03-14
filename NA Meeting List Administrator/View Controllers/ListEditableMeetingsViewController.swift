@@ -201,7 +201,7 @@ class ListEditableMeetingsViewController: EditorViewControllerBaseClass, EditorT
      Displays the busy animation when updating.
      */
     func showBusyAnimation() {
-        if !self.searchDone {
+        if !self.searchDone {   // We skip, if the semaphore was set.
             self.navigationController?.isNavigationBarHidden = true
             self.tabBarController?.tabBar.isHidden = true
             self.busyAnimationView.isHidden = false
@@ -245,7 +245,7 @@ class ListEditableMeetingsViewController: EditorViewControllerBaseClass, EditorT
             self.whereAmINowButton.isHidden = true
         }
         self.setUpWeekdayViews()
-        self.showBusyAnimation()
+        self.showBusyAnimation()    // This makes sure we don't have a "flash," when the page loads.
     }
     
     /* ################################################################## */
