@@ -40,7 +40,7 @@
             <objects>
                 <viewController hidesBottomBarWhenPushed="YES" id="w5k-wt-KU4" userLabel="List Meetings" customClass="ListEditableMeetingsViewController" customModule="NA_Meeting_List_Administrator" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ngp-Vd-TOI" customClass="EditorViewBaseClass" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="552"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="640"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="69f-Xi-2gM" userLabel="New Meeting Button">
@@ -216,7 +216,7 @@
             <objects>
                 <viewController title="Meeting Editor" hidesBottomBarWhenPushed="YES" id="m2u-A7-bWE" customClass="EditSingleMeetingViewController" customModule="NA_Meeting_List_Administrator" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tAG-NX-Teg" customClass="EditorViewBaseClass" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="1912"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="2000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="73J-zm-pQ7">
@@ -1378,7 +1378,7 @@
             <objects>
                 <viewController id="xgD-05-36X" customClass="HistoryListViewController" customModule="NA_Meeting_List_Administrator" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="K5l-Gc-llX" customClass="EditorViewBaseClass" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="552"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="640"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="AEh-MB-BnD">
@@ -1519,7 +1519,7 @@
             <objects>
                 <viewController id="Czn-Pf-LXx" userLabel="History Detail" customClass="HistoryDetailViewController" customModule="NA_Meeting_List_Administrator" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="awv-bd-31U" customClass="EditorViewBaseClass" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="552"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="640"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Urr-cH-J19">
@@ -1582,7 +1582,7 @@
             <objects>
                 <viewController id="2kS-Gs-zp2" customClass="SettingsViewController" customModule="NA_Meeting_List_Administrator" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="UbP-9k-xDq">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="552"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="640"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BackgroundGradient" translatesAutoresizingMaskIntoConstraints="NO" id="7Ru-em-knd">
@@ -1685,7 +1685,7 @@
             <objects>
                 <viewController extendedLayoutIncludesOpaqueBars="YES" hidesBottomBarWhenPushed="YES" id="bWe-vY-4fv" customClass="DeletedMeetingsViewController" customModule="NA_Meeting_List_Administrator" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1e9-mM-tnz" customClass="EditorViewBaseClass" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="552"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="640"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="140" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6Ck-ir-MFd">
@@ -1852,7 +1852,7 @@
             <objects>
                 <viewController id="2We-Oi-Q5b" userLabel="Select Service Bodies View Controller" customClass="SelectServiceBodiesViewController" customModule="NA_Meeting_List_Administrator" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="YSR-uc-ltt">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="552"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="640"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BackgroundGradient" translatesAutoresizingMaskIntoConstraints="NO" id="SyW-zK-uYR">
@@ -1896,7 +1896,7 @@
             <objects>
                 <viewController title="Connect" modalPresentationStyle="overFullScreen" id="BYZ-38-t0r" customClass="InitialViewController" customModule="NA_Meeting_List_Administrator" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" customClass="EditorViewBaseClass" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="552"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="640"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BackgroundGradient" translatesAutoresizingMaskIntoConstraints="NO" id="AHN-gH-Qqk">
@@ -2275,7 +2275,7 @@
             <objects>
                 <viewController hidesBottomBarWhenPushed="YES" id="nqe-fN-Jmf" userLabel="New Meeting View Controller" customClass="CreateSingleMeetingViewController" customModule="NA_Meeting_List_Administrator" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cLr-oa-ct3" customClass="EditorViewBaseClass" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="1912"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="2000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="h7p-nX-YOf">
