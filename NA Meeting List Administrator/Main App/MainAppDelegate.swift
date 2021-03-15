@@ -30,6 +30,32 @@ import UIKit
 import BMLTiOSLib
 
 /* ###################################################################################################################################### */
+// MARK: - UIViewController Extension -
+/* ###################################################################################################################################### */
+/**
+ We add a couple of computed properties to report Dark Mode and High-Contrast Mode.
+ */
+extension UIViewController {
+    /* ################################################################## */
+    /**
+     Returns true, if we are in Dark Mode.
+     */
+    var isDarkMode: Bool { .dark == traitCollection.userInterfaceStyle }
+    
+    /* ################################################################## */
+    /**
+     Returns true, if we are in High Contrast Mode.
+     */
+    var isHighContrastMode: Bool { UIAccessibility.isDarkerSystemColorsEnabled }
+    
+    /* ################################################################## */
+    /**
+     Returns true, if we are in Reduced Transparency Mode.
+     */
+    var isReducedTransparencyMode: Bool { UIAccessibility.isReduceTransparencyEnabled }
+}
+
+/* ###################################################################################################################################### */
 // MARK: - Main App Delegate Class -
 /* ###################################################################################################################################### */
 /**

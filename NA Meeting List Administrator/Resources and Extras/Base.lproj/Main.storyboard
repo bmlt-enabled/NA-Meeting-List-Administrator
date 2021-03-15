@@ -197,6 +197,14 @@
                         <imageReference key="image" image="text.justify" catalog="system" symbolScale="large"/>
                     </tabBarItem>
                     <toolbarItems/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="unpublishedRowColorEven">
+                            <color key="value" name="UnpublishedTopColor"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="unpublishedRowColorOdd">
+                            <color key="value" name="UnpublishedTopColor"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="busyAnimationView" destination="CYQ-I8-Ytf" id="KFH-M9-aan"/>
                         <outlet property="meetingListTableView" destination="Itu-Ng-B3d" id="iFg-TT-2IF"/>
@@ -3433,7 +3441,7 @@
             <color red="0.43599998950958252" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="DeletedScreenTopColor">
-            <color red="0.88829022645950317" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.8880000114440918" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="EditScreenBottomColor">
             <color red="0.0" green="0.50999999046325684" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -3454,7 +3462,7 @@
             <color red="0.61599999666213989" green="0.0" blue="0.54600000381469727" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="NewMeetingTopColor">
-            <color red="0.8619999885559082" green="0.5" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.78299999237060547" green="0.5" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="SelectionColor">
             <color red="0.0" green="0.35400000214576721" blue="0.87900000810623169" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -87,7 +87,7 @@ class ListEditableMeetingsViewController: EditorViewControllerBaseClass, EditorT
     /** If the meeting is unpublished, we have a different color background. */
     /// The background color for even rows.
     @IBInspectable var unpublishedRowColorEven: UIColor!
-    /// The background color for odd rows.
+    /// The background color for odd rows (ignored).
     @IBInspectable var unpublishedRowColorOdd: UIColor!
     /** This covers the screen with a busy throbber when we are searching */
     @IBOutlet weak var busyAnimationView: UIView!
@@ -747,7 +747,7 @@ class ListEditableMeetingsViewController: EditorViewControllerBaseClass, EditorT
                     if 0 == (indexPath.row % 2) {
                         ret.backgroundColor = self.unpublishedRowColorEven
                     } else {
-                        ret.backgroundColor = self.unpublishedRowColorOdd
+                        ret.backgroundColor = self.unpublishedRowColorEven?.withAlphaComponent(0.5)
                     }
                 }
                 
