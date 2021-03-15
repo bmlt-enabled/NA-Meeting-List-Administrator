@@ -39,7 +39,7 @@ The editor/new meeting screen needs to be refactored. Currently, they are indica
 
 CHANGELIST
 =
-***Version 1.5.0.2000* ** *- TBD*
+***Version 1.5.0.3000* ** *- TBD*
 
 - Switched to use SPM for dependencies.
 - Updated the BMLTiOSLib and KeyChainSwift dependencies.

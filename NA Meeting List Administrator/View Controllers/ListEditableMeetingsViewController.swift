@@ -351,6 +351,7 @@ class ListEditableMeetingsViewController: EditorViewControllerBaseClass, EditorT
         self.townBoroughPickerView.reloadAllComponents()
         MainAppDelegate.appDelegateObject.meetingObjects = []
         MainAppDelegate.connectionObject.searchCriteria.publishedStatus = .Both
+        self.searchDone = false
         self.showBusyAnimation()
         self.allChangedTo(inState: BMLTiOSLibSearchCriteria.SelectionState.Selected)
         #if DEBUG
