@@ -77,13 +77,27 @@ class DeletedMeetingsViewController: EditorViewControllerBaseClass, EditorTabBar
      */
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        // Since we are bluer, we use the tab selection color.
+        self.navigationController?.navigationBar.tintColor = UIColor(named: "TabSelectionColor")
+
         if !self.searchDone {
             self.getDeletedMeetings()
         } else {
             hideBusyAnimation()
             self.view.setNeedsLayout()
         }
+    }
+    
+    /* ################################################################## */
+    /**
+     Called just before the view is to disappear.
+     
+     - parameter animated: True, if the appearance is animated (ignored).
+     */
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        // Put it back the way we found it.
+        self.navigationController?.navigationBar.tintColor = UIColor(named: "SelectionColor")
     }
     
     /* ################################################################## */

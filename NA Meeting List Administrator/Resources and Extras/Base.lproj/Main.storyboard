@@ -40,7 +40,7 @@
             <objects>
                 <viewController hidesBottomBarWhenPushed="YES" id="w5k-wt-KU4" userLabel="List Meetings" customClass="ListEditableMeetingsViewController" customModule="NA_Meeting_List_Administrator" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ngp-Vd-TOI" customClass="EditorViewBaseClass" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="640"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="503"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="69f-Xi-2gM" userLabel="New Meeting Button">
@@ -143,10 +143,10 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CYQ-I8-Ytf">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="552"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="503"/>
                                 <subviews>
                                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Eis-cv-kRB">
-                                        <rect key="frame" x="141.5" y="257.5" width="37" height="37"/>
+                                        <rect key="frame" x="141.5" y="233" width="37" height="37"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="37" id="is4-nN-aKk"/>
                                             <constraint firstAttribute="width" secondItem="Eis-cv-kRB" secondAttribute="height" multiplier="1:1" id="qnO-zt-ith"/>
@@ -224,7 +224,7 @@
             <objects>
                 <viewController title="Meeting Editor" hidesBottomBarWhenPushed="YES" id="m2u-A7-bWE" customClass="EditSingleMeetingViewController" customModule="NA_Meeting_List_Administrator" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tAG-NX-Teg" customClass="EditorViewBaseClass" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="2000"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="1912"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="73J-zm-pQ7">
@@ -1386,7 +1386,7 @@
             <objects>
                 <viewController id="xgD-05-36X" customClass="HistoryListViewController" customModule="NA_Meeting_List_Administrator" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="K5l-Gc-llX" customClass="EditorViewBaseClass" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="640"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="552"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="AEh-MB-BnD">
@@ -1492,11 +1492,11 @@
                             <constraint firstItem="AEh-MB-BnD" firstAttribute="top" secondItem="K5l-Gc-llX" secondAttribute="top" id="Aa7-ZC-tf6"/>
                             <constraint firstItem="n6w-zS-zih" firstAttribute="leading" secondItem="K5l-Gc-llX" secondAttribute="leadingMargin" id="BqZ-5l-UXW"/>
                             <constraint firstItem="MP0-DJ-ivM" firstAttribute="trailing" secondItem="AEh-MB-BnD" secondAttribute="trailing" id="Ico-Xc-u5h"/>
-                            <constraint firstItem="MP0-DJ-ivM" firstAttribute="trailing" secondItem="4ik-xe-Udd" secondAttribute="trailing" id="PHa-UZ-wI2"/>
-                            <constraint firstItem="4ik-xe-Udd" firstAttribute="leading" secondItem="MP0-DJ-ivM" secondAttribute="leading" id="Pr1-1z-SFR"/>
-                            <constraint firstItem="MP0-DJ-ivM" firstAttribute="bottom" secondItem="4ik-xe-Udd" secondAttribute="bottom" id="SEM-Jb-7eo"/>
+                            <constraint firstAttribute="trailing" secondItem="4ik-xe-Udd" secondAttribute="trailing" id="PHa-UZ-wI2"/>
+                            <constraint firstItem="4ik-xe-Udd" firstAttribute="leading" secondItem="K5l-Gc-llX" secondAttribute="leading" id="Pr1-1z-SFR"/>
+                            <constraint firstAttribute="bottom" secondItem="4ik-xe-Udd" secondAttribute="bottom" id="SEM-Jb-7eo"/>
                             <constraint firstItem="AEh-MB-BnD" firstAttribute="leading" secondItem="MP0-DJ-ivM" secondAttribute="leading" id="VfO-fI-Ifq"/>
-                            <constraint firstItem="4ik-xe-Udd" firstAttribute="top" secondItem="MP0-DJ-ivM" secondAttribute="top" id="b9v-BT-LgJ"/>
+                            <constraint firstItem="4ik-xe-Udd" firstAttribute="top" secondItem="K5l-Gc-llX" secondAttribute="top" id="b9v-BT-LgJ"/>
                             <constraint firstItem="n6w-zS-zih" firstAttribute="centerY" secondItem="K5l-Gc-llX" secondAttribute="centerY" id="dSj-DR-46d"/>
                             <constraint firstItem="MP0-DJ-ivM" firstAttribute="bottom" secondItem="AEh-MB-BnD" secondAttribute="bottom" id="tAd-hq-dmu"/>
                         </constraints>
@@ -1527,7 +1527,7 @@
             <objects>
                 <viewController id="Czn-Pf-LXx" userLabel="History Detail" customClass="HistoryDetailViewController" customModule="NA_Meeting_List_Administrator" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="awv-bd-31U" customClass="EditorViewBaseClass" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="640"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="552"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Urr-cH-J19">
@@ -1568,13 +1568,13 @@
             <objects>
                 <tabBarController id="ZWf-NR-jVg" userLabel="Editor Tab Controller" customClass="EditorTabBarController" customModule="NA_Meeting_List_Administrator" customModuleProvider="target" sceneMemberID="viewController">
                     <extendedEdge key="edgesForExtendedLayout"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="ZJP-ag-jUZ">
+                    <tabBar key="tabBar" contentMode="scaleToFill" translucent="NO" id="ZJP-ag-jUZ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" name="SelectionColor"/>
                         <color key="barTintColor" name="TabBarColor"/>
-                        <color key="selectedImageTintColor" name="SelectionColor"/>
+                        <color key="selectedImageTintColor" name="TabSelectionColor"/>
                     </tabBar>
                     <connections>
                         <segue destination="w5k-wt-KU4" kind="relationship" relationship="viewControllers" id="0Zn-jP-lQ7"/>
@@ -1590,7 +1590,7 @@
             <objects>
                 <viewController id="2kS-Gs-zp2" customClass="SettingsViewController" customModule="NA_Meeting_List_Administrator" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="UbP-9k-xDq">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="640"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="552"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BackgroundGradient" translatesAutoresizingMaskIntoConstraints="NO" id="7Ru-em-knd">
@@ -1693,11 +1693,12 @@
             <objects>
                 <viewController extendedLayoutIncludesOpaqueBars="YES" hidesBottomBarWhenPushed="YES" id="bWe-vY-4fv" customClass="DeletedMeetingsViewController" customModule="NA_Meeting_List_Administrator" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1e9-mM-tnz" customClass="EditorViewBaseClass" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="640"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="552"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="140" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6Ck-ir-MFd">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="140" sectionHeaderHeight="28" sectionFooterHeight="28" id="6Ck-ir-MFd">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="503"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" name="SelectionColor"/>
                                 <prototypes>
@@ -1715,7 +1716,7 @@
                                                         <constraint firstAttribute="height" constant="18" id="KmI-M4-v06"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <color key="textColor" red="1" green="1" blue="0.58892299110000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CaO-Sq-1xW">
@@ -1724,7 +1725,7 @@
                                                         <constraint firstAttribute="height" constant="16" id="ncw-Gl-Ua1"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
-                                                    <color key="textColor" red="1" green="1" blue="0.58892299110000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" canCancelContentTouches="NO" bouncesZoom="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="yap-et-HU9">
@@ -1733,19 +1734,19 @@
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="54" id="xSY-Yb-myG"/>
                                                     </constraints>
-                                                    <color key="textColor" red="1" green="1" blue="0.58892299110000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="NAl-Tp-Ycb">
                                                     <rect key="frame" x="4" y="88" width="304" height="52"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                    <color key="textColor" red="1" green="1" blue="0.58892299110000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <fontDescription key="fontDescription" type="italicSystem" pointSize="12"/>
                                                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                                 </textView>
                                             </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstItem="CaO-Sq-1xW" firstAttribute="leading" secondItem="GS6-0S-eI7" secondAttribute="leadingMargin" id="8y7-F0-C4Q"/>
                                                 <constraint firstAttribute="bottom" secondItem="NAl-Tp-Ycb" secondAttribute="bottom" id="IkW-0K-z1L"/>
@@ -1861,7 +1862,7 @@
             <objects>
                 <viewController id="2We-Oi-Q5b" userLabel="Select Service Bodies View Controller" customClass="SelectServiceBodiesViewController" customModule="NA_Meeting_List_Administrator" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="YSR-uc-ltt">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="640"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="552"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BackgroundGradient" translatesAutoresizingMaskIntoConstraints="NO" id="SyW-zK-uYR">
@@ -1905,7 +1906,7 @@
             <objects>
                 <viewController title="Connect" modalPresentationStyle="overFullScreen" id="BYZ-38-t0r" customClass="InitialViewController" customModule="NA_Meeting_List_Administrator" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" customClass="EditorViewBaseClass" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="640"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="552"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BackgroundGradient" translatesAutoresizingMaskIntoConstraints="NO" id="AHN-gH-Qqk">
@@ -2284,7 +2285,7 @@
             <objects>
                 <viewController hidesBottomBarWhenPushed="YES" id="nqe-fN-Jmf" userLabel="New Meeting View Controller" customClass="CreateSingleMeetingViewController" customModule="NA_Meeting_List_Administrator" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cLr-oa-ct3" customClass="EditorViewBaseClass" customModule="NA_Meeting_List_Administrator" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="2000"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="1912"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="h7p-nX-YOf">
@@ -3438,10 +3439,10 @@
             <color red="1" green="0.93300002813339233" blue="0.16899999976158142" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="DeletedScreenBottomColor">
-            <color red="0.43599998950958252" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.0" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="DeletedScreenTopColor">
-            <color red="0.8880000114440918" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.19964617490768433" green="0.20004849135875702" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="EditScreenBottomColor">
             <color red="0.0" green="0.50999999046325684" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -3469,6 +3470,9 @@
         </namedColor>
         <namedColor name="TabBarColor">
             <color red="1" green="0.6940000057220459" blue="0.16899999976158142" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="TabSelectionColor">
+            <color red="0.20100000500679016" green="0.64499998092651367" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="UnpublishedBottomColor">
             <color red="0.68999999761581421" green="0.26600000262260437" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
