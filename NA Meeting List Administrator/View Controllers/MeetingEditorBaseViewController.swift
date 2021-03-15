@@ -1455,11 +1455,15 @@ class LongLatTableViewCell: MeetingEditorViewCell {
      - parameter sender: The IB object that initiated this change.
      */
     @IBAction func longitudeOrLatitudeTextChanged(_ sender: UITextField) {
-        if sender == self.longitudeTextField {
-            self.meetingObject.locationCoords.longitude = Double ( sender.text! )!
-        } else {
-            self.meetingObject.locationCoords.latitude = Double ( sender.text! )!
+        if let senderText = sender.text,
+           let senderDouble = Double(senderText) {
+            if sender == self.longitudeTextField {
+                self.meetingObject.locationCoords.longitude = senderDouble
+            } else {
+                self.meetingObject.locationCoords.latitude = senderDouble
+            }
         }
+        
         self.owner.updateEditorDisplay(self)
     }
     

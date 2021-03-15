@@ -26,8 +26,8 @@
 		77D92ED71E4B50CC009F02B2 /* MeetingEditorBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D92ED61E4B50CC009F02B2 /* MeetingEditorBaseViewController.swift */; };
 		77D92EDB1E4B5146009F02B2 /* EditSingleMeetingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77D92EDA1E4B5146009F02B2 /* EditSingleMeetingViewController.swift */; };
 		D492E55A21D53BFE0085DA47 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D492E55421D538EC0085DA47 /* InfoPlist.strings */; };
+		D4970C6025FFA2B600B97CC4 /* BMLTiOSLib in Frameworks */ = {isa = PBXBuildFile; productRef = D4970C5F25FFA2B600B97CC4 /* BMLTiOSLib */; };
 		D4F4798025F7A5DC000EA211 /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D4F4797F25F7A5DC000EA211 /* KeychainSwift */; };
-		D4F4798325F7A5F8000EA211 /* BMLTiOSLib in Frameworks */ = {isa = PBXBuildFile; productRef = D4F4798225F7A5F8000EA211 /* BMLTiOSLib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,14 +39,6 @@
 		77758E691E631EC3009904B8 /* CreateSingleMeetingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateSingleMeetingViewController.swift; path = "View Controllers/CreateSingleMeetingViewController.swift"; sourceTree = "<group>"; };
 		7784D3DB1E454D0300953CA0 /* ListEditableMeetingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListEditableMeetingsViewController.swift; path = "View Controllers/ListEditableMeetingsViewController.swift"; sourceTree = "<group>"; };
 		7784D3DF1E454D4900953CA0 /* EditorTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditorTabBarController.swift; path = "View Controllers/EditorTabBarController.swift"; sourceTree = "<group>"; };
-		7792A0EF2021DCF300DF0F88 /* RichmondVA.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = RichmondVA.gpx; path = "spec/GPX Files/RichmondVA.gpx"; sourceTree = SOURCE_ROOT; };
-		7792A0F02021DCF300DF0F88 /* BibbianoItaly.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = BibbianoItaly.gpx; path = "spec/GPX Files/BibbianoItaly.gpx"; sourceTree = SOURCE_ROOT; };
-		7792A0F12021DCF300DF0F88 /* Rome.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = Rome.gpx; path = "spec/GPX Files/Rome.gpx"; sourceTree = SOURCE_ROOT; };
-		7792A0F22021DCF300DF0F88 /* NorthportNY.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = NorthportNY.gpx; path = "spec/GPX Files/NorthportNY.gpx"; sourceTree = SOURCE_ROOT; };
-		7792A0F32021DCF300DF0F88 /* Dublin.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = Dublin.gpx; path = "spec/GPX Files/Dublin.gpx"; sourceTree = SOURCE_ROOT; };
-		7792A0F42021DCF300DF0F88 /* SanDiegoCA.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = SanDiegoCA.gpx; path = "spec/GPX Files/SanDiegoCA.gpx"; sourceTree = SOURCE_ROOT; };
-		7792A0F52021DCF300DF0F88 /* TampaFL.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = TampaFL.gpx; path = "spec/GPX Files/TampaFL.gpx"; sourceTree = SOURCE_ROOT; };
-		7792A0F62021DCF300DF0F88 /* HuntingtonNY.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = HuntingtonNY.gpx; path = "spec/GPX Files/HuntingtonNY.gpx"; sourceTree = SOURCE_ROOT; };
 		779462231E60C77900EC133D /* DeletedMeetingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DeletedMeetingsViewController.swift; path = "View Controllers/DeletedMeetingsViewController.swift"; sourceTree = "<group>"; };
 		779BE3AE1E37D5A600350D11 /* InitialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InitialViewController.swift; path = "View Controllers/InitialViewController.swift"; sourceTree = "<group>"; };
 		779BE3B01E37D5B500350D11 /* MainAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainAppDelegate.swift; path = "Main App/MainAppDelegate.swift"; sourceTree = "<group>"; };
@@ -61,6 +53,15 @@
 		D492E55521D538EE0085DA47 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D492E55721D538EF0085DA47 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D492E55921D53A4C0085DA47 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = "Resources and Extras/Info.plist"; sourceTree = "<group>"; };
+		D4970C4D25FF9FFB00B97CC4 /* Warnings.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Warnings.xcconfig; path = "Project-Meta/Warnings.xcconfig"; sourceTree = "<group>"; };
+		D4970C5425FFA08100B97CC4 /* SanDiegoCA.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = SanDiegoCA.gpx; sourceTree = "<group>"; };
+		D4970C5525FFA08100B97CC4 /* BibbianoItaly.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = BibbianoItaly.gpx; sourceTree = "<group>"; };
+		D4970C5625FFA08100B97CC4 /* RichmondVA.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = RichmondVA.gpx; sourceTree = "<group>"; };
+		D4970C5725FFA08100B97CC4 /* Dublin.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Dublin.gpx; sourceTree = "<group>"; };
+		D4970C5825FFA08100B97CC4 /* NorthportNY.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = NorthportNY.gpx; sourceTree = "<group>"; };
+		D4970C5925FFA08100B97CC4 /* Rome.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Rome.gpx; sourceTree = "<group>"; };
+		D4970C5A25FFA08100B97CC4 /* TampaFL.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = TampaFL.gpx; sourceTree = "<group>"; };
+		D4970C5B25FFA08100B97CC4 /* HuntingtonNY.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = HuntingtonNY.gpx; sourceTree = "<group>"; };
 		D4AA174A2282180B002A9E07 /* sv */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = sv; path = sv.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D4AA174B22821816002A9E07 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D4CD6B1923B2CF4D00EA606A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -78,7 +79,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4F4798025F7A5DC000EA211 /* KeychainSwift in Frameworks */,
-				D4F4798325F7A5F8000EA211 /* BMLTiOSLib in Frameworks */,
+				D4970C6025FFA2B600B97CC4 /* BMLTiOSLib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -117,38 +118,14 @@
 			path = "NA Meeting List Administrator";
 			sourceTree = "<group>";
 		};
-		77B5410F1E42609E00A0A880 /* Extras */ = {
-			isa = PBXGroup;
-			children = (
-				77CF6B8D1E6CEA0E005F2ECB /* GPX Files */,
-			);
-			name = Extras;
-			path = "NA Meeting List Administrator";
-			sourceTree = "<group>";
-		};
-		77CF6B8D1E6CEA0E005F2ECB /* GPX Files */ = {
-			isa = PBXGroup;
-			children = (
-				7792A0F02021DCF300DF0F88 /* BibbianoItaly.gpx */,
-				7792A0F32021DCF300DF0F88 /* Dublin.gpx */,
-				7792A0F62021DCF300DF0F88 /* HuntingtonNY.gpx */,
-				7792A0F22021DCF300DF0F88 /* NorthportNY.gpx */,
-				7792A0EF2021DCF300DF0F88 /* RichmondVA.gpx */,
-				7792A0F12021DCF300DF0F88 /* Rome.gpx */,
-				7792A0F42021DCF300DF0F88 /* SanDiegoCA.gpx */,
-				7792A0F52021DCF300DF0F88 /* TampaFL.gpx */,
-			);
-			name = "GPX Files";
-			sourceTree = "<group>";
-		};
 		77DC3E9D1E378B6100BF24B7 = {
 			isa = PBXGroup;
 			children = (
 				77DC3EA81E378B6300BF24B7 /* Main App */,
 				770E5E951E3795F800CBE834 /* View Controllers */,
 				770E5E941E3795E000CBE834 /* Resources */,
-				77B5410F1E42609E00A0A880 /* Extras */,
 				77DC3EA71E378B6300BF24B7 /* Products */,
+				D4970C4B25FF9FBB00B97CC4 /* Project-Meta */,
 			);
 			sourceTree = "<group>";
 		};
@@ -172,6 +149,31 @@
 			path = "NA Meeting List Administrator";
 			sourceTree = "<group>";
 		};
+		D4970C4B25FF9FBB00B97CC4 /* Project-Meta */ = {
+			isa = PBXGroup;
+			children = (
+				D4970C5325FFA08100B97CC4 /* GPX Files */,
+				D4970C4D25FF9FFB00B97CC4 /* Warnings.xcconfig */,
+			);
+			name = "Project-Meta";
+			sourceTree = "<group>";
+		};
+		D4970C5325FFA08100B97CC4 /* GPX Files */ = {
+			isa = PBXGroup;
+			children = (
+				D4970C5425FFA08100B97CC4 /* SanDiegoCA.gpx */,
+				D4970C5525FFA08100B97CC4 /* BibbianoItaly.gpx */,
+				D4970C5625FFA08100B97CC4 /* RichmondVA.gpx */,
+				D4970C5725FFA08100B97CC4 /* Dublin.gpx */,
+				D4970C5825FFA08100B97CC4 /* NorthportNY.gpx */,
+				D4970C5925FFA08100B97CC4 /* Rome.gpx */,
+				D4970C5A25FFA08100B97CC4 /* TampaFL.gpx */,
+				D4970C5B25FFA08100B97CC4 /* HuntingtonNY.gpx */,
+			);
+			name = "GPX Files";
+			path = "Project-Meta/GPX Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -179,9 +181,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 77DC3EB81E378B6300BF24B7 /* Build configuration list for PBXNativeTarget "NA Meeting List Administrator" */;
 			buildPhases = (
+				77DC3EA31E378B6100BF24B7 /* Frameworks */,
 				77F1C3491FDD78C8006C93F7 /* SwiftLint */,
 				77DC3EA21E378B6100BF24B7 /* Sources */,
-				77DC3EA31E378B6100BF24B7 /* Frameworks */,
 				77DC3EA41E378B6100BF24B7 /* Resources */,
 			);
 			buildRules = (
@@ -191,7 +193,7 @@
 			name = "NA Meeting List Administrator";
 			packageProductDependencies = (
 				D4F4797F25F7A5DC000EA211 /* KeychainSwift */,
-				D4F4798225F7A5F8000EA211 /* BMLTiOSLib */,
+				D4970C5F25FFA2B600B97CC4 /* BMLTiOSLib */,
 			);
 			productName = "NA Meeting List Administrator";
 			productReference = 77DC3EA61E378B6300BF24B7 /* NA Meeting List Administrator.app */;
@@ -277,7 +279,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if test -f \"${PROJECT_DIR}/Pods/SwiftLint/swiftlint\"; then\n    \"${PROJECT_DIR}/Pods/SwiftLint/swiftlint\"\nfi\n";
+			shellScript = "if test -f \"${PROJECT_DIR}/Project-Meta/SwiftLint/swiftlint\"; then\n    \"${PROJECT_DIR}/Project-Meta/SwiftLint/swiftlint\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -356,6 +358,7 @@
 /* Begin XCBuildConfiguration section */
 		77DC3EB61E378B6300BF24B7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D4970C4D25FF9FFB00B97CC4 /* Warnings.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
@@ -420,6 +423,7 @@
 		};
 		77DC3EB71E378B6300BF24B7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D4970C4D25FF9FFB00B97CC4 /* Warnings.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
@@ -484,7 +488,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2002;
+				CURRENT_PROJECT_VERSION = 2003;
 				DEVELOPMENT_TEAM = P53V4JS928;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
@@ -515,7 +519,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2002;
+				CURRENT_PROJECT_VERSION = 2003;
 				DEVELOPMENT_TEAM = P53V4JS928;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
@@ -581,15 +585,15 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		D4970C5F25FFA2B600B97CC4 /* BMLTiOSLib */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D4F4798125F7A5F8000EA211 /* XCRemoteSwiftPackageReference "BMLTiOSLib" */;
+			productName = BMLTiOSLib;
+		};
 		D4F4797F25F7A5DC000EA211 /* KeychainSwift */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = D4F4797E25F7A5DC000EA211 /* XCRemoteSwiftPackageReference "keychain-swift" */;
 			productName = KeychainSwift;
-		};
-		D4F4798225F7A5F8000EA211 /* BMLTiOSLib */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = D4F4798125F7A5F8000EA211 /* XCRemoteSwiftPackageReference "BMLTiOSLib" */;
-			productName = BMLTiOSLib;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

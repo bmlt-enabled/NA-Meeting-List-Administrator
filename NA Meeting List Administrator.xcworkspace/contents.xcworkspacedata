@@ -5,18 +5,22 @@
       location = "group:README.md">
    </FileRef>
    <FileRef
-      location = "group:LICENSE">
-   </FileRef>
-   <FileRef
-      location = "group:.swiftlint.yml">
-   </FileRef>
-   <FileRef
-      location = "group:.jazzy.yaml">
-   </FileRef>
-   <FileRef
-      location = "group:jazzy.sh">
-   </FileRef>
-   <FileRef
       location = "group:NA Meeting List Administrator.xcodeproj">
    </FileRef>
+   <Group
+      location = "container:"
+      name = "Workspace-Meta">
+      <FileRef
+         location = "group:LICENSE">
+      </FileRef>
+      <FileRef
+         location = "group:.swiftlint.yml">
+      </FileRef>
+      <FileRef
+         location = "group:.jazzy.yaml">
+      </FileRef>
+      <FileRef
+         location = "group:jazzy.command">
+      </FileRef>
+   </Group>
 </Workspace>
