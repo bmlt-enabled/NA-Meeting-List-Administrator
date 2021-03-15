@@ -747,7 +747,7 @@ class ListEditableMeetingsViewController: EditorViewControllerBaseClass, EditorT
                     if 0 == (indexPath.row % 2) {
                         ret.backgroundColor = self.unpublishedRowColorEven
                     } else {
-                        ret.backgroundColor = self.unpublishedRowColorEven?.withAlphaComponent(0.5)
+                        ret.backgroundColor = self.unpublishedRowColorEven?.withAlphaComponent(0.75)
                     }
                 }
                 
