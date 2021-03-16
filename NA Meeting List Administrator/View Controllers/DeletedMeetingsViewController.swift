@@ -119,8 +119,6 @@ class DeletedMeetingsViewController: EditorViewControllerBaseClass, EditorTabBar
      */
     func showBusyAnimation() {
         self.animationMaskView.isHidden = false
-        self.tableView.isHidden = true
-        self.navigationController?.isNavigationBarHidden = true
         // We disable the other tab item, while we are updating.
         if let otherViewController = self.tabBarController?.viewControllers?[EditorTabBarController.TabIndexes.ListTab.rawValue] as? ListEditableMeetingsViewController {
             otherViewController.tabBarItem.isEnabled = false
@@ -132,9 +130,7 @@ class DeletedMeetingsViewController: EditorViewControllerBaseClass, EditorTabBar
      Hides the busy animation, after updating.
      */
     func hideBusyAnimation() {
-        self.tableView.isHidden = false
         self.animationMaskView.isHidden = true
-        self.navigationController?.isNavigationBarHidden = false
         if let otherViewController = self.tabBarController?.viewControllers?[EditorTabBarController.TabIndexes.ListTab.rawValue] as? ListEditableMeetingsViewController {
             otherViewController.tabBarItem.isEnabled = true
         }
@@ -148,12 +144,10 @@ class DeletedMeetingsViewController: EditorViewControllerBaseClass, EditorTabBar
      Only valid meetings that we can edit with the selected Service bodies are presented.
      */
     func getDeletedMeetings() {
+        self._deletedMeetingChanges = []
+        self.tableView?.reloadData()
         showBusyAnimation()
-        var ids: [Int] = []
-        for sb in AppStaticPrefs.prefs.selectedServiceBodies {
-            ids.append(sb.id)
-        }
-        
+        let ids: [Int] = AppStaticPrefs.prefs.selectedServiceBodies.map { $0.id }
         let fromDate = Date(timeIntervalSinceNow: (-60 * 60 * 24 * 90))  // 90 days' worth of deletions.
         MainAppDelegate.connectionObject.getDeletedMeetingChanges(fromDate: fromDate, toDate: nil, serviceBodyIDs: ids)
     }

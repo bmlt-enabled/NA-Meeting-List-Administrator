@@ -202,14 +202,16 @@ class ListEditableMeetingsViewController: EditorViewControllerBaseClass, EditorT
      */
     func showBusyAnimation() {
         if !self.searchDone {   // We skip, if the semaphore was set.
-            self.navigationController?.isNavigationBarHidden = true
-            self.tabBarController?.tabBar.isHidden = true
             self.busyAnimationView.isHidden = false
             self.meetingListTableView.isHidden = true
             self.weekdaySwitchesContainerView.isHidden = true
             self.townBoroughPickerView.isHidden = true
             self.whereAmINowButton.isHidden = true
             self.newMeetingButton.isHidden = true
+            // We disable the other tab item, while we are updating.
+            if let otherViewController = self.tabBarController?.viewControllers?[EditorTabBarController.TabIndexes.DeletedTab.rawValue] as? DeletedMeetingsViewController {
+                otherViewController.tabBarItem.isEnabled = false
+            }
         }
     }
     
@@ -219,13 +221,14 @@ class ListEditableMeetingsViewController: EditorViewControllerBaseClass, EditorT
      */
     func hideBusyAnimation() {
         self.busyAnimationView.isHidden = true
-        self.navigationController?.isNavigationBarHidden = false
-        self.tabBarController?.tabBar.isHidden = false
         self.meetingListTableView.isHidden = false
         self.weekdaySwitchesContainerView.isHidden = false
         self.townBoroughPickerView.isHidden = false
         self.newMeetingButton.isHidden = false
         self.whereAmINowButton.isHidden = CLLocationManager.locationServicesEnabled()
+        if let otherViewController = self.tabBarController?.viewControllers?[EditorTabBarController.TabIndexes.DeletedTab.rawValue] as? DeletedMeetingsViewController {
+            otherViewController.tabBarItem.isEnabled = true
+        }
     }
 
     /* ################################################################## */
