@@ -217,7 +217,7 @@ class MainAppDelegate: UIResponder, UIApplicationDelegate, BMLTiOSLibDelegate {
             let elapsedTime = Date().timeIntervalSinceReferenceDate - self._lastTimeIWasAlive
             
             if elapsedTime > AppStaticPrefs.prefs.timeoutInterval {
-                type(of: self).connectionStatus = false // Force a disconnect for waiting too long.
+                Self.connectionStatus = false // Force a disconnect for waiting too long.
                 _ = navController.popToRootViewController(animated: false)
             }
             
@@ -247,7 +247,7 @@ class MainAppDelegate: UIResponder, UIApplicationDelegate, BMLTiOSLibDelegate {
      */
     func applicationWillTerminate(_ application: UIApplication) {
         AppStaticPrefs.prefs.savePrefs()
-        type(of: self).connectionStatus = false // Force an immediate disconnect when terminating.
+        Self.connectionStatus = false // Force an immediate disconnect when terminating.
     }
     
     /* ################################################################## */
@@ -267,20 +267,20 @@ class MainAppDelegate: UIResponder, UIApplicationDelegate, BMLTiOSLibDelegate {
     /**
      This is a required delegate callback. It is called when the server connection is completed (or disconnected).
      
-     - parameter inLibInstance: The library object (in our case, it should always be the same as type(of: self)._libraryObject).
+     - parameter inLibInstance: The library object (in our case, it should always be the same as Self._libraryObject).
      - parameter serverIsValid: If this is true, then the connection is valid (and complete). If false, the library object is about to become invalid.
      */
     func bmltLibInstance(_ inLibInstance: BMLTiOSLib, serverIsValid: Bool) {
         if  !self.validConnection,
             !serverIsValid {
             self.initialViewController.finishedConnecting() // Kill any connection in progress.
-            type(of: self).displayAlert("NAMeetingListAdministrator-ErrorAlertTitle", inMessage: "BAD-URI-ERROR-TEXT")
+            Self.displayAlert("NAMeetingListAdministrator-ErrorAlertTitle", inMessage: "BAD-URI-ERROR-TEXT")
         }
         
         self.validConnection = serverIsValid
         
         if !self.validConnection {
-            type(of: self)._libraryObject = nil
+            Self._libraryObject = nil
         }
         
         self.initialViewController.finishedConnecting()
@@ -290,19 +290,19 @@ class MainAppDelegate: UIResponder, UIApplicationDelegate, BMLTiOSLibDelegate {
     /**
      This is a required callback that is executed if the connection suffers an error.
 
-     - parameter inLibInstance: The library object (in our case, it should always be the same as type(of: self)._libraryObject).
+     - parameter inLibInstance: The library object (in our case, it should always be the same as Self._libraryObject).
      - parameter errorOccurred: This is the error object that was sent.
      */
     func bmltLibInstance(_ inLibInstance: BMLTiOSLib, errorOccurred error: Error) {
         // If we had an error while trying to connect, then this is a bad server.
         if !self.validConnection {  // We quietly take an asp to our bosom.
-            type(of: self)._libraryObject = nil
+            Self._libraryObject = nil
             self.initialViewController.finishedConnecting() // Kill any connection in progress.
-            type(of: self).displayAlert("NAMeetingListAdministrator-ErrorAlertTitle", inMessage: "BAD-URI-ERROR-TEXT")
+            Self.displayAlert("NAMeetingListAdministrator-ErrorAlertTitle", inMessage: "BAD-URI-ERROR-TEXT")
         } else {
             // Otherwise, we raise a ruckus.
             let description = error.localizedDescription
-            type(of: self).displayAlert("NAMeetingListAdministrator-ErrorAlertTitle", inMessage: description)
+            Self.displayAlert("NAMeetingListAdministrator-ErrorAlertTitle", inMessage: description)
         }
     }
     
@@ -318,8 +318,8 @@ class MainAppDelegate: UIResponder, UIApplicationDelegate, BMLTiOSLibDelegate {
      - parameter loginChangedTo: A Bool, true, if the session is currently connected.
      */
     func bmltLibInstance(_ inLibInstance: BMLTiOSLib, loginChangedTo: Bool) {
-        if loginChangedTo && (1 > type(of: self)._libraryObject.serviceBodiesICanEdit.count) {  // We have to be able to edit at least one Service body for this to work.
-            _ = type(of: self)._libraryObject.adminLogout()
+        if loginChangedTo && (1 > Self._libraryObject.serviceBodiesICanEdit.count) {  // We have to be able to edit at least one Service body for this to work.
+            _ = Self._libraryObject.adminLogout()
         }
         
         self.initialViewController.finishedLoggingIn()

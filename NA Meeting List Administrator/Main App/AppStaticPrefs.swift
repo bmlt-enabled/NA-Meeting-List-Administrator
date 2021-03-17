@@ -224,7 +224,7 @@ class AppStaticPrefs {
      */
     private func _loadPrefs() -> Bool {
         if nil == self._loadedPrefs {
-            if let temp = UserDefaults.standard.object(forKey: type(of: self)._mainPrefsKey) as? NSDictionary {
+            if let temp = UserDefaults.standard.object(forKey: Self._mainPrefsKey) as? NSDictionary {
                 self._loadedPrefs = NSMutableDictionary(dictionary: temp)
             } else {
                 self._loadedPrefs = NSMutableDictionary()
@@ -355,7 +355,7 @@ class AppStaticPrefs {
             // Get the default URI, if all else fails.
             if let plistPath = Bundle.main.path(forResource: "Info", ofType: "plist") {
                 if let plistDictionary = NSDictionary(contentsOfFile: plistPath) as? [String: Any] {
-                    if let uri = plistDictionary[type(of: self).PrefsKeys.DefaultRootServerURIPlistKey.rawValue] as? NSString {
+                    if let uri = plistDictionary[Self.PrefsKeys.DefaultRootServerURIPlistKey.rawValue] as? NSString {
                         ret = !(uri as String).isEmpty ? (uri as String).cleanURI() : ""
                     }
                 }
@@ -489,7 +489,7 @@ class AppStaticPrefs {
      - returns the stored logins.
      */
     var storedLogins: [String: [String]] {
-        if self._loadPrefs() && type(of: self).supportsTouchID {    // Only valid for biometrics.
+        if self._loadPrefs() && Self.supportsTouchID {    // Only valid for biometrics.
             if let temp = self._loadedPrefs.object(forKey: PrefsKeys.RootServerLoginDictionaryKey.rawValue) as? [String: [String]] {
                 return temp
             }
@@ -545,7 +545,7 @@ class AppStaticPrefs {
      This method simply saves the main preferences Dictionary into the standard user defaults.
      */
     func savePrefs() {
-        UserDefaults.standard.set(self._loadedPrefs, forKey: type(of: self)._mainPrefsKey)
+        UserDefaults.standard.set(self._loadedPrefs, forKey: Self._mainPrefsKey)
     }
     
     /* ################################################################## */
@@ -555,7 +555,7 @@ class AppStaticPrefs {
     func deleteSavedLoginsAndURLs() {
         self._swiftKeychainWrapper.synchronizable = true
         if self._loadPrefs() {
-            if type(of: self).supportsTouchID {
+            if Self.supportsTouchID {
                 // All of this crap is to remove the keys we have stored in the keychain.
                 if let temp = self._loadedPrefs.object(forKey: PrefsKeys.RootServerLoginDictionaryKey.rawValue) as? [String: [String]] {
                     let keys = temp.keys
@@ -812,7 +812,7 @@ class AppStaticPrefs {
         
         self._swiftKeychainWrapper.synchronizable = true
 
-        if type(of: self).supportsTouchID { // No TouchID, no stored password.
+        if Self.supportsTouchID { // No TouchID, no stored password.
             if self._loadPrefs() {
                 if let temp = self._loadedPrefs.object(forKey: PrefsKeys.RootServerLoginDictionaryKey.rawValue) as? [String: [String]] {
                     if let users = temp[inRooutURI.cleanURI()] {
@@ -842,7 +842,7 @@ class AppStaticPrefs {
         
         self._swiftKeychainWrapper.synchronizable = true
 
-        if type(of: self).supportsTouchID { // No TouchID, no stored password.
+        if Self.supportsTouchID { // No TouchID, no stored password.
             if nil != self._swiftKeychainWrapper {
                 let key = inRooutURI.cleanURI() + "-" + inUser
                 if let temp = self._swiftKeychainWrapper.get(key) {

@@ -527,7 +527,7 @@ class MeetingEditorBaseViewController: EditorViewControllerBaseClass, UITableVie
             return tableView.bounds.width
             
         case "editor-row-10":
-            return (nil != self._formatContainerView) ? self._formatContainerView.cellHeight : self._internalRowHeights[reuseID]!
+            return (self._formatContainerView?.cellHeight ?? 100)
 
         default:
             if let height = self._internalRowHeights[reuseID] { // By default, we use our table, but we may not have something there.
@@ -1274,9 +1274,9 @@ class MapTableViewCell: MeetingEditorViewCell, MKMapViewDelegate {
      */
     @IBAction func mapTypeChanged(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
-        case type(of: self).MapTypeValues.Satellite.rawValue:
+        case Self.MapTypeValues.Satellite.rawValue:
             self.mapView.mapType = MKMapType.satellite
-        case type(of: self).MapTypeValues.Hybrid.rawValue:
+        case Self.MapTypeValues.Hybrid.rawValue:
             self.mapView.mapType = MKMapType.hybridFlyover
         default:
             self.mapView.mapType = MKMapType.standard
@@ -1558,8 +1558,12 @@ class MeetingCommentsEditorTableViewCell: MeetingEditorViewCell, UITextViewDeleg
 /* ###################################################################################################################################### */
 /**
  This is the table view class for the name editor prototype.
+ 
+ Yeah, this is ugly. I should really be using a UICollectionView, but this is an app I wrote a long time ago, and it needs more than a single bandaid. It needs a complete rewrite.
+ 
+ So writing a simple nested view collection is the lowest-impact way to deal with it. UICollectionView is actually kinda complex, and I need to keep the bugs out.
  */
-class FormatsEditorTableViewCell: MeetingEditorViewCell, UITableViewDataSource, UITableViewDelegate {
+class FormatsEditorTableViewCell: MeetingEditorViewCell {
     /// The height of a format label
     static let sLabelHeight: CGFloat                    = 44
     /// The indent for a checkbox from the checkbox
@@ -1572,25 +1576,38 @@ class FormatsEditorTableViewCell: MeetingEditorViewCell, UITableViewDataSource, 
     /// The format name label
     @IBOutlet weak var formatNameLabel: UILabel!
     /// The table view that shows the formats.
-    @IBOutlet weak var formatDisplayTableView: UITableView!
+    @IBOutlet weak var formatDisplayView: UIView!
+    /// This is our view controller (for popover stuff).
+    @IBOutlet weak var myController: MeetingEditorBaseViewController!
     
     /* ################################################################## */
     /**
-     Return the height of the table
+     Returns the number of columns to display.
+     
+     - returns: the number of columns to display per row
      */
-    var tableHeight: CGFloat {
-        let numRows = CGFloat(tableView(self.formatDisplayTableView, numberOfRowsInSection: 0))
-        let tableHeight = numRows * type(of: self).sFormatCheckboxContainerHeight
-
-        return tableHeight
+    var columns: Int {
+        return Int(bounds.size.width / Self.sFormatCheckboxContainerWidth)
     }
     
+    /* ################################################################## */
+    /**
+     Returns the number of rows to display.
+     
+     - returns: the number of rows to display
+     */
+    var rows: Int {
+        let numFormats = MainAppDelegate.connectionObject.allPossibleFormats.count
+        return Int((numFormats + (self.columns - 1)) / self.columns)
+    }
+
     /* ################################################################## */
     /**
      Retun the height of the entire cell
      */
     var cellHeight: CGFloat {
-        return self.tableHeight + type(of: self).sLabelHeight
+        // Yes, this is an honest-to-God kludge. I am not sure why I need to return an extra two rows of padding.
+        return Self.sLabelHeight + (CGFloat(self.rows + 2) * Self.sFormatCheckboxContainerHeight)
     }
     
     /* ################################################################## */
@@ -1601,12 +1618,182 @@ class FormatsEditorTableViewCell: MeetingEditorViewCell, UITableViewDataSource, 
      */
     override func meetingObjectUpdated() {
         self.formatNameLabel.text = NSLocalizedString(self.formatNameLabel.text!, comment: "")
-        self.formatDisplayTableView.rowHeight = UITableView.automaticDimension
-        self.formatDisplayTableView.reloadData()
+        self.createFormatView()
     }
     
     /* ################################################################## */
-    // MARK: Instance Methods
+    /**
+     What a ghastly hack.
+     
+     I am truly sorry for this, but I needed to change the whole way this works, and I wanted to move as little cheese as possible.
+     
+     This populates the format table with the checkboxes and labels.
+     
+     Tapping on a checkbox toggles the format's state, and long-pressing will bring up a popover that will display an explanation of the format.
+     */
+    func createFormatView() {
+        // Start by cleaning up after ourselves.
+        formatDisplayView?.subviews.forEach {
+            $0.subviews.forEach { inView in inView.removeFromSuperview() }
+            $0.removeFromSuperview()
+        }
+        
+        let rows = self.rows
+        let columns = self.columns
+        let maxFormats = MainAppDelegate.connectionObject.allPossibleFormats.count
+        
+        if var currentFrame = formatDisplayView?.frame,
+           let labelheight = formatNameLabel?.bounds.height {
+            currentFrame.size.height = labelheight
+            var formatIndex = 0
+            var rowYPos: CGFloat = 0
+            var newBounds = currentFrame
+            newBounds.size.height = 0
+            var rowFrame = newBounds
+            rowFrame.size.height = Self.sFormatCheckboxContainerHeight
+            // Build rows, and append them.
+            for _ in 0..<rows where formatIndex < maxFormats {
+                rowFrame.origin.y = rowYPos
+                let rowHolderView = UIView(frame: rowFrame)
+                rowHolderView.backgroundColor = UIColor.clear
+                rowHolderView.isUserInteractionEnabled = true
+                rowHolderView.isMultipleTouchEnabled = true
+                var rowXPos: CGFloat = 0
+                // Fill each row with columns.
+                for _ in 0..<columns where formatIndex < maxFormats {
+                    let formatObject = MainAppDelegate.connectionObject.allPossibleFormats[formatIndex]
+                    let columnFrame = CGRect(x: rowXPos, y: 0, width: Self.sFormatCheckboxContainerWidth, height: Self.sFormatCheckboxContainerHeight)
+                    let formatSubCell = UIView(frame: columnFrame)
+                    formatSubCell.backgroundColor = UIColor.clear
+                    var checkBoxFrame = CGRect(x: Self.sFormatCheckboxIndent, y: Self.sFormatCheckboxIndent, width: Self.sFormatCheckboxContainerHeight - (Self.sFormatCheckboxIndent * 2), height: Self.sFormatCheckboxContainerHeight - (Self.sFormatCheckboxIndent * 2))
+                    // Just to make sure we're square.
+                    checkBoxFrame.size.width = min(checkBoxFrame.size.width, checkBoxFrame.size.height)
+                    checkBoxFrame.size.height = min(checkBoxFrame.size.width, checkBoxFrame.size.height)
+                    let checkBoxObject = ThreeStateCheckbox(frame: checkBoxFrame)
+                    checkBoxObject.binaryState = true
+                    checkBoxObject.extraData = formatObject
+                    checkBoxObject.selectionState = self.meetingObject.formats.contains(formatObject) ? .Selected : .Clear
+                    checkBoxObject.addTarget(self, action: #selector(FormatsEditorTableViewCell.formatCheckboxActuated), for: UIControl.Event.valueChanged)
+                    formatSubCell.addSubview(checkBoxObject)
+                    let labelFrame = CGRect(x: checkBoxFrame.origin.x + checkBoxFrame.size.width + Self.sFormatCheckboxIndent, y: 0, width: columnFrame.size.width - checkBoxFrame.origin.x + checkBoxFrame.size.width + Self.sFormatCheckboxIndent, height: Self.sFormatCheckboxContainerHeight)
+                    let labelObject = UILabel(frame: labelFrame)
+                    labelObject.backgroundColor = UIColor.clear
+                    labelObject.textColor = self.tintColor
+                    labelObject.text = formatObject.key
+                    formatSubCell.addSubview(labelObject)
+                    formatSubCell.isUserInteractionEnabled = true
+                    formatSubCell.isMultipleTouchEnabled = true
+                    let longPressGestureRecognizer = FormatLongPressGestureRecognizer(target: self, action: #selector(formatInfoLongPress))
+                    longPressGestureRecognizer.formatObject = formatObject
+                    longPressGestureRecognizer.checkBox = checkBoxObject
+                    formatSubCell.addGestureRecognizer(longPressGestureRecognizer)
+                    rowHolderView.addSubview(formatSubCell)
+                    rowXPos += columnFrame.size.width
+                    formatIndex += 1
+                }
+                rowYPos += rowFrame.size.height
+                newBounds.size.height += rowFrame.size.height
+                self.formatDisplayView?.frame = newBounds
+                self.formatDisplayView?.addSubview(rowHolderView)
+                currentFrame.size.height += rowFrame.size.height
+            }
+            self.frame = currentFrame
+       }
+    }
+}
+
+/* ###################################################################################################################################### */
+// MARK: - String Extension for Calculating Heights -
+/* ###################################################################################################################################### */
+/**
+ Straight from here: https://stackoverflow.com/a/30450559/879365
+ */
+extension String {
+    /* ################################################################## */
+    /**
+     This returns a height needed to display the String, given a constraining width.
+     
+     - parameter withConstrainedWidth: The maximum width.
+     - parameter font: The font used for the display.
+     - returns: A CGFloat, containing the value calculated.
+     */
+    func height(withConstrainedWidth inWidth: CGFloat, font inFont: UIFont) -> CGFloat {
+        let constraintRect = CGSize(width: inWidth, height: .greatestFiniteMagnitude)
+        let boundingBox = self.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [.font: inFont], context: nil)
+    
+        return ceil(boundingBox.height)
+    }
+
+    /* ################################################################## */
+    /**
+     This returns a width needed to display the String, given a constraining height.
+     
+     - parameter withConstrainedHeight: The maximum height.
+     - parameter font: The font used for the display.
+     - returns: A CGFloat, containing the value calculated.
+     */
+    func width(withConstrainedHeight inHeight: CGFloat, font inFont: UIFont) -> CGFloat {
+        let constraintRect = CGSize(width: .greatestFiniteMagnitude, height: inHeight)
+        let boundingBox = self.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [.font: inFont], context: nil)
+
+        return ceil(boundingBox.width)
+    }
+}
+
+/* ###################################################################################################################################### */
+// MARK: - Format Popover View Controller -
+/* ###################################################################################################################################### */
+/**
+ Just defines the view controller for the format info popover (long-press).
+ */
+class FormatInfoController: UIViewController {
+    /// The storyboard ID is used to create an instance.
+    static let storyboardID = "FormatInfoController"
+    /// The format associated with this display.
+    weak var formatObject: BMLTiOSLibFormatNode!
+    /// The label that displays the format short string.
+    @IBOutlet weak var formatNameLabel: UILabel!
+    /// The label that displays the longer explanation.
+    @IBOutlet weak var formatTextLabel: UILabel!
+    
+    /* ################################################################## */
+    /**
+     - returns: The height, in display units, required to display this view.
+     */
+    var requiredHeight: CGFloat {
+        var ret: CGFloat = 44    // Ugh. Hardcoded Padding. I don't want to deal with calculating it on the fly.
+        if let width = self.view?.bounds.size.width {
+            if let font = formatNameLabel?.font {
+                let height = formatNameLabel?.text?.height(withConstrainedWidth: width, font: font) ?? 0
+                formatNameLabel?.heightAnchor.constraint(equalToConstant: height).isActive = true
+                ret += height
+            }
+            
+            if let font = formatTextLabel?.font {
+                let height = formatTextLabel?.text?.height(withConstrainedWidth: width, font: font) ?? 0
+                formatTextLabel?.heightAnchor.constraint(equalToConstant: height).isActive = true
+                ret += height
+            }
+        }
+        
+        return ret
+    }
+    
+    /* ################################################################## */
+    /**
+     Called when the view hierarchy has loaded.
+     */
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        formatNameLabel?.text = formatObject?.name ?? "ERROR"
+        formatTextLabel?.text = formatObject?.description ?? "ERROR"
+    }
+}
+
+/* ###################################################################################################################################### */
+// MARK: - Additional Methods for Handling Format Taps -
+/* ###################################################################################################################################### */
+extension FormatsEditorTableViewCell {
     /* ################################################################## */
     /**
      This is the callback for one of the format checkboxes being hit.
@@ -1626,83 +1813,79 @@ class FormatsEditorTableViewCell: MeetingEditorViewCell, UITableViewDataSource, 
         self.owner.updateEditorDisplay(self)
         self.owner.closeKeyboard()
     }
-    
-    /* ################################################################## */
-    /**
-     Forces the table to reload
-     */
-    func reloadTableData() {
-        self.formatDisplayTableView.reloadData()
-    }
-    
-    /* ################################################################## */
-    // MARK: UITableViewDataSource Methods
-    /* ################################################################## */
-    /**
-     Returns the number of rows to display.
-     
-     - parameter tableView: The UITableView asking for rows.
-     - paramater numberOfRowsInSection: The section index (0-based).
-     
-     - returns: the number of rows to display
-     */
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let numFormats = MainAppDelegate.connectionObject.allPossibleFormats.count
-        let formatsPerRow = Int(tableView.bounds.size.width / type(of: self).sFormatCheckboxContainerWidth)
-        let numRows = Int((numFormats + (formatsPerRow - 1)) / formatsPerRow) + 1
-        return numRows
-    }
-    
-    /* ################################################################## */
-    /**
-     Returns a cell for one row.
-     
-     - parameter tableView: The UITableView asking for a cell.
-     - paramater cellForRowAt: The index path of the cell we want.
-     
-     - returns: a table cell, containing the row
-     */
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let numFormats = MainAppDelegate.connectionObject.allPossibleFormats.count
-        let formatsPerRow = Int(tableView.bounds.size.width / type(of: self).sFormatCheckboxContainerWidth)
-        
-        let startingIndex = (indexPath.row * formatsPerRow)
-        let endingIndex = min(startingIndex + formatsPerRow, startingIndex + (numFormats - startingIndex))
-        
-        let ret: UITableViewCell = UITableViewCell()
-        ret.backgroundColor = UIColor.clear
 
-        if startingIndex < endingIndex {
-            ret.frame = CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: type(of: self).sFormatCheckboxContainerHeight)
-            
-            var indent: CGFloat = 0
-            
-            for i in startingIndex..<endingIndex {
-                let formatObject = MainAppDelegate.connectionObject.allPossibleFormats[i]
-                let frame = CGRect(x: indent, y: 0, width: type(of: self).sFormatCheckboxContainerWidth, height: type(of: self).sFormatCheckboxContainerHeight)
-                let formatSubCell = UIView(frame: frame)
-                formatSubCell.backgroundColor = UIColor.clear
-                var checkBoxFrame = CGRect(x: type(of: self).sFormatCheckboxIndent, y: type(of: self).sFormatCheckboxIndent, width: type(of: self).sFormatCheckboxContainerHeight - (type(of: self).sFormatCheckboxIndent * 2), height: type(of: self).sFormatCheckboxContainerHeight - (type(of: self).sFormatCheckboxIndent * 2))
-                // Just to make sure we're square.
-                checkBoxFrame.size.width = min(checkBoxFrame.size.width, checkBoxFrame.size.height)
-                checkBoxFrame.size.height = min(checkBoxFrame.size.width, checkBoxFrame.size.height)
-                let checkBoxObject = ThreeStateCheckbox(frame: checkBoxFrame)
-                checkBoxObject.binaryState = true
-                checkBoxObject.extraData = formatObject
-                checkBoxObject.selectionState = self.meetingObject.formats.contains(formatObject) ? .Selected : .Clear
-                checkBoxObject.addTarget(self, action: #selector(FormatsEditorTableViewCell.formatCheckboxActuated), for: UIControl.Event.valueChanged)
-                formatSubCell.addSubview(checkBoxObject)
-                let labelFrame = CGRect(x: checkBoxFrame.origin.x + checkBoxFrame.size.width + type(of: self).sFormatCheckboxIndent, y: 0, width: frame.size.width - checkBoxFrame.origin.x + checkBoxFrame.size.width + type(of: self).sFormatCheckboxIndent, height: type(of: self).sFormatCheckboxContainerHeight)
-                let labelObject = UILabel(frame: labelFrame)
-                labelObject.backgroundColor = UIColor.clear
-                labelObject.textColor = tableView.tintColor
-                labelObject.text = formatObject.key
-                formatSubCell.addSubview(labelObject)
-                indent += type(of: self).sFormatCheckboxContainerWidth
-                ret.addSubview(formatSubCell)
-            }
+    /* ################################################################## */
+    /**
+     Called when a format cell is long-pressed (needs explanation).
+     
+     - parameter inLongPressGestureRecognizer: The long press gesture recognizer.
+     */
+    @objc func formatInfoLongPress(_ inLongPressGestureRecognizer: FormatLongPressGestureRecognizer) {
+        if let popupController = self.myController?.storyboard?.instantiateViewController(identifier: FormatInfoController.storyboardID) as? FormatInfoController,
+           let view = inLongPressGestureRecognizer.checkBox,
+           var startingSize = view.superview?.superview?.superview?.bounds.size {
+            popupController.formatObject = inLongPressGestureRecognizer.formatObject
+            popupController.modalPresentationStyle = .popover
+            popupController.popoverPresentationController?.sourceView = view
+            popupController.popoverPresentationController?.delegate = self
+            popupController.popoverPresentationController?.permittedArrowDirections = [.up, .down]
+            startingSize.height = popupController.requiredHeight
+            popupController.preferredContentSize = startingSize
+            myController?.present(popupController, animated: true, completion: nil)
         }
-        
-        return ret
     }
+}
+
+/* ###################################################################################################################################### */
+// MARK: - Format Cell View Class -
+/* ###################################################################################################################################### */
+/**
+ This is the view that contains the checkbox and abbreviation.
+ */
+class FormatLongPressGestureRecognizer: UILongPressGestureRecognizer {
+    /// The format associated with this gesture.
+    weak var formatObject: BMLTiOSLibFormatNode!
+    /// This is the checkbox for the format selection state.
+    weak var checkBox: ThreeStateCheckbox!
+}
+
+/* ###################################################################################################################################### */
+// MARK: - Format Cell View Class -
+/* ###################################################################################################################################### */
+/**
+ This is the view that contains the checkbox and abbreviation.
+ */
+class FormatCellView: UIView {
+    /// This is the format that will be indicated by this cell.
+    weak var formatObject: BMLTiOSLibFormatNode!
+    /// This is the checkbox for the format selection state.
+    weak var checkBox: ThreeStateCheckbox!
+}
+
+/* ###################################################################################################################################### */
+// MARK: - UIPopoverPresentationControllerDelegate Conformance -
+/* ###################################################################################################################################### */
+/**
+ This extension allows us to use classic popovers for iPhones, as well as iPads.
+ We use popovers to describe formats in detail.
+ */
+extension FormatsEditorTableViewCell: UIPopoverPresentationControllerDelegate {
+    /* ################################################################## */
+    /**
+     Called to ask if there's any possibility of this being displayed in another way.
+     
+     - parameter for: The presentation controller we're talking about.
+     - returns: No way, Jose.
+     */
+    func adaptivePresentationStyle(for: UIPresentationController) -> UIModalPresentationStyle { .none }
+    
+    /* ################################################################## */
+    /**
+     Called to ask if there's any possibility of this being displayed in another way (when the screen is rotated).
+     
+     - parameter for: The presentation controller we're talking about.
+     - parameter traitCollection: The traits, describing the new orientation.
+     - returns: No way, Jose.
+     */
+    func adaptivePresentationStyle(for: UIPresentationController, traitCollection: UITraitCollection) -> UIModalPresentationStyle { .none }
 }

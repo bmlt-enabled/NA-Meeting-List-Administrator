@@ -17,8 +17,8 @@ excluded:
 - Carthage
 
 function_body_length:
-- 54 # warning
-- 55 # error
+- 59 # warning
+- 60 # error
 
 type_body_length:
 - 449 # warning

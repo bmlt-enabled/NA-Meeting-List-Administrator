@@ -185,9 +185,9 @@ class ServiceBodyTableCellView: UITableViewCell {
         view.backgroundColor = UIColor.clear
         
         var cbFrame = frame
-        cbFrame.origin.x = indent * type(of: self).indentSizeInDisplayUnits
-        cbFrame.origin.y = type(of: self).checkboxPaddingInDisplayUnits
-        cbFrame.size.height = frame.size.height - (type(of: self).checkboxPaddingInDisplayUnits * 2)
+        cbFrame.origin.x = indent * Self.indentSizeInDisplayUnits
+        cbFrame.origin.y = Self.checkboxPaddingInDisplayUnits
+        cbFrame.size.height = frame.size.height - (Self.checkboxPaddingInDisplayUnits * 2)
         cbFrame.size.width = cbFrame.size.height * 1.5
         
         self.serviceBodyCheckbox = AnnotatedSwitch(frame: cbFrame)
@@ -195,7 +195,7 @@ class ServiceBodyTableCellView: UITableViewCell {
         
         var labelFrame = CGRect.zero
         labelFrame.size.height = frame.size.height
-        labelFrame.origin.x = cbFrame.origin.x + cbFrame.size.width + (type(of: self).checkboxPaddingInDisplayUnits * 2)
+        labelFrame.origin.x = cbFrame.origin.x + cbFrame.size.width + (Self.checkboxPaddingInDisplayUnits * 2)
         labelFrame.size.width = frame.size.width - labelFrame.origin.x
         self.serviceBodyNameLabel = UILabel(frame: labelFrame)
         self.serviceBodyNameLabel.textColor = inTextColor
