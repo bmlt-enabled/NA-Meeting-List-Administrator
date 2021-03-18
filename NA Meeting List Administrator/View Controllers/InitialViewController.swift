@@ -173,14 +173,19 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate,
         var url = AppStaticPrefs.prefs.rootURI
         
         if !url.isEmpty {
-            url = url.cleanURI(sslRequired: true)
+            url = url.cleanURI(sslRequired: true).trimmingCharacters(in: .whitespacesAndNewlines).trimmingCharacters(in: ["/"])
         }
         
         self._url = url
         self.enterURLTextItem.text = self._url
-        
         self._loggingIn = false
         self.setLoginStatusUI()
+        if !self._url.isEmpty {
+            self._connecting = true
+            self._loggingIn = false
+            MainAppDelegate.connectionStatus = true
+            self.startConnection()
+        }
     }
     
     /* ################################################################## */
@@ -255,7 +260,7 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate,
      - parameter sender: The IB item that called this.
      */
     @IBAction func urlTextChanged(_ sender: UITextField) {
-        self._url = sender.text!
+        self._url = sender.text ?? ""
         self.showOrHideConnectButton()
     }
     
@@ -267,6 +272,7 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate,
      */
     @IBAction func connectButtonHit(_ sender: UIButton) {
         self.closeKeyboard()
+        self._url = self._url.trimmingCharacters(in: .whitespacesAndNewlines).trimmingCharacters(in: ["/"])
         self._connecting = true
         self._loggingIn = false
         MainAppDelegate.connectionStatus = true
@@ -318,6 +324,8 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate,
                     }
                 }
             }
+            
+            self._userID = self._userID.trimmingCharacters(in: .whitespacesAndNewlines)
         }
     }
 
@@ -478,7 +486,7 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate,
                 let storedLogins = self._validSavedLogins
                 let row = self.presetLoginsPickerView.selectedRow(inComponent: 0)
                 self._userID = storedLogins[row - 1]
-                self._password = AppStaticPrefs.prefs.getStoredPasswordForUser(self._url, inUser: self._userID )
+                self._password = AppStaticPrefs.prefs.getStoredPasswordForUser(AppStaticPrefs.prefs.rootURI, inUser: self._userID )
 
                 if !self._userID.isEmpty && !self._password.isEmpty {
                     if MainAppDelegate.connectionObject.adminLogin(loginID: self._userID, password: self._password) {
@@ -504,6 +512,7 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate,
      Starts the connecting animation
      */
     func startConnection() {
+        self._url = self._url.trimmingCharacters(in: .whitespacesAndNewlines).trimmingCharacters(in: ["/"])
         self.closeKeyboard()
         self.manualEntryIDTextField.text = ""
         self.manualEntryPasswordTextField.text = ""
@@ -573,9 +582,10 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate,
         var firstTime = true
         
         // If we are successfully logged in, then we save the login and (maybe) the password.
-        if (nil != MainAppDelegate.connectionObject) && MainAppDelegate.connectionStatus && MainAppDelegate.connectionObject.isAdminLoggedIn {
-            firstTime = AppStaticPrefs.prefs.updateUserForRootURI(self.enterURLTextItem.text!, inUser: self._userID, inPassword: self._password)
-            AppStaticPrefs.prefs.lastLogin = (url: self.enterURLTextItem.text!, loginID: self._userID)
+        if MainAppDelegate.connectionStatus && MainAppDelegate.connectionObject.isAdminLoggedIn {
+            let uri = AppStaticPrefs.prefs.rootURI.isEmpty ? self._url.trimmingCharacters(in: .whitespacesAndNewlines).trimmingCharacters(in: ["/"]) : AppStaticPrefs.prefs.rootURI
+            firstTime = AppStaticPrefs.prefs.updateUserForRootURI(uri, inUser: self._userID, inPassword: self._password)
+            AppStaticPrefs.prefs.lastLogin = (url: uri, loginID: self._userID)
             
             if firstTime {  // If this was the first time we logged in, then we set all our Service bodies to selected.
                 AppStaticPrefs.prefs.setServiceBodySelection(serviceBodyObject: nil, selected: true)

@@ -1587,7 +1587,7 @@ class FormatsEditorTableViewCell: MeetingEditorViewCell {
      - returns: the number of columns to display per row
      */
     var columns: Int {
-        return Int(bounds.size.width / Self.sFormatCheckboxContainerWidth)
+        return Int((superview?.bounds.size.width ?? bounds.size.width) / Self.sFormatCheckboxContainerWidth)
     }
     
     /* ################################################################## */
@@ -1642,7 +1642,7 @@ class FormatsEditorTableViewCell: MeetingEditorViewCell {
         let columns = self.columns
         let maxFormats = MainAppDelegate.connectionObject.allPossibleFormats.count
         
-        if var currentFrame = formatDisplayView?.frame,
+        if var currentFrame = superview?.bounds,
            let labelheight = formatNameLabel?.bounds.height {
             currentFrame.size.height = labelheight
             var formatIndex = 0
