@@ -42,6 +42,8 @@ CHANGELIST
 ***Version 1.5.0.3000* ** *- TBD*
 
 - Switched to use SPM for dependencies.
+- Added a "long press" to the formats list, so the user can see more info about formats.
+- The connection is now done automatically upon startup. This reduces the number of taps to log in.
 - Updated the BMLTiOSLib and KeyChainSwift dependencies.
 - Changed graphic assets.
 
