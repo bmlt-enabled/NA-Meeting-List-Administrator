@@ -175,6 +175,9 @@ class MainAppDelegate: UIResponder, UIApplicationDelegate, BMLTiOSLibDelegate {
     /** This stores the main connection view controller reference. */
     var initialViewController: InitialViewController! = nil
     
+    /** When the app first starts, or comes out of background, and we are not connected, this flag encourages "auto-connect" */
+    var justCameOutOfTheOven: Bool = false
+
     /* ################################################################## */
     // MARK: Instance Calculated Properties
     /* ################################################################## */
@@ -203,6 +206,7 @@ class MainAppDelegate: UIResponder, UIApplicationDelegate, BMLTiOSLibDelegate {
      - returns true (all the time). This tells the app to go ahead and launch.
      */
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        self.justCameOutOfTheOven = true
         return true
     }
     
@@ -221,9 +225,9 @@ class MainAppDelegate: UIResponder, UIApplicationDelegate, BMLTiOSLibDelegate {
                 _ = navController.popToRootViewController(animated: false)
             }
             
-            // Oh, God (facepalm). We need to do this vicious hack because the damn disconnection can cause the navbar to be hidden.
-            if let topView = navController.topViewController as? SettingsViewController {
-                topView.view.setNeedsLayout()
+            if !self.validConnection {
+                self.justCameOutOfTheOven = true
+                self.initialViewController?.tryAutoConnect()
             }
         }
     }

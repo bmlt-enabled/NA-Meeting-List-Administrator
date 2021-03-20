@@ -96,9 +96,9 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate,
         
         return ret.sorted()
     }
-    
+
     /* ################################################################## */
-    // MARK: Instance IB Properties
+    // MARK: Internal Instance IB Properties
     /* ################################################################## */
     /** The mask view with the spinning throbber. */
     @IBOutlet weak var animationMask: UIView!
@@ -144,7 +144,7 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate,
     @IBOutlet weak var loggedInTextLabel: UILabel!
     
     /* ################################################################## */
-    // MARK: Overridden Instance Methods
+    // MARK: Overridden Internal Instance Methods
     /* ################################################################## */
     /**
      Called when the view has completed loading.
@@ -180,12 +180,6 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate,
         self.enterURLTextItem.text = self._url
         self._loggingIn = false
         self.setLoginStatusUI()
-        if !self._url.isEmpty {
-            self._connecting = true
-            self._loggingIn = false
-            MainAppDelegate.connectionStatus = true
-            self.startConnection()
-        }
     }
     
     /* ################################################################## */
@@ -205,6 +199,7 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate,
         self.showOrHideConnectButton()
         self.closeKeyboard()
         self.showHideNavBar()
+        self.tryAutoConnect()
     }
     
     /* ################################################################## */
@@ -232,7 +227,7 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate,
     }
     
     /* ################################################################## */
-    // MARK: IBAction Methods
+    // MARK: Internal IBAction Methods
     /* ################################################################## */
     /**
      Called when text is added/removed from the login ID text field.
@@ -399,7 +394,7 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate,
     }
     
     /* ################################################################## */
-    // MARK: Instance Methods
+    // MARK: Internal Instance Methods
     /* ################################################################## */
     /**
      Closes any open keyboard.
@@ -410,6 +405,22 @@ class InitialViewController: EditorViewControllerBaseClass, UITextFieldDelegate,
         self.enterURLTextItem.resignFirstResponder()
     }
     
+    /* ################################################################## */
+    /**
+     If the application just entered foreground, we see if it's possible to do an autoconnect.
+     */
+    func tryAutoConnect() {
+        if !self._url.isEmpty,
+           MainAppDelegate.appDelegateObject.justCameOutOfTheOven {
+            self._connecting = true
+            self._loggingIn = false
+            MainAppDelegate.connectionStatus = true
+            self.startConnection()
+        }
+        
+        MainAppDelegate.appDelegateObject.justCameOutOfTheOven = false
+    }
+
     /* ################################################################## */
     /**
      Show or hide the navbar, depending on login status.
