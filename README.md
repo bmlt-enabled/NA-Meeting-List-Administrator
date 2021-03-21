@@ -39,7 +39,7 @@ The editor/new meeting screen needs to be refactored. Currently, they are indica
 
 CHANGELIST
 =
-***Version 1.5.0.3000* ** *- TBD*
+***Version 1.5.0.3000* ** *- March 20, 2021*
 
 - Switched to use SPM for dependencies.
 - Added a "long press" to the formats list, so the user can see more info about formats.
